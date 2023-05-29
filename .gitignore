@@ -1,0 +1,47 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*tgz
+*gz
+*tar
+
+# tmp files generated via tools
+*.tmp
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Maven
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+# https://github.com/takari/maven-wrapper#usage-without-binary-jar
+.mvn/wrapper/maven-wrapper.jar
+target
+
+# Golang
+*.test
+*.profile
+
+# IntelliJ IDEA
+.idea
+.editorconfig
+*.iml
+
+# Python
+*.pyc
+
+# protoc-plugin
+build
+
+# environment variable
+project_env.sh
+
