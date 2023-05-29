@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package external;
+
+option go_package = "github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal";
+
+//import "google/protobuf/any.proto";
+//import "google/protobuf/duration.proto";
+//import "google/protobuf/timestamp.proto";
+
+import "proto/json.proto";
+
+enum Enum1 {
+  Zero  = 0;
+  One   = 2;
+  Two   = 3;
+  Three = 5;
+  Four  = 6;
+  Five  = 7;
+  Six   = 9;
+  Seven = 11;
+  Eight = 12;
+  Nine  = 15;
+  Ten   = 17;
+}
+
+message Embed {
+  enum Enum1 {
+    Zero  = 0;
+    One   = 2;
+    Two   = 3;
+    Three = 5;
+    Four  = 6;
+    Five  = 7;
+    Six   = 9;
+    Seven = 11;
+    Eight = 12;
+    Nine  = 15;
+    Ten   = 17;
+  }
+  message Message {
+    enum Enum1 {
+      Zero  = 0;
+      One   = 2;
+      Two   = 3;
+      Three = 5;
+      Four  = 6;
+      Five  = 7;
+      Six   = 9;
+      Seven = 11;
+      Eight = 12;
+      Nine  = 15;
+      Ten   = 17;
+    }
+  }
+}
+
+message Message1 {
+  message Embed1 {
+    message Embed2 {
+      string f_string1 = 1 [ (json.field) = { } ];
+      string f_string2 = 2 [ (json.field) = { } ];
+      string f_string3 = 3 [ (json.field) = { } ];
+    }
+    string f_string1 = 1 [ (json.field) = { } ];
+    string f_string2 = 2 [ (json.field) = { } ];
+    string f_string3 = 3 [ (json.field) = { } ];
+  }
+  string f_string1 = 1 [ (json.field) = { } ];
+  string f_string2 = 2 [ (json.field) = { } ];
+  string f_string3 = 3 [ (json.field) = { } ];
+}
+

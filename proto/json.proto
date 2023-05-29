@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package json;
+
+option go_package = "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson";
+
+// Package name of class.
+option java_package = "io.github.yu31.protoc.pb.pbjson";
+// File name of class.
+option java_outer_classname = "PBJSON";
+option java_multiple_files = true;
+
+import "google/protobuf/descriptor.proto";
+
+// SerializeOptions in message scope.
+extend google.protobuf.MessageOptions {
+  MessageOptions message = 64032;
+}
+
+// Options in field scope.
+extend google.protobuf.FieldOptions {
+  FieldOptions field = 64033;
+}
+
+// Options in oneof scope.
+extend google.protobuf.OneofOptions {
+  OneofOptions oneof = 64034;
+}
+
+message MessageOptions {
+  // Whether ignore generating code for the this message.
+  bool ignore = 2;
+
+  // disallow_unknown_fields causes the Unmarshal to return an error when the destination
+  // is a struct and the input contains object keys which do not match any
+  // non-ignored, exported fields in the destination.
+  bool disallow_unknown_fields = 6;
+}
+
+message OneofOptions {
+  // The key name in json format. Default is field's name in proto.
+  // If "json" is "-", The field will be ignore.
+  optional string json = 1;
+
+  // If true, the field will be ignore. It same as `json: "-"`
+  // If true, the all fields in `oneof` part will be ignore.
+  bool ignore = 2;
+
+  // Whether omit the field of empty value in encoding(MarshalJSON).
+  // It same as the go struct tag `json:"xxx,omitempty"`.
+  bool omitempty = 3;
+
+  // Whether hide the `oneof` key in json format.
+  // If the oneof field are hide, It will be omitted for empty value.
+  bool hide = 4;
+}
+
+// FIXME: unsupported the type of bool as map key.
+message FieldOptions {
+  // The key name in json format. Default is field's name in proto.
+  // If "json" is "-", The field will be ignore.
+  optional string json = 1;
+
+  // If true, the field will be ignore. It same as `json: "-"`
+  bool ignore = 2;
+
+  // Whether omit the field of empty value in encoding(MarshalJSON).
+  // It same as the struct tag `json:"xxx,omitempty"`.
+  bool omitempty = 3;
+
+  // Whether use string format for enum type. default use integer.
+  bool use_enum_string = 4;
+
+  // TODO: supported any, duration, timestamp.
+}
