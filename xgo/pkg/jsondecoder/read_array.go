@@ -96,7 +96,7 @@ func (dec *Decoder) ReadArrayElemBytes(jsonKey string) ([]byte, error) {
 	return vv, nil
 }
 
-// ReadArrayElemInterface returns (notNull, error)
-func (dec *Decoder) ReadArrayElemInterface(jsonKey string, i interface{}) (bool, error) {
-	return dec.ReadValueInterface(jsonKey, i)
+// ReadArrayElemInterface returns (isNULL, error)
+func (dec *Decoder) ReadArrayElemInterface(jsonKey string, initFN func() interface{}) error {
+	return dec.ReadValueInterface(jsonKey, initFN)
 }

@@ -200,7 +200,6 @@ func Test_TypeRepeated1_Empty(t *testing.T) {
 		b2, err = json.Marshal(dataCopy)
 		require.Nil(t, err)
 	})
-
 	t.Run("unmarshal-plugin", func(t *testing.T) {
 		// use content that get by MarshalJSON
 		data1 := &pbtypes.TypeRepeated1{}

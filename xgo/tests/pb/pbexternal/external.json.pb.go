@@ -72,12 +72,17 @@ func (x *Message1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal.(*Message1) is nil")
 	}
-	decoder, err := jsondecoder.New(b)
-	if err != nil {
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if ok, _err := decoder.CheckJSONBegin(); _err != nil || ok {
-		return _err
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
 	}
 	// Loop to scan object.
 LOOP_OBJECT:
@@ -153,12 +158,17 @@ func (x *Message1_Embed1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal.(*Message1_Embed1) is nil")
 	}
-	decoder, err := jsondecoder.New(b)
-	if err != nil {
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if ok, _err := decoder.CheckJSONBegin(); _err != nil || ok {
-		return _err
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
 	}
 	// Loop to scan object.
 LOOP_OBJECT:
@@ -234,12 +244,17 @@ func (x *Message1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal.(*Message1_Embed1_Embed2) is nil")
 	}
-	decoder, err := jsondecoder.New(b)
-	if err != nil {
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if ok, _err := decoder.CheckJSONBegin(); _err != nil || ok {
-		return _err
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
 	}
 	// Loop to scan object.
 LOOP_OBJECT:

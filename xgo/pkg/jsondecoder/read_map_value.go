@@ -5,6 +5,7 @@ import (
 )
 
 func (dec *Decoder) ReadMapValueString(jsonKey string) (string, error) {
+	dec.ReadObjectValueBefore() // TODO: review it.
 	item := dec.ReadItem()
 	vv, err := parseString(item)
 	if err != nil {
@@ -13,6 +14,7 @@ func (dec *Decoder) ReadMapValueString(jsonKey string) (string, error) {
 	return vv, nil
 }
 func (dec *Decoder) ReadMapValueBool(jsonKey string) (bool, error) {
+	dec.ReadObjectValueBefore() // TODO: review it.
 	item := dec.ReadItem()
 	vv, err := parseBool(item)
 	if err != nil {
@@ -21,6 +23,7 @@ func (dec *Decoder) ReadMapValueBool(jsonKey string) (bool, error) {
 	return vv, nil
 }
 func (dec *Decoder) ReadMapValueInt32(jsonKey string) (int32, error) {
+	dec.ReadObjectValueBefore() // TODO: review it.
 	item := dec.ReadItem()
 	vv, err := parseInt32(item)
 	if err != nil {
@@ -29,6 +32,7 @@ func (dec *Decoder) ReadMapValueInt32(jsonKey string) (int32, error) {
 	return vv, nil
 }
 func (dec *Decoder) ReadMapValueInt64(jsonKey string) (int64, error) {
+	dec.ReadObjectValueBefore() // TODO: review it.
 	item := dec.ReadItem()
 	vv, err := parseInt64(item)
 	if err != nil {
@@ -37,6 +41,7 @@ func (dec *Decoder) ReadMapValueInt64(jsonKey string) (int64, error) {
 	return vv, nil
 }
 func (dec *Decoder) ReadMapValueUint32(jsonKey string) (uint32, error) {
+	dec.ReadObjectValueBefore() // TODO: review it.
 	item := dec.ReadItem()
 	vv, err := parseUint32(item)
 	if err != nil {
@@ -45,6 +50,7 @@ func (dec *Decoder) ReadMapValueUint32(jsonKey string) (uint32, error) {
 	return vv, nil
 }
 func (dec *Decoder) ReadMapValueUint64(jsonKey string) (uint64, error) {
+	dec.ReadObjectValueBefore() // TODO: review it.
 	item := dec.ReadItem()
 	vv, err := parseUint64(item)
 	if err != nil {
@@ -54,6 +60,7 @@ func (dec *Decoder) ReadMapValueUint64(jsonKey string) (uint64, error) {
 }
 
 func (dec *Decoder) ReadMapValueFloat32(jsonKey string) (float32, error) {
+	dec.ReadObjectValueBefore() // TODO: review it.
 	item := dec.ReadItem()
 	vv, err := parseFloat32(item)
 	if err != nil {
@@ -62,6 +69,7 @@ func (dec *Decoder) ReadMapValueFloat32(jsonKey string) (float32, error) {
 	return vv, nil
 }
 func (dec *Decoder) ReadMapValueFloat64(jsonKey string) (float64, error) {
+	dec.ReadObjectValueBefore() // TODO: review it.
 	item := dec.ReadItem()
 	vv, err := parseFloat64(item)
 	if err != nil {
@@ -70,6 +78,7 @@ func (dec *Decoder) ReadMapValueFloat64(jsonKey string) (float64, error) {
 	return vv, nil
 }
 func (dec *Decoder) ReadMapValueEnumString(jsonKey string, em map[string]int32) (int32, error) {
+	dec.ReadObjectValueBefore() // TODO: review it.
 	item := dec.ReadItem()
 	vv, err := parseEnumString(item, em)
 	if err != nil {
@@ -78,6 +87,7 @@ func (dec *Decoder) ReadMapValueEnumString(jsonKey string, em map[string]int32) 
 	return vv, nil
 }
 func (dec *Decoder) ReadMapValueEnumNumber(jsonKey string, em map[int32]string) (int32, error) {
+	dec.ReadObjectValueBefore() // TODO: review it.
 	item := dec.ReadItem()
 	vv, _err := parseEnumNumber(item, em)
 	if _err != nil {
@@ -86,6 +96,7 @@ func (dec *Decoder) ReadMapValueEnumNumber(jsonKey string, em map[int32]string) 
 	return vv, nil
 }
 func (dec *Decoder) ReadMapValueBytes(jsonKey string) ([]byte, error) {
+	dec.ReadObjectValueBefore() // TODO: review it.
 	item := dec.ReadItem()
 	if item[0] == 'n' { // 'n' means null
 		return nil, nil
@@ -97,7 +108,8 @@ func (dec *Decoder) ReadMapValueBytes(jsonKey string) ([]byte, error) {
 	return vv, nil
 }
 
-// ReadMapValueInterface returns (notNull, error)
-func (dec *Decoder) ReadMapValueInterface(jsonKey string, i interface{}) (bool, error) {
-	return dec.ReadValueInterface(jsonKey, i)
+// ReadMapValueInterface returns (isNULL, error)
+func (dec *Decoder) ReadMapValueInterface(jsonKey string, initFN func() interface{}) error {
+	dec.ReadObjectValueBefore() // TODO: review it.
+	return dec.ReadValueInterface(jsonKey, initFN)
 }

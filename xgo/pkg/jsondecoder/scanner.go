@@ -44,8 +44,8 @@ const (
 	ScanObjectValue                // just finished non-last object value
 	ScanObjectEnd                  // end object (implies ScanObjectValue if possible)
 	ScanArrayBegin                 // begin array
-	ScanArrayValue                 // just finished array value
-	ScanArrayEnd                   // end array (implies ScanArrayValue if possible)
+	ScanArrayElem                  // just finished array elements
+	ScanArrayEnd                   // end array (implies ScanArrayElem if possible)
 	ScanSkipSpace                  // space byte; can skip; known to be last "continue" result
 
 	// label for Stop
@@ -63,7 +63,7 @@ type ParsePhase int8
 const (
 	parseObjectKey   ParsePhase = iota // parsing object key (before colon)
 	parseObjectValue                   // parsing object value (after colon)
-	parseArrayValue                    // parsing array value
+	parseArrayElem                     // parsing array elements
 )
 
 // This limits the max nesting depth to prevent stack overflow.
@@ -176,7 +176,7 @@ func stateBeginValue(s *scanner, c byte) OpCode {
 		return s.pushParseState(c, parseObjectKey, ScanObjectBegin)
 	case '[':
 		s.step = stateBeginValueOrEmpty
-		return s.pushParseState(c, parseArrayValue, ScanArrayBegin)
+		return s.pushParseState(c, parseArrayElem, ScanArrayBegin)
 	case '"':
 		s.step = stateInString
 		return ScanLiteralBegin
@@ -262,10 +262,10 @@ func stateEndValue(s *scanner, c byte) OpCode {
 			return ScanObjectEnd
 		}
 		return s.error(c, "after object key:value pair")
-	case parseArrayValue:
+	case parseArrayElem:
 		if c == ',' {
 			s.step = stateBeginValue
-			return ScanArrayValue
+			return ScanArrayElem
 		}
 		if c == ']' {
 			s.popParseState()

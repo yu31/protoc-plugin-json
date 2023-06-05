@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package example;
+package example1;
 
 option go_package = "xgo/tests/pb/pbexample";
 
@@ -91,41 +91,6 @@ message Example1 {
 
   map<string, Message1> m_message1 = 82;
   map<string, Enum1> m_enum = 83;
-}
-
-message Example2 {
-  optional string   f_string1 = 1;
-
-  oneof OnetType1 {
-    string f_string2 = 2;
-    string f_string3 = 3;
-  }
-
-  optional int32    f_int32    = 11;
-  optional int64    f_int64    = 12;
-  optional uint32   f_uint32   = 13;
-  optional uint64   f_uint64   = 14;
-  optional sint32   f_sint32   = 15;
-  optional sint64   f_sint64   = 16;
-  optional sfixed32 f_sfixed32 = 17;
-  optional sfixed64 f_sfixed64 = 18;
-  optional fixed32  f_fixed32  = 19;
-  optional fixed64  f_fixed64  = 20;
-  optional float    f_float    = 21;
-  optional double   f_double   = 22;
-
-  optional bool  f_bool1  = 31;
-  optional bytes f_bytes1 = 32;
-  optional Enum1 f_enum1  = 33;
-
-  optional google.protobuf.Duration f_duration1   = 41;
-  optional google.protobuf.Timestamp f_timestamp1 = 42;
-
-  optional Message1                            f_message11 = 51;
-  optional Message1.Embed1                     f_message12 = 52;
-  optional Message1.Embed1.Embed2              f_message13 = 53;
-
-  optional google.protobuf.Any f_any1 = 61;
 }
 
 message Message1 {

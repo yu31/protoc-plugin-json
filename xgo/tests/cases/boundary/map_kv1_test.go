@@ -58,7 +58,7 @@ func Test_MapKV1_StdJSON(t *testing.T) {
 	})
 	// 4. The length of field is greater than the content in JSON.
 	t.Run("case4", func(t *testing.T) {
-		bb := []byte(`    {    "m_string1":  {"k4": "v4",  "k5": "v5"   }    }  `)
+		bb := []byte(`    {    "m_string1":  {"k4":"v4",  "k5":"v5"   }    }  `)
 		data := &MapKV1{
 			MString1: map[string]string{"k1": "v1", "k2": "v2", "k3": "v3"},
 		}
@@ -120,7 +120,7 @@ func Test_MapKV1_Plugin(t *testing.T) {
 	})
 	// 4. The length of field is greater than the content in JSON.
 	t.Run("case4", func(t *testing.T) {
-		bb := []byte(`    {    "m_string1":  {"k4": "v4",  "k5": "v5"   }    }  `)
+		bb := []byte(`    {    "m_string1":  {"k4":"v4",  "k5":"v5"   }    }  `)
 		data := &pbboundary.MapKV1{
 			MString1: map[string]string{"k1": "v1", "k2": "v2", "k3": "v3"},
 		}

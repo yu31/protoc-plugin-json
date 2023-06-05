@@ -7,7 +7,6 @@ package pbtypes
 
 import (
 	errors "errors"
-	fmt "fmt"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -45,12 +44,17 @@ func (x *MessageMap1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*MessageMap1) is nil")
 	}
-	decoder, err := jsondecoder.New(b)
-	if err != nil {
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if ok, _err := decoder.CheckJSONBegin(); _err != nil || ok {
-		return _err
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
 	}
 	// Loop to scan object.
 LOOP_OBJECT:
@@ -126,12 +130,17 @@ func (x *MessageMap1_Embed1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*MessageMap1_Embed1) is nil")
 	}
-	decoder, err := jsondecoder.New(b)
-	if err != nil {
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if ok, _err := decoder.CheckJSONBegin(); _err != nil || ok {
-		return _err
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
 	}
 	// Loop to scan object.
 LOOP_OBJECT:
@@ -207,12 +216,17 @@ func (x *MessageMap1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*MessageMap1_Embed1_Embed2) is nil")
 	}
-	decoder, err := jsondecoder.New(b)
-	if err != nil {
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if ok, _err := decoder.CheckJSONBegin(); _err != nil || ok {
-		return _err
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
 	}
 	// Loop to scan object.
 LOOP_OBJECT:
@@ -734,12 +748,17 @@ func (x *TypeMap1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*TypeMap1) is nil")
 	}
-	decoder, err := jsondecoder.New(b)
-	if err != nil {
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if ok, _err := decoder.CheckJSONBegin(); _err != nil || ok {
-		return _err
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
 	}
 	// Loop to scan object.
 LOOP_OBJECT:
@@ -756,18 +775,16 @@ LOOP_OBJECT:
 		// match field with JSON key.
 		switch {
 		case jsonKey == "f_string1":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]string", string(value), jsonKey)
-				} else {
-					x.FString1 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]string", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FString1 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FString1 == nil {
 					x.FString1 = make(map[string]string)
 				}
@@ -776,38 +793,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_string1
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueString(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FString1[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_string1
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_string2":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]string", string(value), jsonKey)
-				} else {
-					x.FString2 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]string", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FString2 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FString2 == nil {
 					x.FString2 = make(map[string]string)
 				}
@@ -816,38 +827,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_string2
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueString(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FString2[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_string2
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_int32":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]int32", string(value), jsonKey)
-				} else {
-					x.FInt32 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]int32", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FInt32 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FInt32 == nil {
 					x.FInt32 = make(map[string]int32)
 				}
@@ -856,38 +861,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_int32
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueInt32(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FInt32[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_int32
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_int64":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]int64", string(value), jsonKey)
-				} else {
-					x.FInt64 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]int64", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FInt64 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FInt64 == nil {
 					x.FInt64 = make(map[string]int64)
 				}
@@ -896,38 +895,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_int64
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueInt64(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FInt64[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_int64
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_uint32":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]uint32", string(value), jsonKey)
-				} else {
-					x.FUint32 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]uint32", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FUint32 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FUint32 == nil {
 					x.FUint32 = make(map[string]uint32)
 				}
@@ -936,38 +929,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_uint32
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueUint32(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FUint32[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_uint32
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_uint64":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]uint64", string(value), jsonKey)
-				} else {
-					x.FUint64 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]uint64", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FUint64 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FUint64 == nil {
 					x.FUint64 = make(map[string]uint64)
 				}
@@ -976,38 +963,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_uint64
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueUint64(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FUint64[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_uint64
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_sint32":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]int32", string(value), jsonKey)
-				} else {
-					x.FSint32 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]int32", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FSint32 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FSint32 == nil {
 					x.FSint32 = make(map[string]int32)
 				}
@@ -1016,38 +997,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_sint32
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueInt32(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FSint32[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_sint32
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_sint64":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]int64", string(value), jsonKey)
-				} else {
-					x.FSint64 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]int64", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FSint64 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FSint64 == nil {
 					x.FSint64 = make(map[string]int64)
 				}
@@ -1056,38 +1031,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_sint64
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueInt64(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FSint64[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_sint64
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_sfixed32":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]int32", string(value), jsonKey)
-				} else {
-					x.FSfixed32 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]int32", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FSfixed32 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FSfixed32 == nil {
 					x.FSfixed32 = make(map[string]int32)
 				}
@@ -1096,38 +1065,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_sfixed32
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueInt32(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FSfixed32[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_sfixed32
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_sfixed64":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]int64", string(value), jsonKey)
-				} else {
-					x.FSfixed64 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]int64", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FSfixed64 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FSfixed64 == nil {
 					x.FSfixed64 = make(map[string]int64)
 				}
@@ -1136,38 +1099,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_sfixed64
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueInt64(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FSfixed64[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_sfixed64
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_fixed32":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]uint32", string(value), jsonKey)
-				} else {
-					x.FFixed32 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]uint32", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FFixed32 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FFixed32 == nil {
 					x.FFixed32 = make(map[string]uint32)
 				}
@@ -1176,38 +1133,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_fixed32
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueUint32(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FFixed32[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_fixed32
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_fixed64":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]uint64", string(value), jsonKey)
-				} else {
-					x.FFixed64 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]uint64", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FFixed64 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FFixed64 == nil {
 					x.FFixed64 = make(map[string]uint64)
 				}
@@ -1216,38 +1167,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_fixed64
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueUint64(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FFixed64[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_fixed64
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_float":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]float32", string(value), jsonKey)
-				} else {
-					x.FFloat = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]float32", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FFloat = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FFloat == nil {
 					x.FFloat = make(map[string]float32)
 				}
@@ -1256,38 +1201,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_float
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueFloat32(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FFloat[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_float
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_double":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]float64", string(value), jsonKey)
-				} else {
-					x.FDouble = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]float64", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FDouble = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FDouble == nil {
 					x.FDouble = make(map[string]float64)
 				}
@@ -1296,38 +1235,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_double
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueFloat64(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FDouble[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_double
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_bool1":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]bool", string(value), jsonKey)
-				} else {
-					x.FBool1 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]bool", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FBool1 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FBool1 == nil {
 					x.FBool1 = make(map[string]bool)
 				}
@@ -1336,38 +1269,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_bool1
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueBool(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FBool1[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_bool1
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_bytes1":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string][]byte", string(value), jsonKey)
-				} else {
-					x.FBytes1 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string][]byte", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FBytes1 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FBytes1 == nil {
 					x.FBytes1 = make(map[string][]byte)
 				}
@@ -1376,38 +1303,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_bytes1
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueBytes(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FBytes1[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_bytes1
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_enum1":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]EnumMap1", string(value), jsonKey)
-				} else {
-					x.FEnum1 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]EnumMap1", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FEnum1 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FEnum1 == nil {
 					x.FEnum1 = make(map[string]EnumMap1)
 				}
@@ -1416,39 +1337,33 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_enum1
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					v1, _err := decoder.ReadMapValueEnumNumber(jsonKey, EnumMap1_name)
 					vv := EnumMap1(v1)
 					if _err != nil {
 						return _err
 					}
 					x.FEnum1[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_enum1
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_enum2":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]pbexternal.Enum1", string(value), jsonKey)
-				} else {
-					x.FEnum2 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]pbexternal.Enum1", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FEnum2 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FEnum2 == nil {
 					x.FEnum2 = make(map[string]pbexternal.Enum1)
 				}
@@ -1457,39 +1372,33 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_enum2
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					v1, _err := decoder.ReadMapValueEnumNumber(jsonKey, pbexternal.Enum1_name)
 					vv := pbexternal.Enum1(v1)
 					if _err != nil {
 						return _err
 					}
 					x.FEnum2[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_enum2
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_enum3":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]pbexternal.Embed_Enum1", string(value), jsonKey)
-				} else {
-					x.FEnum3 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]pbexternal.Embed_Enum1", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FEnum3 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FEnum3 == nil {
 					x.FEnum3 = make(map[string]pbexternal.Embed_Enum1)
 				}
@@ -1498,39 +1407,33 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_enum3
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					v1, _err := decoder.ReadMapValueEnumNumber(jsonKey, pbexternal.Embed_Enum1_name)
 					vv := pbexternal.Embed_Enum1(v1)
 					if _err != nil {
 						return _err
 					}
 					x.FEnum3[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_enum3
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_enum4":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]pbexternal.Embed_Message_Enum1", string(value), jsonKey)
-				} else {
-					x.FEnum4 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]pbexternal.Embed_Message_Enum1", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FEnum4 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FEnum4 == nil {
 					x.FEnum4 = make(map[string]pbexternal.Embed_Message_Enum1)
 				}
@@ -1539,39 +1442,33 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_enum4
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					v1, _err := decoder.ReadMapValueEnumNumber(jsonKey, pbexternal.Embed_Message_Enum1_name)
 					vv := pbexternal.Embed_Message_Enum1(v1)
 					if _err != nil {
 						return _err
 					}
 					x.FEnum4[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_enum4
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_enum5":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]EnumCommon1", string(value), jsonKey)
-				} else {
-					x.FEnum5 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]EnumCommon1", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FEnum5 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FEnum5 == nil {
 					x.FEnum5 = make(map[string]EnumCommon1)
 				}
@@ -1580,39 +1477,33 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_enum5
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					v1, _err := decoder.ReadMapValueEnumNumber(jsonKey, EnumCommon1_name)
 					vv := EnumCommon1(v1)
 					if _err != nil {
 						return _err
 					}
 					x.FEnum5[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_enum5
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_enum6":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]MessageCommon1_Enum1", string(value), jsonKey)
-				} else {
-					x.FEnum6 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]MessageCommon1_Enum1", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FEnum6 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FEnum6 == nil {
 					x.FEnum6 = make(map[string]MessageCommon1_Enum1)
 				}
@@ -1621,39 +1512,33 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_enum6
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					v1, _err := decoder.ReadMapValueEnumNumber(jsonKey, MessageCommon1_Enum1_name)
 					vv := MessageCommon1_Enum1(v1)
 					if _err != nil {
 						return _err
 					}
 					x.FEnum6[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_enum6
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_duration1":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*durationpb.Duration", string(value), jsonKey)
-				} else {
-					x.FDuration1 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*durationpb.Duration", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FDuration1 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FDuration1 == nil {
 					x.FDuration1 = make(map[string]*durationpb.Duration)
 				}
@@ -1662,45 +1547,40 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_duration1
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
-					vv := x.FDuration1[mapKey]
-					if vv == nil {
-						vv = new(durationpb.Duration)
+					var vv *durationpb.Duration
+					initFN := func() interface{} {
+						vv = x.FDuration1[mapKey]
+						if vv == nil {
+							vv = new(durationpb.Duration)
+						}
+						return vv
 					}
-					ok, _err := decoder.ReadMapValueInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.FDuration1[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_duration1
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_duration2":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*durationpb.Duration", string(value), jsonKey)
-				} else {
-					x.FDuration2 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*durationpb.Duration", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FDuration2 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FDuration2 == nil {
 					x.FDuration2 = make(map[string]*durationpb.Duration)
 				}
@@ -1709,45 +1589,40 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_duration2
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
-					vv := x.FDuration2[mapKey]
-					if vv == nil {
-						vv = new(durationpb.Duration)
+					var vv *durationpb.Duration
+					initFN := func() interface{} {
+						vv = x.FDuration2[mapKey]
+						if vv == nil {
+							vv = new(durationpb.Duration)
+						}
+						return vv
 					}
-					ok, _err := decoder.ReadMapValueInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.FDuration2[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_duration2
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_timestamp1":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*timestamppb.Timestamp", string(value), jsonKey)
-				} else {
-					x.FTimestamp1 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*timestamppb.Timestamp", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FTimestamp1 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FTimestamp1 == nil {
 					x.FTimestamp1 = make(map[string]*timestamppb.Timestamp)
 				}
@@ -1756,45 +1631,40 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_timestamp1
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
-					vv := x.FTimestamp1[mapKey]
-					if vv == nil {
-						vv = new(timestamppb.Timestamp)
+					var vv *timestamppb.Timestamp
+					initFN := func() interface{} {
+						vv = x.FTimestamp1[mapKey]
+						if vv == nil {
+							vv = new(timestamppb.Timestamp)
+						}
+						return vv
 					}
-					ok, _err := decoder.ReadMapValueInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.FTimestamp1[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_timestamp1
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_timestamp2":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*timestamppb.Timestamp", string(value), jsonKey)
-				} else {
-					x.FTimestamp2 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*timestamppb.Timestamp", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FTimestamp2 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FTimestamp2 == nil {
 					x.FTimestamp2 = make(map[string]*timestamppb.Timestamp)
 				}
@@ -1803,45 +1673,40 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_timestamp2
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
-					vv := x.FTimestamp2[mapKey]
-					if vv == nil {
-						vv = new(timestamppb.Timestamp)
+					var vv *timestamppb.Timestamp
+					initFN := func() interface{} {
+						vv = x.FTimestamp2[mapKey]
+						if vv == nil {
+							vv = new(timestamppb.Timestamp)
+						}
+						return vv
 					}
-					ok, _err := decoder.ReadMapValueInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.FTimestamp2[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_timestamp2
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_any1":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*anypb.Any", string(value), jsonKey)
-				} else {
-					x.FAny1 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*anypb.Any", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FAny1 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FAny1 == nil {
 					x.FAny1 = make(map[string]*anypb.Any)
 				}
@@ -1850,45 +1715,40 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_any1
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
-					vv := x.FAny1[mapKey]
-					if vv == nil {
-						vv = new(anypb.Any)
+					var vv *anypb.Any
+					initFN := func() interface{} {
+						vv = x.FAny1[mapKey]
+						if vv == nil {
+							vv = new(anypb.Any)
+						}
+						return vv
 					}
-					ok, _err := decoder.ReadMapValueInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.FAny1[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_any1
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_any2":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*anypb.Any", string(value), jsonKey)
-				} else {
-					x.FAny2 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*anypb.Any", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FAny2 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FAny2 == nil {
 					x.FAny2 = make(map[string]*anypb.Any)
 				}
@@ -1897,45 +1757,40 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_any2
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
-					vv := x.FAny2[mapKey]
-					if vv == nil {
-						vv = new(anypb.Any)
+					var vv *anypb.Any
+					initFN := func() interface{} {
+						vv = x.FAny2[mapKey]
+						if vv == nil {
+							vv = new(anypb.Any)
+						}
+						return vv
 					}
-					ok, _err := decoder.ReadMapValueInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.FAny2[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_any2
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message1":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*MessageMap1", string(value), jsonKey)
-				} else {
-					x.FMessage1 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*MessageMap1", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage1 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FMessage1 == nil {
 					x.FMessage1 = make(map[string]*MessageMap1)
 				}
@@ -1944,45 +1799,40 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_message1
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
-					vv := x.FMessage1[mapKey]
-					if vv == nil {
-						vv = new(MessageMap1)
+					var vv *MessageMap1
+					initFN := func() interface{} {
+						vv = x.FMessage1[mapKey]
+						if vv == nil {
+							vv = new(MessageMap1)
+						}
+						return vv
 					}
-					ok, _err := decoder.ReadMapValueInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.FMessage1[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_message1
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message2":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*MessageMap1_Embed1", string(value), jsonKey)
-				} else {
-					x.FMessage2 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*MessageMap1_Embed1", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage2 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FMessage2 == nil {
 					x.FMessage2 = make(map[string]*MessageMap1_Embed1)
 				}
@@ -1991,45 +1841,40 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_message2
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
-					vv := x.FMessage2[mapKey]
-					if vv == nil {
-						vv = new(MessageMap1_Embed1)
+					var vv *MessageMap1_Embed1
+					initFN := func() interface{} {
+						vv = x.FMessage2[mapKey]
+						if vv == nil {
+							vv = new(MessageMap1_Embed1)
+						}
+						return vv
 					}
-					ok, _err := decoder.ReadMapValueInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.FMessage2[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_message2
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message3":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*MessageMap1_Embed1_Embed2", string(value), jsonKey)
-				} else {
-					x.FMessage3 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*MessageMap1_Embed1_Embed2", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage3 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FMessage3 == nil {
 					x.FMessage3 = make(map[string]*MessageMap1_Embed1_Embed2)
 				}
@@ -2038,45 +1883,40 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_message3
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
-					vv := x.FMessage3[mapKey]
-					if vv == nil {
-						vv = new(MessageMap1_Embed1_Embed2)
+					var vv *MessageMap1_Embed1_Embed2
+					initFN := func() interface{} {
+						vv = x.FMessage3[mapKey]
+						if vv == nil {
+							vv = new(MessageMap1_Embed1_Embed2)
+						}
+						return vv
 					}
-					ok, _err := decoder.ReadMapValueInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.FMessage3[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_message3
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message4":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*pbexternal.Message1", string(value), jsonKey)
-				} else {
-					x.FMessage4 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*pbexternal.Message1", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage4 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FMessage4 == nil {
 					x.FMessage4 = make(map[string]*pbexternal.Message1)
 				}
@@ -2085,45 +1925,40 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_message4
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
-					vv := x.FMessage4[mapKey]
-					if vv == nil {
-						vv = new(pbexternal.Message1)
+					var vv *pbexternal.Message1
+					initFN := func() interface{} {
+						vv = x.FMessage4[mapKey]
+						if vv == nil {
+							vv = new(pbexternal.Message1)
+						}
+						return vv
 					}
-					ok, _err := decoder.ReadMapValueInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.FMessage4[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_message4
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message5":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*pbexternal.Message1_Embed1", string(value), jsonKey)
-				} else {
-					x.FMessage5 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*pbexternal.Message1_Embed1", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage5 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FMessage5 == nil {
 					x.FMessage5 = make(map[string]*pbexternal.Message1_Embed1)
 				}
@@ -2132,45 +1967,40 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_message5
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
-					vv := x.FMessage5[mapKey]
-					if vv == nil {
-						vv = new(pbexternal.Message1_Embed1)
+					var vv *pbexternal.Message1_Embed1
+					initFN := func() interface{} {
+						vv = x.FMessage5[mapKey]
+						if vv == nil {
+							vv = new(pbexternal.Message1_Embed1)
+						}
+						return vv
 					}
-					ok, _err := decoder.ReadMapValueInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.FMessage5[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_message5
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message6":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*pbexternal.Message1_Embed1_Embed2", string(value), jsonKey)
-				} else {
-					x.FMessage6 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*pbexternal.Message1_Embed1_Embed2", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage6 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FMessage6 == nil {
 					x.FMessage6 = make(map[string]*pbexternal.Message1_Embed1_Embed2)
 				}
@@ -2179,45 +2009,40 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_message6
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
-					vv := x.FMessage6[mapKey]
-					if vv == nil {
-						vv = new(pbexternal.Message1_Embed1_Embed2)
+					var vv *pbexternal.Message1_Embed1_Embed2
+					initFN := func() interface{} {
+						vv = x.FMessage6[mapKey]
+						if vv == nil {
+							vv = new(pbexternal.Message1_Embed1_Embed2)
+						}
+						return vv
 					}
-					ok, _err := decoder.ReadMapValueInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.FMessage6[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_message6
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message7":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*MessageCommon1", string(value), jsonKey)
-				} else {
-					x.FMessage7 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*MessageCommon1", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage7 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FMessage7 == nil {
 					x.FMessage7 = make(map[string]*MessageCommon1)
 				}
@@ -2226,45 +2051,40 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_message7
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
-					vv := x.FMessage7[mapKey]
-					if vv == nil {
-						vv = new(MessageCommon1)
+					var vv *MessageCommon1
+					initFN := func() interface{} {
+						vv = x.FMessage7[mapKey]
+						if vv == nil {
+							vv = new(MessageCommon1)
+						}
+						return vv
 					}
-					ok, _err := decoder.ReadMapValueInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.FMessage7[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_message7
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message8":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*MessageCommon1_Embed1", string(value), jsonKey)
-				} else {
-					x.FMessage8 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*MessageCommon1_Embed1", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage8 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FMessage8 == nil {
 					x.FMessage8 = make(map[string]*MessageCommon1_Embed1)
 				}
@@ -2273,45 +2093,40 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_message8
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
-					vv := x.FMessage8[mapKey]
-					if vv == nil {
-						vv = new(MessageCommon1_Embed1)
+					var vv *MessageCommon1_Embed1
+					initFN := func() interface{} {
+						vv = x.FMessage8[mapKey]
+						if vv == nil {
+							vv = new(MessageCommon1_Embed1)
+						}
+						return vv
 					}
-					ok, _err := decoder.ReadMapValueInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.FMessage8[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_message8
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message9":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*MessageCommon1_Embed1_Embed2", string(value), jsonKey)
-				} else {
-					x.FMessage9 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]*MessageCommon1_Embed1_Embed2", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage9 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FMessage9 == nil {
 					x.FMessage9 = make(map[string]*MessageCommon1_Embed1_Embed2)
 				}
@@ -2320,27 +2135,24 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_message9
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
-					vv := x.FMessage9[mapKey]
-					if vv == nil {
-						vv = new(MessageCommon1_Embed1_Embed2)
+					var vv *MessageCommon1_Embed1_Embed2
+					initFN := func() interface{} {
+						vv = x.FMessage9[mapKey]
+						if vv == nil {
+							vv = new(MessageCommon1_Embed1_Embed2)
+						}
+						return vv
 					}
-					ok, _err := decoder.ReadMapValueInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.FMessage9[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_message9
 					}
 				}
@@ -2503,12 +2315,17 @@ func (x *TypeMap2) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*TypeMap2) is nil")
 	}
-	decoder, err := jsondecoder.New(b)
-	if err != nil {
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if ok, _err := decoder.CheckJSONBegin(); _err != nil || ok {
-		return _err
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
 	}
 	// Loop to scan object.
 LOOP_OBJECT:
@@ -2525,18 +2342,16 @@ LOOP_OBJECT:
 		// match field with JSON key.
 		switch {
 		case jsonKey == "f_string1":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]string", string(value), jsonKey)
-				} else {
-					x.FString1 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[string]string", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FString1 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FString1 == nil {
 					x.FString1 = make(map[string]string)
 				}
@@ -2545,38 +2360,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_string1
-					}
 					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueString(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FString1[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_string1
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_int32":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[int32]int32", string(value), jsonKey)
-				} else {
-					x.FInt32 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[int32]int32", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FInt32 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FInt32 == nil {
 					x.FInt32 = make(map[int32]int32)
 				}
@@ -2585,38 +2394,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_int32
-					}
 					mapKey, _err := decoder.ReadMapKeyInt32(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueInt32(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FInt32[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_int32
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_int64":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[int64]int64", string(value), jsonKey)
-				} else {
-					x.FInt64 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[int64]int64", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FInt64 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FInt64 == nil {
 					x.FInt64 = make(map[int64]int64)
 				}
@@ -2625,38 +2428,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_int64
-					}
 					mapKey, _err := decoder.ReadMapKeyInt64(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueInt64(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FInt64[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_int64
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_uint32":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[uint32]uint32", string(value), jsonKey)
-				} else {
-					x.FUint32 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[uint32]uint32", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FUint32 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FUint32 == nil {
 					x.FUint32 = make(map[uint32]uint32)
 				}
@@ -2665,38 +2462,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_uint32
-					}
 					mapKey, _err := decoder.ReadMapKeyUint32(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueUint32(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FUint32[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_uint32
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_uint64":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[uint64]uint64", string(value), jsonKey)
-				} else {
-					x.FUint64 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[uint64]uint64", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FUint64 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FUint64 == nil {
 					x.FUint64 = make(map[uint64]uint64)
 				}
@@ -2705,38 +2496,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_uint64
-					}
 					mapKey, _err := decoder.ReadMapKeyUint64(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueUint64(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FUint64[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_uint64
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_sint32":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[int32]int32", string(value), jsonKey)
-				} else {
-					x.FSint32 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[int32]int32", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FSint32 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FSint32 == nil {
 					x.FSint32 = make(map[int32]int32)
 				}
@@ -2745,38 +2530,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_sint32
-					}
 					mapKey, _err := decoder.ReadMapKeyInt32(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueInt32(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FSint32[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_sint32
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_sint64":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[int64]int64", string(value), jsonKey)
-				} else {
-					x.FSint64 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[int64]int64", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FSint64 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FSint64 == nil {
 					x.FSint64 = make(map[int64]int64)
 				}
@@ -2785,38 +2564,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_sint64
-					}
 					mapKey, _err := decoder.ReadMapKeyInt64(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueInt64(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FSint64[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_sint64
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_sfixed32":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[int32]int32", string(value), jsonKey)
-				} else {
-					x.FSfixed32 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[int32]int32", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FSfixed32 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FSfixed32 == nil {
 					x.FSfixed32 = make(map[int32]int32)
 				}
@@ -2825,38 +2598,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_sfixed32
-					}
 					mapKey, _err := decoder.ReadMapKeyInt32(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueInt32(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FSfixed32[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_sfixed32
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_sfixed64":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[int64]int64", string(value), jsonKey)
-				} else {
-					x.FSfixed64 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[int64]int64", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FSfixed64 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FSfixed64 == nil {
 					x.FSfixed64 = make(map[int64]int64)
 				}
@@ -2865,38 +2632,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_sfixed64
-					}
 					mapKey, _err := decoder.ReadMapKeyInt64(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueInt64(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FSfixed64[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_sfixed64
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_fixed32":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[uint32]uint32", string(value), jsonKey)
-				} else {
-					x.FFixed32 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[uint32]uint32", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FFixed32 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FFixed32 == nil {
 					x.FFixed32 = make(map[uint32]uint32)
 				}
@@ -2905,38 +2666,32 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_fixed32
-					}
 					mapKey, _err := decoder.ReadMapKeyUint32(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueUint32(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FFixed32[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_fixed32
 					}
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_fixed64":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[uint64]uint64", string(value), jsonKey)
-				} else {
-					x.FFixed64 = nil
-				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanObjectBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as map into field %s of type map[uint64]uint64", string(value), jsonKey)
-				}
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FFixed64 = nil
+			case isEmpty:
+				// do nothing
+			default:
 				if x.FFixed64 == nil {
 					x.FFixed64 = make(map[uint64]uint64)
 				}
@@ -2945,20 +2700,16 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadObjectKeyBefore() { // before read object key
-						break LOOP_MAP_f_fixed64
-					}
 					mapKey, _err := decoder.ReadMapKeyUint64(jsonKey)
 					if _err != nil {
 						return _err
 					}
-					decoder.ReadObjectValueBefore() // Before read object value
 					vv, _err := decoder.ReadMapValueUint64(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.FFixed64[mapKey] = vv
-					if decoder.ReadObjectValueAfter() { // After read object value
+					if decoder.ReadMapValueAfter() { // After read map value
 						break LOOP_MAP_f_fixed64
 					}
 				}

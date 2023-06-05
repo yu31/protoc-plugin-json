@@ -7,7 +7,6 @@ package pbtypes
 
 import (
 	errors "errors"
-	fmt "fmt"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -45,12 +44,17 @@ func (x *MessageRepeated1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*MessageRepeated1) is nil")
 	}
-	decoder, err := jsondecoder.New(b)
-	if err != nil {
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if ok, _err := decoder.CheckJSONBegin(); _err != nil || ok {
-		return _err
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
 	}
 	// Loop to scan object.
 LOOP_OBJECT:
@@ -126,12 +130,17 @@ func (x *MessageRepeated1_Embed1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*MessageRepeated1_Embed1) is nil")
 	}
-	decoder, err := jsondecoder.New(b)
-	if err != nil {
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if ok, _err := decoder.CheckJSONBegin(); _err != nil || ok {
-		return _err
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
 	}
 	// Loop to scan object.
 LOOP_OBJECT:
@@ -207,12 +216,17 @@ func (x *MessageRepeated1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*MessageRepeated1_Embed1_Embed2) is nil")
 	}
-	decoder, err := jsondecoder.New(b)
-	if err != nil {
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if ok, _err := decoder.CheckJSONBegin(); _err != nil || ok {
-		return _err
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
 	}
 	// Loop to scan object.
 LOOP_OBJECT:
@@ -697,12 +711,17 @@ func (x *TypeRepeated1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*TypeRepeated1) is nil")
 	}
-	decoder, err := jsondecoder.New(b)
-	if err != nil {
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if ok, _err := decoder.CheckJSONBegin(); _err != nil || ok {
-		return _err
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
 	}
 	// Loop to scan object.
 LOOP_OBJECT:
@@ -719,18 +738,20 @@ LOOP_OBJECT:
 		// match field with JSON key.
 		switch {
 		case jsonKey == "f_string1":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []string", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FString1 = nil
+			case isEmpty:
+				if x.FString1 == nil {
+					x.FString1 = make([]string, 0)
 				} else {
-					x.FString1 = nil
+					x.FString1 = x.FString1[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []string", string(value), jsonKey)
-				}
+			default:
 				if x.FString1 == nil {
 					x.FString1 = make([]string, 0)
 				}
@@ -740,9 +761,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_string1
 					}
 					vv, _err := decoder.ReadArrayElemString(jsonKey)
 					if _err != nil {
@@ -754,28 +772,31 @@ LOOP_OBJECT:
 						x.FString1 = append(x.FString1, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_string1
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FString1 = x.FString1[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_string2":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []string", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FString2 = nil
+			case isEmpty:
+				if x.FString2 == nil {
+					x.FString2 = make([]string, 0)
 				} else {
-					x.FString2 = nil
+					x.FString2 = x.FString2[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []string", string(value), jsonKey)
-				}
+			default:
 				if x.FString2 == nil {
 					x.FString2 = make([]string, 0)
 				}
@@ -785,9 +806,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_string2
 					}
 					vv, _err := decoder.ReadArrayElemString(jsonKey)
 					if _err != nil {
@@ -799,28 +817,31 @@ LOOP_OBJECT:
 						x.FString2 = append(x.FString2, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_string2
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FString2 = x.FString2[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_int32":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []int32", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FInt32 = nil
+			case isEmpty:
+				if x.FInt32 == nil {
+					x.FInt32 = make([]int32, 0)
 				} else {
-					x.FInt32 = nil
+					x.FInt32 = x.FInt32[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []int32", string(value), jsonKey)
-				}
+			default:
 				if x.FInt32 == nil {
 					x.FInt32 = make([]int32, 0)
 				}
@@ -830,9 +851,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_int32
 					}
 					vv, _err := decoder.ReadArrayElemInt32(jsonKey)
 					if _err != nil {
@@ -844,28 +862,31 @@ LOOP_OBJECT:
 						x.FInt32 = append(x.FInt32, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_int32
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FInt32 = x.FInt32[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_int64":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []int64", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FInt64 = nil
+			case isEmpty:
+				if x.FInt64 == nil {
+					x.FInt64 = make([]int64, 0)
 				} else {
-					x.FInt64 = nil
+					x.FInt64 = x.FInt64[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []int64", string(value), jsonKey)
-				}
+			default:
 				if x.FInt64 == nil {
 					x.FInt64 = make([]int64, 0)
 				}
@@ -875,9 +896,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_int64
 					}
 					vv, _err := decoder.ReadArrayElemInt64(jsonKey)
 					if _err != nil {
@@ -889,28 +907,31 @@ LOOP_OBJECT:
 						x.FInt64 = append(x.FInt64, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_int64
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FInt64 = x.FInt64[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_uint32":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []uint32", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FUint32 = nil
+			case isEmpty:
+				if x.FUint32 == nil {
+					x.FUint32 = make([]uint32, 0)
 				} else {
-					x.FUint32 = nil
+					x.FUint32 = x.FUint32[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []uint32", string(value), jsonKey)
-				}
+			default:
 				if x.FUint32 == nil {
 					x.FUint32 = make([]uint32, 0)
 				}
@@ -920,9 +941,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_uint32
 					}
 					vv, _err := decoder.ReadArrayElemUint32(jsonKey)
 					if _err != nil {
@@ -934,28 +952,31 @@ LOOP_OBJECT:
 						x.FUint32 = append(x.FUint32, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_uint32
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FUint32 = x.FUint32[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_uint64":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []uint64", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FUint64 = nil
+			case isEmpty:
+				if x.FUint64 == nil {
+					x.FUint64 = make([]uint64, 0)
 				} else {
-					x.FUint64 = nil
+					x.FUint64 = x.FUint64[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []uint64", string(value), jsonKey)
-				}
+			default:
 				if x.FUint64 == nil {
 					x.FUint64 = make([]uint64, 0)
 				}
@@ -965,9 +986,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_uint64
 					}
 					vv, _err := decoder.ReadArrayElemUint64(jsonKey)
 					if _err != nil {
@@ -979,28 +997,31 @@ LOOP_OBJECT:
 						x.FUint64 = append(x.FUint64, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_uint64
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FUint64 = x.FUint64[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_sint32":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []int32", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FSint32 = nil
+			case isEmpty:
+				if x.FSint32 == nil {
+					x.FSint32 = make([]int32, 0)
 				} else {
-					x.FSint32 = nil
+					x.FSint32 = x.FSint32[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []int32", string(value), jsonKey)
-				}
+			default:
 				if x.FSint32 == nil {
 					x.FSint32 = make([]int32, 0)
 				}
@@ -1010,9 +1031,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_sint32
 					}
 					vv, _err := decoder.ReadArrayElemInt32(jsonKey)
 					if _err != nil {
@@ -1024,28 +1042,31 @@ LOOP_OBJECT:
 						x.FSint32 = append(x.FSint32, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_sint32
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FSint32 = x.FSint32[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_sint64":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []int64", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FSint64 = nil
+			case isEmpty:
+				if x.FSint64 == nil {
+					x.FSint64 = make([]int64, 0)
 				} else {
-					x.FSint64 = nil
+					x.FSint64 = x.FSint64[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []int64", string(value), jsonKey)
-				}
+			default:
 				if x.FSint64 == nil {
 					x.FSint64 = make([]int64, 0)
 				}
@@ -1055,9 +1076,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_sint64
 					}
 					vv, _err := decoder.ReadArrayElemInt64(jsonKey)
 					if _err != nil {
@@ -1069,28 +1087,31 @@ LOOP_OBJECT:
 						x.FSint64 = append(x.FSint64, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_sint64
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FSint64 = x.FSint64[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_sfixed32":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []int32", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FSfixed32 = nil
+			case isEmpty:
+				if x.FSfixed32 == nil {
+					x.FSfixed32 = make([]int32, 0)
 				} else {
-					x.FSfixed32 = nil
+					x.FSfixed32 = x.FSfixed32[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []int32", string(value), jsonKey)
-				}
+			default:
 				if x.FSfixed32 == nil {
 					x.FSfixed32 = make([]int32, 0)
 				}
@@ -1100,9 +1121,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_sfixed32
 					}
 					vv, _err := decoder.ReadArrayElemInt32(jsonKey)
 					if _err != nil {
@@ -1114,28 +1132,31 @@ LOOP_OBJECT:
 						x.FSfixed32 = append(x.FSfixed32, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_sfixed32
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FSfixed32 = x.FSfixed32[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_sfixed64":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []int64", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FSfixed64 = nil
+			case isEmpty:
+				if x.FSfixed64 == nil {
+					x.FSfixed64 = make([]int64, 0)
 				} else {
-					x.FSfixed64 = nil
+					x.FSfixed64 = x.FSfixed64[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []int64", string(value), jsonKey)
-				}
+			default:
 				if x.FSfixed64 == nil {
 					x.FSfixed64 = make([]int64, 0)
 				}
@@ -1145,9 +1166,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_sfixed64
 					}
 					vv, _err := decoder.ReadArrayElemInt64(jsonKey)
 					if _err != nil {
@@ -1159,28 +1177,31 @@ LOOP_OBJECT:
 						x.FSfixed64 = append(x.FSfixed64, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_sfixed64
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FSfixed64 = x.FSfixed64[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_fixed32":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []uint32", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FFixed32 = nil
+			case isEmpty:
+				if x.FFixed32 == nil {
+					x.FFixed32 = make([]uint32, 0)
 				} else {
-					x.FFixed32 = nil
+					x.FFixed32 = x.FFixed32[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []uint32", string(value), jsonKey)
-				}
+			default:
 				if x.FFixed32 == nil {
 					x.FFixed32 = make([]uint32, 0)
 				}
@@ -1190,9 +1211,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_fixed32
 					}
 					vv, _err := decoder.ReadArrayElemUint32(jsonKey)
 					if _err != nil {
@@ -1204,28 +1222,31 @@ LOOP_OBJECT:
 						x.FFixed32 = append(x.FFixed32, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_fixed32
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FFixed32 = x.FFixed32[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_fixed64":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []uint64", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FFixed64 = nil
+			case isEmpty:
+				if x.FFixed64 == nil {
+					x.FFixed64 = make([]uint64, 0)
 				} else {
-					x.FFixed64 = nil
+					x.FFixed64 = x.FFixed64[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []uint64", string(value), jsonKey)
-				}
+			default:
 				if x.FFixed64 == nil {
 					x.FFixed64 = make([]uint64, 0)
 				}
@@ -1235,9 +1256,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_fixed64
 					}
 					vv, _err := decoder.ReadArrayElemUint64(jsonKey)
 					if _err != nil {
@@ -1249,28 +1267,31 @@ LOOP_OBJECT:
 						x.FFixed64 = append(x.FFixed64, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_fixed64
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FFixed64 = x.FFixed64[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_float":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []float32", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FFloat = nil
+			case isEmpty:
+				if x.FFloat == nil {
+					x.FFloat = make([]float32, 0)
 				} else {
-					x.FFloat = nil
+					x.FFloat = x.FFloat[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []float32", string(value), jsonKey)
-				}
+			default:
 				if x.FFloat == nil {
 					x.FFloat = make([]float32, 0)
 				}
@@ -1280,9 +1301,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_float
 					}
 					vv, _err := decoder.ReadArrayElemFloat32(jsonKey)
 					if _err != nil {
@@ -1294,28 +1312,31 @@ LOOP_OBJECT:
 						x.FFloat = append(x.FFloat, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_float
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FFloat = x.FFloat[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_double":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []float64", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FDouble = nil
+			case isEmpty:
+				if x.FDouble == nil {
+					x.FDouble = make([]float64, 0)
 				} else {
-					x.FDouble = nil
+					x.FDouble = x.FDouble[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []float64", string(value), jsonKey)
-				}
+			default:
 				if x.FDouble == nil {
 					x.FDouble = make([]float64, 0)
 				}
@@ -1325,9 +1346,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_double
 					}
 					vv, _err := decoder.ReadArrayElemFloat64(jsonKey)
 					if _err != nil {
@@ -1339,28 +1357,31 @@ LOOP_OBJECT:
 						x.FDouble = append(x.FDouble, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_double
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FDouble = x.FDouble[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_bool1":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []bool", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FBool1 = nil
+			case isEmpty:
+				if x.FBool1 == nil {
+					x.FBool1 = make([]bool, 0)
 				} else {
-					x.FBool1 = nil
+					x.FBool1 = x.FBool1[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []bool", string(value), jsonKey)
-				}
+			default:
 				if x.FBool1 == nil {
 					x.FBool1 = make([]bool, 0)
 				}
@@ -1370,9 +1391,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_bool1
 					}
 					vv, _err := decoder.ReadArrayElemBool(jsonKey)
 					if _err != nil {
@@ -1384,28 +1402,31 @@ LOOP_OBJECT:
 						x.FBool1 = append(x.FBool1, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_bool1
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FBool1 = x.FBool1[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_bytes1":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type [][]byte", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FBytes1 = nil
+			case isEmpty:
+				if x.FBytes1 == nil {
+					x.FBytes1 = make([][]byte, 0)
 				} else {
-					x.FBytes1 = nil
+					x.FBytes1 = x.FBytes1[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type [][]byte", string(value), jsonKey)
-				}
+			default:
 				if x.FBytes1 == nil {
 					x.FBytes1 = make([][]byte, 0)
 				}
@@ -1415,9 +1436,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_bytes1
 					}
 					vv, _err := decoder.ReadArrayElemBytes(jsonKey)
 					if _err != nil {
@@ -1429,28 +1447,31 @@ LOOP_OBJECT:
 						x.FBytes1 = append(x.FBytes1, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_bytes1
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FBytes1 = x.FBytes1[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_enum1":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []EnumRepeated1", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FEnum1 = nil
+			case isEmpty:
+				if x.FEnum1 == nil {
+					x.FEnum1 = make([]EnumRepeated1, 0)
 				} else {
-					x.FEnum1 = nil
+					x.FEnum1 = x.FEnum1[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []EnumRepeated1", string(value), jsonKey)
-				}
+			default:
 				if x.FEnum1 == nil {
 					x.FEnum1 = make([]EnumRepeated1, 0)
 				}
@@ -1460,9 +1481,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_enum1
 					}
 					v1, _err := decoder.ReadArrayElemEnumNumber(jsonKey, EnumRepeated1_name)
 					vv := EnumRepeated1(v1)
@@ -1475,28 +1493,31 @@ LOOP_OBJECT:
 						x.FEnum1 = append(x.FEnum1, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_enum1
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FEnum1 = x.FEnum1[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_enum2":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []pbexternal.Enum1", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FEnum2 = nil
+			case isEmpty:
+				if x.FEnum2 == nil {
+					x.FEnum2 = make([]pbexternal.Enum1, 0)
 				} else {
-					x.FEnum2 = nil
+					x.FEnum2 = x.FEnum2[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []pbexternal.Enum1", string(value), jsonKey)
-				}
+			default:
 				if x.FEnum2 == nil {
 					x.FEnum2 = make([]pbexternal.Enum1, 0)
 				}
@@ -1506,9 +1527,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_enum2
 					}
 					v1, _err := decoder.ReadArrayElemEnumNumber(jsonKey, pbexternal.Enum1_name)
 					vv := pbexternal.Enum1(v1)
@@ -1521,28 +1539,31 @@ LOOP_OBJECT:
 						x.FEnum2 = append(x.FEnum2, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_enum2
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FEnum2 = x.FEnum2[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_enum3":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []pbexternal.Embed_Enum1", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FEnum3 = nil
+			case isEmpty:
+				if x.FEnum3 == nil {
+					x.FEnum3 = make([]pbexternal.Embed_Enum1, 0)
 				} else {
-					x.FEnum3 = nil
+					x.FEnum3 = x.FEnum3[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []pbexternal.Embed_Enum1", string(value), jsonKey)
-				}
+			default:
 				if x.FEnum3 == nil {
 					x.FEnum3 = make([]pbexternal.Embed_Enum1, 0)
 				}
@@ -1552,9 +1573,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_enum3
 					}
 					v1, _err := decoder.ReadArrayElemEnumNumber(jsonKey, pbexternal.Embed_Enum1_name)
 					vv := pbexternal.Embed_Enum1(v1)
@@ -1567,28 +1585,31 @@ LOOP_OBJECT:
 						x.FEnum3 = append(x.FEnum3, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_enum3
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FEnum3 = x.FEnum3[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_enum4":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []pbexternal.Embed_Message_Enum1", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FEnum4 = nil
+			case isEmpty:
+				if x.FEnum4 == nil {
+					x.FEnum4 = make([]pbexternal.Embed_Message_Enum1, 0)
 				} else {
-					x.FEnum4 = nil
+					x.FEnum4 = x.FEnum4[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []pbexternal.Embed_Message_Enum1", string(value), jsonKey)
-				}
+			default:
 				if x.FEnum4 == nil {
 					x.FEnum4 = make([]pbexternal.Embed_Message_Enum1, 0)
 				}
@@ -1598,9 +1619,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_enum4
 					}
 					v1, _err := decoder.ReadArrayElemEnumNumber(jsonKey, pbexternal.Embed_Message_Enum1_name)
 					vv := pbexternal.Embed_Message_Enum1(v1)
@@ -1613,28 +1631,31 @@ LOOP_OBJECT:
 						x.FEnum4 = append(x.FEnum4, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_enum4
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FEnum4 = x.FEnum4[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_enum5":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []EnumCommon1", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FEnum5 = nil
+			case isEmpty:
+				if x.FEnum5 == nil {
+					x.FEnum5 = make([]EnumCommon1, 0)
 				} else {
-					x.FEnum5 = nil
+					x.FEnum5 = x.FEnum5[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []EnumCommon1", string(value), jsonKey)
-				}
+			default:
 				if x.FEnum5 == nil {
 					x.FEnum5 = make([]EnumCommon1, 0)
 				}
@@ -1644,9 +1665,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_enum5
 					}
 					v1, _err := decoder.ReadArrayElemEnumNumber(jsonKey, EnumCommon1_name)
 					vv := EnumCommon1(v1)
@@ -1659,28 +1677,31 @@ LOOP_OBJECT:
 						x.FEnum5 = append(x.FEnum5, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_enum5
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FEnum5 = x.FEnum5[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_enum6":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []MessageCommon1_Enum1", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FEnum6 = nil
+			case isEmpty:
+				if x.FEnum6 == nil {
+					x.FEnum6 = make([]MessageCommon1_Enum1, 0)
 				} else {
-					x.FEnum6 = nil
+					x.FEnum6 = x.FEnum6[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []MessageCommon1_Enum1", string(value), jsonKey)
-				}
+			default:
 				if x.FEnum6 == nil {
 					x.FEnum6 = make([]MessageCommon1_Enum1, 0)
 				}
@@ -1690,9 +1711,6 @@ LOOP_OBJECT:
 				for {
 					if err = decoder.ScanError(); err != nil {
 						return err
-					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_enum6
 					}
 					v1, _err := decoder.ReadArrayElemEnumNumber(jsonKey, MessageCommon1_Enum1_name)
 					vv := MessageCommon1_Enum1(v1)
@@ -1705,28 +1723,31 @@ LOOP_OBJECT:
 						x.FEnum6 = append(x.FEnum6, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_enum6
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FEnum6 = x.FEnum6[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_duration1":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*durationpb.Duration", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FDuration1 = nil
+			case isEmpty:
+				if x.FDuration1 == nil {
+					x.FDuration1 = make([]*durationpb.Duration, 0)
 				} else {
-					x.FDuration1 = nil
+					x.FDuration1 = x.FDuration1[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*durationpb.Duration", string(value), jsonKey)
-				}
+			default:
 				if x.FDuration1 == nil {
 					x.FDuration1 = make([]*durationpb.Duration, 0)
 				}
@@ -1737,20 +1758,17 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_duration1
-					}
 					var vv *durationpb.Duration
-					if i < length {
-						vv = x.FDuration1[i]
+					initFN := func() interface{} {
+						if i < length {
+							vv = x.FDuration1[i]
+						}
+						if vv == nil {
+							vv = new(durationpb.Duration)
+						}
+						return vv
 					}
-					if vv == nil {
-						vv = new(durationpb.Duration)
-					}
-					ok, _err := decoder.ReadArrayElemInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -1760,28 +1778,31 @@ LOOP_OBJECT:
 						x.FDuration1 = append(x.FDuration1, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_duration1
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FDuration1 = x.FDuration1[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_duration2":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*durationpb.Duration", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FDuration2 = nil
+			case isEmpty:
+				if x.FDuration2 == nil {
+					x.FDuration2 = make([]*durationpb.Duration, 0)
 				} else {
-					x.FDuration2 = nil
+					x.FDuration2 = x.FDuration2[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*durationpb.Duration", string(value), jsonKey)
-				}
+			default:
 				if x.FDuration2 == nil {
 					x.FDuration2 = make([]*durationpb.Duration, 0)
 				}
@@ -1792,20 +1813,17 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_duration2
-					}
 					var vv *durationpb.Duration
-					if i < length {
-						vv = x.FDuration2[i]
+					initFN := func() interface{} {
+						if i < length {
+							vv = x.FDuration2[i]
+						}
+						if vv == nil {
+							vv = new(durationpb.Duration)
+						}
+						return vv
 					}
-					if vv == nil {
-						vv = new(durationpb.Duration)
-					}
-					ok, _err := decoder.ReadArrayElemInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -1815,28 +1833,31 @@ LOOP_OBJECT:
 						x.FDuration2 = append(x.FDuration2, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_duration2
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FDuration2 = x.FDuration2[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_timestamp1":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*timestamppb.Timestamp", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FTimestamp1 = nil
+			case isEmpty:
+				if x.FTimestamp1 == nil {
+					x.FTimestamp1 = make([]*timestamppb.Timestamp, 0)
 				} else {
-					x.FTimestamp1 = nil
+					x.FTimestamp1 = x.FTimestamp1[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*timestamppb.Timestamp", string(value), jsonKey)
-				}
+			default:
 				if x.FTimestamp1 == nil {
 					x.FTimestamp1 = make([]*timestamppb.Timestamp, 0)
 				}
@@ -1847,20 +1868,17 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_timestamp1
-					}
 					var vv *timestamppb.Timestamp
-					if i < length {
-						vv = x.FTimestamp1[i]
+					initFN := func() interface{} {
+						if i < length {
+							vv = x.FTimestamp1[i]
+						}
+						if vv == nil {
+							vv = new(timestamppb.Timestamp)
+						}
+						return vv
 					}
-					if vv == nil {
-						vv = new(timestamppb.Timestamp)
-					}
-					ok, _err := decoder.ReadArrayElemInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -1870,28 +1888,31 @@ LOOP_OBJECT:
 						x.FTimestamp1 = append(x.FTimestamp1, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_timestamp1
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FTimestamp1 = x.FTimestamp1[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_timestamp2":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*timestamppb.Timestamp", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FTimestamp2 = nil
+			case isEmpty:
+				if x.FTimestamp2 == nil {
+					x.FTimestamp2 = make([]*timestamppb.Timestamp, 0)
 				} else {
-					x.FTimestamp2 = nil
+					x.FTimestamp2 = x.FTimestamp2[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*timestamppb.Timestamp", string(value), jsonKey)
-				}
+			default:
 				if x.FTimestamp2 == nil {
 					x.FTimestamp2 = make([]*timestamppb.Timestamp, 0)
 				}
@@ -1902,20 +1923,17 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_timestamp2
-					}
 					var vv *timestamppb.Timestamp
-					if i < length {
-						vv = x.FTimestamp2[i]
+					initFN := func() interface{} {
+						if i < length {
+							vv = x.FTimestamp2[i]
+						}
+						if vv == nil {
+							vv = new(timestamppb.Timestamp)
+						}
+						return vv
 					}
-					if vv == nil {
-						vv = new(timestamppb.Timestamp)
-					}
-					ok, _err := decoder.ReadArrayElemInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -1925,28 +1943,31 @@ LOOP_OBJECT:
 						x.FTimestamp2 = append(x.FTimestamp2, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_timestamp2
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FTimestamp2 = x.FTimestamp2[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_any1":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*anypb.Any", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FAny1 = nil
+			case isEmpty:
+				if x.FAny1 == nil {
+					x.FAny1 = make([]*anypb.Any, 0)
 				} else {
-					x.FAny1 = nil
+					x.FAny1 = x.FAny1[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*anypb.Any", string(value), jsonKey)
-				}
+			default:
 				if x.FAny1 == nil {
 					x.FAny1 = make([]*anypb.Any, 0)
 				}
@@ -1957,20 +1978,17 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_any1
-					}
 					var vv *anypb.Any
-					if i < length {
-						vv = x.FAny1[i]
+					initFN := func() interface{} {
+						if i < length {
+							vv = x.FAny1[i]
+						}
+						if vv == nil {
+							vv = new(anypb.Any)
+						}
+						return vv
 					}
-					if vv == nil {
-						vv = new(anypb.Any)
-					}
-					ok, _err := decoder.ReadArrayElemInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -1980,28 +1998,31 @@ LOOP_OBJECT:
 						x.FAny1 = append(x.FAny1, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_any1
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FAny1 = x.FAny1[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_any2":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*anypb.Any", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FAny2 = nil
+			case isEmpty:
+				if x.FAny2 == nil {
+					x.FAny2 = make([]*anypb.Any, 0)
 				} else {
-					x.FAny2 = nil
+					x.FAny2 = x.FAny2[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*anypb.Any", string(value), jsonKey)
-				}
+			default:
 				if x.FAny2 == nil {
 					x.FAny2 = make([]*anypb.Any, 0)
 				}
@@ -2012,20 +2033,17 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_any2
-					}
 					var vv *anypb.Any
-					if i < length {
-						vv = x.FAny2[i]
+					initFN := func() interface{} {
+						if i < length {
+							vv = x.FAny2[i]
+						}
+						if vv == nil {
+							vv = new(anypb.Any)
+						}
+						return vv
 					}
-					if vv == nil {
-						vv = new(anypb.Any)
-					}
-					ok, _err := decoder.ReadArrayElemInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -2035,28 +2053,31 @@ LOOP_OBJECT:
 						x.FAny2 = append(x.FAny2, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_any2
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FAny2 = x.FAny2[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message1":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*MessageRepeated1", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage1 = nil
+			case isEmpty:
+				if x.FMessage1 == nil {
+					x.FMessage1 = make([]*MessageRepeated1, 0)
 				} else {
-					x.FMessage1 = nil
+					x.FMessage1 = x.FMessage1[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*MessageRepeated1", string(value), jsonKey)
-				}
+			default:
 				if x.FMessage1 == nil {
 					x.FMessage1 = make([]*MessageRepeated1, 0)
 				}
@@ -2067,20 +2088,17 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_message1
-					}
 					var vv *MessageRepeated1
-					if i < length {
-						vv = x.FMessage1[i]
+					initFN := func() interface{} {
+						if i < length {
+							vv = x.FMessage1[i]
+						}
+						if vv == nil {
+							vv = new(MessageRepeated1)
+						}
+						return vv
 					}
-					if vv == nil {
-						vv = new(MessageRepeated1)
-					}
-					ok, _err := decoder.ReadArrayElemInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -2090,28 +2108,31 @@ LOOP_OBJECT:
 						x.FMessage1 = append(x.FMessage1, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_message1
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FMessage1 = x.FMessage1[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message2":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*MessageRepeated1_Embed1", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage2 = nil
+			case isEmpty:
+				if x.FMessage2 == nil {
+					x.FMessage2 = make([]*MessageRepeated1_Embed1, 0)
 				} else {
-					x.FMessage2 = nil
+					x.FMessage2 = x.FMessage2[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*MessageRepeated1_Embed1", string(value), jsonKey)
-				}
+			default:
 				if x.FMessage2 == nil {
 					x.FMessage2 = make([]*MessageRepeated1_Embed1, 0)
 				}
@@ -2122,20 +2143,17 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_message2
-					}
 					var vv *MessageRepeated1_Embed1
-					if i < length {
-						vv = x.FMessage2[i]
+					initFN := func() interface{} {
+						if i < length {
+							vv = x.FMessage2[i]
+						}
+						if vv == nil {
+							vv = new(MessageRepeated1_Embed1)
+						}
+						return vv
 					}
-					if vv == nil {
-						vv = new(MessageRepeated1_Embed1)
-					}
-					ok, _err := decoder.ReadArrayElemInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -2145,28 +2163,31 @@ LOOP_OBJECT:
 						x.FMessage2 = append(x.FMessage2, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_message2
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FMessage2 = x.FMessage2[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message3":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*MessageRepeated1_Embed1_Embed2", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage3 = nil
+			case isEmpty:
+				if x.FMessage3 == nil {
+					x.FMessage3 = make([]*MessageRepeated1_Embed1_Embed2, 0)
 				} else {
-					x.FMessage3 = nil
+					x.FMessage3 = x.FMessage3[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*MessageRepeated1_Embed1_Embed2", string(value), jsonKey)
-				}
+			default:
 				if x.FMessage3 == nil {
 					x.FMessage3 = make([]*MessageRepeated1_Embed1_Embed2, 0)
 				}
@@ -2177,20 +2198,17 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_message3
-					}
 					var vv *MessageRepeated1_Embed1_Embed2
-					if i < length {
-						vv = x.FMessage3[i]
+					initFN := func() interface{} {
+						if i < length {
+							vv = x.FMessage3[i]
+						}
+						if vv == nil {
+							vv = new(MessageRepeated1_Embed1_Embed2)
+						}
+						return vv
 					}
-					if vv == nil {
-						vv = new(MessageRepeated1_Embed1_Embed2)
-					}
-					ok, _err := decoder.ReadArrayElemInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -2200,28 +2218,31 @@ LOOP_OBJECT:
 						x.FMessage3 = append(x.FMessage3, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_message3
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FMessage3 = x.FMessage3[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message4":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*pbexternal.Message1", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage4 = nil
+			case isEmpty:
+				if x.FMessage4 == nil {
+					x.FMessage4 = make([]*pbexternal.Message1, 0)
 				} else {
-					x.FMessage4 = nil
+					x.FMessage4 = x.FMessage4[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*pbexternal.Message1", string(value), jsonKey)
-				}
+			default:
 				if x.FMessage4 == nil {
 					x.FMessage4 = make([]*pbexternal.Message1, 0)
 				}
@@ -2232,20 +2253,17 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_message4
-					}
 					var vv *pbexternal.Message1
-					if i < length {
-						vv = x.FMessage4[i]
+					initFN := func() interface{} {
+						if i < length {
+							vv = x.FMessage4[i]
+						}
+						if vv == nil {
+							vv = new(pbexternal.Message1)
+						}
+						return vv
 					}
-					if vv == nil {
-						vv = new(pbexternal.Message1)
-					}
-					ok, _err := decoder.ReadArrayElemInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -2255,28 +2273,31 @@ LOOP_OBJECT:
 						x.FMessage4 = append(x.FMessage4, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_message4
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FMessage4 = x.FMessage4[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message5":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*pbexternal.Message1_Embed1", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage5 = nil
+			case isEmpty:
+				if x.FMessage5 == nil {
+					x.FMessage5 = make([]*pbexternal.Message1_Embed1, 0)
 				} else {
-					x.FMessage5 = nil
+					x.FMessage5 = x.FMessage5[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*pbexternal.Message1_Embed1", string(value), jsonKey)
-				}
+			default:
 				if x.FMessage5 == nil {
 					x.FMessage5 = make([]*pbexternal.Message1_Embed1, 0)
 				}
@@ -2287,20 +2308,17 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_message5
-					}
 					var vv *pbexternal.Message1_Embed1
-					if i < length {
-						vv = x.FMessage5[i]
+					initFN := func() interface{} {
+						if i < length {
+							vv = x.FMessage5[i]
+						}
+						if vv == nil {
+							vv = new(pbexternal.Message1_Embed1)
+						}
+						return vv
 					}
-					if vv == nil {
-						vv = new(pbexternal.Message1_Embed1)
-					}
-					ok, _err := decoder.ReadArrayElemInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -2310,28 +2328,31 @@ LOOP_OBJECT:
 						x.FMessage5 = append(x.FMessage5, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_message5
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FMessage5 = x.FMessage5[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message6":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*pbexternal.Message1_Embed1_Embed2", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage6 = nil
+			case isEmpty:
+				if x.FMessage6 == nil {
+					x.FMessage6 = make([]*pbexternal.Message1_Embed1_Embed2, 0)
 				} else {
-					x.FMessage6 = nil
+					x.FMessage6 = x.FMessage6[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*pbexternal.Message1_Embed1_Embed2", string(value), jsonKey)
-				}
+			default:
 				if x.FMessage6 == nil {
 					x.FMessage6 = make([]*pbexternal.Message1_Embed1_Embed2, 0)
 				}
@@ -2342,20 +2363,17 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_message6
-					}
 					var vv *pbexternal.Message1_Embed1_Embed2
-					if i < length {
-						vv = x.FMessage6[i]
+					initFN := func() interface{} {
+						if i < length {
+							vv = x.FMessage6[i]
+						}
+						if vv == nil {
+							vv = new(pbexternal.Message1_Embed1_Embed2)
+						}
+						return vv
 					}
-					if vv == nil {
-						vv = new(pbexternal.Message1_Embed1_Embed2)
-					}
-					ok, _err := decoder.ReadArrayElemInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -2365,28 +2383,31 @@ LOOP_OBJECT:
 						x.FMessage6 = append(x.FMessage6, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_message6
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FMessage6 = x.FMessage6[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message7":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*MessageCommon1", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage7 = nil
+			case isEmpty:
+				if x.FMessage7 == nil {
+					x.FMessage7 = make([]*MessageCommon1, 0)
 				} else {
-					x.FMessage7 = nil
+					x.FMessage7 = x.FMessage7[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*MessageCommon1", string(value), jsonKey)
-				}
+			default:
 				if x.FMessage7 == nil {
 					x.FMessage7 = make([]*MessageCommon1, 0)
 				}
@@ -2397,20 +2418,17 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_message7
-					}
 					var vv *MessageCommon1
-					if i < length {
-						vv = x.FMessage7[i]
+					initFN := func() interface{} {
+						if i < length {
+							vv = x.FMessage7[i]
+						}
+						if vv == nil {
+							vv = new(MessageCommon1)
+						}
+						return vv
 					}
-					if vv == nil {
-						vv = new(MessageCommon1)
-					}
-					ok, _err := decoder.ReadArrayElemInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -2420,28 +2438,31 @@ LOOP_OBJECT:
 						x.FMessage7 = append(x.FMessage7, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_message7
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FMessage7 = x.FMessage7[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message8":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*MessageCommon1_Embed1", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage8 = nil
+			case isEmpty:
+				if x.FMessage8 == nil {
+					x.FMessage8 = make([]*MessageCommon1_Embed1, 0)
 				} else {
-					x.FMessage8 = nil
+					x.FMessage8 = x.FMessage8[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*MessageCommon1_Embed1", string(value), jsonKey)
-				}
+			default:
 				if x.FMessage8 == nil {
 					x.FMessage8 = make([]*MessageCommon1_Embed1, 0)
 				}
@@ -2452,20 +2473,17 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_message8
-					}
 					var vv *MessageCommon1_Embed1
-					if i < length {
-						vv = x.FMessage8[i]
+					initFN := func() interface{} {
+						if i < length {
+							vv = x.FMessage8[i]
+						}
+						if vv == nil {
+							vv = new(MessageCommon1_Embed1)
+						}
+						return vv
 					}
-					if vv == nil {
-						vv = new(MessageCommon1_Embed1)
-					}
-					ok, _err := decoder.ReadArrayElemInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -2475,28 +2493,31 @@ LOOP_OBJECT:
 						x.FMessage8 = append(x.FMessage8, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_message8
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FMessage8 = x.FMessage8[:i]
 				}
 				decoder.ScanNext()
 			}
 		case jsonKey == "f_message9":
-			if decoder.OpCode == jsondecoder.ScanLiteralBegin {
-				value := decoder.ReadItem()
-				if value[0] != 'n' {
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*MessageCommon1_Embed1_Embed2", string(value), jsonKey)
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.FMessage9 = nil
+			case isEmpty:
+				if x.FMessage9 == nil {
+					x.FMessage9 = make([]*MessageCommon1_Embed1_Embed2, 0)
 				} else {
-					x.FMessage9 = nil
+					x.FMessage9 = x.FMessage9[:0]
 				}
-			} else {
-				if decoder.OpCode != jsondecoder.ScanArrayBegin {
-					value := decoder.ReadItem()
-					return fmt.Errorf("json: cannot unmarshal %s as array into field %s of type []*MessageCommon1_Embed1_Embed2", string(value), jsonKey)
-				}
+			default:
 				if x.FMessage9 == nil {
 					x.FMessage9 = make([]*MessageCommon1_Embed1_Embed2, 0)
 				}
@@ -2507,20 +2528,17 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					if decoder.ReadArrayValueBefore() { // Before read array value.
-						break LOOP_LIST_f_message9
-					}
 					var vv *MessageCommon1_Embed1_Embed2
-					if i < length {
-						vv = x.FMessage9[i]
+					initFN := func() interface{} {
+						if i < length {
+							vv = x.FMessage9[i]
+						}
+						if vv == nil {
+							vv = new(MessageCommon1_Embed1_Embed2)
+						}
+						return vv
 					}
-					if vv == nil {
-						vv = new(MessageCommon1_Embed1_Embed2)
-					}
-					ok, _err := decoder.ReadArrayElemInterface(jsonKey, vv)
-					if !ok { // The field is null
-						vv = nil
-					}
+					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -2530,11 +2548,12 @@ LOOP_OBJECT:
 						x.FMessage9 = append(x.FMessage9, vv)
 					}
 					i++
-					if decoder.AfterReadArrayValueAfter() { // After read array value.
+					if decoder.ReadArrayElemAfter() { // After read array value.
 						break LOOP_LIST_f_message9
 					}
 				}
 				if i < length {
+					// truncate the slice to Consistent with standard library json.
 					x.FMessage9 = x.FMessage9[:i]
 				}
 				decoder.ScanNext()

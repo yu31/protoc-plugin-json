@@ -44,12 +44,17 @@ func (x *MessagePlain1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*MessagePlain1) is nil")
 	}
-	decoder, err := jsondecoder.New(b)
-	if err != nil {
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if ok, _err := decoder.CheckJSONBegin(); _err != nil || ok {
-		return _err
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
 	}
 	// Loop to scan object.
 LOOP_OBJECT:
@@ -125,12 +130,17 @@ func (x *MessagePlain1_Embed1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*MessagePlain1_Embed1) is nil")
 	}
-	decoder, err := jsondecoder.New(b)
-	if err != nil {
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if ok, _err := decoder.CheckJSONBegin(); _err != nil || ok {
-		return _err
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
 	}
 	// Loop to scan object.
 LOOP_OBJECT:
@@ -206,12 +216,17 @@ func (x *MessagePlain1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*MessagePlain1_Embed1_Embed2) is nil")
 	}
-	decoder, err := jsondecoder.New(b)
-	if err != nil {
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if ok, _err := decoder.CheckJSONBegin(); _err != nil || ok {
-		return _err
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
 	}
 	// Loop to scan object.
 LOOP_OBJECT:
@@ -400,12 +415,17 @@ func (x *TypePlain1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*TypePlain1) is nil")
 	}
-	decoder, err := jsondecoder.New(b)
-	if err != nil {
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if ok, _err := decoder.CheckJSONBegin(); _err != nil || ok {
-		return _err
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
 	}
 	// Loop to scan object.
 LOOP_OBJECT:
@@ -561,225 +581,225 @@ LOOP_OBJECT:
 			x.FEnum6 = vv
 		case jsonKey == "f_duration1":
 			var vv *durationpb.Duration
-			if x.FDuration1 == nil {
-				vv = new(durationpb.Duration)
-			} else {
-				vv = x.FDuration1
+			initFN := func() interface{} {
+				if x.FDuration1 != nil {
+					vv = x.FDuration1
+				} else {
+					vv = new(durationpb.Duration)
+				}
+				return vv
 			}
-			ok, _err := decoder.ReadValueInterface(jsonKey, vv)
-			if !ok { // The field is null
-				vv = nil
-			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
 			if _err != nil {
 				return _err
 			}
 			x.FDuration1 = vv
 		case jsonKey == "f_duration2":
 			var vv *durationpb.Duration
-			if x.FDuration2 == nil {
-				vv = new(durationpb.Duration)
-			} else {
-				vv = x.FDuration2
+			initFN := func() interface{} {
+				if x.FDuration2 != nil {
+					vv = x.FDuration2
+				} else {
+					vv = new(durationpb.Duration)
+				}
+				return vv
 			}
-			ok, _err := decoder.ReadValueInterface(jsonKey, vv)
-			if !ok { // The field is null
-				vv = nil
-			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
 			if _err != nil {
 				return _err
 			}
 			x.FDuration2 = vv
 		case jsonKey == "f_timestamp1":
 			var vv *timestamppb.Timestamp
-			if x.FTimestamp1 == nil {
-				vv = new(timestamppb.Timestamp)
-			} else {
-				vv = x.FTimestamp1
+			initFN := func() interface{} {
+				if x.FTimestamp1 != nil {
+					vv = x.FTimestamp1
+				} else {
+					vv = new(timestamppb.Timestamp)
+				}
+				return vv
 			}
-			ok, _err := decoder.ReadValueInterface(jsonKey, vv)
-			if !ok { // The field is null
-				vv = nil
-			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
 			if _err != nil {
 				return _err
 			}
 			x.FTimestamp1 = vv
 		case jsonKey == "f_timestamp2":
 			var vv *timestamppb.Timestamp
-			if x.FTimestamp2 == nil {
-				vv = new(timestamppb.Timestamp)
-			} else {
-				vv = x.FTimestamp2
+			initFN := func() interface{} {
+				if x.FTimestamp2 != nil {
+					vv = x.FTimestamp2
+				} else {
+					vv = new(timestamppb.Timestamp)
+				}
+				return vv
 			}
-			ok, _err := decoder.ReadValueInterface(jsonKey, vv)
-			if !ok { // The field is null
-				vv = nil
-			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
 			if _err != nil {
 				return _err
 			}
 			x.FTimestamp2 = vv
 		case jsonKey == "f_any1":
 			var vv *anypb.Any
-			if x.FAny1 == nil {
-				vv = new(anypb.Any)
-			} else {
-				vv = x.FAny1
+			initFN := func() interface{} {
+				if x.FAny1 != nil {
+					vv = x.FAny1
+				} else {
+					vv = new(anypb.Any)
+				}
+				return vv
 			}
-			ok, _err := decoder.ReadValueInterface(jsonKey, vv)
-			if !ok { // The field is null
-				vv = nil
-			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
 			if _err != nil {
 				return _err
 			}
 			x.FAny1 = vv
 		case jsonKey == "f_any2":
 			var vv *anypb.Any
-			if x.FAny2 == nil {
-				vv = new(anypb.Any)
-			} else {
-				vv = x.FAny2
+			initFN := func() interface{} {
+				if x.FAny2 != nil {
+					vv = x.FAny2
+				} else {
+					vv = new(anypb.Any)
+				}
+				return vv
 			}
-			ok, _err := decoder.ReadValueInterface(jsonKey, vv)
-			if !ok { // The field is null
-				vv = nil
-			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
 			if _err != nil {
 				return _err
 			}
 			x.FAny2 = vv
 		case jsonKey == "f_message1":
 			var vv *MessagePlain1
-			if x.FMessage1 == nil {
-				vv = new(MessagePlain1)
-			} else {
-				vv = x.FMessage1
+			initFN := func() interface{} {
+				if x.FMessage1 != nil {
+					vv = x.FMessage1
+				} else {
+					vv = new(MessagePlain1)
+				}
+				return vv
 			}
-			ok, _err := decoder.ReadValueInterface(jsonKey, vv)
-			if !ok { // The field is null
-				vv = nil
-			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
 			if _err != nil {
 				return _err
 			}
 			x.FMessage1 = vv
 		case jsonKey == "f_message2":
 			var vv *MessagePlain1_Embed1
-			if x.FMessage2 == nil {
-				vv = new(MessagePlain1_Embed1)
-			} else {
-				vv = x.FMessage2
+			initFN := func() interface{} {
+				if x.FMessage2 != nil {
+					vv = x.FMessage2
+				} else {
+					vv = new(MessagePlain1_Embed1)
+				}
+				return vv
 			}
-			ok, _err := decoder.ReadValueInterface(jsonKey, vv)
-			if !ok { // The field is null
-				vv = nil
-			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
 			if _err != nil {
 				return _err
 			}
 			x.FMessage2 = vv
 		case jsonKey == "f_message3":
 			var vv *MessagePlain1_Embed1_Embed2
-			if x.FMessage3 == nil {
-				vv = new(MessagePlain1_Embed1_Embed2)
-			} else {
-				vv = x.FMessage3
+			initFN := func() interface{} {
+				if x.FMessage3 != nil {
+					vv = x.FMessage3
+				} else {
+					vv = new(MessagePlain1_Embed1_Embed2)
+				}
+				return vv
 			}
-			ok, _err := decoder.ReadValueInterface(jsonKey, vv)
-			if !ok { // The field is null
-				vv = nil
-			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
 			if _err != nil {
 				return _err
 			}
 			x.FMessage3 = vv
 		case jsonKey == "f_message4":
 			var vv *pbexternal.Message1
-			if x.FMessage4 == nil {
-				vv = new(pbexternal.Message1)
-			} else {
-				vv = x.FMessage4
+			initFN := func() interface{} {
+				if x.FMessage4 != nil {
+					vv = x.FMessage4
+				} else {
+					vv = new(pbexternal.Message1)
+				}
+				return vv
 			}
-			ok, _err := decoder.ReadValueInterface(jsonKey, vv)
-			if !ok { // The field is null
-				vv = nil
-			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
 			if _err != nil {
 				return _err
 			}
 			x.FMessage4 = vv
 		case jsonKey == "f_message5":
 			var vv *pbexternal.Message1_Embed1
-			if x.FMessage5 == nil {
-				vv = new(pbexternal.Message1_Embed1)
-			} else {
-				vv = x.FMessage5
+			initFN := func() interface{} {
+				if x.FMessage5 != nil {
+					vv = x.FMessage5
+				} else {
+					vv = new(pbexternal.Message1_Embed1)
+				}
+				return vv
 			}
-			ok, _err := decoder.ReadValueInterface(jsonKey, vv)
-			if !ok { // The field is null
-				vv = nil
-			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
 			if _err != nil {
 				return _err
 			}
 			x.FMessage5 = vv
 		case jsonKey == "f_message6":
 			var vv *pbexternal.Message1_Embed1_Embed2
-			if x.FMessage6 == nil {
-				vv = new(pbexternal.Message1_Embed1_Embed2)
-			} else {
-				vv = x.FMessage6
+			initFN := func() interface{} {
+				if x.FMessage6 != nil {
+					vv = x.FMessage6
+				} else {
+					vv = new(pbexternal.Message1_Embed1_Embed2)
+				}
+				return vv
 			}
-			ok, _err := decoder.ReadValueInterface(jsonKey, vv)
-			if !ok { // The field is null
-				vv = nil
-			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
 			if _err != nil {
 				return _err
 			}
 			x.FMessage6 = vv
 		case jsonKey == "f_message7":
 			var vv *MessageCommon1
-			if x.FMessage7 == nil {
-				vv = new(MessageCommon1)
-			} else {
-				vv = x.FMessage7
+			initFN := func() interface{} {
+				if x.FMessage7 != nil {
+					vv = x.FMessage7
+				} else {
+					vv = new(MessageCommon1)
+				}
+				return vv
 			}
-			ok, _err := decoder.ReadValueInterface(jsonKey, vv)
-			if !ok { // The field is null
-				vv = nil
-			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
 			if _err != nil {
 				return _err
 			}
 			x.FMessage7 = vv
 		case jsonKey == "f_message8":
 			var vv *MessageCommon1_Embed1
-			if x.FMessage8 == nil {
-				vv = new(MessageCommon1_Embed1)
-			} else {
-				vv = x.FMessage8
+			initFN := func() interface{} {
+				if x.FMessage8 != nil {
+					vv = x.FMessage8
+				} else {
+					vv = new(MessageCommon1_Embed1)
+				}
+				return vv
 			}
-			ok, _err := decoder.ReadValueInterface(jsonKey, vv)
-			if !ok { // The field is null
-				vv = nil
-			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
 			if _err != nil {
 				return _err
 			}
 			x.FMessage8 = vv
 		case jsonKey == "f_message9":
 			var vv *MessageCommon1_Embed1_Embed2
-			if x.FMessage9 == nil {
-				vv = new(MessageCommon1_Embed1_Embed2)
-			} else {
-				vv = x.FMessage9
+			initFN := func() interface{} {
+				if x.FMessage9 != nil {
+					vv = x.FMessage9
+				} else {
+					vv = new(MessageCommon1_Embed1_Embed2)
+				}
+				return vv
 			}
-			ok, _err := decoder.ReadValueInterface(jsonKey, vv)
-			if !ok { // The field is null
-				vv = nil
-			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
 			if _err != nil {
 				return _err
 			}

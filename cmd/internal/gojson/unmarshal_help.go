@@ -1,6 +1,6 @@
 package gojson
 
-func (p *Plugin) genVariableOneofIsStore(oneofName string) string {
+func (p *Plugin) genVariableOneofIsFill(oneofName string) string {
 	return "oneOfIsFill_" + oneofName
 }
 
@@ -20,14 +20,21 @@ func (p *Plugin) unmarshalReadObjectValueAfter(loopLabel string) {
 	p.g.P("}")
 }
 
-func (p *Plugin) unmarshalReadArrayValueBefore(loopLabel string) {
-	p.g.P("if decoder.ReadArrayValueBefore() { // Before read array value.")
-	p.g.P("    break ", loopLabel)
-	p.g.P("}")
-}
+//func (p *Plugin) unmarshalReadMapValueAfter(loopLabel string) {
+//	p.g.P("if decoder.ReadMapValueAfter() { // After read map value")
+//	p.g.P("    break ", loopLabel)
+//	p.g.P("}")
+//}
 
-func (p *Plugin) unmarshalReadArrayValueAfter(loopLabel string) {
-	p.g.P("if decoder.AfterReadArrayValueAfter() { // After read array value.")
-	p.g.P("    break ", loopLabel)
-	p.g.P("}")
-}
+// FIXME: remove it.
+//func (p *Plugin) unmarshalReadArrayElemBefore(loopLabel string) {
+//	p.g.P("if decoder.ReadArrayElemBefore() { // Before read array value.")
+//	p.g.P("    break ", loopLabel)
+//	p.g.P("}")
+//}
+
+//func (p *Plugin) unmarshalReadArrayElemAfter(loopLabel string) {
+//	p.g.P("if decoder.ReadArrayElemAfter() { // After read array value.")
+//	p.g.P("    break ", loopLabel)
+//	p.g.P("}")
+//}

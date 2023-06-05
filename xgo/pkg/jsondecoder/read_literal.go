@@ -98,21 +98,16 @@ func (dec *Decoder) ReadValueBytes(jsonKey string) ([]byte, error) {
 	return vv, nil
 }
 
-// ReadValueInterface returns (notNull, error)
-func (dec *Decoder) ReadValueInterface(jsonKey string, i interface{}) (bool, error) {
+// ReadValueInterface returns (isNULL, error)
+func (dec *Decoder) ReadValueInterface(jsonKey string, initFN func() interface{}) error {
 	_ = jsonKey
 	item := dec.ReadItem()
 	if item[0] == 'n' { // 'n' means null
-		return false, nil
+		return nil
 	}
-	var err error
+	i := initFN()
 	if um, ok := i.(json.Unmarshaler); ok {
-		err = um.UnmarshalJSON(item)
-	} else {
-		err = json.Unmarshal(item, i)
+		return um.UnmarshalJSON(item)
 	}
-	if err != nil {
-		return false, err
-	}
-	return true, nil
+	return json.Unmarshal(item, i)
 }

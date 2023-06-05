@@ -41,18 +41,23 @@ func (p *Plugin) unmarshalGenVariables(fields []*protogen.Field) {
 		options := p.loadOneofOptions(field.Oneof)
 		if !(options.Ignore) {
 			oneOfName := field.Oneof.GoName
-			p.g.P("var ", p.genVariableOneofIsStore(oneOfName), " bool")
+			p.g.P("var ", p.genVariableOneofIsFill(oneOfName), " bool")
 		}
 	}
+	p.g.P("")
 }
 func (p *Plugin) unmarshalLoopScan(fields []*protogen.Field) {
 	// prepare
-	p.g.P("decoder, err := ", importpkg.PJDecoder.Ident("New"), "(b)")
-	p.g.P("if err != nil {")
+	p.g.P("var (")
+	p.g.P("    err error")
+	p.g.P("    isNULL bool")
+	p.g.P("    decoder *", importpkg.PJDecoder.Ident("Decoder"))
+	p.g.P(")")
+	p.g.P("if decoder, err = ", importpkg.PJDecoder.Ident("New"), "(b); err != nil {")
 	p.g.P("    return err")
 	p.g.P("}")
-	p.g.P("if ok, _err := decoder.CheckJSONBegin(); _err != nil || ok {")
-	p.g.P("    return _err")
+	p.g.P("if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {")
+	p.g.P("    return err")
 	p.g.P("}")
 
 	// loop scan object begin.
@@ -93,7 +98,7 @@ LOOP:
 				continue LOOP
 			}
 			if options.Hide {
-				p.unmarshalDecodeOneOf(field, "jsonKey")
+				p.unmarshalOneOfField(field, "jsonKey")
 				continue LOOP
 			}
 			jsonKey = p.getJSONKeyForOneof(options, field.Oneof)
@@ -129,7 +134,6 @@ LOOP:
 }
 
 func (p *Plugin) unmarshalOneOf(field *protogen.Field) {
-	goType := pkfield.FieldGoType(p.g, field)
 	loopLabel := "LOOP_ONEOF_" + string(field.Oneof.Desc.Name())
 
 	decodeOneOf := func() {
@@ -144,10 +148,10 @@ func (p *Plugin) unmarshalOneOf(field *protogen.Field) {
 
 		// Read and process value.
 		p.g.P("    switch {")
-		p.unmarshalDecodeOneOf(field, "oneofKey")
+		p.unmarshalOneOfField(field, "oneofKey")
 		p.g.P("    default:")
 		if p.msgOptions.DisallowUnknownFields {
-			p.g.P("    return ", importpkg.FMT.Ident("Errorf"), `("json: unknown oneof field %q", oneofKey)`)
+			p.g.P("    return ", importpkg.FMT.Ident("Errorf"), `("json: unknown field %q in oneof parts", oneofKey)`)
 		} else {
 			p.g.P("_ = decoder.ReadItem() // discard unknown field")
 		}
@@ -159,18 +163,14 @@ func (p *Plugin) unmarshalOneOf(field *protogen.Field) {
 		p.g.P("decoder.ScanNext()")
 	}
 
-	// Check whether null.
-	p.g.P("if decoder.OpCode == ", importpkg.PJDecoder.Ident("ScanLiteralBegin"), " {")
-	p.g.P("    value := decoder.ReadItem()")
-	p.g.P("    if value[0] != 'n' {")
-	p.g.P("        return ", importpkg.FMT.Ident("Errorf"), `("json: cannot unmarshal %s as oneof into field %s of type `, goType, `", string(value), jsonKey)`)
-	p.g.P("    }")
-	p.g.P("} else {")
-	// check is object.
-	p.g.P("    if decoder.OpCode != ", importpkg.PJDecoder.Ident("ScanObjectBegin"), " {")
-	p.g.P("        value := decoder.ReadItem()")
-	p.g.P("        return ", importpkg.FMT.Ident("Errorf"), `("json: cannot unmarshal %s as oneof into field %s of type `, goType, `", string(value), jsonKey)`)
-	p.g.P("    }")
+	// read oneof
+	p.g.P("if isNULL, err = decoder.CheckObjectBegin(jsonKey); err != nil {")
+	p.g.P("    return err")
+	p.g.P("}")
+	p.g.P("switch {")
+	p.g.P("case isNULL:")
+	p.g.P("    x.", field.Oneof.GoName, " = nil")
+	p.g.P("default:")
 	decodeOneOf()
 	p.g.P("}")
 }
@@ -193,43 +193,30 @@ func (p *Plugin) unmarshalMap(field *protogen.Field) {
 		p.g.P("    return err")
 		p.g.P("}")
 
-		// Before read key, Read opening " of string key or closing }.
-		p.unmarshalReadObjectKeyBefore(loopLabel)
-
 		p.unmarshalReadMapKey(field)
-
-		// Before read value
-		p.unmarshalReadObjectValueBefore()
-
-		// read and decode value.
 		p.unmarshalReadMapValue(field)
 
-		// After read value.
-		p.unmarshalReadObjectValueAfter(loopLabel)
+		p.g.P("if decoder.ReadMapValueAfter() { // After read map value")
+		p.g.P("    break ", loopLabel)
+		p.g.P("}")
 
 		// End loop.
 		p.g.P("}")
 		p.g.P("decoder.ScanNext()")
 	}
 
-	// Check whether null.
-	p.g.P("if decoder.OpCode == ", importpkg.PJDecoder.Ident("ScanLiteralBegin"), " {")
-	p.g.P("    value := decoder.ReadItem()")
-	p.g.P("    if value[0] != 'n' {")
-	p.g.P("        return ", importpkg.FMT.Ident("Errorf"), `("json: cannot unmarshal %s as map into field %s of type `, goType, `", string(value), jsonKey)`)
-	p.g.P("    } else {")
-	p.g.P("        x.", field.GoName, " = nil")
-	p.g.P("    }")
-	p.g.P("} else {")
-
-	// check is map.
-	p.g.P("    if decoder.OpCode != ", importpkg.PJDecoder.Ident("ScanObjectBegin"), " {")
-	p.g.P("        value := decoder.ReadItem()")
-	p.g.P("        return ", importpkg.FMT.Ident("Errorf"), `("json: cannot unmarshal %s as map into field %s of type `, goType, `", string(value), jsonKey)`)
-	p.g.P("    }")
-
+	// read map.
+	p.g.P("var isEmpty bool")
+	p.g.P("if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {")
+	p.g.P("    return err")
+	p.g.P("}")
+	p.g.P("switch {")
+	p.g.P("case isNULL:")
+	p.g.P("    x.", field.GoName, " = nil")
+	p.g.P("case isEmpty:")
+	p.g.P("    // do nothing")
+	p.g.P("default:")
 	decodeMap()
-
 	p.g.P("}")
 }
 
@@ -247,77 +234,53 @@ func (p *Plugin) unmarshalRepeated(field *protogen.Field) {
 		p.g.P("i := 0")
 		p.g.P("length := len(x.", goName, ")")
 		p.g.P(loopLabel, ":")
-		p.g.P("for {")
+		p.g.P("for ; ; {")
 
 		p.g.P("if err = decoder.ScanError(); err != nil {")
 		p.g.P("    return err")
 		p.g.P("}")
 
-		// Before Read value.
-		p.unmarshalReadArrayValueBefore(loopLabel)
-
-		// Read list value.
 		p.unmarshalReadArrayElem(field)
 
-		// After read value.
-		p.unmarshalReadArrayValueAfter(loopLabel)
+		p.g.P("if decoder.ReadArrayElemAfter() { // After read array value.")
+		p.g.P("    break ", loopLabel)
+		p.g.P("}")
 
 		// end LOOP_LIST.
 		p.g.P("}")
 
-		// truncate the slice if necessary.
 		p.g.P("if i < length {")
+		p.g.P("    // truncate the slice to Consistent with standard library json.")
 		p.g.P("    x.", field.GoName, " = x.", field.GoName, "[:i]")
 		p.g.P("}")
 
 		p.g.P("decoder.ScanNext()")
 	}
 
-	// Check whether null.
-	p.g.P("if decoder.OpCode == ", importpkg.PJDecoder.Ident("ScanLiteralBegin"), " {")
-	p.g.P("    value := decoder.ReadItem()")
-	p.g.P("    if value[0] != 'n' {")
-	p.g.P("        return ", importpkg.FMT.Ident("Errorf"), `("json: cannot unmarshal %s as array into field %s of type `, goType, `", string(value), jsonKey)`)
-	p.g.P("    } else {")
-	p.g.P("        x.", field.GoName, " = nil")
-	p.g.P("    }")
-	p.g.P("} else {")
-
-	// check is list.
-	p.g.P("    if decoder.OpCode != ", importpkg.PJDecoder.Ident("ScanArrayBegin"), " {")
-	p.g.P("        value := decoder.ReadItem()")
-	p.g.P("        return ", importpkg.FMT.Ident("Errorf"), `("json: cannot unmarshal %s as array into field %s of type `, goType, `", string(value), jsonKey)`)
-	p.g.P("    }")
-
+	// read array. same as the standard json.
+	p.g.P("var isEmpty bool")
+	p.g.P("if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {")
+	p.g.P("    return err")
+	p.g.P("}")
+	p.g.P("switch {")
+	p.g.P("case isNULL:")
+	p.g.P("    x.", field.GoName, " = nil")
+	p.g.P("case isEmpty:")
+	p.g.P("	if x.", goName, " == nil {")
+	p.g.P("    	x.", goName, " = ", "make(", goType, ", 0)")
+	p.g.P("	} else {")
+	p.g.P("         x.", goName, " = ", "x.", goName, "[:0]")
+	p.g.P("     }")
+	p.g.P("default:")
 	decodeList()
-
 	p.g.P("}")
 }
 
 func (p *Plugin) unmarshalPlain(field *protogen.Field) {
-	if field.Desc.IsMap() {
-		panic(fmt.Sprintf("gojson: unmarshal: unsupported case IsMap; field: %s", field.Desc.FullName()))
-	}
-	if field.Desc.IsList() {
-		panic(fmt.Sprintf("gojson: unmarshal: unsupported case IsList; field: %s", field.Desc.FullName()))
-	}
-	if field.Desc.IsWeak() {
-		panic(fmt.Sprintf("gojson: unmarshal: unsupported case IsWeak; field: %s", field.Desc.FullName()))
-	}
-	if field.Desc.IsExtension() {
-		panic(fmt.Sprintf("gojson: unmarshal: unsupported case IsExtension; filed: %s", field.Desc.FullName()))
-	}
-	if field.Desc.IsPlaceholder() {
-		panic(fmt.Sprintf("gojson: unmarshal: unsupported case IsPlaceholder; filed: %s", field.Desc.FullName()))
-	}
-	if field.Desc.IsPacked() {
-		panic(fmt.Sprintf("gojson: unmarshal: unsupported case IsPacked; filed: %s", field.Desc.FullName()))
-	}
-
 	p.unmarshalReadLiteralValue(field)
 }
 
-func (p *Plugin) unmarshalDecodeOneOf(field *protogen.Field, keyVariable string) {
+func (p *Plugin) unmarshalOneOfField(field *protogen.Field, keyVariable string) {
 	for _, oneField := range field.Oneof.Fields {
 		options := p.loadFieldOptions(field)
 		if options.Ignore {
@@ -354,10 +317,7 @@ func (p *Plugin) unmarshalReadMapKey(field *protogen.Field) {
 	p.g.P("}")
 }
 func (p *Plugin) unmarshalReadMapValue(field *protogen.Field) {
-	options := p.loadFieldOptions(field)
-	goName := field.GoName
 	_field := field.Message.Fields[1]
-
 	switch _field.Desc.Kind() {
 	case protoreflect.StringKind:
 		p.g.P("vv, _err := decoder.ReadMapValueString", "(jsonKey)")
@@ -379,15 +339,17 @@ func (p *Plugin) unmarshalReadMapValue(field *protogen.Field) {
 		p.g.P("vv, _err := decoder.ReadMapValueBytes", "(jsonKey)")
 	case protoreflect.MessageKind:
 		valueType := p.g.QualifiedGoIdent(_field.Message.GoIdent)
-		p.g.P("vv := x.", goName, "[mapKey]")
-		p.g.P("if vv == nil {")
-		p.g.P("	vv = new(", valueType, ")")
+		p.g.P("var vv *", valueType)
+		p.g.P("initFN := func() interface{} {")
+		p.g.P("	vv = x.", field.GoName, "[mapKey]")
+		p.g.P("	if vv == nil {")
+		p.g.P("		vv = new(", valueType, ")")
+		p.g.P("	}")
+		p.g.P("     return vv")
 		p.g.P("}")
-		p.g.P("ok, _err := decoder.ReadMapValueInterface", "(jsonKey, vv)")
-		p.g.P("if !ok { // The field is null")
-		p.g.P("	vv = nil")
-		p.g.P("}")
+		p.g.P("_err = decoder.ReadMapValueInterface", "(jsonKey, initFN)")
 	case protoreflect.EnumKind:
+		options := p.loadFieldOptions(field)
 		enumType := p.g.QualifiedGoIdent(_field.Enum.GoIdent)
 		if options.UseEnumString {
 			p.g.P("v1, _err := decoder.ReadMapValueEnumString", "(jsonKey,", enumType, "_value)")
@@ -408,8 +370,6 @@ func (p *Plugin) unmarshalReadMapValue(field *protogen.Field) {
 	p.g.P("x.", field.GoName, "[mapKey] = vv")
 }
 func (p *Plugin) unmarshalReadArrayElem(field *protogen.Field) {
-	options := p.loadFieldOptions(field)
-	goName := field.GoName
 	switch field.Desc.Kind() {
 	case protoreflect.StringKind:
 		p.g.P("vv, _err := decoder.ReadArrayElemString", "(jsonKey)")
@@ -432,17 +392,18 @@ func (p *Plugin) unmarshalReadArrayElem(field *protogen.Field) {
 	case protoreflect.MessageKind:
 		valueType := p.g.QualifiedGoIdent(field.Message.GoIdent)
 		p.g.P("var vv *", valueType)
-		p.g.P("if i < length {")
-		p.g.P("	vv = x.", goName, "[i]")
+		p.g.P("initFN := func() interface{} {")
+		p.g.P("	if i < length {")
+		p.g.P("		vv = x.", field.GoName, "[i]")
+		p.g.P("	}")
+		p.g.P("	if vv == nil {")
+		p.g.P("		vv = new(", valueType, ")")
+		p.g.P("	}")
+		p.g.P("     return vv")
 		p.g.P("}")
-		p.g.P("if vv == nil {")
-		p.g.P("	vv = new(", valueType, ")")
-		p.g.P("}")
-		p.g.P("ok, _err := decoder.ReadArrayElemInterface", "(jsonKey, vv)")
-		p.g.P("if !ok { // The field is null")
-		p.g.P("	vv = nil")
-		p.g.P("}")
+		p.g.P("_err := decoder.ReadArrayElemInterface", "(jsonKey, initFN)")
 	case protoreflect.EnumKind:
+		options := p.loadFieldOptions(field)
 		enumType := p.g.QualifiedGoIdent(field.Enum.GoIdent)
 		if options.UseEnumString {
 			p.g.P("v1, _err := decoder.ReadArrayElemEnumString", "(jsonKey,", enumType, "_value)")
@@ -455,24 +416,19 @@ func (p *Plugin) unmarshalReadArrayElem(field *protogen.Field) {
 			"gojson: unmarshal: unsupported kind of %s as value, field: %s", field.Desc.Kind().String(), field.Desc.FullName(),
 		))
 	}
-
 	// Check error.
 	p.g.P("if _err != nil {")
 	p.g.P("	return _err")
 	p.g.P("}")
-
 	// Save the value.
 	p.g.P("if i < length {")
-	p.g.P("    x.", goName, "[i] = vv")
+	p.g.P("    x.", field.GoName, "[i] = vv")
 	p.g.P("} else {")
-	p.g.P("    x.", goName, " = append(", "x.", goName, ", vv", ")")
+	p.g.P("    x.", field.GoName, " = append(", "x.", field.GoName, ", vv", ")")
 	p.g.P("}")
 	p.g.P("i++")
 }
 func (p *Plugin) unmarshalReadLiteralValue(field *protogen.Field) {
-	options := p.loadFieldOptions(field)
-
-	goName := field.GoName
 	isOneOf := pkfield.FieldIsOneOf(field)
 	isOptional := pkfield.FieldIsOptional(field)
 
@@ -540,27 +496,25 @@ func (p *Plugin) unmarshalReadLiteralValue(field *protogen.Field) {
 		p.g.P("vv, _err := decoder.ReadValueBytes", "(jsonKey)")
 	case protoreflect.MessageKind:
 		valueType := p.g.QualifiedGoIdent(field.Message.GoIdent)
+		var receiver string
 		switch {
 		case isOneOf:
-			p.g.P("var vv *", valueType)
-			p.g.P("if ot.", field.GoName, " != nil {")
-			p.g.P("    vv = ot.", field.GoName)
-			p.g.P("} else {")
-			p.g.P("    vv = new(", valueType, ")")
-			p.g.P("}")
+			receiver = "ot"
 		default:
-			p.g.P("var vv *", valueType)
-			p.g.P("if x.", goName, " == nil {")
-			p.g.P("	vv = new(", valueType, ")")
-			p.g.P("} else {")
-			p.g.P("	vv = x.", goName)
-			p.g.P("}")
+			receiver = "x"
 		}
-		p.g.P("ok, _err := decoder.ReadValueInterface", "(jsonKey, vv)")
-		p.g.P("if !ok { // The field is null")
-		p.g.P("	vv = nil")
+		p.g.P("var vv *", valueType)
+		p.g.P("initFN := func () interface{} {")
+		p.g.P("    if ", receiver, ".", field.GoName, " != nil {")
+		p.g.P("        vv = ", receiver, ".", field.GoName)
+		p.g.P("    } else {")
+		p.g.P("        vv = new(", valueType, ")")
+		p.g.P("    }")
+		p.g.P("    return vv")
 		p.g.P("}")
+		p.g.P("_err := decoder.ReadValueInterface", "(jsonKey, initFN)")
 	case protoreflect.EnumKind:
+		options := p.loadFieldOptions(field)
 		enumType := p.g.QualifiedGoIdent(field.Enum.GoIdent)
 		if isOptional {
 			p.g.P("var vv *", enumType)
@@ -595,11 +549,11 @@ func (p *Plugin) unmarshalReadLiteralValue(field *protogen.Field) {
 	case isOneOf:
 		oneOfName := field.Oneof.GoName
 		//oneOfType := p.g.QualifiedGoIdent(field.GoIdent)
-		varIsStore := p.genVariableOneofIsStore(oneOfName)
-		p.g.P("if ", varIsStore, " {")
+		varIsFill := p.genVariableOneofIsFill(oneOfName)
+		p.g.P("if ", varIsFill, " {")
 		p.g.P("    return ", importpkg.FMT.Ident("Errorf"), `("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)`)
 		p.g.P("}")
-		p.g.P(varIsStore, " = true")
+		p.g.P(varIsFill, " = true")
 		//p.g.P("ot := new(", oneOfType, ")")
 		p.g.P("ot.", field.GoName, " = vv")
 		p.g.P("x.", oneOfName, " = ot")
@@ -607,160 +561,3 @@ func (p *Plugin) unmarshalReadLiteralValue(field *protogen.Field) {
 		p.g.P("x.", field.GoName, " = vv")
 	}
 }
-
-//func (p *Plugin) unmarshalReadLiteralValue(field *protogen.Field) {
-//	options := p.loadFieldOptions(field)
-//
-//	isMap := field.Desc.IsMap()
-//	isList := field.Desc.IsList()
-//	isOneOf := pkfield.FieldIsOneOf(field)
-//	isOptional := pkfield.FieldIsOptional(field)
-//
-//	goName := field.GoName
-//
-//	var _field *protogen.Field
-//
-//	if isMap {
-//		_field = field.Message.Fields[1]
-//	} else {
-//		_field = field
-//	}
-//
-//	switch _field.Desc.Kind() {
-//	case protoreflect.StringKind:
-//		if isOptional {
-//			p.g.P("vv, _err := decoder.ReadPointerString", "(jsonKey)")
-//		} else {
-//			p.g.P("vv, _err := decoder.ReadValueString", "(jsonKey)")
-//		}
-//	case protoreflect.Int32Kind, protoreflect.Sint32Kind, protoreflect.Sfixed32Kind:
-//		if isOptional {
-//			p.g.P("vv, _err := decoder.ReadPointerInt32", "(jsonKey)")
-//		} else {
-//			p.g.P("vv, _err := decoder.ReadValueInt32", "(jsonKey)")
-//		}
-//	case protoreflect.Int64Kind, protoreflect.Sint64Kind, protoreflect.Sfixed64Kind:
-//		if isOptional {
-//			p.g.P("vv, _err := decoder.ReadPointerInt64", "(jsonKey)")
-//		} else {
-//			p.g.P("vv, _err := decoder.ReadValueInt64", "(jsonKey)")
-//		}
-//	case protoreflect.Uint32Kind, protoreflect.Fixed32Kind:
-//		if isOptional {
-//			p.g.P("vv, _err := decoder.ReadPointerUint32", "(jsonKey)")
-//		} else {
-//			p.g.P("vv, _err := decoder.ReadValueUint32", "(jsonKey)")
-//		}
-//	case protoreflect.Uint64Kind, protoreflect.Fixed64Kind:
-//		if isOptional {
-//			p.g.P("vv, _err := decoder.ReadPointerUint64", "(jsonKey)")
-//		} else {
-//			p.g.P("vv, _err := decoder.ReadValueUint64", "(jsonKey)")
-//		}
-//	case protoreflect.FloatKind:
-//		if isOptional {
-//			p.g.P("vv, _err := decoder.ReadPointerFloat32", "(jsonKey)")
-//		} else {
-//			p.g.P("vv, _err := decoder.ReadValueFloat32", "(jsonKey)")
-//		}
-//	case protoreflect.DoubleKind:
-//		if isOptional {
-//			p.g.P("vv, _err := decoder.ReadPointerFloat64", "(jsonKey)")
-//		} else {
-//			p.g.P("vv, _err := decoder.ReadValueFloat64", "(jsonKey)")
-//		}
-//	case protoreflect.BoolKind:
-//		if isOptional {
-//			p.g.P("vv, _err := decoder.ReadPointerBool", "(jsonKey)")
-//		} else {
-//			p.g.P("vv, _err := decoder.ReadValueBool", "(jsonKey)")
-//		}
-//	case protoreflect.BytesKind:
-//		p.g.P("vv, _err := decoder.ReadValueBytes", "(jsonKey)")
-//	case protoreflect.MessageKind:
-//		valueType := p.g.QualifiedGoIdent(_field.Message.GoIdent)
-//		p.g.P("var vv *", valueType)
-//		switch {
-//		case isMap:
-//			p.g.P("vv = x.", goName, "[mapKey]")
-//			p.g.P("if vv == nil {")
-//			p.g.P("vv = new(", valueType, ")")
-//			p.g.P("}")
-//		case isList:
-//			p.g.P("if i < length {")
-//			p.g.P("vv = x.", goName, "[i]")
-//			p.g.P("}")
-//			p.g.P("if vv == nil {")
-//			p.g.P("vv = new(", valueType, ")")
-//			p.g.P("}")
-//		case isOneOf:
-//			p.g.P("vv = new(", valueType, ")")
-//		default:
-//			p.g.P("if x.", goName, " == nil {")
-//			p.g.P("	vv = new(", valueType, ")")
-//			p.g.P("} else {")
-//			p.g.P("	vv = x.", goName)
-//			p.g.P("}")
-//		}
-//		p.g.P("ok, _err := decoder.ReadValueInterface", "(jsonKey, vv)")
-//		p.g.P("if !ok { // The field is null")
-//		p.g.P("	vv = nil")
-//		p.g.P("}")
-//	case protoreflect.EnumKind:
-//		enumType := p.g.QualifiedGoIdent(_field.Enum.GoIdent)
-//		if isOptional {
-//			p.g.P("var vv *", enumType)
-//			if options.UseEnumString {
-//				p.g.P("v1, _err := decoder.ReadPointerEnumString", "(jsonKey,", enumType, "_value)")
-//			} else {
-//				p.g.P("v1, _err := decoder.ReadPointerEnumNumber", "(jsonKey,", enumType, "_name)")
-//			}
-//			p.g.P("if v1 != nil {")
-//			p.g.P("	_vv := ", enumType, "(*v1)")
-//			p.g.P("	vv = &_vv")
-//			p.g.P("}")
-//		} else {
-//			if options.UseEnumString {
-//				p.g.P("v1, _err := decoder.ReadValueEnumString", "(jsonKey,", enumType, "_value)")
-//			} else {
-//				p.g.P("v1, _err := decoder.ReadValueEnumNumber", "(jsonKey,", enumType, "_name)")
-//			}
-//			p.g.P("	vv := ", enumType, "(v1)")
-//		}
-//	default:
-//		panic(fmt.Sprintf(
-//			"gojson: unmarshal: unsupported kind of %s as value, field: %s", _field.Desc.Kind().String(), _field.Desc.FullName(),
-//		))
-//	}
-//
-//	// Check error.
-//	p.g.P("if _err != nil {")
-//	p.g.P("	return _err")
-//	p.g.P("}")
-//
-//	// Save the value.
-//	switch {
-//	case isMap:
-//		p.g.P("x.", field.GoName, "[mapKey] = vv")
-//	case isList:
-//		p.g.P("if i < length {")
-//		p.g.P("    x.", goName, "[i] = vv")
-//		p.g.P("} else {")
-//		p.g.P("    x.", goName, " = append(", "x.", goName, ", vv", ")")
-//		p.g.P("}")
-//		p.g.P("i++")
-//	case isOneOf:
-//		oneOfName := field.Oneof.GoName
-//		oneOfType := p.g.QualifiedGoIdent(field.GoIdent)
-//		varIsStore := p.genVariableOneofIsStore(oneOfName)
-//		p.g.P("if ", varIsStore, " {")
-//		p.g.P("    return ", importpkg.FMT.Ident("Errorf"), `("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)`)
-//		p.g.P("}")
-//		p.g.P(varIsStore, " = true")
-//		p.g.P("ot := new(", oneOfType, ")")
-//		p.g.P("ot.", field.GoName, " = vv")
-//		p.g.P("x.", oneOfName, " = ot")
-//	default:
-//		p.g.P("x.", field.GoName, " = vv")
-//	}
-//}
