@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package type_common;
+
+option go_package = "xgo/tests/pb/pbboundary";
+
+import "proto/json.proto";
+
+// RepeatedElem1 for test cases:
+// 1. The field is not empty and the content is null in JSON.
+// 2. The field is not empty and the content is empty in JSON.
+// 3. The length of field is less than the content in JSON.
+// 4. The length of field is greater than the content in JSON.
+message RepeatedElem1 {
+  repeated string r_string1 = 1 [ (json.field) = {} ];
+}
+
+// MapKV1 for test cases:
+// 1. The field is not empty and the content is null in JSON.
+// 2. The field is not empty and the content is empty in JSON.
+// 3. The length of field is less than the content in JSON.
+// 4. The length of field is greater than the content in JSON.
+message MapKV1 {
+  map<string, string> m_string1 = 1 [ (json.field) = {} ];
+}
