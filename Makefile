@@ -3,6 +3,8 @@
 VERBOSE = no
 CASE = ""
 DIR = ""
+BENCH = "Benchmark"
+BENCH_TIME = "1s"
 
 .PHONY: help
 help: ## help for command
@@ -80,11 +82,11 @@ test-only:  ## Run test cases without generated codes.
 
 .PHONY: bench
 bench: generate-test tidy format vet
-	@[[ ${VERBOSE} = "yes" ]] && set -x; go test -test.bench="." -test.run="Benchmark" -benchmem -count=1 -test.benchtime=1s -test.parallel=8 ./xgo/tests/benchmark/...;
+	@[[ ${VERBOSE} = "yes" ]] && set -x; go test -benchmem -count=1 -test.parallel=8 -test.benchtime="${BENCH_TIME}" -test.bench="${BENCH}" ./xgo/tests/benchmark/...
 
 .PHONY: bench-only
 bench-only:
-	@[[ ${VERBOSE} = "yes" ]] && set -x; go test -test.bench="." -test.run="Benchmark" -benchmem -count=1 -test.benchtime=1s -test.parallel=8 ./xgo/tests/benchmark/...;
+	@[[ ${VERBOSE} = "yes" ]] && set -x; go test -benchmem -count=1 -test.parallel=8 -test.benchtime="${BENCH_TIME}" -test.bench="${BENCH}" ./xgo/tests/benchmark/...
 
 .PHONY: test-error-go
 test-error-go:   ## Run test cases for invalid parameters in tags for golang.

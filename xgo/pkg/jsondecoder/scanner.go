@@ -1,30 +1,5 @@
 package jsondecoder
 
-// JSON value parser state machine.
-// Just about at the limit of what is reasonable to write by hand.
-// Some parts are a bit tedious, but overall it nicely factors out the
-// otherwise gojsonexternal code from the multiple scanning functions
-// in this package (Compact, Indent, checkValid, etc).
-//
-// This file starts with two simple examples using the scanner
-// before diving into the scanner itself.
-
-// checkValid verifies that data is valid JSON-encoded data.
-// scan is passed in for use by checkValid to avoid an allocation.
-func checkValid(data []byte, scan *scanner) error {
-	scan.reset()
-	for _, c := range data {
-		scan.bytes++
-		if scan.step(scan, c) == ScanError {
-			return scan.err
-		}
-	}
-	if scan.eof() == ScanError {
-		return scan.err
-	}
-	return nil
-}
-
 type OpCode int8
 
 // These values are returned by the state transition functions
@@ -32,26 +7,26 @@ type OpCode int8
 // They give details about the current state of the scan that
 // callers might be interested to know about.
 // It is okay to ignore the return value of any particular
-// call to scanner.state: if one call returns ScanError,
-// every subsequent call will return ScanError too.
+// call to scanner.state: if one call returns scanError,
+// every subsequent call will return scanError too.
 const (
 	// label for Continue
 
-	ScanContinue     OpCode = iota // uninteresting byte
-	ScanLiteralBegin               // end implied by next result != ScanContinue
-	ScanObjectBegin                // begin object
-	ScanObjectKey                  // just finished object key (string)
-	ScanObjectValue                // just finished non-last object value
-	ScanObjectEnd                  // end object (implies ScanObjectValue if possible)
-	ScanArrayBegin                 // begin array
-	ScanArrayElem                  // just finished array elements
-	ScanArrayEnd                   // end array (implies ScanArrayElem if possible)
-	ScanSkipSpace                  // space byte; can skip; known to be last "continue" result
+	scanContinue     OpCode = iota // 0 uninteresting byte
+	scanLiteralBegin               // 1 end implied by next result != scanContinue
+	scanObjectBegin                // 2 begin object
+	scanObjectKey                  // 3 just finished object key (string)
+	scanObjectValue                // 4 just finished non-last object value
+	scanObjectEnd                  // 5 end object (implies scanObjectValue if possible)
+	scanArrayBegin                 // 6 begin array
+	scanArrayElem                  // 7 just finished array elements
+	scanArrayEnd                   // 8 end array (implies scanArrayElem if possible)
+	scanSkipSpace                  // 9 space byte; can skip; known to be last "continue" result
 
 	// label for Stop
 
-	ScanEnd   // top-level value ended *before* this byte; known to be first "stop" result
-	ScanError // hit an error, scanner.err.
+	scanEnd   // 10 top-level value ended *before* this byte; known to be first "stop" result
+	scanError // 11 hit an error, scanner.err.
 )
 
 type ParsePhase int8
@@ -77,7 +52,7 @@ const maxNestingDepth = 10000
 // caller about significant parsing events like beginning
 // and ending literals, objects, and arrays, so that the
 // caller can follow along if it wishes.
-// The return value ScanEnd indicates that a single top-level
+// The return value scanEnd indicates that a single top-level
 // JSON value has been completed, *before* the byte that
 // just got passed in.  (The indication must be delayed in order
 // to recognize the end of numbers: is 123 a whole value or
@@ -100,35 +75,26 @@ type scanner struct {
 
 	// total bytes consumed, updated by decoder.Decode (and deliberately
 	// not set to zero by scan.reset)
-	bytes int64
-}
-
-// reset prepares the scanner for use.
-// It must be called before calling s.step.
-func (s *scanner) reset() {
-	s.step = stateBeginValue
-	s.parseState = s.parseState[0:0]
-	s.err = nil
-	s.endTop = false
+	bytes int
 }
 
 // eof tells the scanner that the end of input has been reached.
 // It returns a scan status just as s.step does.
 func (s *scanner) eof() OpCode {
 	if s.err != nil {
-		return ScanError
+		return scanError
 	}
 	if s.endTop {
-		return ScanEnd
+		return scanEnd
 	}
 	s.step(s, ' ')
 	if s.endTop {
-		return ScanEnd
+		return scanEnd
 	}
 	if s.err == nil {
-		s.err = &SyntaxError{"unexpected end of JSON input", s.bytes}
+		s.err = &SyntaxError{reason: "unexpected end of JSON input", Offset: s.bytes}
 	}
-	return ScanError
+	return scanError
 }
 
 // pushParseState pushes a new parse state p onto the parse stack.
@@ -141,7 +107,7 @@ func (s *scanner) pushParseState(c byte, parseState ParsePhase, successState OpC
 	return s.error(c, "exceeded max depth")
 }
 
-// popParseState pops a parse state (already obtained) off the stack
+// popParseState pops a parse state (already obtained) offset the stack
 // and updates s.step accordingly.
 func (s *scanner) popParseState() {
 	n := len(s.parseState) - 1
@@ -157,7 +123,7 @@ func (s *scanner) popParseState() {
 // stateBeginElementOrEmpty is the state after reading `[`.
 func stateBeginElementOrEmpty(s *scanner, c byte) OpCode {
 	if isSpace(c) {
-		return ScanSkipSpace
+		return scanSkipSpace
 	}
 	if c == ']' {
 		return stateEndValue(s, c)
@@ -168,37 +134,37 @@ func stateBeginElementOrEmpty(s *scanner, c byte) OpCode {
 // stateBeginValue is the state at the beginning of the input.
 func stateBeginValue(s *scanner, c byte) OpCode {
 	if isSpace(c) {
-		return ScanSkipSpace
+		return scanSkipSpace
 	}
 	switch c {
 	case '{':
 		s.step = stateBeginStringOrEmpty
-		return s.pushParseState(c, parseObjectKey, ScanObjectBegin)
+		return s.pushParseState(c, parseObjectKey, scanObjectBegin)
 	case '[':
 		s.step = stateBeginElementOrEmpty
-		return s.pushParseState(c, parseArrayElem, ScanArrayBegin)
+		return s.pushParseState(c, parseArrayElem, scanArrayBegin)
 	case '"':
 		s.step = stateInString
-		return ScanLiteralBegin
+		return scanLiteralBegin
 	case '-':
 		s.step = stateNeg
-		return ScanLiteralBegin
+		return scanLiteralBegin
 	case '0': // beginning of 0.123
 		s.step = state0
-		return ScanLiteralBegin
+		return scanLiteralBegin
 	case 't': // beginning of true
 		s.step = stateT
-		return ScanLiteralBegin
+		return scanLiteralBegin
 	case 'f': // beginning of false
 		s.step = stateF
-		return ScanLiteralBegin
+		return scanLiteralBegin
 	case 'n': // beginning of null
 		s.step = stateN
-		return ScanLiteralBegin
+		return scanLiteralBegin
 	}
 	if '1' <= c && c <= '9' { // beginning of 1234.5
 		s.step = state1
-		return ScanLiteralBegin
+		return scanLiteralBegin
 	}
 	return s.error(c, "looking for beginning of value")
 }
@@ -206,7 +172,7 @@ func stateBeginValue(s *scanner, c byte) OpCode {
 // stateBeginStringOrEmpty is the state after reading `{`.
 func stateBeginStringOrEmpty(s *scanner, c byte) OpCode {
 	if isSpace(c) {
-		return ScanSkipSpace
+		return scanSkipSpace
 	}
 	if c == '}' {
 		n := len(s.parseState)
@@ -219,11 +185,11 @@ func stateBeginStringOrEmpty(s *scanner, c byte) OpCode {
 // stateBeginString is the state after reading `{"key": value,`.
 func stateBeginString(s *scanner, c byte) OpCode {
 	if isSpace(c) {
-		return ScanSkipSpace
+		return scanSkipSpace
 	}
 	if c == '"' {
 		s.step = stateInString
-		return ScanLiteralBegin
+		return scanLiteralBegin
 	}
 	return s.error(c, "looking for beginning of object key string")
 }
@@ -240,7 +206,7 @@ func stateEndValue(s *scanner, c byte) OpCode {
 	}
 	if isSpace(c) {
 		s.step = stateEndValue
-		return ScanSkipSpace
+		return scanSkipSpace
 	}
 	ps := s.parseState[n-1]
 	switch ps {
@@ -248,28 +214,28 @@ func stateEndValue(s *scanner, c byte) OpCode {
 		if c == ':' {
 			s.parseState[n-1] = parseObjectValue
 			s.step = stateBeginValue
-			return ScanObjectKey
+			return scanObjectKey
 		}
 		return s.error(c, "after object key")
 	case parseObjectValue:
 		if c == ',' {
 			s.parseState[n-1] = parseObjectKey
 			s.step = stateBeginString
-			return ScanObjectValue
+			return scanObjectValue
 		}
 		if c == '}' {
 			s.popParseState()
-			return ScanObjectEnd
+			return scanObjectEnd
 		}
 		return s.error(c, "after object key:value pair")
 	case parseArrayElem:
 		if c == ',' {
 			s.step = stateBeginValue
-			return ScanArrayElem
+			return scanArrayElem
 		}
 		if c == ']' {
 			s.popParseState()
-			return ScanArrayEnd
+			return scanArrayEnd
 		}
 		return s.error(c, "after array element")
 	}
@@ -284,23 +250,23 @@ func stateEndTop(s *scanner, c byte) OpCode {
 		// Complain about non-space byte on next call.
 		s.error(c, "after top-level value")
 	}
-	return ScanEnd
+	return scanEnd
 }
 
 // stateInString is the state after reading `"`.
 func stateInString(s *scanner, c byte) OpCode {
 	if c == '"' {
 		s.step = stateEndValue
-		return ScanContinue
+		return scanContinue
 	}
 	if c == '\\' {
 		s.step = stateInStringEsc
-		return ScanContinue
+		return scanContinue
 	}
 	if c < 0x20 {
 		return s.error(c, "in string literal")
 	}
-	return ScanContinue
+	return scanContinue
 }
 
 // stateInStringEsc is the state after reading `"\` during a quoted string.
@@ -308,10 +274,10 @@ func stateInStringEsc(s *scanner, c byte) OpCode {
 	switch c {
 	case 'b', 'f', 'n', 'r', 't', '\\', '/', '"':
 		s.step = stateInString
-		return ScanContinue
+		return scanContinue
 	case 'u':
 		s.step = stateInStringEscU
-		return ScanContinue
+		return scanContinue
 	}
 	return s.error(c, "in string escape code")
 }
@@ -320,7 +286,7 @@ func stateInStringEsc(s *scanner, c byte) OpCode {
 func stateInStringEscU(s *scanner, c byte) OpCode {
 	if '0' <= c && c <= '9' || 'a' <= c && c <= 'f' || 'A' <= c && c <= 'F' {
 		s.step = stateInStringEscU1
-		return ScanContinue
+		return scanContinue
 	}
 	// numbers
 	return s.error(c, "in \\u hexadecimal character escape")
@@ -330,7 +296,7 @@ func stateInStringEscU(s *scanner, c byte) OpCode {
 func stateInStringEscU1(s *scanner, c byte) OpCode {
 	if '0' <= c && c <= '9' || 'a' <= c && c <= 'f' || 'A' <= c && c <= 'F' {
 		s.step = stateInStringEscU12
-		return ScanContinue
+		return scanContinue
 	}
 	// numbers
 	return s.error(c, "in \\u hexadecimal character escape")
@@ -340,7 +306,7 @@ func stateInStringEscU1(s *scanner, c byte) OpCode {
 func stateInStringEscU12(s *scanner, c byte) OpCode {
 	if '0' <= c && c <= '9' || 'a' <= c && c <= 'f' || 'A' <= c && c <= 'F' {
 		s.step = stateInStringEscU123
-		return ScanContinue
+		return scanContinue
 	}
 	// numbers
 	return s.error(c, "in \\u hexadecimal character escape")
@@ -350,7 +316,7 @@ func stateInStringEscU12(s *scanner, c byte) OpCode {
 func stateInStringEscU123(s *scanner, c byte) OpCode {
 	if '0' <= c && c <= '9' || 'a' <= c && c <= 'f' || 'A' <= c && c <= 'F' {
 		s.step = stateInString
-		return ScanContinue
+		return scanContinue
 	}
 	// numbers
 	return s.error(c, "in \\u hexadecimal character escape")
@@ -360,11 +326,11 @@ func stateInStringEscU123(s *scanner, c byte) OpCode {
 func stateNeg(s *scanner, c byte) OpCode {
 	if c == '0' {
 		s.step = state0
-		return ScanContinue
+		return scanContinue
 	}
 	if '1' <= c && c <= '9' {
 		s.step = state1
-		return ScanContinue
+		return scanContinue
 	}
 	return s.error(c, "in numeric literal")
 }
@@ -374,7 +340,7 @@ func stateNeg(s *scanner, c byte) OpCode {
 func state1(s *scanner, c byte) OpCode {
 	if '0' <= c && c <= '9' {
 		s.step = state1
-		return ScanContinue
+		return scanContinue
 	}
 	return state0(s, c)
 }
@@ -383,11 +349,11 @@ func state1(s *scanner, c byte) OpCode {
 func state0(s *scanner, c byte) OpCode {
 	if c == '.' {
 		s.step = stateDot
-		return ScanContinue
+		return scanContinue
 	}
 	if c == 'e' || c == 'E' {
 		s.step = stateE
-		return ScanContinue
+		return scanContinue
 	}
 	return stateEndValue(s, c)
 }
@@ -397,7 +363,7 @@ func state0(s *scanner, c byte) OpCode {
 func stateDot(s *scanner, c byte) OpCode {
 	if '0' <= c && c <= '9' {
 		s.step = stateDot0
-		return ScanContinue
+		return scanContinue
 	}
 	return s.error(c, "after decimal point in numeric literal")
 }
@@ -406,11 +372,11 @@ func stateDot(s *scanner, c byte) OpCode {
 // digits of a number, such as after reading `3.14`.
 func stateDot0(s *scanner, c byte) OpCode {
 	if '0' <= c && c <= '9' {
-		return ScanContinue
+		return scanContinue
 	}
 	if c == 'e' || c == 'E' {
 		s.step = stateE
-		return ScanContinue
+		return scanContinue
 	}
 	return stateEndValue(s, c)
 }
@@ -420,7 +386,7 @@ func stateDot0(s *scanner, c byte) OpCode {
 func stateE(s *scanner, c byte) OpCode {
 	if c == '+' || c == '-' {
 		s.step = stateESign
-		return ScanContinue
+		return scanContinue
 	}
 	return stateESign(s, c)
 }
@@ -430,7 +396,7 @@ func stateE(s *scanner, c byte) OpCode {
 func stateESign(s *scanner, c byte) OpCode {
 	if '0' <= c && c <= '9' {
 		s.step = stateE0
-		return ScanContinue
+		return scanContinue
 	}
 	return s.error(c, "in exponent of numeric literal")
 }
@@ -440,7 +406,7 @@ func stateESign(s *scanner, c byte) OpCode {
 // such as after reading `314e-2` or `0.314e+1` or `3.14e0`.
 func stateE0(s *scanner, c byte) OpCode {
 	if '0' <= c && c <= '9' {
-		return ScanContinue
+		return scanContinue
 	}
 	return stateEndValue(s, c)
 }
@@ -449,7 +415,7 @@ func stateE0(s *scanner, c byte) OpCode {
 func stateT(s *scanner, c byte) OpCode {
 	if c == 'r' {
 		s.step = stateTr
-		return ScanContinue
+		return scanContinue
 	}
 	return s.error(c, "in literal true (expecting 'r')")
 }
@@ -458,7 +424,7 @@ func stateT(s *scanner, c byte) OpCode {
 func stateTr(s *scanner, c byte) OpCode {
 	if c == 'u' {
 		s.step = stateTru
-		return ScanContinue
+		return scanContinue
 	}
 	return s.error(c, "in literal true (expecting 'u')")
 }
@@ -467,7 +433,7 @@ func stateTr(s *scanner, c byte) OpCode {
 func stateTru(s *scanner, c byte) OpCode {
 	if c == 'e' {
 		s.step = stateEndValue
-		return ScanContinue
+		return scanContinue
 	}
 	return s.error(c, "in literal true (expecting 'e')")
 }
@@ -476,7 +442,7 @@ func stateTru(s *scanner, c byte) OpCode {
 func stateF(s *scanner, c byte) OpCode {
 	if c == 'a' {
 		s.step = stateFa
-		return ScanContinue
+		return scanContinue
 	}
 	return s.error(c, "in literal false (expecting 'a')")
 }
@@ -485,7 +451,7 @@ func stateF(s *scanner, c byte) OpCode {
 func stateFa(s *scanner, c byte) OpCode {
 	if c == 'l' {
 		s.step = stateFal
-		return ScanContinue
+		return scanContinue
 	}
 	return s.error(c, "in literal false (expecting 'l')")
 }
@@ -494,7 +460,7 @@ func stateFa(s *scanner, c byte) OpCode {
 func stateFal(s *scanner, c byte) OpCode {
 	if c == 's' {
 		s.step = stateFals
-		return ScanContinue
+		return scanContinue
 	}
 	return s.error(c, "in literal false (expecting 's')")
 }
@@ -503,7 +469,7 @@ func stateFal(s *scanner, c byte) OpCode {
 func stateFals(s *scanner, c byte) OpCode {
 	if c == 'e' {
 		s.step = stateEndValue
-		return ScanContinue
+		return scanContinue
 	}
 	return s.error(c, "in literal false (expecting 'e')")
 }
@@ -512,7 +478,7 @@ func stateFals(s *scanner, c byte) OpCode {
 func stateN(s *scanner, c byte) OpCode {
 	if c == 'u' {
 		s.step = stateNu
-		return ScanContinue
+		return scanContinue
 	}
 	return s.error(c, "in literal null (expecting 'u')")
 }
@@ -521,7 +487,7 @@ func stateN(s *scanner, c byte) OpCode {
 func stateNu(s *scanner, c byte) OpCode {
 	if c == 'l' {
 		s.step = stateNul
-		return ScanContinue
+		return scanContinue
 	}
 	return s.error(c, "in literal null (expecting 'l')")
 }
@@ -530,7 +496,7 @@ func stateNu(s *scanner, c byte) OpCode {
 func stateNul(s *scanner, c byte) OpCode {
 	if c == 'l' {
 		s.step = stateEndValue
-		return ScanContinue
+		return scanContinue
 	}
 	return s.error(c, "in literal null (expecting 'l')")
 }
@@ -538,12 +504,15 @@ func stateNul(s *scanner, c byte) OpCode {
 // stateError is the state after reaching a syntax error,
 // such as after reading `[1}` or `5.1.2`.
 func stateError(s *scanner, c byte) OpCode {
-	return ScanError
+	return scanError
 }
 
 // error records an error and switches to the error state.
 func (s *scanner) error(c byte, context string) OpCode {
 	s.step = stateError
-	s.err = &SyntaxError{"invalid character " + quoteChar(c) + " " + context, s.bytes}
-	return ScanError
+	s.err = &SyntaxError{
+		reason: "invalid character " + quoteChar(c) + " " + context,
+		Offset: s.bytes,
+	}
+	return scanError
 }

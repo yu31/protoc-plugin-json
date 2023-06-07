@@ -4,20 +4,10 @@ import (
 	"unicode"
 	"unicode/utf16"
 	"unicode/utf8"
-	"unsafe"
 )
 
-// unquoteString converts a quoted JSON string literal s into an actual string t.
+// unquoteBytes converts a quoted JSON bytes literal s into an actual bytes t.
 // The rules are different from for Go, so cannot use strconv.Unquote.
-func unquoteString(b []byte) (s string, ok bool) {
-	b, ok = unquoteBytes(b)
-	if !ok {
-		return
-	}
-	s = *(*string)(unsafe.Pointer(&b))
-	return
-}
-
 func unquoteBytes(s []byte) (t []byte, ok bool) {
 	if len(s) < 2 || s[0] != '"' || s[len(s)-1] != '"' {
 		return

@@ -22,8 +22,6 @@ if [ -n "${DIR}" ]; then
   exit $?
 fi
 
-# run test cases in boundary.
-runCases "${ROOT}/boundary"
-
-# run test cases in types.
-runCases "${ROOT}/types"
+for dir in "${ROOT}"/*; do
+  runCases "${dir}"
+done

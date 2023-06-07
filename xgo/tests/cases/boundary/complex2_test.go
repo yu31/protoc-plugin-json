@@ -1,7 +1,6 @@
 package boundary
 
 import (
-	"encoding/json"
 	"fmt"
 	"testing"
 
@@ -30,7 +29,13 @@ var bComplex2 = []byte(
 		},
 		"f_string": "s103"       ,
 		"r_string": [  "s201"    , "s202"    , "s203"    ]       
-	}          
+	},
+	"r_level1": null, 
+	"r_level2":[
+		{},
+		{"f_string": "es103"},
+		{"f_string": "es203"}
+	]
 }
 `,
 )
@@ -56,6 +61,19 @@ func checkComplex2(t *testing.T, data *pbboundary.Complex2) {
 	require.Equal(t, map[string]int32{"k1": 41, "k2": 42, "k3": 43}, level3.MInt32)
 	require.NotNil(t, level3.PInt64)
 	require.Equal(t, int64(51), *level3.PInt64)
+
+	rLevel1 := data.RLevel1
+	require.Nil(t, rLevel1)
+
+	rLevel2 := data.RLevel2
+	require.Equal(t, 3, len(rLevel2))
+	for _, rl := range rLevel2 {
+		require.NotNil(t, rl)
+		require.Nil(t, rl.Level2)
+	}
+	require.Equal(t, "", rLevel2[0].FString)
+	require.Equal(t, "es103", rLevel2[1].FString)
+	require.Equal(t, "es203", rLevel2[2].FString)
 }
 
 func Test_Complex2_Plugin1(t *testing.T) {
@@ -76,9 +94,11 @@ func Test_Complex2_Plugin1(t *testing.T) {
 			FString: "",
 			RString: nil, // []string
 		},
+		RLevel1: []*pbboundary.Complex2_Level1{},
+		RLevel2: nil,
 	}
 
-	err := json.Unmarshal(bComplex2, data)
+	err := data.UnmarshalJSON(bComplex2)
 	require.Nil(t, err, fmt.Sprintf("%v", err))
 	checkComplex2(t, data)
 }
@@ -88,9 +108,11 @@ func Test_Complex2_Plugin2(t *testing.T) {
 		FString: "",
 		RInt64:  nil,
 		Level1:  nil,
+		RLevel1: nil,
+		RLevel2: nil,
 	}
 
-	err := json.Unmarshal(bComplex2, data)
+	err := data.UnmarshalJSON(bComplex2)
 	require.Nil(t, err, fmt.Sprintf("%v", err))
 	checkComplex2(t, data)
 }

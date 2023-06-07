@@ -60,7 +60,7 @@ func Test_Complex1_Plugin(t *testing.T) {
 		MInt32:    nil,
 		FInt64:    nil,
 	}
-	err := json.Unmarshal(bComplex1, data)
+	err := data.UnmarshalJSON(bComplex1)
 	require.Nil(t, err, fmt.Sprintf("%v", err))
 
 	require.Equal(t, int32(11), data.FInt32)

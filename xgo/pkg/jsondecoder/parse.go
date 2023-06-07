@@ -2,63 +2,33 @@ package jsondecoder
 
 import (
 	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"strconv"
 	"unsafe"
 )
 
-func parseString(b []byte) (string, error) {
-	v, ok := unquoteString(b)
+func bytesToString(b []byte) (string, error) {
+	v, ok := unquoteBytes(b)
 	if !ok {
-		return "", fmt.Errorf("jsondecoder.parseString: parsing %s: invalid syntax", strconv.Quote(string(b)))
+		return "", fmt.Errorf("bytesToString: parsing %s: invalid syntax", strconv.Quote(string(b)))
 	}
-	return v, nil
+	s := string(v)
+	return s, nil
 }
-
-func parseInt32(b []byte) (int32, error) {
-	v, err := strconv.ParseInt(*(*string)(unsafe.Pointer(&b)), 10, 32)
-	if err != nil {
-		return 0, err
+func bytesToStringUnsafe(b []byte) (string, error) {
+	v, ok := unquoteBytes(b)
+	if !ok {
+		return "", fmt.Errorf("bytesToString: parsing %s: invalid syntax", strconv.Quote(string(b)))
 	}
-	return int32(v), nil
+	s := *(*string)(unsafe.Pointer(&v))
+	return s, nil
 }
 
-func parseInt64(b []byte) (int64, error) {
-	return strconv.ParseInt(*(*string)(unsafe.Pointer(&b)), 10, 32)
-}
-
-func parseUint32(b []byte) (uint32, error) {
-	v, err := strconv.ParseUint(*(*string)(unsafe.Pointer(&b)), 10, 32)
-	if err != nil {
-		return 0, err
-	}
-	return uint32(v), nil
-}
-
-func parseUint64(b []byte) (uint64, error) {
-	return strconv.ParseUint(*(*string)(unsafe.Pointer(&b)), 10, 64)
-}
-
-func parseFloat32(b []byte) (float32, error) {
-	v, err := strconv.ParseFloat(*(*string)(unsafe.Pointer(&b)), 32)
-	if err != nil {
-		return 0, err
-	}
-	return float32(v), nil
-}
-
-func parseFloat64(b []byte) (float64, error) {
-	return strconv.ParseFloat(*(*string)(unsafe.Pointer(&b)), 64)
-}
-
-func parseBool(b []byte) (bool, error) {
-	return strconv.ParseBool(*(*string)(unsafe.Pointer(&b)))
-}
-
-func parseBytes(b []byte) ([]byte, error) {
+func bytesToBytes(b []byte) ([]byte, error) {
 	t, ok := unquoteBytes(b)
 	if !ok {
-		return nil, fmt.Errorf("jsondecoder.parseBytes: parsing %s: invalid syntax", strconv.Quote(string(b)))
+		return nil, fmt.Errorf("bytesToBytes: parsing %s: invalid syntax", strconv.Quote(string(b)))
 	}
 	dst := make([]byte, base64.StdEncoding.DecodedLen(len(t)))
 	n, err := base64.StdEncoding.Decode(dst, t)
@@ -67,17 +37,49 @@ func parseBytes(b []byte) ([]byte, error) {
 	}
 	return dst[:n], nil
 }
-
+func bytesToInt32(b []byte) (int32, error) {
+	v, err := strconv.ParseInt(*(*string)(unsafe.Pointer(&b)), 10, 32)
+	if err != nil {
+		return 0, err
+	}
+	return int32(v), nil
+}
+func bytesToInt64(b []byte) (int64, error) {
+	return strconv.ParseInt(*(*string)(unsafe.Pointer(&b)), 10, 32)
+}
+func bytesToUint32(b []byte) (uint32, error) {
+	v, err := strconv.ParseUint(*(*string)(unsafe.Pointer(&b)), 10, 32)
+	if err != nil {
+		return 0, err
+	}
+	return uint32(v), nil
+}
+func bytesToUint64(b []byte) (uint64, error) {
+	return strconv.ParseUint(*(*string)(unsafe.Pointer(&b)), 10, 64)
+}
+func bytesToFloat32(b []byte) (float32, error) {
+	v, err := strconv.ParseFloat(*(*string)(unsafe.Pointer(&b)), 32)
+	if err != nil {
+		return 0, err
+	}
+	return float32(v), nil
+}
+func bytesToFloat64(b []byte) (float64, error) {
+	return strconv.ParseFloat(*(*string)(unsafe.Pointer(&b)), 64)
+}
+func bytesToBool(b []byte) (bool, error) {
+	return strconv.ParseBool(*(*string)(unsafe.Pointer(&b)))
+}
 func parseEnumNumber(b []byte, em map[int32]string) (int32, error) {
 	_ = em
-	v1, err := parseInt32(b)
+	v1, err := bytesToInt32(b)
 	if err != nil {
 		return 0, err
 	}
 	return v1, nil
 }
 func parseEnumString(b []byte, em map[string]int32) (int32, error) {
-	v1, err := parseString(b)
+	v1, err := bytesToStringUnsafe(b)
 	if err != nil {
 		return 0, err
 	}
@@ -90,4 +92,13 @@ func parseEnumString(b []byte, em map[string]int32) (int32, error) {
 		return 0, err
 	}
 	return int32(v3), nil
+}
+func parseInterface(b []byte, initFN func() interface{}) (err error) {
+	i := initFN()
+	if um, ok := i.(json.Unmarshaler); ok {
+		err = um.UnmarshalJSON(b)
+	} else {
+		err = json.Unmarshal(b, i)
+	}
+	return
 }

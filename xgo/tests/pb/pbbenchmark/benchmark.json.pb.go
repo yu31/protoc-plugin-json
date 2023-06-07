@@ -49,50 +49,55 @@ func (x *Message1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
+	if isNULL {
+		return nil
+	}
 	// Loop to scan object.
-LOOP_OBJECT:
+LOOP_SCAN:
 	for {
-		if err = decoder.ScanError(); err != nil {
+		var (
+			jsonKey string
+			isEnd   bool
+		)
+		if isEnd, err = decoder.BeforeReadJSONKey(); err != nil {
 			return err
 		}
-		jsonKey, stop := decoder.ReadJSONKey()
-		if stop {
-			break LOOP_OBJECT
+		if isEnd {
+			break LOOP_SCAN
+		}
+		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+			return err
 		}
 		switch { // match the JSON KEY
 		case jsonKey == "f_string1":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString1 = vv
 		case jsonKey == "f_string2":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString2 = vv
 		case jsonKey == "f_string3":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString3 = vv
 		default:
-			if err = decoder.Discard(); err != nil { // discard unknown field
+			if err = decoder.DiscardValue(jsonKey); err != nil {
 				return err
 			}
 		}
-		if decoder.ReadObjectValueAfter() { // After read object value
-			break LOOP_OBJECT
-		}
-	}
-	// Check error in decoder
-	if err = decoder.ScanError(); err != nil {
-		return err
 	}
 	return nil
 }
@@ -176,176 +181,202 @@ func (x *BenchModelSimple) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
+	if isNULL {
+		return nil
+	}
 	// Loop to scan object.
-LOOP_OBJECT:
+LOOP_SCAN:
 	for {
-		if err = decoder.ScanError(); err != nil {
+		var (
+			jsonKey string
+			isEnd   bool
+		)
+		if isEnd, err = decoder.BeforeReadJSONKey(); err != nil {
 			return err
 		}
-		jsonKey, stop := decoder.ReadJSONKey()
-		if stop {
-			break LOOP_OBJECT
+		if isEnd {
+			break LOOP_SCAN
+		}
+		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+			return err
 		}
 		switch { // match the JSON KEY
 		case jsonKey == "f_string1":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString1 = vv
 		case jsonKey == "f_string2":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString2 = vv
 		case jsonKey == "f_string3":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString3 = vv
 		case jsonKey == "f_string4":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString4 = vv
 		case jsonKey == "f_string5":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString5 = vv
 		case jsonKey == "f_string6":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString6 = vv
 		case jsonKey == "f_string7":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString7 = vv
 		case jsonKey == "f_string8":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString8 = vv
 		case jsonKey == "f_string9":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString9 = vv
 		case jsonKey == "f_int32":
-			vv, _err := decoder.ReadValueInt32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv int32
+			vv, err = decoder.ReadValueInt32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FInt32 = vv
 		case jsonKey == "f_int64":
-			vv, _err := decoder.ReadValueInt64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv int64
+			vv, err = decoder.ReadValueInt64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FInt64 = vv
 		case jsonKey == "f_uint32":
-			vv, _err := decoder.ReadValueUint32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv uint32
+			vv, err = decoder.ReadValueUint32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FUint32 = vv
 		case jsonKey == "f_uint64":
-			vv, _err := decoder.ReadValueUint64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv uint64
+			vv, err = decoder.ReadValueUint64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FUint64 = vv
 		case jsonKey == "f_sint32":
-			vv, _err := decoder.ReadValueInt32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv int32
+			vv, err = decoder.ReadValueInt32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FSint32 = vv
 		case jsonKey == "f_sint64":
-			vv, _err := decoder.ReadValueInt64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv int64
+			vv, err = decoder.ReadValueInt64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FSint64 = vv
 		case jsonKey == "f_sfixed32":
-			vv, _err := decoder.ReadValueInt32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv int32
+			vv, err = decoder.ReadValueInt32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FSfixed32 = vv
 		case jsonKey == "f_sfixed64":
-			vv, _err := decoder.ReadValueInt64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv int64
+			vv, err = decoder.ReadValueInt64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FSfixed64 = vv
 		case jsonKey == "f_fixed32":
-			vv, _err := decoder.ReadValueUint32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv uint32
+			vv, err = decoder.ReadValueUint32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FFixed32 = vv
 		case jsonKey == "f_fixed64":
-			vv, _err := decoder.ReadValueUint64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv uint64
+			vv, err = decoder.ReadValueUint64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FFixed64 = vv
 		case jsonKey == "f_float":
-			vv, _err := decoder.ReadValueFloat32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv float32
+			vv, err = decoder.ReadValueFloat32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FFloat = vv
 		case jsonKey == "f_double":
-			vv, _err := decoder.ReadValueFloat64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv float64
+			vv, err = decoder.ReadValueFloat64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FDouble = vv
 		case jsonKey == "f_bool1":
-			vv, _err := decoder.ReadValueBool(jsonKey)
-			if _err != nil {
-				return _err
+			var vv bool
+			vv, err = decoder.ReadValueBool(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FBool1 = vv
 		case jsonKey == "f_bool2":
-			vv, _err := decoder.ReadValueBool(jsonKey)
-			if _err != nil {
-				return _err
+			var vv bool
+			vv, err = decoder.ReadValueBool(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FBool2 = vv
 		case jsonKey == "f_bool3":
-			vv, _err := decoder.ReadValueBool(jsonKey)
-			if _err != nil {
-				return _err
+			var vv bool
+			vv, err = decoder.ReadValueBool(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FBool3 = vv
 		default:
-			if err = decoder.Discard(); err != nil { // discard unknown field
+			if err = decoder.DiscardValue(jsonKey); err != nil {
 				return err
 			}
 		}
-		if decoder.ReadObjectValueAfter() { // After read object value
-			break LOOP_OBJECT
-		}
-	}
-	// Check error in decoder
-	if err = decoder.ScanError(); err != nil {
-		return err
 	}
 	return nil
 }
@@ -1518,229 +1549,279 @@ func (x *BenchModelComplex) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
+	if isNULL {
+		return nil
+	}
 	// Loop to scan object.
-LOOP_OBJECT:
+LOOP_SCAN:
 	for {
-		if err = decoder.ScanError(); err != nil {
+		var (
+			jsonKey string
+			isEnd   bool
+		)
+		if isEnd, err = decoder.BeforeReadJSONKey(); err != nil {
 			return err
 		}
-		jsonKey, stop := decoder.ReadJSONKey()
-		if stop {
-			break LOOP_OBJECT
+		if isEnd {
+			break LOOP_SCAN
+		}
+		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+			return err
 		}
 		switch { // match the JSON KEY
 		case jsonKey == "f_string1":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString1 = vv
 		case jsonKey == "f_string2":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString2 = vv
 		case jsonKey == "f_string3":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString3 = vv
 		case jsonKey == "f_string4":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString4 = vv
 		case jsonKey == "f_string5":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString5 = vv
 		case jsonKey == "f_string6":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString6 = vv
 		case jsonKey == "f_string7":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString7 = vv
 		case jsonKey == "f_string8":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString8 = vv
 		case jsonKey == "f_string9":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString9 = vv
 		case jsonKey == "f_int32":
-			vv, _err := decoder.ReadValueInt32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv int32
+			vv, err = decoder.ReadValueInt32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FInt32 = vv
 		case jsonKey == "f_int64":
-			vv, _err := decoder.ReadValueInt64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv int64
+			vv, err = decoder.ReadValueInt64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FInt64 = vv
 		case jsonKey == "f_uint32":
-			vv, _err := decoder.ReadValueUint32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv uint32
+			vv, err = decoder.ReadValueUint32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FUint32 = vv
 		case jsonKey == "f_uint64":
-			vv, _err := decoder.ReadValueUint64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv uint64
+			vv, err = decoder.ReadValueUint64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FUint64 = vv
 		case jsonKey == "f_sint32":
-			vv, _err := decoder.ReadValueInt32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv int32
+			vv, err = decoder.ReadValueInt32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FSint32 = vv
 		case jsonKey == "f_sint64":
-			vv, _err := decoder.ReadValueInt64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv int64
+			vv, err = decoder.ReadValueInt64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FSint64 = vv
 		case jsonKey == "f_sfixed32":
-			vv, _err := decoder.ReadValueInt32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv int32
+			vv, err = decoder.ReadValueInt32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FSfixed32 = vv
 		case jsonKey == "f_sfixed64":
-			vv, _err := decoder.ReadValueInt64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv int64
+			vv, err = decoder.ReadValueInt64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FSfixed64 = vv
 		case jsonKey == "f_fixed32":
-			vv, _err := decoder.ReadValueUint32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv uint32
+			vv, err = decoder.ReadValueUint32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FFixed32 = vv
 		case jsonKey == "f_fixed64":
-			vv, _err := decoder.ReadValueUint64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv uint64
+			vv, err = decoder.ReadValueUint64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FFixed64 = vv
 		case jsonKey == "f_float":
-			vv, _err := decoder.ReadValueFloat32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv float32
+			vv, err = decoder.ReadValueFloat32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FFloat = vv
 		case jsonKey == "f_double":
-			vv, _err := decoder.ReadValueFloat64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv float64
+			vv, err = decoder.ReadValueFloat64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FDouble = vv
 		case jsonKey == "f_bool1":
-			vv, _err := decoder.ReadValueBool(jsonKey)
-			if _err != nil {
-				return _err
+			var vv bool
+			vv, err = decoder.ReadValueBool(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FBool1 = vv
 		case jsonKey == "f_bool2":
-			vv, _err := decoder.ReadValueBool(jsonKey)
-			if _err != nil {
-				return _err
+			var vv bool
+			vv, err = decoder.ReadValueBool(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FBool2 = vv
 		case jsonKey == "f_bool3":
-			vv, _err := decoder.ReadValueBool(jsonKey)
-			if _err != nil {
-				return _err
+			var vv bool
+			vv, err = decoder.ReadValueBool(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FBool3 = vv
 		case jsonKey == "f_bytes1":
-			vv, _err := decoder.ReadValueBytes(jsonKey)
-			if _err != nil {
-				return _err
+			var vv []byte
+			vv, err = decoder.ReadValueBytes(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FBytes1 = vv
 		case jsonKey == "f_bytes2":
-			vv, _err := decoder.ReadValueBytes(jsonKey)
-			if _err != nil {
-				return _err
+			var vv []byte
+			vv, err = decoder.ReadValueBytes(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FBytes2 = vv
 		case jsonKey == "f_bytes3":
-			vv, _err := decoder.ReadValueBytes(jsonKey)
-			if _err != nil {
-				return _err
+			var vv []byte
+			vv, err = decoder.ReadValueBytes(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FBytes3 = vv
 		case jsonKey == "f_enum1":
-			v1, _err := decoder.ReadValueEnumNumber(jsonKey, Enum1_name)
-			vv := Enum1(v1)
-			if _err != nil {
-				return _err
+			var vv Enum1
+			var v1 int32
+			v1, err = decoder.ReadValueEnumNumber(jsonKey, Enum1_name)
+			vv = Enum1(v1)
+			if err != nil {
+				return err
 			}
 			x.FEnum1 = vv
 		case jsonKey == "f_enum2":
-			v1, _err := decoder.ReadValueEnumNumber(jsonKey, Enum1_name)
-			vv := Enum1(v1)
-			if _err != nil {
-				return _err
+			var vv Enum1
+			var v1 int32
+			v1, err = decoder.ReadValueEnumNumber(jsonKey, Enum1_name)
+			vv = Enum1(v1)
+			if err != nil {
+				return err
 			}
 			x.FEnum2 = vv
 		case jsonKey == "f_enum3":
-			v1, _err := decoder.ReadValueEnumNumber(jsonKey, Enum1_name)
-			vv := Enum1(v1)
-			if _err != nil {
-				return _err
+			var vv Enum1
+			var v1 int32
+			v1, err = decoder.ReadValueEnumNumber(jsonKey, Enum1_name)
+			vv = Enum1(v1)
+			if err != nil {
+				return err
 			}
 			x.FEnum3 = vv
 		case jsonKey == "f_enum4":
-			v1, _err := decoder.ReadValueEnumNumber(jsonKey, Enum1_name)
-			vv := Enum1(v1)
-			if _err != nil {
-				return _err
+			var vv Enum1
+			var v1 int32
+			v1, err = decoder.ReadValueEnumNumber(jsonKey, Enum1_name)
+			vv = Enum1(v1)
+			if err != nil {
+				return err
 			}
 			x.FEnum4 = vv
 		case jsonKey == "f_enum5":
-			v1, _err := decoder.ReadValueEnumNumber(jsonKey, Enum1_name)
-			vv := Enum1(v1)
-			if _err != nil {
-				return _err
+			var vv Enum1
+			var v1 int32
+			v1, err = decoder.ReadValueEnumNumber(jsonKey, Enum1_name)
+			vv = Enum1(v1)
+			if err != nil {
+				return err
 			}
 			x.FEnum5 = vv
 		case jsonKey == "f_enum6":
-			v1, _err := decoder.ReadValueEnumNumber(jsonKey, Enum1_name)
-			vv := Enum1(v1)
-			if _err != nil {
-				return _err
+			var vv Enum1
+			var v1 int32
+			v1, err = decoder.ReadValueEnumNumber(jsonKey, Enum1_name)
+			vv = Enum1(v1)
+			if err != nil {
+				return err
 			}
 			x.FEnum6 = vv
 		case jsonKey == "f_enum7":
-			v1, _err := decoder.ReadValueEnumNumber(jsonKey, Enum1_name)
-			vv := Enum1(v1)
-			if _err != nil {
-				return _err
+			var vv Enum1
+			var v1 int32
+			v1, err = decoder.ReadValueEnumNumber(jsonKey, Enum1_name)
+			vv = Enum1(v1)
+			if err != nil {
+				return err
 			}
 			x.FEnum7 = vv
 		case jsonKey == "f_message1":
@@ -1753,9 +1834,9 @@ LOOP_OBJECT:
 				}
 				return vv
 			}
-			_err := decoder.ReadValueInterface(jsonKey, initFN)
-			if _err != nil {
-				return _err
+			err = decoder.ReadValueInterface(jsonKey, initFN)
+			if err != nil {
+				return err
 			}
 			x.FMessage1 = vv
 		case jsonKey == "f_message2":
@@ -1768,9 +1849,9 @@ LOOP_OBJECT:
 				}
 				return vv
 			}
-			_err := decoder.ReadValueInterface(jsonKey, initFN)
-			if _err != nil {
-				return _err
+			err = decoder.ReadValueInterface(jsonKey, initFN)
+			if err != nil {
+				return err
 			}
 			x.FMessage2 = vv
 		case jsonKey == "f_message3":
@@ -1783,9 +1864,9 @@ LOOP_OBJECT:
 				}
 				return vv
 			}
-			_err := decoder.ReadValueInterface(jsonKey, initFN)
-			if _err != nil {
-				return _err
+			err = decoder.ReadValueInterface(jsonKey, initFN)
+			if err != nil {
+				return err
 			}
 			x.FMessage3 = vv
 		case jsonKey == "f_message4":
@@ -1798,9 +1879,9 @@ LOOP_OBJECT:
 				}
 				return vv
 			}
-			_err := decoder.ReadValueInterface(jsonKey, initFN)
-			if _err != nil {
-				return _err
+			err = decoder.ReadValueInterface(jsonKey, initFN)
+			if err != nil {
+				return err
 			}
 			x.FMessage4 = vv
 		case jsonKey == "f_message5":
@@ -1813,9 +1894,9 @@ LOOP_OBJECT:
 				}
 				return vv
 			}
-			_err := decoder.ReadValueInterface(jsonKey, initFN)
-			if _err != nil {
-				return _err
+			err = decoder.ReadValueInterface(jsonKey, initFN)
+			if err != nil {
+				return err
 			}
 			x.FMessage5 = vv
 		case jsonKey == "f_message6":
@@ -1828,9 +1909,9 @@ LOOP_OBJECT:
 				}
 				return vv
 			}
-			_err := decoder.ReadValueInterface(jsonKey, initFN)
-			if _err != nil {
-				return _err
+			err = decoder.ReadValueInterface(jsonKey, initFN)
+			if err != nil {
+				return err
 			}
 			x.FMessage6 = vv
 		case jsonKey == "f_message7":
@@ -1843,248 +1924,282 @@ LOOP_OBJECT:
 				}
 				return vv
 			}
-			_err := decoder.ReadValueInterface(jsonKey, initFN)
-			if _err != nil {
-				return _err
+			err = decoder.ReadValueInterface(jsonKey, initFN)
+			if err != nil {
+				return err
 			}
 			x.FMessage7 = vv
 		case jsonKey == "p_string1":
-			vv, _err := decoder.ReadPointerString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *string
+			vv, err = decoder.ReadPointerString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PString1 = vv
 		case jsonKey == "p_string2":
-			vv, _err := decoder.ReadPointerString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *string
+			vv, err = decoder.ReadPointerString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PString2 = vv
 		case jsonKey == "p_string3":
-			vv, _err := decoder.ReadPointerString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *string
+			vv, err = decoder.ReadPointerString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PString3 = vv
 		case jsonKey == "p_string4":
-			vv, _err := decoder.ReadPointerString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *string
+			vv, err = decoder.ReadPointerString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PString4 = vv
 		case jsonKey == "p_string5":
-			vv, _err := decoder.ReadPointerString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *string
+			vv, err = decoder.ReadPointerString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PString5 = vv
 		case jsonKey == "p_string6":
-			vv, _err := decoder.ReadPointerString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *string
+			vv, err = decoder.ReadPointerString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PString6 = vv
 		case jsonKey == "p_string7":
-			vv, _err := decoder.ReadPointerString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *string
+			vv, err = decoder.ReadPointerString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PString7 = vv
 		case jsonKey == "p_string8":
-			vv, _err := decoder.ReadPointerString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *string
+			vv, err = decoder.ReadPointerString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PString8 = vv
 		case jsonKey == "p_string9":
-			vv, _err := decoder.ReadPointerString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *string
+			vv, err = decoder.ReadPointerString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PString9 = vv
 		case jsonKey == "p_int32":
-			vv, _err := decoder.ReadPointerInt32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *int32
+			vv, err = decoder.ReadPointerInt32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PInt32 = vv
 		case jsonKey == "p_int64":
-			vv, _err := decoder.ReadPointerInt64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *int64
+			vv, err = decoder.ReadPointerInt64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PInt64 = vv
 		case jsonKey == "p_uint32":
-			vv, _err := decoder.ReadPointerUint32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *uint32
+			vv, err = decoder.ReadPointerUint32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PUint32 = vv
 		case jsonKey == "p_uint64":
-			vv, _err := decoder.ReadPointerUint64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *uint64
+			vv, err = decoder.ReadPointerUint64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PUint64 = vv
 		case jsonKey == "p_sint32":
-			vv, _err := decoder.ReadPointerInt32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *int32
+			vv, err = decoder.ReadPointerInt32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PSint32 = vv
 		case jsonKey == "p_sint64":
-			vv, _err := decoder.ReadPointerInt64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *int64
+			vv, err = decoder.ReadPointerInt64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PSint64 = vv
 		case jsonKey == "p_sfixed32":
-			vv, _err := decoder.ReadPointerInt32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *int32
+			vv, err = decoder.ReadPointerInt32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PSfixed32 = vv
 		case jsonKey == "p_sfixed64":
-			vv, _err := decoder.ReadPointerInt64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *int64
+			vv, err = decoder.ReadPointerInt64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PSfixed64 = vv
 		case jsonKey == "p_fixed32":
-			vv, _err := decoder.ReadPointerUint32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *uint32
+			vv, err = decoder.ReadPointerUint32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PFixed32 = vv
 		case jsonKey == "p_fixed64":
-			vv, _err := decoder.ReadPointerUint64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *uint64
+			vv, err = decoder.ReadPointerUint64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PFixed64 = vv
 		case jsonKey == "p_float":
-			vv, _err := decoder.ReadPointerFloat32(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *float32
+			vv, err = decoder.ReadPointerFloat32(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PFloat = vv
 		case jsonKey == "p_double":
-			vv, _err := decoder.ReadPointerFloat64(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *float64
+			vv, err = decoder.ReadPointerFloat64(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PDouble = vv
 		case jsonKey == "p_bool1":
-			vv, _err := decoder.ReadPointerBool(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *bool
+			vv, err = decoder.ReadPointerBool(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PBool1 = vv
 		case jsonKey == "p_bool2":
-			vv, _err := decoder.ReadPointerBool(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *bool
+			vv, err = decoder.ReadPointerBool(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PBool2 = vv
 		case jsonKey == "p_bool3":
-			vv, _err := decoder.ReadPointerBool(jsonKey)
-			if _err != nil {
-				return _err
+			var vv *bool
+			vv, err = decoder.ReadPointerBool(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PBool3 = vv
 		case jsonKey == "p_bytes1":
-			vv, _err := decoder.ReadValueBytes(jsonKey)
-			if _err != nil {
-				return _err
+			var vv []byte
+			vv, err = decoder.ReadValueBytes(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PBytes1 = vv
 		case jsonKey == "p_bytes2":
-			vv, _err := decoder.ReadValueBytes(jsonKey)
-			if _err != nil {
-				return _err
+			var vv []byte
+			vv, err = decoder.ReadValueBytes(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PBytes2 = vv
 		case jsonKey == "p_bytes3":
-			vv, _err := decoder.ReadValueBytes(jsonKey)
-			if _err != nil {
-				return _err
+			var vv []byte
+			vv, err = decoder.ReadValueBytes(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.PBytes3 = vv
 		case jsonKey == "p_enum1":
 			var vv *Enum1
-			v1, _err := decoder.ReadPointerEnumNumber(jsonKey, Enum1_name)
+			var v1 *int32
+			v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name)
 			if v1 != nil {
-				_vv := Enum1(*v1)
-				vv = &_vv
+				v2 := Enum1(*v1)
+				vv = &v2
 			}
-			if _err != nil {
-				return _err
+			if err != nil {
+				return err
 			}
 			x.PEnum1 = vv
 		case jsonKey == "p_enum2":
 			var vv *Enum1
-			v1, _err := decoder.ReadPointerEnumNumber(jsonKey, Enum1_name)
+			var v1 *int32
+			v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name)
 			if v1 != nil {
-				_vv := Enum1(*v1)
-				vv = &_vv
+				v2 := Enum1(*v1)
+				vv = &v2
 			}
-			if _err != nil {
-				return _err
+			if err != nil {
+				return err
 			}
 			x.PEnum2 = vv
 		case jsonKey == "p_enum3":
 			var vv *Enum1
-			v1, _err := decoder.ReadPointerEnumNumber(jsonKey, Enum1_name)
+			var v1 *int32
+			v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name)
 			if v1 != nil {
-				_vv := Enum1(*v1)
-				vv = &_vv
+				v2 := Enum1(*v1)
+				vv = &v2
 			}
-			if _err != nil {
-				return _err
+			if err != nil {
+				return err
 			}
 			x.PEnum3 = vv
 		case jsonKey == "p_enum4":
 			var vv *Enum1
-			v1, _err := decoder.ReadPointerEnumNumber(jsonKey, Enum1_name)
+			var v1 *int32
+			v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name)
 			if v1 != nil {
-				_vv := Enum1(*v1)
-				vv = &_vv
+				v2 := Enum1(*v1)
+				vv = &v2
 			}
-			if _err != nil {
-				return _err
+			if err != nil {
+				return err
 			}
 			x.PEnum4 = vv
 		case jsonKey == "p_enum5":
 			var vv *Enum1
-			v1, _err := decoder.ReadPointerEnumNumber(jsonKey, Enum1_name)
+			var v1 *int32
+			v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name)
 			if v1 != nil {
-				_vv := Enum1(*v1)
-				vv = &_vv
+				v2 := Enum1(*v1)
+				vv = &v2
 			}
-			if _err != nil {
-				return _err
+			if err != nil {
+				return err
 			}
 			x.PEnum5 = vv
 		case jsonKey == "p_enum6":
 			var vv *Enum1
-			v1, _err := decoder.ReadPointerEnumNumber(jsonKey, Enum1_name)
+			var v1 *int32
+			v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name)
 			if v1 != nil {
-				_vv := Enum1(*v1)
-				vv = &_vv
+				v2 := Enum1(*v1)
+				vv = &v2
 			}
-			if _err != nil {
-				return _err
+			if err != nil {
+				return err
 			}
 			x.PEnum6 = vv
 		case jsonKey == "p_enum7":
 			var vv *Enum1
-			v1, _err := decoder.ReadPointerEnumNumber(jsonKey, Enum1_name)
+			var v1 *int32
+			v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name)
 			if v1 != nil {
-				_vv := Enum1(*v1)
-				vv = &_vv
+				v2 := Enum1(*v1)
+				vv = &v2
 			}
-			if _err != nil {
-				return _err
+			if err != nil {
+				return err
 			}
 			x.PEnum7 = vv
 		case jsonKey == "p_message1":
@@ -2097,9 +2212,9 @@ LOOP_OBJECT:
 				}
 				return vv
 			}
-			_err := decoder.ReadValueInterface(jsonKey, initFN)
-			if _err != nil {
-				return _err
+			err = decoder.ReadValueInterface(jsonKey, initFN)
+			if err != nil {
+				return err
 			}
 			x.PMessage1 = vv
 		case jsonKey == "p_message2":
@@ -2112,9 +2227,9 @@ LOOP_OBJECT:
 				}
 				return vv
 			}
-			_err := decoder.ReadValueInterface(jsonKey, initFN)
-			if _err != nil {
-				return _err
+			err = decoder.ReadValueInterface(jsonKey, initFN)
+			if err != nil {
+				return err
 			}
 			x.PMessage2 = vv
 		case jsonKey == "p_message3":
@@ -2127,9 +2242,9 @@ LOOP_OBJECT:
 				}
 				return vv
 			}
-			_err := decoder.ReadValueInterface(jsonKey, initFN)
-			if _err != nil {
-				return _err
+			err = decoder.ReadValueInterface(jsonKey, initFN)
+			if err != nil {
+				return err
 			}
 			x.PMessage3 = vv
 		case jsonKey == "p_message4":
@@ -2142,9 +2257,9 @@ LOOP_OBJECT:
 				}
 				return vv
 			}
-			_err := decoder.ReadValueInterface(jsonKey, initFN)
-			if _err != nil {
-				return _err
+			err = decoder.ReadValueInterface(jsonKey, initFN)
+			if err != nil {
+				return err
 			}
 			x.PMessage4 = vv
 		case jsonKey == "p_message5":
@@ -2157,9 +2272,9 @@ LOOP_OBJECT:
 				}
 				return vv
 			}
-			_err := decoder.ReadValueInterface(jsonKey, initFN)
-			if _err != nil {
-				return _err
+			err = decoder.ReadValueInterface(jsonKey, initFN)
+			if err != nil {
+				return err
 			}
 			x.PMessage5 = vv
 		case jsonKey == "p_message6":
@@ -2172,9 +2287,9 @@ LOOP_OBJECT:
 				}
 				return vv
 			}
-			_err := decoder.ReadValueInterface(jsonKey, initFN)
-			if _err != nil {
-				return _err
+			err = decoder.ReadValueInterface(jsonKey, initFN)
+			if err != nil {
+				return err
 			}
 			x.PMessage6 = vv
 		case jsonKey == "p_message7":
@@ -2187,3402 +2302,2944 @@ LOOP_OBJECT:
 				}
 				return vv
 			}
-			_err := decoder.ReadValueInterface(jsonKey, initFN)
-			if _err != nil {
-				return _err
+			err = decoder.ReadValueInterface(jsonKey, initFN)
+			if err != nil {
+				return err
 			}
 			x.PMessage7 = vv
 		case jsonKey == "r_string1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RString1 = nil
-			case isEmpty:
-				if x.RString1 == nil {
-					x.RString1 = make([]string, 0)
-				} else {
-					x.RString1 = x.RString1[:0]
+				continue LOOP_SCAN
+			}
+			if x.RString1 == nil {
+				x.RString1 = make([]string, 0)
+			}
+			i := 0
+			length := len(x.RString1)
+		LOOP_LIST_r_string1:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RString1 == nil {
-					x.RString1 = make([]string, 0)
+				if isEnd {
+					break LOOP_LIST_r_string1
 				}
-				i := 0
-				length := len(x.RString1)
-			LOOP_LIST_r_string1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RString1[i] = vv
-					} else {
-						x.RString1 = append(x.RString1, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_string1
-					}
+				var vv string
+				vv, err = decoder.ReadArrayElemString(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RString1 = x.RString1[:i]
+					x.RString1[i] = vv
+				} else {
+					x.RString1 = append(x.RString1, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RString1 = x.RString1[:i]
 			}
 		case jsonKey == "r_string2":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RString2 = nil
-			case isEmpty:
-				if x.RString2 == nil {
-					x.RString2 = make([]string, 0)
-				} else {
-					x.RString2 = x.RString2[:0]
+				continue LOOP_SCAN
+			}
+			if x.RString2 == nil {
+				x.RString2 = make([]string, 0)
+			}
+			i := 0
+			length := len(x.RString2)
+		LOOP_LIST_r_string2:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RString2 == nil {
-					x.RString2 = make([]string, 0)
+				if isEnd {
+					break LOOP_LIST_r_string2
 				}
-				i := 0
-				length := len(x.RString2)
-			LOOP_LIST_r_string2:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RString2[i] = vv
-					} else {
-						x.RString2 = append(x.RString2, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_string2
-					}
+				var vv string
+				vv, err = decoder.ReadArrayElemString(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RString2 = x.RString2[:i]
+					x.RString2[i] = vv
+				} else {
+					x.RString2 = append(x.RString2, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RString2 = x.RString2[:i]
 			}
 		case jsonKey == "r_string3":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RString3 = nil
-			case isEmpty:
-				if x.RString3 == nil {
-					x.RString3 = make([]string, 0)
-				} else {
-					x.RString3 = x.RString3[:0]
+				continue LOOP_SCAN
+			}
+			if x.RString3 == nil {
+				x.RString3 = make([]string, 0)
+			}
+			i := 0
+			length := len(x.RString3)
+		LOOP_LIST_r_string3:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RString3 == nil {
-					x.RString3 = make([]string, 0)
+				if isEnd {
+					break LOOP_LIST_r_string3
 				}
-				i := 0
-				length := len(x.RString3)
-			LOOP_LIST_r_string3:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RString3[i] = vv
-					} else {
-						x.RString3 = append(x.RString3, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_string3
-					}
+				var vv string
+				vv, err = decoder.ReadArrayElemString(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RString3 = x.RString3[:i]
+					x.RString3[i] = vv
+				} else {
+					x.RString3 = append(x.RString3, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RString3 = x.RString3[:i]
 			}
 		case jsonKey == "r_string4":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RString4 = nil
-			case isEmpty:
-				if x.RString4 == nil {
-					x.RString4 = make([]string, 0)
-				} else {
-					x.RString4 = x.RString4[:0]
+				continue LOOP_SCAN
+			}
+			if x.RString4 == nil {
+				x.RString4 = make([]string, 0)
+			}
+			i := 0
+			length := len(x.RString4)
+		LOOP_LIST_r_string4:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RString4 == nil {
-					x.RString4 = make([]string, 0)
+				if isEnd {
+					break LOOP_LIST_r_string4
 				}
-				i := 0
-				length := len(x.RString4)
-			LOOP_LIST_r_string4:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RString4[i] = vv
-					} else {
-						x.RString4 = append(x.RString4, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_string4
-					}
+				var vv string
+				vv, err = decoder.ReadArrayElemString(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RString4 = x.RString4[:i]
+					x.RString4[i] = vv
+				} else {
+					x.RString4 = append(x.RString4, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RString4 = x.RString4[:i]
 			}
 		case jsonKey == "r_string5":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RString5 = nil
-			case isEmpty:
-				if x.RString5 == nil {
-					x.RString5 = make([]string, 0)
-				} else {
-					x.RString5 = x.RString5[:0]
+				continue LOOP_SCAN
+			}
+			if x.RString5 == nil {
+				x.RString5 = make([]string, 0)
+			}
+			i := 0
+			length := len(x.RString5)
+		LOOP_LIST_r_string5:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RString5 == nil {
-					x.RString5 = make([]string, 0)
+				if isEnd {
+					break LOOP_LIST_r_string5
 				}
-				i := 0
-				length := len(x.RString5)
-			LOOP_LIST_r_string5:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RString5[i] = vv
-					} else {
-						x.RString5 = append(x.RString5, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_string5
-					}
+				var vv string
+				vv, err = decoder.ReadArrayElemString(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RString5 = x.RString5[:i]
+					x.RString5[i] = vv
+				} else {
+					x.RString5 = append(x.RString5, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RString5 = x.RString5[:i]
 			}
 		case jsonKey == "r_string6":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RString6 = nil
-			case isEmpty:
-				if x.RString6 == nil {
-					x.RString6 = make([]string, 0)
-				} else {
-					x.RString6 = x.RString6[:0]
+				continue LOOP_SCAN
+			}
+			if x.RString6 == nil {
+				x.RString6 = make([]string, 0)
+			}
+			i := 0
+			length := len(x.RString6)
+		LOOP_LIST_r_string6:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RString6 == nil {
-					x.RString6 = make([]string, 0)
+				if isEnd {
+					break LOOP_LIST_r_string6
 				}
-				i := 0
-				length := len(x.RString6)
-			LOOP_LIST_r_string6:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RString6[i] = vv
-					} else {
-						x.RString6 = append(x.RString6, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_string6
-					}
+				var vv string
+				vv, err = decoder.ReadArrayElemString(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RString6 = x.RString6[:i]
+					x.RString6[i] = vv
+				} else {
+					x.RString6 = append(x.RString6, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RString6 = x.RString6[:i]
 			}
 		case jsonKey == "r_string7":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RString7 = nil
-			case isEmpty:
-				if x.RString7 == nil {
-					x.RString7 = make([]string, 0)
-				} else {
-					x.RString7 = x.RString7[:0]
+				continue LOOP_SCAN
+			}
+			if x.RString7 == nil {
+				x.RString7 = make([]string, 0)
+			}
+			i := 0
+			length := len(x.RString7)
+		LOOP_LIST_r_string7:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RString7 == nil {
-					x.RString7 = make([]string, 0)
+				if isEnd {
+					break LOOP_LIST_r_string7
 				}
-				i := 0
-				length := len(x.RString7)
-			LOOP_LIST_r_string7:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RString7[i] = vv
-					} else {
-						x.RString7 = append(x.RString7, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_string7
-					}
+				var vv string
+				vv, err = decoder.ReadArrayElemString(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RString7 = x.RString7[:i]
+					x.RString7[i] = vv
+				} else {
+					x.RString7 = append(x.RString7, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RString7 = x.RString7[:i]
 			}
 		case jsonKey == "r_string8":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RString8 = nil
-			case isEmpty:
-				if x.RString8 == nil {
-					x.RString8 = make([]string, 0)
-				} else {
-					x.RString8 = x.RString8[:0]
+				continue LOOP_SCAN
+			}
+			if x.RString8 == nil {
+				x.RString8 = make([]string, 0)
+			}
+			i := 0
+			length := len(x.RString8)
+		LOOP_LIST_r_string8:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RString8 == nil {
-					x.RString8 = make([]string, 0)
+				if isEnd {
+					break LOOP_LIST_r_string8
 				}
-				i := 0
-				length := len(x.RString8)
-			LOOP_LIST_r_string8:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RString8[i] = vv
-					} else {
-						x.RString8 = append(x.RString8, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_string8
-					}
+				var vv string
+				vv, err = decoder.ReadArrayElemString(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RString8 = x.RString8[:i]
+					x.RString8[i] = vv
+				} else {
+					x.RString8 = append(x.RString8, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RString8 = x.RString8[:i]
 			}
 		case jsonKey == "r_string9":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RString9 = nil
-			case isEmpty:
-				if x.RString9 == nil {
-					x.RString9 = make([]string, 0)
-				} else {
-					x.RString9 = x.RString9[:0]
+				continue LOOP_SCAN
+			}
+			if x.RString9 == nil {
+				x.RString9 = make([]string, 0)
+			}
+			i := 0
+			length := len(x.RString9)
+		LOOP_LIST_r_string9:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RString9 == nil {
-					x.RString9 = make([]string, 0)
+				if isEnd {
+					break LOOP_LIST_r_string9
 				}
-				i := 0
-				length := len(x.RString9)
-			LOOP_LIST_r_string9:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RString9[i] = vv
-					} else {
-						x.RString9 = append(x.RString9, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_string9
-					}
+				var vv string
+				vv, err = decoder.ReadArrayElemString(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RString9 = x.RString9[:i]
+					x.RString9[i] = vv
+				} else {
+					x.RString9 = append(x.RString9, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RString9 = x.RString9[:i]
 			}
 		case jsonKey == "r_int32":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RInt32 = nil
-			case isEmpty:
-				if x.RInt32 == nil {
-					x.RInt32 = make([]int32, 0)
-				} else {
-					x.RInt32 = x.RInt32[:0]
+				continue LOOP_SCAN
+			}
+			if x.RInt32 == nil {
+				x.RInt32 = make([]int32, 0)
+			}
+			i := 0
+			length := len(x.RInt32)
+		LOOP_LIST_r_int32:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RInt32 == nil {
-					x.RInt32 = make([]int32, 0)
+				if isEnd {
+					break LOOP_LIST_r_int32
 				}
-				i := 0
-				length := len(x.RInt32)
-			LOOP_LIST_r_int32:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemInt32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RInt32[i] = vv
-					} else {
-						x.RInt32 = append(x.RInt32, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_int32
-					}
+				var vv int32
+				vv, err = decoder.ReadArrayElemInt32(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RInt32 = x.RInt32[:i]
+					x.RInt32[i] = vv
+				} else {
+					x.RInt32 = append(x.RInt32, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RInt32 = x.RInt32[:i]
 			}
 		case jsonKey == "r_int64":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RInt64 = nil
-			case isEmpty:
-				if x.RInt64 == nil {
-					x.RInt64 = make([]int64, 0)
-				} else {
-					x.RInt64 = x.RInt64[:0]
+				continue LOOP_SCAN
+			}
+			if x.RInt64 == nil {
+				x.RInt64 = make([]int64, 0)
+			}
+			i := 0
+			length := len(x.RInt64)
+		LOOP_LIST_r_int64:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RInt64 == nil {
-					x.RInt64 = make([]int64, 0)
+				if isEnd {
+					break LOOP_LIST_r_int64
 				}
-				i := 0
-				length := len(x.RInt64)
-			LOOP_LIST_r_int64:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemInt64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RInt64[i] = vv
-					} else {
-						x.RInt64 = append(x.RInt64, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_int64
-					}
+				var vv int64
+				vv, err = decoder.ReadArrayElemInt64(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RInt64 = x.RInt64[:i]
+					x.RInt64[i] = vv
+				} else {
+					x.RInt64 = append(x.RInt64, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RInt64 = x.RInt64[:i]
 			}
 		case jsonKey == "r_uint32":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RUint32 = nil
-			case isEmpty:
-				if x.RUint32 == nil {
-					x.RUint32 = make([]uint32, 0)
-				} else {
-					x.RUint32 = x.RUint32[:0]
+				continue LOOP_SCAN
+			}
+			if x.RUint32 == nil {
+				x.RUint32 = make([]uint32, 0)
+			}
+			i := 0
+			length := len(x.RUint32)
+		LOOP_LIST_r_uint32:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RUint32 == nil {
-					x.RUint32 = make([]uint32, 0)
+				if isEnd {
+					break LOOP_LIST_r_uint32
 				}
-				i := 0
-				length := len(x.RUint32)
-			LOOP_LIST_r_uint32:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemUint32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RUint32[i] = vv
-					} else {
-						x.RUint32 = append(x.RUint32, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_uint32
-					}
+				var vv uint32
+				vv, err = decoder.ReadArrayElemUint32(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RUint32 = x.RUint32[:i]
+					x.RUint32[i] = vv
+				} else {
+					x.RUint32 = append(x.RUint32, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RUint32 = x.RUint32[:i]
 			}
 		case jsonKey == "r_uint64":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RUint64 = nil
-			case isEmpty:
-				if x.RUint64 == nil {
-					x.RUint64 = make([]uint64, 0)
-				} else {
-					x.RUint64 = x.RUint64[:0]
+				continue LOOP_SCAN
+			}
+			if x.RUint64 == nil {
+				x.RUint64 = make([]uint64, 0)
+			}
+			i := 0
+			length := len(x.RUint64)
+		LOOP_LIST_r_uint64:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RUint64 == nil {
-					x.RUint64 = make([]uint64, 0)
+				if isEnd {
+					break LOOP_LIST_r_uint64
 				}
-				i := 0
-				length := len(x.RUint64)
-			LOOP_LIST_r_uint64:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemUint64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RUint64[i] = vv
-					} else {
-						x.RUint64 = append(x.RUint64, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_uint64
-					}
+				var vv uint64
+				vv, err = decoder.ReadArrayElemUint64(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RUint64 = x.RUint64[:i]
+					x.RUint64[i] = vv
+				} else {
+					x.RUint64 = append(x.RUint64, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RUint64 = x.RUint64[:i]
 			}
 		case jsonKey == "r_sint32":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RSint32 = nil
-			case isEmpty:
-				if x.RSint32 == nil {
-					x.RSint32 = make([]int32, 0)
-				} else {
-					x.RSint32 = x.RSint32[:0]
+				continue LOOP_SCAN
+			}
+			if x.RSint32 == nil {
+				x.RSint32 = make([]int32, 0)
+			}
+			i := 0
+			length := len(x.RSint32)
+		LOOP_LIST_r_sint32:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RSint32 == nil {
-					x.RSint32 = make([]int32, 0)
+				if isEnd {
+					break LOOP_LIST_r_sint32
 				}
-				i := 0
-				length := len(x.RSint32)
-			LOOP_LIST_r_sint32:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemInt32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RSint32[i] = vv
-					} else {
-						x.RSint32 = append(x.RSint32, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_sint32
-					}
+				var vv int32
+				vv, err = decoder.ReadArrayElemInt32(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RSint32 = x.RSint32[:i]
+					x.RSint32[i] = vv
+				} else {
+					x.RSint32 = append(x.RSint32, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RSint32 = x.RSint32[:i]
 			}
 		case jsonKey == "r_sint64":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RSint64 = nil
-			case isEmpty:
-				if x.RSint64 == nil {
-					x.RSint64 = make([]int64, 0)
-				} else {
-					x.RSint64 = x.RSint64[:0]
+				continue LOOP_SCAN
+			}
+			if x.RSint64 == nil {
+				x.RSint64 = make([]int64, 0)
+			}
+			i := 0
+			length := len(x.RSint64)
+		LOOP_LIST_r_sint64:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RSint64 == nil {
-					x.RSint64 = make([]int64, 0)
+				if isEnd {
+					break LOOP_LIST_r_sint64
 				}
-				i := 0
-				length := len(x.RSint64)
-			LOOP_LIST_r_sint64:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemInt64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RSint64[i] = vv
-					} else {
-						x.RSint64 = append(x.RSint64, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_sint64
-					}
+				var vv int64
+				vv, err = decoder.ReadArrayElemInt64(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RSint64 = x.RSint64[:i]
+					x.RSint64[i] = vv
+				} else {
+					x.RSint64 = append(x.RSint64, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RSint64 = x.RSint64[:i]
 			}
 		case jsonKey == "r_sfixed32":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RSfixed32 = nil
-			case isEmpty:
-				if x.RSfixed32 == nil {
-					x.RSfixed32 = make([]int32, 0)
-				} else {
-					x.RSfixed32 = x.RSfixed32[:0]
+				continue LOOP_SCAN
+			}
+			if x.RSfixed32 == nil {
+				x.RSfixed32 = make([]int32, 0)
+			}
+			i := 0
+			length := len(x.RSfixed32)
+		LOOP_LIST_r_sfixed32:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RSfixed32 == nil {
-					x.RSfixed32 = make([]int32, 0)
+				if isEnd {
+					break LOOP_LIST_r_sfixed32
 				}
-				i := 0
-				length := len(x.RSfixed32)
-			LOOP_LIST_r_sfixed32:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemInt32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RSfixed32[i] = vv
-					} else {
-						x.RSfixed32 = append(x.RSfixed32, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_sfixed32
-					}
+				var vv int32
+				vv, err = decoder.ReadArrayElemInt32(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RSfixed32 = x.RSfixed32[:i]
+					x.RSfixed32[i] = vv
+				} else {
+					x.RSfixed32 = append(x.RSfixed32, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RSfixed32 = x.RSfixed32[:i]
 			}
 		case jsonKey == "r_sfixed64":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RSfixed64 = nil
-			case isEmpty:
-				if x.RSfixed64 == nil {
-					x.RSfixed64 = make([]int64, 0)
-				} else {
-					x.RSfixed64 = x.RSfixed64[:0]
+				continue LOOP_SCAN
+			}
+			if x.RSfixed64 == nil {
+				x.RSfixed64 = make([]int64, 0)
+			}
+			i := 0
+			length := len(x.RSfixed64)
+		LOOP_LIST_r_sfixed64:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RSfixed64 == nil {
-					x.RSfixed64 = make([]int64, 0)
+				if isEnd {
+					break LOOP_LIST_r_sfixed64
 				}
-				i := 0
-				length := len(x.RSfixed64)
-			LOOP_LIST_r_sfixed64:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemInt64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RSfixed64[i] = vv
-					} else {
-						x.RSfixed64 = append(x.RSfixed64, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_sfixed64
-					}
+				var vv int64
+				vv, err = decoder.ReadArrayElemInt64(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RSfixed64 = x.RSfixed64[:i]
+					x.RSfixed64[i] = vv
+				} else {
+					x.RSfixed64 = append(x.RSfixed64, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RSfixed64 = x.RSfixed64[:i]
 			}
 		case jsonKey == "r_fixed32":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RFixed32 = nil
-			case isEmpty:
-				if x.RFixed32 == nil {
-					x.RFixed32 = make([]uint32, 0)
-				} else {
-					x.RFixed32 = x.RFixed32[:0]
+				continue LOOP_SCAN
+			}
+			if x.RFixed32 == nil {
+				x.RFixed32 = make([]uint32, 0)
+			}
+			i := 0
+			length := len(x.RFixed32)
+		LOOP_LIST_r_fixed32:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RFixed32 == nil {
-					x.RFixed32 = make([]uint32, 0)
+				if isEnd {
+					break LOOP_LIST_r_fixed32
 				}
-				i := 0
-				length := len(x.RFixed32)
-			LOOP_LIST_r_fixed32:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemUint32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RFixed32[i] = vv
-					} else {
-						x.RFixed32 = append(x.RFixed32, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_fixed32
-					}
+				var vv uint32
+				vv, err = decoder.ReadArrayElemUint32(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RFixed32 = x.RFixed32[:i]
+					x.RFixed32[i] = vv
+				} else {
+					x.RFixed32 = append(x.RFixed32, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RFixed32 = x.RFixed32[:i]
 			}
 		case jsonKey == "r_fixed64":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RFixed64 = nil
-			case isEmpty:
-				if x.RFixed64 == nil {
-					x.RFixed64 = make([]uint64, 0)
-				} else {
-					x.RFixed64 = x.RFixed64[:0]
+				continue LOOP_SCAN
+			}
+			if x.RFixed64 == nil {
+				x.RFixed64 = make([]uint64, 0)
+			}
+			i := 0
+			length := len(x.RFixed64)
+		LOOP_LIST_r_fixed64:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RFixed64 == nil {
-					x.RFixed64 = make([]uint64, 0)
+				if isEnd {
+					break LOOP_LIST_r_fixed64
 				}
-				i := 0
-				length := len(x.RFixed64)
-			LOOP_LIST_r_fixed64:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemUint64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RFixed64[i] = vv
-					} else {
-						x.RFixed64 = append(x.RFixed64, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_fixed64
-					}
+				var vv uint64
+				vv, err = decoder.ReadArrayElemUint64(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RFixed64 = x.RFixed64[:i]
+					x.RFixed64[i] = vv
+				} else {
+					x.RFixed64 = append(x.RFixed64, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RFixed64 = x.RFixed64[:i]
 			}
 		case jsonKey == "r_float":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RFloat = nil
-			case isEmpty:
-				if x.RFloat == nil {
-					x.RFloat = make([]float32, 0)
-				} else {
-					x.RFloat = x.RFloat[:0]
+				continue LOOP_SCAN
+			}
+			if x.RFloat == nil {
+				x.RFloat = make([]float32, 0)
+			}
+			i := 0
+			length := len(x.RFloat)
+		LOOP_LIST_r_float:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RFloat == nil {
-					x.RFloat = make([]float32, 0)
+				if isEnd {
+					break LOOP_LIST_r_float
 				}
-				i := 0
-				length := len(x.RFloat)
-			LOOP_LIST_r_float:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemFloat32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RFloat[i] = vv
-					} else {
-						x.RFloat = append(x.RFloat, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_float
-					}
+				var vv float32
+				vv, err = decoder.ReadArrayElemFloat32(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RFloat = x.RFloat[:i]
+					x.RFloat[i] = vv
+				} else {
+					x.RFloat = append(x.RFloat, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RFloat = x.RFloat[:i]
 			}
 		case jsonKey == "r_double":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RDouble = nil
-			case isEmpty:
-				if x.RDouble == nil {
-					x.RDouble = make([]float64, 0)
-				} else {
-					x.RDouble = x.RDouble[:0]
+				continue LOOP_SCAN
+			}
+			if x.RDouble == nil {
+				x.RDouble = make([]float64, 0)
+			}
+			i := 0
+			length := len(x.RDouble)
+		LOOP_LIST_r_double:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RDouble == nil {
-					x.RDouble = make([]float64, 0)
+				if isEnd {
+					break LOOP_LIST_r_double
 				}
-				i := 0
-				length := len(x.RDouble)
-			LOOP_LIST_r_double:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemFloat64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RDouble[i] = vv
-					} else {
-						x.RDouble = append(x.RDouble, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_double
-					}
+				var vv float64
+				vv, err = decoder.ReadArrayElemFloat64(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RDouble = x.RDouble[:i]
+					x.RDouble[i] = vv
+				} else {
+					x.RDouble = append(x.RDouble, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RDouble = x.RDouble[:i]
 			}
 		case jsonKey == "r_bool1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RBool1 = nil
-			case isEmpty:
-				if x.RBool1 == nil {
-					x.RBool1 = make([]bool, 0)
-				} else {
-					x.RBool1 = x.RBool1[:0]
+				continue LOOP_SCAN
+			}
+			if x.RBool1 == nil {
+				x.RBool1 = make([]bool, 0)
+			}
+			i := 0
+			length := len(x.RBool1)
+		LOOP_LIST_r_bool1:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RBool1 == nil {
-					x.RBool1 = make([]bool, 0)
+				if isEnd {
+					break LOOP_LIST_r_bool1
 				}
-				i := 0
-				length := len(x.RBool1)
-			LOOP_LIST_r_bool1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemBool(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RBool1[i] = vv
-					} else {
-						x.RBool1 = append(x.RBool1, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_bool1
-					}
+				var vv bool
+				vv, err = decoder.ReadArrayElemBool(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RBool1 = x.RBool1[:i]
+					x.RBool1[i] = vv
+				} else {
+					x.RBool1 = append(x.RBool1, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RBool1 = x.RBool1[:i]
 			}
 		case jsonKey == "r_bool2":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RBool2 = nil
-			case isEmpty:
-				if x.RBool2 == nil {
-					x.RBool2 = make([]bool, 0)
-				} else {
-					x.RBool2 = x.RBool2[:0]
+				continue LOOP_SCAN
+			}
+			if x.RBool2 == nil {
+				x.RBool2 = make([]bool, 0)
+			}
+			i := 0
+			length := len(x.RBool2)
+		LOOP_LIST_r_bool2:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RBool2 == nil {
-					x.RBool2 = make([]bool, 0)
+				if isEnd {
+					break LOOP_LIST_r_bool2
 				}
-				i := 0
-				length := len(x.RBool2)
-			LOOP_LIST_r_bool2:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemBool(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RBool2[i] = vv
-					} else {
-						x.RBool2 = append(x.RBool2, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_bool2
-					}
+				var vv bool
+				vv, err = decoder.ReadArrayElemBool(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RBool2 = x.RBool2[:i]
+					x.RBool2[i] = vv
+				} else {
+					x.RBool2 = append(x.RBool2, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RBool2 = x.RBool2[:i]
 			}
 		case jsonKey == "r_bool3":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RBool3 = nil
-			case isEmpty:
-				if x.RBool3 == nil {
-					x.RBool3 = make([]bool, 0)
-				} else {
-					x.RBool3 = x.RBool3[:0]
+				continue LOOP_SCAN
+			}
+			if x.RBool3 == nil {
+				x.RBool3 = make([]bool, 0)
+			}
+			i := 0
+			length := len(x.RBool3)
+		LOOP_LIST_r_bool3:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RBool3 == nil {
-					x.RBool3 = make([]bool, 0)
+				if isEnd {
+					break LOOP_LIST_r_bool3
 				}
-				i := 0
-				length := len(x.RBool3)
-			LOOP_LIST_r_bool3:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemBool(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RBool3[i] = vv
-					} else {
-						x.RBool3 = append(x.RBool3, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_bool3
-					}
+				var vv bool
+				vv, err = decoder.ReadArrayElemBool(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RBool3 = x.RBool3[:i]
+					x.RBool3[i] = vv
+				} else {
+					x.RBool3 = append(x.RBool3, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RBool3 = x.RBool3[:i]
 			}
 		case jsonKey == "r_bytes1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RBytes1 = nil
-			case isEmpty:
-				if x.RBytes1 == nil {
-					x.RBytes1 = make([][]byte, 0)
-				} else {
-					x.RBytes1 = x.RBytes1[:0]
+				continue LOOP_SCAN
+			}
+			if x.RBytes1 == nil {
+				x.RBytes1 = make([][]byte, 0)
+			}
+			i := 0
+			length := len(x.RBytes1)
+		LOOP_LIST_r_bytes1:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RBytes1 == nil {
-					x.RBytes1 = make([][]byte, 0)
+				if isEnd {
+					break LOOP_LIST_r_bytes1
 				}
-				i := 0
-				length := len(x.RBytes1)
-			LOOP_LIST_r_bytes1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemBytes(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RBytes1[i] = vv
-					} else {
-						x.RBytes1 = append(x.RBytes1, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_bytes1
-					}
+				var vv []byte
+				vv, err = decoder.ReadArrayElemBytes(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RBytes1 = x.RBytes1[:i]
+					x.RBytes1[i] = vv
+				} else {
+					x.RBytes1 = append(x.RBytes1, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RBytes1 = x.RBytes1[:i]
 			}
 		case jsonKey == "r_bytes2":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RBytes2 = nil
-			case isEmpty:
-				if x.RBytes2 == nil {
-					x.RBytes2 = make([][]byte, 0)
-				} else {
-					x.RBytes2 = x.RBytes2[:0]
+				continue LOOP_SCAN
+			}
+			if x.RBytes2 == nil {
+				x.RBytes2 = make([][]byte, 0)
+			}
+			i := 0
+			length := len(x.RBytes2)
+		LOOP_LIST_r_bytes2:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RBytes2 == nil {
-					x.RBytes2 = make([][]byte, 0)
+				if isEnd {
+					break LOOP_LIST_r_bytes2
 				}
-				i := 0
-				length := len(x.RBytes2)
-			LOOP_LIST_r_bytes2:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemBytes(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RBytes2[i] = vv
-					} else {
-						x.RBytes2 = append(x.RBytes2, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_bytes2
-					}
+				var vv []byte
+				vv, err = decoder.ReadArrayElemBytes(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RBytes2 = x.RBytes2[:i]
+					x.RBytes2[i] = vv
+				} else {
+					x.RBytes2 = append(x.RBytes2, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RBytes2 = x.RBytes2[:i]
 			}
 		case jsonKey == "r_bytes3":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RBytes3 = nil
-			case isEmpty:
-				if x.RBytes3 == nil {
-					x.RBytes3 = make([][]byte, 0)
-				} else {
-					x.RBytes3 = x.RBytes3[:0]
+				continue LOOP_SCAN
+			}
+			if x.RBytes3 == nil {
+				x.RBytes3 = make([][]byte, 0)
+			}
+			i := 0
+			length := len(x.RBytes3)
+		LOOP_LIST_r_bytes3:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RBytes3 == nil {
-					x.RBytes3 = make([][]byte, 0)
+				if isEnd {
+					break LOOP_LIST_r_bytes3
 				}
-				i := 0
-				length := len(x.RBytes3)
-			LOOP_LIST_r_bytes3:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemBytes(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.RBytes3[i] = vv
-					} else {
-						x.RBytes3 = append(x.RBytes3, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_bytes3
-					}
+				var vv []byte
+				vv, err = decoder.ReadArrayElemBytes(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RBytes3 = x.RBytes3[:i]
+					x.RBytes3[i] = vv
+				} else {
+					x.RBytes3 = append(x.RBytes3, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RBytes3 = x.RBytes3[:i]
 			}
 		case jsonKey == "r_enum1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.REnum1 = nil
-			case isEmpty:
-				if x.REnum1 == nil {
-					x.REnum1 = make([]Enum1, 0)
-				} else {
-					x.REnum1 = x.REnum1[:0]
+				continue LOOP_SCAN
+			}
+			if x.REnum1 == nil {
+				x.REnum1 = make([]Enum1, 0)
+			}
+			i := 0
+			length := len(x.REnum1)
+		LOOP_LIST_r_enum1:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.REnum1 == nil {
-					x.REnum1 = make([]Enum1, 0)
+				if isEnd {
+					break LOOP_LIST_r_enum1
 				}
-				i := 0
-				length := len(x.REnum1)
-			LOOP_LIST_r_enum1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
-					vv := Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.REnum1[i] = vv
-					} else {
-						x.REnum1 = append(x.REnum1, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_enum1
-					}
+				var vv Enum1
+				var v1 int32
+				v1, err = decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
+				vv = Enum1(v1)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.REnum1 = x.REnum1[:i]
+					x.REnum1[i] = vv
+				} else {
+					x.REnum1 = append(x.REnum1, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.REnum1 = x.REnum1[:i]
 			}
 		case jsonKey == "r_enum2":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.REnum2 = nil
-			case isEmpty:
-				if x.REnum2 == nil {
-					x.REnum2 = make([]Enum1, 0)
-				} else {
-					x.REnum2 = x.REnum2[:0]
+				continue LOOP_SCAN
+			}
+			if x.REnum2 == nil {
+				x.REnum2 = make([]Enum1, 0)
+			}
+			i := 0
+			length := len(x.REnum2)
+		LOOP_LIST_r_enum2:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.REnum2 == nil {
-					x.REnum2 = make([]Enum1, 0)
+				if isEnd {
+					break LOOP_LIST_r_enum2
 				}
-				i := 0
-				length := len(x.REnum2)
-			LOOP_LIST_r_enum2:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
-					vv := Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.REnum2[i] = vv
-					} else {
-						x.REnum2 = append(x.REnum2, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_enum2
-					}
+				var vv Enum1
+				var v1 int32
+				v1, err = decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
+				vv = Enum1(v1)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.REnum2 = x.REnum2[:i]
+					x.REnum2[i] = vv
+				} else {
+					x.REnum2 = append(x.REnum2, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.REnum2 = x.REnum2[:i]
 			}
 		case jsonKey == "r_enum3":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.REnum3 = nil
-			case isEmpty:
-				if x.REnum3 == nil {
-					x.REnum3 = make([]Enum1, 0)
-				} else {
-					x.REnum3 = x.REnum3[:0]
+				continue LOOP_SCAN
+			}
+			if x.REnum3 == nil {
+				x.REnum3 = make([]Enum1, 0)
+			}
+			i := 0
+			length := len(x.REnum3)
+		LOOP_LIST_r_enum3:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.REnum3 == nil {
-					x.REnum3 = make([]Enum1, 0)
+				if isEnd {
+					break LOOP_LIST_r_enum3
 				}
-				i := 0
-				length := len(x.REnum3)
-			LOOP_LIST_r_enum3:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
-					vv := Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.REnum3[i] = vv
-					} else {
-						x.REnum3 = append(x.REnum3, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_enum3
-					}
+				var vv Enum1
+				var v1 int32
+				v1, err = decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
+				vv = Enum1(v1)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.REnum3 = x.REnum3[:i]
+					x.REnum3[i] = vv
+				} else {
+					x.REnum3 = append(x.REnum3, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.REnum3 = x.REnum3[:i]
 			}
 		case jsonKey == "r_enum4":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.REnum4 = nil
-			case isEmpty:
-				if x.REnum4 == nil {
-					x.REnum4 = make([]Enum1, 0)
-				} else {
-					x.REnum4 = x.REnum4[:0]
+				continue LOOP_SCAN
+			}
+			if x.REnum4 == nil {
+				x.REnum4 = make([]Enum1, 0)
+			}
+			i := 0
+			length := len(x.REnum4)
+		LOOP_LIST_r_enum4:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.REnum4 == nil {
-					x.REnum4 = make([]Enum1, 0)
+				if isEnd {
+					break LOOP_LIST_r_enum4
 				}
-				i := 0
-				length := len(x.REnum4)
-			LOOP_LIST_r_enum4:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
-					vv := Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.REnum4[i] = vv
-					} else {
-						x.REnum4 = append(x.REnum4, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_enum4
-					}
+				var vv Enum1
+				var v1 int32
+				v1, err = decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
+				vv = Enum1(v1)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.REnum4 = x.REnum4[:i]
+					x.REnum4[i] = vv
+				} else {
+					x.REnum4 = append(x.REnum4, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.REnum4 = x.REnum4[:i]
 			}
 		case jsonKey == "r_enum5":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.REnum5 = nil
-			case isEmpty:
-				if x.REnum5 == nil {
-					x.REnum5 = make([]Enum1, 0)
-				} else {
-					x.REnum5 = x.REnum5[:0]
+				continue LOOP_SCAN
+			}
+			if x.REnum5 == nil {
+				x.REnum5 = make([]Enum1, 0)
+			}
+			i := 0
+			length := len(x.REnum5)
+		LOOP_LIST_r_enum5:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.REnum5 == nil {
-					x.REnum5 = make([]Enum1, 0)
+				if isEnd {
+					break LOOP_LIST_r_enum5
 				}
-				i := 0
-				length := len(x.REnum5)
-			LOOP_LIST_r_enum5:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
-					vv := Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.REnum5[i] = vv
-					} else {
-						x.REnum5 = append(x.REnum5, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_enum5
-					}
+				var vv Enum1
+				var v1 int32
+				v1, err = decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
+				vv = Enum1(v1)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.REnum5 = x.REnum5[:i]
+					x.REnum5[i] = vv
+				} else {
+					x.REnum5 = append(x.REnum5, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.REnum5 = x.REnum5[:i]
 			}
 		case jsonKey == "r_enum6":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.REnum6 = nil
-			case isEmpty:
-				if x.REnum6 == nil {
-					x.REnum6 = make([]Enum1, 0)
-				} else {
-					x.REnum6 = x.REnum6[:0]
+				continue LOOP_SCAN
+			}
+			if x.REnum6 == nil {
+				x.REnum6 = make([]Enum1, 0)
+			}
+			i := 0
+			length := len(x.REnum6)
+		LOOP_LIST_r_enum6:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.REnum6 == nil {
-					x.REnum6 = make([]Enum1, 0)
+				if isEnd {
+					break LOOP_LIST_r_enum6
 				}
-				i := 0
-				length := len(x.REnum6)
-			LOOP_LIST_r_enum6:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
-					vv := Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.REnum6[i] = vv
-					} else {
-						x.REnum6 = append(x.REnum6, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_enum6
-					}
+				var vv Enum1
+				var v1 int32
+				v1, err = decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
+				vv = Enum1(v1)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.REnum6 = x.REnum6[:i]
+					x.REnum6[i] = vv
+				} else {
+					x.REnum6 = append(x.REnum6, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.REnum6 = x.REnum6[:i]
 			}
 		case jsonKey == "r_enum7":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.REnum7 = nil
-			case isEmpty:
-				if x.REnum7 == nil {
-					x.REnum7 = make([]Enum1, 0)
-				} else {
-					x.REnum7 = x.REnum7[:0]
+				continue LOOP_SCAN
+			}
+			if x.REnum7 == nil {
+				x.REnum7 = make([]Enum1, 0)
+			}
+			i := 0
+			length := len(x.REnum7)
+		LOOP_LIST_r_enum7:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.REnum7 == nil {
-					x.REnum7 = make([]Enum1, 0)
+				if isEnd {
+					break LOOP_LIST_r_enum7
 				}
-				i := 0
-				length := len(x.REnum7)
-			LOOP_LIST_r_enum7:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
-					vv := Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.REnum7[i] = vv
-					} else {
-						x.REnum7 = append(x.REnum7, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_enum7
-					}
+				var vv Enum1
+				var v1 int32
+				v1, err = decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
+				vv = Enum1(v1)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.REnum7 = x.REnum7[:i]
+					x.REnum7[i] = vv
+				} else {
+					x.REnum7 = append(x.REnum7, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.REnum7 = x.REnum7[:i]
 			}
 		case jsonKey == "r_message1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RMessage1 = nil
-			case isEmpty:
-				if x.RMessage1 == nil {
-					x.RMessage1 = make([]*Message1, 0)
-				} else {
-					x.RMessage1 = x.RMessage1[:0]
+				continue LOOP_SCAN
+			}
+			if x.RMessage1 == nil {
+				x.RMessage1 = make([]*Message1, 0)
+			}
+			i := 0
+			length := len(x.RMessage1)
+		LOOP_LIST_r_message1:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RMessage1 == nil {
-					x.RMessage1 = make([]*Message1, 0)
+				if isEnd {
+					break LOOP_LIST_r_message1
 				}
-				i := 0
-				length := len(x.RMessage1)
-			LOOP_LIST_r_message1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *Message1
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.RMessage1[i]
-						}
-						if vv == nil {
-							vv = new(Message1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *Message1
+				initFN := func() interface{} {
 					if i < length {
-						x.RMessage1[i] = vv
-					} else {
-						x.RMessage1 = append(x.RMessage1, vv)
+						vv = x.RMessage1[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_message1
+					if vv == nil {
+						vv = new(Message1)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RMessage1 = x.RMessage1[:i]
+					x.RMessage1[i] = vv
+				} else {
+					x.RMessage1 = append(x.RMessage1, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RMessage1 = x.RMessage1[:i]
 			}
 		case jsonKey == "r_message2":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RMessage2 = nil
-			case isEmpty:
-				if x.RMessage2 == nil {
-					x.RMessage2 = make([]*Message1, 0)
-				} else {
-					x.RMessage2 = x.RMessage2[:0]
+				continue LOOP_SCAN
+			}
+			if x.RMessage2 == nil {
+				x.RMessage2 = make([]*Message1, 0)
+			}
+			i := 0
+			length := len(x.RMessage2)
+		LOOP_LIST_r_message2:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RMessage2 == nil {
-					x.RMessage2 = make([]*Message1, 0)
+				if isEnd {
+					break LOOP_LIST_r_message2
 				}
-				i := 0
-				length := len(x.RMessage2)
-			LOOP_LIST_r_message2:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *Message1
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.RMessage2[i]
-						}
-						if vv == nil {
-							vv = new(Message1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *Message1
+				initFN := func() interface{} {
 					if i < length {
-						x.RMessage2[i] = vv
-					} else {
-						x.RMessage2 = append(x.RMessage2, vv)
+						vv = x.RMessage2[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_message2
+					if vv == nil {
+						vv = new(Message1)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RMessage2 = x.RMessage2[:i]
+					x.RMessage2[i] = vv
+				} else {
+					x.RMessage2 = append(x.RMessage2, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RMessage2 = x.RMessage2[:i]
 			}
 		case jsonKey == "r_message3":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RMessage3 = nil
-			case isEmpty:
-				if x.RMessage3 == nil {
-					x.RMessage3 = make([]*Message1, 0)
-				} else {
-					x.RMessage3 = x.RMessage3[:0]
+				continue LOOP_SCAN
+			}
+			if x.RMessage3 == nil {
+				x.RMessage3 = make([]*Message1, 0)
+			}
+			i := 0
+			length := len(x.RMessage3)
+		LOOP_LIST_r_message3:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RMessage3 == nil {
-					x.RMessage3 = make([]*Message1, 0)
+				if isEnd {
+					break LOOP_LIST_r_message3
 				}
-				i := 0
-				length := len(x.RMessage3)
-			LOOP_LIST_r_message3:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *Message1
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.RMessage3[i]
-						}
-						if vv == nil {
-							vv = new(Message1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *Message1
+				initFN := func() interface{} {
 					if i < length {
-						x.RMessage3[i] = vv
-					} else {
-						x.RMessage3 = append(x.RMessage3, vv)
+						vv = x.RMessage3[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_message3
+					if vv == nil {
+						vv = new(Message1)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RMessage3 = x.RMessage3[:i]
+					x.RMessage3[i] = vv
+				} else {
+					x.RMessage3 = append(x.RMessage3, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RMessage3 = x.RMessage3[:i]
 			}
 		case jsonKey == "r_message4":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RMessage4 = nil
-			case isEmpty:
-				if x.RMessage4 == nil {
-					x.RMessage4 = make([]*Message1, 0)
-				} else {
-					x.RMessage4 = x.RMessage4[:0]
+				continue LOOP_SCAN
+			}
+			if x.RMessage4 == nil {
+				x.RMessage4 = make([]*Message1, 0)
+			}
+			i := 0
+			length := len(x.RMessage4)
+		LOOP_LIST_r_message4:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RMessage4 == nil {
-					x.RMessage4 = make([]*Message1, 0)
+				if isEnd {
+					break LOOP_LIST_r_message4
 				}
-				i := 0
-				length := len(x.RMessage4)
-			LOOP_LIST_r_message4:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *Message1
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.RMessage4[i]
-						}
-						if vv == nil {
-							vv = new(Message1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *Message1
+				initFN := func() interface{} {
 					if i < length {
-						x.RMessage4[i] = vv
-					} else {
-						x.RMessage4 = append(x.RMessage4, vv)
+						vv = x.RMessage4[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_message4
+					if vv == nil {
+						vv = new(Message1)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RMessage4 = x.RMessage4[:i]
+					x.RMessage4[i] = vv
+				} else {
+					x.RMessage4 = append(x.RMessage4, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RMessage4 = x.RMessage4[:i]
 			}
 		case jsonKey == "r_message5":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RMessage5 = nil
-			case isEmpty:
-				if x.RMessage5 == nil {
-					x.RMessage5 = make([]*Message1, 0)
-				} else {
-					x.RMessage5 = x.RMessage5[:0]
+				continue LOOP_SCAN
+			}
+			if x.RMessage5 == nil {
+				x.RMessage5 = make([]*Message1, 0)
+			}
+			i := 0
+			length := len(x.RMessage5)
+		LOOP_LIST_r_message5:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RMessage5 == nil {
-					x.RMessage5 = make([]*Message1, 0)
+				if isEnd {
+					break LOOP_LIST_r_message5
 				}
-				i := 0
-				length := len(x.RMessage5)
-			LOOP_LIST_r_message5:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *Message1
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.RMessage5[i]
-						}
-						if vv == nil {
-							vv = new(Message1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *Message1
+				initFN := func() interface{} {
 					if i < length {
-						x.RMessage5[i] = vv
-					} else {
-						x.RMessage5 = append(x.RMessage5, vv)
+						vv = x.RMessage5[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_message5
+					if vv == nil {
+						vv = new(Message1)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RMessage5 = x.RMessage5[:i]
+					x.RMessage5[i] = vv
+				} else {
+					x.RMessage5 = append(x.RMessage5, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RMessage5 = x.RMessage5[:i]
 			}
 		case jsonKey == "r_message6":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RMessage6 = nil
-			case isEmpty:
-				if x.RMessage6 == nil {
-					x.RMessage6 = make([]*Message1, 0)
-				} else {
-					x.RMessage6 = x.RMessage6[:0]
+				continue LOOP_SCAN
+			}
+			if x.RMessage6 == nil {
+				x.RMessage6 = make([]*Message1, 0)
+			}
+			i := 0
+			length := len(x.RMessage6)
+		LOOP_LIST_r_message6:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RMessage6 == nil {
-					x.RMessage6 = make([]*Message1, 0)
+				if isEnd {
+					break LOOP_LIST_r_message6
 				}
-				i := 0
-				length := len(x.RMessage6)
-			LOOP_LIST_r_message6:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *Message1
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.RMessage6[i]
-						}
-						if vv == nil {
-							vv = new(Message1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *Message1
+				initFN := func() interface{} {
 					if i < length {
-						x.RMessage6[i] = vv
-					} else {
-						x.RMessage6 = append(x.RMessage6, vv)
+						vv = x.RMessage6[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_message6
+					if vv == nil {
+						vv = new(Message1)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RMessage6 = x.RMessage6[:i]
+					x.RMessage6[i] = vv
+				} else {
+					x.RMessage6 = append(x.RMessage6, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RMessage6 = x.RMessage6[:i]
 			}
 		case jsonKey == "r_message7":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.RMessage7 = nil
-			case isEmpty:
-				if x.RMessage7 == nil {
-					x.RMessage7 = make([]*Message1, 0)
-				} else {
-					x.RMessage7 = x.RMessage7[:0]
+				continue LOOP_SCAN
+			}
+			if x.RMessage7 == nil {
+				x.RMessage7 = make([]*Message1, 0)
+			}
+			i := 0
+			length := len(x.RMessage7)
+		LOOP_LIST_r_message7:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.RMessage7 == nil {
-					x.RMessage7 = make([]*Message1, 0)
+				if isEnd {
+					break LOOP_LIST_r_message7
 				}
-				i := 0
-				length := len(x.RMessage7)
-			LOOP_LIST_r_message7:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *Message1
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.RMessage7[i]
-						}
-						if vv == nil {
-							vv = new(Message1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *Message1
+				initFN := func() interface{} {
 					if i < length {
-						x.RMessage7[i] = vv
-					} else {
-						x.RMessage7 = append(x.RMessage7, vv)
+						vv = x.RMessage7[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_r_message7
+					if vv == nil {
+						vv = new(Message1)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.RMessage7 = x.RMessage7[:i]
+					x.RMessage7[i] = vv
+				} else {
+					x.RMessage7 = append(x.RMessage7, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.RMessage7 = x.RMessage7[:i]
 			}
 		case jsonKey == "m_string1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MString1 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MString1 == nil {
-					x.MString1 = make(map[string]string)
+				continue LOOP_SCAN
+			}
+			if x.MString1 == nil {
+				x.MString1 = make(map[string]string)
+			}
+		LOOP_MAP_m_string1:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_string1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MString1[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_string1
-					}
+				if isEnd {
+					break LOOP_MAP_m_string1
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal string
+				mapVal, err = decoder.ReadMapValueString(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MString1[mapKey] = mapVal
 			}
 		case jsonKey == "m_string2":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MString2 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MString2 == nil {
-					x.MString2 = make(map[string]string)
+				continue LOOP_SCAN
+			}
+			if x.MString2 == nil {
+				x.MString2 = make(map[string]string)
+			}
+		LOOP_MAP_m_string2:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_string2:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MString2[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_string2
-					}
+				if isEnd {
+					break LOOP_MAP_m_string2
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal string
+				mapVal, err = decoder.ReadMapValueString(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MString2[mapKey] = mapVal
 			}
 		case jsonKey == "m_string3":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MString3 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MString3 == nil {
-					x.MString3 = make(map[string]string)
+				continue LOOP_SCAN
+			}
+			if x.MString3 == nil {
+				x.MString3 = make(map[string]string)
+			}
+		LOOP_MAP_m_string3:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_string3:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MString3[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_string3
-					}
+				if isEnd {
+					break LOOP_MAP_m_string3
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal string
+				mapVal, err = decoder.ReadMapValueString(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MString3[mapKey] = mapVal
 			}
 		case jsonKey == "m_string4":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MString4 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MString4 == nil {
-					x.MString4 = make(map[string]string)
+				continue LOOP_SCAN
+			}
+			if x.MString4 == nil {
+				x.MString4 = make(map[string]string)
+			}
+		LOOP_MAP_m_string4:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_string4:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MString4[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_string4
-					}
+				if isEnd {
+					break LOOP_MAP_m_string4
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal string
+				mapVal, err = decoder.ReadMapValueString(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MString4[mapKey] = mapVal
 			}
 		case jsonKey == "m_string5":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MString5 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MString5 == nil {
-					x.MString5 = make(map[string]string)
+				continue LOOP_SCAN
+			}
+			if x.MString5 == nil {
+				x.MString5 = make(map[string]string)
+			}
+		LOOP_MAP_m_string5:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_string5:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MString5[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_string5
-					}
+				if isEnd {
+					break LOOP_MAP_m_string5
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal string
+				mapVal, err = decoder.ReadMapValueString(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MString5[mapKey] = mapVal
 			}
 		case jsonKey == "m_string6":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MString6 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MString6 == nil {
-					x.MString6 = make(map[string]string)
+				continue LOOP_SCAN
+			}
+			if x.MString6 == nil {
+				x.MString6 = make(map[string]string)
+			}
+		LOOP_MAP_m_string6:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_string6:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MString6[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_string6
-					}
+				if isEnd {
+					break LOOP_MAP_m_string6
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal string
+				mapVal, err = decoder.ReadMapValueString(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MString6[mapKey] = mapVal
 			}
 		case jsonKey == "m_string7":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MString7 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MString7 == nil {
-					x.MString7 = make(map[string]string)
+				continue LOOP_SCAN
+			}
+			if x.MString7 == nil {
+				x.MString7 = make(map[string]string)
+			}
+		LOOP_MAP_m_string7:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_string7:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MString7[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_string7
-					}
+				if isEnd {
+					break LOOP_MAP_m_string7
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal string
+				mapVal, err = decoder.ReadMapValueString(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MString7[mapKey] = mapVal
 			}
 		case jsonKey == "m_string8":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MString8 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MString8 == nil {
-					x.MString8 = make(map[string]string)
+				continue LOOP_SCAN
+			}
+			if x.MString8 == nil {
+				x.MString8 = make(map[string]string)
+			}
+		LOOP_MAP_m_string8:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_string8:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MString8[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_string8
-					}
+				if isEnd {
+					break LOOP_MAP_m_string8
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal string
+				mapVal, err = decoder.ReadMapValueString(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MString8[mapKey] = mapVal
 			}
 		case jsonKey == "m_string9":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MString9 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MString9 == nil {
-					x.MString9 = make(map[string]string)
+				continue LOOP_SCAN
+			}
+			if x.MString9 == nil {
+				x.MString9 = make(map[string]string)
+			}
+		LOOP_MAP_m_string9:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_string9:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MString9[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_string9
-					}
+				if isEnd {
+					break LOOP_MAP_m_string9
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal string
+				mapVal, err = decoder.ReadMapValueString(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MString9[mapKey] = mapVal
 			}
 		case jsonKey == "m_int32":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MInt32 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MInt32 == nil {
-					x.MInt32 = make(map[string]int32)
+				continue LOOP_SCAN
+			}
+			if x.MInt32 == nil {
+				x.MInt32 = make(map[string]int32)
+			}
+		LOOP_MAP_m_int32:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_int32:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueInt32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MInt32[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_int32
-					}
+				if isEnd {
+					break LOOP_MAP_m_int32
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal int32
+				mapVal, err = decoder.ReadMapValueInt32(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MInt32[mapKey] = mapVal
 			}
 		case jsonKey == "m_int64":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MInt64 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MInt64 == nil {
-					x.MInt64 = make(map[string]int64)
+				continue LOOP_SCAN
+			}
+			if x.MInt64 == nil {
+				x.MInt64 = make(map[string]int64)
+			}
+		LOOP_MAP_m_int64:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_int64:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueInt64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MInt64[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_int64
-					}
+				if isEnd {
+					break LOOP_MAP_m_int64
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal int64
+				mapVal, err = decoder.ReadMapValueInt64(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MInt64[mapKey] = mapVal
 			}
 		case jsonKey == "m_uint32":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MUint32 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MUint32 == nil {
-					x.MUint32 = make(map[string]uint32)
+				continue LOOP_SCAN
+			}
+			if x.MUint32 == nil {
+				x.MUint32 = make(map[string]uint32)
+			}
+		LOOP_MAP_m_uint32:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_uint32:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueUint32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MUint32[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_uint32
-					}
+				if isEnd {
+					break LOOP_MAP_m_uint32
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal uint32
+				mapVal, err = decoder.ReadMapValueUint32(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MUint32[mapKey] = mapVal
 			}
 		case jsonKey == "m_uint64":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MUint64 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MUint64 == nil {
-					x.MUint64 = make(map[string]uint64)
+				continue LOOP_SCAN
+			}
+			if x.MUint64 == nil {
+				x.MUint64 = make(map[string]uint64)
+			}
+		LOOP_MAP_m_uint64:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_uint64:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueUint64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MUint64[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_uint64
-					}
+				if isEnd {
+					break LOOP_MAP_m_uint64
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal uint64
+				mapVal, err = decoder.ReadMapValueUint64(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MUint64[mapKey] = mapVal
 			}
 		case jsonKey == "m_sint32":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MSint32 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MSint32 == nil {
-					x.MSint32 = make(map[string]int32)
+				continue LOOP_SCAN
+			}
+			if x.MSint32 == nil {
+				x.MSint32 = make(map[string]int32)
+			}
+		LOOP_MAP_m_sint32:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_sint32:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueInt32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MSint32[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_sint32
-					}
+				if isEnd {
+					break LOOP_MAP_m_sint32
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal int32
+				mapVal, err = decoder.ReadMapValueInt32(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MSint32[mapKey] = mapVal
 			}
 		case jsonKey == "m_sint64":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MSint64 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MSint64 == nil {
-					x.MSint64 = make(map[string]int64)
+				continue LOOP_SCAN
+			}
+			if x.MSint64 == nil {
+				x.MSint64 = make(map[string]int64)
+			}
+		LOOP_MAP_m_sint64:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_sint64:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueInt64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MSint64[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_sint64
-					}
+				if isEnd {
+					break LOOP_MAP_m_sint64
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal int64
+				mapVal, err = decoder.ReadMapValueInt64(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MSint64[mapKey] = mapVal
 			}
 		case jsonKey == "m_sfixed32":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MSfixed32 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MSfixed32 == nil {
-					x.MSfixed32 = make(map[string]int32)
+				continue LOOP_SCAN
+			}
+			if x.MSfixed32 == nil {
+				x.MSfixed32 = make(map[string]int32)
+			}
+		LOOP_MAP_m_sfixed32:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_sfixed32:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueInt32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MSfixed32[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_sfixed32
-					}
+				if isEnd {
+					break LOOP_MAP_m_sfixed32
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal int32
+				mapVal, err = decoder.ReadMapValueInt32(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MSfixed32[mapKey] = mapVal
 			}
 		case jsonKey == "m_sfixed64":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MSfixed64 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MSfixed64 == nil {
-					x.MSfixed64 = make(map[string]int64)
+				continue LOOP_SCAN
+			}
+			if x.MSfixed64 == nil {
+				x.MSfixed64 = make(map[string]int64)
+			}
+		LOOP_MAP_m_sfixed64:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_sfixed64:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueInt64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MSfixed64[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_sfixed64
-					}
+				if isEnd {
+					break LOOP_MAP_m_sfixed64
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal int64
+				mapVal, err = decoder.ReadMapValueInt64(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MSfixed64[mapKey] = mapVal
 			}
 		case jsonKey == "m_fixed32":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MFixed32 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MFixed32 == nil {
-					x.MFixed32 = make(map[string]uint32)
+				continue LOOP_SCAN
+			}
+			if x.MFixed32 == nil {
+				x.MFixed32 = make(map[string]uint32)
+			}
+		LOOP_MAP_m_fixed32:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_fixed32:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueUint32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MFixed32[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_fixed32
-					}
+				if isEnd {
+					break LOOP_MAP_m_fixed32
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal uint32
+				mapVal, err = decoder.ReadMapValueUint32(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MFixed32[mapKey] = mapVal
 			}
 		case jsonKey == "m_fixed64":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MFixed64 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MFixed64 == nil {
-					x.MFixed64 = make(map[string]uint64)
+				continue LOOP_SCAN
+			}
+			if x.MFixed64 == nil {
+				x.MFixed64 = make(map[string]uint64)
+			}
+		LOOP_MAP_m_fixed64:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_fixed64:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueUint64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MFixed64[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_fixed64
-					}
+				if isEnd {
+					break LOOP_MAP_m_fixed64
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal uint64
+				mapVal, err = decoder.ReadMapValueUint64(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MFixed64[mapKey] = mapVal
 			}
 		case jsonKey == "m_float":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MFloat = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MFloat == nil {
-					x.MFloat = make(map[string]float32)
+				continue LOOP_SCAN
+			}
+			if x.MFloat == nil {
+				x.MFloat = make(map[string]float32)
+			}
+		LOOP_MAP_m_float:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_float:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueFloat32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MFloat[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_float
-					}
+				if isEnd {
+					break LOOP_MAP_m_float
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal float32
+				mapVal, err = decoder.ReadMapValueFloat32(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MFloat[mapKey] = mapVal
 			}
 		case jsonKey == "m_double":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MDouble = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MDouble == nil {
-					x.MDouble = make(map[string]float64)
+				continue LOOP_SCAN
+			}
+			if x.MDouble == nil {
+				x.MDouble = make(map[string]float64)
+			}
+		LOOP_MAP_m_double:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_double:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueFloat64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MDouble[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_double
-					}
+				if isEnd {
+					break LOOP_MAP_m_double
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal float64
+				mapVal, err = decoder.ReadMapValueFloat64(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MDouble[mapKey] = mapVal
 			}
 		case jsonKey == "m_bool1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MBool1 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MBool1 == nil {
-					x.MBool1 = make(map[string]bool)
+				continue LOOP_SCAN
+			}
+			if x.MBool1 == nil {
+				x.MBool1 = make(map[string]bool)
+			}
+		LOOP_MAP_m_bool1:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_bool1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueBool(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MBool1[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_bool1
-					}
+				if isEnd {
+					break LOOP_MAP_m_bool1
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal bool
+				mapVal, err = decoder.ReadMapValueBool(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MBool1[mapKey] = mapVal
 			}
 		case jsonKey == "m_bool2":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MBool2 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MBool2 == nil {
-					x.MBool2 = make(map[string]bool)
+				continue LOOP_SCAN
+			}
+			if x.MBool2 == nil {
+				x.MBool2 = make(map[string]bool)
+			}
+		LOOP_MAP_m_bool2:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_bool2:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueBool(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MBool2[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_bool2
-					}
+				if isEnd {
+					break LOOP_MAP_m_bool2
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal bool
+				mapVal, err = decoder.ReadMapValueBool(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MBool2[mapKey] = mapVal
 			}
 		case jsonKey == "m_bool3":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MBool3 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MBool3 == nil {
-					x.MBool3 = make(map[string]bool)
+				continue LOOP_SCAN
+			}
+			if x.MBool3 == nil {
+				x.MBool3 = make(map[string]bool)
+			}
+		LOOP_MAP_m_bool3:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_bool3:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueBool(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MBool3[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_bool3
-					}
+				if isEnd {
+					break LOOP_MAP_m_bool3
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal bool
+				mapVal, err = decoder.ReadMapValueBool(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MBool3[mapKey] = mapVal
 			}
 		case jsonKey == "m_bytes1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MBytes1 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MBytes1 == nil {
-					x.MBytes1 = make(map[string][]byte)
+				continue LOOP_SCAN
+			}
+			if x.MBytes1 == nil {
+				x.MBytes1 = make(map[string][]byte)
+			}
+		LOOP_MAP_m_bytes1:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_bytes1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueBytes(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MBytes1[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_bytes1
-					}
+				if isEnd {
+					break LOOP_MAP_m_bytes1
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal []byte
+				mapVal, err = decoder.ReadMapValueBytes(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MBytes1[mapKey] = mapVal
 			}
 		case jsonKey == "m_bytes2":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MBytes2 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MBytes2 == nil {
-					x.MBytes2 = make(map[string][]byte)
+				continue LOOP_SCAN
+			}
+			if x.MBytes2 == nil {
+				x.MBytes2 = make(map[string][]byte)
+			}
+		LOOP_MAP_m_bytes2:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_bytes2:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueBytes(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MBytes2[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_bytes2
-					}
+				if isEnd {
+					break LOOP_MAP_m_bytes2
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal []byte
+				mapVal, err = decoder.ReadMapValueBytes(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MBytes2[mapKey] = mapVal
 			}
 		case jsonKey == "m_bytes3":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MBytes3 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MBytes3 == nil {
-					x.MBytes3 = make(map[string][]byte)
+				continue LOOP_SCAN
+			}
+			if x.MBytes3 == nil {
+				x.MBytes3 = make(map[string][]byte)
+			}
+		LOOP_MAP_m_bytes3:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_bytes3:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					vv, noMore, _err := decoder.ReadMapValueBytes(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					x.MBytes3[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_bytes3
-					}
+				if isEnd {
+					break LOOP_MAP_m_bytes3
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal []byte
+				mapVal, err = decoder.ReadMapValueBytes(jsonKey)
+				if err != nil {
+					return err
+				}
+				x.MBytes3[mapKey] = mapVal
 			}
 		case jsonKey == "m_enum1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MEnum1 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MEnum1 == nil {
-					x.MEnum1 = make(map[string]Enum1)
+				continue LOOP_SCAN
+			}
+			if x.MEnum1 == nil {
+				x.MEnum1 = make(map[string]Enum1)
+			}
+		LOOP_MAP_m_enum1:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_enum1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					v1, noMore, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
-					vv := Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					x.MEnum1[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_enum1
-					}
+				if isEnd {
+					break LOOP_MAP_m_enum1
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal Enum1
+				var v1 int32
+				v1, err = decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
+				mapVal = Enum1(v1)
+				if err != nil {
+					return err
+				}
+				x.MEnum1[mapKey] = mapVal
 			}
 		case jsonKey == "m_enum2":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MEnum2 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MEnum2 == nil {
-					x.MEnum2 = make(map[string]Enum1)
+				continue LOOP_SCAN
+			}
+			if x.MEnum2 == nil {
+				x.MEnum2 = make(map[string]Enum1)
+			}
+		LOOP_MAP_m_enum2:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_enum2:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					v1, noMore, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
-					vv := Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					x.MEnum2[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_enum2
-					}
+				if isEnd {
+					break LOOP_MAP_m_enum2
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal Enum1
+				var v1 int32
+				v1, err = decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
+				mapVal = Enum1(v1)
+				if err != nil {
+					return err
+				}
+				x.MEnum2[mapKey] = mapVal
 			}
 		case jsonKey == "m_enum3":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MEnum3 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MEnum3 == nil {
-					x.MEnum3 = make(map[string]Enum1)
+				continue LOOP_SCAN
+			}
+			if x.MEnum3 == nil {
+				x.MEnum3 = make(map[string]Enum1)
+			}
+		LOOP_MAP_m_enum3:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_enum3:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					v1, noMore, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
-					vv := Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					x.MEnum3[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_enum3
-					}
+				if isEnd {
+					break LOOP_MAP_m_enum3
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal Enum1
+				var v1 int32
+				v1, err = decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
+				mapVal = Enum1(v1)
+				if err != nil {
+					return err
+				}
+				x.MEnum3[mapKey] = mapVal
 			}
 		case jsonKey == "m_enum4":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MEnum4 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MEnum4 == nil {
-					x.MEnum4 = make(map[string]Enum1)
+				continue LOOP_SCAN
+			}
+			if x.MEnum4 == nil {
+				x.MEnum4 = make(map[string]Enum1)
+			}
+		LOOP_MAP_m_enum4:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_enum4:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					v1, noMore, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
-					vv := Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					x.MEnum4[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_enum4
-					}
+				if isEnd {
+					break LOOP_MAP_m_enum4
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal Enum1
+				var v1 int32
+				v1, err = decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
+				mapVal = Enum1(v1)
+				if err != nil {
+					return err
+				}
+				x.MEnum4[mapKey] = mapVal
 			}
 		case jsonKey == "m_enum5":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MEnum5 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MEnum5 == nil {
-					x.MEnum5 = make(map[string]Enum1)
+				continue LOOP_SCAN
+			}
+			if x.MEnum5 == nil {
+				x.MEnum5 = make(map[string]Enum1)
+			}
+		LOOP_MAP_m_enum5:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_enum5:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					v1, noMore, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
-					vv := Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					x.MEnum5[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_enum5
-					}
+				if isEnd {
+					break LOOP_MAP_m_enum5
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal Enum1
+				var v1 int32
+				v1, err = decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
+				mapVal = Enum1(v1)
+				if err != nil {
+					return err
+				}
+				x.MEnum5[mapKey] = mapVal
 			}
 		case jsonKey == "m_enum6":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MEnum6 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MEnum6 == nil {
-					x.MEnum6 = make(map[string]Enum1)
+				continue LOOP_SCAN
+			}
+			if x.MEnum6 == nil {
+				x.MEnum6 = make(map[string]Enum1)
+			}
+		LOOP_MAP_m_enum6:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_enum6:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					v1, noMore, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
-					vv := Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					x.MEnum6[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_enum6
-					}
+				if isEnd {
+					break LOOP_MAP_m_enum6
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal Enum1
+				var v1 int32
+				v1, err = decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
+				mapVal = Enum1(v1)
+				if err != nil {
+					return err
+				}
+				x.MEnum6[mapKey] = mapVal
 			}
 		case jsonKey == "m_enum7":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MEnum7 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MEnum7 == nil {
-					x.MEnum7 = make(map[string]Enum1)
+				continue LOOP_SCAN
+			}
+			if x.MEnum7 == nil {
+				x.MEnum7 = make(map[string]Enum1)
+			}
+		LOOP_MAP_m_enum7:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_enum7:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					v1, noMore, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
-					vv := Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					x.MEnum7[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_enum7
-					}
+				if isEnd {
+					break LOOP_MAP_m_enum7
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal Enum1
+				var v1 int32
+				v1, err = decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
+				mapVal = Enum1(v1)
+				if err != nil {
+					return err
+				}
+				x.MEnum7[mapKey] = mapVal
 			}
 		case jsonKey == "m_message1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MMessage1 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MMessage1 == nil {
-					x.MMessage1 = make(map[string]*Message1)
+				continue LOOP_SCAN
+			}
+			if x.MMessage1 == nil {
+				x.MMessage1 = make(map[string]*Message1)
+			}
+		LOOP_MAP_m_message1:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_message1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					var vv *Message1
-					initFN := func() interface{} {
-						vv = x.MMessage1[mapKey]
-						if vv == nil {
-							vv = new(Message1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadMapValueInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
-					x.MMessage1[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_message1
-					}
+				if isEnd {
+					break LOOP_MAP_m_message1
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal *Message1
+				initFN := func() interface{} {
+					mapVal = x.MMessage1[mapKey]
+					if mapVal == nil {
+						mapVal = new(Message1)
+					}
+					return mapVal
+				}
+				err = decoder.ReadMapValueInterface(jsonKey, initFN)
+				if err != nil {
+					return err
+				}
+				x.MMessage1[mapKey] = mapVal
 			}
 		case jsonKey == "m_message2":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MMessage2 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MMessage2 == nil {
-					x.MMessage2 = make(map[string]*Message1)
+				continue LOOP_SCAN
+			}
+			if x.MMessage2 == nil {
+				x.MMessage2 = make(map[string]*Message1)
+			}
+		LOOP_MAP_m_message2:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_message2:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					var vv *Message1
-					initFN := func() interface{} {
-						vv = x.MMessage2[mapKey]
-						if vv == nil {
-							vv = new(Message1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadMapValueInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
-					x.MMessage2[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_message2
-					}
+				if isEnd {
+					break LOOP_MAP_m_message2
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal *Message1
+				initFN := func() interface{} {
+					mapVal = x.MMessage2[mapKey]
+					if mapVal == nil {
+						mapVal = new(Message1)
+					}
+					return mapVal
+				}
+				err = decoder.ReadMapValueInterface(jsonKey, initFN)
+				if err != nil {
+					return err
+				}
+				x.MMessage2[mapKey] = mapVal
 			}
 		case jsonKey == "m_message3":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MMessage3 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MMessage3 == nil {
-					x.MMessage3 = make(map[string]*Message1)
+				continue LOOP_SCAN
+			}
+			if x.MMessage3 == nil {
+				x.MMessage3 = make(map[string]*Message1)
+			}
+		LOOP_MAP_m_message3:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_message3:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					var vv *Message1
-					initFN := func() interface{} {
-						vv = x.MMessage3[mapKey]
-						if vv == nil {
-							vv = new(Message1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadMapValueInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
-					x.MMessage3[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_message3
-					}
+				if isEnd {
+					break LOOP_MAP_m_message3
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal *Message1
+				initFN := func() interface{} {
+					mapVal = x.MMessage3[mapKey]
+					if mapVal == nil {
+						mapVal = new(Message1)
+					}
+					return mapVal
+				}
+				err = decoder.ReadMapValueInterface(jsonKey, initFN)
+				if err != nil {
+					return err
+				}
+				x.MMessage3[mapKey] = mapVal
 			}
 		case jsonKey == "m_message4":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MMessage4 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MMessage4 == nil {
-					x.MMessage4 = make(map[string]*Message1)
+				continue LOOP_SCAN
+			}
+			if x.MMessage4 == nil {
+				x.MMessage4 = make(map[string]*Message1)
+			}
+		LOOP_MAP_m_message4:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_message4:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					var vv *Message1
-					initFN := func() interface{} {
-						vv = x.MMessage4[mapKey]
-						if vv == nil {
-							vv = new(Message1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadMapValueInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
-					x.MMessage4[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_message4
-					}
+				if isEnd {
+					break LOOP_MAP_m_message4
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal *Message1
+				initFN := func() interface{} {
+					mapVal = x.MMessage4[mapKey]
+					if mapVal == nil {
+						mapVal = new(Message1)
+					}
+					return mapVal
+				}
+				err = decoder.ReadMapValueInterface(jsonKey, initFN)
+				if err != nil {
+					return err
+				}
+				x.MMessage4[mapKey] = mapVal
 			}
 		case jsonKey == "m_message5":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MMessage5 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MMessage5 == nil {
-					x.MMessage5 = make(map[string]*Message1)
+				continue LOOP_SCAN
+			}
+			if x.MMessage5 == nil {
+				x.MMessage5 = make(map[string]*Message1)
+			}
+		LOOP_MAP_m_message5:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_message5:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					var vv *Message1
-					initFN := func() interface{} {
-						vv = x.MMessage5[mapKey]
-						if vv == nil {
-							vv = new(Message1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadMapValueInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
-					x.MMessage5[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_message5
-					}
+				if isEnd {
+					break LOOP_MAP_m_message5
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal *Message1
+				initFN := func() interface{} {
+					mapVal = x.MMessage5[mapKey]
+					if mapVal == nil {
+						mapVal = new(Message1)
+					}
+					return mapVal
+				}
+				err = decoder.ReadMapValueInterface(jsonKey, initFN)
+				if err != nil {
+					return err
+				}
+				x.MMessage5[mapKey] = mapVal
 			}
 		case jsonKey == "m_message6":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MMessage6 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MMessage6 == nil {
-					x.MMessage6 = make(map[string]*Message1)
+				continue LOOP_SCAN
+			}
+			if x.MMessage6 == nil {
+				x.MMessage6 = make(map[string]*Message1)
+			}
+		LOOP_MAP_m_message6:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_message6:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					var vv *Message1
-					initFN := func() interface{} {
-						vv = x.MMessage6[mapKey]
-						if vv == nil {
-							vv = new(Message1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadMapValueInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
-					x.MMessage6[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_message6
-					}
+				if isEnd {
+					break LOOP_MAP_m_message6
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal *Message1
+				initFN := func() interface{} {
+					mapVal = x.MMessage6[mapKey]
+					if mapVal == nil {
+						mapVal = new(Message1)
+					}
+					return mapVal
+				}
+				err = decoder.ReadMapValueInterface(jsonKey, initFN)
+				if err != nil {
+					return err
+				}
+				x.MMessage6[mapKey] = mapVal
 			}
 		case jsonKey == "m_message7":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.MMessage7 = nil
-			case isEmpty:
-				// do nothing
-			default:
-				if x.MMessage7 == nil {
-					x.MMessage7 = make(map[string]*Message1)
+				continue LOOP_SCAN
+			}
+			if x.MMessage7 == nil {
+				x.MMessage7 = make(map[string]*Message1)
+			}
+		LOOP_MAP_m_message7:
+			for {
+				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+					return err
 				}
-			LOOP_MAP_m_message7:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					var vv *Message1
-					initFN := func() interface{} {
-						vv = x.MMessage7[mapKey]
-						if vv == nil {
-							vv = new(Message1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadMapValueInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
-					x.MMessage7[mapKey] = vv
-					if noMore {
-						break LOOP_MAP_m_message7
-					}
+				if isEnd {
+					break LOOP_MAP_m_message7
 				}
-				decoder.ScanNext()
+				var mapKey string
+				mapKey, err = decoder.ReadMapKeyString(jsonKey)
+				if err != nil {
+					return err
+				}
+				var mapVal *Message1
+				initFN := func() interface{} {
+					mapVal = x.MMessage7[mapKey]
+					if mapVal == nil {
+						mapVal = new(Message1)
+					}
+					return mapVal
+				}
+				err = decoder.ReadMapValueInterface(jsonKey, initFN)
+				if err != nil {
+					return err
+				}
+				x.MMessage7[mapKey] = mapVal
 			}
 		default:
-			if err = decoder.Discard(); err != nil { // discard unknown field
+			if err = decoder.DiscardValue(jsonKey); err != nil {
 				return err
 			}
 		}
-		if decoder.ReadObjectValueAfter() { // After read object value
-			break LOOP_OBJECT
-		}
-	}
-	// Check error in decoder
-	if err = decoder.ScanError(); err != nil {
-		return err
 	}
 	return nil
 }

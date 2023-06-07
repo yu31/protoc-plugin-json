@@ -88,8 +88,12 @@ func (enc *Encoder) AppendValueBytes(v []byte) {
 			// The encoded bytes are too long to cheaply allocate, and
 			// Encoding.Encode is no longer noticeably cheaper.
 			be := base64.NewEncoder(base64.StdEncoding, enc)
-			_, _ = be.Write(v)
-			_ = be.Close()
+			if _, err := be.Write(v); err != nil {
+				panic(err)
+			}
+			if err := be.Close(); err != nil {
+				panic(err)
+			}
 		}
 	}
 	enc.writeByte('"')

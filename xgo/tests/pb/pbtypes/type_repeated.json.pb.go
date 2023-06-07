@@ -53,50 +53,55 @@ func (x *MessageRepeated1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
+	if isNULL {
+		return nil
+	}
 	// Loop to scan object.
-LOOP_OBJECT:
+LOOP_SCAN:
 	for {
-		if err = decoder.ScanError(); err != nil {
+		var (
+			jsonKey string
+			isEnd   bool
+		)
+		if isEnd, err = decoder.BeforeReadJSONKey(); err != nil {
 			return err
 		}
-		jsonKey, stop := decoder.ReadJSONKey()
-		if stop {
-			break LOOP_OBJECT
+		if isEnd {
+			break LOOP_SCAN
+		}
+		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+			return err
 		}
 		switch { // match the JSON KEY
 		case jsonKey == "f_string1":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString1 = vv
 		case jsonKey == "f_string2":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString2 = vv
 		case jsonKey == "f_string3":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString3 = vv
 		default:
-			if err = decoder.Discard(); err != nil { // discard unknown field
+			if err = decoder.DiscardValue(jsonKey); err != nil {
 				return err
 			}
 		}
-		if decoder.ReadObjectValueAfter() { // After read object value
-			break LOOP_OBJECT
-		}
-	}
-	// Check error in decoder
-	if err = decoder.ScanError(); err != nil {
-		return err
 	}
 	return nil
 }
@@ -138,50 +143,55 @@ func (x *MessageRepeated1_Embed1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
+	if isNULL {
+		return nil
+	}
 	// Loop to scan object.
-LOOP_OBJECT:
+LOOP_SCAN:
 	for {
-		if err = decoder.ScanError(); err != nil {
+		var (
+			jsonKey string
+			isEnd   bool
+		)
+		if isEnd, err = decoder.BeforeReadJSONKey(); err != nil {
 			return err
 		}
-		jsonKey, stop := decoder.ReadJSONKey()
-		if stop {
-			break LOOP_OBJECT
+		if isEnd {
+			break LOOP_SCAN
+		}
+		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+			return err
 		}
 		switch { // match the JSON KEY
 		case jsonKey == "f_string1":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString1 = vv
 		case jsonKey == "f_string2":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString2 = vv
 		case jsonKey == "f_string3":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString3 = vv
 		default:
-			if err = decoder.Discard(); err != nil { // discard unknown field
+			if err = decoder.DiscardValue(jsonKey); err != nil {
 				return err
 			}
 		}
-		if decoder.ReadObjectValueAfter() { // After read object value
-			break LOOP_OBJECT
-		}
-	}
-	// Check error in decoder
-	if err = decoder.ScanError(); err != nil {
-		return err
 	}
 	return nil
 }
@@ -223,50 +233,55 @@ func (x *MessageRepeated1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
+	if isNULL {
+		return nil
+	}
 	// Loop to scan object.
-LOOP_OBJECT:
+LOOP_SCAN:
 	for {
-		if err = decoder.ScanError(); err != nil {
+		var (
+			jsonKey string
+			isEnd   bool
+		)
+		if isEnd, err = decoder.BeforeReadJSONKey(); err != nil {
 			return err
 		}
-		jsonKey, stop := decoder.ReadJSONKey()
-		if stop {
-			break LOOP_OBJECT
+		if isEnd {
+			break LOOP_SCAN
+		}
+		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+			return err
 		}
 		switch { // match the JSON KEY
 		case jsonKey == "f_string1":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString1 = vv
 		case jsonKey == "f_string2":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString2 = vv
 		case jsonKey == "f_string3":
-			vv, _err := decoder.ReadValueString(jsonKey)
-			if _err != nil {
-				return _err
+			var vv string
+			vv, err = decoder.ReadValueString(jsonKey)
+			if err != nil {
+				return err
 			}
 			x.FString3 = vv
 		default:
-			if err = decoder.Discard(); err != nil { // discard unknown field
+			if err = decoder.DiscardValue(jsonKey); err != nil {
 				return err
 			}
 		}
-		if decoder.ReadObjectValueAfter() { // After read object value
-			break LOOP_OBJECT
-		}
-	}
-	// Check error in decoder
-	if err = decoder.ScanError(); err != nil {
-		return err
 	}
 	return nil
 }
@@ -717,1853 +732,1550 @@ func (x *TypeRepeated1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
+	if isNULL {
+		return nil
+	}
 	// Loop to scan object.
-LOOP_OBJECT:
+LOOP_SCAN:
 	for {
-		if err = decoder.ScanError(); err != nil {
+		var (
+			jsonKey string
+			isEnd   bool
+		)
+		if isEnd, err = decoder.BeforeReadJSONKey(); err != nil {
 			return err
 		}
-		jsonKey, stop := decoder.ReadJSONKey()
-		if stop {
-			break LOOP_OBJECT
+		if isEnd {
+			break LOOP_SCAN
+		}
+		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+			return err
 		}
 		switch { // match the JSON KEY
 		case jsonKey == "f_string1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FString1 = nil
-			case isEmpty:
-				if x.FString1 == nil {
-					x.FString1 = make([]string, 0)
-				} else {
-					x.FString1 = x.FString1[:0]
+				continue LOOP_SCAN
+			}
+			if x.FString1 == nil {
+				x.FString1 = make([]string, 0)
+			}
+			i := 0
+			length := len(x.FString1)
+		LOOP_LIST_f_string1:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FString1 == nil {
-					x.FString1 = make([]string, 0)
+				if isEnd {
+					break LOOP_LIST_f_string1
 				}
-				i := 0
-				length := len(x.FString1)
-			LOOP_LIST_f_string1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FString1[i] = vv
-					} else {
-						x.FString1 = append(x.FString1, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_string1
-					}
+				var vv string
+				vv, err = decoder.ReadArrayElemString(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FString1 = x.FString1[:i]
+					x.FString1[i] = vv
+				} else {
+					x.FString1 = append(x.FString1, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FString1 = x.FString1[:i]
 			}
 		case jsonKey == "f_string2":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FString2 = nil
-			case isEmpty:
-				if x.FString2 == nil {
-					x.FString2 = make([]string, 0)
-				} else {
-					x.FString2 = x.FString2[:0]
+				continue LOOP_SCAN
+			}
+			if x.FString2 == nil {
+				x.FString2 = make([]string, 0)
+			}
+			i := 0
+			length := len(x.FString2)
+		LOOP_LIST_f_string2:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FString2 == nil {
-					x.FString2 = make([]string, 0)
+				if isEnd {
+					break LOOP_LIST_f_string2
 				}
-				i := 0
-				length := len(x.FString2)
-			LOOP_LIST_f_string2:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FString2[i] = vv
-					} else {
-						x.FString2 = append(x.FString2, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_string2
-					}
+				var vv string
+				vv, err = decoder.ReadArrayElemString(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FString2 = x.FString2[:i]
+					x.FString2[i] = vv
+				} else {
+					x.FString2 = append(x.FString2, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FString2 = x.FString2[:i]
 			}
 		case jsonKey == "f_int32":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FInt32 = nil
-			case isEmpty:
-				if x.FInt32 == nil {
-					x.FInt32 = make([]int32, 0)
-				} else {
-					x.FInt32 = x.FInt32[:0]
+				continue LOOP_SCAN
+			}
+			if x.FInt32 == nil {
+				x.FInt32 = make([]int32, 0)
+			}
+			i := 0
+			length := len(x.FInt32)
+		LOOP_LIST_f_int32:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FInt32 == nil {
-					x.FInt32 = make([]int32, 0)
+				if isEnd {
+					break LOOP_LIST_f_int32
 				}
-				i := 0
-				length := len(x.FInt32)
-			LOOP_LIST_f_int32:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemInt32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FInt32[i] = vv
-					} else {
-						x.FInt32 = append(x.FInt32, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_int32
-					}
+				var vv int32
+				vv, err = decoder.ReadArrayElemInt32(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FInt32 = x.FInt32[:i]
+					x.FInt32[i] = vv
+				} else {
+					x.FInt32 = append(x.FInt32, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FInt32 = x.FInt32[:i]
 			}
 		case jsonKey == "f_int64":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FInt64 = nil
-			case isEmpty:
-				if x.FInt64 == nil {
-					x.FInt64 = make([]int64, 0)
-				} else {
-					x.FInt64 = x.FInt64[:0]
+				continue LOOP_SCAN
+			}
+			if x.FInt64 == nil {
+				x.FInt64 = make([]int64, 0)
+			}
+			i := 0
+			length := len(x.FInt64)
+		LOOP_LIST_f_int64:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FInt64 == nil {
-					x.FInt64 = make([]int64, 0)
+				if isEnd {
+					break LOOP_LIST_f_int64
 				}
-				i := 0
-				length := len(x.FInt64)
-			LOOP_LIST_f_int64:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemInt64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FInt64[i] = vv
-					} else {
-						x.FInt64 = append(x.FInt64, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_int64
-					}
+				var vv int64
+				vv, err = decoder.ReadArrayElemInt64(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FInt64 = x.FInt64[:i]
+					x.FInt64[i] = vv
+				} else {
+					x.FInt64 = append(x.FInt64, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FInt64 = x.FInt64[:i]
 			}
 		case jsonKey == "f_uint32":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FUint32 = nil
-			case isEmpty:
-				if x.FUint32 == nil {
-					x.FUint32 = make([]uint32, 0)
-				} else {
-					x.FUint32 = x.FUint32[:0]
+				continue LOOP_SCAN
+			}
+			if x.FUint32 == nil {
+				x.FUint32 = make([]uint32, 0)
+			}
+			i := 0
+			length := len(x.FUint32)
+		LOOP_LIST_f_uint32:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FUint32 == nil {
-					x.FUint32 = make([]uint32, 0)
+				if isEnd {
+					break LOOP_LIST_f_uint32
 				}
-				i := 0
-				length := len(x.FUint32)
-			LOOP_LIST_f_uint32:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemUint32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FUint32[i] = vv
-					} else {
-						x.FUint32 = append(x.FUint32, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_uint32
-					}
+				var vv uint32
+				vv, err = decoder.ReadArrayElemUint32(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FUint32 = x.FUint32[:i]
+					x.FUint32[i] = vv
+				} else {
+					x.FUint32 = append(x.FUint32, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FUint32 = x.FUint32[:i]
 			}
 		case jsonKey == "f_uint64":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FUint64 = nil
-			case isEmpty:
-				if x.FUint64 == nil {
-					x.FUint64 = make([]uint64, 0)
-				} else {
-					x.FUint64 = x.FUint64[:0]
+				continue LOOP_SCAN
+			}
+			if x.FUint64 == nil {
+				x.FUint64 = make([]uint64, 0)
+			}
+			i := 0
+			length := len(x.FUint64)
+		LOOP_LIST_f_uint64:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FUint64 == nil {
-					x.FUint64 = make([]uint64, 0)
+				if isEnd {
+					break LOOP_LIST_f_uint64
 				}
-				i := 0
-				length := len(x.FUint64)
-			LOOP_LIST_f_uint64:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemUint64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FUint64[i] = vv
-					} else {
-						x.FUint64 = append(x.FUint64, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_uint64
-					}
+				var vv uint64
+				vv, err = decoder.ReadArrayElemUint64(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FUint64 = x.FUint64[:i]
+					x.FUint64[i] = vv
+				} else {
+					x.FUint64 = append(x.FUint64, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FUint64 = x.FUint64[:i]
 			}
 		case jsonKey == "f_sint32":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FSint32 = nil
-			case isEmpty:
-				if x.FSint32 == nil {
-					x.FSint32 = make([]int32, 0)
-				} else {
-					x.FSint32 = x.FSint32[:0]
+				continue LOOP_SCAN
+			}
+			if x.FSint32 == nil {
+				x.FSint32 = make([]int32, 0)
+			}
+			i := 0
+			length := len(x.FSint32)
+		LOOP_LIST_f_sint32:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FSint32 == nil {
-					x.FSint32 = make([]int32, 0)
+				if isEnd {
+					break LOOP_LIST_f_sint32
 				}
-				i := 0
-				length := len(x.FSint32)
-			LOOP_LIST_f_sint32:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemInt32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FSint32[i] = vv
-					} else {
-						x.FSint32 = append(x.FSint32, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_sint32
-					}
+				var vv int32
+				vv, err = decoder.ReadArrayElemInt32(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FSint32 = x.FSint32[:i]
+					x.FSint32[i] = vv
+				} else {
+					x.FSint32 = append(x.FSint32, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FSint32 = x.FSint32[:i]
 			}
 		case jsonKey == "f_sint64":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FSint64 = nil
-			case isEmpty:
-				if x.FSint64 == nil {
-					x.FSint64 = make([]int64, 0)
-				} else {
-					x.FSint64 = x.FSint64[:0]
+				continue LOOP_SCAN
+			}
+			if x.FSint64 == nil {
+				x.FSint64 = make([]int64, 0)
+			}
+			i := 0
+			length := len(x.FSint64)
+		LOOP_LIST_f_sint64:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FSint64 == nil {
-					x.FSint64 = make([]int64, 0)
+				if isEnd {
+					break LOOP_LIST_f_sint64
 				}
-				i := 0
-				length := len(x.FSint64)
-			LOOP_LIST_f_sint64:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemInt64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FSint64[i] = vv
-					} else {
-						x.FSint64 = append(x.FSint64, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_sint64
-					}
+				var vv int64
+				vv, err = decoder.ReadArrayElemInt64(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FSint64 = x.FSint64[:i]
+					x.FSint64[i] = vv
+				} else {
+					x.FSint64 = append(x.FSint64, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FSint64 = x.FSint64[:i]
 			}
 		case jsonKey == "f_sfixed32":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FSfixed32 = nil
-			case isEmpty:
-				if x.FSfixed32 == nil {
-					x.FSfixed32 = make([]int32, 0)
-				} else {
-					x.FSfixed32 = x.FSfixed32[:0]
+				continue LOOP_SCAN
+			}
+			if x.FSfixed32 == nil {
+				x.FSfixed32 = make([]int32, 0)
+			}
+			i := 0
+			length := len(x.FSfixed32)
+		LOOP_LIST_f_sfixed32:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FSfixed32 == nil {
-					x.FSfixed32 = make([]int32, 0)
+				if isEnd {
+					break LOOP_LIST_f_sfixed32
 				}
-				i := 0
-				length := len(x.FSfixed32)
-			LOOP_LIST_f_sfixed32:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemInt32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FSfixed32[i] = vv
-					} else {
-						x.FSfixed32 = append(x.FSfixed32, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_sfixed32
-					}
+				var vv int32
+				vv, err = decoder.ReadArrayElemInt32(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FSfixed32 = x.FSfixed32[:i]
+					x.FSfixed32[i] = vv
+				} else {
+					x.FSfixed32 = append(x.FSfixed32, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FSfixed32 = x.FSfixed32[:i]
 			}
 		case jsonKey == "f_sfixed64":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FSfixed64 = nil
-			case isEmpty:
-				if x.FSfixed64 == nil {
-					x.FSfixed64 = make([]int64, 0)
-				} else {
-					x.FSfixed64 = x.FSfixed64[:0]
+				continue LOOP_SCAN
+			}
+			if x.FSfixed64 == nil {
+				x.FSfixed64 = make([]int64, 0)
+			}
+			i := 0
+			length := len(x.FSfixed64)
+		LOOP_LIST_f_sfixed64:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FSfixed64 == nil {
-					x.FSfixed64 = make([]int64, 0)
+				if isEnd {
+					break LOOP_LIST_f_sfixed64
 				}
-				i := 0
-				length := len(x.FSfixed64)
-			LOOP_LIST_f_sfixed64:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemInt64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FSfixed64[i] = vv
-					} else {
-						x.FSfixed64 = append(x.FSfixed64, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_sfixed64
-					}
+				var vv int64
+				vv, err = decoder.ReadArrayElemInt64(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FSfixed64 = x.FSfixed64[:i]
+					x.FSfixed64[i] = vv
+				} else {
+					x.FSfixed64 = append(x.FSfixed64, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FSfixed64 = x.FSfixed64[:i]
 			}
 		case jsonKey == "f_fixed32":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FFixed32 = nil
-			case isEmpty:
-				if x.FFixed32 == nil {
-					x.FFixed32 = make([]uint32, 0)
-				} else {
-					x.FFixed32 = x.FFixed32[:0]
+				continue LOOP_SCAN
+			}
+			if x.FFixed32 == nil {
+				x.FFixed32 = make([]uint32, 0)
+			}
+			i := 0
+			length := len(x.FFixed32)
+		LOOP_LIST_f_fixed32:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FFixed32 == nil {
-					x.FFixed32 = make([]uint32, 0)
+				if isEnd {
+					break LOOP_LIST_f_fixed32
 				}
-				i := 0
-				length := len(x.FFixed32)
-			LOOP_LIST_f_fixed32:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemUint32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FFixed32[i] = vv
-					} else {
-						x.FFixed32 = append(x.FFixed32, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_fixed32
-					}
+				var vv uint32
+				vv, err = decoder.ReadArrayElemUint32(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FFixed32 = x.FFixed32[:i]
+					x.FFixed32[i] = vv
+				} else {
+					x.FFixed32 = append(x.FFixed32, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FFixed32 = x.FFixed32[:i]
 			}
 		case jsonKey == "f_fixed64":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FFixed64 = nil
-			case isEmpty:
-				if x.FFixed64 == nil {
-					x.FFixed64 = make([]uint64, 0)
-				} else {
-					x.FFixed64 = x.FFixed64[:0]
+				continue LOOP_SCAN
+			}
+			if x.FFixed64 == nil {
+				x.FFixed64 = make([]uint64, 0)
+			}
+			i := 0
+			length := len(x.FFixed64)
+		LOOP_LIST_f_fixed64:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FFixed64 == nil {
-					x.FFixed64 = make([]uint64, 0)
+				if isEnd {
+					break LOOP_LIST_f_fixed64
 				}
-				i := 0
-				length := len(x.FFixed64)
-			LOOP_LIST_f_fixed64:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemUint64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FFixed64[i] = vv
-					} else {
-						x.FFixed64 = append(x.FFixed64, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_fixed64
-					}
+				var vv uint64
+				vv, err = decoder.ReadArrayElemUint64(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FFixed64 = x.FFixed64[:i]
+					x.FFixed64[i] = vv
+				} else {
+					x.FFixed64 = append(x.FFixed64, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FFixed64 = x.FFixed64[:i]
 			}
 		case jsonKey == "f_float":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FFloat = nil
-			case isEmpty:
-				if x.FFloat == nil {
-					x.FFloat = make([]float32, 0)
-				} else {
-					x.FFloat = x.FFloat[:0]
+				continue LOOP_SCAN
+			}
+			if x.FFloat == nil {
+				x.FFloat = make([]float32, 0)
+			}
+			i := 0
+			length := len(x.FFloat)
+		LOOP_LIST_f_float:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FFloat == nil {
-					x.FFloat = make([]float32, 0)
+				if isEnd {
+					break LOOP_LIST_f_float
 				}
-				i := 0
-				length := len(x.FFloat)
-			LOOP_LIST_f_float:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemFloat32(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FFloat[i] = vv
-					} else {
-						x.FFloat = append(x.FFloat, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_float
-					}
+				var vv float32
+				vv, err = decoder.ReadArrayElemFloat32(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FFloat = x.FFloat[:i]
+					x.FFloat[i] = vv
+				} else {
+					x.FFloat = append(x.FFloat, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FFloat = x.FFloat[:i]
 			}
 		case jsonKey == "f_double":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FDouble = nil
-			case isEmpty:
-				if x.FDouble == nil {
-					x.FDouble = make([]float64, 0)
-				} else {
-					x.FDouble = x.FDouble[:0]
+				continue LOOP_SCAN
+			}
+			if x.FDouble == nil {
+				x.FDouble = make([]float64, 0)
+			}
+			i := 0
+			length := len(x.FDouble)
+		LOOP_LIST_f_double:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FDouble == nil {
-					x.FDouble = make([]float64, 0)
+				if isEnd {
+					break LOOP_LIST_f_double
 				}
-				i := 0
-				length := len(x.FDouble)
-			LOOP_LIST_f_double:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemFloat64(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FDouble[i] = vv
-					} else {
-						x.FDouble = append(x.FDouble, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_double
-					}
+				var vv float64
+				vv, err = decoder.ReadArrayElemFloat64(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FDouble = x.FDouble[:i]
+					x.FDouble[i] = vv
+				} else {
+					x.FDouble = append(x.FDouble, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FDouble = x.FDouble[:i]
 			}
 		case jsonKey == "f_bool1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FBool1 = nil
-			case isEmpty:
-				if x.FBool1 == nil {
-					x.FBool1 = make([]bool, 0)
-				} else {
-					x.FBool1 = x.FBool1[:0]
+				continue LOOP_SCAN
+			}
+			if x.FBool1 == nil {
+				x.FBool1 = make([]bool, 0)
+			}
+			i := 0
+			length := len(x.FBool1)
+		LOOP_LIST_f_bool1:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FBool1 == nil {
-					x.FBool1 = make([]bool, 0)
+				if isEnd {
+					break LOOP_LIST_f_bool1
 				}
-				i := 0
-				length := len(x.FBool1)
-			LOOP_LIST_f_bool1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemBool(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FBool1[i] = vv
-					} else {
-						x.FBool1 = append(x.FBool1, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_bool1
-					}
+				var vv bool
+				vv, err = decoder.ReadArrayElemBool(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FBool1 = x.FBool1[:i]
+					x.FBool1[i] = vv
+				} else {
+					x.FBool1 = append(x.FBool1, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FBool1 = x.FBool1[:i]
 			}
 		case jsonKey == "f_bytes1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FBytes1 = nil
-			case isEmpty:
-				if x.FBytes1 == nil {
-					x.FBytes1 = make([][]byte, 0)
-				} else {
-					x.FBytes1 = x.FBytes1[:0]
+				continue LOOP_SCAN
+			}
+			if x.FBytes1 == nil {
+				x.FBytes1 = make([][]byte, 0)
+			}
+			i := 0
+			length := len(x.FBytes1)
+		LOOP_LIST_f_bytes1:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FBytes1 == nil {
-					x.FBytes1 = make([][]byte, 0)
+				if isEnd {
+					break LOOP_LIST_f_bytes1
 				}
-				i := 0
-				length := len(x.FBytes1)
-			LOOP_LIST_f_bytes1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					vv, noMore, _err := decoder.ReadArrayElemBytes(jsonKey)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FBytes1[i] = vv
-					} else {
-						x.FBytes1 = append(x.FBytes1, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_bytes1
-					}
+				var vv []byte
+				vv, err = decoder.ReadArrayElemBytes(jsonKey)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FBytes1 = x.FBytes1[:i]
+					x.FBytes1[i] = vv
+				} else {
+					x.FBytes1 = append(x.FBytes1, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FBytes1 = x.FBytes1[:i]
 			}
 		case jsonKey == "f_enum1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FEnum1 = nil
-			case isEmpty:
-				if x.FEnum1 == nil {
-					x.FEnum1 = make([]EnumRepeated1, 0)
-				} else {
-					x.FEnum1 = x.FEnum1[:0]
+				continue LOOP_SCAN
+			}
+			if x.FEnum1 == nil {
+				x.FEnum1 = make([]EnumRepeated1, 0)
+			}
+			i := 0
+			length := len(x.FEnum1)
+		LOOP_LIST_f_enum1:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FEnum1 == nil {
-					x.FEnum1 = make([]EnumRepeated1, 0)
+				if isEnd {
+					break LOOP_LIST_f_enum1
 				}
-				i := 0
-				length := len(x.FEnum1)
-			LOOP_LIST_f_enum1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, EnumRepeated1_name)
-					vv := EnumRepeated1(v1)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FEnum1[i] = vv
-					} else {
-						x.FEnum1 = append(x.FEnum1, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_enum1
-					}
+				var vv EnumRepeated1
+				var v1 int32
+				v1, err = decoder.ReadArrayElemEnumNumber(jsonKey, EnumRepeated1_name)
+				vv = EnumRepeated1(v1)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FEnum1 = x.FEnum1[:i]
+					x.FEnum1[i] = vv
+				} else {
+					x.FEnum1 = append(x.FEnum1, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FEnum1 = x.FEnum1[:i]
 			}
 		case jsonKey == "f_enum2":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FEnum2 = nil
-			case isEmpty:
-				if x.FEnum2 == nil {
-					x.FEnum2 = make([]pbexternal.Enum1, 0)
-				} else {
-					x.FEnum2 = x.FEnum2[:0]
+				continue LOOP_SCAN
+			}
+			if x.FEnum2 == nil {
+				x.FEnum2 = make([]pbexternal.Enum1, 0)
+			}
+			i := 0
+			length := len(x.FEnum2)
+		LOOP_LIST_f_enum2:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FEnum2 == nil {
-					x.FEnum2 = make([]pbexternal.Enum1, 0)
+				if isEnd {
+					break LOOP_LIST_f_enum2
 				}
-				i := 0
-				length := len(x.FEnum2)
-			LOOP_LIST_f_enum2:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, pbexternal.Enum1_name)
-					vv := pbexternal.Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FEnum2[i] = vv
-					} else {
-						x.FEnum2 = append(x.FEnum2, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_enum2
-					}
+				var vv pbexternal.Enum1
+				var v1 int32
+				v1, err = decoder.ReadArrayElemEnumNumber(jsonKey, pbexternal.Enum1_name)
+				vv = pbexternal.Enum1(v1)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FEnum2 = x.FEnum2[:i]
+					x.FEnum2[i] = vv
+				} else {
+					x.FEnum2 = append(x.FEnum2, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FEnum2 = x.FEnum2[:i]
 			}
 		case jsonKey == "f_enum3":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FEnum3 = nil
-			case isEmpty:
-				if x.FEnum3 == nil {
-					x.FEnum3 = make([]pbexternal.Embed_Enum1, 0)
-				} else {
-					x.FEnum3 = x.FEnum3[:0]
+				continue LOOP_SCAN
+			}
+			if x.FEnum3 == nil {
+				x.FEnum3 = make([]pbexternal.Embed_Enum1, 0)
+			}
+			i := 0
+			length := len(x.FEnum3)
+		LOOP_LIST_f_enum3:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FEnum3 == nil {
-					x.FEnum3 = make([]pbexternal.Embed_Enum1, 0)
+				if isEnd {
+					break LOOP_LIST_f_enum3
 				}
-				i := 0
-				length := len(x.FEnum3)
-			LOOP_LIST_f_enum3:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, pbexternal.Embed_Enum1_name)
-					vv := pbexternal.Embed_Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FEnum3[i] = vv
-					} else {
-						x.FEnum3 = append(x.FEnum3, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_enum3
-					}
+				var vv pbexternal.Embed_Enum1
+				var v1 int32
+				v1, err = decoder.ReadArrayElemEnumNumber(jsonKey, pbexternal.Embed_Enum1_name)
+				vv = pbexternal.Embed_Enum1(v1)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FEnum3 = x.FEnum3[:i]
+					x.FEnum3[i] = vv
+				} else {
+					x.FEnum3 = append(x.FEnum3, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FEnum3 = x.FEnum3[:i]
 			}
 		case jsonKey == "f_enum4":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FEnum4 = nil
-			case isEmpty:
-				if x.FEnum4 == nil {
-					x.FEnum4 = make([]pbexternal.Embed_Message_Enum1, 0)
-				} else {
-					x.FEnum4 = x.FEnum4[:0]
+				continue LOOP_SCAN
+			}
+			if x.FEnum4 == nil {
+				x.FEnum4 = make([]pbexternal.Embed_Message_Enum1, 0)
+			}
+			i := 0
+			length := len(x.FEnum4)
+		LOOP_LIST_f_enum4:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FEnum4 == nil {
-					x.FEnum4 = make([]pbexternal.Embed_Message_Enum1, 0)
+				if isEnd {
+					break LOOP_LIST_f_enum4
 				}
-				i := 0
-				length := len(x.FEnum4)
-			LOOP_LIST_f_enum4:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, pbexternal.Embed_Message_Enum1_name)
-					vv := pbexternal.Embed_Message_Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FEnum4[i] = vv
-					} else {
-						x.FEnum4 = append(x.FEnum4, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_enum4
-					}
+				var vv pbexternal.Embed_Message_Enum1
+				var v1 int32
+				v1, err = decoder.ReadArrayElemEnumNumber(jsonKey, pbexternal.Embed_Message_Enum1_name)
+				vv = pbexternal.Embed_Message_Enum1(v1)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FEnum4 = x.FEnum4[:i]
+					x.FEnum4[i] = vv
+				} else {
+					x.FEnum4 = append(x.FEnum4, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FEnum4 = x.FEnum4[:i]
 			}
 		case jsonKey == "f_enum5":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FEnum5 = nil
-			case isEmpty:
-				if x.FEnum5 == nil {
-					x.FEnum5 = make([]EnumCommon1, 0)
-				} else {
-					x.FEnum5 = x.FEnum5[:0]
+				continue LOOP_SCAN
+			}
+			if x.FEnum5 == nil {
+				x.FEnum5 = make([]EnumCommon1, 0)
+			}
+			i := 0
+			length := len(x.FEnum5)
+		LOOP_LIST_f_enum5:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FEnum5 == nil {
-					x.FEnum5 = make([]EnumCommon1, 0)
+				if isEnd {
+					break LOOP_LIST_f_enum5
 				}
-				i := 0
-				length := len(x.FEnum5)
-			LOOP_LIST_f_enum5:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, EnumCommon1_name)
-					vv := EnumCommon1(v1)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FEnum5[i] = vv
-					} else {
-						x.FEnum5 = append(x.FEnum5, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_enum5
-					}
+				var vv EnumCommon1
+				var v1 int32
+				v1, err = decoder.ReadArrayElemEnumNumber(jsonKey, EnumCommon1_name)
+				vv = EnumCommon1(v1)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FEnum5 = x.FEnum5[:i]
+					x.FEnum5[i] = vv
+				} else {
+					x.FEnum5 = append(x.FEnum5, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FEnum5 = x.FEnum5[:i]
 			}
 		case jsonKey == "f_enum6":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FEnum6 = nil
-			case isEmpty:
-				if x.FEnum6 == nil {
-					x.FEnum6 = make([]MessageCommon1_Enum1, 0)
-				} else {
-					x.FEnum6 = x.FEnum6[:0]
+				continue LOOP_SCAN
+			}
+			if x.FEnum6 == nil {
+				x.FEnum6 = make([]MessageCommon1_Enum1, 0)
+			}
+			i := 0
+			length := len(x.FEnum6)
+		LOOP_LIST_f_enum6:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FEnum6 == nil {
-					x.FEnum6 = make([]MessageCommon1_Enum1, 0)
+				if isEnd {
+					break LOOP_LIST_f_enum6
 				}
-				i := 0
-				length := len(x.FEnum6)
-			LOOP_LIST_f_enum6:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, MessageCommon1_Enum1_name)
-					vv := MessageCommon1_Enum1(v1)
-					if _err != nil {
-						return _err
-					}
-					if i < length {
-						x.FEnum6[i] = vv
-					} else {
-						x.FEnum6 = append(x.FEnum6, vv)
-					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_enum6
-					}
+				var vv MessageCommon1_Enum1
+				var v1 int32
+				v1, err = decoder.ReadArrayElemEnumNumber(jsonKey, MessageCommon1_Enum1_name)
+				vv = MessageCommon1_Enum1(v1)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FEnum6 = x.FEnum6[:i]
+					x.FEnum6[i] = vv
+				} else {
+					x.FEnum6 = append(x.FEnum6, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FEnum6 = x.FEnum6[:i]
 			}
 		case jsonKey == "f_duration1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FDuration1 = nil
-			case isEmpty:
-				if x.FDuration1 == nil {
-					x.FDuration1 = make([]*durationpb.Duration, 0)
-				} else {
-					x.FDuration1 = x.FDuration1[:0]
+				continue LOOP_SCAN
+			}
+			if x.FDuration1 == nil {
+				x.FDuration1 = make([]*durationpb.Duration, 0)
+			}
+			i := 0
+			length := len(x.FDuration1)
+		LOOP_LIST_f_duration1:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FDuration1 == nil {
-					x.FDuration1 = make([]*durationpb.Duration, 0)
+				if isEnd {
+					break LOOP_LIST_f_duration1
 				}
-				i := 0
-				length := len(x.FDuration1)
-			LOOP_LIST_f_duration1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *durationpb.Duration
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.FDuration1[i]
-						}
-						if vv == nil {
-							vv = new(durationpb.Duration)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *durationpb.Duration
+				initFN := func() interface{} {
 					if i < length {
-						x.FDuration1[i] = vv
-					} else {
-						x.FDuration1 = append(x.FDuration1, vv)
+						vv = x.FDuration1[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_duration1
+					if vv == nil {
+						vv = new(durationpb.Duration)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FDuration1 = x.FDuration1[:i]
+					x.FDuration1[i] = vv
+				} else {
+					x.FDuration1 = append(x.FDuration1, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FDuration1 = x.FDuration1[:i]
 			}
 		case jsonKey == "f_duration2":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FDuration2 = nil
-			case isEmpty:
-				if x.FDuration2 == nil {
-					x.FDuration2 = make([]*durationpb.Duration, 0)
-				} else {
-					x.FDuration2 = x.FDuration2[:0]
+				continue LOOP_SCAN
+			}
+			if x.FDuration2 == nil {
+				x.FDuration2 = make([]*durationpb.Duration, 0)
+			}
+			i := 0
+			length := len(x.FDuration2)
+		LOOP_LIST_f_duration2:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FDuration2 == nil {
-					x.FDuration2 = make([]*durationpb.Duration, 0)
+				if isEnd {
+					break LOOP_LIST_f_duration2
 				}
-				i := 0
-				length := len(x.FDuration2)
-			LOOP_LIST_f_duration2:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *durationpb.Duration
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.FDuration2[i]
-						}
-						if vv == nil {
-							vv = new(durationpb.Duration)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *durationpb.Duration
+				initFN := func() interface{} {
 					if i < length {
-						x.FDuration2[i] = vv
-					} else {
-						x.FDuration2 = append(x.FDuration2, vv)
+						vv = x.FDuration2[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_duration2
+					if vv == nil {
+						vv = new(durationpb.Duration)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FDuration2 = x.FDuration2[:i]
+					x.FDuration2[i] = vv
+				} else {
+					x.FDuration2 = append(x.FDuration2, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FDuration2 = x.FDuration2[:i]
 			}
 		case jsonKey == "f_timestamp1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FTimestamp1 = nil
-			case isEmpty:
-				if x.FTimestamp1 == nil {
-					x.FTimestamp1 = make([]*timestamppb.Timestamp, 0)
-				} else {
-					x.FTimestamp1 = x.FTimestamp1[:0]
+				continue LOOP_SCAN
+			}
+			if x.FTimestamp1 == nil {
+				x.FTimestamp1 = make([]*timestamppb.Timestamp, 0)
+			}
+			i := 0
+			length := len(x.FTimestamp1)
+		LOOP_LIST_f_timestamp1:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FTimestamp1 == nil {
-					x.FTimestamp1 = make([]*timestamppb.Timestamp, 0)
+				if isEnd {
+					break LOOP_LIST_f_timestamp1
 				}
-				i := 0
-				length := len(x.FTimestamp1)
-			LOOP_LIST_f_timestamp1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *timestamppb.Timestamp
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.FTimestamp1[i]
-						}
-						if vv == nil {
-							vv = new(timestamppb.Timestamp)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *timestamppb.Timestamp
+				initFN := func() interface{} {
 					if i < length {
-						x.FTimestamp1[i] = vv
-					} else {
-						x.FTimestamp1 = append(x.FTimestamp1, vv)
+						vv = x.FTimestamp1[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_timestamp1
+					if vv == nil {
+						vv = new(timestamppb.Timestamp)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FTimestamp1 = x.FTimestamp1[:i]
+					x.FTimestamp1[i] = vv
+				} else {
+					x.FTimestamp1 = append(x.FTimestamp1, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FTimestamp1 = x.FTimestamp1[:i]
 			}
 		case jsonKey == "f_timestamp2":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FTimestamp2 = nil
-			case isEmpty:
-				if x.FTimestamp2 == nil {
-					x.FTimestamp2 = make([]*timestamppb.Timestamp, 0)
-				} else {
-					x.FTimestamp2 = x.FTimestamp2[:0]
+				continue LOOP_SCAN
+			}
+			if x.FTimestamp2 == nil {
+				x.FTimestamp2 = make([]*timestamppb.Timestamp, 0)
+			}
+			i := 0
+			length := len(x.FTimestamp2)
+		LOOP_LIST_f_timestamp2:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FTimestamp2 == nil {
-					x.FTimestamp2 = make([]*timestamppb.Timestamp, 0)
+				if isEnd {
+					break LOOP_LIST_f_timestamp2
 				}
-				i := 0
-				length := len(x.FTimestamp2)
-			LOOP_LIST_f_timestamp2:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *timestamppb.Timestamp
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.FTimestamp2[i]
-						}
-						if vv == nil {
-							vv = new(timestamppb.Timestamp)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *timestamppb.Timestamp
+				initFN := func() interface{} {
 					if i < length {
-						x.FTimestamp2[i] = vv
-					} else {
-						x.FTimestamp2 = append(x.FTimestamp2, vv)
+						vv = x.FTimestamp2[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_timestamp2
+					if vv == nil {
+						vv = new(timestamppb.Timestamp)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FTimestamp2 = x.FTimestamp2[:i]
+					x.FTimestamp2[i] = vv
+				} else {
+					x.FTimestamp2 = append(x.FTimestamp2, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FTimestamp2 = x.FTimestamp2[:i]
 			}
 		case jsonKey == "f_any1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FAny1 = nil
-			case isEmpty:
-				if x.FAny1 == nil {
-					x.FAny1 = make([]*anypb.Any, 0)
-				} else {
-					x.FAny1 = x.FAny1[:0]
+				continue LOOP_SCAN
+			}
+			if x.FAny1 == nil {
+				x.FAny1 = make([]*anypb.Any, 0)
+			}
+			i := 0
+			length := len(x.FAny1)
+		LOOP_LIST_f_any1:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FAny1 == nil {
-					x.FAny1 = make([]*anypb.Any, 0)
+				if isEnd {
+					break LOOP_LIST_f_any1
 				}
-				i := 0
-				length := len(x.FAny1)
-			LOOP_LIST_f_any1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *anypb.Any
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.FAny1[i]
-						}
-						if vv == nil {
-							vv = new(anypb.Any)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *anypb.Any
+				initFN := func() interface{} {
 					if i < length {
-						x.FAny1[i] = vv
-					} else {
-						x.FAny1 = append(x.FAny1, vv)
+						vv = x.FAny1[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_any1
+					if vv == nil {
+						vv = new(anypb.Any)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FAny1 = x.FAny1[:i]
+					x.FAny1[i] = vv
+				} else {
+					x.FAny1 = append(x.FAny1, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FAny1 = x.FAny1[:i]
 			}
 		case jsonKey == "f_any2":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FAny2 = nil
-			case isEmpty:
-				if x.FAny2 == nil {
-					x.FAny2 = make([]*anypb.Any, 0)
-				} else {
-					x.FAny2 = x.FAny2[:0]
+				continue LOOP_SCAN
+			}
+			if x.FAny2 == nil {
+				x.FAny2 = make([]*anypb.Any, 0)
+			}
+			i := 0
+			length := len(x.FAny2)
+		LOOP_LIST_f_any2:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FAny2 == nil {
-					x.FAny2 = make([]*anypb.Any, 0)
+				if isEnd {
+					break LOOP_LIST_f_any2
 				}
-				i := 0
-				length := len(x.FAny2)
-			LOOP_LIST_f_any2:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *anypb.Any
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.FAny2[i]
-						}
-						if vv == nil {
-							vv = new(anypb.Any)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *anypb.Any
+				initFN := func() interface{} {
 					if i < length {
-						x.FAny2[i] = vv
-					} else {
-						x.FAny2 = append(x.FAny2, vv)
+						vv = x.FAny2[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_any2
+					if vv == nil {
+						vv = new(anypb.Any)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FAny2 = x.FAny2[:i]
+					x.FAny2[i] = vv
+				} else {
+					x.FAny2 = append(x.FAny2, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FAny2 = x.FAny2[:i]
 			}
 		case jsonKey == "f_message1":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FMessage1 = nil
-			case isEmpty:
-				if x.FMessage1 == nil {
-					x.FMessage1 = make([]*MessageRepeated1, 0)
-				} else {
-					x.FMessage1 = x.FMessage1[:0]
+				continue LOOP_SCAN
+			}
+			if x.FMessage1 == nil {
+				x.FMessage1 = make([]*MessageRepeated1, 0)
+			}
+			i := 0
+			length := len(x.FMessage1)
+		LOOP_LIST_f_message1:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FMessage1 == nil {
-					x.FMessage1 = make([]*MessageRepeated1, 0)
+				if isEnd {
+					break LOOP_LIST_f_message1
 				}
-				i := 0
-				length := len(x.FMessage1)
-			LOOP_LIST_f_message1:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *MessageRepeated1
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.FMessage1[i]
-						}
-						if vv == nil {
-							vv = new(MessageRepeated1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *MessageRepeated1
+				initFN := func() interface{} {
 					if i < length {
-						x.FMessage1[i] = vv
-					} else {
-						x.FMessage1 = append(x.FMessage1, vv)
+						vv = x.FMessage1[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_message1
+					if vv == nil {
+						vv = new(MessageRepeated1)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FMessage1 = x.FMessage1[:i]
+					x.FMessage1[i] = vv
+				} else {
+					x.FMessage1 = append(x.FMessage1, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FMessage1 = x.FMessage1[:i]
 			}
 		case jsonKey == "f_message2":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FMessage2 = nil
-			case isEmpty:
-				if x.FMessage2 == nil {
-					x.FMessage2 = make([]*MessageRepeated1_Embed1, 0)
-				} else {
-					x.FMessage2 = x.FMessage2[:0]
+				continue LOOP_SCAN
+			}
+			if x.FMessage2 == nil {
+				x.FMessage2 = make([]*MessageRepeated1_Embed1, 0)
+			}
+			i := 0
+			length := len(x.FMessage2)
+		LOOP_LIST_f_message2:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FMessage2 == nil {
-					x.FMessage2 = make([]*MessageRepeated1_Embed1, 0)
+				if isEnd {
+					break LOOP_LIST_f_message2
 				}
-				i := 0
-				length := len(x.FMessage2)
-			LOOP_LIST_f_message2:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *MessageRepeated1_Embed1
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.FMessage2[i]
-						}
-						if vv == nil {
-							vv = new(MessageRepeated1_Embed1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *MessageRepeated1_Embed1
+				initFN := func() interface{} {
 					if i < length {
-						x.FMessage2[i] = vv
-					} else {
-						x.FMessage2 = append(x.FMessage2, vv)
+						vv = x.FMessage2[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_message2
+					if vv == nil {
+						vv = new(MessageRepeated1_Embed1)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FMessage2 = x.FMessage2[:i]
+					x.FMessage2[i] = vv
+				} else {
+					x.FMessage2 = append(x.FMessage2, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FMessage2 = x.FMessage2[:i]
 			}
 		case jsonKey == "f_message3":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FMessage3 = nil
-			case isEmpty:
-				if x.FMessage3 == nil {
-					x.FMessage3 = make([]*MessageRepeated1_Embed1_Embed2, 0)
-				} else {
-					x.FMessage3 = x.FMessage3[:0]
+				continue LOOP_SCAN
+			}
+			if x.FMessage3 == nil {
+				x.FMessage3 = make([]*MessageRepeated1_Embed1_Embed2, 0)
+			}
+			i := 0
+			length := len(x.FMessage3)
+		LOOP_LIST_f_message3:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FMessage3 == nil {
-					x.FMessage3 = make([]*MessageRepeated1_Embed1_Embed2, 0)
+				if isEnd {
+					break LOOP_LIST_f_message3
 				}
-				i := 0
-				length := len(x.FMessage3)
-			LOOP_LIST_f_message3:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *MessageRepeated1_Embed1_Embed2
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.FMessage3[i]
-						}
-						if vv == nil {
-							vv = new(MessageRepeated1_Embed1_Embed2)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *MessageRepeated1_Embed1_Embed2
+				initFN := func() interface{} {
 					if i < length {
-						x.FMessage3[i] = vv
-					} else {
-						x.FMessage3 = append(x.FMessage3, vv)
+						vv = x.FMessage3[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_message3
+					if vv == nil {
+						vv = new(MessageRepeated1_Embed1_Embed2)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FMessage3 = x.FMessage3[:i]
+					x.FMessage3[i] = vv
+				} else {
+					x.FMessage3 = append(x.FMessage3, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FMessage3 = x.FMessage3[:i]
 			}
 		case jsonKey == "f_message4":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FMessage4 = nil
-			case isEmpty:
-				if x.FMessage4 == nil {
-					x.FMessage4 = make([]*pbexternal.Message1, 0)
-				} else {
-					x.FMessage4 = x.FMessage4[:0]
+				continue LOOP_SCAN
+			}
+			if x.FMessage4 == nil {
+				x.FMessage4 = make([]*pbexternal.Message1, 0)
+			}
+			i := 0
+			length := len(x.FMessage4)
+		LOOP_LIST_f_message4:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FMessage4 == nil {
-					x.FMessage4 = make([]*pbexternal.Message1, 0)
+				if isEnd {
+					break LOOP_LIST_f_message4
 				}
-				i := 0
-				length := len(x.FMessage4)
-			LOOP_LIST_f_message4:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *pbexternal.Message1
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.FMessage4[i]
-						}
-						if vv == nil {
-							vv = new(pbexternal.Message1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *pbexternal.Message1
+				initFN := func() interface{} {
 					if i < length {
-						x.FMessage4[i] = vv
-					} else {
-						x.FMessage4 = append(x.FMessage4, vv)
+						vv = x.FMessage4[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_message4
+					if vv == nil {
+						vv = new(pbexternal.Message1)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FMessage4 = x.FMessage4[:i]
+					x.FMessage4[i] = vv
+				} else {
+					x.FMessage4 = append(x.FMessage4, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FMessage4 = x.FMessage4[:i]
 			}
 		case jsonKey == "f_message5":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FMessage5 = nil
-			case isEmpty:
-				if x.FMessage5 == nil {
-					x.FMessage5 = make([]*pbexternal.Message1_Embed1, 0)
-				} else {
-					x.FMessage5 = x.FMessage5[:0]
+				continue LOOP_SCAN
+			}
+			if x.FMessage5 == nil {
+				x.FMessage5 = make([]*pbexternal.Message1_Embed1, 0)
+			}
+			i := 0
+			length := len(x.FMessage5)
+		LOOP_LIST_f_message5:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FMessage5 == nil {
-					x.FMessage5 = make([]*pbexternal.Message1_Embed1, 0)
+				if isEnd {
+					break LOOP_LIST_f_message5
 				}
-				i := 0
-				length := len(x.FMessage5)
-			LOOP_LIST_f_message5:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *pbexternal.Message1_Embed1
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.FMessage5[i]
-						}
-						if vv == nil {
-							vv = new(pbexternal.Message1_Embed1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *pbexternal.Message1_Embed1
+				initFN := func() interface{} {
 					if i < length {
-						x.FMessage5[i] = vv
-					} else {
-						x.FMessage5 = append(x.FMessage5, vv)
+						vv = x.FMessage5[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_message5
+					if vv == nil {
+						vv = new(pbexternal.Message1_Embed1)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FMessage5 = x.FMessage5[:i]
+					x.FMessage5[i] = vv
+				} else {
+					x.FMessage5 = append(x.FMessage5, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FMessage5 = x.FMessage5[:i]
 			}
 		case jsonKey == "f_message6":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FMessage6 = nil
-			case isEmpty:
-				if x.FMessage6 == nil {
-					x.FMessage6 = make([]*pbexternal.Message1_Embed1_Embed2, 0)
-				} else {
-					x.FMessage6 = x.FMessage6[:0]
+				continue LOOP_SCAN
+			}
+			if x.FMessage6 == nil {
+				x.FMessage6 = make([]*pbexternal.Message1_Embed1_Embed2, 0)
+			}
+			i := 0
+			length := len(x.FMessage6)
+		LOOP_LIST_f_message6:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FMessage6 == nil {
-					x.FMessage6 = make([]*pbexternal.Message1_Embed1_Embed2, 0)
+				if isEnd {
+					break LOOP_LIST_f_message6
 				}
-				i := 0
-				length := len(x.FMessage6)
-			LOOP_LIST_f_message6:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *pbexternal.Message1_Embed1_Embed2
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.FMessage6[i]
-						}
-						if vv == nil {
-							vv = new(pbexternal.Message1_Embed1_Embed2)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *pbexternal.Message1_Embed1_Embed2
+				initFN := func() interface{} {
 					if i < length {
-						x.FMessage6[i] = vv
-					} else {
-						x.FMessage6 = append(x.FMessage6, vv)
+						vv = x.FMessage6[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_message6
+					if vv == nil {
+						vv = new(pbexternal.Message1_Embed1_Embed2)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FMessage6 = x.FMessage6[:i]
+					x.FMessage6[i] = vv
+				} else {
+					x.FMessage6 = append(x.FMessage6, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FMessage6 = x.FMessage6[:i]
 			}
 		case jsonKey == "f_message7":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FMessage7 = nil
-			case isEmpty:
-				if x.FMessage7 == nil {
-					x.FMessage7 = make([]*MessageCommon1, 0)
-				} else {
-					x.FMessage7 = x.FMessage7[:0]
+				continue LOOP_SCAN
+			}
+			if x.FMessage7 == nil {
+				x.FMessage7 = make([]*MessageCommon1, 0)
+			}
+			i := 0
+			length := len(x.FMessage7)
+		LOOP_LIST_f_message7:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FMessage7 == nil {
-					x.FMessage7 = make([]*MessageCommon1, 0)
+				if isEnd {
+					break LOOP_LIST_f_message7
 				}
-				i := 0
-				length := len(x.FMessage7)
-			LOOP_LIST_f_message7:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *MessageCommon1
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.FMessage7[i]
-						}
-						if vv == nil {
-							vv = new(MessageCommon1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *MessageCommon1
+				initFN := func() interface{} {
 					if i < length {
-						x.FMessage7[i] = vv
-					} else {
-						x.FMessage7 = append(x.FMessage7, vv)
+						vv = x.FMessage7[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_message7
+					if vv == nil {
+						vv = new(MessageCommon1)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FMessage7 = x.FMessage7[:i]
+					x.FMessage7[i] = vv
+				} else {
+					x.FMessage7 = append(x.FMessage7, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FMessage7 = x.FMessage7[:i]
 			}
 		case jsonKey == "f_message8":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FMessage8 = nil
-			case isEmpty:
-				if x.FMessage8 == nil {
-					x.FMessage8 = make([]*MessageCommon1_Embed1, 0)
-				} else {
-					x.FMessage8 = x.FMessage8[:0]
+				continue LOOP_SCAN
+			}
+			if x.FMessage8 == nil {
+				x.FMessage8 = make([]*MessageCommon1_Embed1, 0)
+			}
+			i := 0
+			length := len(x.FMessage8)
+		LOOP_LIST_f_message8:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FMessage8 == nil {
-					x.FMessage8 = make([]*MessageCommon1_Embed1, 0)
+				if isEnd {
+					break LOOP_LIST_f_message8
 				}
-				i := 0
-				length := len(x.FMessage8)
-			LOOP_LIST_f_message8:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *MessageCommon1_Embed1
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.FMessage8[i]
-						}
-						if vv == nil {
-							vv = new(MessageCommon1_Embed1)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *MessageCommon1_Embed1
+				initFN := func() interface{} {
 					if i < length {
-						x.FMessage8[i] = vv
-					} else {
-						x.FMessage8 = append(x.FMessage8, vv)
+						vv = x.FMessage8[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_message8
+					if vv == nil {
+						vv = new(MessageCommon1_Embed1)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FMessage8 = x.FMessage8[:i]
+					x.FMessage8[i] = vv
+				} else {
+					x.FMessage8 = append(x.FMessage8, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FMessage8 = x.FMessage8[:i]
 			}
 		case jsonKey == "f_message9":
-			var isEmpty bool
-			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
-			switch {
-			case isNULL:
+			if isNULL {
 				x.FMessage9 = nil
-			case isEmpty:
-				if x.FMessage9 == nil {
-					x.FMessage9 = make([]*MessageCommon1_Embed1_Embed2, 0)
-				} else {
-					x.FMessage9 = x.FMessage9[:0]
+				continue LOOP_SCAN
+			}
+			if x.FMessage9 == nil {
+				x.FMessage9 = make([]*MessageCommon1_Embed1_Embed2, 0)
+			}
+			i := 0
+			length := len(x.FMessage9)
+		LOOP_LIST_f_message9:
+			for {
+				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+					return err
 				}
-			default:
-				if x.FMessage9 == nil {
-					x.FMessage9 = make([]*MessageCommon1_Embed1_Embed2, 0)
+				if isEnd {
+					break LOOP_LIST_f_message9
 				}
-				i := 0
-				length := len(x.FMessage9)
-			LOOP_LIST_f_message9:
-				for {
-					if err = decoder.ScanError(); err != nil {
-						return err
-					}
-					var vv *MessageCommon1_Embed1_Embed2
-					initFN := func() interface{} {
-						if i < length {
-							vv = x.FMessage9[i]
-						}
-						if vv == nil {
-							vv = new(MessageCommon1_Embed1_Embed2)
-						}
-						return vv
-					}
-					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
-					if _err != nil {
-						return _err
-					}
+				var vv *MessageCommon1_Embed1_Embed2
+				initFN := func() interface{} {
 					if i < length {
-						x.FMessage9[i] = vv
-					} else {
-						x.FMessage9 = append(x.FMessage9, vv)
+						vv = x.FMessage9[i]
 					}
-					i++
-					if noMore { // After read array value.
-						break LOOP_LIST_f_message9
+					if vv == nil {
+						vv = new(MessageCommon1_Embed1_Embed2)
 					}
+					return vv
+				}
+				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
+				if err != nil {
+					return err
 				}
 				if i < length {
-					// truncate the slice to Consistent with standard library json.
-					x.FMessage9 = x.FMessage9[:i]
+					x.FMessage9[i] = vv
+				} else {
+					x.FMessage9 = append(x.FMessage9, vv)
 				}
-				decoder.ScanNext()
+				i++
+			}
+			if i < length {
+				// truncate the slice to Consistent with standard library json.
+				x.FMessage9 = x.FMessage9[:i]
 			}
 		default:
-			if err = decoder.Discard(); err != nil { // discard unknown field
+			if err = decoder.DiscardValue(jsonKey); err != nil {
 				return err
 			}
 		}
-		if decoder.ReadObjectValueAfter() { // After read object value
-			break LOOP_OBJECT
-		}
-	}
-	// Check error in decoder
-	if err = decoder.ScanError(); err != nil {
-		return err
 	}
 	return nil
 }

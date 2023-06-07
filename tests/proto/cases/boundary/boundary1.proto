@@ -78,6 +78,8 @@ message Complex2 {
   repeated int64 r_int64 = 2 [ (json.field) = {} ];
 
   Level1 level1 = 3 [ (json.field) = {} ];
-}
 
+  repeated Level1 r_level1 = 4 [ (json.field) = {} ];
+  repeated Level1 r_level2 = 5 [ (json.field) = {} ];
+}
 

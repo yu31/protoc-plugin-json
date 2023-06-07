@@ -1,80 +1,95 @@
 package jsondecoder
 
-import (
-	"unsafe"
-)
-
-// readItem read current item value.
-func (dec *Decoder) readItem() []byte {
-	// start index.
-	start := dec.off - 1
-	switch dec.OpCode {
-	case ScanLiteralBegin:
-		dec.RescanLiteral()
-	case ScanArrayBegin, ScanObjectBegin:
-		dec.Skip()
-		dec.ScanNext()
-	default:
-		panic(PhasePanicMsg)
-	}
-	// end index.
-	end := dec.off - 1
-	return dec.data[start:end]
-}
-
-func (dec *Decoder) Discard() error {
-	_ = dec.readItem()
-	return nil
-}
-
-func (dec *Decoder) ReadJSONKey() (key string, stop bool) {
-	// Expected opening charsets(`"`) of string key or closing charsets(`}`)
-	dec.ScanWhile(ScanSkipSpace)
-	if dec.OpCode == ScanObjectEnd {
-		// object closing charset(`}`) - can only happen on first iteration.
-		return "", true
-	}
-	if dec.OpCode != ScanLiteralBegin {
-		// FIXME: return a error?
-		panic(PhasePanicMsg)
-	}
-	// Read the json key.
-	key = dec.readObjectKey()
-	return key, false
-}
-
-// readObjectKey Read key of object or map.
-func (dec *Decoder) readObjectKey() string {
-	item := dec.readItem()
-	bb, ok := unquoteBytes(item)
-	if !ok {
-		// FIXME: return error instead of panic?
-		panic(PhasePanicMsg)
-	}
-
-	// prepare to read object value.
-	// TODO: review it.
-	//dec.ReadObjectValueBefore()
-	if dec.OpCode == ScanSkipSpace {
-		dec.ScanWhile(ScanSkipSpace)
-	}
-	if dec.OpCode != ScanObjectKey {
-		panic(PhasePanicMsg)
-	}
-	dec.ScanWhile(ScanSkipSpace)
-
-	return *(*string)(unsafe.Pointer(&bb))
-}
-func (dec *Decoder) ReadObjectValueAfter() (stop bool) {
-	// After read value, Next token must be , or }.
-	if dec.OpCode == ScanSkipSpace {
-		dec.ScanWhile(ScanSkipSpace)
-	}
-	if dec.OpCode == ScanObjectEnd {
-		return true
-	}
-	if dec.OpCode != ScanObjectValue {
-		panic(PhasePanicMsg)
+func (dec *Decoder) unquoteKey(b []byte) (t []byte, err error) {
+	var ok bool
+	if t, ok = unquoteBytes(b); !ok {
+		err = &SyntaxError{
+			reason: "invalid object key of JSON input",
+			Offset: dec.offset,
+		}
+		return nil, err
 	}
 	return
+}
+
+func (dec *Decoder) BeforeScanJSON() (isNULL bool, err error) {
+	if isNULL, err = dec.beforeReadObject(); err != nil {
+		return
+	}
+	return
+}
+
+func (dec *Decoder) BeforeReadObject(jsonKey string) (isNULL bool, err error) {
+	if isNULL, err = dec.beforeReadObject(); err != nil {
+		return
+	}
+	return
+}
+func (dec *Decoder) BeforeReadArray(jsonKey string) (isNULL bool, err error) {
+	if isNULL, err = dec.beforeReadArray(); err != nil {
+		return
+	}
+	return
+}
+
+func (dec *Decoder) BeforeReadJSONKey() (isEnd bool, err error) {
+	if isEnd, err = dec.beforeReadKey(); err != nil {
+		return
+	}
+	return
+}
+func (dec *Decoder) BeforeReadObjectKey(jsonKey string) (isEnd bool, err error) {
+	if isEnd, err = dec.beforeReadKey(); err != nil {
+		return
+	}
+	if !isEnd {
+		return
+	}
+	if err = dec.scanNext(); err != nil {
+		return false, err
+	}
+	return
+}
+func (dec *Decoder) BeforeReadArrayElem(jsonKey string) (isEnd bool, err error) {
+	if isEnd, err = dec.beforeReadElem(); err != nil {
+		return
+	}
+	if !isEnd {
+		return
+	}
+	if err = dec.scanNext(); err != nil {
+		return false, err
+	}
+	return
+}
+
+// ReadJSONKey get the key of JSON input. the `jsonKey` is unsafe after unmarshal end.
+func (dec *Decoder) ReadJSONKey() (jsonKey string, err error) {
+	var key []byte
+	if key, err = dec.readObjectKey(); err != nil {
+		return
+	}
+	if jsonKey, err = bytesToStringUnsafe(key); err != nil {
+		return
+	}
+	return
+}
+
+// ReadObjectKey get the key of JSON input. the `objKey` is unsafe after unmarshal end.
+func (dec *Decoder) ReadObjectKey(jsonKey string) (objKey string, err error) {
+	var key []byte
+	if key, err = dec.readObjectKey(); err != nil {
+		return
+	}
+	if objKey, err = bytesToStringUnsafe(key); err != nil {
+		return
+	}
+	return
+}
+
+func (dec *Decoder) DiscardValue(jsonKey string) (err error) {
+	if _, err = dec.readObjectValue(); err != nil {
+		return
+	}
+	return err
 }
