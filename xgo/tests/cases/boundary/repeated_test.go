@@ -10,15 +10,15 @@ import (
 	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbboundary"
 )
 
-type RepeatedElem1 pbboundary.RepeatedElem1
+type Repeated1 pbboundary.Repeated1
 
-func Test_RepeatedElem1_StdJSON(t *testing.T) {
+func Test_Repeated1_StdJSON(t *testing.T) {
 	var err error
 
 	// 1. The field is not empty and the content is null in JSON.
 	t.Run("case1", func(t *testing.T) {
 		bb := []byte(`       {     "r_string1"   :       null     }     `)
-		data := &RepeatedElem1{
+		data := &Repeated1{
 			RString1: []string{"1", "2", "3"},
 		}
 		err = json.Unmarshal(bb, data)
@@ -28,7 +28,7 @@ func Test_RepeatedElem1_StdJSON(t *testing.T) {
 	// 2. The field is not empty and the content is empty in JSON.
 	t.Run("case2", func(t *testing.T) {
 		bb := []byte(`       {    "r_string1"    : [      ]    }   `)
-		data := &RepeatedElem1{
+		data := &Repeated1{
 			RString1: []string{"1", "2", "3"},
 		}
 		p1 := reflect.ValueOf(data.RString1).Pointer()
@@ -49,7 +49,7 @@ func Test_RepeatedElem1_StdJSON(t *testing.T) {
 	// 3. The length of field is less than the content in JSON.
 	t.Run("case3", func(t *testing.T) {
 		bb := []byte(`    {    "r_string1"        :  ["4",  "5",  "6",  "7"  ]    }  `)
-		data := &RepeatedElem1{
+		data := &Repeated1{
 			RString1: []string{"1", "2", "3"},
 		}
 		p1 := reflect.ValueOf(data.RString1).Pointer()
@@ -68,7 +68,7 @@ func Test_RepeatedElem1_StdJSON(t *testing.T) {
 	// 4. The length of field is greater than the content in JSON.
 	t.Run("case4", func(t *testing.T) {
 		bb := []byte(`    {    "r_string1":  ["4",  "5"   ]    }  `)
-		data := &RepeatedElem1{
+		data := &Repeated1{
 			RString1: []string{"1", "2", "3"},
 		}
 		p1 := reflect.ValueOf(data.RString1).Pointer()
@@ -90,13 +90,13 @@ func Test_RepeatedElem1_StdJSON(t *testing.T) {
 	})
 }
 
-func Test_RepeatedElem1_Plugin(t *testing.T) {
+func Test_Repeated1_Plugin(t *testing.T) {
 	var err error
 
 	// 1. The field is not empty and the content is null in JSON.
 	t.Run("case1", func(t *testing.T) {
 		bb := []byte(`       {     "r_string1"   :       null     }     `)
-		data := &pbboundary.RepeatedElem1{
+		data := &pbboundary.Repeated1{
 			RString1: []string{"1", "2", "3"},
 		}
 		err = data.UnmarshalJSON(bb)
@@ -106,7 +106,7 @@ func Test_RepeatedElem1_Plugin(t *testing.T) {
 	// 2. The field is not empty and the content is empty in JSON.
 	t.Run("case2", func(t *testing.T) {
 		bb := []byte(`       {    "r_string1"    : [      ]    }   `)
-		data := &pbboundary.RepeatedElem1{
+		data := &pbboundary.Repeated1{
 			RString1: []string{"1", "2", "3"},
 		}
 		p1 := reflect.ValueOf(data.RString1).Pointer()
@@ -129,7 +129,7 @@ func Test_RepeatedElem1_Plugin(t *testing.T) {
 	//3. The length of field is less than the content in JSON.
 	t.Run("case3", func(t *testing.T) {
 		bb := []byte(`    {    "r_string1"     :  ["4",  "5",  "6",  "7"  ]    }  `)
-		data := &pbboundary.RepeatedElem1{
+		data := &pbboundary.Repeated1{
 			RString1: []string{"1", "2", "3"},
 		}
 		p1 := reflect.ValueOf(data.RString1).Pointer()
@@ -148,7 +148,7 @@ func Test_RepeatedElem1_Plugin(t *testing.T) {
 	//4. The length of field is greater than the content in JSON.
 	t.Run("case4", func(t *testing.T) {
 		bb := []byte(`    {    "r_string1":  ["4",  "5"   ]    }  `)
-		data := &pbboundary.RepeatedElem1{
+		data := &pbboundary.Repeated1{
 			RString1: []string{"1", "2", "3"},
 		}
 		p1 := reflect.ValueOf(data.RString1).Pointer()

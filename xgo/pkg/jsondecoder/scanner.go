@@ -154,8 +154,8 @@ func (s *scanner) popParseState() {
 	}
 }
 
-// stateBeginValueOrEmpty is the state after reading `[`.
-func stateBeginValueOrEmpty(s *scanner, c byte) OpCode {
+// stateBeginElementOrEmpty is the state after reading `[`.
+func stateBeginElementOrEmpty(s *scanner, c byte) OpCode {
 	if isSpace(c) {
 		return ScanSkipSpace
 	}
@@ -175,7 +175,7 @@ func stateBeginValue(s *scanner, c byte) OpCode {
 		s.step = stateBeginStringOrEmpty
 		return s.pushParseState(c, parseObjectKey, ScanObjectBegin)
 	case '[':
-		s.step = stateBeginValueOrEmpty
+		s.step = stateBeginElementOrEmpty
 		return s.pushParseState(c, parseArrayElem, ScanArrayBegin)
 	case '"':
 		s.step = stateInString

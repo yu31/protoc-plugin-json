@@ -12,8 +12,93 @@ import (
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
 )
 
-// MarshalJSON implements interface json.Marshaler for proto message RepeatedElem1 in file tests/proto/cases/boundary/boundary1.proto
-func (x *RepeatedElem1) MarshalJSON() ([]byte, error) {
+// MarshalJSON implements interface json.Marshaler for proto message Message1 in file tests/proto/cases/boundary/boundary1.proto
+func (x *Message1) MarshalJSON() ([]byte, error) {
+	if x == nil {
+		return []byte("null"), nil
+	}
+	var err error
+	encoder := jsonencoder.New(68)
+
+	// Add begin JSON identifier
+	encoder.AppendObjectBegin()
+
+	encoder.AppendJSONKey("f_string1")
+	encoder.AppendValueString(x.FString1)
+	encoder.AppendJSONKey("f_string2")
+	encoder.AppendValueString(x.FString2)
+	encoder.AppendJSONKey("f_string3")
+	encoder.AppendValueString(x.FString3)
+
+	// Add end JSON identifier
+	encoder.AppendObjectEnd()
+	return encoder.Bytes(), err
+}
+
+// UnmarshalJSON implements json.Unmarshaler for proto message Message1 in file tests/proto/cases/boundary/boundary1.proto
+func (x *Message1) UnmarshalJSON(b []byte) error {
+	if x == nil {
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Message1) is nil")
+	}
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
+		return err
+	}
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
+	}
+	// Loop to scan object.
+LOOP_OBJECT:
+	for {
+		if err = decoder.ScanError(); err != nil {
+			return err
+		}
+		jsonKey, stop := decoder.ReadJSONKey()
+		if stop {
+			break LOOP_OBJECT
+		}
+		switch { // match the JSON KEY
+		case jsonKey == "f_string1":
+			vv, _err := decoder.ReadValueString(jsonKey)
+			if _err != nil {
+				return _err
+			}
+			x.FString1 = vv
+		case jsonKey == "f_string2":
+			vv, _err := decoder.ReadValueString(jsonKey)
+			if _err != nil {
+				return _err
+			}
+			x.FString2 = vv
+		case jsonKey == "f_string3":
+			vv, _err := decoder.ReadValueString(jsonKey)
+			if _err != nil {
+				return _err
+			}
+			x.FString3 = vv
+		default:
+			if err = decoder.Discard(); err != nil { // discard unknown field
+				return err
+			}
+		}
+		if decoder.ReadObjectValueAfter() { // After read object value
+			break LOOP_OBJECT
+		}
+	}
+	// Check error in decoder
+	if err = decoder.ScanError(); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements interface json.Marshaler for proto message Repeated1 in file tests/proto/cases/boundary/boundary1.proto
+func (x *Repeated1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
@@ -39,10 +124,10 @@ func (x *RepeatedElem1) MarshalJSON() ([]byte, error) {
 	return encoder.Bytes(), err
 }
 
-// UnmarshalJSON implements json.Unmarshaler for proto message RepeatedElem1 in file tests/proto/cases/boundary/boundary1.proto
-func (x *RepeatedElem1) UnmarshalJSON(b []byte) error {
+// UnmarshalJSON implements json.Unmarshaler for proto message Repeated1 in file tests/proto/cases/boundary/boundary1.proto
+func (x *Repeated1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*RepeatedElem1) is nil")
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Repeated1) is nil")
 	}
 
 	var (
@@ -62,14 +147,11 @@ LOOP_OBJECT:
 		if err = decoder.ScanError(); err != nil {
 			return err
 		}
-		if decoder.ReadObjectKeyBefore() { // before read object key
+		jsonKey, stop := decoder.ReadJSONKey()
+		if stop {
 			break LOOP_OBJECT
 		}
-		// Read JSON key.
-		jsonKey := decoder.ReadObjectKey()
-		decoder.ReadObjectValueBefore() // Before read object value
-		// match field with JSON key.
-		switch {
+		switch { // match the JSON KEY
 		case jsonKey == "r_string1":
 			var isEmpty bool
 			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
@@ -95,7 +177,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemString(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -105,7 +187,7 @@ LOOP_OBJECT:
 						x.RString1 = append(x.RString1, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_string1
 					}
 				}
@@ -116,7 +198,9 @@ LOOP_OBJECT:
 				decoder.ScanNext()
 			}
 		default:
-			_ = decoder.ReadItem() // discard unknown field
+			if err = decoder.Discard(); err != nil { // discard unknown field
+				return err
+			}
 		}
 		if decoder.ReadObjectValueAfter() { // After read object value
 			break LOOP_OBJECT
@@ -129,8 +213,8 @@ LOOP_OBJECT:
 	return nil
 }
 
-// MarshalJSON implements interface json.Marshaler for proto message MapKV1 in file tests/proto/cases/boundary/boundary1.proto
-func (x *MapKV1) MarshalJSON() ([]byte, error) {
+// MarshalJSON implements interface json.Marshaler for proto message Map1 in file tests/proto/cases/boundary/boundary1.proto
+func (x *Map1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
@@ -157,10 +241,10 @@ func (x *MapKV1) MarshalJSON() ([]byte, error) {
 	return encoder.Bytes(), err
 }
 
-// UnmarshalJSON implements json.Unmarshaler for proto message MapKV1 in file tests/proto/cases/boundary/boundary1.proto
-func (x *MapKV1) UnmarshalJSON(b []byte) error {
+// UnmarshalJSON implements json.Unmarshaler for proto message Map1 in file tests/proto/cases/boundary/boundary1.proto
+func (x *Map1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*MapKV1) is nil")
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Map1) is nil")
 	}
 
 	var (
@@ -180,14 +264,11 @@ LOOP_OBJECT:
 		if err = decoder.ScanError(); err != nil {
 			return err
 		}
-		if decoder.ReadObjectKeyBefore() { // before read object key
+		jsonKey, stop := decoder.ReadJSONKey()
+		if stop {
 			break LOOP_OBJECT
 		}
-		// Read JSON key.
-		jsonKey := decoder.ReadObjectKey()
-		decoder.ReadObjectValueBefore() // Before read object value
-		// match field with JSON key.
-		switch {
+		switch { // match the JSON KEY
 		case jsonKey == "m_string1":
 			var isEmpty bool
 			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
@@ -211,19 +292,218 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueString(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MString1[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_string1
 					}
 				}
 				decoder.ScanNext()
 			}
 		default:
-			_ = decoder.ReadItem() // discard unknown field
+			if err = decoder.Discard(); err != nil { // discard unknown field
+				return err
+			}
+		}
+		if decoder.ReadObjectValueAfter() { // After read object value
+			break LOOP_OBJECT
+		}
+	}
+	// Check error in decoder
+	if err = decoder.ScanError(); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements interface json.Marshaler for proto message Complex1 in file tests/proto/cases/boundary/boundary1.proto
+func (x *Complex1) MarshalJSON() ([]byte, error) {
+	if x == nil {
+		return []byte("null"), nil
+	}
+	var err error
+	encoder := jsonencoder.New(100)
+
+	// Add begin JSON identifier
+	encoder.AppendObjectBegin()
+
+	encoder.AppendJSONKey("f_int32")
+	encoder.AppendValueInt32(x.FInt32)
+	encoder.AppendJSONKey("r_int64")
+	if x.RInt64 != nil {
+		encoder.AppendArrayBegin()
+		for _, ri := range x.RInt64 {
+			encoder.AppendValueInt64(ri)
+		}
+		encoder.AppendArrayEnd()
+	} else {
+		encoder.AppendValueNULL()
+	}
+	encoder.AppendJSONKey("f_message1")
+	err = encoder.AppendValueInterface(x.FMessage1)
+	if err != nil {
+		return nil, err
+	}
+	encoder.AppendJSONKey("m_int32")
+	if x.MInt32 != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.MInt32 {
+			encoder.AppendMapKeyString(mk)
+			encoder.AppendValueInt32(mv)
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendValueNULL()
+	}
+	encoder.AppendJSONKey("f_int64")
+	encoder.AppendPointerInt64(x.FInt64)
+
+	// Add end JSON identifier
+	encoder.AppendObjectEnd()
+	return encoder.Bytes(), err
+}
+
+// UnmarshalJSON implements json.Unmarshaler for proto message Complex1 in file tests/proto/cases/boundary/boundary1.proto
+func (x *Complex1) UnmarshalJSON(b []byte) error {
+	if x == nil {
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Complex1) is nil")
+	}
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
+		return err
+	}
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
+	}
+	// Loop to scan object.
+LOOP_OBJECT:
+	for {
+		if err = decoder.ScanError(); err != nil {
+			return err
+		}
+		jsonKey, stop := decoder.ReadJSONKey()
+		if stop {
+			break LOOP_OBJECT
+		}
+		switch { // match the JSON KEY
+		case jsonKey == "f_int32":
+			vv, _err := decoder.ReadValueInt32(jsonKey)
+			if _err != nil {
+				return _err
+			}
+			x.FInt32 = vv
+		case jsonKey == "r_int64":
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.RInt64 = nil
+			case isEmpty:
+				if x.RInt64 == nil {
+					x.RInt64 = make([]int64, 0)
+				} else {
+					x.RInt64 = x.RInt64[:0]
+				}
+			default:
+				if x.RInt64 == nil {
+					x.RInt64 = make([]int64, 0)
+				}
+				i := 0
+				length := len(x.RInt64)
+			LOOP_LIST_r_int64:
+				for {
+					if err = decoder.ScanError(); err != nil {
+						return err
+					}
+					vv, noMore, _err := decoder.ReadArrayElemInt64(jsonKey)
+					if _err != nil {
+						return _err
+					}
+					if i < length {
+						x.RInt64[i] = vv
+					} else {
+						x.RInt64 = append(x.RInt64, vv)
+					}
+					i++
+					if noMore { // After read array value.
+						break LOOP_LIST_r_int64
+					}
+				}
+				if i < length {
+					// truncate the slice to Consistent with standard library json.
+					x.RInt64 = x.RInt64[:i]
+				}
+				decoder.ScanNext()
+			}
+		case jsonKey == "f_message1":
+			var vv *Message1
+			initFN := func() interface{} {
+				if x.FMessage1 != nil {
+					vv = x.FMessage1
+				} else {
+					vv = new(Message1)
+				}
+				return vv
+			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
+			if _err != nil {
+				return _err
+			}
+			x.FMessage1 = vv
+		case jsonKey == "m_int32":
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.MInt32 = nil
+			case isEmpty:
+				// do nothing
+			default:
+				if x.MInt32 == nil {
+					x.MInt32 = make(map[string]int32)
+				}
+			LOOP_MAP_m_int32:
+				for {
+					if err = decoder.ScanError(); err != nil {
+						return err
+					}
+					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
+					if _err != nil {
+						return _err
+					}
+					vv, noMore, _err := decoder.ReadMapValueInt32(jsonKey)
+					if _err != nil {
+						return _err
+					}
+					x.MInt32[mapKey] = vv
+					if noMore {
+						break LOOP_MAP_m_int32
+					}
+				}
+				decoder.ScanNext()
+			}
+		case jsonKey == "f_int64":
+			vv, _err := decoder.ReadPointerInt64(jsonKey)
+			if _err != nil {
+				return _err
+			}
+			x.FInt64 = vv
+		default:
+			if err = decoder.Discard(); err != nil { // discard unknown field
+				return err
+			}
 		}
 		if decoder.ReadObjectValueAfter() { // After read object value
 			break LOOP_OBJECT

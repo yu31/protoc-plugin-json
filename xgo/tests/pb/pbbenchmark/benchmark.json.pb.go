@@ -58,14 +58,11 @@ LOOP_OBJECT:
 		if err = decoder.ScanError(); err != nil {
 			return err
 		}
-		if decoder.ReadObjectKeyBefore() { // before read object key
+		jsonKey, stop := decoder.ReadJSONKey()
+		if stop {
 			break LOOP_OBJECT
 		}
-		// Read JSON key.
-		jsonKey := decoder.ReadObjectKey()
-		decoder.ReadObjectValueBefore() // Before read object value
-		// match field with JSON key.
-		switch {
+		switch { // match the JSON KEY
 		case jsonKey == "f_string1":
 			vv, _err := decoder.ReadValueString(jsonKey)
 			if _err != nil {
@@ -85,7 +82,9 @@ LOOP_OBJECT:
 			}
 			x.FString3 = vv
 		default:
-			_ = decoder.ReadItem() // discard unknown field
+			if err = decoder.Discard(); err != nil { // discard unknown field
+				return err
+			}
 		}
 		if decoder.ReadObjectValueAfter() { // After read object value
 			break LOOP_OBJECT
@@ -186,14 +185,11 @@ LOOP_OBJECT:
 		if err = decoder.ScanError(); err != nil {
 			return err
 		}
-		if decoder.ReadObjectKeyBefore() { // before read object key
+		jsonKey, stop := decoder.ReadJSONKey()
+		if stop {
 			break LOOP_OBJECT
 		}
-		// Read JSON key.
-		jsonKey := decoder.ReadObjectKey()
-		decoder.ReadObjectValueBefore() // Before read object value
-		// match field with JSON key.
-		switch {
+		switch { // match the JSON KEY
 		case jsonKey == "f_string1":
 			vv, _err := decoder.ReadValueString(jsonKey)
 			if _err != nil {
@@ -339,7 +335,9 @@ LOOP_OBJECT:
 			}
 			x.FBool3 = vv
 		default:
-			_ = decoder.ReadItem() // discard unknown field
+			if err = decoder.Discard(); err != nil { // discard unknown field
+				return err
+			}
 		}
 		if decoder.ReadObjectValueAfter() { // After read object value
 			break LOOP_OBJECT
@@ -1529,14 +1527,11 @@ LOOP_OBJECT:
 		if err = decoder.ScanError(); err != nil {
 			return err
 		}
-		if decoder.ReadObjectKeyBefore() { // before read object key
+		jsonKey, stop := decoder.ReadJSONKey()
+		if stop {
 			break LOOP_OBJECT
 		}
-		// Read JSON key.
-		jsonKey := decoder.ReadObjectKey()
-		decoder.ReadObjectValueBefore() // Before read object value
-		// match field with JSON key.
-		switch {
+		switch { // match the JSON KEY
 		case jsonKey == "f_string1":
 			vv, _err := decoder.ReadValueString(jsonKey)
 			if _err != nil {
@@ -2222,7 +2217,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemString(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2232,7 +2227,7 @@ LOOP_OBJECT:
 						x.RString1 = append(x.RString1, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_string1
 					}
 				}
@@ -2267,7 +2262,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemString(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2277,7 +2272,7 @@ LOOP_OBJECT:
 						x.RString2 = append(x.RString2, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_string2
 					}
 				}
@@ -2312,7 +2307,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemString(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2322,7 +2317,7 @@ LOOP_OBJECT:
 						x.RString3 = append(x.RString3, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_string3
 					}
 				}
@@ -2357,7 +2352,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemString(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2367,7 +2362,7 @@ LOOP_OBJECT:
 						x.RString4 = append(x.RString4, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_string4
 					}
 				}
@@ -2402,7 +2397,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemString(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2412,7 +2407,7 @@ LOOP_OBJECT:
 						x.RString5 = append(x.RString5, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_string5
 					}
 				}
@@ -2447,7 +2442,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemString(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2457,7 +2452,7 @@ LOOP_OBJECT:
 						x.RString6 = append(x.RString6, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_string6
 					}
 				}
@@ -2492,7 +2487,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemString(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2502,7 +2497,7 @@ LOOP_OBJECT:
 						x.RString7 = append(x.RString7, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_string7
 					}
 				}
@@ -2537,7 +2532,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemString(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2547,7 +2542,7 @@ LOOP_OBJECT:
 						x.RString8 = append(x.RString8, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_string8
 					}
 				}
@@ -2582,7 +2577,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemString(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2592,7 +2587,7 @@ LOOP_OBJECT:
 						x.RString9 = append(x.RString9, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_string9
 					}
 				}
@@ -2627,7 +2622,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemInt32(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemInt32(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2637,7 +2632,7 @@ LOOP_OBJECT:
 						x.RInt32 = append(x.RInt32, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_int32
 					}
 				}
@@ -2672,7 +2667,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemInt64(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemInt64(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2682,7 +2677,7 @@ LOOP_OBJECT:
 						x.RInt64 = append(x.RInt64, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_int64
 					}
 				}
@@ -2717,7 +2712,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemUint32(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemUint32(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2727,7 +2722,7 @@ LOOP_OBJECT:
 						x.RUint32 = append(x.RUint32, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_uint32
 					}
 				}
@@ -2762,7 +2757,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemUint64(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemUint64(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2772,7 +2767,7 @@ LOOP_OBJECT:
 						x.RUint64 = append(x.RUint64, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_uint64
 					}
 				}
@@ -2807,7 +2802,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemInt32(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemInt32(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2817,7 +2812,7 @@ LOOP_OBJECT:
 						x.RSint32 = append(x.RSint32, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_sint32
 					}
 				}
@@ -2852,7 +2847,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemInt64(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemInt64(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2862,7 +2857,7 @@ LOOP_OBJECT:
 						x.RSint64 = append(x.RSint64, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_sint64
 					}
 				}
@@ -2897,7 +2892,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemInt32(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemInt32(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2907,7 +2902,7 @@ LOOP_OBJECT:
 						x.RSfixed32 = append(x.RSfixed32, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_sfixed32
 					}
 				}
@@ -2942,7 +2937,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemInt64(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemInt64(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2952,7 +2947,7 @@ LOOP_OBJECT:
 						x.RSfixed64 = append(x.RSfixed64, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_sfixed64
 					}
 				}
@@ -2987,7 +2982,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemUint32(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemUint32(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -2997,7 +2992,7 @@ LOOP_OBJECT:
 						x.RFixed32 = append(x.RFixed32, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_fixed32
 					}
 				}
@@ -3032,7 +3027,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemUint64(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemUint64(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -3042,7 +3037,7 @@ LOOP_OBJECT:
 						x.RFixed64 = append(x.RFixed64, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_fixed64
 					}
 				}
@@ -3077,7 +3072,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemFloat32(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemFloat32(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -3087,7 +3082,7 @@ LOOP_OBJECT:
 						x.RFloat = append(x.RFloat, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_float
 					}
 				}
@@ -3122,7 +3117,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemFloat64(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemFloat64(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -3132,7 +3127,7 @@ LOOP_OBJECT:
 						x.RDouble = append(x.RDouble, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_double
 					}
 				}
@@ -3167,7 +3162,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemBool(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemBool(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -3177,7 +3172,7 @@ LOOP_OBJECT:
 						x.RBool1 = append(x.RBool1, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_bool1
 					}
 				}
@@ -3212,7 +3207,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemBool(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemBool(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -3222,7 +3217,7 @@ LOOP_OBJECT:
 						x.RBool2 = append(x.RBool2, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_bool2
 					}
 				}
@@ -3257,7 +3252,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemBool(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemBool(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -3267,7 +3262,7 @@ LOOP_OBJECT:
 						x.RBool3 = append(x.RBool3, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_bool3
 					}
 				}
@@ -3302,7 +3297,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemBytes(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemBytes(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -3312,7 +3307,7 @@ LOOP_OBJECT:
 						x.RBytes1 = append(x.RBytes1, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_bytes1
 					}
 				}
@@ -3347,7 +3342,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemBytes(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemBytes(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -3357,7 +3352,7 @@ LOOP_OBJECT:
 						x.RBytes2 = append(x.RBytes2, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_bytes2
 					}
 				}
@@ -3392,7 +3387,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					vv, _err := decoder.ReadArrayElemBytes(jsonKey)
+					vv, noMore, _err := decoder.ReadArrayElemBytes(jsonKey)
 					if _err != nil {
 						return _err
 					}
@@ -3402,7 +3397,7 @@ LOOP_OBJECT:
 						x.RBytes3 = append(x.RBytes3, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_bytes3
 					}
 				}
@@ -3437,7 +3432,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					v1, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
+					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
 					vv := Enum1(v1)
 					if _err != nil {
 						return _err
@@ -3448,7 +3443,7 @@ LOOP_OBJECT:
 						x.REnum1 = append(x.REnum1, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_enum1
 					}
 				}
@@ -3483,7 +3478,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					v1, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
+					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
 					vv := Enum1(v1)
 					if _err != nil {
 						return _err
@@ -3494,7 +3489,7 @@ LOOP_OBJECT:
 						x.REnum2 = append(x.REnum2, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_enum2
 					}
 				}
@@ -3529,7 +3524,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					v1, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
+					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
 					vv := Enum1(v1)
 					if _err != nil {
 						return _err
@@ -3540,7 +3535,7 @@ LOOP_OBJECT:
 						x.REnum3 = append(x.REnum3, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_enum3
 					}
 				}
@@ -3575,7 +3570,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					v1, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
+					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
 					vv := Enum1(v1)
 					if _err != nil {
 						return _err
@@ -3586,7 +3581,7 @@ LOOP_OBJECT:
 						x.REnum4 = append(x.REnum4, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_enum4
 					}
 				}
@@ -3621,7 +3616,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					v1, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
+					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
 					vv := Enum1(v1)
 					if _err != nil {
 						return _err
@@ -3632,7 +3627,7 @@ LOOP_OBJECT:
 						x.REnum5 = append(x.REnum5, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_enum5
 					}
 				}
@@ -3667,7 +3662,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					v1, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
+					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
 					vv := Enum1(v1)
 					if _err != nil {
 						return _err
@@ -3678,7 +3673,7 @@ LOOP_OBJECT:
 						x.REnum6 = append(x.REnum6, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_enum6
 					}
 				}
@@ -3713,7 +3708,7 @@ LOOP_OBJECT:
 					if err = decoder.ScanError(); err != nil {
 						return err
 					}
-					v1, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
+					v1, noMore, _err := decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
 					vv := Enum1(v1)
 					if _err != nil {
 						return _err
@@ -3724,7 +3719,7 @@ LOOP_OBJECT:
 						x.REnum7 = append(x.REnum7, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_enum7
 					}
 				}
@@ -3769,7 +3764,7 @@ LOOP_OBJECT:
 						}
 						return vv
 					}
-					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
+					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -3779,7 +3774,7 @@ LOOP_OBJECT:
 						x.RMessage1 = append(x.RMessage1, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_message1
 					}
 				}
@@ -3824,7 +3819,7 @@ LOOP_OBJECT:
 						}
 						return vv
 					}
-					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
+					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -3834,7 +3829,7 @@ LOOP_OBJECT:
 						x.RMessage2 = append(x.RMessage2, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_message2
 					}
 				}
@@ -3879,7 +3874,7 @@ LOOP_OBJECT:
 						}
 						return vv
 					}
-					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
+					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -3889,7 +3884,7 @@ LOOP_OBJECT:
 						x.RMessage3 = append(x.RMessage3, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_message3
 					}
 				}
@@ -3934,7 +3929,7 @@ LOOP_OBJECT:
 						}
 						return vv
 					}
-					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
+					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -3944,7 +3939,7 @@ LOOP_OBJECT:
 						x.RMessage4 = append(x.RMessage4, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_message4
 					}
 				}
@@ -3989,7 +3984,7 @@ LOOP_OBJECT:
 						}
 						return vv
 					}
-					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
+					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -3999,7 +3994,7 @@ LOOP_OBJECT:
 						x.RMessage5 = append(x.RMessage5, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_message5
 					}
 				}
@@ -4044,7 +4039,7 @@ LOOP_OBJECT:
 						}
 						return vv
 					}
-					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
+					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -4054,7 +4049,7 @@ LOOP_OBJECT:
 						x.RMessage6 = append(x.RMessage6, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_message6
 					}
 				}
@@ -4099,7 +4094,7 @@ LOOP_OBJECT:
 						}
 						return vv
 					}
-					_err := decoder.ReadArrayElemInterface(jsonKey, initFN)
+					noMore, _err := decoder.ReadArrayElemInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
@@ -4109,7 +4104,7 @@ LOOP_OBJECT:
 						x.RMessage7 = append(x.RMessage7, vv)
 					}
 					i++
-					if decoder.ReadArrayElemAfter() { // After read array value.
+					if noMore { // After read array value.
 						break LOOP_LIST_r_message7
 					}
 				}
@@ -4142,12 +4137,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueString(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MString1[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_string1
 					}
 				}
@@ -4176,12 +4171,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueString(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MString2[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_string2
 					}
 				}
@@ -4210,12 +4205,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueString(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MString3[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_string3
 					}
 				}
@@ -4244,12 +4239,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueString(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MString4[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_string4
 					}
 				}
@@ -4278,12 +4273,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueString(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MString5[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_string5
 					}
 				}
@@ -4312,12 +4307,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueString(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MString6[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_string6
 					}
 				}
@@ -4346,12 +4341,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueString(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MString7[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_string7
 					}
 				}
@@ -4380,12 +4375,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueString(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MString8[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_string8
 					}
 				}
@@ -4414,12 +4409,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueString(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueString(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MString9[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_string9
 					}
 				}
@@ -4448,12 +4443,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueInt32(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueInt32(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MInt32[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_int32
 					}
 				}
@@ -4482,12 +4477,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueInt64(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueInt64(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MInt64[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_int64
 					}
 				}
@@ -4516,12 +4511,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueUint32(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueUint32(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MUint32[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_uint32
 					}
 				}
@@ -4550,12 +4545,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueUint64(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueUint64(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MUint64[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_uint64
 					}
 				}
@@ -4584,12 +4579,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueInt32(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueInt32(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MSint32[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_sint32
 					}
 				}
@@ -4618,12 +4613,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueInt64(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueInt64(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MSint64[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_sint64
 					}
 				}
@@ -4652,12 +4647,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueInt32(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueInt32(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MSfixed32[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_sfixed32
 					}
 				}
@@ -4686,12 +4681,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueInt64(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueInt64(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MSfixed64[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_sfixed64
 					}
 				}
@@ -4720,12 +4715,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueUint32(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueUint32(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MFixed32[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_fixed32
 					}
 				}
@@ -4754,12 +4749,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueUint64(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueUint64(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MFixed64[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_fixed64
 					}
 				}
@@ -4788,12 +4783,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueFloat32(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueFloat32(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MFloat[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_float
 					}
 				}
@@ -4822,12 +4817,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueFloat64(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueFloat64(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MDouble[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_double
 					}
 				}
@@ -4856,12 +4851,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueBool(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueBool(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MBool1[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_bool1
 					}
 				}
@@ -4890,12 +4885,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueBool(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueBool(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MBool2[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_bool2
 					}
 				}
@@ -4924,12 +4919,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueBool(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueBool(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MBool3[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_bool3
 					}
 				}
@@ -4958,12 +4953,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueBytes(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueBytes(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MBytes1[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_bytes1
 					}
 				}
@@ -4992,12 +4987,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueBytes(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueBytes(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MBytes2[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_bytes2
 					}
 				}
@@ -5026,12 +5021,12 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					vv, _err := decoder.ReadMapValueBytes(jsonKey)
+					vv, noMore, _err := decoder.ReadMapValueBytes(jsonKey)
 					if _err != nil {
 						return _err
 					}
 					x.MBytes3[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_bytes3
 					}
 				}
@@ -5060,13 +5055,13 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					v1, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
+					v1, noMore, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
 					vv := Enum1(v1)
 					if _err != nil {
 						return _err
 					}
 					x.MEnum1[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_enum1
 					}
 				}
@@ -5095,13 +5090,13 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					v1, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
+					v1, noMore, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
 					vv := Enum1(v1)
 					if _err != nil {
 						return _err
 					}
 					x.MEnum2[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_enum2
 					}
 				}
@@ -5130,13 +5125,13 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					v1, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
+					v1, noMore, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
 					vv := Enum1(v1)
 					if _err != nil {
 						return _err
 					}
 					x.MEnum3[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_enum3
 					}
 				}
@@ -5165,13 +5160,13 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					v1, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
+					v1, noMore, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
 					vv := Enum1(v1)
 					if _err != nil {
 						return _err
 					}
 					x.MEnum4[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_enum4
 					}
 				}
@@ -5200,13 +5195,13 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					v1, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
+					v1, noMore, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
 					vv := Enum1(v1)
 					if _err != nil {
 						return _err
 					}
 					x.MEnum5[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_enum5
 					}
 				}
@@ -5235,13 +5230,13 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					v1, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
+					v1, noMore, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
 					vv := Enum1(v1)
 					if _err != nil {
 						return _err
 					}
 					x.MEnum6[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_enum6
 					}
 				}
@@ -5270,13 +5265,13 @@ LOOP_OBJECT:
 					if _err != nil {
 						return _err
 					}
-					v1, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
+					v1, noMore, _err := decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
 					vv := Enum1(v1)
 					if _err != nil {
 						return _err
 					}
 					x.MEnum7[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_enum7
 					}
 				}
@@ -5313,12 +5308,12 @@ LOOP_OBJECT:
 						}
 						return vv
 					}
-					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
+					noMore, _err := decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.MMessage1[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_message1
 					}
 				}
@@ -5355,12 +5350,12 @@ LOOP_OBJECT:
 						}
 						return vv
 					}
-					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
+					noMore, _err := decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.MMessage2[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_message2
 					}
 				}
@@ -5397,12 +5392,12 @@ LOOP_OBJECT:
 						}
 						return vv
 					}
-					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
+					noMore, _err := decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.MMessage3[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_message3
 					}
 				}
@@ -5439,12 +5434,12 @@ LOOP_OBJECT:
 						}
 						return vv
 					}
-					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
+					noMore, _err := decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.MMessage4[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_message4
 					}
 				}
@@ -5481,12 +5476,12 @@ LOOP_OBJECT:
 						}
 						return vv
 					}
-					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
+					noMore, _err := decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.MMessage5[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_message5
 					}
 				}
@@ -5523,12 +5518,12 @@ LOOP_OBJECT:
 						}
 						return vv
 					}
-					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
+					noMore, _err := decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.MMessage6[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_message6
 					}
 				}
@@ -5565,19 +5560,21 @@ LOOP_OBJECT:
 						}
 						return vv
 					}
-					_err = decoder.ReadMapValueInterface(jsonKey, initFN)
+					noMore, _err := decoder.ReadMapValueInterface(jsonKey, initFN)
 					if _err != nil {
 						return _err
 					}
 					x.MMessage7[mapKey] = vv
-					if decoder.ReadMapValueAfter() { // After read map value
+					if noMore {
 						break LOOP_MAP_m_message7
 					}
 				}
 				decoder.ScanNext()
 			}
 		default:
-			_ = decoder.ReadItem() // discard unknown field
+			if err = decoder.Discard(); err != nil { // discard unknown field
+				return err
+			}
 		}
 		if decoder.ReadObjectValueAfter() { // After read object value
 			break LOOP_OBJECT

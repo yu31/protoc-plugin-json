@@ -1,18 +1,14 @@
 package gojson
 
-func (p *Plugin) genVariableOneofIsFill(oneofName string) string {
-	return "oneOfIsFill_" + oneofName
-}
-
-func (p *Plugin) unmarshalReadObjectKeyBefore(loopLabel string) {
-	p.g.P("if decoder.ReadObjectKeyBefore() { // before read object key")
-	p.g.P("    break ", loopLabel)
-	p.g.P("}")
-}
-
-func (p *Plugin) unmarshalReadObjectValueBefore() {
-	p.g.P("decoder.ReadObjectValueBefore() // Before read object value")
-}
+//func (p *Plugin) unmarshalReadObjectKeyBefore(loopLabel string) {
+//	p.g.P("if decoder.ReadObjectKeyBefore() { // before read object key")
+//	p.g.P("    break ", loopLabel)
+//	p.g.P("}")
+//}
+//
+//func (p *Plugin) unmarshalReadObjectValueBefore() {
+//	p.g.P("decoder.ReadObjectValueBefore() // Before read object value")
+//}
 
 func (p *Plugin) unmarshalReadObjectValueAfter(loopLabel string) {
 	p.g.P("if decoder.ReadObjectValueAfter() { // After read object value")
@@ -21,7 +17,7 @@ func (p *Plugin) unmarshalReadObjectValueAfter(loopLabel string) {
 }
 
 //func (p *Plugin) unmarshalReadMapValueAfter(loopLabel string) {
-//	p.g.P("if decoder.ReadMapValueAfter() { // After read map value")
+//	p.g.P("if decoder.afterReadMapValue() { // After read map value")
 //	p.g.P("    break ", loopLabel)
 //	p.g.P("}")
 //}
@@ -34,7 +30,7 @@ func (p *Plugin) unmarshalReadObjectValueAfter(loopLabel string) {
 //}
 
 //func (p *Plugin) unmarshalReadArrayElemAfter(loopLabel string) {
-//	p.g.P("if decoder.ReadArrayElemAfter() { // After read array value.")
+//	p.g.P("if decoder.afterReadArrayElem() { // After read array value.")
 //	p.g.P("    break ", loopLabel)
 //	p.g.P("}")
 //}

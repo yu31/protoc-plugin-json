@@ -4,8 +4,8 @@ import (
 	"unsafe"
 )
 
-// ReadItem read current item value.
-func (dec *Decoder) ReadItem() []byte {
+// readItem read current item value.
+func (dec *Decoder) readItem() []byte {
 	// start index.
 	start := dec.off - 1
 	switch dec.OpCode {
@@ -22,30 +22,39 @@ func (dec *Decoder) ReadItem() []byte {
 	return dec.data[start:end]
 }
 
-// ReadObjectKey Read key of object or map.
-func (dec *Decoder) ReadObjectKey() string {
-	item := dec.ReadItem()
-	key, ok := UnquoteBytes(item)
-	if !ok {
-		panic(PhasePanicMsg)
-	}
-	return *(*string)(unsafe.Pointer(&key))
+func (dec *Decoder) Discard() error {
+	_ = dec.readItem()
+	return nil
 }
 
-// ReadObjectKeyBefore used to check if the object is read end.
-func (dec *Decoder) ReadObjectKeyBefore() (stop bool) {
+func (dec *Decoder) ReadJSONKey() (key string, stop bool) {
+	// Expected opening charsets(`"`) of string key or closing charsets(`}`)
 	dec.ScanWhile(ScanSkipSpace)
 	if dec.OpCode == ScanObjectEnd {
 		// object closing charset(`}`) - can only happen on first iteration.
-		return true
+		return "", true
 	}
 	if dec.OpCode != ScanLiteralBegin {
+		// FIXME: return a error?
 		panic(PhasePanicMsg)
 	}
-	return
+	// Read the json key.
+	key = dec.readObjectKey()
+	return key, false
 }
 
-func (dec *Decoder) ReadObjectValueBefore() {
+// readObjectKey Read key of object or map.
+func (dec *Decoder) readObjectKey() string {
+	item := dec.readItem()
+	bb, ok := unquoteBytes(item)
+	if !ok {
+		// FIXME: return error instead of panic?
+		panic(PhasePanicMsg)
+	}
+
+	// prepare to read object value.
+	// TODO: review it.
+	//dec.ReadObjectValueBefore()
 	if dec.OpCode == ScanSkipSpace {
 		dec.ScanWhile(ScanSkipSpace)
 	}
@@ -53,8 +62,9 @@ func (dec *Decoder) ReadObjectValueBefore() {
 		panic(PhasePanicMsg)
 	}
 	dec.ScanWhile(ScanSkipSpace)
-}
 
+	return *(*string)(unsafe.Pointer(&bb))
+}
 func (dec *Decoder) ReadObjectValueAfter() (stop bool) {
 	// After read value, Next token must be , or }.
 	if dec.OpCode == ScanSkipSpace {
@@ -67,61 +77,4 @@ func (dec *Decoder) ReadObjectValueAfter() (stop bool) {
 		panic(PhasePanicMsg)
 	}
 	return
-}
-
-func (dec *Decoder) ReadArrayElemBefore() (stop bool) {
-	dec.ScanWhile(ScanSkipSpace)
-	if dec.OpCode == ScanArrayEnd {
-		return true
-	}
-	return
-}
-
-func (dec *Decoder) ReadArrayElemAfter() (stop bool) {
-	// Next token must be , or ].
-	if dec.OpCode == ScanSkipSpace {
-		dec.ScanWhile(ScanSkipSpace)
-	}
-	if dec.OpCode == ScanArrayEnd {
-		return true
-	}
-	if dec.OpCode != ScanArrayElem {
-		panic(PhasePanicMsg)
-	}
-
-	return dec.ReadArrayElemBefore()
-
-	//// check before read next elements.
-	//dec.ScanWhile(ScanSkipSpace)
-	//if dec.OpCode == ScanArrayEnd {
-	//	return true
-	//}
-	//return
-}
-
-func (dec *Decoder) ReadMapValueAfter() (stop bool) {
-	// After read value, Next token must be , or }.
-	if dec.OpCode == ScanSkipSpace {
-		dec.ScanWhile(ScanSkipSpace)
-	}
-	if dec.OpCode == ScanObjectEnd {
-		return true
-	}
-	if dec.OpCode != ScanObjectValue {
-		panic(PhasePanicMsg)
-	}
-
-	return dec.ReadObjectKeyBefore()
-
-	//// Check before read next map key.
-	//// Before read key, Read opening " of string key or closing }.
-	//dec.ScanWhile(ScanSkipSpace)
-	//if dec.OpCode == ScanObjectEnd {
-	//	// object closing charset(`}`) - can only happen on first iteration.
-	//	return true
-	//}
-	//if dec.OpCode != ScanLiteralBegin {
-	//	panic(PhasePanicMsg)
-	//}
-	//return
 }

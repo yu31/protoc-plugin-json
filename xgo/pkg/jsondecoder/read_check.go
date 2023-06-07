@@ -12,7 +12,7 @@ func (dec *Decoder) CheckJSONBegin() (isNULL bool, err error) {
 	// Check if the json is null.
 	if dec.OpCode == ScanLiteralBegin {
 		// Expect the next value is null.
-		if item := dec.ReadItem(); item[0] != 'n' {
+		if item := dec.readItem(); item[0] != 'n' {
 			return true, errors.New("json: invalid format of json content that you provides")
 		}
 		return true, nil
@@ -24,11 +24,30 @@ func (dec *Decoder) CheckJSONBegin() (isNULL bool, err error) {
 	return false, nil
 }
 
+// CheckObjectBegin check if the content is null or a valid object.
+func (dec *Decoder) CheckObjectBegin(jsonKey string) (isNULL bool, err error) {
+	// Check if the object is null.
+	if dec.OpCode == ScanLiteralBegin {
+		if item := dec.readItem(); item[0] != 'n' {
+			err = fmt.Errorf("json: cannot unmarshal %s as object into field %s", string(item), jsonKey)
+			return false, err
+		}
+		return true, nil
+	}
+	// The object is not null. expected the first non-space charset is object begin(`[`)
+	if dec.OpCode != ScanObjectBegin {
+		item := dec.readItem()
+		err = fmt.Errorf("json: cannot unmarshal %s as object into field %s of type", string(item), jsonKey)
+		return false, err
+	}
+	return false, nil
+}
+
 // CheckBeforeReadArray check if the content is a valid array, and check if it is null or empty.
 func (dec *Decoder) CheckBeforeReadArray(jsonKey string) (isNULL, isEmpty bool, err error) {
 	// Check if the array is null.
 	if dec.OpCode == ScanLiteralBegin {
-		if item := dec.ReadItem(); item[0] != 'n' {
+		if item := dec.readItem(); item[0] != 'n' {
 			err = fmt.Errorf("json: cannot unmarshal %s as array into field %s", string(item), jsonKey)
 			return false, false, err
 		}
@@ -36,7 +55,7 @@ func (dec *Decoder) CheckBeforeReadArray(jsonKey string) (isNULL, isEmpty bool, 
 	}
 	// The array is not null. expected the first non-space charset is object begin(`[`)
 	if dec.OpCode != ScanArrayBegin {
-		item := dec.ReadItem()
+		item := dec.readItem()
 		err = fmt.Errorf("json: cannot unmarshal %s as array into field %s", string(item), jsonKey)
 		return false, false, err
 	}
@@ -52,7 +71,7 @@ func (dec *Decoder) CheckBeforeReadArray(jsonKey string) (isNULL, isEmpty bool, 
 func (dec *Decoder) CheckBeforeReadMap(jsonKey string) (isNULL, isEmpty bool, err error) {
 	// Check if the map is null.
 	if dec.OpCode == ScanLiteralBegin {
-		if item := dec.ReadItem(); item[0] != 'n' {
+		if item := dec.readItem(); item[0] != 'n' {
 			err = fmt.Errorf("json: cannot unmarshal %s as map into field %s", string(item), jsonKey)
 			return false, false, err
 		}
@@ -60,7 +79,7 @@ func (dec *Decoder) CheckBeforeReadMap(jsonKey string) (isNULL, isEmpty bool, er
 	}
 	// The map is not null. expected the first non-space charset is object begin(`{`)
 	if dec.OpCode != ScanObjectBegin {
-		item := dec.ReadItem()
+		item := dec.readItem()
 		err = fmt.Errorf("json: cannot unmarshal %s as map into field %s of type", string(item), jsonKey)
 		return false, false, err
 	}
@@ -78,23 +97,4 @@ func (dec *Decoder) CheckBeforeReadMap(jsonKey string) (isNULL, isEmpty bool, er
 		panic(PhasePanicMsg)
 	}
 	return false, false, nil
-}
-
-// CheckObjectBegin check if the content is null or a valid object.
-func (dec *Decoder) CheckObjectBegin(jsonKey string) (isNULL bool, err error) {
-	// Check if the object is null.
-	if dec.OpCode == ScanLiteralBegin {
-		if item := dec.ReadItem(); item[0] != 'n' {
-			err = fmt.Errorf("json: cannot unmarshal %s as object into field %s", string(item), jsonKey)
-			return false, err
-		}
-		return true, nil
-	}
-	// The object is not null. expected the first non-space charset is object begin(`[`)
-	if dec.OpCode != ScanObjectBegin {
-		item := dec.ReadItem()
-		err = fmt.Errorf("json: cannot unmarshal %s as object into field %s of type", string(item), jsonKey)
-		return false, err
-	}
-	return false, nil
 }

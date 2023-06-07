@@ -63,14 +63,11 @@ LOOP_OBJECT:
 		if err = decoder.ScanError(); err != nil {
 			return err
 		}
-		if decoder.ReadObjectKeyBefore() { // before read object key
+		jsonKey, stop := decoder.ReadJSONKey()
+		if stop {
 			break LOOP_OBJECT
 		}
-		// Read JSON key.
-		jsonKey := decoder.ReadObjectKey()
-		decoder.ReadObjectValueBefore() // Before read object value
-		// match field with JSON key.
-		switch {
+		switch { // match the JSON KEY
 		case jsonKey == "f_string1":
 			vv, _err := decoder.ReadValueString(jsonKey)
 			if _err != nil {
@@ -90,7 +87,9 @@ LOOP_OBJECT:
 			}
 			x.FString3 = vv
 		default:
-			_ = decoder.ReadItem() // discard unknown field
+			if err = decoder.Discard(); err != nil { // discard unknown field
+				return err
+			}
 		}
 		if decoder.ReadObjectValueAfter() { // After read object value
 			break LOOP_OBJECT
@@ -149,14 +148,11 @@ LOOP_OBJECT:
 		if err = decoder.ScanError(); err != nil {
 			return err
 		}
-		if decoder.ReadObjectKeyBefore() { // before read object key
+		jsonKey, stop := decoder.ReadJSONKey()
+		if stop {
 			break LOOP_OBJECT
 		}
-		// Read JSON key.
-		jsonKey := decoder.ReadObjectKey()
-		decoder.ReadObjectValueBefore() // Before read object value
-		// match field with JSON key.
-		switch {
+		switch { // match the JSON KEY
 		case jsonKey == "f_string1":
 			vv, _err := decoder.ReadValueString(jsonKey)
 			if _err != nil {
@@ -176,7 +172,9 @@ LOOP_OBJECT:
 			}
 			x.FString3 = vv
 		default:
-			_ = decoder.ReadItem() // discard unknown field
+			if err = decoder.Discard(); err != nil { // discard unknown field
+				return err
+			}
 		}
 		if decoder.ReadObjectValueAfter() { // After read object value
 			break LOOP_OBJECT
@@ -235,14 +233,11 @@ LOOP_OBJECT:
 		if err = decoder.ScanError(); err != nil {
 			return err
 		}
-		if decoder.ReadObjectKeyBefore() { // before read object key
+		jsonKey, stop := decoder.ReadJSONKey()
+		if stop {
 			break LOOP_OBJECT
 		}
-		// Read JSON key.
-		jsonKey := decoder.ReadObjectKey()
-		decoder.ReadObjectValueBefore() // Before read object value
-		// match field with JSON key.
-		switch {
+		switch { // match the JSON KEY
 		case jsonKey == "f_string1":
 			vv, _err := decoder.ReadValueString(jsonKey)
 			if _err != nil {
@@ -262,7 +257,9 @@ LOOP_OBJECT:
 			}
 			x.FString3 = vv
 		default:
-			_ = decoder.ReadItem() // discard unknown field
+			if err = decoder.Discard(); err != nil { // discard unknown field
+				return err
+			}
 		}
 		if decoder.ReadObjectValueAfter() { // After read object value
 			break LOOP_OBJECT
@@ -686,14 +683,11 @@ LOOP_OBJECT:
 		if err = decoder.ScanError(); err != nil {
 			return err
 		}
-		if decoder.ReadObjectKeyBefore() { // before read object key
+		jsonKey, stop := decoder.ReadJSONKey()
+		if stop {
 			break LOOP_OBJECT
 		}
-		// Read JSON key.
-		jsonKey := decoder.ReadObjectKey()
-		decoder.ReadObjectValueBefore() // Before read object value
-		// match field with JSON key.
-		switch {
+		switch { // match the JSON KEY
 		case jsonKey == "OneType01":
 			if isNULL, err = decoder.CheckObjectBegin(jsonKey); err != nil {
 				return err
@@ -704,11 +698,10 @@ LOOP_OBJECT:
 			default:
 			LOOP_ONEOF_OneType01:
 				for {
-					if decoder.ReadObjectKeyBefore() { // before read object key
+					oneofKey, stop := decoder.ReadJSONKey()
+					if stop {
 						break LOOP_ONEOF_OneType01
 					}
-					oneofKey := decoder.ReadObjectKey() // Read key
-					decoder.ReadObjectValueBefore()     // Before read object value
 					switch {
 					case oneofKey == "f_string1":
 						var ot *TypeOneof1_FString1
@@ -745,7 +738,9 @@ LOOP_OBJECT:
 						ot.FString2 = vv
 						x.OneType01 = ot
 					default:
-						_ = decoder.ReadItem() // discard unknown field
+						if err = decoder.Discard(); err != nil { // discard unknown field
+							return err
+						}
 					}
 					if decoder.ReadObjectValueAfter() { // After read object value
 						break LOOP_ONEOF_OneType01
@@ -763,11 +758,10 @@ LOOP_OBJECT:
 			default:
 			LOOP_ONEOF_One_Type02:
 				for {
-					if decoder.ReadObjectKeyBefore() { // before read object key
+					oneofKey, stop := decoder.ReadJSONKey()
+					if stop {
 						break LOOP_ONEOF_One_Type02
 					}
-					oneofKey := decoder.ReadObjectKey() // Read key
-					decoder.ReadObjectValueBefore()     // Before read object value
 					switch {
 					case oneofKey == "f_int32":
 						var ot *TypeOneof1_FInt32
@@ -804,7 +798,9 @@ LOOP_OBJECT:
 						ot.FInt64 = vv
 						x.One_Type02 = ot
 					default:
-						_ = decoder.ReadItem() // discard unknown field
+						if err = decoder.Discard(); err != nil { // discard unknown field
+							return err
+						}
 					}
 					if decoder.ReadObjectValueAfter() { // After read object value
 						break LOOP_ONEOF_One_Type02
@@ -822,11 +818,10 @@ LOOP_OBJECT:
 			default:
 			LOOP_ONEOF_One_type03:
 				for {
-					if decoder.ReadObjectKeyBefore() { // before read object key
+					oneofKey, stop := decoder.ReadJSONKey()
+					if stop {
 						break LOOP_ONEOF_One_type03
 					}
-					oneofKey := decoder.ReadObjectKey() // Read key
-					decoder.ReadObjectValueBefore()     // Before read object value
 					switch {
 					case oneofKey == "f_uint32":
 						var ot *TypeOneof1_FUint32
@@ -863,7 +858,9 @@ LOOP_OBJECT:
 						ot.FUint64 = vv
 						x.OneType03 = ot
 					default:
-						_ = decoder.ReadItem() // discard unknown field
+						if err = decoder.Discard(); err != nil { // discard unknown field
+							return err
+						}
 					}
 					if decoder.ReadObjectValueAfter() { // After read object value
 						break LOOP_ONEOF_One_type03
@@ -881,11 +878,10 @@ LOOP_OBJECT:
 			default:
 			LOOP_ONEOF_one_Type04:
 				for {
-					if decoder.ReadObjectKeyBefore() { // before read object key
+					oneofKey, stop := decoder.ReadJSONKey()
+					if stop {
 						break LOOP_ONEOF_one_Type04
 					}
-					oneofKey := decoder.ReadObjectKey() // Read key
-					decoder.ReadObjectValueBefore()     // Before read object value
 					switch {
 					case oneofKey == "f_sint32":
 						var ot *TypeOneof1_FSint32
@@ -922,7 +918,9 @@ LOOP_OBJECT:
 						ot.FSint64 = vv
 						x.One_Type04 = ot
 					default:
-						_ = decoder.ReadItem() // discard unknown field
+						if err = decoder.Discard(); err != nil { // discard unknown field
+							return err
+						}
 					}
 					if decoder.ReadObjectValueAfter() { // After read object value
 						break LOOP_ONEOF_one_Type04
@@ -940,11 +938,10 @@ LOOP_OBJECT:
 			default:
 			LOOP_ONEOF_one_type05:
 				for {
-					if decoder.ReadObjectKeyBefore() { // before read object key
+					oneofKey, stop := decoder.ReadJSONKey()
+					if stop {
 						break LOOP_ONEOF_one_type05
 					}
-					oneofKey := decoder.ReadObjectKey() // Read key
-					decoder.ReadObjectValueBefore()     // Before read object value
 					switch {
 					case oneofKey == "f_sfixed32":
 						var ot *TypeOneof1_FSfixed32
@@ -981,7 +978,9 @@ LOOP_OBJECT:
 						ot.FSfixed64 = vv
 						x.OneType05 = ot
 					default:
-						_ = decoder.ReadItem() // discard unknown field
+						if err = decoder.Discard(); err != nil { // discard unknown field
+							return err
+						}
 					}
 					if decoder.ReadObjectValueAfter() { // After read object value
 						break LOOP_ONEOF_one_type05
@@ -999,11 +998,10 @@ LOOP_OBJECT:
 			default:
 			LOOP_ONEOF_oneType06:
 				for {
-					if decoder.ReadObjectKeyBefore() { // before read object key
+					oneofKey, stop := decoder.ReadJSONKey()
+					if stop {
 						break LOOP_ONEOF_oneType06
 					}
-					oneofKey := decoder.ReadObjectKey() // Read key
-					decoder.ReadObjectValueBefore()     // Before read object value
 					switch {
 					case oneofKey == "f_fixed32":
 						var ot *TypeOneof1_FFixed32
@@ -1040,7 +1038,9 @@ LOOP_OBJECT:
 						ot.FFixed64 = vv
 						x.OneType06 = ot
 					default:
-						_ = decoder.ReadItem() // discard unknown field
+						if err = decoder.Discard(); err != nil { // discard unknown field
+							return err
+						}
 					}
 					if decoder.ReadObjectValueAfter() { // After read object value
 						break LOOP_ONEOF_oneType06
@@ -1058,11 +1058,10 @@ LOOP_OBJECT:
 			default:
 			LOOP_ONEOF_Onetype07:
 				for {
-					if decoder.ReadObjectKeyBefore() { // before read object key
+					oneofKey, stop := decoder.ReadJSONKey()
+					if stop {
 						break LOOP_ONEOF_Onetype07
 					}
-					oneofKey := decoder.ReadObjectKey() // Read key
-					decoder.ReadObjectValueBefore()     // Before read object value
 					switch {
 					case oneofKey == "f_float":
 						var ot *TypeOneof1_FFloat
@@ -1099,7 +1098,9 @@ LOOP_OBJECT:
 						ot.FDouble = vv
 						x.Onetype07 = ot
 					default:
-						_ = decoder.ReadItem() // discard unknown field
+						if err = decoder.Discard(); err != nil { // discard unknown field
+							return err
+						}
 					}
 					if decoder.ReadObjectValueAfter() { // After read object value
 						break LOOP_ONEOF_Onetype07
@@ -1117,11 +1118,10 @@ LOOP_OBJECT:
 			default:
 			LOOP_ONEOF_onetype08:
 				for {
-					if decoder.ReadObjectKeyBefore() { // before read object key
+					oneofKey, stop := decoder.ReadJSONKey()
+					if stop {
 						break LOOP_ONEOF_onetype08
 					}
-					oneofKey := decoder.ReadObjectKey() // Read key
-					decoder.ReadObjectValueBefore()     // Before read object value
 					switch {
 					case oneofKey == "f_bool1":
 						var ot *TypeOneof1_FBool1
@@ -1158,7 +1158,9 @@ LOOP_OBJECT:
 						ot.FBytes1 = vv
 						x.Onetype08 = ot
 					default:
-						_ = decoder.ReadItem() // discard unknown field
+						if err = decoder.Discard(); err != nil { // discard unknown field
+							return err
+						}
 					}
 					if decoder.ReadObjectValueAfter() { // After read object value
 						break LOOP_ONEOF_onetype08
@@ -1176,11 +1178,10 @@ LOOP_OBJECT:
 			default:
 			LOOP_ONEOF_OneType09:
 				for {
-					if decoder.ReadObjectKeyBefore() { // before read object key
+					oneofKey, stop := decoder.ReadJSONKey()
+					if stop {
 						break LOOP_ONEOF_OneType09
 					}
-					oneofKey := decoder.ReadObjectKey() // Read key
-					decoder.ReadObjectValueBefore()     // Before read object value
 					switch {
 					case oneofKey == "f_enum1":
 						var ot *TypeOneof1_FEnum1
@@ -1291,7 +1292,9 @@ LOOP_OBJECT:
 						ot.FEnum6 = vv
 						x.OneType09 = ot
 					default:
-						_ = decoder.ReadItem() // discard unknown field
+						if err = decoder.Discard(); err != nil { // discard unknown field
+							return err
+						}
 					}
 					if decoder.ReadObjectValueAfter() { // After read object value
 						break LOOP_ONEOF_OneType09
@@ -1309,11 +1312,10 @@ LOOP_OBJECT:
 			default:
 			LOOP_ONEOF_OneType10:
 				for {
-					if decoder.ReadObjectKeyBefore() { // before read object key
+					oneofKey, stop := decoder.ReadJSONKey()
+					if stop {
 						break LOOP_ONEOF_OneType10
 					}
-					oneofKey := decoder.ReadObjectKey() // Read key
-					decoder.ReadObjectValueBefore()     // Before read object value
 					switch {
 					case oneofKey == "f_duration1":
 						var ot *TypeOneof1_FDuration1
@@ -1368,7 +1370,9 @@ LOOP_OBJECT:
 						ot.FDuration2 = vv
 						x.OneType10 = ot
 					default:
-						_ = decoder.ReadItem() // discard unknown field
+						if err = decoder.Discard(); err != nil { // discard unknown field
+							return err
+						}
 					}
 					if decoder.ReadObjectValueAfter() { // After read object value
 						break LOOP_ONEOF_OneType10
@@ -1386,11 +1390,10 @@ LOOP_OBJECT:
 			default:
 			LOOP_ONEOF_OneType11:
 				for {
-					if decoder.ReadObjectKeyBefore() { // before read object key
+					oneofKey, stop := decoder.ReadJSONKey()
+					if stop {
 						break LOOP_ONEOF_OneType11
 					}
-					oneofKey := decoder.ReadObjectKey() // Read key
-					decoder.ReadObjectValueBefore()     // Before read object value
 					switch {
 					case oneofKey == "f_timestamp1":
 						var ot *TypeOneof1_FTimestamp1
@@ -1445,7 +1448,9 @@ LOOP_OBJECT:
 						ot.FTimestamp2 = vv
 						x.OneType11 = ot
 					default:
-						_ = decoder.ReadItem() // discard unknown field
+						if err = decoder.Discard(); err != nil { // discard unknown field
+							return err
+						}
 					}
 					if decoder.ReadObjectValueAfter() { // After read object value
 						break LOOP_ONEOF_OneType11
@@ -1463,11 +1468,10 @@ LOOP_OBJECT:
 			default:
 			LOOP_ONEOF_OneType12:
 				for {
-					if decoder.ReadObjectKeyBefore() { // before read object key
+					oneofKey, stop := decoder.ReadJSONKey()
+					if stop {
 						break LOOP_ONEOF_OneType12
 					}
-					oneofKey := decoder.ReadObjectKey() // Read key
-					decoder.ReadObjectValueBefore()     // Before read object value
 					switch {
 					case oneofKey == "f_any1":
 						var ot *TypeOneof1_FAny1
@@ -1522,7 +1526,9 @@ LOOP_OBJECT:
 						ot.FAny2 = vv
 						x.OneType12 = ot
 					default:
-						_ = decoder.ReadItem() // discard unknown field
+						if err = decoder.Discard(); err != nil { // discard unknown field
+							return err
+						}
 					}
 					if decoder.ReadObjectValueAfter() { // After read object value
 						break LOOP_ONEOF_OneType12
@@ -1540,11 +1546,10 @@ LOOP_OBJECT:
 			default:
 			LOOP_ONEOF_OneType13:
 				for {
-					if decoder.ReadObjectKeyBefore() { // before read object key
+					oneofKey, stop := decoder.ReadJSONKey()
+					if stop {
 						break LOOP_ONEOF_OneType13
 					}
-					oneofKey := decoder.ReadObjectKey() // Read key
-					decoder.ReadObjectValueBefore()     // Before read object value
 					switch {
 					case oneofKey == "f_message1":
 						var ot *TypeOneof1_FMessage1
@@ -1781,7 +1786,9 @@ LOOP_OBJECT:
 						ot.FMessage9 = vv
 						x.OneType13 = ot
 					default:
-						_ = decoder.ReadItem() // discard unknown field
+						if err = decoder.Discard(); err != nil { // discard unknown field
+							return err
+						}
 					}
 					if decoder.ReadObjectValueAfter() { // After read object value
 						break LOOP_ONEOF_OneType13
@@ -1790,7 +1797,9 @@ LOOP_OBJECT:
 				decoder.ScanNext()
 			}
 		default:
-			_ = decoder.ReadItem() // discard unknown field
+			if err = decoder.Discard(); err != nil { // discard unknown field
+				return err
+			}
 		}
 		if decoder.ReadObjectValueAfter() { // After read object value
 			break LOOP_OBJECT
@@ -1908,14 +1917,11 @@ LOOP_OBJECT:
 		if err = decoder.ScanError(); err != nil {
 			return err
 		}
-		if decoder.ReadObjectKeyBefore() { // before read object key
+		jsonKey, stop := decoder.ReadJSONKey()
+		if stop {
 			break LOOP_OBJECT
 		}
-		// Read JSON key.
-		jsonKey := decoder.ReadObjectKey()
-		decoder.ReadObjectValueBefore() // Before read object value
-		// match field with JSON key.
-		switch {
+		switch { // match the JSON KEY
 		case jsonKey == "f_string1":
 			var ot *TypeOneofHide1_FString1
 			if _ot, _ok := x.OneType01.(*TypeOneofHide1_FString1); _ok {
@@ -2048,11 +2054,10 @@ LOOP_OBJECT:
 			default:
 			LOOP_ONEOF_OneType04:
 				for {
-					if decoder.ReadObjectKeyBefore() { // before read object key
+					oneofKey, stop := decoder.ReadJSONKey()
+					if stop {
 						break LOOP_ONEOF_OneType04
 					}
-					oneofKey := decoder.ReadObjectKey() // Read key
-					decoder.ReadObjectValueBefore()     // Before read object value
 					switch {
 					case oneofKey == "f_duration1":
 						var ot *TypeOneofHide1_FDuration1
@@ -2107,7 +2112,9 @@ LOOP_OBJECT:
 						ot.FDuration2 = vv
 						x.OneType04 = ot
 					default:
-						_ = decoder.ReadItem() // discard unknown field
+						if err = decoder.Discard(); err != nil { // discard unknown field
+							return err
+						}
 					}
 					if decoder.ReadObjectValueAfter() { // After read object value
 						break LOOP_ONEOF_OneType04
@@ -2116,7 +2123,9 @@ LOOP_OBJECT:
 				decoder.ScanNext()
 			}
 		default:
-			_ = decoder.ReadItem() // discard unknown field
+			if err = decoder.Discard(); err != nil { // discard unknown field
+				return err
+			}
 		}
 		if decoder.ReadObjectValueAfter() { // After read object value
 			break LOOP_OBJECT

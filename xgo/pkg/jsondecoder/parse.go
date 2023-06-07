@@ -8,7 +8,7 @@ import (
 )
 
 func parseString(b []byte) (string, error) {
-	v, ok := UnquoteString(b)
+	v, ok := unquoteString(b)
 	if !ok {
 		return "", fmt.Errorf("jsondecoder.parseString: parsing %s: invalid syntax", strconv.Quote(string(b)))
 	}
@@ -56,7 +56,7 @@ func parseBool(b []byte) (bool, error) {
 }
 
 func parseBytes(b []byte) ([]byte, error) {
-	t, ok := UnquoteBytes(b)
+	t, ok := unquoteBytes(b)
 	if !ok {
 		return nil, fmt.Errorf("jsondecoder.parseBytes: parsing %s: invalid syntax", strconv.Quote(string(b)))
 	}
