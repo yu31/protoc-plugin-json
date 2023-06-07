@@ -12,9 +12,8 @@ import (
 
 type Complex1 pbboundary.Complex1
 
-func Test_Complex1_StdJSON(t *testing.T) {
-	bb := []byte(
-		`{ 
+var bComplex1 = []byte(
+	`{ 
 		"f_int32"     : 11      , 
 		"unknown1": "unknown1",
 		"r_int64"     : [ 21, 22, 23 ]     ,    
@@ -25,8 +24,10 @@ func Test_Complex1_StdJSON(t *testing.T) {
 		"unknown4"	:"unknown4"			,     
 		"f_int64": 51      ,    
 		"unknown5": "unknown5"						
-		}`,
-	)
+	}`,
+)
+
+func Test_Complex1_StdJSON(t *testing.T) {
 	data := &Complex1{
 		FInt32:    0,
 		RInt64:    nil,
@@ -34,7 +35,7 @@ func Test_Complex1_StdJSON(t *testing.T) {
 		MInt32:    nil,
 		FInt64:    nil,
 	}
-	err := json.Unmarshal(bb, data)
+	err := json.Unmarshal(bComplex1, data)
 	require.Nil(t, err, fmt.Sprintf("%v", err))
 
 	require.Equal(t, int32(11), data.FInt32)
@@ -52,20 +53,6 @@ func Test_Complex1_StdJSON(t *testing.T) {
 }
 
 func Test_Complex1_Plugin(t *testing.T) {
-	bb := []byte(
-		`{ 
-		"f_int32"     : 11      , 
-		"unknown1": "unknown1",
-		"r_int64"     : [ 21, 22, 23 ]     ,      
-		"unknown2":"unknown2"         ,
-		"f_message1"      : { "f_string1": "m11", "f_string2": "m12", "f_string3": "m13" }      ,   
-		"unknown3"		:		"unknown3",
-		"m_int32"      : { "k31": 31, "k32": 32, "k33": 33 }    ,        
-		"unknown4"	:"unknown4"			,    
-		"f_int64": 51      ,        
-		"unknown5": "unknown5"						
-		}`,
-	)
 	data := &pbboundary.Complex1{
 		FInt32:    0,
 		RInt64:    nil,
@@ -73,7 +60,7 @@ func Test_Complex1_Plugin(t *testing.T) {
 		MInt32:    nil,
 		FInt64:    nil,
 	}
-	err := json.Unmarshal(bb, data)
+	err := json.Unmarshal(bComplex1, data)
 	require.Nil(t, err, fmt.Sprintf("%v", err))
 
 	require.Equal(t, int32(11), data.FInt32)

@@ -30,7 +30,8 @@ message Map1 {
   map<string, string> m_string1 = 1 [ (json.field) = {} ];
 }
 
-// Complex1 for test cases. multiple space between field.
+// Complex1 for test cases:
+// 1. multiple space between field.
 message Complex1 {
   int32 f_int32 = 1 [ (json.field) = {} ];
 
@@ -42,4 +43,41 @@ message Complex1 {
 
   optional int64 f_int64 = 5 [ (json.field) = {} ];
 }
+
+// Complex1 for test cases:
+// 1. multiple nesting of json content.
+message Complex2 {
+  message Level1 {
+    Level2 level2 = 1 [ (json.field) = {} ];
+
+    string f_string = 2 [ (json.field) = {} ];
+
+    repeated string r_string = 3 [ (json.field) = {} ];
+  }
+
+  message Level2 {
+    string f_string = 1 [ (json.field) = {} ];
+
+    Level3 level3 = 2 [ (json.field) = {} ];
+
+    repeated int64 r_int64 = 3 [ (json.field) = {} ];
+  }
+
+  message Level3 {
+    int32 f_int32 = 1 [ (json.field) = {} ];
+
+    repeated int64 r_int64 = 2 [ (json.field) = {} ];
+
+    map<string, int32> m_int32 = 3 [ (json.field) = {} ];
+
+    optional int64 p_int64 = 4 [ (json.field) = {} ];
+  }
+
+  string f_string = 1 [ (json.field) = {} ];
+
+  repeated int64 r_int64 = 2 [ (json.field) = {} ];
+
+  Level1 level1 = 3 [ (json.field) = {} ];
+}
+
 

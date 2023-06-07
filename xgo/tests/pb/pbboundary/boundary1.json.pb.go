@@ -515,3 +515,612 @@ LOOP_OBJECT:
 	}
 	return nil
 }
+
+// MarshalJSON implements interface json.Marshaler for proto message Complex2 in file tests/proto/cases/boundary/boundary1.proto
+func (x *Complex2) MarshalJSON() ([]byte, error) {
+	if x == nil {
+		return []byte("null"), nil
+	}
+	var err error
+	encoder := jsonencoder.New(56)
+
+	// Add begin JSON identifier
+	encoder.AppendObjectBegin()
+
+	encoder.AppendJSONKey("f_string")
+	encoder.AppendValueString(x.FString)
+	encoder.AppendJSONKey("r_int64")
+	if x.RInt64 != nil {
+		encoder.AppendArrayBegin()
+		for _, ri := range x.RInt64 {
+			encoder.AppendValueInt64(ri)
+		}
+		encoder.AppendArrayEnd()
+	} else {
+		encoder.AppendValueNULL()
+	}
+	encoder.AppendJSONKey("level1")
+	err = encoder.AppendValueInterface(x.Level1)
+	if err != nil {
+		return nil, err
+	}
+
+	// Add end JSON identifier
+	encoder.AppendObjectEnd()
+	return encoder.Bytes(), err
+}
+
+// UnmarshalJSON implements json.Unmarshaler for proto message Complex2 in file tests/proto/cases/boundary/boundary1.proto
+func (x *Complex2) UnmarshalJSON(b []byte) error {
+	if x == nil {
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Complex2) is nil")
+	}
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
+		return err
+	}
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
+	}
+	// Loop to scan object.
+LOOP_OBJECT:
+	for {
+		if err = decoder.ScanError(); err != nil {
+			return err
+		}
+		jsonKey, stop := decoder.ReadJSONKey()
+		if stop {
+			break LOOP_OBJECT
+		}
+		switch { // match the JSON KEY
+		case jsonKey == "f_string":
+			vv, _err := decoder.ReadValueString(jsonKey)
+			if _err != nil {
+				return _err
+			}
+			x.FString = vv
+		case jsonKey == "r_int64":
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.RInt64 = nil
+			case isEmpty:
+				if x.RInt64 == nil {
+					x.RInt64 = make([]int64, 0)
+				} else {
+					x.RInt64 = x.RInt64[:0]
+				}
+			default:
+				if x.RInt64 == nil {
+					x.RInt64 = make([]int64, 0)
+				}
+				i := 0
+				length := len(x.RInt64)
+			LOOP_LIST_r_int64:
+				for {
+					if err = decoder.ScanError(); err != nil {
+						return err
+					}
+					vv, noMore, _err := decoder.ReadArrayElemInt64(jsonKey)
+					if _err != nil {
+						return _err
+					}
+					if i < length {
+						x.RInt64[i] = vv
+					} else {
+						x.RInt64 = append(x.RInt64, vv)
+					}
+					i++
+					if noMore { // After read array value.
+						break LOOP_LIST_r_int64
+					}
+				}
+				if i < length {
+					// truncate the slice to Consistent with standard library json.
+					x.RInt64 = x.RInt64[:i]
+				}
+				decoder.ScanNext()
+			}
+		case jsonKey == "level1":
+			var vv *Complex2_Level1
+			initFN := func() interface{} {
+				if x.Level1 != nil {
+					vv = x.Level1
+				} else {
+					vv = new(Complex2_Level1)
+				}
+				return vv
+			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
+			if _err != nil {
+				return _err
+			}
+			x.Level1 = vv
+		default:
+			if err = decoder.Discard(); err != nil { // discard unknown field
+				return err
+			}
+		}
+		if decoder.ReadObjectValueAfter() { // After read object value
+			break LOOP_OBJECT
+		}
+	}
+	// Check error in decoder
+	if err = decoder.ScanError(); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements interface json.Marshaler for proto message Level1 in file tests/proto/cases/boundary/boundary1.proto
+func (x *Complex2_Level1) MarshalJSON() ([]byte, error) {
+	if x == nil {
+		return []byte("null"), nil
+	}
+	var err error
+	encoder := jsonencoder.New(58)
+
+	// Add begin JSON identifier
+	encoder.AppendObjectBegin()
+
+	encoder.AppendJSONKey("level2")
+	err = encoder.AppendValueInterface(x.Level2)
+	if err != nil {
+		return nil, err
+	}
+	encoder.AppendJSONKey("f_string")
+	encoder.AppendValueString(x.FString)
+	encoder.AppendJSONKey("r_string")
+	if x.RString != nil {
+		encoder.AppendArrayBegin()
+		for _, ri := range x.RString {
+			encoder.AppendValueString(ri)
+		}
+		encoder.AppendArrayEnd()
+	} else {
+		encoder.AppendValueNULL()
+	}
+
+	// Add end JSON identifier
+	encoder.AppendObjectEnd()
+	return encoder.Bytes(), err
+}
+
+// UnmarshalJSON implements json.Unmarshaler for proto message Level1 in file tests/proto/cases/boundary/boundary1.proto
+func (x *Complex2_Level1) UnmarshalJSON(b []byte) error {
+	if x == nil {
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Complex2_Level1) is nil")
+	}
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
+		return err
+	}
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
+	}
+	// Loop to scan object.
+LOOP_OBJECT:
+	for {
+		if err = decoder.ScanError(); err != nil {
+			return err
+		}
+		jsonKey, stop := decoder.ReadJSONKey()
+		if stop {
+			break LOOP_OBJECT
+		}
+		switch { // match the JSON KEY
+		case jsonKey == "level2":
+			var vv *Complex2_Level2
+			initFN := func() interface{} {
+				if x.Level2 != nil {
+					vv = x.Level2
+				} else {
+					vv = new(Complex2_Level2)
+				}
+				return vv
+			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
+			if _err != nil {
+				return _err
+			}
+			x.Level2 = vv
+		case jsonKey == "f_string":
+			vv, _err := decoder.ReadValueString(jsonKey)
+			if _err != nil {
+				return _err
+			}
+			x.FString = vv
+		case jsonKey == "r_string":
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.RString = nil
+			case isEmpty:
+				if x.RString == nil {
+					x.RString = make([]string, 0)
+				} else {
+					x.RString = x.RString[:0]
+				}
+			default:
+				if x.RString == nil {
+					x.RString = make([]string, 0)
+				}
+				i := 0
+				length := len(x.RString)
+			LOOP_LIST_r_string:
+				for {
+					if err = decoder.ScanError(); err != nil {
+						return err
+					}
+					vv, noMore, _err := decoder.ReadArrayElemString(jsonKey)
+					if _err != nil {
+						return _err
+					}
+					if i < length {
+						x.RString[i] = vv
+					} else {
+						x.RString = append(x.RString, vv)
+					}
+					i++
+					if noMore { // After read array value.
+						break LOOP_LIST_r_string
+					}
+				}
+				if i < length {
+					// truncate the slice to Consistent with standard library json.
+					x.RString = x.RString[:i]
+				}
+				decoder.ScanNext()
+			}
+		default:
+			if err = decoder.Discard(); err != nil { // discard unknown field
+				return err
+			}
+		}
+		if decoder.ReadObjectValueAfter() { // After read object value
+			break LOOP_OBJECT
+		}
+	}
+	// Check error in decoder
+	if err = decoder.ScanError(); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements interface json.Marshaler for proto message Level2 in file tests/proto/cases/boundary/boundary1.proto
+func (x *Complex2_Level2) MarshalJSON() ([]byte, error) {
+	if x == nil {
+		return []byte("null"), nil
+	}
+	var err error
+	encoder := jsonencoder.New(56)
+
+	// Add begin JSON identifier
+	encoder.AppendObjectBegin()
+
+	encoder.AppendJSONKey("f_string")
+	encoder.AppendValueString(x.FString)
+	encoder.AppendJSONKey("level3")
+	err = encoder.AppendValueInterface(x.Level3)
+	if err != nil {
+		return nil, err
+	}
+	encoder.AppendJSONKey("r_int64")
+	if x.RInt64 != nil {
+		encoder.AppendArrayBegin()
+		for _, ri := range x.RInt64 {
+			encoder.AppendValueInt64(ri)
+		}
+		encoder.AppendArrayEnd()
+	} else {
+		encoder.AppendValueNULL()
+	}
+
+	// Add end JSON identifier
+	encoder.AppendObjectEnd()
+	return encoder.Bytes(), err
+}
+
+// UnmarshalJSON implements json.Unmarshaler for proto message Level2 in file tests/proto/cases/boundary/boundary1.proto
+func (x *Complex2_Level2) UnmarshalJSON(b []byte) error {
+	if x == nil {
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Complex2_Level2) is nil")
+	}
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
+		return err
+	}
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
+	}
+	// Loop to scan object.
+LOOP_OBJECT:
+	for {
+		if err = decoder.ScanError(); err != nil {
+			return err
+		}
+		jsonKey, stop := decoder.ReadJSONKey()
+		if stop {
+			break LOOP_OBJECT
+		}
+		switch { // match the JSON KEY
+		case jsonKey == "f_string":
+			vv, _err := decoder.ReadValueString(jsonKey)
+			if _err != nil {
+				return _err
+			}
+			x.FString = vv
+		case jsonKey == "level3":
+			var vv *Complex2_Level3
+			initFN := func() interface{} {
+				if x.Level3 != nil {
+					vv = x.Level3
+				} else {
+					vv = new(Complex2_Level3)
+				}
+				return vv
+			}
+			_err := decoder.ReadValueInterface(jsonKey, initFN)
+			if _err != nil {
+				return _err
+			}
+			x.Level3 = vv
+		case jsonKey == "r_int64":
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.RInt64 = nil
+			case isEmpty:
+				if x.RInt64 == nil {
+					x.RInt64 = make([]int64, 0)
+				} else {
+					x.RInt64 = x.RInt64[:0]
+				}
+			default:
+				if x.RInt64 == nil {
+					x.RInt64 = make([]int64, 0)
+				}
+				i := 0
+				length := len(x.RInt64)
+			LOOP_LIST_r_int64:
+				for {
+					if err = decoder.ScanError(); err != nil {
+						return err
+					}
+					vv, noMore, _err := decoder.ReadArrayElemInt64(jsonKey)
+					if _err != nil {
+						return _err
+					}
+					if i < length {
+						x.RInt64[i] = vv
+					} else {
+						x.RInt64 = append(x.RInt64, vv)
+					}
+					i++
+					if noMore { // After read array value.
+						break LOOP_LIST_r_int64
+					}
+				}
+				if i < length {
+					// truncate the slice to Consistent with standard library json.
+					x.RInt64 = x.RInt64[:i]
+				}
+				decoder.ScanNext()
+			}
+		default:
+			if err = decoder.Discard(); err != nil { // discard unknown field
+				return err
+			}
+		}
+		if decoder.ReadObjectValueAfter() { // After read object value
+			break LOOP_OBJECT
+		}
+	}
+	// Check error in decoder
+	if err = decoder.ScanError(); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalJSON implements interface json.Marshaler for proto message Level3 in file tests/proto/cases/boundary/boundary1.proto
+func (x *Complex2_Level3) MarshalJSON() ([]byte, error) {
+	if x == nil {
+		return []byte("null"), nil
+	}
+	var err error
+	encoder := jsonencoder.New(76)
+
+	// Add begin JSON identifier
+	encoder.AppendObjectBegin()
+
+	encoder.AppendJSONKey("f_int32")
+	encoder.AppendValueInt32(x.FInt32)
+	encoder.AppendJSONKey("r_int64")
+	if x.RInt64 != nil {
+		encoder.AppendArrayBegin()
+		for _, ri := range x.RInt64 {
+			encoder.AppendValueInt64(ri)
+		}
+		encoder.AppendArrayEnd()
+	} else {
+		encoder.AppendValueNULL()
+	}
+	encoder.AppendJSONKey("m_int32")
+	if x.MInt32 != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.MInt32 {
+			encoder.AppendMapKeyString(mk)
+			encoder.AppendValueInt32(mv)
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendValueNULL()
+	}
+	encoder.AppendJSONKey("p_int64")
+	encoder.AppendPointerInt64(x.PInt64)
+
+	// Add end JSON identifier
+	encoder.AppendObjectEnd()
+	return encoder.Bytes(), err
+}
+
+// UnmarshalJSON implements json.Unmarshaler for proto message Level3 in file tests/proto/cases/boundary/boundary1.proto
+func (x *Complex2_Level3) UnmarshalJSON(b []byte) error {
+	if x == nil {
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Complex2_Level3) is nil")
+	}
+
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
+		return err
+	}
+	if isNULL, err = decoder.CheckJSONBegin(); err != nil || isNULL {
+		return err
+	}
+	// Loop to scan object.
+LOOP_OBJECT:
+	for {
+		if err = decoder.ScanError(); err != nil {
+			return err
+		}
+		jsonKey, stop := decoder.ReadJSONKey()
+		if stop {
+			break LOOP_OBJECT
+		}
+		switch { // match the JSON KEY
+		case jsonKey == "f_int32":
+			vv, _err := decoder.ReadValueInt32(jsonKey)
+			if _err != nil {
+				return _err
+			}
+			x.FInt32 = vv
+		case jsonKey == "r_int64":
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.RInt64 = nil
+			case isEmpty:
+				if x.RInt64 == nil {
+					x.RInt64 = make([]int64, 0)
+				} else {
+					x.RInt64 = x.RInt64[:0]
+				}
+			default:
+				if x.RInt64 == nil {
+					x.RInt64 = make([]int64, 0)
+				}
+				i := 0
+				length := len(x.RInt64)
+			LOOP_LIST_r_int64:
+				for {
+					if err = decoder.ScanError(); err != nil {
+						return err
+					}
+					vv, noMore, _err := decoder.ReadArrayElemInt64(jsonKey)
+					if _err != nil {
+						return _err
+					}
+					if i < length {
+						x.RInt64[i] = vv
+					} else {
+						x.RInt64 = append(x.RInt64, vv)
+					}
+					i++
+					if noMore { // After read array value.
+						break LOOP_LIST_r_int64
+					}
+				}
+				if i < length {
+					// truncate the slice to Consistent with standard library json.
+					x.RInt64 = x.RInt64[:i]
+				}
+				decoder.ScanNext()
+			}
+		case jsonKey == "m_int32":
+			var isEmpty bool
+			if isNULL, isEmpty, err = decoder.CheckBeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			switch {
+			case isNULL:
+				x.MInt32 = nil
+			case isEmpty:
+				// do nothing
+			default:
+				if x.MInt32 == nil {
+					x.MInt32 = make(map[string]int32)
+				}
+			LOOP_MAP_m_int32:
+				for {
+					if err = decoder.ScanError(); err != nil {
+						return err
+					}
+					mapKey, _err := decoder.ReadMapKeyString(jsonKey)
+					if _err != nil {
+						return _err
+					}
+					vv, noMore, _err := decoder.ReadMapValueInt32(jsonKey)
+					if _err != nil {
+						return _err
+					}
+					x.MInt32[mapKey] = vv
+					if noMore {
+						break LOOP_MAP_m_int32
+					}
+				}
+				decoder.ScanNext()
+			}
+		case jsonKey == "p_int64":
+			vv, _err := decoder.ReadPointerInt64(jsonKey)
+			if _err != nil {
+				return _err
+			}
+			x.PInt64 = vv
+		default:
+			if err = decoder.Discard(); err != nil { // discard unknown field
+				return err
+			}
+		}
+		if decoder.ReadObjectValueAfter() { // After read object value
+			break LOOP_OBJECT
+		}
+	}
+	// Check error in decoder
+	if err = decoder.ScanError(); err != nil {
+		return err
+	}
+	return nil
+}
