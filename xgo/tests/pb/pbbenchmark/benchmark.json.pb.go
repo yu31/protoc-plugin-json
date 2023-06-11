@@ -459,38 +459,31 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	encoder.AppendJSONKey("f_enum7")
 	encoder.AppendValueInt32(int32(x.FEnum7.Number()))
 	encoder.AppendJSONKey("f_message1")
-	err = encoder.AppendValueInterface(x.FMessage1)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage1); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message2")
-	err = encoder.AppendValueInterface(x.FMessage2)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage2); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message3")
-	err = encoder.AppendValueInterface(x.FMessage3)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage3); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message4")
-	err = encoder.AppendValueInterface(x.FMessage4)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage4); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message5")
-	err = encoder.AppendValueInterface(x.FMessage5)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage5); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message6")
-	err = encoder.AppendValueInterface(x.FMessage6)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage6); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message7")
-	err = encoder.AppendValueInterface(x.FMessage7)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage7); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("p_string1")
@@ -590,38 +583,31 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendValueNULL()
 	}
 	encoder.AppendJSONKey("p_message1")
-	err = encoder.AppendValueInterface(x.PMessage1)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.PMessage1); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("p_message2")
-	err = encoder.AppendValueInterface(x.PMessage2)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.PMessage2); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("p_message3")
-	err = encoder.AppendValueInterface(x.PMessage3)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.PMessage3); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("p_message4")
-	err = encoder.AppendValueInterface(x.PMessage4)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.PMessage4); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("p_message5")
-	err = encoder.AppendValueInterface(x.PMessage5)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.PMessage5); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("p_message6")
-	err = encoder.AppendValueInterface(x.PMessage6)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.PMessage6); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("p_message7")
-	err = encoder.AppendValueInterface(x.PMessage7)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.PMessage7); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("r_string1")
@@ -968,8 +954,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RMessage1 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RMessage1 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -981,8 +966,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RMessage2 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RMessage2 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -994,8 +978,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RMessage3 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RMessage3 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -1007,8 +990,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RMessage4 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RMessage4 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -1020,8 +1002,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RMessage5 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RMessage5 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -1033,8 +1014,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RMessage6 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RMessage6 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -1046,8 +1026,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RMessage7 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RMessage7 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -1434,8 +1413,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MMessage1 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -1448,8 +1426,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MMessage2 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -1462,8 +1439,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MMessage3 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -1476,8 +1452,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MMessage4 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -1490,8 +1465,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MMessage5 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -1504,8 +1478,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MMessage6 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -1518,8 +1491,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MMessage7 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}

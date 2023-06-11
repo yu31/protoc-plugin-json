@@ -5,6 +5,8 @@ import (
 	"encoding/json"
 	"math"
 	"strconv"
+
+	"github.com/golang/protobuf/ptypes/any"
 )
 
 type Encoder struct {
@@ -151,6 +153,16 @@ func (enc *Encoder) AppendValueNULL() {
 func (enc *Encoder) AppendValueInterface(v interface{}) error {
 	enc.appendElementSeparator()
 	return enc.appendInterface(v)
+}
+
+func (enc *Encoder) AppendValueAnyExpand(v *any.Any) error {
+	b, err := pMarshal.Marshal(v)
+	if err != nil {
+		return err
+	}
+	enc.appendElementSeparator()
+	enc.writeBytes(b)
+	return nil
 }
 
 // AppendPointerString can be used for value of literal, slice, array and map.

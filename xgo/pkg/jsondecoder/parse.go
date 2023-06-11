@@ -45,7 +45,7 @@ func bytesToInt32(b []byte) (int32, error) {
 	return int32(v), nil
 }
 func bytesToInt64(b []byte) (int64, error) {
-	return strconv.ParseInt(*(*string)(unsafe.Pointer(&b)), 10, 32)
+	return strconv.ParseInt(*(*string)(unsafe.Pointer(&b)), 10, 64)
 }
 func bytesToUint32(b []byte) (uint32, error) {
 	v, err := strconv.ParseUint(*(*string)(unsafe.Pointer(&b)), 10, 32)

@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package type_wkt;
+
+option go_package = "xgo/tests/pb/pbtypes";
+
+import "google/protobuf/any.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+//import "tests/proto/module/external.proto";
+//import "tests/proto/cases/types/type_common.proto";
+
+import "proto/json.proto";
+
+// EnumWKT1 used tests cases in this file.
+enum EnumWKT1 {
+  Zero  = 0;
+  One   = 2;
+  Two   = 3;
+  Three = 5;
+  Four  = 6;
+  Five  = 7;
+  Six   = 9;
+  Seven = 11;
+  Eight = 12;
+  Nine  = 15;
+  Ten   = 17;
+}
+
+// MessageWKT1 used tests cases in this file.
+message MessageWKT1 {
+//  message Embed1 {
+//    message Embed2 {
+//      string f_string1 = 1 [ (json.field) = { } ];
+//      string f_string2 = 2 [ (json.field) = { } ];
+//      string f_string3 = 3 [ (json.field) = { } ];
+//    }
+//    string f_string1 = 1 [ (json.field) = { } ];
+//    string f_string2 = 2 [ (json.field) = { } ];
+//    string f_string3 = 3 [ (json.field) = { } ];
+//  }
+  string f_string1 = 1 [ (json.field) = { } ];
+  string f_string2 = 2 [ (json.field) = { } ];
+  string f_string3 = 3 [ (json.field) = { } ];
+}
+
+message TypeWKTPlain1 {
+  google.protobuf.Any f_any1 = 1 [ (json.field) = { any: { native: true } } ];
+  google.protobuf.Any f_any2 = 2 [ (json.field) = { any: { native: false } } ];
+  google.protobuf.Any f_any3 = 3 [ (json.field) = { any: { expand: true } } ];
+  google.protobuf.Any f_any4 = 4 [ (json.field) = { any: { expand: false } } ];
+
+
+  google.protobuf.Duration f_duration11 = 11 [ (json.field) = { duration: { native: true } } ];
+  google.protobuf.Duration f_duration21 = 21 [ (json.field) = { duration: { native: false } } ];
+
+  google.protobuf.Duration f_duration12 = 12 [ (json.field) = { duration: { string: true } } ];
+  google.protobuf.Duration f_duration22 = 22 [ (json.field) = { duration: { string: false } } ];
+
+  google.protobuf.Duration f_duration13 = 13 [ (json.field) = { duration: { nanoseconds: true } } ];
+  google.protobuf.Duration f_duration23 = 23 [ (json.field) = { duration: { nanoseconds: false } } ];
+
+  google.protobuf.Duration f_duration14 = 14 [ (json.field) = { duration: { microseconds: true } } ];
+  google.protobuf.Duration f_duration24 = 24 [ (json.field) = { duration: { microseconds: false } } ];
+
+  google.protobuf.Duration f_duration15 = 15 [ (json.field) = { duration: { milliseconds: true } } ];
+  google.protobuf.Duration f_duration25 = 25 [ (json.field) = { duration: { milliseconds: false } } ];
+
+  google.protobuf.Duration f_duration16 = 16 [ (json.field) = { duration: { seconds: true } } ];
+  google.protobuf.Duration f_duration26 = 26 [ (json.field) = { duration: { seconds: false } } ];
+
+  google.protobuf.Duration f_duration17 = 17 [ (json.field) = { duration: { minutes: true } } ];
+  google.protobuf.Duration f_duration27 = 27 [ (json.field) = { duration: { minutes: false } } ];
+
+  google.protobuf.Duration f_duration18 = 18 [ (json.field) = { duration: { hours: true } } ];
+  google.protobuf.Duration f_duration28 = 28 [ (json.field) = { duration: { hours: false } } ];
+
+
+  google.protobuf.Timestamp f_timestamp31 = 31 [ (json.field) = { timestamp: { native: true } } ];
+  google.protobuf.Timestamp f_timestamp41 = 41 [ (json.field) = { timestamp: { native: false } } ];
+
+  google.protobuf.Timestamp f_timestamp32 = 32 [ (json.field) = { timestamp: { time_layout: { golang: "2006-01-02T15:04:05Z07:00" } } } ];
+  google.protobuf.Timestamp f_timestamp42 = 42 [ (json.field) = { timestamp: { time_layout: { golang: "Mon, 02 Jan 2006 15:04:05 MST" } } } ];
+
+  google.protobuf.Timestamp f_timestamp33 = 33 [ (json.field) = { timestamp: { unix_nano: true } } ];
+  google.protobuf.Timestamp f_timestamp43 = 43 [ (json.field) = { timestamp: { unix_nano: false } } ];
+
+  google.protobuf.Timestamp f_timestamp34 = 34 [ (json.field) = { timestamp: { unix_micro: true } } ];
+  google.protobuf.Timestamp f_timestamp44 = 44 [ (json.field) = { timestamp: { unix_micro: false } } ];
+
+  google.protobuf.Timestamp f_timestamp35 = 35 [ (json.field) = { timestamp: { unix_milli: true } } ];
+  google.protobuf.Timestamp f_timestamp45 = 45 [ (json.field) = { timestamp: { unix_milli: false } } ];
+
+  google.protobuf.Timestamp f_timestamp36 = 36 [ (json.field) = { timestamp: { unix_sec: true } } ];
+  google.protobuf.Timestamp f_timestamp46 = 46 [ (json.field) = { timestamp: { unix_sec: false } } ];
+}
+

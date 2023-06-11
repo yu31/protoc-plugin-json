@@ -518,8 +518,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 	if x.FDuration1 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.FDuration1 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -531,8 +530,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 	if x.FDuration2 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.FDuration2 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -544,8 +542,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 	if x.FTimestamp1 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.FTimestamp1 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -557,8 +554,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 	if x.FTimestamp2 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.FTimestamp2 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -570,8 +566,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 	if x.FAny1 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.FAny1 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -583,8 +578,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 	if x.FAny2 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.FAny2 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -596,8 +590,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 	if x.FMessage1 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.FMessage1 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -609,8 +602,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 	if x.FMessage2 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.FMessage2 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -622,8 +614,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 	if x.FMessage3 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.FMessage3 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -635,8 +626,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 	if x.FMessage4 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.FMessage4 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -648,8 +638,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 	if x.FMessage5 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.FMessage5 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -661,8 +650,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 	if x.FMessage6 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.FMessage6 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -674,8 +662,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 	if x.FMessage7 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.FMessage7 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -687,8 +674,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 	if x.FMessage8 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.FMessage8 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -700,8 +686,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 	if x.FMessage9 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.FMessage9 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}

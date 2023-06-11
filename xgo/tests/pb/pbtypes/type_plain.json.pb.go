@@ -339,78 +339,63 @@ func (x *TypePlain1) MarshalJSON() ([]byte, error) {
 	encoder.AppendJSONKey("f_enum6")
 	encoder.AppendValueInt32(int32(x.FEnum6.Number()))
 	encoder.AppendJSONKey("f_duration1")
-	err = encoder.AppendValueInterface(x.FDuration1)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FDuration1); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_duration2")
-	err = encoder.AppendValueInterface(x.FDuration2)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FDuration2); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_timestamp1")
-	err = encoder.AppendValueInterface(x.FTimestamp1)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FTimestamp1); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_timestamp2")
-	err = encoder.AppendValueInterface(x.FTimestamp2)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FTimestamp2); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_any1")
-	err = encoder.AppendValueInterface(x.FAny1)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FAny1); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_any2")
-	err = encoder.AppendValueInterface(x.FAny2)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FAny2); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message1")
-	err = encoder.AppendValueInterface(x.FMessage1)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage1); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message2")
-	err = encoder.AppendValueInterface(x.FMessage2)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage2); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message3")
-	err = encoder.AppendValueInterface(x.FMessage3)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage3); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message4")
-	err = encoder.AppendValueInterface(x.FMessage4)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage4); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message5")
-	err = encoder.AppendValueInterface(x.FMessage5)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage5); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message6")
-	err = encoder.AppendValueInterface(x.FMessage6)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage6); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message7")
-	err = encoder.AppendValueInterface(x.FMessage7)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage7); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message8")
-	err = encoder.AppendValueInterface(x.FMessage8)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage8); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message9")
-	err = encoder.AppendValueInterface(x.FMessage9)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage9); err != nil {
 		return nil, err
 	}
 

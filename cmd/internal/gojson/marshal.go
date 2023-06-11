@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/yu31/protoc-kit-go/helper/pkerror"
+	"github.com/yu31/protoc-kit-go/helper/pkwkt"
 	"github.com/yu31/protoc-kit-go/utils/pkfield"
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/reflect/protoreflect"
@@ -299,11 +300,7 @@ func (p *Plugin) marshalAppendValue(field *protogen.Field) {
 			p.g.P("encoder.AppendValueFloat64(", varName, ")")
 		}
 	case protoreflect.MessageKind:
-		// TODO: supported Well Know Type.
-		p.g.P("err = encoder.AppendValueInterface(", varName, ")")
-		p.g.P("if err != nil {")
-		p.g.P("    return nil, err")
-		p.g.P("}")
+		p.marshalValueMessage(field, options, varName)
 	case protoreflect.EnumKind:
 		if isOptional {
 			p.g.P("if ", varName, "!= nil {")
@@ -321,5 +318,108 @@ func (p *Plugin) marshalAppendValue(field *protogen.Field) {
 	default:
 		err := pkerror.New("marshal: unsupported kind of %s", field.Desc.Kind().String())
 		panic(err)
+	}
+}
+
+func (p *Plugin) marshalValueMessage(field *protogen.Field, options *pbjson.FieldOptions, varName string) {
+	useInterface := true
+	// Supported Well Know Type.
+	switch pkwkt.Lookup(string(field.Message.Desc.FullName())) {
+	case pkwkt.Any:
+		switch wkt := options.WKT.(type) {
+		case *pbjson.FieldOptions_Any:
+			switch format := wkt.Any.Format.(type) {
+			case *pbjson.TypeAny_Expand:
+				if format.Expand {
+					useInterface = false
+					p.g.P("if err = encoder.AppendValueAnyExpand(", varName, "); err != nil {")
+					p.g.P("    return nil, err")
+					p.g.P("}")
+				}
+			case *pbjson.TypeAny_Native:
+			default:
+			}
+		}
+	case pkwkt.Duration:
+		switch wkt := options.WKT.(type) {
+		case *pbjson.FieldOptions_Duration:
+			switch format := wkt.Duration.Format.(type) {
+			case *pbjson.TypeDuration_Native:
+			case *pbjson.TypeDuration_String_:
+				if format.String_ {
+					useInterface = false
+					p.g.P("encoder.AppendValueString(", varName, ".AsDuration().String())")
+				}
+			case *pbjson.TypeDuration_Nanoseconds:
+				if format.Nanoseconds {
+					useInterface = false
+					p.g.P("encoder.AppendValueInt64(", varName, ".AsDuration().Nanoseconds())")
+				}
+			case *pbjson.TypeDuration_Microseconds:
+				if format.Microseconds {
+					useInterface = false
+					p.g.P("encoder.AppendValueInt64(", varName, ".AsDuration().Microseconds())")
+				}
+			case *pbjson.TypeDuration_Milliseconds:
+				if format.Milliseconds {
+					useInterface = false
+					p.g.P("encoder.AppendValueInt64(", varName, ".AsDuration().Milliseconds())")
+				}
+			case *pbjson.TypeDuration_Seconds:
+				if format.Seconds {
+					useInterface = false
+					p.g.P("encoder.AppendValueFloat64(", varName, ".AsDuration().Seconds())")
+				}
+			case *pbjson.TypeDuration_Minutes:
+				if format.Minutes {
+					useInterface = false
+					p.g.P("encoder.AppendValueFloat64(", varName, ".AsDuration().Minutes())")
+				}
+			case *pbjson.TypeDuration_Hours:
+				if format.Hours {
+					useInterface = false
+					p.g.P("encoder.AppendValueFloat64(", varName, ".AsDuration().Hours())")
+				}
+			}
+		}
+	case pkwkt.Timestamp:
+		switch wkt := options.WKT.(type) {
+		case *pbjson.FieldOptions_Timestamp:
+			switch format := wkt.Timestamp.Format.(type) {
+			case *pbjson.TypeTimestamp_Native:
+			case *pbjson.TypeTimestamp_TimeLayout_:
+				if format.TimeLayout != nil && format.TimeLayout.Golang != "" {
+					useInterface = false
+					p.g.P("encoder.AppendValueString(", varName, ".AsTime().Format(", strconv.Quote(format.TimeLayout.Golang), "))")
+				}
+			case *pbjson.TypeTimestamp_UnixNano:
+				if format.UnixNano {
+					useInterface = false
+					p.g.P("encoder.AppendValueInt64(", varName, ".AsTime().UnixNano())")
+				}
+			case *pbjson.TypeTimestamp_UnixMicro:
+				if format.UnixMicro {
+					useInterface = false
+					p.g.P("encoder.AppendValueInt64(", varName, ".AsTime().UnixMicro())")
+				}
+			case *pbjson.TypeTimestamp_UnixMilli:
+				if format.UnixMilli {
+					useInterface = false
+					p.g.P("encoder.AppendValueInt64(", varName, ".AsTime().UnixMilli())")
+				}
+			case *pbjson.TypeTimestamp_UnixSec:
+				if format.UnixSec {
+					useInterface = false
+					p.g.P("encoder.AppendValueInt64(", varName, ".AsTime().Unix())")
+				}
+			}
+		}
+	default:
+	}
+
+	if useInterface {
+		p.g.P("if err = encoder.AppendValueInterface(", varName, "); err != nil {")
+		p.g.P("    return nil, err")
+		p.g.P("}")
 	}
 }

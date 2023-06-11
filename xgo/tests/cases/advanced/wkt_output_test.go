@@ -101,9 +101,9 @@ func Test_WKT_Timestamp(t *testing.T) {
 
 	fmt.Println("--------------------")
 	fmt.Println("Timestamp.String:", tt1.Format(time.RFC3339Nano))
-	fmt.Println("Timestamp.Unix:", tt1.Unix())
-	fmt.Println("Timestamp.UnixMilli:", tt1.UnixMilli())
-	fmt.Println("Timestamp.UnixMicro:", tt1.UnixMicro())
 	fmt.Println("Timestamp.UnixNano:", tt1.UnixNano())
+	fmt.Println("Timestamp.UnixMicro:", tt1.UnixMicro())
+	fmt.Println("Timestamp.UnixMilli:", tt1.UnixMilli())
+	fmt.Println("Timestamp.UnixSec:", tt1.Unix())
 	fmt.Println("--------------------")
 }

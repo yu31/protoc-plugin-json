@@ -4,11 +4,13 @@ import (
 	"fmt"
 	"strconv"
 
+	"github.com/yu31/protoc-kit-go/helper/pkwkt"
 	"github.com/yu31/protoc-kit-go/utils/pkfield"
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/reflect/protoreflect"
 
 	"github.com/yu31/protoc-plugin-json/cmd/internal/gojson/pkg/importpkg"
+	"github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 )
 
 func (p *Plugin) generateCodeUnmarshal(fields []*protogen.Field) {
@@ -461,22 +463,24 @@ func (p *Plugin) unmarshalReadLiteralValue(field *protogen.Field) {
 	case protoreflect.BytesKind:
 		p.g.P("vv, err = decoder.ReadValueBytes", "(jsonKey)")
 	case protoreflect.MessageKind:
-		var receiver string
-		switch {
-		case isOneOf:
-			receiver = "ot"
-		default:
-			receiver = "x"
-		}
-		p.g.P("initFN := func () interface{} {")
-		p.g.P("    if ", receiver, ".", field.GoName, " != nil {")
-		p.g.P("        vv = ", receiver, ".", field.GoName)
-		p.g.P("    } else {")
-		p.g.P("        vv = new(", goType, ")")
-		p.g.P("    }")
-		p.g.P("    return vv")
-		p.g.P("}")
-		p.g.P("err = decoder.ReadValueInterface", "(jsonKey, initFN)")
+		options := p.loadFieldOptions(field)
+		p.unmarshalReadValueMessage(field, options, goType, isOneOf)
+		//var receiver string
+		//switch {
+		//case isOneOf:
+		//	receiver = "ot"
+		//default:
+		//	receiver = "x"
+		//}
+		//p.g.P("initFN := func () interface{} {")
+		//p.g.P("    if ", receiver, ".", field.GoName, " != nil {")
+		//p.g.P("        vv = ", receiver, ".", field.GoName)
+		//p.g.P("    } else {")
+		//p.g.P("        vv = new(", goType, ")")
+		//p.g.P("    }")
+		//p.g.P("    return vv")
+		//p.g.P("}")
+		//p.g.P("err = decoder.ReadValueInterface", "(jsonKey, initFN)")
 	case protoreflect.EnumKind:
 		options := p.loadFieldOptions(field)
 		if isOptional {
@@ -526,4 +530,136 @@ func (p *Plugin) unmarshalReadLiteralValue(field *protogen.Field) {
 
 func (p *Plugin) genVariableOneofIsFill(oneofName string) string {
 	return "oneOfIsFill_" + oneofName
+}
+
+func (p *Plugin) unmarshalReadValueMessage(field *protogen.Field, options *pbjson.FieldOptions, goType string, isOneOf bool) {
+	var receiver string
+	switch {
+	case isOneOf:
+		receiver = "ot"
+	default:
+		receiver = "x"
+	}
+
+	initFN := func() {
+		p.g.P("if ", receiver, ".", field.GoName, " != nil {")
+		p.g.P("    vv = ", receiver, ".", field.GoName)
+		p.g.P("} else {")
+		p.g.P("    vv = new(", goType, ")")
+		p.g.P("}")
+	}
+
+	useInterface := true
+	// Supported Well Know Type.
+	switch pkwkt.Lookup(string(field.Message.Desc.FullName())) {
+	case pkwkt.Any:
+		switch wkt := options.WKT.(type) {
+		case *pbjson.FieldOptions_Any:
+			switch format := wkt.Any.Format.(type) {
+			case *pbjson.TypeAny_Expand:
+				if format.Expand {
+					useInterface = false
+					initFN()
+					p.g.P("err = decoder.ReadValueWKTAnyExpand(jsonKey, vv)")
+				}
+			case *pbjson.TypeAny_Native:
+			default:
+			}
+		}
+	case pkwkt.Duration:
+		switch wkt := options.WKT.(type) {
+		case *pbjson.FieldOptions_Duration:
+			switch format := wkt.Duration.Format.(type) {
+			case *pbjson.TypeDuration_Native:
+			case *pbjson.TypeDuration_String_:
+				if format.String_ {
+					useInterface = false
+					initFN()
+					p.g.P("err = decoder.ReadValueWKTDurationString(jsonKey, vv)")
+				}
+			case *pbjson.TypeDuration_Nanoseconds:
+				if format.Nanoseconds {
+					useInterface = false
+					initFN()
+					p.g.P("err = decoder.ReadValueWKTDurationNanoseconds(jsonKey, vv)")
+				}
+			case *pbjson.TypeDuration_Microseconds:
+				if format.Microseconds {
+					useInterface = false
+					initFN()
+					p.g.P("err = decoder.ReadValueWKTDurationMicroseconds(jsonKey, vv)")
+				}
+			case *pbjson.TypeDuration_Milliseconds:
+				if format.Milliseconds {
+					useInterface = false
+					initFN()
+					p.g.P("err = decoder.ReadValueWKTDurationMilliseconds(jsonKey, vv)")
+				}
+			case *pbjson.TypeDuration_Seconds:
+				if format.Seconds {
+					useInterface = false
+					initFN()
+					p.g.P("err = decoder.ReadValueWKTDurationSeconds(jsonKey, vv)")
+				}
+			case *pbjson.TypeDuration_Minutes:
+				if format.Minutes {
+					useInterface = false
+					initFN()
+					p.g.P("err = decoder.ReadValueWKTDurationMinutes(jsonKey, vv)")
+				}
+			case *pbjson.TypeDuration_Hours:
+				if format.Hours {
+					useInterface = false
+					initFN()
+					p.g.P("err = decoder.ReadValueWKTDurationHours(jsonKey, vv)")
+				}
+			}
+		}
+	case pkwkt.Timestamp:
+		switch wkt := options.WKT.(type) {
+		case *pbjson.FieldOptions_Timestamp:
+			switch format := wkt.Timestamp.Format.(type) {
+			case *pbjson.TypeTimestamp_Native:
+			case *pbjson.TypeTimestamp_TimeLayout_:
+				if format.TimeLayout != nil && format.TimeLayout.Golang != "" {
+					useInterface = false
+					initFN()
+					p.g.P("err = decoder.ReadValueWKTTimestampString(jsonKey, vv,", strconv.Quote(format.TimeLayout.Golang), ")")
+				}
+			case *pbjson.TypeTimestamp_UnixNano:
+				if format.UnixNano {
+					useInterface = false
+					initFN()
+					p.g.P("err = decoder.ReadValueWKTTimestampUnixNano(jsonKey, vv)")
+				}
+			case *pbjson.TypeTimestamp_UnixMicro:
+				if format.UnixMicro {
+					useInterface = false
+					initFN()
+					p.g.P("err = decoder.ReadValueWKTTimestampUnixMicro(jsonKey, vv)")
+				}
+			case *pbjson.TypeTimestamp_UnixMilli:
+				if format.UnixMilli {
+					useInterface = false
+					initFN()
+					p.g.P("err = decoder.ReadValueWKTTimestampUnixMilli(jsonKey, vv)")
+				}
+			case *pbjson.TypeTimestamp_UnixSec:
+				if format.UnixSec {
+					useInterface = false
+					initFN()
+					p.g.P("err = decoder.ReadValueWKTTimestampUnixSec(jsonKey, vv)")
+				}
+			}
+		}
+	default:
+	}
+
+	if useInterface {
+		p.g.P("initFN := func () interface{} {")
+		initFN()
+		p.g.P("    return vv")
+		p.g.P("}")
+		p.g.P("err = decoder.ReadValueInterface", "(jsonKey, initFN)")
+	}
 }

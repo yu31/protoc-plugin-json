@@ -108,10 +108,15 @@ message TypeDuration {
     bool string = 2;
 
     bool nanoseconds = 3;
+
     bool microseconds = 4;
+
     bool milliseconds = 5;
+
     bool seconds = 6;
+
     bool minutes = 7;
+
     bool hours = 8;
   }
 }
@@ -119,8 +124,11 @@ message TypeDuration {
 message TypeTimestamp {
   message TimeLayout {
     string golang = 1;
+
     string java = 2;
+
     string rust = 3;
+
     string python = 4;
   }
 
@@ -131,8 +139,11 @@ message TypeTimestamp {
     TimeLayout time_layout = 2;
 
     bool unix_nano = 3;
+
     bool unix_micro = 4;
+
     bool unix_milli = 5;
+
     bool unix_sec = 6;
   }
 }

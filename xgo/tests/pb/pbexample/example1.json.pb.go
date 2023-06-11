@@ -123,33 +123,27 @@ func (x *Example1) MarshalJSON() ([]byte, error) {
 		encoder.AppendValueNULL()
 	}
 	encoder.AppendJSONKey("f_duration1")
-	err = encoder.AppendValueInterface(x.FDuration1)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FDuration1); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_timestamp1")
-	err = encoder.AppendValueInterface(x.FTimestamp1)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FTimestamp1); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message11")
-	err = encoder.AppendValueInterface(x.FMessage11)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage11); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message12")
-	err = encoder.AppendValueInterface(x.FMessage12)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage12); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_message13")
-	err = encoder.AppendValueInterface(x.FMessage13)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage13); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_any1")
-	err = encoder.AppendValueInterface(x.FAny1)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FAny1); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("r_string1")
@@ -176,8 +170,7 @@ func (x *Example1) MarshalJSON() ([]byte, error) {
 	if x.RMessage != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RMessage {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -222,8 +215,7 @@ func (x *Example1) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MMessage1 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}

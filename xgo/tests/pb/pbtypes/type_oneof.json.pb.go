@@ -495,8 +495,7 @@ func (x *TypeOneof1) MarshalJSON() ([]byte, error) {
 		encoder.AppendJSONKey("OneType10")
 		encoder.AppendObjectBegin()
 		encoder.AppendJSONKey("f_duration1")
-		err = encoder.AppendValueInterface(ov.FDuration1)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FDuration1); err != nil {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()
@@ -504,8 +503,7 @@ func (x *TypeOneof1) MarshalJSON() ([]byte, error) {
 		encoder.AppendJSONKey("OneType10")
 		encoder.AppendObjectBegin()
 		encoder.AppendJSONKey("f_duration2")
-		err = encoder.AppendValueInterface(ov.FDuration2)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FDuration2); err != nil {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()
@@ -520,8 +518,7 @@ func (x *TypeOneof1) MarshalJSON() ([]byte, error) {
 		encoder.AppendJSONKey("OneType11")
 		encoder.AppendObjectBegin()
 		encoder.AppendJSONKey("f_timestamp1")
-		err = encoder.AppendValueInterface(ov.FTimestamp1)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FTimestamp1); err != nil {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()
@@ -529,8 +526,7 @@ func (x *TypeOneof1) MarshalJSON() ([]byte, error) {
 		encoder.AppendJSONKey("OneType11")
 		encoder.AppendObjectBegin()
 		encoder.AppendJSONKey("f_timestamp2")
-		err = encoder.AppendValueInterface(ov.FTimestamp2)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FTimestamp2); err != nil {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()
@@ -545,8 +541,7 @@ func (x *TypeOneof1) MarshalJSON() ([]byte, error) {
 		encoder.AppendJSONKey("OneType12")
 		encoder.AppendObjectBegin()
 		encoder.AppendJSONKey("f_any1")
-		err = encoder.AppendValueInterface(ov.FAny1)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FAny1); err != nil {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()
@@ -554,8 +549,7 @@ func (x *TypeOneof1) MarshalJSON() ([]byte, error) {
 		encoder.AppendJSONKey("OneType12")
 		encoder.AppendObjectBegin()
 		encoder.AppendJSONKey("f_any2")
-		err = encoder.AppendValueInterface(ov.FAny2)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FAny2); err != nil {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()
@@ -570,8 +564,7 @@ func (x *TypeOneof1) MarshalJSON() ([]byte, error) {
 		encoder.AppendJSONKey("OneType13")
 		encoder.AppendObjectBegin()
 		encoder.AppendJSONKey("f_message1")
-		err = encoder.AppendValueInterface(ov.FMessage1)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FMessage1); err != nil {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()
@@ -579,8 +572,7 @@ func (x *TypeOneof1) MarshalJSON() ([]byte, error) {
 		encoder.AppendJSONKey("OneType13")
 		encoder.AppendObjectBegin()
 		encoder.AppendJSONKey("f_message2")
-		err = encoder.AppendValueInterface(ov.FMessage2)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FMessage2); err != nil {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()
@@ -588,8 +580,7 @@ func (x *TypeOneof1) MarshalJSON() ([]byte, error) {
 		encoder.AppendJSONKey("OneType13")
 		encoder.AppendObjectBegin()
 		encoder.AppendJSONKey("f_message3")
-		err = encoder.AppendValueInterface(ov.FMessage3)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FMessage3); err != nil {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()
@@ -597,8 +588,7 @@ func (x *TypeOneof1) MarshalJSON() ([]byte, error) {
 		encoder.AppendJSONKey("OneType13")
 		encoder.AppendObjectBegin()
 		encoder.AppendJSONKey("f_message4")
-		err = encoder.AppendValueInterface(ov.FMessage4)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FMessage4); err != nil {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()
@@ -606,8 +596,7 @@ func (x *TypeOneof1) MarshalJSON() ([]byte, error) {
 		encoder.AppendJSONKey("OneType13")
 		encoder.AppendObjectBegin()
 		encoder.AppendJSONKey("f_message5")
-		err = encoder.AppendValueInterface(ov.FMessage5)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FMessage5); err != nil {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()
@@ -615,8 +604,7 @@ func (x *TypeOneof1) MarshalJSON() ([]byte, error) {
 		encoder.AppendJSONKey("OneType13")
 		encoder.AppendObjectBegin()
 		encoder.AppendJSONKey("f_message6")
-		err = encoder.AppendValueInterface(ov.FMessage6)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FMessage6); err != nil {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()
@@ -624,8 +612,7 @@ func (x *TypeOneof1) MarshalJSON() ([]byte, error) {
 		encoder.AppendJSONKey("OneType13")
 		encoder.AppendObjectBegin()
 		encoder.AppendJSONKey("f_message7")
-		err = encoder.AppendValueInterface(ov.FMessage7)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FMessage7); err != nil {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()
@@ -633,8 +620,7 @@ func (x *TypeOneof1) MarshalJSON() ([]byte, error) {
 		encoder.AppendJSONKey("OneType13")
 		encoder.AppendObjectBegin()
 		encoder.AppendJSONKey("f_message8")
-		err = encoder.AppendValueInterface(ov.FMessage8)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FMessage8); err != nil {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()
@@ -642,8 +628,7 @@ func (x *TypeOneof1) MarshalJSON() ([]byte, error) {
 		encoder.AppendJSONKey("OneType13")
 		encoder.AppendObjectBegin()
 		encoder.AppendJSONKey("f_message9")
-		err = encoder.AppendValueInterface(ov.FMessage9)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FMessage9); err != nil {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()
@@ -1840,14 +1825,12 @@ func (x *TypeOneofHide1) MarshalJSON() ([]byte, error) {
 	switch ov := x.OneType02.(type) {
 	case *TypeOneofHide1_FMessage1:
 		encoder.AppendJSONKey("f_message1")
-		err = encoder.AppendValueInterface(ov.FMessage1)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FMessage1); err != nil {
 			return nil, err
 		}
 	case *TypeOneofHide1_FMessage2:
 		encoder.AppendJSONKey("f_message2")
-		err = encoder.AppendValueInterface(ov.FMessage2)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FMessage2); err != nil {
 			return nil, err
 		}
 	default:
@@ -1868,8 +1851,7 @@ func (x *TypeOneofHide1) MarshalJSON() ([]byte, error) {
 		encoder.AppendJSONKey("OneType04")
 		encoder.AppendObjectBegin()
 		encoder.AppendJSONKey("f_duration1")
-		err = encoder.AppendValueInterface(ov.FDuration1)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FDuration1); err != nil {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()
@@ -1877,8 +1859,7 @@ func (x *TypeOneofHide1) MarshalJSON() ([]byte, error) {
 		encoder.AppendJSONKey("OneType04")
 		encoder.AppendObjectBegin()
 		encoder.AppendJSONKey("f_duration2")
-		err = encoder.AppendValueInterface(ov.FDuration2)
-		if err != nil {
+		if err = encoder.AppendValueInterface(ov.FDuration2); err != nil {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()

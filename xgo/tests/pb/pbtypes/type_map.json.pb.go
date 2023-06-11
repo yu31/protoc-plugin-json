@@ -541,8 +541,7 @@ func (x *TypeMap1) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FDuration1 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -555,8 +554,7 @@ func (x *TypeMap1) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FDuration2 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -569,8 +567,7 @@ func (x *TypeMap1) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FTimestamp1 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -583,8 +580,7 @@ func (x *TypeMap1) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FTimestamp2 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -597,8 +593,7 @@ func (x *TypeMap1) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FAny1 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -611,8 +606,7 @@ func (x *TypeMap1) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FAny2 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -625,8 +619,7 @@ func (x *TypeMap1) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FMessage1 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -639,8 +632,7 @@ func (x *TypeMap1) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FMessage2 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -653,8 +645,7 @@ func (x *TypeMap1) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FMessage3 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -667,8 +658,7 @@ func (x *TypeMap1) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FMessage4 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -681,8 +671,7 @@ func (x *TypeMap1) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FMessage5 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -695,8 +684,7 @@ func (x *TypeMap1) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FMessage6 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -709,8 +697,7 @@ func (x *TypeMap1) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FMessage7 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -723,8 +710,7 @@ func (x *TypeMap1) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FMessage8 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}
@@ -737,8 +723,7 @@ func (x *TypeMap1) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FMessage9 {
 			encoder.AppendMapKeyString(mk)
-			err = encoder.AppendValueInterface(mv)
-			if err != nil {
+			if err = encoder.AppendValueInterface(mv); err != nil {
 				return nil, err
 			}
 		}

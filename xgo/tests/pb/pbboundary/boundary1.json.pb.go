@@ -336,8 +336,7 @@ func (x *Complex1) MarshalJSON() ([]byte, error) {
 		encoder.AppendValueNULL()
 	}
 	encoder.AppendJSONKey("f_message1")
-	err = encoder.AppendValueInterface(x.FMessage1)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.FMessage1); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("m_int32")
@@ -523,16 +522,14 @@ func (x *Complex2) MarshalJSON() ([]byte, error) {
 		encoder.AppendValueNULL()
 	}
 	encoder.AppendJSONKey("level1")
-	err = encoder.AppendValueInterface(x.Level1)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.Level1); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("r_level1")
 	if x.RLevel1 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RLevel1 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -544,8 +541,7 @@ func (x *Complex2) MarshalJSON() ([]byte, error) {
 	if x.RLevel2 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RLevel2 {
-			err = encoder.AppendValueInterface(ri)
-			if err != nil {
+			if err = encoder.AppendValueInterface(ri); err != nil {
 				return nil, err
 			}
 		}
@@ -764,8 +760,7 @@ func (x *Complex2_Level1) MarshalJSON() ([]byte, error) {
 	encoder.AppendObjectBegin()
 
 	encoder.AppendJSONKey("level2")
-	err = encoder.AppendValueInterface(x.Level2)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.Level2); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("f_string")
@@ -903,8 +898,7 @@ func (x *Complex2_Level2) MarshalJSON() ([]byte, error) {
 	encoder.AppendJSONKey("f_string")
 	encoder.AppendValueString(x.FString)
 	encoder.AppendJSONKey("level3")
-	err = encoder.AppendValueInterface(x.Level3)
-	if err != nil {
+	if err = encoder.AppendValueInterface(x.Level3); err != nil {
 		return nil, err
 	}
 	encoder.AppendJSONKey("r_int64")
