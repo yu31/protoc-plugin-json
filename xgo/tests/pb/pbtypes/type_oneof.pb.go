@@ -25,26 +25,26 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// EnumOneof1 used tests cases in this file.
-type EnumOneof1 int32
+// EnumOneOf1 used tests cases in this file.
+type EnumOneOf1 int32
 
 const (
-	EnumOneof1_Zero  EnumOneof1 = 0
-	EnumOneof1_One   EnumOneof1 = 2
-	EnumOneof1_Two   EnumOneof1 = 3
-	EnumOneof1_Three EnumOneof1 = 5
-	EnumOneof1_Four  EnumOneof1 = 6
-	EnumOneof1_Five  EnumOneof1 = 7
-	EnumOneof1_Six   EnumOneof1 = 9
-	EnumOneof1_Seven EnumOneof1 = 11
-	EnumOneof1_Eight EnumOneof1 = 12
-	EnumOneof1_Nine  EnumOneof1 = 15
-	EnumOneof1_Ten   EnumOneof1 = 17
+	EnumOneOf1_Zero  EnumOneOf1 = 0
+	EnumOneOf1_One   EnumOneOf1 = 2
+	EnumOneOf1_Two   EnumOneOf1 = 3
+	EnumOneOf1_Three EnumOneOf1 = 5
+	EnumOneOf1_Four  EnumOneOf1 = 6
+	EnumOneOf1_Five  EnumOneOf1 = 7
+	EnumOneOf1_Six   EnumOneOf1 = 9
+	EnumOneOf1_Seven EnumOneOf1 = 11
+	EnumOneOf1_Eight EnumOneOf1 = 12
+	EnumOneOf1_Nine  EnumOneOf1 = 15
+	EnumOneOf1_Ten   EnumOneOf1 = 17
 )
 
-// Enum value maps for EnumOneof1.
+// Enum value maps for EnumOneOf1.
 var (
-	EnumOneof1_name = map[int32]string{
+	EnumOneOf1_name = map[int32]string{
 		0:  "Zero",
 		2:  "One",
 		3:  "Two",
@@ -57,7 +57,7 @@ var (
 		15: "Nine",
 		17: "Ten",
 	}
-	EnumOneof1_value = map[string]int32{
+	EnumOneOf1_value = map[string]int32{
 		"Zero":  0,
 		"One":   2,
 		"Two":   3,
@@ -72,35 +72,35 @@ var (
 	}
 )
 
-func (x EnumOneof1) Enum() *EnumOneof1 {
-	p := new(EnumOneof1)
+func (x EnumOneOf1) Enum() *EnumOneOf1 {
+	p := new(EnumOneOf1)
 	*p = x
 	return p
 }
 
-func (x EnumOneof1) String() string {
+func (x EnumOneOf1) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (EnumOneof1) Descriptor() protoreflect.EnumDescriptor {
+func (EnumOneOf1) Descriptor() protoreflect.EnumDescriptor {
 	return file_tests_proto_cases_types_type_oneof_proto_enumTypes[0].Descriptor()
 }
 
-func (EnumOneof1) Type() protoreflect.EnumType {
+func (EnumOneOf1) Type() protoreflect.EnumType {
 	return &file_tests_proto_cases_types_type_oneof_proto_enumTypes[0]
 }
 
-func (x EnumOneof1) Number() protoreflect.EnumNumber {
+func (x EnumOneOf1) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use EnumOneof1.Descriptor instead.
-func (EnumOneof1) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use EnumOneOf1.Descriptor instead.
+func (EnumOneOf1) EnumDescriptor() ([]byte, []int) {
 	return file_tests_proto_cases_types_type_oneof_proto_rawDescGZIP(), []int{0}
 }
 
-// MessageOneof1 used tests cases in this file.
-type MessageOneof1 struct {
+// MessageOneOf1 used tests cases in this file.
+type MessageOneOf1 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -110,8 +110,8 @@ type MessageOneof1 struct {
 	FString3 string `protobuf:"bytes,3,opt,name=f_string3,json=fString3,proto3" json:"f_string3,omitempty"`
 }
 
-func (x *MessageOneof1) Reset() {
-	*x = MessageOneof1{}
+func (x *MessageOneOf1) Reset() {
+	*x = MessageOneOf1{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_tests_proto_cases_types_type_oneof_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -119,13 +119,13 @@ func (x *MessageOneof1) Reset() {
 	}
 }
 
-func (x *MessageOneof1) String() string {
+func (x *MessageOneOf1) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MessageOneof1) ProtoMessage() {}
+func (*MessageOneOf1) ProtoMessage() {}
 
-func (x *MessageOneof1) ProtoReflect() protoreflect.Message {
+func (x *MessageOneOf1) ProtoReflect() protoreflect.Message {
 	mi := &file_tests_proto_cases_types_type_oneof_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -137,105 +137,105 @@ func (x *MessageOneof1) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MessageOneof1.ProtoReflect.Descriptor instead.
-func (*MessageOneof1) Descriptor() ([]byte, []int) {
+// Deprecated: Use MessageOneOf1.ProtoReflect.Descriptor instead.
+func (*MessageOneOf1) Descriptor() ([]byte, []int) {
 	return file_tests_proto_cases_types_type_oneof_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *MessageOneof1) GetFString1() string {
+func (x *MessageOneOf1) GetFString1() string {
 	if x != nil {
 		return x.FString1
 	}
 	return ""
 }
 
-func (x *MessageOneof1) GetFString2() string {
+func (x *MessageOneOf1) GetFString2() string {
 	if x != nil {
 		return x.FString2
 	}
 	return ""
 }
 
-func (x *MessageOneof1) GetFString3() string {
+func (x *MessageOneOf1) GetFString3() string {
 	if x != nil {
 		return x.FString3
 	}
 	return ""
 }
 
-// Test case for field Oneof.
-type TypeOneof1 struct {
+// Test case for field oneof.
+type TypeOneOf1 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to OneType01:
-	//	*TypeOneof1_FString1
-	//	*TypeOneof1_FString2
-	OneType01 isTypeOneof1_OneType01 `protobuf_oneof:"OneType01"`
+	//	*TypeOneOf1_FString1
+	//	*TypeOneOf1_FString2
+	OneType01 isTypeOneOf1_OneType01 `protobuf_oneof:"OneType01"`
 	// Types that are assignable to One_Type02:
-	//	*TypeOneof1_FInt32
-	//	*TypeOneof1_FInt64
-	One_Type02 isTypeOneof1_One_Type02 `protobuf_oneof:"One_Type02"`
+	//	*TypeOneOf1_FInt32
+	//	*TypeOneOf1_FInt64
+	One_Type02 isTypeOneOf1_One_Type02 `protobuf_oneof:"One_Type02"`
 	// Types that are assignable to OneType03:
-	//	*TypeOneof1_FUint32
-	//	*TypeOneof1_FUint64
-	OneType03 isTypeOneof1_OneType03 `protobuf_oneof:"One_type03"`
+	//	*TypeOneOf1_FUint32
+	//	*TypeOneOf1_FUint64
+	OneType03 isTypeOneOf1_OneType03 `protobuf_oneof:"One_type03"`
 	// Types that are assignable to One_Type04:
-	//	*TypeOneof1_FSint32
-	//	*TypeOneof1_FSint64
-	One_Type04 isTypeOneof1_One_Type04 `protobuf_oneof:"one_Type04"`
+	//	*TypeOneOf1_FSint32
+	//	*TypeOneOf1_FSint64
+	One_Type04 isTypeOneOf1_One_Type04 `protobuf_oneof:"one_Type04"`
 	// Types that are assignable to OneType05:
-	//	*TypeOneof1_FSfixed32
-	//	*TypeOneof1_FSfixed64
-	OneType05 isTypeOneof1_OneType05 `protobuf_oneof:"one_type05"`
+	//	*TypeOneOf1_FSfixed32
+	//	*TypeOneOf1_FSfixed64
+	OneType05 isTypeOneOf1_OneType05 `protobuf_oneof:"one_type05"`
 	// Types that are assignable to OneType06:
-	//	*TypeOneof1_FFixed32
-	//	*TypeOneof1_FFixed64
-	OneType06 isTypeOneof1_OneType06 `protobuf_oneof:"oneType06"`
+	//	*TypeOneOf1_FFixed32
+	//	*TypeOneOf1_FFixed64
+	OneType06 isTypeOneOf1_OneType06 `protobuf_oneof:"oneType06"`
 	// Types that are assignable to Onetype07:
-	//	*TypeOneof1_FFloat
-	//	*TypeOneof1_FDouble
-	Onetype07 isTypeOneof1_Onetype07 `protobuf_oneof:"Onetype07"`
+	//	*TypeOneOf1_FFloat
+	//	*TypeOneOf1_FDouble
+	Onetype07 isTypeOneOf1_Onetype07 `protobuf_oneof:"Onetype07"`
 	// Types that are assignable to Onetype08:
-	//	*TypeOneof1_FBool1
-	//	*TypeOneof1_FBytes1
-	Onetype08 isTypeOneof1_Onetype08 `protobuf_oneof:"onetype08"`
+	//	*TypeOneOf1_FBool1
+	//	*TypeOneOf1_FBytes1
+	Onetype08 isTypeOneOf1_Onetype08 `protobuf_oneof:"onetype08"`
 	// Types that are assignable to OneType09:
-	//	*TypeOneof1_FEnum1
-	//	*TypeOneof1_FEnum2
-	//	*TypeOneof1_FEnum3
-	//	*TypeOneof1_FEnum4
-	//	*TypeOneof1_FEnum5
-	//	*TypeOneof1_FEnum6
-	OneType09 isTypeOneof1_OneType09 `protobuf_oneof:"OneType09"`
+	//	*TypeOneOf1_FEnum1
+	//	*TypeOneOf1_FEnum2
+	//	*TypeOneOf1_FEnum3
+	//	*TypeOneOf1_FEnum4
+	//	*TypeOneOf1_FEnum5
+	//	*TypeOneOf1_FEnum6
+	OneType09 isTypeOneOf1_OneType09 `protobuf_oneof:"OneType09"`
 	// Types that are assignable to OneType10:
-	//	*TypeOneof1_FDuration1
-	//	*TypeOneof1_FDuration2
-	OneType10 isTypeOneof1_OneType10 `protobuf_oneof:"OneType10"`
+	//	*TypeOneOf1_FDuration1
+	//	*TypeOneOf1_FDuration2
+	OneType10 isTypeOneOf1_OneType10 `protobuf_oneof:"OneType10"`
 	// Types that are assignable to OneType11:
-	//	*TypeOneof1_FTimestamp1
-	//	*TypeOneof1_FTimestamp2
-	OneType11 isTypeOneof1_OneType11 `protobuf_oneof:"OneType11"`
+	//	*TypeOneOf1_FTimestamp1
+	//	*TypeOneOf1_FTimestamp2
+	OneType11 isTypeOneOf1_OneType11 `protobuf_oneof:"OneType11"`
 	// Types that are assignable to OneType12:
-	//	*TypeOneof1_FAny1
-	//	*TypeOneof1_FAny2
-	OneType12 isTypeOneof1_OneType12 `protobuf_oneof:"OneType12"`
+	//	*TypeOneOf1_FAny1
+	//	*TypeOneOf1_FAny2
+	OneType12 isTypeOneOf1_OneType12 `protobuf_oneof:"OneType12"`
 	// Types that are assignable to OneType13:
-	//	*TypeOneof1_FMessage1
-	//	*TypeOneof1_FMessage2
-	//	*TypeOneof1_FMessage3
-	//	*TypeOneof1_FMessage4
-	//	*TypeOneof1_FMessage5
-	//	*TypeOneof1_FMessage6
-	//	*TypeOneof1_FMessage7
-	//	*TypeOneof1_FMessage8
-	//	*TypeOneof1_FMessage9
-	OneType13 isTypeOneof1_OneType13 `protobuf_oneof:"OneType13"`
+	//	*TypeOneOf1_FMessage1
+	//	*TypeOneOf1_FMessage2
+	//	*TypeOneOf1_FMessage3
+	//	*TypeOneOf1_FMessage4
+	//	*TypeOneOf1_FMessage5
+	//	*TypeOneOf1_FMessage6
+	//	*TypeOneOf1_FMessage7
+	//	*TypeOneOf1_FMessage8
+	//	*TypeOneOf1_FMessage9
+	OneType13 isTypeOneOf1_OneType13 `protobuf_oneof:"OneType13"`
 }
 
-func (x *TypeOneof1) Reset() {
-	*x = TypeOneof1{}
+func (x *TypeOneOf1) Reset() {
+	*x = TypeOneOf1{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_tests_proto_cases_types_type_oneof_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -243,13 +243,13 @@ func (x *TypeOneof1) Reset() {
 	}
 }
 
-func (x *TypeOneof1) String() string {
+func (x *TypeOneOf1) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TypeOneof1) ProtoMessage() {}
+func (*TypeOneOf1) ProtoMessage() {}
 
-func (x *TypeOneof1) ProtoReflect() protoreflect.Message {
+func (x *TypeOneOf1) ProtoReflect() protoreflect.Message {
 	mi := &file_tests_proto_cases_types_type_oneof_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -261,661 +261,661 @@ func (x *TypeOneof1) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TypeOneof1.ProtoReflect.Descriptor instead.
-func (*TypeOneof1) Descriptor() ([]byte, []int) {
+// Deprecated: Use TypeOneOf1.ProtoReflect.Descriptor instead.
+func (*TypeOneOf1) Descriptor() ([]byte, []int) {
 	return file_tests_proto_cases_types_type_oneof_proto_rawDescGZIP(), []int{1}
 }
 
-func (m *TypeOneof1) GetOneType01() isTypeOneof1_OneType01 {
+func (m *TypeOneOf1) GetOneType01() isTypeOneOf1_OneType01 {
 	if m != nil {
 		return m.OneType01
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFString1() string {
-	if x, ok := x.GetOneType01().(*TypeOneof1_FString1); ok {
+func (x *TypeOneOf1) GetFString1() string {
+	if x, ok := x.GetOneType01().(*TypeOneOf1_FString1); ok {
 		return x.FString1
 	}
 	return ""
 }
 
-func (x *TypeOneof1) GetFString2() string {
-	if x, ok := x.GetOneType01().(*TypeOneof1_FString2); ok {
+func (x *TypeOneOf1) GetFString2() string {
+	if x, ok := x.GetOneType01().(*TypeOneOf1_FString2); ok {
 		return x.FString2
 	}
 	return ""
 }
 
-func (m *TypeOneof1) GetOne_Type02() isTypeOneof1_One_Type02 {
+func (m *TypeOneOf1) GetOne_Type02() isTypeOneOf1_One_Type02 {
 	if m != nil {
 		return m.One_Type02
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFInt32() int32 {
-	if x, ok := x.GetOne_Type02().(*TypeOneof1_FInt32); ok {
+func (x *TypeOneOf1) GetFInt32() int32 {
+	if x, ok := x.GetOne_Type02().(*TypeOneOf1_FInt32); ok {
 		return x.FInt32
 	}
 	return 0
 }
 
-func (x *TypeOneof1) GetFInt64() int64 {
-	if x, ok := x.GetOne_Type02().(*TypeOneof1_FInt64); ok {
+func (x *TypeOneOf1) GetFInt64() int64 {
+	if x, ok := x.GetOne_Type02().(*TypeOneOf1_FInt64); ok {
 		return x.FInt64
 	}
 	return 0
 }
 
-func (m *TypeOneof1) GetOneType03() isTypeOneof1_OneType03 {
+func (m *TypeOneOf1) GetOneType03() isTypeOneOf1_OneType03 {
 	if m != nil {
 		return m.OneType03
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFUint32() uint32 {
-	if x, ok := x.GetOneType03().(*TypeOneof1_FUint32); ok {
+func (x *TypeOneOf1) GetFUint32() uint32 {
+	if x, ok := x.GetOneType03().(*TypeOneOf1_FUint32); ok {
 		return x.FUint32
 	}
 	return 0
 }
 
-func (x *TypeOneof1) GetFUint64() uint64 {
-	if x, ok := x.GetOneType03().(*TypeOneof1_FUint64); ok {
+func (x *TypeOneOf1) GetFUint64() uint64 {
+	if x, ok := x.GetOneType03().(*TypeOneOf1_FUint64); ok {
 		return x.FUint64
 	}
 	return 0
 }
 
-func (m *TypeOneof1) GetOne_Type04() isTypeOneof1_One_Type04 {
+func (m *TypeOneOf1) GetOne_Type04() isTypeOneOf1_One_Type04 {
 	if m != nil {
 		return m.One_Type04
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFSint32() int32 {
-	if x, ok := x.GetOne_Type04().(*TypeOneof1_FSint32); ok {
+func (x *TypeOneOf1) GetFSint32() int32 {
+	if x, ok := x.GetOne_Type04().(*TypeOneOf1_FSint32); ok {
 		return x.FSint32
 	}
 	return 0
 }
 
-func (x *TypeOneof1) GetFSint64() int64 {
-	if x, ok := x.GetOne_Type04().(*TypeOneof1_FSint64); ok {
+func (x *TypeOneOf1) GetFSint64() int64 {
+	if x, ok := x.GetOne_Type04().(*TypeOneOf1_FSint64); ok {
 		return x.FSint64
 	}
 	return 0
 }
 
-func (m *TypeOneof1) GetOneType05() isTypeOneof1_OneType05 {
+func (m *TypeOneOf1) GetOneType05() isTypeOneOf1_OneType05 {
 	if m != nil {
 		return m.OneType05
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFSfixed32() int32 {
-	if x, ok := x.GetOneType05().(*TypeOneof1_FSfixed32); ok {
+func (x *TypeOneOf1) GetFSfixed32() int32 {
+	if x, ok := x.GetOneType05().(*TypeOneOf1_FSfixed32); ok {
 		return x.FSfixed32
 	}
 	return 0
 }
 
-func (x *TypeOneof1) GetFSfixed64() int64 {
-	if x, ok := x.GetOneType05().(*TypeOneof1_FSfixed64); ok {
+func (x *TypeOneOf1) GetFSfixed64() int64 {
+	if x, ok := x.GetOneType05().(*TypeOneOf1_FSfixed64); ok {
 		return x.FSfixed64
 	}
 	return 0
 }
 
-func (m *TypeOneof1) GetOneType06() isTypeOneof1_OneType06 {
+func (m *TypeOneOf1) GetOneType06() isTypeOneOf1_OneType06 {
 	if m != nil {
 		return m.OneType06
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFFixed32() uint32 {
-	if x, ok := x.GetOneType06().(*TypeOneof1_FFixed32); ok {
+func (x *TypeOneOf1) GetFFixed32() uint32 {
+	if x, ok := x.GetOneType06().(*TypeOneOf1_FFixed32); ok {
 		return x.FFixed32
 	}
 	return 0
 }
 
-func (x *TypeOneof1) GetFFixed64() uint64 {
-	if x, ok := x.GetOneType06().(*TypeOneof1_FFixed64); ok {
+func (x *TypeOneOf1) GetFFixed64() uint64 {
+	if x, ok := x.GetOneType06().(*TypeOneOf1_FFixed64); ok {
 		return x.FFixed64
 	}
 	return 0
 }
 
-func (m *TypeOneof1) GetOnetype07() isTypeOneof1_Onetype07 {
+func (m *TypeOneOf1) GetOnetype07() isTypeOneOf1_Onetype07 {
 	if m != nil {
 		return m.Onetype07
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFFloat() float32 {
-	if x, ok := x.GetOnetype07().(*TypeOneof1_FFloat); ok {
+func (x *TypeOneOf1) GetFFloat() float32 {
+	if x, ok := x.GetOnetype07().(*TypeOneOf1_FFloat); ok {
 		return x.FFloat
 	}
 	return 0
 }
 
-func (x *TypeOneof1) GetFDouble() float64 {
-	if x, ok := x.GetOnetype07().(*TypeOneof1_FDouble); ok {
+func (x *TypeOneOf1) GetFDouble() float64 {
+	if x, ok := x.GetOnetype07().(*TypeOneOf1_FDouble); ok {
 		return x.FDouble
 	}
 	return 0
 }
 
-func (m *TypeOneof1) GetOnetype08() isTypeOneof1_Onetype08 {
+func (m *TypeOneOf1) GetOnetype08() isTypeOneOf1_Onetype08 {
 	if m != nil {
 		return m.Onetype08
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFBool1() bool {
-	if x, ok := x.GetOnetype08().(*TypeOneof1_FBool1); ok {
+func (x *TypeOneOf1) GetFBool1() bool {
+	if x, ok := x.GetOnetype08().(*TypeOneOf1_FBool1); ok {
 		return x.FBool1
 	}
 	return false
 }
 
-func (x *TypeOneof1) GetFBytes1() []byte {
-	if x, ok := x.GetOnetype08().(*TypeOneof1_FBytes1); ok {
+func (x *TypeOneOf1) GetFBytes1() []byte {
+	if x, ok := x.GetOnetype08().(*TypeOneOf1_FBytes1); ok {
 		return x.FBytes1
 	}
 	return nil
 }
 
-func (m *TypeOneof1) GetOneType09() isTypeOneof1_OneType09 {
+func (m *TypeOneOf1) GetOneType09() isTypeOneOf1_OneType09 {
 	if m != nil {
 		return m.OneType09
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFEnum1() EnumOneof1 {
-	if x, ok := x.GetOneType09().(*TypeOneof1_FEnum1); ok {
+func (x *TypeOneOf1) GetFEnum1() EnumOneOf1 {
+	if x, ok := x.GetOneType09().(*TypeOneOf1_FEnum1); ok {
 		return x.FEnum1
 	}
-	return EnumOneof1_Zero
+	return EnumOneOf1_Zero
 }
 
-func (x *TypeOneof1) GetFEnum2() pbexternal.Enum1 {
-	if x, ok := x.GetOneType09().(*TypeOneof1_FEnum2); ok {
+func (x *TypeOneOf1) GetFEnum2() pbexternal.Enum1 {
+	if x, ok := x.GetOneType09().(*TypeOneOf1_FEnum2); ok {
 		return x.FEnum2
 	}
 	return pbexternal.Enum1(0)
 }
 
-func (x *TypeOneof1) GetFEnum3() pbexternal.Embed_Enum1 {
-	if x, ok := x.GetOneType09().(*TypeOneof1_FEnum3); ok {
+func (x *TypeOneOf1) GetFEnum3() pbexternal.Embed_Enum1 {
+	if x, ok := x.GetOneType09().(*TypeOneOf1_FEnum3); ok {
 		return x.FEnum3
 	}
 	return pbexternal.Embed_Enum1(0)
 }
 
-func (x *TypeOneof1) GetFEnum4() pbexternal.Embed_Message_Enum1 {
-	if x, ok := x.GetOneType09().(*TypeOneof1_FEnum4); ok {
+func (x *TypeOneOf1) GetFEnum4() pbexternal.Embed_Message_Enum1 {
+	if x, ok := x.GetOneType09().(*TypeOneOf1_FEnum4); ok {
 		return x.FEnum4
 	}
 	return pbexternal.Embed_Message_Enum1(0)
 }
 
-func (x *TypeOneof1) GetFEnum5() EnumCommon1 {
-	if x, ok := x.GetOneType09().(*TypeOneof1_FEnum5); ok {
+func (x *TypeOneOf1) GetFEnum5() EnumCommon1 {
+	if x, ok := x.GetOneType09().(*TypeOneOf1_FEnum5); ok {
 		return x.FEnum5
 	}
 	return EnumCommon1_Zero
 }
 
-func (x *TypeOneof1) GetFEnum6() MessageCommon1_Enum1 {
-	if x, ok := x.GetOneType09().(*TypeOneof1_FEnum6); ok {
+func (x *TypeOneOf1) GetFEnum6() MessageCommon1_Enum1 {
+	if x, ok := x.GetOneType09().(*TypeOneOf1_FEnum6); ok {
 		return x.FEnum6
 	}
 	return MessageCommon1_Zero
 }
 
-func (m *TypeOneof1) GetOneType10() isTypeOneof1_OneType10 {
+func (m *TypeOneOf1) GetOneType10() isTypeOneOf1_OneType10 {
 	if m != nil {
 		return m.OneType10
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFDuration1() *durationpb.Duration {
-	if x, ok := x.GetOneType10().(*TypeOneof1_FDuration1); ok {
+func (x *TypeOneOf1) GetFDuration1() *durationpb.Duration {
+	if x, ok := x.GetOneType10().(*TypeOneOf1_FDuration1); ok {
 		return x.FDuration1
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFDuration2() *durationpb.Duration {
-	if x, ok := x.GetOneType10().(*TypeOneof1_FDuration2); ok {
+func (x *TypeOneOf1) GetFDuration2() *durationpb.Duration {
+	if x, ok := x.GetOneType10().(*TypeOneOf1_FDuration2); ok {
 		return x.FDuration2
 	}
 	return nil
 }
 
-func (m *TypeOneof1) GetOneType11() isTypeOneof1_OneType11 {
+func (m *TypeOneOf1) GetOneType11() isTypeOneOf1_OneType11 {
 	if m != nil {
 		return m.OneType11
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFTimestamp1() *timestamppb.Timestamp {
-	if x, ok := x.GetOneType11().(*TypeOneof1_FTimestamp1); ok {
+func (x *TypeOneOf1) GetFTimestamp1() *timestamppb.Timestamp {
+	if x, ok := x.GetOneType11().(*TypeOneOf1_FTimestamp1); ok {
 		return x.FTimestamp1
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFTimestamp2() *timestamppb.Timestamp {
-	if x, ok := x.GetOneType11().(*TypeOneof1_FTimestamp2); ok {
+func (x *TypeOneOf1) GetFTimestamp2() *timestamppb.Timestamp {
+	if x, ok := x.GetOneType11().(*TypeOneOf1_FTimestamp2); ok {
 		return x.FTimestamp2
 	}
 	return nil
 }
 
-func (m *TypeOneof1) GetOneType12() isTypeOneof1_OneType12 {
+func (m *TypeOneOf1) GetOneType12() isTypeOneOf1_OneType12 {
 	if m != nil {
 		return m.OneType12
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFAny1() *anypb.Any {
-	if x, ok := x.GetOneType12().(*TypeOneof1_FAny1); ok {
+func (x *TypeOneOf1) GetFAny1() *anypb.Any {
+	if x, ok := x.GetOneType12().(*TypeOneOf1_FAny1); ok {
 		return x.FAny1
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFAny2() *anypb.Any {
-	if x, ok := x.GetOneType12().(*TypeOneof1_FAny2); ok {
+func (x *TypeOneOf1) GetFAny2() *anypb.Any {
+	if x, ok := x.GetOneType12().(*TypeOneOf1_FAny2); ok {
 		return x.FAny2
 	}
 	return nil
 }
 
-func (m *TypeOneof1) GetOneType13() isTypeOneof1_OneType13 {
+func (m *TypeOneOf1) GetOneType13() isTypeOneOf1_OneType13 {
 	if m != nil {
 		return m.OneType13
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFMessage1() *MessageOneof1 {
-	if x, ok := x.GetOneType13().(*TypeOneof1_FMessage1); ok {
+func (x *TypeOneOf1) GetFMessage1() *MessageOneOf1 {
+	if x, ok := x.GetOneType13().(*TypeOneOf1_FMessage1); ok {
 		return x.FMessage1
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFMessage2() *MessageOneof1_Embed1 {
-	if x, ok := x.GetOneType13().(*TypeOneof1_FMessage2); ok {
+func (x *TypeOneOf1) GetFMessage2() *MessageOneOf1_Embed1 {
+	if x, ok := x.GetOneType13().(*TypeOneOf1_FMessage2); ok {
 		return x.FMessage2
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFMessage3() *MessageOneof1_Embed1_Embed2 {
-	if x, ok := x.GetOneType13().(*TypeOneof1_FMessage3); ok {
+func (x *TypeOneOf1) GetFMessage3() *MessageOneOf1_Embed1_Embed2 {
+	if x, ok := x.GetOneType13().(*TypeOneOf1_FMessage3); ok {
 		return x.FMessage3
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFMessage4() *pbexternal.Message1 {
-	if x, ok := x.GetOneType13().(*TypeOneof1_FMessage4); ok {
+func (x *TypeOneOf1) GetFMessage4() *pbexternal.Message1 {
+	if x, ok := x.GetOneType13().(*TypeOneOf1_FMessage4); ok {
 		return x.FMessage4
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFMessage5() *pbexternal.Message1_Embed1 {
-	if x, ok := x.GetOneType13().(*TypeOneof1_FMessage5); ok {
+func (x *TypeOneOf1) GetFMessage5() *pbexternal.Message1_Embed1 {
+	if x, ok := x.GetOneType13().(*TypeOneOf1_FMessage5); ok {
 		return x.FMessage5
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFMessage6() *pbexternal.Message1_Embed1_Embed2 {
-	if x, ok := x.GetOneType13().(*TypeOneof1_FMessage6); ok {
+func (x *TypeOneOf1) GetFMessage6() *pbexternal.Message1_Embed1_Embed2 {
+	if x, ok := x.GetOneType13().(*TypeOneOf1_FMessage6); ok {
 		return x.FMessage6
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFMessage7() *MessageCommon1 {
-	if x, ok := x.GetOneType13().(*TypeOneof1_FMessage7); ok {
+func (x *TypeOneOf1) GetFMessage7() *MessageCommon1 {
+	if x, ok := x.GetOneType13().(*TypeOneOf1_FMessage7); ok {
 		return x.FMessage7
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFMessage8() *MessageCommon1_Embed1 {
-	if x, ok := x.GetOneType13().(*TypeOneof1_FMessage8); ok {
+func (x *TypeOneOf1) GetFMessage8() *MessageCommon1_Embed1 {
+	if x, ok := x.GetOneType13().(*TypeOneOf1_FMessage8); ok {
 		return x.FMessage8
 	}
 	return nil
 }
 
-func (x *TypeOneof1) GetFMessage9() *MessageCommon1_Embed1_Embed2 {
-	if x, ok := x.GetOneType13().(*TypeOneof1_FMessage9); ok {
+func (x *TypeOneOf1) GetFMessage9() *MessageCommon1_Embed1_Embed2 {
+	if x, ok := x.GetOneType13().(*TypeOneOf1_FMessage9); ok {
 		return x.FMessage9
 	}
 	return nil
 }
 
-type isTypeOneof1_OneType01 interface {
-	isTypeOneof1_OneType01()
+type isTypeOneOf1_OneType01 interface {
+	isTypeOneOf1_OneType01()
 }
 
-type TypeOneof1_FString1 struct {
+type TypeOneOf1_FString1 struct {
 	FString1 string `protobuf:"bytes,1,opt,name=f_string1,json=fString1,proto3,oneof"`
 }
 
-type TypeOneof1_FString2 struct {
+type TypeOneOf1_FString2 struct {
 	FString2 string `protobuf:"bytes,2,opt,name=f_string2,json=fString2,proto3,oneof"`
 }
 
-func (*TypeOneof1_FString1) isTypeOneof1_OneType01() {}
+func (*TypeOneOf1_FString1) isTypeOneOf1_OneType01() {}
 
-func (*TypeOneof1_FString2) isTypeOneof1_OneType01() {}
+func (*TypeOneOf1_FString2) isTypeOneOf1_OneType01() {}
 
-type isTypeOneof1_One_Type02 interface {
-	isTypeOneof1_One_Type02()
+type isTypeOneOf1_One_Type02 interface {
+	isTypeOneOf1_One_Type02()
 }
 
-type TypeOneof1_FInt32 struct {
+type TypeOneOf1_FInt32 struct {
 	FInt32 int32 `protobuf:"varint,11,opt,name=f_int32,json=fInt32,proto3,oneof"`
 }
 
-type TypeOneof1_FInt64 struct {
+type TypeOneOf1_FInt64 struct {
 	FInt64 int64 `protobuf:"varint,12,opt,name=f_int64,json=fInt64,proto3,oneof"`
 }
 
-func (*TypeOneof1_FInt32) isTypeOneof1_One_Type02() {}
+func (*TypeOneOf1_FInt32) isTypeOneOf1_One_Type02() {}
 
-func (*TypeOneof1_FInt64) isTypeOneof1_One_Type02() {}
+func (*TypeOneOf1_FInt64) isTypeOneOf1_One_Type02() {}
 
-type isTypeOneof1_OneType03 interface {
-	isTypeOneof1_OneType03()
+type isTypeOneOf1_OneType03 interface {
+	isTypeOneOf1_OneType03()
 }
 
-type TypeOneof1_FUint32 struct {
+type TypeOneOf1_FUint32 struct {
 	FUint32 uint32 `protobuf:"varint,13,opt,name=f_uint32,json=fUint32,proto3,oneof"`
 }
 
-type TypeOneof1_FUint64 struct {
+type TypeOneOf1_FUint64 struct {
 	FUint64 uint64 `protobuf:"varint,14,opt,name=f_uint64,json=fUint64,proto3,oneof"`
 }
 
-func (*TypeOneof1_FUint32) isTypeOneof1_OneType03() {}
+func (*TypeOneOf1_FUint32) isTypeOneOf1_OneType03() {}
 
-func (*TypeOneof1_FUint64) isTypeOneof1_OneType03() {}
+func (*TypeOneOf1_FUint64) isTypeOneOf1_OneType03() {}
 
-type isTypeOneof1_One_Type04 interface {
-	isTypeOneof1_One_Type04()
+type isTypeOneOf1_One_Type04 interface {
+	isTypeOneOf1_One_Type04()
 }
 
-type TypeOneof1_FSint32 struct {
+type TypeOneOf1_FSint32 struct {
 	FSint32 int32 `protobuf:"zigzag32,15,opt,name=f_sint32,json=fSint32,proto3,oneof"`
 }
 
-type TypeOneof1_FSint64 struct {
+type TypeOneOf1_FSint64 struct {
 	FSint64 int64 `protobuf:"zigzag64,16,opt,name=f_sint64,json=fSint64,proto3,oneof"`
 }
 
-func (*TypeOneof1_FSint32) isTypeOneof1_One_Type04() {}
+func (*TypeOneOf1_FSint32) isTypeOneOf1_One_Type04() {}
 
-func (*TypeOneof1_FSint64) isTypeOneof1_One_Type04() {}
+func (*TypeOneOf1_FSint64) isTypeOneOf1_One_Type04() {}
 
-type isTypeOneof1_OneType05 interface {
-	isTypeOneof1_OneType05()
+type isTypeOneOf1_OneType05 interface {
+	isTypeOneOf1_OneType05()
 }
 
-type TypeOneof1_FSfixed32 struct {
+type TypeOneOf1_FSfixed32 struct {
 	FSfixed32 int32 `protobuf:"fixed32,17,opt,name=f_sfixed32,json=fSfixed32,proto3,oneof"`
 }
 
-type TypeOneof1_FSfixed64 struct {
+type TypeOneOf1_FSfixed64 struct {
 	FSfixed64 int64 `protobuf:"fixed64,18,opt,name=f_sfixed64,json=fSfixed64,proto3,oneof"`
 }
 
-func (*TypeOneof1_FSfixed32) isTypeOneof1_OneType05() {}
+func (*TypeOneOf1_FSfixed32) isTypeOneOf1_OneType05() {}
 
-func (*TypeOneof1_FSfixed64) isTypeOneof1_OneType05() {}
+func (*TypeOneOf1_FSfixed64) isTypeOneOf1_OneType05() {}
 
-type isTypeOneof1_OneType06 interface {
-	isTypeOneof1_OneType06()
+type isTypeOneOf1_OneType06 interface {
+	isTypeOneOf1_OneType06()
 }
 
-type TypeOneof1_FFixed32 struct {
+type TypeOneOf1_FFixed32 struct {
 	FFixed32 uint32 `protobuf:"fixed32,19,opt,name=f_fixed32,json=fFixed32,proto3,oneof"`
 }
 
-type TypeOneof1_FFixed64 struct {
+type TypeOneOf1_FFixed64 struct {
 	FFixed64 uint64 `protobuf:"fixed64,20,opt,name=f_fixed64,json=fFixed64,proto3,oneof"`
 }
 
-func (*TypeOneof1_FFixed32) isTypeOneof1_OneType06() {}
+func (*TypeOneOf1_FFixed32) isTypeOneOf1_OneType06() {}
 
-func (*TypeOneof1_FFixed64) isTypeOneof1_OneType06() {}
+func (*TypeOneOf1_FFixed64) isTypeOneOf1_OneType06() {}
 
-type isTypeOneof1_Onetype07 interface {
-	isTypeOneof1_Onetype07()
+type isTypeOneOf1_Onetype07 interface {
+	isTypeOneOf1_Onetype07()
 }
 
-type TypeOneof1_FFloat struct {
+type TypeOneOf1_FFloat struct {
 	FFloat float32 `protobuf:"fixed32,21,opt,name=f_float,json=fFloat,proto3,oneof"`
 }
 
-type TypeOneof1_FDouble struct {
+type TypeOneOf1_FDouble struct {
 	FDouble float64 `protobuf:"fixed64,22,opt,name=f_double,json=fDouble,proto3,oneof"`
 }
 
-func (*TypeOneof1_FFloat) isTypeOneof1_Onetype07() {}
+func (*TypeOneOf1_FFloat) isTypeOneOf1_Onetype07() {}
 
-func (*TypeOneof1_FDouble) isTypeOneof1_Onetype07() {}
+func (*TypeOneOf1_FDouble) isTypeOneOf1_Onetype07() {}
 
-type isTypeOneof1_Onetype08 interface {
-	isTypeOneof1_Onetype08()
+type isTypeOneOf1_Onetype08 interface {
+	isTypeOneOf1_Onetype08()
 }
 
-type TypeOneof1_FBool1 struct {
+type TypeOneOf1_FBool1 struct {
 	FBool1 bool `protobuf:"varint,31,opt,name=f_bool1,json=fBool1,proto3,oneof"`
 }
 
-type TypeOneof1_FBytes1 struct {
+type TypeOneOf1_FBytes1 struct {
 	FBytes1 []byte `protobuf:"bytes,32,opt,name=f_bytes1,json=fBytes1,proto3,oneof"`
 }
 
-func (*TypeOneof1_FBool1) isTypeOneof1_Onetype08() {}
+func (*TypeOneOf1_FBool1) isTypeOneOf1_Onetype08() {}
 
-func (*TypeOneof1_FBytes1) isTypeOneof1_Onetype08() {}
+func (*TypeOneOf1_FBytes1) isTypeOneOf1_Onetype08() {}
 
-type isTypeOneof1_OneType09 interface {
-	isTypeOneof1_OneType09()
+type isTypeOneOf1_OneType09 interface {
+	isTypeOneOf1_OneType09()
 }
 
-type TypeOneof1_FEnum1 struct {
-	FEnum1 EnumOneof1 `protobuf:"varint,51,opt,name=f_enum1,json=fEnum1,proto3,enum=type_oneof.EnumOneof1,oneof"`
+type TypeOneOf1_FEnum1 struct {
+	FEnum1 EnumOneOf1 `protobuf:"varint,51,opt,name=f_enum1,json=fEnum1,proto3,enum=type_oneof.EnumOneOf1,oneof"`
 }
 
-type TypeOneof1_FEnum2 struct {
+type TypeOneOf1_FEnum2 struct {
 	FEnum2 pbexternal.Enum1 `protobuf:"varint,52,opt,name=f_enum2,json=fEnum2,proto3,enum=external.Enum1,oneof"`
 }
 
-type TypeOneof1_FEnum3 struct {
+type TypeOneOf1_FEnum3 struct {
 	FEnum3 pbexternal.Embed_Enum1 `protobuf:"varint,53,opt,name=f_enum3,json=fEnum3,proto3,enum=external.Embed_Enum1,oneof"`
 }
 
-type TypeOneof1_FEnum4 struct {
+type TypeOneOf1_FEnum4 struct {
 	FEnum4 pbexternal.Embed_Message_Enum1 `protobuf:"varint,54,opt,name=f_enum4,json=fEnum4,proto3,enum=external.Embed_Message_Enum1,oneof"`
 }
 
-type TypeOneof1_FEnum5 struct {
+type TypeOneOf1_FEnum5 struct {
 	FEnum5 EnumCommon1 `protobuf:"varint,55,opt,name=f_enum5,json=fEnum5,proto3,enum=type_common.EnumCommon1,oneof"`
 }
 
-type TypeOneof1_FEnum6 struct {
+type TypeOneOf1_FEnum6 struct {
 	FEnum6 MessageCommon1_Enum1 `protobuf:"varint,56,opt,name=f_enum6,json=fEnum6,proto3,enum=type_common.MessageCommon1_Enum1,oneof"`
 }
 
-func (*TypeOneof1_FEnum1) isTypeOneof1_OneType09() {}
+func (*TypeOneOf1_FEnum1) isTypeOneOf1_OneType09() {}
 
-func (*TypeOneof1_FEnum2) isTypeOneof1_OneType09() {}
+func (*TypeOneOf1_FEnum2) isTypeOneOf1_OneType09() {}
 
-func (*TypeOneof1_FEnum3) isTypeOneof1_OneType09() {}
+func (*TypeOneOf1_FEnum3) isTypeOneOf1_OneType09() {}
 
-func (*TypeOneof1_FEnum4) isTypeOneof1_OneType09() {}
+func (*TypeOneOf1_FEnum4) isTypeOneOf1_OneType09() {}
 
-func (*TypeOneof1_FEnum5) isTypeOneof1_OneType09() {}
+func (*TypeOneOf1_FEnum5) isTypeOneOf1_OneType09() {}
 
-func (*TypeOneof1_FEnum6) isTypeOneof1_OneType09() {}
+func (*TypeOneOf1_FEnum6) isTypeOneOf1_OneType09() {}
 
-type isTypeOneof1_OneType10 interface {
-	isTypeOneof1_OneType10()
+type isTypeOneOf1_OneType10 interface {
+	isTypeOneOf1_OneType10()
 }
 
-type TypeOneof1_FDuration1 struct {
+type TypeOneOf1_FDuration1 struct {
 	FDuration1 *durationpb.Duration `protobuf:"bytes,61,opt,name=f_duration1,json=fDuration1,proto3,oneof"`
 }
 
-type TypeOneof1_FDuration2 struct {
+type TypeOneOf1_FDuration2 struct {
 	FDuration2 *durationpb.Duration `protobuf:"bytes,62,opt,name=f_duration2,json=fDuration2,proto3,oneof"`
 }
 
-func (*TypeOneof1_FDuration1) isTypeOneof1_OneType10() {}
+func (*TypeOneOf1_FDuration1) isTypeOneOf1_OneType10() {}
 
-func (*TypeOneof1_FDuration2) isTypeOneof1_OneType10() {}
+func (*TypeOneOf1_FDuration2) isTypeOneOf1_OneType10() {}
 
-type isTypeOneof1_OneType11 interface {
-	isTypeOneof1_OneType11()
+type isTypeOneOf1_OneType11 interface {
+	isTypeOneOf1_OneType11()
 }
 
-type TypeOneof1_FTimestamp1 struct {
+type TypeOneOf1_FTimestamp1 struct {
 	FTimestamp1 *timestamppb.Timestamp `protobuf:"bytes,63,opt,name=f_timestamp1,json=fTimestamp1,proto3,oneof"`
 }
 
-type TypeOneof1_FTimestamp2 struct {
+type TypeOneOf1_FTimestamp2 struct {
 	FTimestamp2 *timestamppb.Timestamp `protobuf:"bytes,64,opt,name=f_timestamp2,json=fTimestamp2,proto3,oneof"`
 }
 
-func (*TypeOneof1_FTimestamp1) isTypeOneof1_OneType11() {}
+func (*TypeOneOf1_FTimestamp1) isTypeOneOf1_OneType11() {}
 
-func (*TypeOneof1_FTimestamp2) isTypeOneof1_OneType11() {}
+func (*TypeOneOf1_FTimestamp2) isTypeOneOf1_OneType11() {}
 
-type isTypeOneof1_OneType12 interface {
-	isTypeOneof1_OneType12()
+type isTypeOneOf1_OneType12 interface {
+	isTypeOneOf1_OneType12()
 }
 
-type TypeOneof1_FAny1 struct {
+type TypeOneOf1_FAny1 struct {
 	FAny1 *anypb.Any `protobuf:"bytes,65,opt,name=f_any1,json=fAny1,proto3,oneof"`
 }
 
-type TypeOneof1_FAny2 struct {
+type TypeOneOf1_FAny2 struct {
 	FAny2 *anypb.Any `protobuf:"bytes,66,opt,name=f_any2,json=fAny2,proto3,oneof"`
 }
 
-func (*TypeOneof1_FAny1) isTypeOneof1_OneType12() {}
+func (*TypeOneOf1_FAny1) isTypeOneOf1_OneType12() {}
 
-func (*TypeOneof1_FAny2) isTypeOneof1_OneType12() {}
+func (*TypeOneOf1_FAny2) isTypeOneOf1_OneType12() {}
 
-type isTypeOneof1_OneType13 interface {
-	isTypeOneof1_OneType13()
+type isTypeOneOf1_OneType13 interface {
+	isTypeOneOf1_OneType13()
 }
 
-type TypeOneof1_FMessage1 struct {
-	FMessage1 *MessageOneof1 `protobuf:"bytes,71,opt,name=f_message1,json=fMessage1,proto3,oneof"`
+type TypeOneOf1_FMessage1 struct {
+	FMessage1 *MessageOneOf1 `protobuf:"bytes,71,opt,name=f_message1,json=fMessage1,proto3,oneof"`
 }
 
-type TypeOneof1_FMessage2 struct {
-	FMessage2 *MessageOneof1_Embed1 `protobuf:"bytes,72,opt,name=f_message2,json=fMessage2,proto3,oneof"`
+type TypeOneOf1_FMessage2 struct {
+	FMessage2 *MessageOneOf1_Embed1 `protobuf:"bytes,72,opt,name=f_message2,json=fMessage2,proto3,oneof"`
 }
 
-type TypeOneof1_FMessage3 struct {
-	FMessage3 *MessageOneof1_Embed1_Embed2 `protobuf:"bytes,73,opt,name=f_message3,json=fMessage3,proto3,oneof"`
+type TypeOneOf1_FMessage3 struct {
+	FMessage3 *MessageOneOf1_Embed1_Embed2 `protobuf:"bytes,73,opt,name=f_message3,json=fMessage3,proto3,oneof"`
 }
 
-type TypeOneof1_FMessage4 struct {
+type TypeOneOf1_FMessage4 struct {
 	FMessage4 *pbexternal.Message1 `protobuf:"bytes,74,opt,name=f_message4,json=fMessage4,proto3,oneof"`
 }
 
-type TypeOneof1_FMessage5 struct {
+type TypeOneOf1_FMessage5 struct {
 	FMessage5 *pbexternal.Message1_Embed1 `protobuf:"bytes,75,opt,name=f_message5,json=fMessage5,proto3,oneof"`
 }
 
-type TypeOneof1_FMessage6 struct {
+type TypeOneOf1_FMessage6 struct {
 	FMessage6 *pbexternal.Message1_Embed1_Embed2 `protobuf:"bytes,76,opt,name=f_message6,json=fMessage6,proto3,oneof"`
 }
 
-type TypeOneof1_FMessage7 struct {
+type TypeOneOf1_FMessage7 struct {
 	FMessage7 *MessageCommon1 `protobuf:"bytes,77,opt,name=f_message7,json=fMessage7,proto3,oneof"`
 }
 
-type TypeOneof1_FMessage8 struct {
+type TypeOneOf1_FMessage8 struct {
 	FMessage8 *MessageCommon1_Embed1 `protobuf:"bytes,78,opt,name=f_message8,json=fMessage8,proto3,oneof"`
 }
 
-type TypeOneof1_FMessage9 struct {
+type TypeOneOf1_FMessage9 struct {
 	FMessage9 *MessageCommon1_Embed1_Embed2 `protobuf:"bytes,79,opt,name=f_message9,json=fMessage9,proto3,oneof"`
 }
 
-func (*TypeOneof1_FMessage1) isTypeOneof1_OneType13() {}
+func (*TypeOneOf1_FMessage1) isTypeOneOf1_OneType13() {}
 
-func (*TypeOneof1_FMessage2) isTypeOneof1_OneType13() {}
+func (*TypeOneOf1_FMessage2) isTypeOneOf1_OneType13() {}
 
-func (*TypeOneof1_FMessage3) isTypeOneof1_OneType13() {}
+func (*TypeOneOf1_FMessage3) isTypeOneOf1_OneType13() {}
 
-func (*TypeOneof1_FMessage4) isTypeOneof1_OneType13() {}
+func (*TypeOneOf1_FMessage4) isTypeOneOf1_OneType13() {}
 
-func (*TypeOneof1_FMessage5) isTypeOneof1_OneType13() {}
+func (*TypeOneOf1_FMessage5) isTypeOneOf1_OneType13() {}
 
-func (*TypeOneof1_FMessage6) isTypeOneof1_OneType13() {}
+func (*TypeOneOf1_FMessage6) isTypeOneOf1_OneType13() {}
 
-func (*TypeOneof1_FMessage7) isTypeOneof1_OneType13() {}
+func (*TypeOneOf1_FMessage7) isTypeOneOf1_OneType13() {}
 
-func (*TypeOneof1_FMessage8) isTypeOneof1_OneType13() {}
+func (*TypeOneOf1_FMessage8) isTypeOneOf1_OneType13() {}
 
-func (*TypeOneof1_FMessage9) isTypeOneof1_OneType13() {}
+func (*TypeOneOf1_FMessage9) isTypeOneOf1_OneType13() {}
 
 // Test case for hide the `oneof` key.
-type TypeOneofHide1 struct {
+type TypeOneOfHide1 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to OneType01:
-	//	*TypeOneofHide1_FString1
-	//	*TypeOneofHide1_FString2
-	OneType01 isTypeOneofHide1_OneType01 `protobuf_oneof:"OneType01"`
+	//	*TypeOneOfHide1_FString1
+	//	*TypeOneOfHide1_FString2
+	OneType01 isTypeOneOfHide1_OneType01 `protobuf_oneof:"OneType01"`
 	// Types that are assignable to OneType02:
-	//	*TypeOneofHide1_FMessage1
-	//	*TypeOneofHide1_FMessage2
-	OneType02 isTypeOneofHide1_OneType02 `protobuf_oneof:"OneType02"`
+	//	*TypeOneOfHide1_FMessage1
+	//	*TypeOneOfHide1_FMessage2
+	OneType02 isTypeOneOfHide1_OneType02 `protobuf_oneof:"OneType02"`
 	// Types that are assignable to OneType03:
-	//	*TypeOneofHide1_FEnum1
-	//	*TypeOneofHide1_FEnum2
-	OneType03 isTypeOneofHide1_OneType03 `protobuf_oneof:"OneType03"`
+	//	*TypeOneOfHide1_FEnum1
+	//	*TypeOneOfHide1_FEnum2
+	OneType03 isTypeOneOfHide1_OneType03 `protobuf_oneof:"OneType03"`
 	// Types that are assignable to OneType04:
-	//	*TypeOneofHide1_FDuration1
-	//	*TypeOneofHide1_FDuration2
-	OneType04 isTypeOneofHide1_OneType04 `protobuf_oneof:"OneType04"`
+	//	*TypeOneOfHide1_FDuration1
+	//	*TypeOneOfHide1_FDuration2
+	OneType04 isTypeOneOfHide1_OneType04 `protobuf_oneof:"OneType04"`
 }
 
-func (x *TypeOneofHide1) Reset() {
-	*x = TypeOneofHide1{}
+func (x *TypeOneOfHide1) Reset() {
+	*x = TypeOneOfHide1{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_tests_proto_cases_types_type_oneof_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -923,13 +923,13 @@ func (x *TypeOneofHide1) Reset() {
 	}
 }
 
-func (x *TypeOneofHide1) String() string {
+func (x *TypeOneOfHide1) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TypeOneofHide1) ProtoMessage() {}
+func (*TypeOneOfHide1) ProtoMessage() {}
 
-func (x *TypeOneofHide1) ProtoReflect() protoreflect.Message {
+func (x *TypeOneOfHide1) ProtoReflect() protoreflect.Message {
 	mi := &file_tests_proto_cases_types_type_oneof_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -941,160 +941,160 @@ func (x *TypeOneofHide1) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TypeOneofHide1.ProtoReflect.Descriptor instead.
-func (*TypeOneofHide1) Descriptor() ([]byte, []int) {
+// Deprecated: Use TypeOneOfHide1.ProtoReflect.Descriptor instead.
+func (*TypeOneOfHide1) Descriptor() ([]byte, []int) {
 	return file_tests_proto_cases_types_type_oneof_proto_rawDescGZIP(), []int{2}
 }
 
-func (m *TypeOneofHide1) GetOneType01() isTypeOneofHide1_OneType01 {
+func (m *TypeOneOfHide1) GetOneType01() isTypeOneOfHide1_OneType01 {
 	if m != nil {
 		return m.OneType01
 	}
 	return nil
 }
 
-func (x *TypeOneofHide1) GetFString1() string {
-	if x, ok := x.GetOneType01().(*TypeOneofHide1_FString1); ok {
+func (x *TypeOneOfHide1) GetFString1() string {
+	if x, ok := x.GetOneType01().(*TypeOneOfHide1_FString1); ok {
 		return x.FString1
 	}
 	return ""
 }
 
-func (x *TypeOneofHide1) GetFString2() string {
-	if x, ok := x.GetOneType01().(*TypeOneofHide1_FString2); ok {
+func (x *TypeOneOfHide1) GetFString2() string {
+	if x, ok := x.GetOneType01().(*TypeOneOfHide1_FString2); ok {
 		return x.FString2
 	}
 	return ""
 }
 
-func (m *TypeOneofHide1) GetOneType02() isTypeOneofHide1_OneType02 {
+func (m *TypeOneOfHide1) GetOneType02() isTypeOneOfHide1_OneType02 {
 	if m != nil {
 		return m.OneType02
 	}
 	return nil
 }
 
-func (x *TypeOneofHide1) GetFMessage1() *MessageOneof1 {
-	if x, ok := x.GetOneType02().(*TypeOneofHide1_FMessage1); ok {
+func (x *TypeOneOfHide1) GetFMessage1() *MessageOneOf1 {
+	if x, ok := x.GetOneType02().(*TypeOneOfHide1_FMessage1); ok {
 		return x.FMessage1
 	}
 	return nil
 }
 
-func (x *TypeOneofHide1) GetFMessage2() *MessageOneof1 {
-	if x, ok := x.GetOneType02().(*TypeOneofHide1_FMessage2); ok {
+func (x *TypeOneOfHide1) GetFMessage2() *MessageOneOf1 {
+	if x, ok := x.GetOneType02().(*TypeOneOfHide1_FMessage2); ok {
 		return x.FMessage2
 	}
 	return nil
 }
 
-func (m *TypeOneofHide1) GetOneType03() isTypeOneofHide1_OneType03 {
+func (m *TypeOneOfHide1) GetOneType03() isTypeOneOfHide1_OneType03 {
 	if m != nil {
 		return m.OneType03
 	}
 	return nil
 }
 
-func (x *TypeOneofHide1) GetFEnum1() EnumOneof1 {
-	if x, ok := x.GetOneType03().(*TypeOneofHide1_FEnum1); ok {
+func (x *TypeOneOfHide1) GetFEnum1() EnumOneOf1 {
+	if x, ok := x.GetOneType03().(*TypeOneOfHide1_FEnum1); ok {
 		return x.FEnum1
 	}
-	return EnumOneof1_Zero
+	return EnumOneOf1_Zero
 }
 
-func (x *TypeOneofHide1) GetFEnum2() EnumOneof1 {
-	if x, ok := x.GetOneType03().(*TypeOneofHide1_FEnum2); ok {
+func (x *TypeOneOfHide1) GetFEnum2() EnumOneOf1 {
+	if x, ok := x.GetOneType03().(*TypeOneOfHide1_FEnum2); ok {
 		return x.FEnum2
 	}
-	return EnumOneof1_Zero
+	return EnumOneOf1_Zero
 }
 
-func (m *TypeOneofHide1) GetOneType04() isTypeOneofHide1_OneType04 {
+func (m *TypeOneOfHide1) GetOneType04() isTypeOneOfHide1_OneType04 {
 	if m != nil {
 		return m.OneType04
 	}
 	return nil
 }
 
-func (x *TypeOneofHide1) GetFDuration1() *durationpb.Duration {
-	if x, ok := x.GetOneType04().(*TypeOneofHide1_FDuration1); ok {
+func (x *TypeOneOfHide1) GetFDuration1() *durationpb.Duration {
+	if x, ok := x.GetOneType04().(*TypeOneOfHide1_FDuration1); ok {
 		return x.FDuration1
 	}
 	return nil
 }
 
-func (x *TypeOneofHide1) GetFDuration2() *durationpb.Duration {
-	if x, ok := x.GetOneType04().(*TypeOneofHide1_FDuration2); ok {
+func (x *TypeOneOfHide1) GetFDuration2() *durationpb.Duration {
+	if x, ok := x.GetOneType04().(*TypeOneOfHide1_FDuration2); ok {
 		return x.FDuration2
 	}
 	return nil
 }
 
-type isTypeOneofHide1_OneType01 interface {
-	isTypeOneofHide1_OneType01()
+type isTypeOneOfHide1_OneType01 interface {
+	isTypeOneOfHide1_OneType01()
 }
 
-type TypeOneofHide1_FString1 struct {
+type TypeOneOfHide1_FString1 struct {
 	FString1 string `protobuf:"bytes,1,opt,name=f_string1,json=fString1,proto3,oneof"`
 }
 
-type TypeOneofHide1_FString2 struct {
+type TypeOneOfHide1_FString2 struct {
 	FString2 string `protobuf:"bytes,2,opt,name=f_string2,json=fString2,proto3,oneof"`
 }
 
-func (*TypeOneofHide1_FString1) isTypeOneofHide1_OneType01() {}
+func (*TypeOneOfHide1_FString1) isTypeOneOfHide1_OneType01() {}
 
-func (*TypeOneofHide1_FString2) isTypeOneofHide1_OneType01() {}
+func (*TypeOneOfHide1_FString2) isTypeOneOfHide1_OneType01() {}
 
-type isTypeOneofHide1_OneType02 interface {
-	isTypeOneofHide1_OneType02()
+type isTypeOneOfHide1_OneType02 interface {
+	isTypeOneOfHide1_OneType02()
 }
 
-type TypeOneofHide1_FMessage1 struct {
-	FMessage1 *MessageOneof1 `protobuf:"bytes,3,opt,name=f_message1,json=fMessage1,proto3,oneof"`
+type TypeOneOfHide1_FMessage1 struct {
+	FMessage1 *MessageOneOf1 `protobuf:"bytes,3,opt,name=f_message1,json=fMessage1,proto3,oneof"`
 }
 
-type TypeOneofHide1_FMessage2 struct {
-	FMessage2 *MessageOneof1 `protobuf:"bytes,4,opt,name=f_message2,json=fMessage2,proto3,oneof"`
+type TypeOneOfHide1_FMessage2 struct {
+	FMessage2 *MessageOneOf1 `protobuf:"bytes,4,opt,name=f_message2,json=fMessage2,proto3,oneof"`
 }
 
-func (*TypeOneofHide1_FMessage1) isTypeOneofHide1_OneType02() {}
+func (*TypeOneOfHide1_FMessage1) isTypeOneOfHide1_OneType02() {}
 
-func (*TypeOneofHide1_FMessage2) isTypeOneofHide1_OneType02() {}
+func (*TypeOneOfHide1_FMessage2) isTypeOneOfHide1_OneType02() {}
 
-type isTypeOneofHide1_OneType03 interface {
-	isTypeOneofHide1_OneType03()
+type isTypeOneOfHide1_OneType03 interface {
+	isTypeOneOfHide1_OneType03()
 }
 
-type TypeOneofHide1_FEnum1 struct {
-	FEnum1 EnumOneof1 `protobuf:"varint,5,opt,name=f_enum1,json=fEnum1,proto3,enum=type_oneof.EnumOneof1,oneof"`
+type TypeOneOfHide1_FEnum1 struct {
+	FEnum1 EnumOneOf1 `protobuf:"varint,5,opt,name=f_enum1,json=fEnum1,proto3,enum=type_oneof.EnumOneOf1,oneof"`
 }
 
-type TypeOneofHide1_FEnum2 struct {
-	FEnum2 EnumOneof1 `protobuf:"varint,6,opt,name=f_enum2,json=fEnum2,proto3,enum=type_oneof.EnumOneof1,oneof"`
+type TypeOneOfHide1_FEnum2 struct {
+	FEnum2 EnumOneOf1 `protobuf:"varint,6,opt,name=f_enum2,json=fEnum2,proto3,enum=type_oneof.EnumOneOf1,oneof"`
 }
 
-func (*TypeOneofHide1_FEnum1) isTypeOneofHide1_OneType03() {}
+func (*TypeOneOfHide1_FEnum1) isTypeOneOfHide1_OneType03() {}
 
-func (*TypeOneofHide1_FEnum2) isTypeOneofHide1_OneType03() {}
+func (*TypeOneOfHide1_FEnum2) isTypeOneOfHide1_OneType03() {}
 
-type isTypeOneofHide1_OneType04 interface {
-	isTypeOneofHide1_OneType04()
+type isTypeOneOfHide1_OneType04 interface {
+	isTypeOneOfHide1_OneType04()
 }
 
-type TypeOneofHide1_FDuration1 struct {
+type TypeOneOfHide1_FDuration1 struct {
 	FDuration1 *durationpb.Duration `protobuf:"bytes,7,opt,name=f_duration1,json=fDuration1,proto3,oneof"`
 }
 
-type TypeOneofHide1_FDuration2 struct {
+type TypeOneOfHide1_FDuration2 struct {
 	FDuration2 *durationpb.Duration `protobuf:"bytes,8,opt,name=f_duration2,json=fDuration2,proto3,oneof"`
 }
 
-func (*TypeOneofHide1_FDuration1) isTypeOneofHide1_OneType04() {}
+func (*TypeOneOfHide1_FDuration1) isTypeOneOfHide1_OneType04() {}
 
-func (*TypeOneofHide1_FDuration2) isTypeOneofHide1_OneType04() {}
+func (*TypeOneOfHide1_FDuration2) isTypeOneOfHide1_OneType04() {}
 
-type MessageOneof1_Embed1 struct {
+type MessageOneOf1_Embed1 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1104,8 +1104,8 @@ type MessageOneof1_Embed1 struct {
 	FString3 string `protobuf:"bytes,3,opt,name=f_string3,json=fString3,proto3" json:"f_string3,omitempty"`
 }
 
-func (x *MessageOneof1_Embed1) Reset() {
-	*x = MessageOneof1_Embed1{}
+func (x *MessageOneOf1_Embed1) Reset() {
+	*x = MessageOneOf1_Embed1{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_tests_proto_cases_types_type_oneof_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1113,13 +1113,13 @@ func (x *MessageOneof1_Embed1) Reset() {
 	}
 }
 
-func (x *MessageOneof1_Embed1) String() string {
+func (x *MessageOneOf1_Embed1) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MessageOneof1_Embed1) ProtoMessage() {}
+func (*MessageOneOf1_Embed1) ProtoMessage() {}
 
-func (x *MessageOneof1_Embed1) ProtoReflect() protoreflect.Message {
+func (x *MessageOneOf1_Embed1) ProtoReflect() protoreflect.Message {
 	mi := &file_tests_proto_cases_types_type_oneof_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1131,33 +1131,33 @@ func (x *MessageOneof1_Embed1) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MessageOneof1_Embed1.ProtoReflect.Descriptor instead.
-func (*MessageOneof1_Embed1) Descriptor() ([]byte, []int) {
+// Deprecated: Use MessageOneOf1_Embed1.ProtoReflect.Descriptor instead.
+func (*MessageOneOf1_Embed1) Descriptor() ([]byte, []int) {
 	return file_tests_proto_cases_types_type_oneof_proto_rawDescGZIP(), []int{0, 0}
 }
 
-func (x *MessageOneof1_Embed1) GetFString1() string {
+func (x *MessageOneOf1_Embed1) GetFString1() string {
 	if x != nil {
 		return x.FString1
 	}
 	return ""
 }
 
-func (x *MessageOneof1_Embed1) GetFString2() string {
+func (x *MessageOneOf1_Embed1) GetFString2() string {
 	if x != nil {
 		return x.FString2
 	}
 	return ""
 }
 
-func (x *MessageOneof1_Embed1) GetFString3() string {
+func (x *MessageOneOf1_Embed1) GetFString3() string {
 	if x != nil {
 		return x.FString3
 	}
 	return ""
 }
 
-type MessageOneof1_Embed1_Embed2 struct {
+type MessageOneOf1_Embed1_Embed2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1167,8 +1167,8 @@ type MessageOneof1_Embed1_Embed2 struct {
 	FString3 string `protobuf:"bytes,3,opt,name=f_string3,json=fString3,proto3" json:"f_string3,omitempty"`
 }
 
-func (x *MessageOneof1_Embed1_Embed2) Reset() {
-	*x = MessageOneof1_Embed1_Embed2{}
+func (x *MessageOneOf1_Embed1_Embed2) Reset() {
+	*x = MessageOneOf1_Embed1_Embed2{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_tests_proto_cases_types_type_oneof_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1176,13 +1176,13 @@ func (x *MessageOneof1_Embed1_Embed2) Reset() {
 	}
 }
 
-func (x *MessageOneof1_Embed1_Embed2) String() string {
+func (x *MessageOneOf1_Embed1_Embed2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MessageOneof1_Embed1_Embed2) ProtoMessage() {}
+func (*MessageOneOf1_Embed1_Embed2) ProtoMessage() {}
 
-func (x *MessageOneof1_Embed1_Embed2) ProtoReflect() protoreflect.Message {
+func (x *MessageOneOf1_Embed1_Embed2) ProtoReflect() protoreflect.Message {
 	mi := &file_tests_proto_cases_types_type_oneof_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1194,26 +1194,26 @@ func (x *MessageOneof1_Embed1_Embed2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MessageOneof1_Embed1_Embed2.ProtoReflect.Descriptor instead.
-func (*MessageOneof1_Embed1_Embed2) Descriptor() ([]byte, []int) {
+// Deprecated: Use MessageOneOf1_Embed1_Embed2.ProtoReflect.Descriptor instead.
+func (*MessageOneOf1_Embed1_Embed2) Descriptor() ([]byte, []int) {
 	return file_tests_proto_cases_types_type_oneof_proto_rawDescGZIP(), []int{0, 0, 0}
 }
 
-func (x *MessageOneof1_Embed1_Embed2) GetFString1() string {
+func (x *MessageOneOf1_Embed1_Embed2) GetFString1() string {
 	if x != nil {
 		return x.FString1
 	}
 	return ""
 }
 
-func (x *MessageOneof1_Embed1_Embed2) GetFString2() string {
+func (x *MessageOneOf1_Embed1_Embed2) GetFString2() string {
 	if x != nil {
 		return x.FString2
 	}
 	return ""
 }
 
-func (x *MessageOneof1_Embed1_Embed2) GetFString3() string {
+func (x *MessageOneOf1_Embed1_Embed2) GetFString3() string {
 	if x != nil {
 		return x.FString3
 	}
@@ -1239,7 +1239,7 @@ var file_tests_proto_cases_types_type_oneof_proto_rawDesc = []byte{
 	0x79, 0x70, 0x65, 0x5f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x1a, 0x10, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x22, 0xdf, 0x02, 0x0a, 0x0d, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x4f, 0x6e,
-	0x65, 0x6f, 0x66, 0x31, 0x12, 0x21, 0x0a, 0x09, 0x66, 0x5f, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67,
+	0x65, 0x4f, 0x66, 0x31, 0x12, 0x21, 0x0a, 0x09, 0x66, 0x5f, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67,
 	0x31, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x52, 0x08, 0x66,
 	0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31, 0x12, 0x21, 0x0a, 0x09, 0x66, 0x5f, 0x73, 0x74, 0x72,
 	0x69, 0x6e, 0x67, 0x32, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00,
@@ -1261,7 +1261,7 @@ var file_tests_proto_cases_types_type_oneof_proto_rawDesc = []byte{
 	0x32, 0x12, 0x21, 0x0a, 0x09, 0x66, 0x5f, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x33, 0x18, 0x03,
 	0x20, 0x01, 0x28, 0x09, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x52, 0x08, 0x66, 0x53, 0x74, 0x72,
 	0x69, 0x6e, 0x67, 0x33, 0x22, 0xd5, 0x10, 0x0a, 0x0a, 0x54, 0x79, 0x70, 0x65, 0x4f, 0x6e, 0x65,
-	0x6f, 0x66, 0x31, 0x12, 0x23, 0x0a, 0x09, 0x66, 0x5f, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31,
+	0x4f, 0x66, 0x31, 0x12, 0x23, 0x0a, 0x09, 0x66, 0x5f, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31,
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x48, 0x00, 0x52, 0x08,
 	0x66, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31, 0x12, 0x23, 0x0a, 0x09, 0x66, 0x5f, 0x73, 0x74,
 	0x72, 0x69, 0x6e, 0x67, 0x32, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x04, 0x8a, 0xa2, 0x1f,
@@ -1299,7 +1299,7 @@ var file_tests_proto_cases_types_type_oneof_proto_rawDesc = []byte{
 	0x48, 0x07, 0x52, 0x07, 0x66, 0x42, 0x79, 0x74, 0x65, 0x73, 0x31, 0x12, 0x37, 0x0a, 0x07, 0x66,
 	0x5f, 0x65, 0x6e, 0x75, 0x6d, 0x31, 0x18, 0x33, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x16, 0x2e, 0x74,
 	0x79, 0x70, 0x65, 0x5f, 0x6f, 0x6e, 0x65, 0x6f, 0x66, 0x2e, 0x45, 0x6e, 0x75, 0x6d, 0x4f, 0x6e,
-	0x65, 0x6f, 0x66, 0x31, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x48, 0x08, 0x52, 0x06, 0x66, 0x45,
+	0x65, 0x4f, 0x66, 0x31, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x48, 0x08, 0x52, 0x06, 0x66, 0x45,
 	0x6e, 0x75, 0x6d, 0x31, 0x12, 0x30, 0x0a, 0x07, 0x66, 0x5f, 0x65, 0x6e, 0x75, 0x6d, 0x32, 0x18,
 	0x34, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x0f, 0x2e, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c,
 	0x2e, 0x45, 0x6e, 0x75, 0x6d, 0x31, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x48, 0x08, 0x52, 0x06,
@@ -1345,16 +1345,16 @@ var file_tests_proto_cases_types_type_oneof_proto_rawDesc = []byte{
 	0x8a, 0xa2, 0x1f, 0x00, 0x48, 0x0b, 0x52, 0x05, 0x66, 0x41, 0x6e, 0x79, 0x32, 0x12, 0x40, 0x0a,
 	0x0a, 0x66, 0x5f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x31, 0x18, 0x47, 0x20, 0x01, 0x28,
 	0x0b, 0x32, 0x19, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x6f, 0x6e, 0x65, 0x6f, 0x66, 0x2e, 0x4d,
-	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x4f, 0x6e, 0x65, 0x6f, 0x66, 0x31, 0x42, 0x04, 0x8a, 0xa2,
+	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x4f, 0x6e, 0x65, 0x4f, 0x66, 0x31, 0x42, 0x04, 0x8a, 0xa2,
 	0x1f, 0x00, 0x48, 0x0c, 0x52, 0x09, 0x66, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x31, 0x12,
 	0x47, 0x0a, 0x0a, 0x66, 0x5f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x32, 0x18, 0x48, 0x20,
 	0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x6f, 0x6e, 0x65, 0x6f, 0x66,
-	0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x4f, 0x6e, 0x65, 0x6f, 0x66, 0x31, 0x2e, 0x45,
+	0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x4f, 0x6e, 0x65, 0x4f, 0x66, 0x31, 0x2e, 0x45,
 	0x6d, 0x62, 0x65, 0x64, 0x31, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x48, 0x0c, 0x52, 0x09, 0x66,
 	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x32, 0x12, 0x4e, 0x0a, 0x0a, 0x66, 0x5f, 0x6d, 0x65,
 	0x73, 0x73, 0x61, 0x67, 0x65, 0x33, 0x18, 0x49, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x74,
 	0x79, 0x70, 0x65, 0x5f, 0x6f, 0x6e, 0x65, 0x6f, 0x66, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
-	0x65, 0x4f, 0x6e, 0x65, 0x6f, 0x66, 0x31, 0x2e, 0x45, 0x6d, 0x62, 0x65, 0x64, 0x31, 0x2e, 0x45,
+	0x65, 0x4f, 0x6e, 0x65, 0x4f, 0x66, 0x31, 0x2e, 0x45, 0x6d, 0x62, 0x65, 0x64, 0x31, 0x2e, 0x45,
 	0x6d, 0x62, 0x65, 0x64, 0x32, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x48, 0x0c, 0x52, 0x09, 0x66,
 	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x33, 0x12, 0x39, 0x0a, 0x0a, 0x66, 0x5f, 0x6d, 0x65,
 	0x73, 0x73, 0x61, 0x67, 0x65, 0x34, 0x18, 0x4a, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x65,
@@ -1394,7 +1394,7 @@ var file_tests_proto_cases_types_type_oneof_proto_rawDesc = []byte{
 	0x79, 0x70, 0x65, 0x31, 0x30, 0x42, 0x0b, 0x0a, 0x09, 0x4f, 0x6e, 0x65, 0x54, 0x79, 0x70, 0x65,
 	0x31, 0x31, 0x42, 0x0b, 0x0a, 0x09, 0x4f, 0x6e, 0x65, 0x54, 0x79, 0x70, 0x65, 0x31, 0x32, 0x42,
 	0x0b, 0x0a, 0x09, 0x4f, 0x6e, 0x65, 0x54, 0x79, 0x70, 0x65, 0x31, 0x33, 0x22, 0xa4, 0x04, 0x0a,
-	0x0e, 0x54, 0x79, 0x70, 0x65, 0x4f, 0x6e, 0x65, 0x6f, 0x66, 0x48, 0x69, 0x64, 0x65, 0x31, 0x12,
+	0x0e, 0x54, 0x79, 0x70, 0x65, 0x4f, 0x6e, 0x65, 0x4f, 0x66, 0x48, 0x69, 0x64, 0x65, 0x31, 0x12,
 	0x23, 0x0a, 0x09, 0x66, 0x5f, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x09, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x48, 0x00, 0x52, 0x08, 0x66, 0x53, 0x74, 0x72,
 	0x69, 0x6e, 0x67, 0x31, 0x12, 0x23, 0x0a, 0x09, 0x66, 0x5f, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67,
@@ -1402,18 +1402,18 @@ var file_tests_proto_cases_types_type_oneof_proto_rawDesc = []byte{
 	0x08, 0x66, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x32, 0x12, 0x40, 0x0a, 0x0a, 0x66, 0x5f, 0x6d,
 	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x31, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e,
 	0x74, 0x79, 0x70, 0x65, 0x5f, 0x6f, 0x6e, 0x65, 0x6f, 0x66, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61,
-	0x67, 0x65, 0x4f, 0x6e, 0x65, 0x6f, 0x66, 0x31, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x48, 0x01,
+	0x67, 0x65, 0x4f, 0x6e, 0x65, 0x4f, 0x66, 0x31, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x48, 0x01,
 	0x52, 0x09, 0x66, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x31, 0x12, 0x40, 0x0a, 0x0a, 0x66,
 	0x5f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x32, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32,
 	0x19, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x6f, 0x6e, 0x65, 0x6f, 0x66, 0x2e, 0x4d, 0x65, 0x73,
-	0x73, 0x61, 0x67, 0x65, 0x4f, 0x6e, 0x65, 0x6f, 0x66, 0x31, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00,
+	0x73, 0x61, 0x67, 0x65, 0x4f, 0x6e, 0x65, 0x4f, 0x66, 0x31, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00,
 	0x48, 0x01, 0x52, 0x09, 0x66, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x32, 0x12, 0x37, 0x0a,
 	0x07, 0x66, 0x5f, 0x65, 0x6e, 0x75, 0x6d, 0x31, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x16,
 	0x2e, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x6f, 0x6e, 0x65, 0x6f, 0x66, 0x2e, 0x45, 0x6e, 0x75, 0x6d,
-	0x4f, 0x6e, 0x65, 0x6f, 0x66, 0x31, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x48, 0x02, 0x52, 0x06,
+	0x4f, 0x6e, 0x65, 0x4f, 0x66, 0x31, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x48, 0x02, 0x52, 0x06,
 	0x66, 0x45, 0x6e, 0x75, 0x6d, 0x31, 0x12, 0x37, 0x0a, 0x07, 0x66, 0x5f, 0x65, 0x6e, 0x75, 0x6d,
 	0x32, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x16, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x6f,
-	0x6e, 0x65, 0x6f, 0x66, 0x2e, 0x45, 0x6e, 0x75, 0x6d, 0x4f, 0x6e, 0x65, 0x6f, 0x66, 0x31, 0x42,
+	0x6e, 0x65, 0x6f, 0x66, 0x2e, 0x45, 0x6e, 0x75, 0x6d, 0x4f, 0x6e, 0x65, 0x4f, 0x66, 0x31, 0x42,
 	0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x48, 0x02, 0x52, 0x06, 0x66, 0x45, 0x6e, 0x75, 0x6d, 0x32, 0x12,
 	0x42, 0x0a, 0x0b, 0x66, 0x5f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x31, 0x18, 0x07,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72,
@@ -1428,7 +1428,7 @@ var file_tests_proto_cases_types_type_oneof_proto_rawDesc = []byte{
 	0x4f, 0x6e, 0x65, 0x54, 0x79, 0x70, 0x65, 0x30, 0x32, 0x12, 0x06, 0x92, 0xa2, 0x1f, 0x02, 0x20,
 	0x01, 0x42, 0x13, 0x0a, 0x09, 0x4f, 0x6e, 0x65, 0x54, 0x79, 0x70, 0x65, 0x30, 0x33, 0x12, 0x06,
 	0x92, 0xa2, 0x1f, 0x02, 0x20, 0x01, 0x42, 0x0b, 0x0a, 0x09, 0x4f, 0x6e, 0x65, 0x54, 0x79, 0x70,
-	0x65, 0x30, 0x34, 0x2a, 0x79, 0x0a, 0x0a, 0x45, 0x6e, 0x75, 0x6d, 0x4f, 0x6e, 0x65, 0x6f, 0x66,
+	0x65, 0x30, 0x34, 0x2a, 0x79, 0x0a, 0x0a, 0x45, 0x6e, 0x75, 0x6d, 0x4f, 0x6e, 0x65, 0x4f, 0x66,
 	0x31, 0x12, 0x08, 0x0a, 0x04, 0x5a, 0x65, 0x72, 0x6f, 0x10, 0x00, 0x12, 0x07, 0x0a, 0x03, 0x4f,
 	0x6e, 0x65, 0x10, 0x02, 0x12, 0x07, 0x0a, 0x03, 0x54, 0x77, 0x6f, 0x10, 0x03, 0x12, 0x09, 0x0a,
 	0x05, 0x54, 0x68, 0x72, 0x65, 0x65, 0x10, 0x05, 0x12, 0x08, 0x0a, 0x04, 0x46, 0x6f, 0x75, 0x72,
@@ -1455,12 +1455,12 @@ func file_tests_proto_cases_types_type_oneof_proto_rawDescGZIP() []byte {
 var file_tests_proto_cases_types_type_oneof_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_tests_proto_cases_types_type_oneof_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_tests_proto_cases_types_type_oneof_proto_goTypes = []interface{}{
-	(EnumOneof1)(0),                           // 0: type_oneof.EnumOneof1
-	(*MessageOneof1)(nil),                     // 1: type_oneof.MessageOneof1
-	(*TypeOneof1)(nil),                        // 2: type_oneof.TypeOneof1
-	(*TypeOneofHide1)(nil),                    // 3: type_oneof.TypeOneofHide1
-	(*MessageOneof1_Embed1)(nil),              // 4: type_oneof.MessageOneof1.Embed1
-	(*MessageOneof1_Embed1_Embed2)(nil),       // 5: type_oneof.MessageOneof1.Embed1.Embed2
+	(EnumOneOf1)(0),                           // 0: type_oneof.EnumOneOf1
+	(*MessageOneOf1)(nil),                     // 1: type_oneof.MessageOneOf1
+	(*TypeOneOf1)(nil),                        // 2: type_oneof.TypeOneOf1
+	(*TypeOneOfHide1)(nil),                    // 3: type_oneof.TypeOneOfHide1
+	(*MessageOneOf1_Embed1)(nil),              // 4: type_oneof.MessageOneOf1.Embed1
+	(*MessageOneOf1_Embed1_Embed2)(nil),       // 5: type_oneof.MessageOneOf1.Embed1.Embed2
 	(pbexternal.Enum1)(0),                     // 6: external.Enum1
 	(pbexternal.Embed_Enum1)(0),               // 7: external.Embed.Enum1
 	(pbexternal.Embed_Message_Enum1)(0),       // 8: external.Embed.Message.Enum1
@@ -1477,33 +1477,33 @@ var file_tests_proto_cases_types_type_oneof_proto_goTypes = []interface{}{
 	(*MessageCommon1_Embed1_Embed2)(nil),      // 19: type_common.MessageCommon1.Embed1.Embed2
 }
 var file_tests_proto_cases_types_type_oneof_proto_depIdxs = []int32{
-	0,  // 0: type_oneof.TypeOneof1.f_enum1:type_name -> type_oneof.EnumOneof1
-	6,  // 1: type_oneof.TypeOneof1.f_enum2:type_name -> external.Enum1
-	7,  // 2: type_oneof.TypeOneof1.f_enum3:type_name -> external.Embed.Enum1
-	8,  // 3: type_oneof.TypeOneof1.f_enum4:type_name -> external.Embed.Message.Enum1
-	9,  // 4: type_oneof.TypeOneof1.f_enum5:type_name -> type_common.EnumCommon1
-	10, // 5: type_oneof.TypeOneof1.f_enum6:type_name -> type_common.MessageCommon1.Enum1
-	11, // 6: type_oneof.TypeOneof1.f_duration1:type_name -> google.protobuf.Duration
-	11, // 7: type_oneof.TypeOneof1.f_duration2:type_name -> google.protobuf.Duration
-	12, // 8: type_oneof.TypeOneof1.f_timestamp1:type_name -> google.protobuf.Timestamp
-	12, // 9: type_oneof.TypeOneof1.f_timestamp2:type_name -> google.protobuf.Timestamp
-	13, // 10: type_oneof.TypeOneof1.f_any1:type_name -> google.protobuf.Any
-	13, // 11: type_oneof.TypeOneof1.f_any2:type_name -> google.protobuf.Any
-	1,  // 12: type_oneof.TypeOneof1.f_message1:type_name -> type_oneof.MessageOneof1
-	4,  // 13: type_oneof.TypeOneof1.f_message2:type_name -> type_oneof.MessageOneof1.Embed1
-	5,  // 14: type_oneof.TypeOneof1.f_message3:type_name -> type_oneof.MessageOneof1.Embed1.Embed2
-	14, // 15: type_oneof.TypeOneof1.f_message4:type_name -> external.Message1
-	15, // 16: type_oneof.TypeOneof1.f_message5:type_name -> external.Message1.Embed1
-	16, // 17: type_oneof.TypeOneof1.f_message6:type_name -> external.Message1.Embed1.Embed2
-	17, // 18: type_oneof.TypeOneof1.f_message7:type_name -> type_common.MessageCommon1
-	18, // 19: type_oneof.TypeOneof1.f_message8:type_name -> type_common.MessageCommon1.Embed1
-	19, // 20: type_oneof.TypeOneof1.f_message9:type_name -> type_common.MessageCommon1.Embed1.Embed2
-	1,  // 21: type_oneof.TypeOneofHide1.f_message1:type_name -> type_oneof.MessageOneof1
-	1,  // 22: type_oneof.TypeOneofHide1.f_message2:type_name -> type_oneof.MessageOneof1
-	0,  // 23: type_oneof.TypeOneofHide1.f_enum1:type_name -> type_oneof.EnumOneof1
-	0,  // 24: type_oneof.TypeOneofHide1.f_enum2:type_name -> type_oneof.EnumOneof1
-	11, // 25: type_oneof.TypeOneofHide1.f_duration1:type_name -> google.protobuf.Duration
-	11, // 26: type_oneof.TypeOneofHide1.f_duration2:type_name -> google.protobuf.Duration
+	0,  // 0: type_oneof.TypeOneOf1.f_enum1:type_name -> type_oneof.EnumOneOf1
+	6,  // 1: type_oneof.TypeOneOf1.f_enum2:type_name -> external.Enum1
+	7,  // 2: type_oneof.TypeOneOf1.f_enum3:type_name -> external.Embed.Enum1
+	8,  // 3: type_oneof.TypeOneOf1.f_enum4:type_name -> external.Embed.Message.Enum1
+	9,  // 4: type_oneof.TypeOneOf1.f_enum5:type_name -> type_common.EnumCommon1
+	10, // 5: type_oneof.TypeOneOf1.f_enum6:type_name -> type_common.MessageCommon1.Enum1
+	11, // 6: type_oneof.TypeOneOf1.f_duration1:type_name -> google.protobuf.Duration
+	11, // 7: type_oneof.TypeOneOf1.f_duration2:type_name -> google.protobuf.Duration
+	12, // 8: type_oneof.TypeOneOf1.f_timestamp1:type_name -> google.protobuf.Timestamp
+	12, // 9: type_oneof.TypeOneOf1.f_timestamp2:type_name -> google.protobuf.Timestamp
+	13, // 10: type_oneof.TypeOneOf1.f_any1:type_name -> google.protobuf.Any
+	13, // 11: type_oneof.TypeOneOf1.f_any2:type_name -> google.protobuf.Any
+	1,  // 12: type_oneof.TypeOneOf1.f_message1:type_name -> type_oneof.MessageOneOf1
+	4,  // 13: type_oneof.TypeOneOf1.f_message2:type_name -> type_oneof.MessageOneOf1.Embed1
+	5,  // 14: type_oneof.TypeOneOf1.f_message3:type_name -> type_oneof.MessageOneOf1.Embed1.Embed2
+	14, // 15: type_oneof.TypeOneOf1.f_message4:type_name -> external.Message1
+	15, // 16: type_oneof.TypeOneOf1.f_message5:type_name -> external.Message1.Embed1
+	16, // 17: type_oneof.TypeOneOf1.f_message6:type_name -> external.Message1.Embed1.Embed2
+	17, // 18: type_oneof.TypeOneOf1.f_message7:type_name -> type_common.MessageCommon1
+	18, // 19: type_oneof.TypeOneOf1.f_message8:type_name -> type_common.MessageCommon1.Embed1
+	19, // 20: type_oneof.TypeOneOf1.f_message9:type_name -> type_common.MessageCommon1.Embed1.Embed2
+	1,  // 21: type_oneof.TypeOneOfHide1.f_message1:type_name -> type_oneof.MessageOneOf1
+	1,  // 22: type_oneof.TypeOneOfHide1.f_message2:type_name -> type_oneof.MessageOneOf1
+	0,  // 23: type_oneof.TypeOneOfHide1.f_enum1:type_name -> type_oneof.EnumOneOf1
+	0,  // 24: type_oneof.TypeOneOfHide1.f_enum2:type_name -> type_oneof.EnumOneOf1
+	11, // 25: type_oneof.TypeOneOfHide1.f_duration1:type_name -> google.protobuf.Duration
+	11, // 26: type_oneof.TypeOneOfHide1.f_duration2:type_name -> google.protobuf.Duration
 	27, // [27:27] is the sub-list for method output_type
 	27, // [27:27] is the sub-list for method input_type
 	27, // [27:27] is the sub-list for extension type_name
@@ -1519,7 +1519,7 @@ func file_tests_proto_cases_types_type_oneof_proto_init() {
 	file_tests_proto_cases_types_type_common_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_tests_proto_cases_types_type_oneof_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MessageOneof1); i {
+			switch v := v.(*MessageOneOf1); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1531,7 +1531,7 @@ func file_tests_proto_cases_types_type_oneof_proto_init() {
 			}
 		}
 		file_tests_proto_cases_types_type_oneof_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TypeOneof1); i {
+			switch v := v.(*TypeOneOf1); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1543,7 +1543,7 @@ func file_tests_proto_cases_types_type_oneof_proto_init() {
 			}
 		}
 		file_tests_proto_cases_types_type_oneof_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TypeOneofHide1); i {
+			switch v := v.(*TypeOneOfHide1); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1555,7 +1555,7 @@ func file_tests_proto_cases_types_type_oneof_proto_init() {
 			}
 		}
 		file_tests_proto_cases_types_type_oneof_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MessageOneof1_Embed1); i {
+			switch v := v.(*MessageOneOf1_Embed1); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1567,7 +1567,7 @@ func file_tests_proto_cases_types_type_oneof_proto_init() {
 			}
 		}
 		file_tests_proto_cases_types_type_oneof_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MessageOneof1_Embed1_Embed2); i {
+			switch v := v.(*MessageOneOf1_Embed1_Embed2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1580,53 +1580,53 @@ func file_tests_proto_cases_types_type_oneof_proto_init() {
 		}
 	}
 	file_tests_proto_cases_types_type_oneof_proto_msgTypes[1].OneofWrappers = []interface{}{
-		(*TypeOneof1_FString1)(nil),
-		(*TypeOneof1_FString2)(nil),
-		(*TypeOneof1_FInt32)(nil),
-		(*TypeOneof1_FInt64)(nil),
-		(*TypeOneof1_FUint32)(nil),
-		(*TypeOneof1_FUint64)(nil),
-		(*TypeOneof1_FSint32)(nil),
-		(*TypeOneof1_FSint64)(nil),
-		(*TypeOneof1_FSfixed32)(nil),
-		(*TypeOneof1_FSfixed64)(nil),
-		(*TypeOneof1_FFixed32)(nil),
-		(*TypeOneof1_FFixed64)(nil),
-		(*TypeOneof1_FFloat)(nil),
-		(*TypeOneof1_FDouble)(nil),
-		(*TypeOneof1_FBool1)(nil),
-		(*TypeOneof1_FBytes1)(nil),
-		(*TypeOneof1_FEnum1)(nil),
-		(*TypeOneof1_FEnum2)(nil),
-		(*TypeOneof1_FEnum3)(nil),
-		(*TypeOneof1_FEnum4)(nil),
-		(*TypeOneof1_FEnum5)(nil),
-		(*TypeOneof1_FEnum6)(nil),
-		(*TypeOneof1_FDuration1)(nil),
-		(*TypeOneof1_FDuration2)(nil),
-		(*TypeOneof1_FTimestamp1)(nil),
-		(*TypeOneof1_FTimestamp2)(nil),
-		(*TypeOneof1_FAny1)(nil),
-		(*TypeOneof1_FAny2)(nil),
-		(*TypeOneof1_FMessage1)(nil),
-		(*TypeOneof1_FMessage2)(nil),
-		(*TypeOneof1_FMessage3)(nil),
-		(*TypeOneof1_FMessage4)(nil),
-		(*TypeOneof1_FMessage5)(nil),
-		(*TypeOneof1_FMessage6)(nil),
-		(*TypeOneof1_FMessage7)(nil),
-		(*TypeOneof1_FMessage8)(nil),
-		(*TypeOneof1_FMessage9)(nil),
+		(*TypeOneOf1_FString1)(nil),
+		(*TypeOneOf1_FString2)(nil),
+		(*TypeOneOf1_FInt32)(nil),
+		(*TypeOneOf1_FInt64)(nil),
+		(*TypeOneOf1_FUint32)(nil),
+		(*TypeOneOf1_FUint64)(nil),
+		(*TypeOneOf1_FSint32)(nil),
+		(*TypeOneOf1_FSint64)(nil),
+		(*TypeOneOf1_FSfixed32)(nil),
+		(*TypeOneOf1_FSfixed64)(nil),
+		(*TypeOneOf1_FFixed32)(nil),
+		(*TypeOneOf1_FFixed64)(nil),
+		(*TypeOneOf1_FFloat)(nil),
+		(*TypeOneOf1_FDouble)(nil),
+		(*TypeOneOf1_FBool1)(nil),
+		(*TypeOneOf1_FBytes1)(nil),
+		(*TypeOneOf1_FEnum1)(nil),
+		(*TypeOneOf1_FEnum2)(nil),
+		(*TypeOneOf1_FEnum3)(nil),
+		(*TypeOneOf1_FEnum4)(nil),
+		(*TypeOneOf1_FEnum5)(nil),
+		(*TypeOneOf1_FEnum6)(nil),
+		(*TypeOneOf1_FDuration1)(nil),
+		(*TypeOneOf1_FDuration2)(nil),
+		(*TypeOneOf1_FTimestamp1)(nil),
+		(*TypeOneOf1_FTimestamp2)(nil),
+		(*TypeOneOf1_FAny1)(nil),
+		(*TypeOneOf1_FAny2)(nil),
+		(*TypeOneOf1_FMessage1)(nil),
+		(*TypeOneOf1_FMessage2)(nil),
+		(*TypeOneOf1_FMessage3)(nil),
+		(*TypeOneOf1_FMessage4)(nil),
+		(*TypeOneOf1_FMessage5)(nil),
+		(*TypeOneOf1_FMessage6)(nil),
+		(*TypeOneOf1_FMessage7)(nil),
+		(*TypeOneOf1_FMessage8)(nil),
+		(*TypeOneOf1_FMessage9)(nil),
 	}
 	file_tests_proto_cases_types_type_oneof_proto_msgTypes[2].OneofWrappers = []interface{}{
-		(*TypeOneofHide1_FString1)(nil),
-		(*TypeOneofHide1_FString2)(nil),
-		(*TypeOneofHide1_FMessage1)(nil),
-		(*TypeOneofHide1_FMessage2)(nil),
-		(*TypeOneofHide1_FEnum1)(nil),
-		(*TypeOneofHide1_FEnum2)(nil),
-		(*TypeOneofHide1_FDuration1)(nil),
-		(*TypeOneofHide1_FDuration2)(nil),
+		(*TypeOneOfHide1_FString1)(nil),
+		(*TypeOneOfHide1_FString2)(nil),
+		(*TypeOneOfHide1_FMessage1)(nil),
+		(*TypeOneOfHide1_FMessage2)(nil),
+		(*TypeOneOfHide1_FEnum1)(nil),
+		(*TypeOneOfHide1_FEnum2)(nil),
+		(*TypeOneOfHide1_FDuration1)(nil),
+		(*TypeOneOfHide1_FDuration2)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

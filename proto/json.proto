@@ -71,8 +71,8 @@ message FieldOptions {
   // Whether use string format for enum type. default use integer.
   bool use_enum_string = 4;
 
-  // TODO: supported well know type. any, duration, timestamp...
-  oneof WKT {
+  // TypeSet for specific fields.
+  oneof TypeSet {
     TypeEnum enum = 11;
 
     TypeAny any = 12;
@@ -86,8 +86,8 @@ message FieldOptions {
 message TypeEnum {
   // Default to use use_number.
   oneof Format {
-    bool use_number = 1;
-    bool use_string = 2;
+    bool number = 1;
+    bool string = 2;
   }
 }
 
@@ -96,7 +96,8 @@ message TypeAny {
   oneof Format {
     bool native = 1;
 
-    bool expand = 2;
+    // Do marshal/unmarshal by protojson.
+    bool proto = 2;
   }
 }
 

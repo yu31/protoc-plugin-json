@@ -21,3 +21,9 @@ func durationToPB(dd time.Duration, vv *duration.Duration) {
 	vv.Seconds = int64(secs)
 	vv.Nanos = int32(nanos)
 }
+
+func assertInterface(vv interface{}) {
+	if vv == nil {
+		panic("jsondecoder: the interface is nil")
+	}
+}

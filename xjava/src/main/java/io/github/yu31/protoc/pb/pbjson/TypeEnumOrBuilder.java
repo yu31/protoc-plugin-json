@@ -8,26 +8,26 @@ public interface TypeEnumOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>bool use_number = 1;</code>
-   * @return Whether the useNumber field is set.
+   * <code>bool number = 1;</code>
+   * @return Whether the number field is set.
    */
-  boolean hasUseNumber();
+  boolean hasNumber();
   /**
-   * <code>bool use_number = 1;</code>
-   * @return The useNumber.
+   * <code>bool number = 1;</code>
+   * @return The number.
    */
-  boolean getUseNumber();
+  boolean getNumber();
 
   /**
-   * <code>bool use_string = 2;</code>
-   * @return Whether the useString field is set.
+   * <code>bool string = 2;</code>
+   * @return Whether the string field is set.
    */
-  boolean hasUseString();
+  boolean hasString();
   /**
-   * <code>bool use_string = 2;</code>
-   * @return The useString.
+   * <code>bool string = 2;</code>
+   * @return The string.
    */
-  boolean getUseString();
+  boolean getString();
 
   public io.github.yu31.protoc.pb.pbjson.TypeEnum.FormatCase getFormatCase();
 }

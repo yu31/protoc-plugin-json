@@ -95,8 +95,8 @@ private static final long serialVersionUID = 0L;
   public enum FormatCase
       implements com.google.protobuf.Internal.EnumLite,
           com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-    USE_NUMBER(1),
-    USE_STRING(2),
+    NUMBER(1),
+    STRING(2),
     FORMAT_NOT_SET(0);
     private final int value;
     private FormatCase(int value) {
@@ -114,8 +114,8 @@ private static final long serialVersionUID = 0L;
 
     public static FormatCase forNumber(int value) {
       switch (value) {
-        case 1: return USE_NUMBER;
-        case 2: return USE_STRING;
+        case 1: return NUMBER;
+        case 2: return STRING;
         case 0: return FORMAT_NOT_SET;
         default: return null;
       }
@@ -131,42 +131,42 @@ private static final long serialVersionUID = 0L;
         formatCase_);
   }
 
-  public static final int USE_NUMBER_FIELD_NUMBER = 1;
+  public static final int NUMBER_FIELD_NUMBER = 1;
   /**
-   * <code>bool use_number = 1;</code>
-   * @return Whether the useNumber field is set.
+   * <code>bool number = 1;</code>
+   * @return Whether the number field is set.
    */
   @java.lang.Override
-  public boolean hasUseNumber() {
+  public boolean hasNumber() {
     return formatCase_ == 1;
   }
   /**
-   * <code>bool use_number = 1;</code>
-   * @return The useNumber.
+   * <code>bool number = 1;</code>
+   * @return The number.
    */
   @java.lang.Override
-  public boolean getUseNumber() {
+  public boolean getNumber() {
     if (formatCase_ == 1) {
       return (java.lang.Boolean) format_;
     }
     return false;
   }
 
-  public static final int USE_STRING_FIELD_NUMBER = 2;
+  public static final int STRING_FIELD_NUMBER = 2;
   /**
-   * <code>bool use_string = 2;</code>
-   * @return Whether the useString field is set.
+   * <code>bool string = 2;</code>
+   * @return Whether the string field is set.
    */
   @java.lang.Override
-  public boolean hasUseString() {
+  public boolean hasString() {
     return formatCase_ == 2;
   }
   /**
-   * <code>bool use_string = 2;</code>
-   * @return The useString.
+   * <code>bool string = 2;</code>
+   * @return The string.
    */
   @java.lang.Override
-  public boolean getUseString() {
+  public boolean getString() {
     if (formatCase_ == 2) {
       return (java.lang.Boolean) format_;
     }
@@ -232,12 +232,12 @@ private static final long serialVersionUID = 0L;
     if (!getFormatCase().equals(other.getFormatCase())) return false;
     switch (formatCase_) {
       case 1:
-        if (getUseNumber()
-            != other.getUseNumber()) return false;
+        if (getNumber()
+            != other.getNumber()) return false;
         break;
       case 2:
-        if (getUseString()
-            != other.getUseString()) return false;
+        if (getString()
+            != other.getString()) return false;
         break;
       case 0:
       default:
@@ -255,14 +255,14 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     switch (formatCase_) {
       case 1:
-        hash = (37 * hash) + USE_NUMBER_FIELD_NUMBER;
+        hash = (37 * hash) + NUMBER_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getUseNumber());
+            getNumber());
         break;
       case 2:
-        hash = (37 * hash) + USE_STRING_FIELD_NUMBER;
+        hash = (37 * hash) + STRING_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getUseString());
+            getString());
         break;
       case 0:
       default:
@@ -484,12 +484,12 @@ private static final long serialVersionUID = 0L;
     public Builder mergeFrom(io.github.yu31.protoc.pb.pbjson.TypeEnum other) {
       if (other == io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance()) return this;
       switch (other.getFormatCase()) {
-        case USE_NUMBER: {
-          setUseNumber(other.getUseNumber());
+        case NUMBER: {
+          setNumber(other.getNumber());
           break;
         }
-        case USE_STRING: {
-          setUseString(other.getUseString());
+        case STRING: {
+          setString(other.getString());
           break;
         }
         case FORMAT_NOT_SET: {
@@ -541,38 +541,38 @@ private static final long serialVersionUID = 0L;
 
 
     /**
-     * <code>bool use_number = 1;</code>
-     * @return Whether the useNumber field is set.
+     * <code>bool number = 1;</code>
+     * @return Whether the number field is set.
      */
-    public boolean hasUseNumber() {
+    public boolean hasNumber() {
       return formatCase_ == 1;
     }
     /**
-     * <code>bool use_number = 1;</code>
-     * @return The useNumber.
+     * <code>bool number = 1;</code>
+     * @return The number.
      */
-    public boolean getUseNumber() {
+    public boolean getNumber() {
       if (formatCase_ == 1) {
         return (java.lang.Boolean) format_;
       }
       return false;
     }
     /**
-     * <code>bool use_number = 1;</code>
-     * @param value The useNumber to set.
+     * <code>bool number = 1;</code>
+     * @param value The number to set.
      * @return This builder for chaining.
      */
-    public Builder setUseNumber(boolean value) {
+    public Builder setNumber(boolean value) {
       formatCase_ = 1;
       format_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>bool use_number = 1;</code>
+     * <code>bool number = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearUseNumber() {
+    public Builder clearNumber() {
       if (formatCase_ == 1) {
         formatCase_ = 0;
         format_ = null;
@@ -582,38 +582,38 @@ private static final long serialVersionUID = 0L;
     }
 
     /**
-     * <code>bool use_string = 2;</code>
-     * @return Whether the useString field is set.
+     * <code>bool string = 2;</code>
+     * @return Whether the string field is set.
      */
-    public boolean hasUseString() {
+    public boolean hasString() {
       return formatCase_ == 2;
     }
     /**
-     * <code>bool use_string = 2;</code>
-     * @return The useString.
+     * <code>bool string = 2;</code>
+     * @return The string.
      */
-    public boolean getUseString() {
+    public boolean getString() {
       if (formatCase_ == 2) {
         return (java.lang.Boolean) format_;
       }
       return false;
     }
     /**
-     * <code>bool use_string = 2;</code>
-     * @param value The useString to set.
+     * <code>bool string = 2;</code>
+     * @param value The string to set.
      * @return This builder for chaining.
      */
-    public Builder setUseString(boolean value) {
+    public Builder setString(boolean value) {
       formatCase_ = 2;
       format_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>bool use_string = 2;</code>
+     * <code>bool string = 2;</code>
      * @return This builder for chaining.
      */
-    public Builder clearUseString() {
+    public Builder clearString() {
       if (formatCase_ == 2) {
         formatCase_ = 0;
         format_ = null;

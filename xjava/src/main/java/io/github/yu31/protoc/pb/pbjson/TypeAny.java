@@ -96,7 +96,7 @@ private static final long serialVersionUID = 0L;
       implements com.google.protobuf.Internal.EnumLite,
           com.google.protobuf.AbstractMessage.InternalOneOfEnum {
     NATIVE(1),
-    EXPAND(2),
+    PROTO(2),
     FORMAT_NOT_SET(0);
     private final int value;
     private FormatCase(int value) {
@@ -115,7 +115,7 @@ private static final long serialVersionUID = 0L;
     public static FormatCase forNumber(int value) {
       switch (value) {
         case 1: return NATIVE;
-        case 2: return EXPAND;
+        case 2: return PROTO;
         case 0: return FORMAT_NOT_SET;
         default: return null;
       }
@@ -152,21 +152,21 @@ private static final long serialVersionUID = 0L;
     return false;
   }
 
-  public static final int EXPAND_FIELD_NUMBER = 2;
+  public static final int PROTO_FIELD_NUMBER = 2;
   /**
-   * <code>bool expand = 2;</code>
-   * @return Whether the expand field is set.
+   * <code>bool proto = 2;</code>
+   * @return Whether the proto field is set.
    */
   @java.lang.Override
-  public boolean hasExpand() {
+  public boolean hasProto() {
     return formatCase_ == 2;
   }
   /**
-   * <code>bool expand = 2;</code>
-   * @return The expand.
+   * <code>bool proto = 2;</code>
+   * @return The proto.
    */
   @java.lang.Override
-  public boolean getExpand() {
+  public boolean getProto() {
     if (formatCase_ == 2) {
       return (java.lang.Boolean) format_;
     }
@@ -236,8 +236,8 @@ private static final long serialVersionUID = 0L;
             != other.getNative()) return false;
         break;
       case 2:
-        if (getExpand()
-            != other.getExpand()) return false;
+        if (getProto()
+            != other.getProto()) return false;
         break;
       case 0:
       default:
@@ -260,9 +260,9 @@ private static final long serialVersionUID = 0L;
             getNative());
         break;
       case 2:
-        hash = (37 * hash) + EXPAND_FIELD_NUMBER;
+        hash = (37 * hash) + PROTO_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getExpand());
+            getProto());
         break;
       case 0:
       default:
@@ -488,8 +488,8 @@ private static final long serialVersionUID = 0L;
           setNative(other.getNative());
           break;
         }
-        case EXPAND: {
-          setExpand(other.getExpand());
+        case PROTO: {
+          setProto(other.getProto());
           break;
         }
         case FORMAT_NOT_SET: {
@@ -582,38 +582,38 @@ private static final long serialVersionUID = 0L;
     }
 
     /**
-     * <code>bool expand = 2;</code>
-     * @return Whether the expand field is set.
+     * <code>bool proto = 2;</code>
+     * @return Whether the proto field is set.
      */
-    public boolean hasExpand() {
+    public boolean hasProto() {
       return formatCase_ == 2;
     }
     /**
-     * <code>bool expand = 2;</code>
-     * @return The expand.
+     * <code>bool proto = 2;</code>
+     * @return The proto.
      */
-    public boolean getExpand() {
+    public boolean getProto() {
       if (formatCase_ == 2) {
         return (java.lang.Boolean) format_;
       }
       return false;
     }
     /**
-     * <code>bool expand = 2;</code>
-     * @param value The expand to set.
+     * <code>bool proto = 2;</code>
+     * @param value The proto to set.
      * @return This builder for chaining.
      */
-    public Builder setExpand(boolean value) {
+    public Builder setProto(boolean value) {
       formatCase_ = 2;
       format_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>bool expand = 2;</code>
+     * <code>bool proto = 2;</code>
      * @return This builder for chaining.
      */
-    public Builder clearExpand() {
+    public Builder clearProto() {
       if (formatCase_ == 2) {
         formatCase_ = 0;
         format_ = null;

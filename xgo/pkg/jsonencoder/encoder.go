@@ -15,7 +15,7 @@ type Encoder struct {
 }
 
 // New return an Encoder.
-// TODO: Add escapeHTML in new func.
+// TODO: Add escapeHTML in func arguments.
 func New(bufLen int) *Encoder {
 	return &Encoder{
 		escapeHTML: true,
@@ -56,20 +56,26 @@ func (enc *Encoder) AppendArrayEnd() {
 	enc.writeByte(']')
 }
 
-func (enc *Encoder) AppendJSONKey(k string) {
+func (enc *Encoder) AppendObjectKey(k string) {
 	enc.appendElementSeparator()
 	enc.appendString(k)
 	enc.writeByte(':')
 }
 
-// AppendValueString can be used for value of literal, slice, array and map.
-func (enc *Encoder) AppendValueString(v string) {
+// AppendLiteralNULL can be used for value of literal, slice, array and map.
+func (enc *Encoder) AppendLiteralNULL() {
+	enc.appendElementSeparator()
+	enc.writeString("null")
+}
+
+// AppendLiteralString can be used for value of literal, slice, array and map.
+func (enc *Encoder) AppendLiteralString(v string) {
 	enc.appendElementSeparator()
 	enc.appendString(v)
 }
 
-// AppendValueBytes can be used for value of literal, slice, array and map.
-func (enc *Encoder) AppendValueBytes(v []byte) {
+// AppendLiteralBytes can be used for value of literal, slice, array and map.
+func (enc *Encoder) AppendLiteralBytes(v []byte) {
 	enc.appendElementSeparator()
 	if v == nil {
 		enc.writeString("null")
@@ -101,61 +107,55 @@ func (enc *Encoder) AppendValueBytes(v []byte) {
 	enc.writeByte('"')
 }
 
-// AppendValueBool can be used for value of literal, slice, array and map.
-func (enc *Encoder) AppendValueBool(v bool) {
+// AppendLiteralBool can be used for value of literal, slice, array and map.
+func (enc *Encoder) AppendLiteralBool(v bool) {
 	enc.appendElementSeparator()
 	enc.buf = strconv.AppendBool(enc.buf, v)
 }
 
-// AppendValueInt32 can be used for value of literal, slice, array and map.
-func (enc *Encoder) AppendValueInt32(v int32) {
+// AppendLiteralInt32 can be used for value of literal, slice, array and map.
+func (enc *Encoder) AppendLiteralInt32(v int32) {
 	enc.appendElementSeparator()
 	enc.buf = strconv.AppendInt(enc.buf, int64(v), 10)
 }
 
-// AppendValueInt64 can be used for value of literal, slice, array and map.
-func (enc *Encoder) AppendValueInt64(v int64) {
+// AppendLiteralInt64 can be used for value of literal, slice, array and map.
+func (enc *Encoder) AppendLiteralInt64(v int64) {
 	enc.appendElementSeparator()
 	enc.buf = strconv.AppendInt(enc.buf, v, 10)
 }
 
-// AppendValueUint32 can be used for value of literal, slice, array and map.
-func (enc *Encoder) AppendValueUint32(v uint32) {
+// AppendLiteralUint32 can be used for value of literal, slice, array and map.
+func (enc *Encoder) AppendLiteralUint32(v uint32) {
 	enc.appendElementSeparator()
 	enc.buf = strconv.AppendUint(enc.buf, uint64(v), 10)
 }
 
-// AppendValueUint64 can be used for value of literal, slice, array and map.
-func (enc *Encoder) AppendValueUint64(v uint64) {
+// AppendLiteralUint64 can be used for value of literal, slice, array and map.
+func (enc *Encoder) AppendLiteralUint64(v uint64) {
 	enc.appendElementSeparator()
 	enc.buf = strconv.AppendUint(enc.buf, v, 10)
 }
 
-// AppendValueFloat32 can be used for value of literal, slice, array and map.
-func (enc *Encoder) AppendValueFloat32(v float32) {
+// AppendLiteralFloat32 can be used for value of literal, slice, array and map.
+func (enc *Encoder) AppendLiteralFloat32(v float32) {
 	enc.appendElementSeparator()
 	enc.appendFloat32(v)
 }
 
-// AppendValueFloat64 can be used for value of literal, slice, array and map.
-func (enc *Encoder) AppendValueFloat64(v float64) {
+// AppendLiteralFloat64 can be used for value of literal, slice, array and map.
+func (enc *Encoder) AppendLiteralFloat64(v float64) {
 	enc.appendElementSeparator()
 	enc.appendFloat64(v)
 }
 
-// AppendValueNULL can be used for value of literal, slice, array and map.
-func (enc *Encoder) AppendValueNULL() {
-	enc.appendElementSeparator()
-	enc.writeString("null")
-}
-
-// AppendValueInterface can be used for value of literal, slice, array and map.
-func (enc *Encoder) AppendValueInterface(v interface{}) error {
+// AppendLiteralInterface can be used for value of literal, slice, array and map.
+func (enc *Encoder) AppendLiteralInterface(v interface{}) error {
 	enc.appendElementSeparator()
 	return enc.appendInterface(v)
 }
 
-func (enc *Encoder) AppendValueAnyExpand(v *any.Any) error {
+func (enc *Encoder) AppendWKTAnyByProto(v *any.Any) error {
 	b, err := pMarshal.Marshal(v)
 	if err != nil {
 		return err
@@ -171,7 +171,7 @@ func (enc *Encoder) AppendPointerString(v *string) {
 	if v != nil {
 		enc.appendString(*v)
 	} else {
-		enc.AppendValueNULL()
+		enc.writeString("null")
 	}
 }
 
@@ -181,7 +181,7 @@ func (enc *Encoder) AppendPointerBool(v *bool) {
 	if v != nil {
 		enc.buf = strconv.AppendBool(enc.buf, *v)
 	} else {
-		enc.AppendValueNULL()
+		enc.writeString("null")
 	}
 }
 
@@ -191,7 +191,7 @@ func (enc *Encoder) AppendPointerInt32(v *int32) {
 	if v != nil {
 		enc.buf = strconv.AppendInt(enc.buf, int64(*v), 10)
 	} else {
-		enc.AppendValueNULL()
+		enc.writeString("null")
 	}
 }
 
@@ -201,7 +201,7 @@ func (enc *Encoder) AppendPointerInt64(v *int64) {
 	if v != nil {
 		enc.buf = strconv.AppendInt(enc.buf, *v, 10)
 	} else {
-		enc.AppendValueNULL()
+		enc.writeString("null")
 	}
 }
 
@@ -211,7 +211,7 @@ func (enc *Encoder) AppendPointerUint32(v *uint32) {
 	if v != nil {
 		enc.buf = strconv.AppendUint(enc.buf, uint64(*v), 10)
 	} else {
-		enc.AppendValueNULL()
+		enc.writeString("null")
 	}
 }
 
@@ -221,7 +221,7 @@ func (enc *Encoder) AppendPointerUint64(v *uint64) {
 	if v != nil {
 		enc.buf = strconv.AppendUint(enc.buf, *v, 10)
 	} else {
-		enc.AppendValueNULL()
+		enc.writeString("null")
 	}
 }
 
@@ -231,7 +231,7 @@ func (enc *Encoder) AppendPointerFloat32(v *float32) {
 	if v != nil {
 		enc.appendFloat32(*v)
 	} else {
-		enc.AppendValueNULL()
+		enc.writeString("null")
 	}
 }
 
@@ -241,7 +241,7 @@ func (enc *Encoder) AppendPointerFloat64(v *float64) {
 	if v != nil {
 		enc.appendFloat64(*v)
 	} else {
-		enc.AppendValueNULL()
+		enc.writeString("null")
 	}
 }
 
@@ -283,12 +283,11 @@ func (enc *Encoder) AppendMapKeyUInt64(v uint64) {
 	enc.writeByte(':')
 }
 
-// AppendMapKeyBool unused now.
-func (enc *Encoder) AppendMapKeyBool(v bool) {
-	enc.appendElementSeparator()
-	enc.buf = strconv.AppendBool(enc.buf, v)
-	enc.writeByte(':')
-}
+//func (enc *Encoder) AppendMapKeyBool(v bool) {
+//	enc.appendElementSeparator()
+//	enc.buf = strconv.AppendBool(enc.buf, v)
+//	enc.writeByte(':')
+//}
 
 // Add elements separator.
 func (enc *Encoder) appendElementSeparator() {
@@ -344,7 +343,6 @@ func (enc *Encoder) appendInterface(i interface{}) error {
 		b, err = v.MarshalJSON()
 	default:
 		b, err = json.Marshal(i)
-		//panic(fmt.Errorf("not support type: %v", v))
 	}
 	if err != nil {
 		return err

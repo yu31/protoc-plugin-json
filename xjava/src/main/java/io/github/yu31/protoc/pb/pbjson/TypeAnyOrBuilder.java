@@ -19,15 +19,15 @@ public interface TypeAnyOrBuilder extends
   boolean getNative();
 
   /**
-   * <code>bool expand = 2;</code>
-   * @return Whether the expand field is set.
+   * <code>bool proto = 2;</code>
+   * @return Whether the proto field is set.
    */
-  boolean hasExpand();
+  boolean hasProto();
   /**
-   * <code>bool expand = 2;</code>
-   * @return The expand.
+   * <code>bool proto = 2;</code>
+   * @return The proto.
    */
-  boolean getExpand();
+  boolean getProto();
 
   public io.github.yu31.protoc.pb.pbjson.TypeAny.FormatCase getFormatCase();
 }

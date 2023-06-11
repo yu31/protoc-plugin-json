@@ -77,58 +77,58 @@ private static final long serialVersionUID = 0L;
           }
           case 90: {
             io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder subBuilder = null;
-            if (wKTCase_ == 11) {
-              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeEnum) wKT_).toBuilder();
+            if (typeSetCase_ == 11) {
+              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_).toBuilder();
             }
-            wKT_ =
+            typeSet_ =
                 input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeEnum.parser(), extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeEnum) wKT_);
-              wKT_ = subBuilder.buildPartial();
+              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_);
+              typeSet_ = subBuilder.buildPartial();
             }
-            wKTCase_ = 11;
+            typeSetCase_ = 11;
             break;
           }
           case 98: {
             io.github.yu31.protoc.pb.pbjson.TypeAny.Builder subBuilder = null;
-            if (wKTCase_ == 12) {
-              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeAny) wKT_).toBuilder();
+            if (typeSetCase_ == 12) {
+              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_).toBuilder();
             }
-            wKT_ =
+            typeSet_ =
                 input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeAny.parser(), extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeAny) wKT_);
-              wKT_ = subBuilder.buildPartial();
+              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_);
+              typeSet_ = subBuilder.buildPartial();
             }
-            wKTCase_ = 12;
+            typeSetCase_ = 12;
             break;
           }
           case 106: {
             io.github.yu31.protoc.pb.pbjson.TypeDuration.Builder subBuilder = null;
-            if (wKTCase_ == 13) {
-              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeDuration) wKT_).toBuilder();
+            if (typeSetCase_ == 13) {
+              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_).toBuilder();
             }
-            wKT_ =
+            typeSet_ =
                 input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeDuration.parser(), extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeDuration) wKT_);
-              wKT_ = subBuilder.buildPartial();
+              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_);
+              typeSet_ = subBuilder.buildPartial();
             }
-            wKTCase_ = 13;
+            typeSetCase_ = 13;
             break;
           }
           case 114: {
             io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Builder subBuilder = null;
-            if (wKTCase_ == 14) {
-              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeTimestamp) wKT_).toBuilder();
+            if (typeSetCase_ == 14) {
+              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_).toBuilder();
             }
-            wKT_ =
+            typeSet_ =
                 input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeTimestamp.parser(), extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeTimestamp) wKT_);
-              wKT_ = subBuilder.buildPartial();
+              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_);
+              typeSet_ = subBuilder.buildPartial();
             }
-            wKTCase_ = 14;
+            typeSetCase_ = 14;
             break;
           }
           default: {
@@ -164,18 +164,18 @@ private static final long serialVersionUID = 0L;
   }
 
   private int bitField0_;
-  private int wKTCase_ = 0;
-  private java.lang.Object wKT_;
-  public enum WKTCase
+  private int typeSetCase_ = 0;
+  private java.lang.Object typeSet_;
+  public enum TypeSetCase
       implements com.google.protobuf.Internal.EnumLite,
           com.google.protobuf.AbstractMessage.InternalOneOfEnum {
     ENUM(11),
     ANY(12),
     DURATION(13),
     TIMESTAMP(14),
-    WKT_NOT_SET(0);
+    TYPESET_NOT_SET(0);
     private final int value;
-    private WKTCase(int value) {
+    private TypeSetCase(int value) {
       this.value = value;
     }
     /**
@@ -184,17 +184,17 @@ private static final long serialVersionUID = 0L;
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @java.lang.Deprecated
-    public static WKTCase valueOf(int value) {
+    public static TypeSetCase valueOf(int value) {
       return forNumber(value);
     }
 
-    public static WKTCase forNumber(int value) {
+    public static TypeSetCase forNumber(int value) {
       switch (value) {
         case 11: return ENUM;
         case 12: return ANY;
         case 13: return DURATION;
         case 14: return TIMESTAMP;
-        case 0: return WKT_NOT_SET;
+        case 0: return TYPESET_NOT_SET;
         default: return null;
       }
     }
@@ -203,10 +203,10 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public WKTCase
-  getWKTCase() {
-    return WKTCase.forNumber(
-        wKTCase_);
+  public TypeSetCase
+  getTypeSetCase() {
+    return TypeSetCase.forNumber(
+        typeSetCase_);
   }
 
   public static final int JSON_FIELD_NUMBER = 1;
@@ -323,7 +323,7 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public boolean hasEnum() {
-    return wKTCase_ == 11;
+    return typeSetCase_ == 11;
   }
   /**
    * <code>.json.TypeEnum enum = 11;</code>
@@ -331,8 +331,8 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeEnum getEnum() {
-    if (wKTCase_ == 11) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeEnum) wKT_;
+    if (typeSetCase_ == 11) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
   }
@@ -341,8 +341,8 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder getEnumOrBuilder() {
-    if (wKTCase_ == 11) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeEnum) wKT_;
+    if (typeSetCase_ == 11) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
   }
@@ -354,7 +354,7 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public boolean hasAny() {
-    return wKTCase_ == 12;
+    return typeSetCase_ == 12;
   }
   /**
    * <code>.json.TypeAny any = 12;</code>
@@ -362,8 +362,8 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeAny getAny() {
-    if (wKTCase_ == 12) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeAny) wKT_;
+    if (typeSetCase_ == 12) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
   }
@@ -372,8 +372,8 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeAnyOrBuilder getAnyOrBuilder() {
-    if (wKTCase_ == 12) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeAny) wKT_;
+    if (typeSetCase_ == 12) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
   }
@@ -385,7 +385,7 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public boolean hasDuration() {
-    return wKTCase_ == 13;
+    return typeSetCase_ == 13;
   }
   /**
    * <code>.json.TypeDuration duration = 13;</code>
@@ -393,8 +393,8 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeDuration getDuration() {
-    if (wKTCase_ == 13) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeDuration) wKT_;
+    if (typeSetCase_ == 13) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
   }
@@ -403,8 +403,8 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeDurationOrBuilder getDurationOrBuilder() {
-    if (wKTCase_ == 13) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeDuration) wKT_;
+    if (typeSetCase_ == 13) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
   }
@@ -416,7 +416,7 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public boolean hasTimestamp() {
-    return wKTCase_ == 14;
+    return typeSetCase_ == 14;
   }
   /**
    * <code>.json.TypeTimestamp timestamp = 14;</code>
@@ -424,8 +424,8 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeTimestamp getTimestamp() {
-    if (wKTCase_ == 14) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) wKT_;
+    if (typeSetCase_ == 14) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
   }
@@ -434,8 +434,8 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder getTimestampOrBuilder() {
-    if (wKTCase_ == 14) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) wKT_;
+    if (typeSetCase_ == 14) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
   }
@@ -466,17 +466,17 @@ private static final long serialVersionUID = 0L;
     if (useEnumString_ != false) {
       output.writeBool(4, useEnumString_);
     }
-    if (wKTCase_ == 11) {
-      output.writeMessage(11, (io.github.yu31.protoc.pb.pbjson.TypeEnum) wKT_);
+    if (typeSetCase_ == 11) {
+      output.writeMessage(11, (io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_);
     }
-    if (wKTCase_ == 12) {
-      output.writeMessage(12, (io.github.yu31.protoc.pb.pbjson.TypeAny) wKT_);
+    if (typeSetCase_ == 12) {
+      output.writeMessage(12, (io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_);
     }
-    if (wKTCase_ == 13) {
-      output.writeMessage(13, (io.github.yu31.protoc.pb.pbjson.TypeDuration) wKT_);
+    if (typeSetCase_ == 13) {
+      output.writeMessage(13, (io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_);
     }
-    if (wKTCase_ == 14) {
-      output.writeMessage(14, (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) wKT_);
+    if (typeSetCase_ == 14) {
+      output.writeMessage(14, (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_);
     }
     unknownFields.writeTo(output);
   }
@@ -502,21 +502,21 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(4, useEnumString_);
     }
-    if (wKTCase_ == 11) {
+    if (typeSetCase_ == 11) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(11, (io.github.yu31.protoc.pb.pbjson.TypeEnum) wKT_);
+        .computeMessageSize(11, (io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_);
     }
-    if (wKTCase_ == 12) {
+    if (typeSetCase_ == 12) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(12, (io.github.yu31.protoc.pb.pbjson.TypeAny) wKT_);
+        .computeMessageSize(12, (io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_);
     }
-    if (wKTCase_ == 13) {
+    if (typeSetCase_ == 13) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(13, (io.github.yu31.protoc.pb.pbjson.TypeDuration) wKT_);
+        .computeMessageSize(13, (io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_);
     }
-    if (wKTCase_ == 14) {
+    if (typeSetCase_ == 14) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(14, (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) wKT_);
+        .computeMessageSize(14, (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -544,8 +544,8 @@ private static final long serialVersionUID = 0L;
         != other.getOmitempty()) return false;
     if (getUseEnumString()
         != other.getUseEnumString()) return false;
-    if (!getWKTCase().equals(other.getWKTCase())) return false;
-    switch (wKTCase_) {
+    if (!getTypeSetCase().equals(other.getTypeSetCase())) return false;
+    switch (typeSetCase_) {
       case 11:
         if (!getEnum()
             .equals(other.getEnum())) return false;
@@ -589,7 +589,7 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + USE_ENUM_STRING_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getUseEnumString());
-    switch (wKTCase_) {
+    switch (typeSetCase_) {
       case 11:
         hash = (37 * hash) + ENUM_FIELD_NUMBER;
         hash = (53 * hash) + getEnum().hashCode();
@@ -754,8 +754,8 @@ private static final long serialVersionUID = 0L;
 
       useEnumString_ = false;
 
-      wKTCase_ = 0;
-      wKT_ = null;
+      typeSetCase_ = 0;
+      typeSet_ = null;
       return this;
     }
 
@@ -791,36 +791,36 @@ private static final long serialVersionUID = 0L;
       result.ignore_ = ignore_;
       result.omitempty_ = omitempty_;
       result.useEnumString_ = useEnumString_;
-      if (wKTCase_ == 11) {
+      if (typeSetCase_ == 11) {
         if (enumBuilder_ == null) {
-          result.wKT_ = wKT_;
+          result.typeSet_ = typeSet_;
         } else {
-          result.wKT_ = enumBuilder_.build();
+          result.typeSet_ = enumBuilder_.build();
         }
       }
-      if (wKTCase_ == 12) {
+      if (typeSetCase_ == 12) {
         if (anyBuilder_ == null) {
-          result.wKT_ = wKT_;
+          result.typeSet_ = typeSet_;
         } else {
-          result.wKT_ = anyBuilder_.build();
+          result.typeSet_ = anyBuilder_.build();
         }
       }
-      if (wKTCase_ == 13) {
+      if (typeSetCase_ == 13) {
         if (durationBuilder_ == null) {
-          result.wKT_ = wKT_;
+          result.typeSet_ = typeSet_;
         } else {
-          result.wKT_ = durationBuilder_.build();
+          result.typeSet_ = durationBuilder_.build();
         }
       }
-      if (wKTCase_ == 14) {
+      if (typeSetCase_ == 14) {
         if (timestampBuilder_ == null) {
-          result.wKT_ = wKT_;
+          result.typeSet_ = typeSet_;
         } else {
-          result.wKT_ = timestampBuilder_.build();
+          result.typeSet_ = timestampBuilder_.build();
         }
       }
       result.bitField0_ = to_bitField0_;
-      result.wKTCase_ = wKTCase_;
+      result.typeSetCase_ = typeSetCase_;
       onBuilt();
       return result;
     }
@@ -883,7 +883,7 @@ private static final long serialVersionUID = 0L;
       if (other.getUseEnumString() != false) {
         setUseEnumString(other.getUseEnumString());
       }
-      switch (other.getWKTCase()) {
+      switch (other.getTypeSetCase()) {
         case ENUM: {
           mergeEnum(other.getEnum());
           break;
@@ -900,7 +900,7 @@ private static final long serialVersionUID = 0L;
           mergeTimestamp(other.getTimestamp());
           break;
         }
-        case WKT_NOT_SET: {
+        case TYPESET_NOT_SET: {
           break;
         }
       }
@@ -932,17 +932,17 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
-    private int wKTCase_ = 0;
-    private java.lang.Object wKT_;
-    public WKTCase
-        getWKTCase() {
-      return WKTCase.forNumber(
-          wKTCase_);
+    private int typeSetCase_ = 0;
+    private java.lang.Object typeSet_;
+    public TypeSetCase
+        getTypeSetCase() {
+      return TypeSetCase.forNumber(
+          typeSetCase_);
     }
 
-    public Builder clearWKT() {
-      wKTCase_ = 0;
-      wKT_ = null;
+    public Builder clearTypeSet() {
+      typeSetCase_ = 0;
+      typeSet_ = null;
       onChanged();
       return this;
     }
@@ -1202,7 +1202,7 @@ private static final long serialVersionUID = 0L;
      */
     @java.lang.Override
     public boolean hasEnum() {
-      return wKTCase_ == 11;
+      return typeSetCase_ == 11;
     }
     /**
      * <code>.json.TypeEnum enum = 11;</code>
@@ -1211,12 +1211,12 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeEnum getEnum() {
       if (enumBuilder_ == null) {
-        if (wKTCase_ == 11) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeEnum) wKT_;
+        if (typeSetCase_ == 11) {
+          return (io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
       } else {
-        if (wKTCase_ == 11) {
+        if (typeSetCase_ == 11) {
           return enumBuilder_.getMessage();
         }
         return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
@@ -1230,12 +1230,12 @@ private static final long serialVersionUID = 0L;
         if (value == null) {
           throw new NullPointerException();
         }
-        wKT_ = value;
+        typeSet_ = value;
         onChanged();
       } else {
         enumBuilder_.setMessage(value);
       }
-      wKTCase_ = 11;
+      typeSetCase_ = 11;
       return this;
     }
     /**
@@ -1244,12 +1244,12 @@ private static final long serialVersionUID = 0L;
     public Builder setEnum(
         io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder builderForValue) {
       if (enumBuilder_ == null) {
-        wKT_ = builderForValue.build();
+        typeSet_ = builderForValue.build();
         onChanged();
       } else {
         enumBuilder_.setMessage(builderForValue.build());
       }
-      wKTCase_ = 11;
+      typeSetCase_ = 11;
       return this;
     }
     /**
@@ -1257,21 +1257,21 @@ private static final long serialVersionUID = 0L;
      */
     public Builder mergeEnum(io.github.yu31.protoc.pb.pbjson.TypeEnum value) {
       if (enumBuilder_ == null) {
-        if (wKTCase_ == 11 &&
-            wKT_ != io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance()) {
-          wKT_ = io.github.yu31.protoc.pb.pbjson.TypeEnum.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeEnum) wKT_)
+        if (typeSetCase_ == 11 &&
+            typeSet_ != io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance()) {
+          typeSet_ = io.github.yu31.protoc.pb.pbjson.TypeEnum.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_)
               .mergeFrom(value).buildPartial();
         } else {
-          wKT_ = value;
+          typeSet_ = value;
         }
         onChanged();
       } else {
-        if (wKTCase_ == 11) {
+        if (typeSetCase_ == 11) {
           enumBuilder_.mergeFrom(value);
         }
         enumBuilder_.setMessage(value);
       }
-      wKTCase_ = 11;
+      typeSetCase_ = 11;
       return this;
     }
     /**
@@ -1279,15 +1279,15 @@ private static final long serialVersionUID = 0L;
      */
     public Builder clearEnum() {
       if (enumBuilder_ == null) {
-        if (wKTCase_ == 11) {
-          wKTCase_ = 0;
-          wKT_ = null;
+        if (typeSetCase_ == 11) {
+          typeSetCase_ = 0;
+          typeSet_ = null;
           onChanged();
         }
       } else {
-        if (wKTCase_ == 11) {
-          wKTCase_ = 0;
-          wKT_ = null;
+        if (typeSetCase_ == 11) {
+          typeSetCase_ = 0;
+          typeSet_ = null;
         }
         enumBuilder_.clear();
       }
@@ -1304,11 +1304,11 @@ private static final long serialVersionUID = 0L;
      */
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder getEnumOrBuilder() {
-      if ((wKTCase_ == 11) && (enumBuilder_ != null)) {
+      if ((typeSetCase_ == 11) && (enumBuilder_ != null)) {
         return enumBuilder_.getMessageOrBuilder();
       } else {
-        if (wKTCase_ == 11) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeEnum) wKT_;
+        if (typeSetCase_ == 11) {
+          return (io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
       }
@@ -1320,17 +1320,17 @@ private static final long serialVersionUID = 0L;
         io.github.yu31.protoc.pb.pbjson.TypeEnum, io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder, io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder> 
         getEnumFieldBuilder() {
       if (enumBuilder_ == null) {
-        if (!(wKTCase_ == 11)) {
-          wKT_ = io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
+        if (!(typeSetCase_ == 11)) {
+          typeSet_ = io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
         }
         enumBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             io.github.yu31.protoc.pb.pbjson.TypeEnum, io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder, io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder>(
-                (io.github.yu31.protoc.pb.pbjson.TypeEnum) wKT_,
+                (io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_,
                 getParentForChildren(),
                 isClean());
-        wKT_ = null;
+        typeSet_ = null;
       }
-      wKTCase_ = 11;
+      typeSetCase_ = 11;
       onChanged();;
       return enumBuilder_;
     }
@@ -1343,7 +1343,7 @@ private static final long serialVersionUID = 0L;
      */
     @java.lang.Override
     public boolean hasAny() {
-      return wKTCase_ == 12;
+      return typeSetCase_ == 12;
     }
     /**
      * <code>.json.TypeAny any = 12;</code>
@@ -1352,12 +1352,12 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeAny getAny() {
       if (anyBuilder_ == null) {
-        if (wKTCase_ == 12) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeAny) wKT_;
+        if (typeSetCase_ == 12) {
+          return (io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
       } else {
-        if (wKTCase_ == 12) {
+        if (typeSetCase_ == 12) {
           return anyBuilder_.getMessage();
         }
         return io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
@@ -1371,12 +1371,12 @@ private static final long serialVersionUID = 0L;
         if (value == null) {
           throw new NullPointerException();
         }
-        wKT_ = value;
+        typeSet_ = value;
         onChanged();
       } else {
         anyBuilder_.setMessage(value);
       }
-      wKTCase_ = 12;
+      typeSetCase_ = 12;
       return this;
     }
     /**
@@ -1385,12 +1385,12 @@ private static final long serialVersionUID = 0L;
     public Builder setAny(
         io.github.yu31.protoc.pb.pbjson.TypeAny.Builder builderForValue) {
       if (anyBuilder_ == null) {
-        wKT_ = builderForValue.build();
+        typeSet_ = builderForValue.build();
         onChanged();
       } else {
         anyBuilder_.setMessage(builderForValue.build());
       }
-      wKTCase_ = 12;
+      typeSetCase_ = 12;
       return this;
     }
     /**
@@ -1398,21 +1398,21 @@ private static final long serialVersionUID = 0L;
      */
     public Builder mergeAny(io.github.yu31.protoc.pb.pbjson.TypeAny value) {
       if (anyBuilder_ == null) {
-        if (wKTCase_ == 12 &&
-            wKT_ != io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance()) {
-          wKT_ = io.github.yu31.protoc.pb.pbjson.TypeAny.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeAny) wKT_)
+        if (typeSetCase_ == 12 &&
+            typeSet_ != io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance()) {
+          typeSet_ = io.github.yu31.protoc.pb.pbjson.TypeAny.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_)
               .mergeFrom(value).buildPartial();
         } else {
-          wKT_ = value;
+          typeSet_ = value;
         }
         onChanged();
       } else {
-        if (wKTCase_ == 12) {
+        if (typeSetCase_ == 12) {
           anyBuilder_.mergeFrom(value);
         }
         anyBuilder_.setMessage(value);
       }
-      wKTCase_ = 12;
+      typeSetCase_ = 12;
       return this;
     }
     /**
@@ -1420,15 +1420,15 @@ private static final long serialVersionUID = 0L;
      */
     public Builder clearAny() {
       if (anyBuilder_ == null) {
-        if (wKTCase_ == 12) {
-          wKTCase_ = 0;
-          wKT_ = null;
+        if (typeSetCase_ == 12) {
+          typeSetCase_ = 0;
+          typeSet_ = null;
           onChanged();
         }
       } else {
-        if (wKTCase_ == 12) {
-          wKTCase_ = 0;
-          wKT_ = null;
+        if (typeSetCase_ == 12) {
+          typeSetCase_ = 0;
+          typeSet_ = null;
         }
         anyBuilder_.clear();
       }
@@ -1445,11 +1445,11 @@ private static final long serialVersionUID = 0L;
      */
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeAnyOrBuilder getAnyOrBuilder() {
-      if ((wKTCase_ == 12) && (anyBuilder_ != null)) {
+      if ((typeSetCase_ == 12) && (anyBuilder_ != null)) {
         return anyBuilder_.getMessageOrBuilder();
       } else {
-        if (wKTCase_ == 12) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeAny) wKT_;
+        if (typeSetCase_ == 12) {
+          return (io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
       }
@@ -1461,17 +1461,17 @@ private static final long serialVersionUID = 0L;
         io.github.yu31.protoc.pb.pbjson.TypeAny, io.github.yu31.protoc.pb.pbjson.TypeAny.Builder, io.github.yu31.protoc.pb.pbjson.TypeAnyOrBuilder> 
         getAnyFieldBuilder() {
       if (anyBuilder_ == null) {
-        if (!(wKTCase_ == 12)) {
-          wKT_ = io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
+        if (!(typeSetCase_ == 12)) {
+          typeSet_ = io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
         }
         anyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             io.github.yu31.protoc.pb.pbjson.TypeAny, io.github.yu31.protoc.pb.pbjson.TypeAny.Builder, io.github.yu31.protoc.pb.pbjson.TypeAnyOrBuilder>(
-                (io.github.yu31.protoc.pb.pbjson.TypeAny) wKT_,
+                (io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_,
                 getParentForChildren(),
                 isClean());
-        wKT_ = null;
+        typeSet_ = null;
       }
-      wKTCase_ = 12;
+      typeSetCase_ = 12;
       onChanged();;
       return anyBuilder_;
     }
@@ -1484,7 +1484,7 @@ private static final long serialVersionUID = 0L;
      */
     @java.lang.Override
     public boolean hasDuration() {
-      return wKTCase_ == 13;
+      return typeSetCase_ == 13;
     }
     /**
      * <code>.json.TypeDuration duration = 13;</code>
@@ -1493,12 +1493,12 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeDuration getDuration() {
       if (durationBuilder_ == null) {
-        if (wKTCase_ == 13) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeDuration) wKT_;
+        if (typeSetCase_ == 13) {
+          return (io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
       } else {
-        if (wKTCase_ == 13) {
+        if (typeSetCase_ == 13) {
           return durationBuilder_.getMessage();
         }
         return io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
@@ -1512,12 +1512,12 @@ private static final long serialVersionUID = 0L;
         if (value == null) {
           throw new NullPointerException();
         }
-        wKT_ = value;
+        typeSet_ = value;
         onChanged();
       } else {
         durationBuilder_.setMessage(value);
       }
-      wKTCase_ = 13;
+      typeSetCase_ = 13;
       return this;
     }
     /**
@@ -1526,12 +1526,12 @@ private static final long serialVersionUID = 0L;
     public Builder setDuration(
         io.github.yu31.protoc.pb.pbjson.TypeDuration.Builder builderForValue) {
       if (durationBuilder_ == null) {
-        wKT_ = builderForValue.build();
+        typeSet_ = builderForValue.build();
         onChanged();
       } else {
         durationBuilder_.setMessage(builderForValue.build());
       }
-      wKTCase_ = 13;
+      typeSetCase_ = 13;
       return this;
     }
     /**
@@ -1539,21 +1539,21 @@ private static final long serialVersionUID = 0L;
      */
     public Builder mergeDuration(io.github.yu31.protoc.pb.pbjson.TypeDuration value) {
       if (durationBuilder_ == null) {
-        if (wKTCase_ == 13 &&
-            wKT_ != io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance()) {
-          wKT_ = io.github.yu31.protoc.pb.pbjson.TypeDuration.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeDuration) wKT_)
+        if (typeSetCase_ == 13 &&
+            typeSet_ != io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance()) {
+          typeSet_ = io.github.yu31.protoc.pb.pbjson.TypeDuration.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_)
               .mergeFrom(value).buildPartial();
         } else {
-          wKT_ = value;
+          typeSet_ = value;
         }
         onChanged();
       } else {
-        if (wKTCase_ == 13) {
+        if (typeSetCase_ == 13) {
           durationBuilder_.mergeFrom(value);
         }
         durationBuilder_.setMessage(value);
       }
-      wKTCase_ = 13;
+      typeSetCase_ = 13;
       return this;
     }
     /**
@@ -1561,15 +1561,15 @@ private static final long serialVersionUID = 0L;
      */
     public Builder clearDuration() {
       if (durationBuilder_ == null) {
-        if (wKTCase_ == 13) {
-          wKTCase_ = 0;
-          wKT_ = null;
+        if (typeSetCase_ == 13) {
+          typeSetCase_ = 0;
+          typeSet_ = null;
           onChanged();
         }
       } else {
-        if (wKTCase_ == 13) {
-          wKTCase_ = 0;
-          wKT_ = null;
+        if (typeSetCase_ == 13) {
+          typeSetCase_ = 0;
+          typeSet_ = null;
         }
         durationBuilder_.clear();
       }
@@ -1586,11 +1586,11 @@ private static final long serialVersionUID = 0L;
      */
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeDurationOrBuilder getDurationOrBuilder() {
-      if ((wKTCase_ == 13) && (durationBuilder_ != null)) {
+      if ((typeSetCase_ == 13) && (durationBuilder_ != null)) {
         return durationBuilder_.getMessageOrBuilder();
       } else {
-        if (wKTCase_ == 13) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeDuration) wKT_;
+        if (typeSetCase_ == 13) {
+          return (io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
       }
@@ -1602,17 +1602,17 @@ private static final long serialVersionUID = 0L;
         io.github.yu31.protoc.pb.pbjson.TypeDuration, io.github.yu31.protoc.pb.pbjson.TypeDuration.Builder, io.github.yu31.protoc.pb.pbjson.TypeDurationOrBuilder> 
         getDurationFieldBuilder() {
       if (durationBuilder_ == null) {
-        if (!(wKTCase_ == 13)) {
-          wKT_ = io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
+        if (!(typeSetCase_ == 13)) {
+          typeSet_ = io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
         }
         durationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             io.github.yu31.protoc.pb.pbjson.TypeDuration, io.github.yu31.protoc.pb.pbjson.TypeDuration.Builder, io.github.yu31.protoc.pb.pbjson.TypeDurationOrBuilder>(
-                (io.github.yu31.protoc.pb.pbjson.TypeDuration) wKT_,
+                (io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_,
                 getParentForChildren(),
                 isClean());
-        wKT_ = null;
+        typeSet_ = null;
       }
-      wKTCase_ = 13;
+      typeSetCase_ = 13;
       onChanged();;
       return durationBuilder_;
     }
@@ -1625,7 +1625,7 @@ private static final long serialVersionUID = 0L;
      */
     @java.lang.Override
     public boolean hasTimestamp() {
-      return wKTCase_ == 14;
+      return typeSetCase_ == 14;
     }
     /**
      * <code>.json.TypeTimestamp timestamp = 14;</code>
@@ -1634,12 +1634,12 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeTimestamp getTimestamp() {
       if (timestampBuilder_ == null) {
-        if (wKTCase_ == 14) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) wKT_;
+        if (typeSetCase_ == 14) {
+          return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
       } else {
-        if (wKTCase_ == 14) {
+        if (typeSetCase_ == 14) {
           return timestampBuilder_.getMessage();
         }
         return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
@@ -1653,12 +1653,12 @@ private static final long serialVersionUID = 0L;
         if (value == null) {
           throw new NullPointerException();
         }
-        wKT_ = value;
+        typeSet_ = value;
         onChanged();
       } else {
         timestampBuilder_.setMessage(value);
       }
-      wKTCase_ = 14;
+      typeSetCase_ = 14;
       return this;
     }
     /**
@@ -1667,12 +1667,12 @@ private static final long serialVersionUID = 0L;
     public Builder setTimestamp(
         io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Builder builderForValue) {
       if (timestampBuilder_ == null) {
-        wKT_ = builderForValue.build();
+        typeSet_ = builderForValue.build();
         onChanged();
       } else {
         timestampBuilder_.setMessage(builderForValue.build());
       }
-      wKTCase_ = 14;
+      typeSetCase_ = 14;
       return this;
     }
     /**
@@ -1680,21 +1680,21 @@ private static final long serialVersionUID = 0L;
      */
     public Builder mergeTimestamp(io.github.yu31.protoc.pb.pbjson.TypeTimestamp value) {
       if (timestampBuilder_ == null) {
-        if (wKTCase_ == 14 &&
-            wKT_ != io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance()) {
-          wKT_ = io.github.yu31.protoc.pb.pbjson.TypeTimestamp.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeTimestamp) wKT_)
+        if (typeSetCase_ == 14 &&
+            typeSet_ != io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance()) {
+          typeSet_ = io.github.yu31.protoc.pb.pbjson.TypeTimestamp.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_)
               .mergeFrom(value).buildPartial();
         } else {
-          wKT_ = value;
+          typeSet_ = value;
         }
         onChanged();
       } else {
-        if (wKTCase_ == 14) {
+        if (typeSetCase_ == 14) {
           timestampBuilder_.mergeFrom(value);
         }
         timestampBuilder_.setMessage(value);
       }
-      wKTCase_ = 14;
+      typeSetCase_ = 14;
       return this;
     }
     /**
@@ -1702,15 +1702,15 @@ private static final long serialVersionUID = 0L;
      */
     public Builder clearTimestamp() {
       if (timestampBuilder_ == null) {
-        if (wKTCase_ == 14) {
-          wKTCase_ = 0;
-          wKT_ = null;
+        if (typeSetCase_ == 14) {
+          typeSetCase_ = 0;
+          typeSet_ = null;
           onChanged();
         }
       } else {
-        if (wKTCase_ == 14) {
-          wKTCase_ = 0;
-          wKT_ = null;
+        if (typeSetCase_ == 14) {
+          typeSetCase_ = 0;
+          typeSet_ = null;
         }
         timestampBuilder_.clear();
       }
@@ -1727,11 +1727,11 @@ private static final long serialVersionUID = 0L;
      */
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder getTimestampOrBuilder() {
-      if ((wKTCase_ == 14) && (timestampBuilder_ != null)) {
+      if ((typeSetCase_ == 14) && (timestampBuilder_ != null)) {
         return timestampBuilder_.getMessageOrBuilder();
       } else {
-        if (wKTCase_ == 14) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) wKT_;
+        if (typeSetCase_ == 14) {
+          return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
       }
@@ -1743,17 +1743,17 @@ private static final long serialVersionUID = 0L;
         io.github.yu31.protoc.pb.pbjson.TypeTimestamp, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Builder, io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder> 
         getTimestampFieldBuilder() {
       if (timestampBuilder_ == null) {
-        if (!(wKTCase_ == 14)) {
-          wKT_ = io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
+        if (!(typeSetCase_ == 14)) {
+          typeSet_ = io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
         }
         timestampBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             io.github.yu31.protoc.pb.pbjson.TypeTimestamp, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Builder, io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder>(
-                (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) wKT_,
+                (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_,
                 getParentForChildren(),
                 isClean());
-        wKT_ = null;
+        typeSet_ = null;
       }
-      wKTCase_ = 14;
+      typeSetCase_ = 14;
       onChanged();;
       return timestampBuilder_;
     }

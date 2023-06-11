@@ -5,6 +5,8 @@ import (
 )
 
 func (dec *Decoder) ReadMapKeyString(jsonKey string) (vv string, err error) {
+	_ = jsonKey
+
 	var key []byte
 	if key, err = dec.readObjectKey(); err != nil {
 		return

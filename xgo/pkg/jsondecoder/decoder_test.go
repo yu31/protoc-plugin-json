@@ -36,7 +36,7 @@ func Test_Object_IsEmpty(t *testing.T) {
 		require.Nil(t, err)
 		require.False(t, isNULL)
 
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 	})
@@ -49,7 +49,7 @@ func Test_Object_IsEmpty(t *testing.T) {
 		require.Nil(t, err)
 		require.False(t, isNULL)
 
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 	})
@@ -59,7 +59,7 @@ func Test_Object_Read1(t *testing.T) {
 	bb := []byte(
 		`
 {
-	"f_int1":  101,"f_int2"  :102,  "f_int3"  :  103  ,"f_int4"  :  104  ,
+	"f_int1":101,"f_int2"  :102,  "f_int3"  :  103  ,"f_int4"  :  104  ,
 	"f_int5"  :  105  ,
 	"r_int1":[11,12,13],
 	"m_int1":{"k11":11,"k12":12,"k13":13},
@@ -113,72 +113,67 @@ func Test_Object_Read1(t *testing.T) {
 		require.False(t, isNULL)
 	})
 	t.Run("f_int1", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
 		objKey, err := decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"f_int1"`), objKey)
-
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("101"), value)
 	})
 	t.Run("f_int2", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
 		objKey, err := decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"f_int2"`), objKey)
-
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("102"), value)
 	})
 	t.Run("f_int3", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
 		objKey, err := decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"f_int3"`), objKey)
-
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("103"), value)
 	})
 	t.Run("f_int4", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
 		objKey, err := decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"f_int4"`), objKey)
-
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("104"), value)
 	})
 	t.Run("f_int5", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
 		objKey, err := decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"f_int5"`), objKey)
-
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("105"), value)
 	})
 	t.Run("r_int1", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -187,36 +182,36 @@ func Test_Object_Read1(t *testing.T) {
 		require.Equal(t, []byte(`"r_int1"`), objKey)
 
 		// prepare read array.
-		isNULL, err := decoder.beforeReadArray()
+		isNULL, err := decoder.beforeReadObject()
 		require.Nil(t, err)
 		require.False(t, isNULL)
 
 		// Read element 1.
-		isEnd, err = decoder.beforeReadElem()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
-		elem, err := decoder.readArrayElem()
+		elem, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("11"), elem)
 
 		// Read element 2.
-		isEnd, err = decoder.beforeReadElem()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
-		elem, err = decoder.readArrayElem()
+		elem, err = decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("12"), elem)
 
 		// Read element 3.
-		isEnd, err = decoder.beforeReadElem()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
-		elem, err = decoder.readArrayElem()
+		elem, err = decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("13"), elem)
 
 		// is ended
-		isEnd, err = decoder.beforeReadElem()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 
@@ -225,7 +220,7 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 	})
 	t.Run("m_int1", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -239,40 +234,40 @@ func Test_Object_Read1(t *testing.T) {
 		require.False(t, isNULL)
 
 		// Read key/value 1.
-		isEnd, err = decoder.beforeReadKey()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 		mapKey, err := decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"k11"`), mapKey)
-		mapVal, err := decoder.readObjectValue()
+		mapVal, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`11`), mapVal)
 
 		// Read element 2.
-		isEnd, err = decoder.beforeReadKey()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 		mapKey, err = decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"k12"`), mapKey)
-		mapVal, err = decoder.readObjectValue()
+		mapVal, err = decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`12`), mapVal)
 
 		// Read element 3.
-		isEnd, err = decoder.beforeReadKey()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 		mapKey, err = decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"k13"`), mapKey)
-		mapVal, err = decoder.readObjectValue()
+		mapVal, err = decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`13`), mapVal)
 
 		// is ended
-		isEnd, err = decoder.beforeReadKey()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 
@@ -281,7 +276,7 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 	})
 	t.Run("f_string1", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -289,12 +284,12 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"f_string1"`), objKey)
 
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"s101"`), value)
 	})
 	t.Run("m_int2", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -308,40 +303,40 @@ func Test_Object_Read1(t *testing.T) {
 		require.False(t, isNULL)
 
 		// Read key/value 1.
-		isEnd, err = decoder.beforeReadKey()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 		mapKey, err := decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"k21"`), mapKey)
-		mapVal, err := decoder.readObjectValue()
+		mapVal, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`21`), mapVal)
 
 		// Read element 2.
-		isEnd, err = decoder.beforeReadKey()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 		mapKey, err = decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"k22"`), mapKey)
-		mapVal, err = decoder.readObjectValue()
+		mapVal, err = decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`22`), mapVal)
 
 		// Read element 3.
-		isEnd, err = decoder.beforeReadKey()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 		mapKey, err = decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"k23"`), mapKey)
-		mapVal, err = decoder.readObjectValue()
+		mapVal, err = decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`23`), mapVal)
 
 		// Is ended.
-		isEnd, err = decoder.beforeReadKey()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 
@@ -350,7 +345,7 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 	})
 	t.Run("r_int2", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -359,36 +354,36 @@ func Test_Object_Read1(t *testing.T) {
 		require.Equal(t, []byte(`"r_int2"`), objKey)
 
 		// prepare read array.
-		isNULL, err := decoder.beforeReadArray()
+		isNULL, err := decoder.beforeReadObject()
 		require.Nil(t, err)
 		require.False(t, isNULL)
 
 		// Read element 1.
-		isEnd, err = decoder.beforeReadElem()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
-		elem, err := decoder.readArrayElem()
+		elem, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("21"), elem)
 
 		// Read element 2.
-		isEnd, err = decoder.beforeReadElem()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
-		elem, err = decoder.readArrayElem()
+		elem, err = decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("22"), elem)
 
 		// Read element 3.
-		isEnd, err = decoder.beforeReadElem()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
-		elem, err = decoder.readArrayElem()
+		elem, err = decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("23"), elem)
 
 		// is ended
-		isEnd, err = decoder.beforeReadElem()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 
@@ -397,15 +392,14 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 	})
 	t.Run("f_message1", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
 		objKey, err := decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"f_message1"`), objKey)
-
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`{
 		"f_string1": "s11",
@@ -414,33 +408,31 @@ func Test_Object_Read1(t *testing.T) {
 	}`), value)
 	})
 	t.Run("f_message2", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
 		objKey, err := decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"f_message2"`), objKey)
-
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`{"f_string1":"s21"  ,  "f_string1":  "s22","f_string1"  : "s23"}`), value)
 	})
 	t.Run("f_message3", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
 		objKey, err := decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"f_message3"`), objKey)
-
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`{   "f_string1": "s31","f_string1": "s32","f_string1": "s33"}`), value)
 	})
 	t.Run("m_int3", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -454,40 +446,40 @@ func Test_Object_Read1(t *testing.T) {
 		require.False(t, isNULL)
 
 		// Read key/value 1.
-		isEnd, err = decoder.beforeReadKey()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 		mapKey, err := decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"k31"`), mapKey)
-		mapVal, err := decoder.readObjectValue()
+		mapVal, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`31`), mapVal)
 
 		// Read element 2.
-		isEnd, err = decoder.beforeReadKey()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 		mapKey, err = decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"k32"`), mapKey)
-		mapVal, err = decoder.readObjectValue()
+		mapVal, err = decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`32`), mapVal)
 
 		// Read element 3.
-		isEnd, err = decoder.beforeReadKey()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 		mapKey, err = decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"k33"`), mapKey)
-		mapVal, err = decoder.readObjectValue()
+		mapVal, err = decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`33`), mapVal)
 
 		// is ended
-		isEnd, err = decoder.beforeReadKey()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 
@@ -496,7 +488,7 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 	})
 	t.Run("r_int3", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -505,36 +497,36 @@ func Test_Object_Read1(t *testing.T) {
 		require.Equal(t, []byte(`"r_int3"`), objKey)
 
 		// prepare read array.
-		isNULL, err := decoder.beforeReadArray()
+		isNULL, err := decoder.beforeReadObject()
 		require.Nil(t, err)
 		require.False(t, isNULL)
 
 		// Read element 1.
-		isEnd, err = decoder.beforeReadElem()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
-		elem, err := decoder.readArrayElem()
+		elem, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("31"), elem)
 
 		// Read element 2.
-		isEnd, err = decoder.beforeReadElem()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
-		elem, err = decoder.readArrayElem()
+		elem, err = decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("32"), elem)
 
 		// Read element 3.
-		isEnd, err = decoder.beforeReadElem()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
-		elem, err = decoder.readArrayElem()
+		elem, err = decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("33"), elem)
 
 		// is ended
-		isEnd, err = decoder.beforeReadElem()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 
@@ -543,15 +535,14 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 	})
 	t.Run("r_message1", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
 		objKey, err := decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"r_message1"`), objKey)
-
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`[
 		211,
@@ -560,60 +551,56 @@ func Test_Object_Read1(t *testing.T) {
 	]`), value)
 	})
 	t.Run("r_message2", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
 		objKey, err := decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"r_message2"`), objKey)
-
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`[221,222,223,224,225]`), value)
 	})
 	t.Run("r_message3", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
 		objKey, err := decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"r_message3"`), objKey)
-
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`[  231  ,  232 , 233 , 234   , 235  ]`), value)
 	})
 	t.Run("f_int6", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
 		objKey, err := decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"f_int6"`), objKey)
-
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("106"), value)
 	})
 	t.Run("f_int7", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
 		objKey, err := decoder.readObjectKey()
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"f_int7"`), objKey)
-
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("107"), value)
 	})
 
 	t.Run("r_empty1", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -622,12 +609,12 @@ func Test_Object_Read1(t *testing.T) {
 		require.Equal(t, []byte(`"r_empty1"`), objKey)
 
 		// prepare read array.
-		isNULL, err := decoder.beforeReadArray()
+		isNULL, err := decoder.beforeReadObject()
 		require.Nil(t, err)
 		require.False(t, isNULL)
 
 		// is ended
-		isEnd, err = decoder.beforeReadElem()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 
@@ -636,7 +623,7 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 	})
 	t.Run("r_empty2", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -645,12 +632,12 @@ func Test_Object_Read1(t *testing.T) {
 		require.Equal(t, []byte(`"r_empty2"`), objKey)
 
 		// prepare read array.
-		isNULL, err := decoder.beforeReadArray()
+		isNULL, err := decoder.beforeReadObject()
 		require.Nil(t, err)
 		require.False(t, isNULL)
 
 		// is ended
-		isEnd, err = decoder.beforeReadElem()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 
@@ -659,7 +646,7 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 	})
 	t.Run("r_empty3", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -668,12 +655,12 @@ func Test_Object_Read1(t *testing.T) {
 		require.Equal(t, []byte(`"r_empty3"`), objKey)
 
 		// prepare read array.
-		isNULL, err := decoder.beforeReadArray()
+		isNULL, err := decoder.beforeReadObject()
 		require.Nil(t, err)
 		require.False(t, isNULL)
 
 		// is ended
-		isEnd, err = decoder.beforeReadElem()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 
@@ -682,7 +669,7 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 	})
 	t.Run("r_empty4", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -691,12 +678,12 @@ func Test_Object_Read1(t *testing.T) {
 		require.Equal(t, []byte(`"r_empty4"`), objKey)
 
 		// prepare read array.
-		isNULL, err := decoder.beforeReadArray()
+		isNULL, err := decoder.beforeReadObject()
 		require.Nil(t, err)
 		require.False(t, isNULL)
 
 		// is ended
-		isEnd, err = decoder.beforeReadElem()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 
@@ -706,7 +693,7 @@ func Test_Object_Read1(t *testing.T) {
 	})
 
 	t.Run("m_empty1", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -719,7 +706,7 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 		require.False(t, isNULL)
 
-		isEnd, err = decoder.beforeReadKey()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 
@@ -728,7 +715,7 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 	})
 	t.Run("m_empty2", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -741,7 +728,7 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 		require.False(t, isNULL)
 
-		isEnd, err = decoder.beforeReadKey()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 
@@ -750,7 +737,7 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 	})
 	t.Run("m_empty3", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -763,7 +750,7 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 		require.False(t, isNULL)
 
-		isEnd, err = decoder.beforeReadKey()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 
@@ -772,7 +759,7 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 	})
 	t.Run("m_empty4", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -785,7 +772,7 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 		require.False(t, isNULL)
 
-		isEnd, err = decoder.beforeReadKey()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 
@@ -795,7 +782,7 @@ func Test_Object_Read1(t *testing.T) {
 	})
 
 	t.Run("f_uint1", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -803,12 +790,12 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"f_uint1"`), objKey)
 
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("301"), value)
 	})
 	t.Run("f_uint2", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -816,12 +803,12 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"f_uint2"`), objKey)
 
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("302"), value)
 	})
 	t.Run("f_uint3", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -829,12 +816,12 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"f_uint3"`), objKey)
 
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("303"), value)
 	})
 	t.Run("f_uint4", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -842,13 +829,13 @@ func Test_Object_Read1(t *testing.T) {
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"f_uint4"`), objKey)
 
-		value, err := decoder.readObjectValue()
+		value, err := decoder.readLiteralValue()
 		require.Nil(t, err)
 		require.Equal(t, []byte("304"), value)
 	})
 
 	t.Run("r_null1", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -857,12 +844,12 @@ func Test_Object_Read1(t *testing.T) {
 		require.Equal(t, []byte(`"r_null1"`), objKey)
 
 		// prepare read array.
-		isNULL, err := decoder.beforeReadArray()
+		isNULL, err := decoder.beforeReadObject()
 		require.Nil(t, err)
 		require.True(t, isNULL)
 	})
 	t.Run("r_null2", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -871,12 +858,12 @@ func Test_Object_Read1(t *testing.T) {
 		require.Equal(t, []byte(`"r_null2"`), objKey)
 
 		// prepare read array.
-		isNULL, err := decoder.beforeReadArray()
+		isNULL, err := decoder.beforeReadObject()
 		require.Nil(t, err)
 		require.True(t, isNULL)
 	})
 	t.Run("r_null3", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -885,12 +872,12 @@ func Test_Object_Read1(t *testing.T) {
 		require.Equal(t, []byte(`"r_null3"`), objKey)
 
 		// prepare read array.
-		isNULL, err := decoder.beforeReadArray()
+		isNULL, err := decoder.beforeReadObject()
 		require.Nil(t, err)
 		require.True(t, isNULL)
 	})
 	t.Run("r_null4", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -899,13 +886,13 @@ func Test_Object_Read1(t *testing.T) {
 		require.Equal(t, []byte(`"r_null4"`), objKey)
 
 		// prepare read array.
-		isNULL, err := decoder.beforeReadArray()
+		isNULL, err := decoder.beforeReadObject()
 		require.Nil(t, err)
 		require.True(t, isNULL)
 	})
 
 	t.Run("m_null1", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -919,7 +906,7 @@ func Test_Object_Read1(t *testing.T) {
 		require.True(t, isNULL)
 	})
 	t.Run("m_null2", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -933,7 +920,7 @@ func Test_Object_Read1(t *testing.T) {
 		require.True(t, isNULL)
 	})
 	t.Run("m_null3", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -947,7 +934,7 @@ func Test_Object_Read1(t *testing.T) {
 		require.True(t, isNULL)
 	})
 	t.Run("m_null4", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -962,7 +949,7 @@ func Test_Object_Read1(t *testing.T) {
 	})
 
 	t.Run("END", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 	})
@@ -981,7 +968,7 @@ func Test_Object_Read2(t *testing.T) {
 		require.False(t, isNULL)
 	})
 	t.Run("r_string1", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.False(t, isEnd)
 
@@ -989,12 +976,12 @@ func Test_Object_Read2(t *testing.T) {
 		require.Nil(t, err)
 		require.Equal(t, []byte(`"r_string1"`), objKey)
 
-		isNULL, err := decoder.beforeReadArray()
+		isNULL, err := decoder.beforeReadObject()
 		require.Nil(t, err)
 		require.False(t, isNULL)
 
 		// is ended
-		isEnd, err = decoder.beforeReadElem()
+		isEnd, err = decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 
@@ -1003,7 +990,7 @@ func Test_Object_Read2(t *testing.T) {
 	})
 
 	t.Run("end", func(t *testing.T) {
-		isEnd, err := decoder.beforeReadKey()
+		isEnd, err := decoder.beforeReadNext()
 		require.Nil(t, err)
 		require.True(t, isEnd)
 	})

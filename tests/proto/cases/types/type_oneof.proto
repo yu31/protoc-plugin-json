@@ -14,8 +14,8 @@ import "tests/proto/cases/types/type_common.proto";
 
 import "proto/json.proto";
 
-// EnumOneof1 used tests cases in this file.
-enum EnumOneof1 {
+// EnumOneOf1 used tests cases in this file.
+enum EnumOneOf1 {
   Zero  = 0;
   One   = 2;
   Two   = 3;
@@ -29,8 +29,8 @@ enum EnumOneof1 {
   Ten   = 17;
 }
 
-// MessageOneof1 used tests cases in this file.
-message MessageOneof1 {
+// MessageOneOf1 used tests cases in this file.
+message MessageOneOf1 {
   message Embed1 {
     message Embed2 {
       string f_string1 = 1 [ (json.field) = { } ];
@@ -46,8 +46,8 @@ message MessageOneof1 {
   string f_string3 = 3 [ (json.field) = { } ];
 }
 
-// Test case for field Oneof.
-message TypeOneof1 {
+// Test case for field oneof.
+message TypeOneOf1 {
   oneof OneType01 {
     string f_string1 = 1 [ (json.field) = { } ];
     string f_string2 = 2 [ (json.field) = { } ];
@@ -89,7 +89,7 @@ message TypeOneof1 {
  }
 
  oneof OneType09 {
-   EnumOneof1                       f_enum1 = 51 [ (json.field) = { } ];
+   EnumOneOf1                       f_enum1 = 51 [ (json.field) = { } ];
    external.Enum1                   f_enum2 = 52 [ (json.field) = { } ];
    external.Embed.Enum1             f_enum3 = 53 [ (json.field) = { } ];
    external.Embed.Message.Enum1     f_enum4 = 54 [ (json.field) = { } ];
@@ -113,9 +113,9 @@ message TypeOneof1 {
   }
 
   oneof OneType13 {
-    MessageOneof1                            f_message1 = 71 [ (json.field) = { } ];
-    MessageOneof1.Embed1                     f_message2 = 72 [ (json.field) = { } ];
-    MessageOneof1.Embed1.Embed2              f_message3 = 73 [ (json.field) = { } ];
+    MessageOneOf1                            f_message1 = 71 [ (json.field) = { } ];
+    MessageOneOf1.Embed1                     f_message2 = 72 [ (json.field) = { } ];
+    MessageOneOf1.Embed1.Embed2              f_message3 = 73 [ (json.field) = { } ];
     external.Message1                        f_message4 = 74 [ (json.field) = { } ];
     external.Message1.Embed1                 f_message5 = 75 [ (json.field) = { } ];
     external.Message1.Embed1.Embed2          f_message6 = 76 [ (json.field) = { } ];
@@ -126,7 +126,7 @@ message TypeOneof1 {
 }
 
 // Test case for hide the `oneof` key.
-message TypeOneofHide1 {
+message TypeOneOfHide1 {
   oneof OneType01 {
     option (json.oneof) = { hide: true};
     string f_string1 = 1 [ (json.field) = { } ];
@@ -135,14 +135,14 @@ message TypeOneofHide1 {
 
   oneof OneType02 {
     option (json.oneof) = { hide: true};
-    MessageOneof1 f_message1 = 3 [ (json.field) = { } ];
-    MessageOneof1 f_message2 = 4 [ (json.field) = { } ];
+    MessageOneOf1 f_message1 = 3 [ (json.field) = { } ];
+    MessageOneOf1 f_message2 = 4 [ (json.field) = { } ];
   }
 
   oneof OneType03 {
     option (json.oneof) = { hide: true};
-    EnumOneof1 f_enum1 = 5 [ (json.field) = { } ];
-    EnumOneof1 f_enum2 = 6 [ (json.field) = { } ];
+    EnumOneOf1 f_enum1 = 5 [ (json.field) = { } ];
+    EnumOneOf1 f_enum2 = 6 [ (json.field) = { } ];
   }
 
   oneof OneType04 {

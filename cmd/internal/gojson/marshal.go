@@ -73,7 +73,7 @@ func (p *Plugin) marshalForOneof(oneof *protogen.Oneof) {
 	for _, oneField := range oneof.Fields {
 		p.g.P("case *", p.g.QualifiedGoIdent(oneField.GoIdent), ":")
 		if !options.Hide {
-			p.marshalAppendJSONKey(jsonKey)
+			p.marshalAppendObjectKey(jsonKey)
 			p.g.P("encoder.AppendObjectBegin()")
 			p.marshalForPlain(oneField)
 			p.g.P("encoder.AppendObjectEnd()")
@@ -84,7 +84,7 @@ func (p *Plugin) marshalForOneof(oneof *protogen.Oneof) {
 	if !options.Hide && !options.Omitempty {
 		// If the oneof field are hide, It will be omitted for empty value.
 		p.g.P("case nil:")
-		p.marshalAppendJSONKey(jsonKey)
+		p.marshalAppendObjectKey(jsonKey)
 		p.marshalAppendNULL()
 	}
 	p.g.P("default:")
@@ -98,13 +98,13 @@ func (p *Plugin) marshalForPlain(field *protogen.Field) {
 	}
 	jsonKey := p.getJSONKeyForField(options, field)
 	if options.Omitempty {
-		notEmptyCond := p.marshalGenNotEmptyCond(field, options)
+		notEmptyCond := p.marshalGenNotEmptyCond(field)
 		p.g.P("if ", notEmptyCond, " {")
-		p.marshalAppendJSONKey(jsonKey)
+		p.marshalAppendObjectKey(jsonKey)
 		p.marshalAppendValue(field)
 		p.g.P("}")
 	} else {
-		p.marshalAppendJSONKey(jsonKey)
+		p.marshalAppendObjectKey(jsonKey)
 		p.marshalAppendValue(field)
 	}
 }
@@ -116,11 +116,11 @@ func (p *Plugin) marshalForMap(field *protogen.Field) {
 	jsonKey := p.getJSONKeyForField(options, field)
 	if options.Omitempty {
 		p.g.P("if len(x.", field.GoName, ") != 0 {")
-		p.marshalAppendJSONKey(jsonKey)
+		p.marshalAppendObjectKey(jsonKey)
 		p.marshalAppendMap(field)
 		p.g.P("}")
 	} else {
-		p.marshalAppendJSONKey(jsonKey)
+		p.marshalAppendObjectKey(jsonKey)
 		p.g.P("if x.", field.GoName, "!= nil {")
 		p.marshalAppendMap(field)
 		p.g.P("} else {")
@@ -136,11 +136,11 @@ func (p *Plugin) marshalForRepeated(field *protogen.Field) {
 	jsonKey := p.getJSONKeyForField(options, field)
 	if options.Omitempty {
 		p.g.P("if len(x.", field.GoName, ") != 0 {")
-		p.marshalAppendJSONKey(jsonKey)
+		p.marshalAppendObjectKey(jsonKey)
 		p.marshalAppendRepeated(field)
 		p.g.P("}")
 	} else {
-		p.marshalAppendJSONKey(jsonKey)
+		p.marshalAppendObjectKey(jsonKey)
 		p.g.P("if x.", field.GoName, "!= nil {")
 		p.marshalAppendRepeated(field)
 		p.g.P("} else {")
@@ -149,7 +149,7 @@ func (p *Plugin) marshalForRepeated(field *protogen.Field) {
 	}
 }
 
-func (p *Plugin) marshalGenNotEmptyCond(field *protogen.Field, options *pbjson.FieldOptions) (cond string) {
+func (p *Plugin) marshalGenNotEmptyCond(field *protogen.Field) (cond string) {
 	isOptional := pkfield.FieldIsOptional(field)
 	isOnoOf := pkfield.FieldIsOneOf(field)
 
@@ -189,11 +189,11 @@ func (p *Plugin) marshalGenNotEmptyCond(field *protogen.Field, options *pbjson.F
 	return
 }
 
-func (p *Plugin) marshalAppendJSONKey(key string) {
-	p.g.P("encoder.AppendJSONKey(", strconv.Quote(key), ")")
+func (p *Plugin) marshalAppendObjectKey(key string) {
+	p.g.P("encoder.AppendObjectKey(", strconv.Quote(key), ")")
 }
 func (p *Plugin) marshalAppendNULL() {
-	p.g.P("encoder.AppendValueNULL()")
+	p.g.P("encoder.AppendLiteralNULL()")
 }
 func (p *Plugin) marshalAppendMap(field *protogen.Field) {
 	p.g.P("encoder.AppendObjectBegin()")
@@ -253,51 +253,51 @@ func (p *Plugin) marshalAppendValue(field *protogen.Field) {
 		if isOptional {
 			p.g.P("encoder.AppendPointerString(", varName, ")")
 		} else {
-			p.g.P("encoder.AppendValueString(", varName, ")")
+			p.g.P("encoder.AppendLiteralString(", varName, ")")
 		}
 	case protoreflect.BytesKind:
-		p.g.P("encoder.AppendValueBytes(", varName, ")")
+		p.g.P("encoder.AppendLiteralBytes(", varName, ")")
 	case protoreflect.BoolKind:
 		if isOptional {
 			p.g.P("encoder.AppendPointerBool(", varName, ")")
 		} else {
-			p.g.P("encoder.AppendValueBool(", varName, ")")
+			p.g.P("encoder.AppendLiteralBool(", varName, ")")
 		}
 	case protoreflect.Int32Kind, protoreflect.Sint32Kind, protoreflect.Sfixed32Kind:
 		if isOptional {
 			p.g.P("encoder.AppendPointerInt32(", varName, ")")
 		} else {
-			p.g.P("encoder.AppendValueInt32(", varName, ")")
+			p.g.P("encoder.AppendLiteralInt32(", varName, ")")
 		}
 	case protoreflect.Int64Kind, protoreflect.Sint64Kind, protoreflect.Sfixed64Kind:
 		if isOptional {
 			p.g.P("encoder.AppendPointerInt64(", varName, ")")
 		} else {
-			p.g.P("encoder.AppendValueInt64(", varName, ")")
+			p.g.P("encoder.AppendLiteralInt64(", varName, ")")
 		}
 	case protoreflect.Uint32Kind, protoreflect.Fixed32Kind:
 		if isOptional {
 			p.g.P("encoder.AppendPointerUint32(", varName, ")")
 		} else {
-			p.g.P("encoder.AppendValueUint32(", varName, ")")
+			p.g.P("encoder.AppendLiteralUint32(", varName, ")")
 		}
 	case protoreflect.Uint64Kind, protoreflect.Fixed64Kind:
 		if isOptional {
 			p.g.P("encoder.AppendPointerUint64(", varName, ")")
 		} else {
-			p.g.P("encoder.AppendValueUint64(", varName, ")")
+			p.g.P("encoder.AppendLiteralUint64(", varName, ")")
 		}
 	case protoreflect.FloatKind:
 		if isOptional {
 			p.g.P("encoder.AppendPointerFloat32(", varName, ")")
 		} else {
-			p.g.P("encoder.AppendValueFloat32(", varName, ")")
+			p.g.P("encoder.AppendLiteralFloat32(", varName, ")")
 		}
 	case protoreflect.DoubleKind:
 		if isOptional {
 			p.g.P("encoder.AppendPointerFloat64(", varName, ")")
 		} else {
-			p.g.P("encoder.AppendValueFloat64(", varName, ")")
+			p.g.P("encoder.AppendLiteralFloat64(", varName, ")")
 		}
 	case protoreflect.MessageKind:
 		p.marshalValueMessage(field, options, varName)
@@ -306,9 +306,9 @@ func (p *Plugin) marshalAppendValue(field *protogen.Field) {
 			p.g.P("if ", varName, "!= nil {")
 		}
 		if options.UseEnumString {
-			p.g.P("encoder.AppendValueString(", varName, ".String()", ")")
+			p.g.P("encoder.AppendLiteralString(", varName, ".String()", ")")
 		} else {
-			p.g.P("encoder.AppendValueInt32(int32(", varName, ".Number()", "))")
+			p.g.P("encoder.AppendLiteralInt32(int32(", varName, ".Number()", "))")
 		}
 		if isOptional {
 			p.g.P("} else {")
@@ -322,104 +322,102 @@ func (p *Plugin) marshalAppendValue(field *protogen.Field) {
 }
 
 func (p *Plugin) marshalValueMessage(field *protogen.Field, options *pbjson.FieldOptions, varName string) {
-	useInterface := true
 	// Supported Well Know Type.
 	switch pkwkt.Lookup(string(field.Message.Desc.FullName())) {
 	case pkwkt.Any:
-		switch wkt := options.WKT.(type) {
-		case *pbjson.FieldOptions_Any:
-			switch format := wkt.Any.Format.(type) {
-			case *pbjson.TypeAny_Expand:
-				if format.Expand {
-					useInterface = false
-					p.g.P("if err = encoder.AppendValueAnyExpand(", varName, "); err != nil {")
-					p.g.P("    return nil, err")
-					p.g.P("}")
-				}
-			case *pbjson.TypeAny_Native:
-			default:
+		typeAny := p.loadTypeSetAny(options)
+
+		switch format := typeAny.Format.(type) {
+		case *pbjson.TypeAny_Proto:
+			if format.Proto {
+				p.g.P("if err = encoder.AppendWKTAnyByProto(", varName, "); err != nil {")
+				p.g.P("    return nil, err")
+				p.g.P("}")
+				return
 			}
+		case *pbjson.TypeAny_Native:
+		default:
 		}
 	case pkwkt.Duration:
-		switch wkt := options.WKT.(type) {
-		case *pbjson.FieldOptions_Duration:
-			switch format := wkt.Duration.Format.(type) {
-			case *pbjson.TypeDuration_Native:
-			case *pbjson.TypeDuration_String_:
-				if format.String_ {
-					useInterface = false
-					p.g.P("encoder.AppendValueString(", varName, ".AsDuration().String())")
-				}
-			case *pbjson.TypeDuration_Nanoseconds:
-				if format.Nanoseconds {
-					useInterface = false
-					p.g.P("encoder.AppendValueInt64(", varName, ".AsDuration().Nanoseconds())")
-				}
-			case *pbjson.TypeDuration_Microseconds:
-				if format.Microseconds {
-					useInterface = false
-					p.g.P("encoder.AppendValueInt64(", varName, ".AsDuration().Microseconds())")
-				}
-			case *pbjson.TypeDuration_Milliseconds:
-				if format.Milliseconds {
-					useInterface = false
-					p.g.P("encoder.AppendValueInt64(", varName, ".AsDuration().Milliseconds())")
-				}
-			case *pbjson.TypeDuration_Seconds:
-				if format.Seconds {
-					useInterface = false
-					p.g.P("encoder.AppendValueFloat64(", varName, ".AsDuration().Seconds())")
-				}
-			case *pbjson.TypeDuration_Minutes:
-				if format.Minutes {
-					useInterface = false
-					p.g.P("encoder.AppendValueFloat64(", varName, ".AsDuration().Minutes())")
-				}
-			case *pbjson.TypeDuration_Hours:
-				if format.Hours {
-					useInterface = false
-					p.g.P("encoder.AppendValueFloat64(", varName, ".AsDuration().Hours())")
-				}
+		typeDuration := p.loadTypeSetDuration(options)
+
+		switch format := typeDuration.Format.(type) {
+		case *pbjson.TypeDuration_Native:
+		case *pbjson.TypeDuration_String_:
+			if format.String_ {
+				p.g.P("encoder.AppendLiteralString(", varName, ".AsDuration().String())")
+				return
 			}
+		case *pbjson.TypeDuration_Nanoseconds:
+			if format.Nanoseconds {
+				p.g.P("encoder.AppendLiteralInt64(", varName, ".AsDuration().Nanoseconds())")
+				return
+			}
+		case *pbjson.TypeDuration_Microseconds:
+			if format.Microseconds {
+				p.g.P("encoder.AppendLiteralInt64(", varName, ".AsDuration().Microseconds())")
+				return
+			}
+		case *pbjson.TypeDuration_Milliseconds:
+			if format.Milliseconds {
+				p.g.P("encoder.AppendLiteralInt64(", varName, ".AsDuration().Milliseconds())")
+				return
+			}
+		case *pbjson.TypeDuration_Seconds:
+			if format.Seconds {
+				p.g.P("encoder.AppendLiteralFloat64(", varName, ".AsDuration().Seconds())")
+				return
+			}
+		case *pbjson.TypeDuration_Minutes:
+			if format.Minutes {
+				p.g.P("encoder.AppendLiteralFloat64(", varName, ".AsDuration().Minutes())")
+				return
+			}
+		case *pbjson.TypeDuration_Hours:
+			if format.Hours {
+				p.g.P("encoder.AppendLiteralFloat64(", varName, ".AsDuration().Hours())")
+				return
+			}
+		default:
 		}
 	case pkwkt.Timestamp:
-		switch wkt := options.WKT.(type) {
-		case *pbjson.FieldOptions_Timestamp:
-			switch format := wkt.Timestamp.Format.(type) {
-			case *pbjson.TypeTimestamp_Native:
-			case *pbjson.TypeTimestamp_TimeLayout_:
-				if format.TimeLayout != nil && format.TimeLayout.Golang != "" {
-					useInterface = false
-					p.g.P("encoder.AppendValueString(", varName, ".AsTime().Format(", strconv.Quote(format.TimeLayout.Golang), "))")
-				}
-			case *pbjson.TypeTimestamp_UnixNano:
-				if format.UnixNano {
-					useInterface = false
-					p.g.P("encoder.AppendValueInt64(", varName, ".AsTime().UnixNano())")
-				}
-			case *pbjson.TypeTimestamp_UnixMicro:
-				if format.UnixMicro {
-					useInterface = false
-					p.g.P("encoder.AppendValueInt64(", varName, ".AsTime().UnixMicro())")
-				}
-			case *pbjson.TypeTimestamp_UnixMilli:
-				if format.UnixMilli {
-					useInterface = false
-					p.g.P("encoder.AppendValueInt64(", varName, ".AsTime().UnixMilli())")
-				}
-			case *pbjson.TypeTimestamp_UnixSec:
-				if format.UnixSec {
-					useInterface = false
-					p.g.P("encoder.AppendValueInt64(", varName, ".AsTime().Unix())")
-				}
+		typeTimestamp := p.loadTypeSetTimestamp(options)
+
+		switch format := typeTimestamp.Format.(type) {
+		case *pbjson.TypeTimestamp_Native:
+		case *pbjson.TypeTimestamp_TimeLayout_:
+			if format.TimeLayout != nil && format.TimeLayout.Golang != "" {
+				// FIXME: valid the time layout.
+				layout := strconv.Quote(format.TimeLayout.Golang)
+				p.g.P("encoder.AppendLiteralString(", varName, ".AsTime().Format(", layout, "))")
+				return
 			}
+		case *pbjson.TypeTimestamp_UnixNano:
+			if format.UnixNano {
+				p.g.P("encoder.AppendLiteralInt64(", varName, ".AsTime().UnixNano())")
+				return
+			}
+		case *pbjson.TypeTimestamp_UnixMicro:
+			if format.UnixMicro {
+				p.g.P("encoder.AppendLiteralInt64(", varName, ".AsTime().UnixMicro())")
+				return
+			}
+		case *pbjson.TypeTimestamp_UnixMilli:
+			if format.UnixMilli {
+				p.g.P("encoder.AppendLiteralInt64(", varName, ".AsTime().UnixMilli())")
+				return
+			}
+		case *pbjson.TypeTimestamp_UnixSec:
+			if format.UnixSec {
+				p.g.P("encoder.AppendLiteralInt64(", varName, ".AsTime().Unix())")
+				return
+			}
+		default:
 		}
 	default:
 	}
 
-	if useInterface {
-		p.g.P("if err = encoder.AppendValueInterface(", varName, "); err != nil {")
-		p.g.P("    return nil, err")
-		p.g.P("}")
-	}
+	p.g.P("if err = encoder.AppendLiteralInterface(", varName, "); err != nil {")
+	p.g.P("    return nil, err")
+	p.g.P("}")
 }

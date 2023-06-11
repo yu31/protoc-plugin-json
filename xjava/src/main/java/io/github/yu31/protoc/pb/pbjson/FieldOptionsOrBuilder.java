@@ -130,5 +130,5 @@ public interface FieldOptionsOrBuilder extends
    */
   io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder getTimestampOrBuilder();
 
-  public io.github.yu31.protoc.pb.pbjson.FieldOptions.WKTCase getWKTCase();
+  public io.github.yu31.protoc.pb.pbjson.FieldOptions.TypeSetCase getTypeSetCase();
 }

@@ -43,196 +43,196 @@ func (x *Example1) MarshalJSON() ([]byte, error) {
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
 
-	encoder.AppendJSONKey("f_string1")
-	encoder.AppendValueString(x.FString1)
+	encoder.AppendObjectKey("f_string1")
+	encoder.AppendLiteralString(x.FString1)
 	switch ov := x.OnetType1.(type) {
 	case *Example1_FString2:
-		encoder.AppendJSONKey("OnetType1")
+		encoder.AppendObjectKey("OnetType1")
 		encoder.AppendObjectBegin()
-		encoder.AppendJSONKey("f_string2")
-		encoder.AppendValueString(ov.FString2)
+		encoder.AppendObjectKey("f_string2")
+		encoder.AppendLiteralString(ov.FString2)
 		encoder.AppendObjectEnd()
 	case *Example1_FString3:
-		encoder.AppendJSONKey("OnetType1")
+		encoder.AppendObjectKey("OnetType1")
 		encoder.AppendObjectBegin()
-		encoder.AppendJSONKey("f_string3")
-		encoder.AppendValueString(ov.FString3)
+		encoder.AppendObjectKey("f_string3")
+		encoder.AppendLiteralString(ov.FString3)
 		encoder.AppendObjectEnd()
 	case nil:
-		encoder.AppendJSONKey("OnetType1")
-		encoder.AppendValueNULL()
+		encoder.AppendObjectKey("OnetType1")
+		encoder.AppendLiteralNULL()
 	default:
 		_ = ov // to avoids unused panics
 	}
 	switch ov := x.OnetType2.(type) {
 	case *Example1_FString4:
-		encoder.AppendJSONKey("f_string4")
-		encoder.AppendValueString(ov.FString4)
+		encoder.AppendObjectKey("f_string4")
+		encoder.AppendLiteralString(ov.FString4)
 	case *Example1_FString5:
-		encoder.AppendJSONKey("f_string5")
-		encoder.AppendValueString(ov.FString5)
+		encoder.AppendObjectKey("f_string5")
+		encoder.AppendLiteralString(ov.FString5)
 	default:
 		_ = ov // to avoids unused panics
 	}
-	encoder.AppendJSONKey("f_int32")
-	encoder.AppendValueInt32(x.FInt32)
-	encoder.AppendJSONKey("f_int64")
-	encoder.AppendValueInt64(x.FInt64)
-	encoder.AppendJSONKey("f_uint32")
-	encoder.AppendValueUint32(x.FUint32)
-	encoder.AppendJSONKey("f_uint64")
-	encoder.AppendValueUint64(x.FUint64)
-	encoder.AppendJSONKey("f_sint32")
-	encoder.AppendValueInt32(x.FSint32)
-	encoder.AppendJSONKey("f_sint64")
-	encoder.AppendValueInt64(x.FSint64)
-	encoder.AppendJSONKey("f_sfixed32")
-	encoder.AppendValueInt32(x.FSfixed32)
-	encoder.AppendJSONKey("f_sfixed64")
-	encoder.AppendValueInt64(x.FSfixed64)
-	encoder.AppendJSONKey("f_fixed32")
-	encoder.AppendValueUint32(x.FFixed32)
-	encoder.AppendJSONKey("f_fixed64")
-	encoder.AppendValueUint64(x.FFixed64)
-	encoder.AppendJSONKey("f_float")
-	encoder.AppendValueFloat32(x.FFloat)
-	encoder.AppendJSONKey("f_double")
-	encoder.AppendValueFloat64(x.FDouble)
-	encoder.AppendJSONKey("f_bool1")
-	encoder.AppendValueBool(x.FBool1)
-	encoder.AppendJSONKey("f_bytes1")
-	encoder.AppendValueBytes(x.FBytes1)
+	encoder.AppendObjectKey("f_int32")
+	encoder.AppendLiteralInt32(x.FInt32)
+	encoder.AppendObjectKey("f_int64")
+	encoder.AppendLiteralInt64(x.FInt64)
+	encoder.AppendObjectKey("f_uint32")
+	encoder.AppendLiteralUint32(x.FUint32)
+	encoder.AppendObjectKey("f_uint64")
+	encoder.AppendLiteralUint64(x.FUint64)
+	encoder.AppendObjectKey("f_sint32")
+	encoder.AppendLiteralInt32(x.FSint32)
+	encoder.AppendObjectKey("f_sint64")
+	encoder.AppendLiteralInt64(x.FSint64)
+	encoder.AppendObjectKey("f_sfixed32")
+	encoder.AppendLiteralInt32(x.FSfixed32)
+	encoder.AppendObjectKey("f_sfixed64")
+	encoder.AppendLiteralInt64(x.FSfixed64)
+	encoder.AppendObjectKey("f_fixed32")
+	encoder.AppendLiteralUint32(x.FFixed32)
+	encoder.AppendObjectKey("f_fixed64")
+	encoder.AppendLiteralUint64(x.FFixed64)
+	encoder.AppendObjectKey("f_float")
+	encoder.AppendLiteralFloat32(x.FFloat)
+	encoder.AppendObjectKey("f_double")
+	encoder.AppendLiteralFloat64(x.FDouble)
+	encoder.AppendObjectKey("f_bool1")
+	encoder.AppendLiteralBool(x.FBool1)
+	encoder.AppendObjectKey("f_bytes1")
+	encoder.AppendLiteralBytes(x.FBytes1)
 	if x.FEnum1 != 0 {
-		encoder.AppendJSONKey("f_enum1")
-		encoder.AppendValueString(x.FEnum1.String())
+		encoder.AppendObjectKey("f_enum1")
+		encoder.AppendLiteralString(x.FEnum1.String())
 	}
-	encoder.AppendJSONKey("f_enum2")
-	encoder.AppendValueInt32(int32(x.FEnum2.Number()))
+	encoder.AppendObjectKey("f_enum2")
+	encoder.AppendLiteralInt32(int32(x.FEnum2.Number()))
 	if x.FEnum5 != nil {
-		encoder.AppendJSONKey("f_enum5")
+		encoder.AppendObjectKey("f_enum5")
 		if x.FEnum5 != nil {
-			encoder.AppendValueString(x.FEnum5.String())
+			encoder.AppendLiteralString(x.FEnum5.String())
 		} else {
-			encoder.AppendValueNULL()
+			encoder.AppendLiteralNULL()
 		}
 	}
-	encoder.AppendJSONKey("f_enum6")
+	encoder.AppendObjectKey("f_enum6")
 	if x.FEnum6 != nil {
-		encoder.AppendValueInt32(int32(x.FEnum6.Number()))
+		encoder.AppendLiteralInt32(int32(x.FEnum6.Number()))
 	} else {
-		encoder.AppendValueNULL()
+		encoder.AppendLiteralNULL()
 	}
-	encoder.AppendJSONKey("f_duration1")
-	if err = encoder.AppendValueInterface(x.FDuration1); err != nil {
+	encoder.AppendObjectKey("f_duration1")
+	if err = encoder.AppendLiteralInterface(x.FDuration1); err != nil {
 		return nil, err
 	}
-	encoder.AppendJSONKey("f_timestamp1")
-	if err = encoder.AppendValueInterface(x.FTimestamp1); err != nil {
+	encoder.AppendObjectKey("f_timestamp1")
+	if err = encoder.AppendLiteralInterface(x.FTimestamp1); err != nil {
 		return nil, err
 	}
-	encoder.AppendJSONKey("f_message11")
-	if err = encoder.AppendValueInterface(x.FMessage11); err != nil {
+	encoder.AppendObjectKey("f_message11")
+	if err = encoder.AppendLiteralInterface(x.FMessage11); err != nil {
 		return nil, err
 	}
-	encoder.AppendJSONKey("f_message12")
-	if err = encoder.AppendValueInterface(x.FMessage12); err != nil {
+	encoder.AppendObjectKey("f_message12")
+	if err = encoder.AppendLiteralInterface(x.FMessage12); err != nil {
 		return nil, err
 	}
-	encoder.AppendJSONKey("f_message13")
-	if err = encoder.AppendValueInterface(x.FMessage13); err != nil {
+	encoder.AppendObjectKey("f_message13")
+	if err = encoder.AppendLiteralInterface(x.FMessage13); err != nil {
 		return nil, err
 	}
-	encoder.AppendJSONKey("f_any1")
-	if err = encoder.AppendValueInterface(x.FAny1); err != nil {
+	encoder.AppendObjectKey("f_any1")
+	if err = encoder.AppendLiteralInterface(x.FAny1); err != nil {
 		return nil, err
 	}
-	encoder.AppendJSONKey("r_string1")
+	encoder.AppendObjectKey("r_string1")
 	if x.RString1 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RString1 {
-			encoder.AppendValueString(ri)
+			encoder.AppendLiteralString(ri)
 		}
 		encoder.AppendArrayEnd()
 	} else {
-		encoder.AppendValueNULL()
+		encoder.AppendLiteralNULL()
 	}
-	encoder.AppendJSONKey("r_int32")
+	encoder.AppendObjectKey("r_int32")
 	if x.RInt32 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RInt32 {
-			encoder.AppendValueInt32(ri)
+			encoder.AppendLiteralInt32(ri)
 		}
 		encoder.AppendArrayEnd()
 	} else {
-		encoder.AppendValueNULL()
+		encoder.AppendLiteralNULL()
 	}
-	encoder.AppendJSONKey("r_message")
+	encoder.AppendObjectKey("r_message")
 	if x.RMessage != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RMessage {
-			if err = encoder.AppendValueInterface(ri); err != nil {
+			if err = encoder.AppendLiteralInterface(ri); err != nil {
 				return nil, err
 			}
 		}
 		encoder.AppendArrayEnd()
 	} else {
-		encoder.AppendValueNULL()
+		encoder.AppendLiteralNULL()
 	}
-	encoder.AppendJSONKey("r_enum")
+	encoder.AppendObjectKey("r_enum")
 	if x.REnum != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.REnum {
-			encoder.AppendValueInt32(int32(ri.Number()))
+			encoder.AppendLiteralInt32(int32(ri.Number()))
 		}
 		encoder.AppendArrayEnd()
 	} else {
-		encoder.AppendValueNULL()
+		encoder.AppendLiteralNULL()
 	}
-	encoder.AppendJSONKey("m_string1")
+	encoder.AppendObjectKey("m_string1")
 	if x.MString1 != nil {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MString1 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendValueString(mv)
+			encoder.AppendLiteralString(mv)
 		}
 		encoder.AppendObjectEnd()
 	} else {
-		encoder.AppendValueNULL()
+		encoder.AppendLiteralNULL()
 	}
-	encoder.AppendJSONKey("m_string2")
+	encoder.AppendObjectKey("m_string2")
 	if x.MString2 != nil {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MString2 {
 			encoder.AppendMapKeyInt32(mk)
-			encoder.AppendValueString(mv)
+			encoder.AppendLiteralString(mv)
 		}
 		encoder.AppendObjectEnd()
 	} else {
-		encoder.AppendValueNULL()
+		encoder.AppendLiteralNULL()
 	}
-	encoder.AppendJSONKey("m_message1")
+	encoder.AppendObjectKey("m_message1")
 	if x.MMessage1 != nil {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MMessage1 {
 			encoder.AppendMapKeyString(mk)
-			if err = encoder.AppendValueInterface(mv); err != nil {
+			if err = encoder.AppendLiteralInterface(mv); err != nil {
 				return nil, err
 			}
 		}
 		encoder.AppendObjectEnd()
 	} else {
-		encoder.AppendValueNULL()
+		encoder.AppendLiteralNULL()
 	}
-	encoder.AppendJSONKey("m_enum")
+	encoder.AppendObjectKey("m_enum")
 	if x.MEnum != nil {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MEnum {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendValueInt32(int32(mv.Number()))
+			encoder.AppendLiteralInt32(int32(mv.Number()))
 		}
 		encoder.AppendObjectEnd()
 	} else {
-		encoder.AppendValueNULL()
+		encoder.AppendLiteralNULL()
 	}
 
 	// Add end JSON identifier
@@ -256,7 +256,7 @@ func (x *Example1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
+	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -268,7 +268,7 @@ LOOP_SCAN:
 			jsonKey string
 			isEnd   bool
 		)
-		if isEnd, err = decoder.BeforeReadJSONKey(); err != nil {
+		if isEnd, err = decoder.BeforeScanNext(); err != nil {
 			return err
 		}
 		if isEnd {
@@ -277,11 +277,10 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch jsonKey { // match the JSON key
+		switch jsonKey { // match the jsonKey
 		case "f_string1":
 			var vv string
-			vv, err = decoder.ReadValueString(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
 				return err
 			}
 			x.FString1 = vv
@@ -295,7 +294,7 @@ LOOP_SCAN:
 			}
 			for {
 				var oneofKey string
-				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
@@ -306,307 +305,295 @@ LOOP_SCAN:
 				}
 				switch oneofKey { // match oneof key
 				case "f_string2":
+					if oneOfIsFill_OnetType1 {
+						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+					}
+					oneOfIsFill_OnetType1 = true
+
 					var ok bool
 					var ot *Example1_FString2
 					if ot, ok = x.OnetType1.(*Example1_FString2); !ok {
 						ot = new(Example1_FString2)
 					}
 					var vv string
-					vv, err = decoder.ReadValueString(jsonKey)
-					if err != nil {
+					if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
 						return err
 					}
+					ot.FString2 = vv
+					x.OnetType1 = ot
+				case "f_string3":
 					if oneOfIsFill_OnetType1 {
 						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
 					}
 					oneOfIsFill_OnetType1 = true
-					ot.FString2 = vv
-					x.OnetType1 = ot
-				case "f_string3":
+
 					var ok bool
 					var ot *Example1_FString3
 					if ot, ok = x.OnetType1.(*Example1_FString3); !ok {
 						ot = new(Example1_FString3)
 					}
 					var vv string
-					vv, err = decoder.ReadValueString(jsonKey)
-					if err != nil {
+					if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
 						return err
 					}
-					if oneOfIsFill_OnetType1 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OnetType1 = true
 					ot.FString3 = vv
 					x.OnetType1 = ot
 				default:
 					if err = decoder.DiscardValue(jsonKey); err != nil {
 						return err
 					}
-				}
+				} // end switch
 			}
 		case "f_string4":
+			if oneOfIsFill_OnetType2 {
+				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			}
+			oneOfIsFill_OnetType2 = true
+
 			var ok bool
 			var ot *Example1_FString4
 			if ot, ok = x.OnetType2.(*Example1_FString4); !ok {
 				ot = new(Example1_FString4)
 			}
 			var vv string
-			vv, err = decoder.ReadValueString(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
 				return err
 			}
+			ot.FString4 = vv
+			x.OnetType2 = ot
+		case "f_string5":
 			if oneOfIsFill_OnetType2 {
 				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
 			}
 			oneOfIsFill_OnetType2 = true
-			ot.FString4 = vv
-			x.OnetType2 = ot
-		case "f_string5":
+
 			var ok bool
 			var ot *Example1_FString5
 			if ot, ok = x.OnetType2.(*Example1_FString5); !ok {
 				ot = new(Example1_FString5)
 			}
 			var vv string
-			vv, err = decoder.ReadValueString(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
 				return err
 			}
-			if oneOfIsFill_OnetType2 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-			}
-			oneOfIsFill_OnetType2 = true
 			ot.FString5 = vv
 			x.OnetType2 = ot
 		case "f_int32":
 			var vv int32
-			vv, err = decoder.ReadValueInt32(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
 				return err
 			}
 			x.FInt32 = vv
 		case "f_int64":
 			var vv int64
-			vv, err = decoder.ReadValueInt64(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
 				return err
 			}
 			x.FInt64 = vv
 		case "f_uint32":
 			var vv uint32
-			vv, err = decoder.ReadValueUint32(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralUint32(jsonKey); err != nil {
 				return err
 			}
 			x.FUint32 = vv
 		case "f_uint64":
 			var vv uint64
-			vv, err = decoder.ReadValueUint64(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralUint64(jsonKey); err != nil {
 				return err
 			}
 			x.FUint64 = vv
 		case "f_sint32":
 			var vv int32
-			vv, err = decoder.ReadValueInt32(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
 				return err
 			}
 			x.FSint32 = vv
 		case "f_sint64":
 			var vv int64
-			vv, err = decoder.ReadValueInt64(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
 				return err
 			}
 			x.FSint64 = vv
 		case "f_sfixed32":
 			var vv int32
-			vv, err = decoder.ReadValueInt32(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
 				return err
 			}
 			x.FSfixed32 = vv
 		case "f_sfixed64":
 			var vv int64
-			vv, err = decoder.ReadValueInt64(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
 				return err
 			}
 			x.FSfixed64 = vv
 		case "f_fixed32":
 			var vv uint32
-			vv, err = decoder.ReadValueUint32(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralUint32(jsonKey); err != nil {
 				return err
 			}
 			x.FFixed32 = vv
 		case "f_fixed64":
 			var vv uint64
-			vv, err = decoder.ReadValueUint64(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralUint64(jsonKey); err != nil {
 				return err
 			}
 			x.FFixed64 = vv
 		case "f_float":
 			var vv float32
-			vv, err = decoder.ReadValueFloat32(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralFloat32(jsonKey); err != nil {
 				return err
 			}
 			x.FFloat = vv
 		case "f_double":
 			var vv float64
-			vv, err = decoder.ReadValueFloat64(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralFloat64(jsonKey); err != nil {
 				return err
 			}
 			x.FDouble = vv
 		case "f_bool1":
 			var vv bool
-			vv, err = decoder.ReadValueBool(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralBool(jsonKey); err != nil {
 				return err
 			}
 			x.FBool1 = vv
 		case "f_bytes1":
 			var vv []byte
-			vv, err = decoder.ReadValueBytes(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralBytes(jsonKey); err != nil {
 				return err
 			}
 			x.FBytes1 = vv
 		case "f_enum1":
 			var vv Enum1
 			var v1 int32
-			v1, err = decoder.ReadValueEnumString(jsonKey, Enum1_value)
-			vv = Enum1(v1)
-			if err != nil {
+			if v1, err = decoder.ReadLiteralEnumString(jsonKey, Enum1_value); err != nil {
 				return err
 			}
+			vv = Enum1(v1)
 			x.FEnum1 = vv
 		case "f_enum2":
 			var vv Enum1
 			var v1 int32
-			v1, err = decoder.ReadValueEnumNumber(jsonKey, Enum1_name)
-			vv = Enum1(v1)
-			if err != nil {
+			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
 				return err
 			}
+			vv = Enum1(v1)
 			x.FEnum2 = vv
 		case "f_enum5":
 			var vv *Enum1
 			var v1 *int32
-			v1, err = decoder.ReadPointerEnumString(jsonKey, Enum1_value)
+			if v1, err = decoder.ReadPointerEnumString(jsonKey, Enum1_value); err != nil {
+				return err
+			}
 			if v1 != nil {
 				v2 := Enum1(*v1)
 				vv = &v2
-			}
-			if err != nil {
-				return err
 			}
 			x.FEnum5 = vv
 		case "f_enum6":
 			var vv *Enum1
 			var v1 *int32
-			v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name)
+			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name); err != nil {
+				return err
+			}
 			if v1 != nil {
 				v2 := Enum1(*v1)
 				vv = &v2
 			}
-			if err != nil {
-				return err
-			}
 			x.FEnum6 = vv
 		case "f_duration1":
 			var vv *durationpb.Duration
-			initFN := func() interface{} {
+			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+				return err
+			}
+			if !isNULL {
 				if x.FDuration1 != nil {
 					vv = x.FDuration1
 				} else {
 					vv = new(durationpb.Duration)
 				}
-				return vv
-			}
-			err = decoder.ReadValueInterface(jsonKey, initFN)
-			if err != nil {
-				return err
+				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
+					return err
+				}
 			}
 			x.FDuration1 = vv
 		case "f_timestamp1":
 			var vv *timestamppb.Timestamp
-			initFN := func() interface{} {
+			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+				return err
+			}
+			if !isNULL {
 				if x.FTimestamp1 != nil {
 					vv = x.FTimestamp1
 				} else {
 					vv = new(timestamppb.Timestamp)
 				}
-				return vv
-			}
-			err = decoder.ReadValueInterface(jsonKey, initFN)
-			if err != nil {
-				return err
+				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
+					return err
+				}
 			}
 			x.FTimestamp1 = vv
 		case "f_message11":
 			var vv *Message1
-			initFN := func() interface{} {
+			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+				return err
+			}
+			if !isNULL {
 				if x.FMessage11 != nil {
 					vv = x.FMessage11
 				} else {
 					vv = new(Message1)
 				}
-				return vv
-			}
-			err = decoder.ReadValueInterface(jsonKey, initFN)
-			if err != nil {
-				return err
+				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
+					return err
+				}
 			}
 			x.FMessage11 = vv
 		case "f_message12":
 			var vv *Message1_Embed1
-			initFN := func() interface{} {
+			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+				return err
+			}
+			if !isNULL {
 				if x.FMessage12 != nil {
 					vv = x.FMessage12
 				} else {
 					vv = new(Message1_Embed1)
 				}
-				return vv
-			}
-			err = decoder.ReadValueInterface(jsonKey, initFN)
-			if err != nil {
-				return err
+				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
+					return err
+				}
 			}
 			x.FMessage12 = vv
 		case "f_message13":
 			var vv *Message1_Embed1_Embed2
-			initFN := func() interface{} {
+			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+				return err
+			}
+			if !isNULL {
 				if x.FMessage13 != nil {
 					vv = x.FMessage13
 				} else {
 					vv = new(Message1_Embed1_Embed2)
 				}
-				return vv
-			}
-			err = decoder.ReadValueInterface(jsonKey, initFN)
-			if err != nil {
-				return err
+				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
+					return err
+				}
 			}
 			x.FMessage13 = vv
 		case "f_any1":
 			var vv *anypb.Any
-			initFN := func() interface{} {
+			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+				return err
+			}
+			if !isNULL {
 				if x.FAny1 != nil {
 					vv = x.FAny1
 				} else {
 					vv = new(anypb.Any)
 				}
-				return vv
-			}
-			err = decoder.ReadValueInterface(jsonKey, initFN)
-			if err != nil {
-				return err
+				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
+					return err
+				}
 			}
 			x.FAny1 = vv
 		case "r_string1":
@@ -621,30 +608,25 @@ LOOP_SCAN:
 				x.RString1 = make([]string, 0)
 			}
 			i := 0
-			length := len(x.RString1)
 			for {
-				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
 					break
 				}
 				var vv string
-				vv, err = decoder.ReadArrayElemString(jsonKey)
-				if err != nil {
-					return err
-				}
-				if i < length {
-					x.RString1[i] = vv
-				} else {
+				if i >= len(x.RString1) {
 					x.RString1 = append(x.RString1, vv)
 				}
+				if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+					return err
+				}
+				x.RString1[i] = vv
 				i++
 			}
-			if i < length {
-				// truncate the slice to Consistent with standard library json.
-				x.RString1 = x.RString1[:i]
-			}
+			// truncate the slice to consistent with standard library json.
+			x.RString1 = x.RString1[:i]
 		case "r_int32":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
@@ -657,30 +639,25 @@ LOOP_SCAN:
 				x.RInt32 = make([]int32, 0)
 			}
 			i := 0
-			length := len(x.RInt32)
 			for {
-				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
 					break
 				}
 				var vv int32
-				vv, err = decoder.ReadArrayElemInt32(jsonKey)
-				if err != nil {
-					return err
-				}
-				if i < length {
-					x.RInt32[i] = vv
-				} else {
+				if i >= len(x.RInt32) {
 					x.RInt32 = append(x.RInt32, vv)
 				}
+				if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+					return err
+				}
+				x.RInt32[i] = vv
 				i++
 			}
-			if i < length {
-				// truncate the slice to Consistent with standard library json.
-				x.RInt32 = x.RInt32[:i]
-			}
+			// truncate the slice to consistent with standard library json.
+			x.RInt32 = x.RInt32[:i]
 		case "r_message":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
@@ -693,39 +670,35 @@ LOOP_SCAN:
 				x.RMessage = make([]*Message1, 0)
 			}
 			i := 0
-			length := len(x.RMessage)
 			for {
-				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
 					break
 				}
 				var vv *Message1
-				initFN := func() interface{} {
-					if i < length {
-						vv = x.RMessage[i]
-					}
-					if vv == nil {
-						vv = new(Message1)
-					}
-					return vv
-				}
-				err = decoder.ReadArrayElemInterface(jsonKey, initFN)
-				if err != nil {
-					return err
-				}
-				if i < length {
-					x.RMessage[i] = vv
-				} else {
+				if i >= len(x.RMessage) {
 					x.RMessage = append(x.RMessage, vv)
 				}
+				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+					return err
+				}
+				if !isNULL {
+					if x.RMessage[i] != nil {
+						vv = x.RMessage[i]
+					} else {
+						vv = new(Message1)
+					}
+					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
+						return err
+					}
+				}
+				x.RMessage[i] = vv
 				i++
 			}
-			if i < length {
-				// truncate the slice to Consistent with standard library json.
-				x.RMessage = x.RMessage[:i]
-			}
+			// truncate the slice to consistent with standard library json.
+			x.RMessage = x.RMessage[:i]
 		case "r_enum":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
@@ -738,34 +711,29 @@ LOOP_SCAN:
 				x.REnum = make([]Enum1, 0)
 			}
 			i := 0
-			length := len(x.REnum)
 			for {
-				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
 					break
 				}
 				var vv Enum1
-				var v1 int32
-				v1, err = decoder.ReadArrayElemEnumNumber(jsonKey, Enum1_name)
-				vv = Enum1(v1)
-				if err != nil {
-					return err
-				}
-				if i < length {
-					x.REnum[i] = vv
-				} else {
+				if i >= len(x.REnum) {
 					x.REnum = append(x.REnum, vv)
 				}
+				var v1 int32
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+					return err
+				}
+				vv = Enum1(v1)
+				x.REnum[i] = vv
 				i++
 			}
-			if i < length {
-				// truncate the slice to Consistent with standard library json.
-				x.REnum = x.REnum[:i]
-			}
+			// truncate the slice to consistent with standard library json.
+			x.REnum = x.REnum[:i]
 		case "m_string1":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
 				return err
 			}
 			if isNULL {
@@ -776,26 +744,24 @@ LOOP_SCAN:
 				x.MString1 = make(map[string]string)
 			}
 			for {
-				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
 					break
 				}
-				var mapKey string
-				mapKey, err = decoder.ReadMapKeyString(jsonKey)
-				if err != nil {
+				var mk string
+				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
 					return err
 				}
-				var mapVal string
-				mapVal, err = decoder.ReadMapValueString(jsonKey)
-				if err != nil {
+				var vv string
+				if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
 					return err
 				}
-				x.MString1[mapKey] = mapVal
+				x.MString1[mk] = vv
 			}
 		case "m_string2":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
 				return err
 			}
 			if isNULL {
@@ -806,26 +772,24 @@ LOOP_SCAN:
 				x.MString2 = make(map[int32]string)
 			}
 			for {
-				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
 					break
 				}
-				var mapKey int32
-				mapKey, err = decoder.ReadMapKeyInt32(jsonKey)
-				if err != nil {
+				var mk int32
+				if mk, err = decoder.ReadMapKeyInt32(jsonKey); err != nil {
 					return err
 				}
-				var mapVal string
-				mapVal, err = decoder.ReadMapValueString(jsonKey)
-				if err != nil {
+				var vv string
+				if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
 					return err
 				}
-				x.MString2[mapKey] = mapVal
+				x.MString2[mk] = vv
 			}
 		case "m_message1":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
 				return err
 			}
 			if isNULL {
@@ -836,33 +800,34 @@ LOOP_SCAN:
 				x.MMessage1 = make(map[string]*Message1)
 			}
 			for {
-				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
 					break
 				}
-				var mapKey string
-				mapKey, err = decoder.ReadMapKeyString(jsonKey)
-				if err != nil {
+				var mk string
+				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
 					return err
 				}
-				var mapVal *Message1
-				initFN := func() interface{} {
-					mapVal = x.MMessage1[mapKey]
-					if mapVal == nil {
-						mapVal = new(Message1)
+				var vv *Message1
+				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+					return err
+				}
+				if !isNULL {
+					if x.MMessage1[mk] != nil {
+						vv = x.MMessage1[mk]
+					} else {
+						vv = new(Message1)
 					}
-					return mapVal
+					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
+						return err
+					}
 				}
-				err = decoder.ReadMapValueInterface(jsonKey, initFN)
-				if err != nil {
-					return err
-				}
-				x.MMessage1[mapKey] = mapVal
+				x.MMessage1[mk] = vv
 			}
 		case "m_enum":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
 				return err
 			}
 			if isNULL {
@@ -873,31 +838,29 @@ LOOP_SCAN:
 				x.MEnum = make(map[string]Enum1)
 			}
 			for {
-				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
 					break
 				}
-				var mapKey string
-				mapKey, err = decoder.ReadMapKeyString(jsonKey)
-				if err != nil {
+				var mk string
+				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
 					return err
 				}
-				var mapVal Enum1
+				var vv Enum1
 				var v1 int32
-				v1, err = decoder.ReadMapValueEnumNumber(jsonKey, Enum1_name)
-				mapVal = Enum1(v1)
-				if err != nil {
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
 					return err
 				}
-				x.MEnum[mapKey] = mapVal
+				vv = Enum1(v1)
+				x.MEnum[mk] = vv
 			}
 		default:
 			if err = decoder.DiscardValue(jsonKey); err != nil {
 				return err
 			}
-		}
+		} // end switch
 	}
 	return nil
 }
@@ -913,10 +876,10 @@ func (x *Message1) MarshalJSON() ([]byte, error) {
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
 
-	encoder.AppendJSONKey("f_string1")
-	encoder.AppendValueString(x.FString1)
-	encoder.AppendJSONKey("f_string2")
-	encoder.AppendValueString(x.FString2)
+	encoder.AppendObjectKey("f_string1")
+	encoder.AppendLiteralString(x.FString1)
+	encoder.AppendObjectKey("f_string2")
+	encoder.AppendLiteralString(x.FString2)
 
 	// Add end JSON identifier
 	encoder.AppendObjectEnd()
@@ -937,7 +900,7 @@ func (x *Message1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
+	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -949,7 +912,7 @@ LOOP_SCAN:
 			jsonKey string
 			isEnd   bool
 		)
-		if isEnd, err = decoder.BeforeReadJSONKey(); err != nil {
+		if isEnd, err = decoder.BeforeScanNext(); err != nil {
 			return err
 		}
 		if isEnd {
@@ -958,18 +921,16 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch jsonKey { // match the JSON key
+		switch jsonKey { // match the jsonKey
 		case "f_string1":
 			var vv string
-			vv, err = decoder.ReadValueString(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
 				return err
 			}
 			x.FString1 = vv
 		case "f_string2":
 			var vv string
-			vv, err = decoder.ReadValueString(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
 				return err
 			}
 			x.FString2 = vv
@@ -977,7 +938,7 @@ LOOP_SCAN:
 			if err = decoder.DiscardValue(jsonKey); err != nil {
 				return err
 			}
-		}
+		} // end switch
 	}
 	return nil
 }
@@ -993,10 +954,10 @@ func (x *Message1_Embed1) MarshalJSON() ([]byte, error) {
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
 
-	encoder.AppendJSONKey("f_string1")
-	encoder.AppendValueString(x.FString1)
-	encoder.AppendJSONKey("f_string2")
-	encoder.AppendValueString(x.FString2)
+	encoder.AppendObjectKey("f_string1")
+	encoder.AppendLiteralString(x.FString1)
+	encoder.AppendObjectKey("f_string2")
+	encoder.AppendLiteralString(x.FString2)
 
 	// Add end JSON identifier
 	encoder.AppendObjectEnd()
@@ -1017,7 +978,7 @@ func (x *Message1_Embed1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
+	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -1029,7 +990,7 @@ LOOP_SCAN:
 			jsonKey string
 			isEnd   bool
 		)
-		if isEnd, err = decoder.BeforeReadJSONKey(); err != nil {
+		if isEnd, err = decoder.BeforeScanNext(); err != nil {
 			return err
 		}
 		if isEnd {
@@ -1038,18 +999,16 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch jsonKey { // match the JSON key
+		switch jsonKey { // match the jsonKey
 		case "f_string1":
 			var vv string
-			vv, err = decoder.ReadValueString(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
 				return err
 			}
 			x.FString1 = vv
 		case "f_string2":
 			var vv string
-			vv, err = decoder.ReadValueString(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
 				return err
 			}
 			x.FString2 = vv
@@ -1057,7 +1016,7 @@ LOOP_SCAN:
 			if err = decoder.DiscardValue(jsonKey); err != nil {
 				return err
 			}
-		}
+		} // end switch
 	}
 	return nil
 }
@@ -1073,10 +1032,10 @@ func (x *Message1_Embed1_Embed2) MarshalJSON() ([]byte, error) {
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
 
-	encoder.AppendJSONKey("f_string1")
-	encoder.AppendValueString(x.FString1)
-	encoder.AppendJSONKey("f_string2")
-	encoder.AppendValueString(x.FString2)
+	encoder.AppendObjectKey("f_string1")
+	encoder.AppendLiteralString(x.FString1)
+	encoder.AppendObjectKey("f_string2")
+	encoder.AppendLiteralString(x.FString2)
 
 	// Add end JSON identifier
 	encoder.AppendObjectEnd()
@@ -1097,7 +1056,7 @@ func (x *Message1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
+	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -1109,7 +1068,7 @@ LOOP_SCAN:
 			jsonKey string
 			isEnd   bool
 		)
-		if isEnd, err = decoder.BeforeReadJSONKey(); err != nil {
+		if isEnd, err = decoder.BeforeScanNext(); err != nil {
 			return err
 		}
 		if isEnd {
@@ -1118,18 +1077,16 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch jsonKey { // match the JSON key
+		switch jsonKey { // match the jsonKey
 		case "f_string1":
 			var vv string
-			vv, err = decoder.ReadValueString(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
 				return err
 			}
 			x.FString1 = vv
 		case "f_string2":
 			var vv string
-			vv, err = decoder.ReadValueString(jsonKey)
-			if err != nil {
+			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
 				return err
 			}
 			x.FString2 = vv
@@ -1137,7 +1094,7 @@ LOOP_SCAN:
 			if err = decoder.DiscardValue(jsonKey); err != nil {
 				return err
 			}
-		}
+		} // end switch
 	}
 	return nil
 }

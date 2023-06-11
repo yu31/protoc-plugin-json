@@ -28,12 +28,12 @@ func TestNew(t *testing.T) {
 func TestEncoder_Build1(t *testing.T) {
 	enc := New(0)
 	enc.AppendObjectBegin()
-	enc.AppendJSONKey("sk1")
-	enc.AppendValueString("sv1")
-	enc.AppendJSONKey("ik64")
-	enc.AppendValueInt64(64)
-	enc.AppendJSONKey("ikb")
-	enc.AppendValueBool(true)
+	enc.AppendObjectKey("sk1")
+	enc.AppendLiteralString("sv1")
+	enc.AppendObjectKey("ik64")
+	enc.AppendLiteralInt64(64)
+	enc.AppendObjectKey("ikb")
+	enc.AppendLiteralBool(true)
 	enc.AppendObjectEnd()
 
 	b := enc.Bytes()

@@ -2,7 +2,6 @@ package jsondecoder
 
 import (
 	"encoding/base64"
-	"encoding/json"
 	"fmt"
 	"strconv"
 	"unsafe"
@@ -92,13 +91,4 @@ func parseEnumString(b []byte, em map[string]int32) (int32, error) {
 		return 0, err
 	}
 	return int32(v3), nil
-}
-func parseInterface(b []byte, initFN func() interface{}) (err error) {
-	i := initFN()
-	if um, ok := i.(json.Unmarshaler); ok {
-		err = um.UnmarshalJSON(b)
-	} else {
-		err = json.Unmarshal(b, i)
-	}
-	return
 }
