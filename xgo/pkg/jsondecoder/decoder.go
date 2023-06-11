@@ -166,7 +166,7 @@ func (dec *Decoder) beforeReadObject() (isNULL bool, err error) {
 // Check if it has more keys in the object before read.
 func (dec *Decoder) beforeReadKey() (isEnd bool, err error) {
 	/*
-		The following cases may match:
+		The following cases will be matched:
 		1. The token is object closing character(`}`).
 			- that represents no more key/value in the object.
 			- That happens when there is no any spaces between the previous valid character.
@@ -195,7 +195,7 @@ func (dec *Decoder) beforeReadKey() (isEnd bool, err error) {
 	}
 
 	// For process the cases 2, 3, 4
-	// Advance scanner to the literal beginning or closing character(`}`).
+	// Advance scanner to the next token literal beginning or closing character(`}`).
 	if err = dec.scanWhile(scanSkipSpace); err != nil {
 		return
 	}
@@ -226,7 +226,7 @@ func (dec *Decoder) readObjectKey() (key []byte, err error) {
 		panic(fmt.Sprintf("%s, opCode: %d", PhasePanicMsg, dec.opCode))
 	}
 
-	// The token is literal begging, Read the valid literal characters as object key.
+	// The token is literal beginning, Read the valid literal characters as object key.
 	if key, err = dec.readItem(); err != nil {
 		return
 	}
@@ -287,7 +287,7 @@ func (dec *Decoder) beforeReadArray() (isNULL bool, err error) {
 		}
 	}
 
-	// Advance scanner to token literal beginning(`null`) or array beginning character(`[`).
+	// Advance scanner to the next token literal beginning(`null`) or array beginning character(`[`).
 	if err = dec.scanWhile(scanSkipSpace); err != nil {
 		return
 	}
@@ -324,7 +324,7 @@ func (dec *Decoder) beforeReadArray() (isNULL bool, err error) {
 // Check if it has more elements in the array before read.
 func (dec *Decoder) beforeReadElem() (isEnd bool, err error) {
 	/*
-		The following cases may match:
+		The following cases will be matched:
 		1. The token is array closing character(`]`).
 			- that represents no more elements in the array.
 			- That happens when there is no any spaces between the previous valid character.
@@ -353,7 +353,7 @@ func (dec *Decoder) beforeReadElem() (isEnd bool, err error) {
 	}
 
 	// For process the cases 2, 3, 4
-	// Advance scanner to the literal beginning or closing character(`]`).
+	// Advance scanner to the next token literal beginning or closing character(`]`).
 	if err = dec.scanWhile(scanSkipSpace); err != nil {
 		return
 	}

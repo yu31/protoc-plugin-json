@@ -55,9 +55,8 @@ func (x *MessageCommon1) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -71,22 +70,22 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString1 = vv
-		case jsonKey == "f_string2":
+		case "f_string2":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString2 = vv
-		case jsonKey == "f_string3":
+		case "f_string3":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
@@ -145,9 +144,8 @@ func (x *MessageCommon1_Embed1) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -161,22 +159,22 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString1 = vv
-		case jsonKey == "f_string2":
+		case "f_string2":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString2 = vv
-		case jsonKey == "f_string3":
+		case "f_string3":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
@@ -235,9 +233,8 @@ func (x *MessageCommon1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -251,22 +248,22 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString1 = vv
-		case jsonKey == "f_string2":
+		case "f_string2":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString2 = vv
-		case jsonKey == "f_string3":
+		case "f_string3":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {

@@ -181,14 +181,6 @@ func (p *Plugin) marshalGenNotEmptyCond(field *protogen.Field, options *pbjson.F
 		cond = varName + " != nil "
 	case protoreflect.EnumKind:
 		cond = varName + " != 0 "
-		//// TODO: remove it.
-		//if options.UseEnumString {
-		//	// Can't omit empty value for field type is enum if you use enum string.
-		//	options.Omitempty = false
-		//	cond = ""
-		//} else {
-		//	cond = varName + " != 0 "
-		//}
 	default:
 		err := pkerror.New("marshal: unsupported kind of %s", field.Desc.Kind().String())
 		panic(err)

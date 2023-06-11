@@ -59,9 +59,8 @@ func (x *MessageRepeated1) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -75,22 +74,22 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString1 = vv
-		case jsonKey == "f_string2":
+		case "f_string2":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString2 = vv
-		case jsonKey == "f_string3":
+		case "f_string3":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
@@ -149,9 +148,8 @@ func (x *MessageRepeated1_Embed1) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -165,22 +163,22 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString1 = vv
-		case jsonKey == "f_string2":
+		case "f_string2":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString2 = vv
-		case jsonKey == "f_string3":
+		case "f_string3":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
@@ -239,9 +237,8 @@ func (x *MessageRepeated1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -255,22 +252,22 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString1 = vv
-		case jsonKey == "f_string2":
+		case "f_string2":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString2 = vv
-		case jsonKey == "f_string3":
+		case "f_string3":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
@@ -738,9 +735,8 @@ func (x *TypeRepeated1) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -754,8 +750,8 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -768,13 +764,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FString1)
-		LOOP_LIST_f_string1:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_string1
+					break
 				}
 				var vv string
 				vv, err = decoder.ReadArrayElemString(jsonKey)
@@ -792,7 +787,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FString1 = x.FString1[:i]
 			}
-		case jsonKey == "f_string2":
+		case "f_string2":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -805,13 +800,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FString2)
-		LOOP_LIST_f_string2:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_string2
+					break
 				}
 				var vv string
 				vv, err = decoder.ReadArrayElemString(jsonKey)
@@ -829,7 +823,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FString2 = x.FString2[:i]
 			}
-		case jsonKey == "f_int32":
+		case "f_int32":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -842,13 +836,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FInt32)
-		LOOP_LIST_f_int32:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_int32
+					break
 				}
 				var vv int32
 				vv, err = decoder.ReadArrayElemInt32(jsonKey)
@@ -866,7 +859,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FInt32 = x.FInt32[:i]
 			}
-		case jsonKey == "f_int64":
+		case "f_int64":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -879,13 +872,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FInt64)
-		LOOP_LIST_f_int64:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_int64
+					break
 				}
 				var vv int64
 				vv, err = decoder.ReadArrayElemInt64(jsonKey)
@@ -903,7 +895,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FInt64 = x.FInt64[:i]
 			}
-		case jsonKey == "f_uint32":
+		case "f_uint32":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -916,13 +908,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FUint32)
-		LOOP_LIST_f_uint32:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_uint32
+					break
 				}
 				var vv uint32
 				vv, err = decoder.ReadArrayElemUint32(jsonKey)
@@ -940,7 +931,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FUint32 = x.FUint32[:i]
 			}
-		case jsonKey == "f_uint64":
+		case "f_uint64":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -953,13 +944,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FUint64)
-		LOOP_LIST_f_uint64:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_uint64
+					break
 				}
 				var vv uint64
 				vv, err = decoder.ReadArrayElemUint64(jsonKey)
@@ -977,7 +967,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FUint64 = x.FUint64[:i]
 			}
-		case jsonKey == "f_sint32":
+		case "f_sint32":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -990,13 +980,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FSint32)
-		LOOP_LIST_f_sint32:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_sint32
+					break
 				}
 				var vv int32
 				vv, err = decoder.ReadArrayElemInt32(jsonKey)
@@ -1014,7 +1003,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FSint32 = x.FSint32[:i]
 			}
-		case jsonKey == "f_sint64":
+		case "f_sint64":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1027,13 +1016,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FSint64)
-		LOOP_LIST_f_sint64:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_sint64
+					break
 				}
 				var vv int64
 				vv, err = decoder.ReadArrayElemInt64(jsonKey)
@@ -1051,7 +1039,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FSint64 = x.FSint64[:i]
 			}
-		case jsonKey == "f_sfixed32":
+		case "f_sfixed32":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1064,13 +1052,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FSfixed32)
-		LOOP_LIST_f_sfixed32:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_sfixed32
+					break
 				}
 				var vv int32
 				vv, err = decoder.ReadArrayElemInt32(jsonKey)
@@ -1088,7 +1075,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FSfixed32 = x.FSfixed32[:i]
 			}
-		case jsonKey == "f_sfixed64":
+		case "f_sfixed64":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1101,13 +1088,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FSfixed64)
-		LOOP_LIST_f_sfixed64:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_sfixed64
+					break
 				}
 				var vv int64
 				vv, err = decoder.ReadArrayElemInt64(jsonKey)
@@ -1125,7 +1111,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FSfixed64 = x.FSfixed64[:i]
 			}
-		case jsonKey == "f_fixed32":
+		case "f_fixed32":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1138,13 +1124,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FFixed32)
-		LOOP_LIST_f_fixed32:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_fixed32
+					break
 				}
 				var vv uint32
 				vv, err = decoder.ReadArrayElemUint32(jsonKey)
@@ -1162,7 +1147,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FFixed32 = x.FFixed32[:i]
 			}
-		case jsonKey == "f_fixed64":
+		case "f_fixed64":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1175,13 +1160,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FFixed64)
-		LOOP_LIST_f_fixed64:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_fixed64
+					break
 				}
 				var vv uint64
 				vv, err = decoder.ReadArrayElemUint64(jsonKey)
@@ -1199,7 +1183,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FFixed64 = x.FFixed64[:i]
 			}
-		case jsonKey == "f_float":
+		case "f_float":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1212,13 +1196,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FFloat)
-		LOOP_LIST_f_float:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_float
+					break
 				}
 				var vv float32
 				vv, err = decoder.ReadArrayElemFloat32(jsonKey)
@@ -1236,7 +1219,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FFloat = x.FFloat[:i]
 			}
-		case jsonKey == "f_double":
+		case "f_double":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1249,13 +1232,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FDouble)
-		LOOP_LIST_f_double:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_double
+					break
 				}
 				var vv float64
 				vv, err = decoder.ReadArrayElemFloat64(jsonKey)
@@ -1273,7 +1255,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FDouble = x.FDouble[:i]
 			}
-		case jsonKey == "f_bool1":
+		case "f_bool1":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1286,13 +1268,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FBool1)
-		LOOP_LIST_f_bool1:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_bool1
+					break
 				}
 				var vv bool
 				vv, err = decoder.ReadArrayElemBool(jsonKey)
@@ -1310,7 +1291,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FBool1 = x.FBool1[:i]
 			}
-		case jsonKey == "f_bytes1":
+		case "f_bytes1":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1323,13 +1304,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FBytes1)
-		LOOP_LIST_f_bytes1:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_bytes1
+					break
 				}
 				var vv []byte
 				vv, err = decoder.ReadArrayElemBytes(jsonKey)
@@ -1347,7 +1327,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FBytes1 = x.FBytes1[:i]
 			}
-		case jsonKey == "f_enum1":
+		case "f_enum1":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1360,13 +1340,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FEnum1)
-		LOOP_LIST_f_enum1:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_enum1
+					break
 				}
 				var vv EnumRepeated1
 				var v1 int32
@@ -1386,7 +1365,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FEnum1 = x.FEnum1[:i]
 			}
-		case jsonKey == "f_enum2":
+		case "f_enum2":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1399,13 +1378,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FEnum2)
-		LOOP_LIST_f_enum2:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_enum2
+					break
 				}
 				var vv pbexternal.Enum1
 				var v1 int32
@@ -1425,7 +1403,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FEnum2 = x.FEnum2[:i]
 			}
-		case jsonKey == "f_enum3":
+		case "f_enum3":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1438,13 +1416,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FEnum3)
-		LOOP_LIST_f_enum3:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_enum3
+					break
 				}
 				var vv pbexternal.Embed_Enum1
 				var v1 int32
@@ -1464,7 +1441,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FEnum3 = x.FEnum3[:i]
 			}
-		case jsonKey == "f_enum4":
+		case "f_enum4":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1477,13 +1454,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FEnum4)
-		LOOP_LIST_f_enum4:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_enum4
+					break
 				}
 				var vv pbexternal.Embed_Message_Enum1
 				var v1 int32
@@ -1503,7 +1479,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FEnum4 = x.FEnum4[:i]
 			}
-		case jsonKey == "f_enum5":
+		case "f_enum5":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1516,13 +1492,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FEnum5)
-		LOOP_LIST_f_enum5:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_enum5
+					break
 				}
 				var vv EnumCommon1
 				var v1 int32
@@ -1542,7 +1517,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FEnum5 = x.FEnum5[:i]
 			}
-		case jsonKey == "f_enum6":
+		case "f_enum6":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1555,13 +1530,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FEnum6)
-		LOOP_LIST_f_enum6:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_enum6
+					break
 				}
 				var vv MessageCommon1_Enum1
 				var v1 int32
@@ -1581,7 +1555,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FEnum6 = x.FEnum6[:i]
 			}
-		case jsonKey == "f_duration1":
+		case "f_duration1":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1594,13 +1568,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FDuration1)
-		LOOP_LIST_f_duration1:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_duration1
+					break
 				}
 				var vv *durationpb.Duration
 				initFN := func() interface{} {
@@ -1627,7 +1600,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FDuration1 = x.FDuration1[:i]
 			}
-		case jsonKey == "f_duration2":
+		case "f_duration2":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1640,13 +1613,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FDuration2)
-		LOOP_LIST_f_duration2:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_duration2
+					break
 				}
 				var vv *durationpb.Duration
 				initFN := func() interface{} {
@@ -1673,7 +1645,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FDuration2 = x.FDuration2[:i]
 			}
-		case jsonKey == "f_timestamp1":
+		case "f_timestamp1":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1686,13 +1658,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FTimestamp1)
-		LOOP_LIST_f_timestamp1:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_timestamp1
+					break
 				}
 				var vv *timestamppb.Timestamp
 				initFN := func() interface{} {
@@ -1719,7 +1690,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FTimestamp1 = x.FTimestamp1[:i]
 			}
-		case jsonKey == "f_timestamp2":
+		case "f_timestamp2":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1732,13 +1703,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FTimestamp2)
-		LOOP_LIST_f_timestamp2:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_timestamp2
+					break
 				}
 				var vv *timestamppb.Timestamp
 				initFN := func() interface{} {
@@ -1765,7 +1735,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FTimestamp2 = x.FTimestamp2[:i]
 			}
-		case jsonKey == "f_any1":
+		case "f_any1":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1778,13 +1748,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FAny1)
-		LOOP_LIST_f_any1:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_any1
+					break
 				}
 				var vv *anypb.Any
 				initFN := func() interface{} {
@@ -1811,7 +1780,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FAny1 = x.FAny1[:i]
 			}
-		case jsonKey == "f_any2":
+		case "f_any2":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1824,13 +1793,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FAny2)
-		LOOP_LIST_f_any2:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_any2
+					break
 				}
 				var vv *anypb.Any
 				initFN := func() interface{} {
@@ -1857,7 +1825,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FAny2 = x.FAny2[:i]
 			}
-		case jsonKey == "f_message1":
+		case "f_message1":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1870,13 +1838,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FMessage1)
-		LOOP_LIST_f_message1:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_message1
+					break
 				}
 				var vv *MessageRepeated1
 				initFN := func() interface{} {
@@ -1903,7 +1870,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FMessage1 = x.FMessage1[:i]
 			}
-		case jsonKey == "f_message2":
+		case "f_message2":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1916,13 +1883,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FMessage2)
-		LOOP_LIST_f_message2:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_message2
+					break
 				}
 				var vv *MessageRepeated1_Embed1
 				initFN := func() interface{} {
@@ -1949,7 +1915,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FMessage2 = x.FMessage2[:i]
 			}
-		case jsonKey == "f_message3":
+		case "f_message3":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -1962,13 +1928,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FMessage3)
-		LOOP_LIST_f_message3:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_message3
+					break
 				}
 				var vv *MessageRepeated1_Embed1_Embed2
 				initFN := func() interface{} {
@@ -1995,7 +1960,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FMessage3 = x.FMessage3[:i]
 			}
-		case jsonKey == "f_message4":
+		case "f_message4":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -2008,13 +1973,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FMessage4)
-		LOOP_LIST_f_message4:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_message4
+					break
 				}
 				var vv *pbexternal.Message1
 				initFN := func() interface{} {
@@ -2041,7 +2005,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FMessage4 = x.FMessage4[:i]
 			}
-		case jsonKey == "f_message5":
+		case "f_message5":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -2054,13 +2018,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FMessage5)
-		LOOP_LIST_f_message5:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_message5
+					break
 				}
 				var vv *pbexternal.Message1_Embed1
 				initFN := func() interface{} {
@@ -2087,7 +2050,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FMessage5 = x.FMessage5[:i]
 			}
-		case jsonKey == "f_message6":
+		case "f_message6":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -2100,13 +2063,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FMessage6)
-		LOOP_LIST_f_message6:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_message6
+					break
 				}
 				var vv *pbexternal.Message1_Embed1_Embed2
 				initFN := func() interface{} {
@@ -2133,7 +2095,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FMessage6 = x.FMessage6[:i]
 			}
-		case jsonKey == "f_message7":
+		case "f_message7":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -2146,13 +2108,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FMessage7)
-		LOOP_LIST_f_message7:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_message7
+					break
 				}
 				var vv *MessageCommon1
 				initFN := func() interface{} {
@@ -2179,7 +2140,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FMessage7 = x.FMessage7[:i]
 			}
-		case jsonKey == "f_message8":
+		case "f_message8":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -2192,13 +2153,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FMessage8)
-		LOOP_LIST_f_message8:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_message8
+					break
 				}
 				var vv *MessageCommon1_Embed1
 				initFN := func() interface{} {
@@ -2225,7 +2185,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.FMessage8 = x.FMessage8[:i]
 			}
-		case jsonKey == "f_message9":
+		case "f_message9":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -2238,13 +2198,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.FMessage9)
-		LOOP_LIST_f_message9:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_f_message9
+					break
 				}
 				var vv *MessageCommon1_Embed1_Embed2
 				initFN := func() interface{} {

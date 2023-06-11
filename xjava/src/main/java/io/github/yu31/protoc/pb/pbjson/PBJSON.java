@@ -65,6 +65,31 @@ public final class PBJSON {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_json_FieldOptions_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_json_TypeEnum_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_json_TypeEnum_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_json_TypeAny_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_json_TypeAny_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_json_TypeDuration_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_json_TypeDuration_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_json_TypeTimestamp_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_json_TypeTimestamp_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_json_TypeTimestamp_TimeLayout_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_json_TypeTimestamp_TimeLayout_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -76,20 +101,38 @@ public final class PBJSON {
     java.lang.String[] descriptorData = {
       "\n\njson.proto\022\004json\032 google/protobuf/desc" +
       "riptor.proto\"A\n\016MessageOptions\022\016\n\006ignore" +
-      "\030\002 \001(\010\022\037\n\027disallow_unknown_fields\030\006 \001(\010\"" +
+      "\030\001 \001(\010\022\037\n\027disallow_unknown_fields\030\002 \001(\010\"" +
       "[\n\014OneofOptions\022\021\n\004json\030\001 \001(\tH\000\210\001\001\022\016\n\006ig" +
       "nore\030\002 \001(\010\022\021\n\tomitempty\030\003 \001(\010\022\014\n\004hide\030\004 " +
-      "\001(\010B\007\n\005_json\"f\n\014FieldOptions\022\021\n\004json\030\001 \001" +
-      "(\tH\000\210\001\001\022\016\n\006ignore\030\002 \001(\010\022\021\n\tomitempty\030\003 \001" +
-      "(\010\022\027\n\017use_enum_string\030\004 \001(\010B\007\n\005_json:H\n\007" +
-      "message\022\037.google.protobuf.MessageOptions" +
-      "\030\240\364\003 \001(\0132\024.json.MessageOptions:B\n\005field\022" +
-      "\035.google.protobuf.FieldOptions\030\241\364\003 \001(\0132\022" +
-      ".json.FieldOptions:B\n\005oneof\022\035.google.pro" +
-      "tobuf.OneofOptions\030\242\364\003 \001(\0132\022.json.OneofO" +
-      "ptionsB]\n\037io.github.yu31.protoc.pb.pbjso" +
-      "nB\006PBJSONP\001Z0github.com/yu31/protoc-plug" +
-      "in-json/xgo/pb/pbjsonb\006proto3"
+      "\001(\010B\007\n\005_json\"\375\001\n\014FieldOptions\022\021\n\004json\030\001 " +
+      "\001(\tH\001\210\001\001\022\016\n\006ignore\030\002 \001(\010\022\021\n\tomitempty\030\003 " +
+      "\001(\010\022\027\n\017use_enum_string\030\004 \001(\010\022\036\n\004enum\030\013 \001" +
+      "(\0132\016.json.TypeEnumH\000\022\034\n\003any\030\014 \001(\0132\r.json" +
+      ".TypeAnyH\000\022&\n\010duration\030\r \001(\0132\022.json.Type" +
+      "DurationH\000\022(\n\ttimestamp\030\016 \001(\0132\023.json.Typ" +
+      "eTimestampH\000B\005\n\003WKTB\007\n\005_json\"@\n\010TypeEnum" +
+      "\022\024\n\nuse_number\030\001 \001(\010H\000\022\024\n\nuse_string\030\002 \001" +
+      "(\010H\000B\010\n\006Format\"7\n\007TypeAny\022\020\n\006native\030\001 \001(" +
+      "\010H\000\022\020\n\006expand\030\002 \001(\010H\000B\010\n\006Format\"\272\001\n\014Type" +
+      "Duration\022\020\n\006native\030\001 \001(\010H\000\022\020\n\006string\030\002 \001" +
+      "(\010H\000\022\025\n\013nanoseconds\030\003 \001(\010H\000\022\026\n\014microseco" +
+      "nds\030\004 \001(\010H\000\022\026\n\014milliseconds\030\005 \001(\010H\000\022\021\n\007s" +
+      "econds\030\006 \001(\010H\000\022\021\n\007minutes\030\007 \001(\010H\000\022\017\n\005hou" +
+      "rs\030\010 \001(\010H\000B\010\n\006Format\"\201\002\n\rTypeTimestamp\022\020" +
+      "\n\006native\030\001 \001(\010H\000\0225\n\013time_layout\030\002 \001(\0132\036." +
+      "json.TypeTimestamp.TimeLayoutH\000\022\023\n\tunix_" +
+      "nano\030\003 \001(\010H\000\022\024\n\nunix_micro\030\004 \001(\010H\000\022\024\n\nun" +
+      "ix_milli\030\005 \001(\010H\000\022\022\n\010unix_sec\030\006 \001(\010H\000\032H\n\n" +
+      "TimeLayout\022\016\n\006golang\030\001 \001(\t\022\014\n\004java\030\002 \001(\t" +
+      "\022\014\n\004rust\030\003 \001(\t\022\016\n\006python\030\004 \001(\tB\010\n\006Format" +
+      ":H\n\007message\022\037.google.protobuf.MessageOpt" +
+      "ions\030\240\364\003 \001(\0132\024.json.MessageOptions:B\n\005fi" +
+      "eld\022\035.google.protobuf.FieldOptions\030\241\364\003 \001" +
+      "(\0132\022.json.FieldOptions:B\n\005oneof\022\035.google" +
+      ".protobuf.OneofOptions\030\242\364\003 \001(\0132\022.json.On" +
+      "eofOptionsB]\n\037io.github.yu31.protoc.pb.p" +
+      "bjsonB\006PBJSONP\001Z0github.com/yu31/protoc-" +
+      "plugin-json/xgo/pb/pbjsonb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -113,7 +156,37 @@ public final class PBJSON {
     internal_static_json_FieldOptions_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_json_FieldOptions_descriptor,
-        new java.lang.String[] { "Json", "Ignore", "Omitempty", "UseEnumString", "Json", });
+        new java.lang.String[] { "Json", "Ignore", "Omitempty", "UseEnumString", "Enum", "Any", "Duration", "Timestamp", "WKT", "Json", });
+    internal_static_json_TypeEnum_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_json_TypeEnum_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_json_TypeEnum_descriptor,
+        new java.lang.String[] { "UseNumber", "UseString", "Format", });
+    internal_static_json_TypeAny_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_json_TypeAny_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_json_TypeAny_descriptor,
+        new java.lang.String[] { "Native", "Expand", "Format", });
+    internal_static_json_TypeDuration_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_json_TypeDuration_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_json_TypeDuration_descriptor,
+        new java.lang.String[] { "Native", "String", "Nanoseconds", "Microseconds", "Milliseconds", "Seconds", "Minutes", "Hours", "Format", });
+    internal_static_json_TypeTimestamp_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_json_TypeTimestamp_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_json_TypeTimestamp_descriptor,
+        new java.lang.String[] { "Native", "TimeLayout", "UnixNano", "UnixMicro", "UnixMilli", "UnixSec", "Format", });
+    internal_static_json_TypeTimestamp_TimeLayout_descriptor =
+      internal_static_json_TypeTimestamp_descriptor.getNestedTypes().get(0);
+    internal_static_json_TypeTimestamp_TimeLayout_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_json_TypeTimestamp_TimeLayout_descriptor,
+        new java.lang.String[] { "Golang", "Java", "Rust", "Python", });
     message.internalInit(descriptor.getExtensions().get(0));
     field.internalInit(descriptor.getExtensions().get(1));
     oneof.internalInit(descriptor.getExtensions().get(2));

@@ -12,7 +12,7 @@ public interface MessageOptionsOrBuilder extends
    * Whether ignore generating code for the this message.
    * </pre>
    *
-   * <code>bool ignore = 2;</code>
+   * <code>bool ignore = 1;</code>
    * @return The ignore.
    */
   boolean getIgnore();
@@ -24,7 +24,7 @@ public interface MessageOptionsOrBuilder extends
    * non-ignored, exported fields in the destination.
    * </pre>
    *
-   * <code>bool disallow_unknown_fields = 6;</code>
+   * <code>bool disallow_unknown_fields = 2;</code>
    * @return The disallowUnknownFields.
    */
   boolean getDisallowUnknownFields();

@@ -60,9 +60,8 @@ func (x *MessageOneof1) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -76,22 +75,22 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString1 = vv
-		case jsonKey == "f_string2":
+		case "f_string2":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString2 = vv
-		case jsonKey == "f_string3":
+		case "f_string3":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
@@ -150,9 +149,8 @@ func (x *MessageOneof1_Embed1) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -166,22 +164,22 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString1 = vv
-		case jsonKey == "f_string2":
+		case "f_string2":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString2 = vv
-		case jsonKey == "f_string3":
+		case "f_string3":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
@@ -240,9 +238,8 @@ func (x *MessageOneof1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -256,22 +253,22 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString1 = vv
-		case jsonKey == "f_string2":
+		case "f_string2":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString2 = vv
-		case jsonKey == "f_string3":
+		case "f_string3":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
@@ -695,9 +692,8 @@ func (x *TypeOneof1) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -711,8 +707,8 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "OneType01":
+		switch jsonKey { // match the JSON key
+		case "OneType01":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -720,20 +716,19 @@ LOOP_SCAN:
 				x.OneType01 = nil
 				continue LOOP_SCAN
 			}
-		LOOP_ONEOF_OneType01:
 			for {
 				var oneofKey string
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_ONEOF_OneType01
+					break
 				}
 				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
 					return err
 				}
-				switch {
-				case oneofKey == "f_string1":
+				switch oneofKey { // match oneof key
+				case "f_string1":
 					var ok bool
 					var ot *TypeOneof1_FString1
 					if ot, ok = x.OneType01.(*TypeOneof1_FString1); !ok {
@@ -750,7 +745,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType01 = true
 					ot.FString1 = vv
 					x.OneType01 = ot
-				case oneofKey == "f_string2":
+				case "f_string2":
 					var ok bool
 					var ot *TypeOneof1_FString2
 					if ot, ok = x.OneType01.(*TypeOneof1_FString2); !ok {
@@ -773,7 +768,7 @@ LOOP_SCAN:
 					}
 				}
 			}
-		case jsonKey == "One_Type02":
+		case "One_Type02":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -781,20 +776,19 @@ LOOP_SCAN:
 				x.One_Type02 = nil
 				continue LOOP_SCAN
 			}
-		LOOP_ONEOF_One_Type02:
 			for {
 				var oneofKey string
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_ONEOF_One_Type02
+					break
 				}
 				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
 					return err
 				}
-				switch {
-				case oneofKey == "f_int32":
+				switch oneofKey { // match oneof key
+				case "f_int32":
 					var ok bool
 					var ot *TypeOneof1_FInt32
 					if ot, ok = x.One_Type02.(*TypeOneof1_FInt32); !ok {
@@ -811,7 +805,7 @@ LOOP_SCAN:
 					oneOfIsFill_One_Type02 = true
 					ot.FInt32 = vv
 					x.One_Type02 = ot
-				case oneofKey == "f_int64":
+				case "f_int64":
 					var ok bool
 					var ot *TypeOneof1_FInt64
 					if ot, ok = x.One_Type02.(*TypeOneof1_FInt64); !ok {
@@ -834,7 +828,7 @@ LOOP_SCAN:
 					}
 				}
 			}
-		case jsonKey == "One_type03":
+		case "One_type03":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -842,20 +836,19 @@ LOOP_SCAN:
 				x.OneType03 = nil
 				continue LOOP_SCAN
 			}
-		LOOP_ONEOF_One_type03:
 			for {
 				var oneofKey string
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_ONEOF_One_type03
+					break
 				}
 				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
 					return err
 				}
-				switch {
-				case oneofKey == "f_uint32":
+				switch oneofKey { // match oneof key
+				case "f_uint32":
 					var ok bool
 					var ot *TypeOneof1_FUint32
 					if ot, ok = x.OneType03.(*TypeOneof1_FUint32); !ok {
@@ -872,7 +865,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType03 = true
 					ot.FUint32 = vv
 					x.OneType03 = ot
-				case oneofKey == "f_uint64":
+				case "f_uint64":
 					var ok bool
 					var ot *TypeOneof1_FUint64
 					if ot, ok = x.OneType03.(*TypeOneof1_FUint64); !ok {
@@ -895,7 +888,7 @@ LOOP_SCAN:
 					}
 				}
 			}
-		case jsonKey == "one_Type04":
+		case "one_Type04":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -903,20 +896,19 @@ LOOP_SCAN:
 				x.One_Type04 = nil
 				continue LOOP_SCAN
 			}
-		LOOP_ONEOF_one_Type04:
 			for {
 				var oneofKey string
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_ONEOF_one_Type04
+					break
 				}
 				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
 					return err
 				}
-				switch {
-				case oneofKey == "f_sint32":
+				switch oneofKey { // match oneof key
+				case "f_sint32":
 					var ok bool
 					var ot *TypeOneof1_FSint32
 					if ot, ok = x.One_Type04.(*TypeOneof1_FSint32); !ok {
@@ -933,7 +925,7 @@ LOOP_SCAN:
 					oneOfIsFill_One_Type04 = true
 					ot.FSint32 = vv
 					x.One_Type04 = ot
-				case oneofKey == "f_sint64":
+				case "f_sint64":
 					var ok bool
 					var ot *TypeOneof1_FSint64
 					if ot, ok = x.One_Type04.(*TypeOneof1_FSint64); !ok {
@@ -956,7 +948,7 @@ LOOP_SCAN:
 					}
 				}
 			}
-		case jsonKey == "one_type05":
+		case "one_type05":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -964,20 +956,19 @@ LOOP_SCAN:
 				x.OneType05 = nil
 				continue LOOP_SCAN
 			}
-		LOOP_ONEOF_one_type05:
 			for {
 				var oneofKey string
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_ONEOF_one_type05
+					break
 				}
 				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
 					return err
 				}
-				switch {
-				case oneofKey == "f_sfixed32":
+				switch oneofKey { // match oneof key
+				case "f_sfixed32":
 					var ok bool
 					var ot *TypeOneof1_FSfixed32
 					if ot, ok = x.OneType05.(*TypeOneof1_FSfixed32); !ok {
@@ -994,7 +985,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType05 = true
 					ot.FSfixed32 = vv
 					x.OneType05 = ot
-				case oneofKey == "f_sfixed64":
+				case "f_sfixed64":
 					var ok bool
 					var ot *TypeOneof1_FSfixed64
 					if ot, ok = x.OneType05.(*TypeOneof1_FSfixed64); !ok {
@@ -1017,7 +1008,7 @@ LOOP_SCAN:
 					}
 				}
 			}
-		case jsonKey == "oneType06":
+		case "oneType06":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -1025,20 +1016,19 @@ LOOP_SCAN:
 				x.OneType06 = nil
 				continue LOOP_SCAN
 			}
-		LOOP_ONEOF_oneType06:
 			for {
 				var oneofKey string
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_ONEOF_oneType06
+					break
 				}
 				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
 					return err
 				}
-				switch {
-				case oneofKey == "f_fixed32":
+				switch oneofKey { // match oneof key
+				case "f_fixed32":
 					var ok bool
 					var ot *TypeOneof1_FFixed32
 					if ot, ok = x.OneType06.(*TypeOneof1_FFixed32); !ok {
@@ -1055,7 +1045,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType06 = true
 					ot.FFixed32 = vv
 					x.OneType06 = ot
-				case oneofKey == "f_fixed64":
+				case "f_fixed64":
 					var ok bool
 					var ot *TypeOneof1_FFixed64
 					if ot, ok = x.OneType06.(*TypeOneof1_FFixed64); !ok {
@@ -1078,7 +1068,7 @@ LOOP_SCAN:
 					}
 				}
 			}
-		case jsonKey == "Onetype07":
+		case "Onetype07":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -1086,20 +1076,19 @@ LOOP_SCAN:
 				x.Onetype07 = nil
 				continue LOOP_SCAN
 			}
-		LOOP_ONEOF_Onetype07:
 			for {
 				var oneofKey string
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_ONEOF_Onetype07
+					break
 				}
 				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
 					return err
 				}
-				switch {
-				case oneofKey == "f_float":
+				switch oneofKey { // match oneof key
+				case "f_float":
 					var ok bool
 					var ot *TypeOneof1_FFloat
 					if ot, ok = x.Onetype07.(*TypeOneof1_FFloat); !ok {
@@ -1116,7 +1105,7 @@ LOOP_SCAN:
 					oneOfIsFill_Onetype07 = true
 					ot.FFloat = vv
 					x.Onetype07 = ot
-				case oneofKey == "f_double":
+				case "f_double":
 					var ok bool
 					var ot *TypeOneof1_FDouble
 					if ot, ok = x.Onetype07.(*TypeOneof1_FDouble); !ok {
@@ -1139,7 +1128,7 @@ LOOP_SCAN:
 					}
 				}
 			}
-		case jsonKey == "onetype08":
+		case "onetype08":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -1147,20 +1136,19 @@ LOOP_SCAN:
 				x.Onetype08 = nil
 				continue LOOP_SCAN
 			}
-		LOOP_ONEOF_onetype08:
 			for {
 				var oneofKey string
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_ONEOF_onetype08
+					break
 				}
 				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
 					return err
 				}
-				switch {
-				case oneofKey == "f_bool1":
+				switch oneofKey { // match oneof key
+				case "f_bool1":
 					var ok bool
 					var ot *TypeOneof1_FBool1
 					if ot, ok = x.Onetype08.(*TypeOneof1_FBool1); !ok {
@@ -1177,7 +1165,7 @@ LOOP_SCAN:
 					oneOfIsFill_Onetype08 = true
 					ot.FBool1 = vv
 					x.Onetype08 = ot
-				case oneofKey == "f_bytes1":
+				case "f_bytes1":
 					var ok bool
 					var ot *TypeOneof1_FBytes1
 					if ot, ok = x.Onetype08.(*TypeOneof1_FBytes1); !ok {
@@ -1200,7 +1188,7 @@ LOOP_SCAN:
 					}
 				}
 			}
-		case jsonKey == "OneType09":
+		case "OneType09":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -1208,20 +1196,19 @@ LOOP_SCAN:
 				x.OneType09 = nil
 				continue LOOP_SCAN
 			}
-		LOOP_ONEOF_OneType09:
 			for {
 				var oneofKey string
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_ONEOF_OneType09
+					break
 				}
 				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
 					return err
 				}
-				switch {
-				case oneofKey == "f_enum1":
+				switch oneofKey { // match oneof key
+				case "f_enum1":
 					var ok bool
 					var ot *TypeOneof1_FEnum1
 					if ot, ok = x.OneType09.(*TypeOneof1_FEnum1); !ok {
@@ -1240,7 +1227,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType09 = true
 					ot.FEnum1 = vv
 					x.OneType09 = ot
-				case oneofKey == "f_enum2":
+				case "f_enum2":
 					var ok bool
 					var ot *TypeOneof1_FEnum2
 					if ot, ok = x.OneType09.(*TypeOneof1_FEnum2); !ok {
@@ -1259,7 +1246,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType09 = true
 					ot.FEnum2 = vv
 					x.OneType09 = ot
-				case oneofKey == "f_enum3":
+				case "f_enum3":
 					var ok bool
 					var ot *TypeOneof1_FEnum3
 					if ot, ok = x.OneType09.(*TypeOneof1_FEnum3); !ok {
@@ -1278,7 +1265,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType09 = true
 					ot.FEnum3 = vv
 					x.OneType09 = ot
-				case oneofKey == "f_enum4":
+				case "f_enum4":
 					var ok bool
 					var ot *TypeOneof1_FEnum4
 					if ot, ok = x.OneType09.(*TypeOneof1_FEnum4); !ok {
@@ -1297,7 +1284,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType09 = true
 					ot.FEnum4 = vv
 					x.OneType09 = ot
-				case oneofKey == "f_enum5":
+				case "f_enum5":
 					var ok bool
 					var ot *TypeOneof1_FEnum5
 					if ot, ok = x.OneType09.(*TypeOneof1_FEnum5); !ok {
@@ -1316,7 +1303,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType09 = true
 					ot.FEnum5 = vv
 					x.OneType09 = ot
-				case oneofKey == "f_enum6":
+				case "f_enum6":
 					var ok bool
 					var ot *TypeOneof1_FEnum6
 					if ot, ok = x.OneType09.(*TypeOneof1_FEnum6); !ok {
@@ -1341,7 +1328,7 @@ LOOP_SCAN:
 					}
 				}
 			}
-		case jsonKey == "OneType10":
+		case "OneType10":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -1349,20 +1336,19 @@ LOOP_SCAN:
 				x.OneType10 = nil
 				continue LOOP_SCAN
 			}
-		LOOP_ONEOF_OneType10:
 			for {
 				var oneofKey string
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_ONEOF_OneType10
+					break
 				}
 				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
 					return err
 				}
-				switch {
-				case oneofKey == "f_duration1":
+				switch oneofKey { // match oneof key
+				case "f_duration1":
 					var ok bool
 					var ot *TypeOneof1_FDuration1
 					if ot, ok = x.OneType10.(*TypeOneof1_FDuration1); !ok {
@@ -1387,7 +1373,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType10 = true
 					ot.FDuration1 = vv
 					x.OneType10 = ot
-				case oneofKey == "f_duration2":
+				case "f_duration2":
 					var ok bool
 					var ot *TypeOneof1_FDuration2
 					if ot, ok = x.OneType10.(*TypeOneof1_FDuration2); !ok {
@@ -1418,7 +1404,7 @@ LOOP_SCAN:
 					}
 				}
 			}
-		case jsonKey == "OneType11":
+		case "OneType11":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -1426,20 +1412,19 @@ LOOP_SCAN:
 				x.OneType11 = nil
 				continue LOOP_SCAN
 			}
-		LOOP_ONEOF_OneType11:
 			for {
 				var oneofKey string
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_ONEOF_OneType11
+					break
 				}
 				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
 					return err
 				}
-				switch {
-				case oneofKey == "f_timestamp1":
+				switch oneofKey { // match oneof key
+				case "f_timestamp1":
 					var ok bool
 					var ot *TypeOneof1_FTimestamp1
 					if ot, ok = x.OneType11.(*TypeOneof1_FTimestamp1); !ok {
@@ -1464,7 +1449,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType11 = true
 					ot.FTimestamp1 = vv
 					x.OneType11 = ot
-				case oneofKey == "f_timestamp2":
+				case "f_timestamp2":
 					var ok bool
 					var ot *TypeOneof1_FTimestamp2
 					if ot, ok = x.OneType11.(*TypeOneof1_FTimestamp2); !ok {
@@ -1495,7 +1480,7 @@ LOOP_SCAN:
 					}
 				}
 			}
-		case jsonKey == "OneType12":
+		case "OneType12":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -1503,20 +1488,19 @@ LOOP_SCAN:
 				x.OneType12 = nil
 				continue LOOP_SCAN
 			}
-		LOOP_ONEOF_OneType12:
 			for {
 				var oneofKey string
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_ONEOF_OneType12
+					break
 				}
 				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
 					return err
 				}
-				switch {
-				case oneofKey == "f_any1":
+				switch oneofKey { // match oneof key
+				case "f_any1":
 					var ok bool
 					var ot *TypeOneof1_FAny1
 					if ot, ok = x.OneType12.(*TypeOneof1_FAny1); !ok {
@@ -1541,7 +1525,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType12 = true
 					ot.FAny1 = vv
 					x.OneType12 = ot
-				case oneofKey == "f_any2":
+				case "f_any2":
 					var ok bool
 					var ot *TypeOneof1_FAny2
 					if ot, ok = x.OneType12.(*TypeOneof1_FAny2); !ok {
@@ -1572,7 +1556,7 @@ LOOP_SCAN:
 					}
 				}
 			}
-		case jsonKey == "OneType13":
+		case "OneType13":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -1580,20 +1564,19 @@ LOOP_SCAN:
 				x.OneType13 = nil
 				continue LOOP_SCAN
 			}
-		LOOP_ONEOF_OneType13:
 			for {
 				var oneofKey string
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_ONEOF_OneType13
+					break
 				}
 				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
 					return err
 				}
-				switch {
-				case oneofKey == "f_message1":
+				switch oneofKey { // match oneof key
+				case "f_message1":
 					var ok bool
 					var ot *TypeOneof1_FMessage1
 					if ot, ok = x.OneType13.(*TypeOneof1_FMessage1); !ok {
@@ -1618,7 +1601,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType13 = true
 					ot.FMessage1 = vv
 					x.OneType13 = ot
-				case oneofKey == "f_message2":
+				case "f_message2":
 					var ok bool
 					var ot *TypeOneof1_FMessage2
 					if ot, ok = x.OneType13.(*TypeOneof1_FMessage2); !ok {
@@ -1643,7 +1626,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType13 = true
 					ot.FMessage2 = vv
 					x.OneType13 = ot
-				case oneofKey == "f_message3":
+				case "f_message3":
 					var ok bool
 					var ot *TypeOneof1_FMessage3
 					if ot, ok = x.OneType13.(*TypeOneof1_FMessage3); !ok {
@@ -1668,7 +1651,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType13 = true
 					ot.FMessage3 = vv
 					x.OneType13 = ot
-				case oneofKey == "f_message4":
+				case "f_message4":
 					var ok bool
 					var ot *TypeOneof1_FMessage4
 					if ot, ok = x.OneType13.(*TypeOneof1_FMessage4); !ok {
@@ -1693,7 +1676,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType13 = true
 					ot.FMessage4 = vv
 					x.OneType13 = ot
-				case oneofKey == "f_message5":
+				case "f_message5":
 					var ok bool
 					var ot *TypeOneof1_FMessage5
 					if ot, ok = x.OneType13.(*TypeOneof1_FMessage5); !ok {
@@ -1718,7 +1701,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType13 = true
 					ot.FMessage5 = vv
 					x.OneType13 = ot
-				case oneofKey == "f_message6":
+				case "f_message6":
 					var ok bool
 					var ot *TypeOneof1_FMessage6
 					if ot, ok = x.OneType13.(*TypeOneof1_FMessage6); !ok {
@@ -1743,7 +1726,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType13 = true
 					ot.FMessage6 = vv
 					x.OneType13 = ot
-				case oneofKey == "f_message7":
+				case "f_message7":
 					var ok bool
 					var ot *TypeOneof1_FMessage7
 					if ot, ok = x.OneType13.(*TypeOneof1_FMessage7); !ok {
@@ -1768,7 +1751,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType13 = true
 					ot.FMessage7 = vv
 					x.OneType13 = ot
-				case oneofKey == "f_message8":
+				case "f_message8":
 					var ok bool
 					var ot *TypeOneof1_FMessage8
 					if ot, ok = x.OneType13.(*TypeOneof1_FMessage8); !ok {
@@ -1793,7 +1776,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType13 = true
 					ot.FMessage8 = vv
 					x.OneType13 = ot
-				case oneofKey == "f_message9":
+				case "f_message9":
 					var ok bool
 					var ot *TypeOneof1_FMessage9
 					if ot, ok = x.OneType13.(*TypeOneof1_FMessage9); !ok {
@@ -1935,9 +1918,8 @@ func (x *TypeOneofHide1) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -1951,8 +1933,8 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var ok bool
 			var ot *TypeOneofHide1_FString1
 			if ot, ok = x.OneType01.(*TypeOneofHide1_FString1); !ok {
@@ -1969,7 +1951,7 @@ LOOP_SCAN:
 			oneOfIsFill_OneType01 = true
 			ot.FString1 = vv
 			x.OneType01 = ot
-		case jsonKey == "f_string2":
+		case "f_string2":
 			var ok bool
 			var ot *TypeOneofHide1_FString2
 			if ot, ok = x.OneType01.(*TypeOneofHide1_FString2); !ok {
@@ -1986,7 +1968,7 @@ LOOP_SCAN:
 			oneOfIsFill_OneType01 = true
 			ot.FString2 = vv
 			x.OneType01 = ot
-		case jsonKey == "f_message1":
+		case "f_message1":
 			var ok bool
 			var ot *TypeOneofHide1_FMessage1
 			if ot, ok = x.OneType02.(*TypeOneofHide1_FMessage1); !ok {
@@ -2011,7 +1993,7 @@ LOOP_SCAN:
 			oneOfIsFill_OneType02 = true
 			ot.FMessage1 = vv
 			x.OneType02 = ot
-		case jsonKey == "f_message2":
+		case "f_message2":
 			var ok bool
 			var ot *TypeOneofHide1_FMessage2
 			if ot, ok = x.OneType02.(*TypeOneofHide1_FMessage2); !ok {
@@ -2036,7 +2018,7 @@ LOOP_SCAN:
 			oneOfIsFill_OneType02 = true
 			ot.FMessage2 = vv
 			x.OneType02 = ot
-		case jsonKey == "f_enum1":
+		case "f_enum1":
 			var ok bool
 			var ot *TypeOneofHide1_FEnum1
 			if ot, ok = x.OneType03.(*TypeOneofHide1_FEnum1); !ok {
@@ -2055,7 +2037,7 @@ LOOP_SCAN:
 			oneOfIsFill_OneType03 = true
 			ot.FEnum1 = vv
 			x.OneType03 = ot
-		case jsonKey == "f_enum2":
+		case "f_enum2":
 			var ok bool
 			var ot *TypeOneofHide1_FEnum2
 			if ot, ok = x.OneType03.(*TypeOneofHide1_FEnum2); !ok {
@@ -2074,7 +2056,7 @@ LOOP_SCAN:
 			oneOfIsFill_OneType03 = true
 			ot.FEnum2 = vv
 			x.OneType03 = ot
-		case jsonKey == "OneType04":
+		case "OneType04":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -2082,20 +2064,19 @@ LOOP_SCAN:
 				x.OneType04 = nil
 				continue LOOP_SCAN
 			}
-		LOOP_ONEOF_OneType04:
 			for {
 				var oneofKey string
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_ONEOF_OneType04
+					break
 				}
 				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
 					return err
 				}
-				switch {
-				case oneofKey == "f_duration1":
+				switch oneofKey { // match oneof key
+				case "f_duration1":
 					var ok bool
 					var ot *TypeOneofHide1_FDuration1
 					if ot, ok = x.OneType04.(*TypeOneofHide1_FDuration1); !ok {
@@ -2120,7 +2101,7 @@ LOOP_SCAN:
 					oneOfIsFill_OneType04 = true
 					ot.FDuration1 = vv
 					x.OneType04 = ot
-				case oneofKey == "f_duration2":
+				case "f_duration2":
 					var ok bool
 					var ot *TypeOneofHide1_FDuration2
 					if ot, ok = x.OneType04.(*TypeOneofHide1_FDuration2); !ok {

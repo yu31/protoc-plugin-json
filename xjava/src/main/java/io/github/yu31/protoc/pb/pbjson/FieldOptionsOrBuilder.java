@@ -69,4 +69,66 @@ public interface FieldOptionsOrBuilder extends
    * @return The useEnumString.
    */
   boolean getUseEnumString();
+
+  /**
+   * <code>.json.TypeEnum enum = 11;</code>
+   * @return Whether the enum field is set.
+   */
+  boolean hasEnum();
+  /**
+   * <code>.json.TypeEnum enum = 11;</code>
+   * @return The enum.
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeEnum getEnum();
+  /**
+   * <code>.json.TypeEnum enum = 11;</code>
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder getEnumOrBuilder();
+
+  /**
+   * <code>.json.TypeAny any = 12;</code>
+   * @return Whether the any field is set.
+   */
+  boolean hasAny();
+  /**
+   * <code>.json.TypeAny any = 12;</code>
+   * @return The any.
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeAny getAny();
+  /**
+   * <code>.json.TypeAny any = 12;</code>
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeAnyOrBuilder getAnyOrBuilder();
+
+  /**
+   * <code>.json.TypeDuration duration = 13;</code>
+   * @return Whether the duration field is set.
+   */
+  boolean hasDuration();
+  /**
+   * <code>.json.TypeDuration duration = 13;</code>
+   * @return The duration.
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeDuration getDuration();
+  /**
+   * <code>.json.TypeDuration duration = 13;</code>
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeDurationOrBuilder getDurationOrBuilder();
+
+  /**
+   * <code>.json.TypeTimestamp timestamp = 14;</code>
+   * @return Whether the timestamp field is set.
+   */
+  boolean hasTimestamp();
+  /**
+   * <code>.json.TypeTimestamp timestamp = 14;</code>
+   * @return The timestamp.
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeTimestamp getTimestamp();
+  /**
+   * <code>.json.TypeTimestamp timestamp = 14;</code>
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder getTimestampOrBuilder();
+
+  public io.github.yu31.protoc.pb.pbjson.FieldOptions.WKTCase getWKTCase();
 }

@@ -4,25 +4,25 @@
 package io.github.yu31.protoc.pb.pbjson;
 
 /**
- * Protobuf type {@code json.MessageOptions}
+ * Protobuf type {@code json.TypeEnum}
  */
-public final class MessageOptions extends
+public final class TypeEnum extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:json.MessageOptions)
-    MessageOptionsOrBuilder {
+    // @@protoc_insertion_point(message_implements:json.TypeEnum)
+    TypeEnumOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use MessageOptions.newBuilder() to construct.
-  private MessageOptions(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use TypeEnum.newBuilder() to construct.
+  private TypeEnum(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private MessageOptions() {
+  private TypeEnum() {
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new MessageOptions();
+    return new TypeEnum();
   }
 
   @java.lang.Override
@@ -30,7 +30,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private MessageOptions(
+  private TypeEnum(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -49,13 +49,13 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 8: {
-
-            ignore_ = input.readBool();
+            format_ = input.readBool();
+            formatCase_ = 1;
             break;
           }
           case 16: {
-
-            disallowUnknownFields_ = input.readBool();
+            format_ = input.readBool();
+            formatCase_ = 2;
             break;
           }
           default: {
@@ -79,47 +79,98 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_MessageOptions_descriptor;
+    return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeEnum_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_MessageOptions_fieldAccessorTable
+    return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeEnum_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.github.yu31.protoc.pb.pbjson.MessageOptions.class, io.github.yu31.protoc.pb.pbjson.MessageOptions.Builder.class);
+            io.github.yu31.protoc.pb.pbjson.TypeEnum.class, io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder.class);
   }
 
-  public static final int IGNORE_FIELD_NUMBER = 1;
-  private boolean ignore_;
-  /**
-   * <pre>
-   * Whether ignore generating code for the this message.
-   * </pre>
-   *
-   * <code>bool ignore = 1;</code>
-   * @return The ignore.
-   */
-  @java.lang.Override
-  public boolean getIgnore() {
-    return ignore_;
+  private int formatCase_ = 0;
+  private java.lang.Object format_;
+  public enum FormatCase
+      implements com.google.protobuf.Internal.EnumLite,
+          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+    USE_NUMBER(1),
+    USE_STRING(2),
+    FORMAT_NOT_SET(0);
+    private final int value;
+    private FormatCase(int value) {
+      this.value = value;
+    }
+    /**
+     * @param value The number of the enum to look for.
+     * @return The enum associated with the given number.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static FormatCase valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static FormatCase forNumber(int value) {
+      switch (value) {
+        case 1: return USE_NUMBER;
+        case 2: return USE_STRING;
+        case 0: return FORMAT_NOT_SET;
+        default: return null;
+      }
+    }
+    public int getNumber() {
+      return this.value;
+    }
+  };
+
+  public FormatCase
+  getFormatCase() {
+    return FormatCase.forNumber(
+        formatCase_);
   }
 
-  public static final int DISALLOW_UNKNOWN_FIELDS_FIELD_NUMBER = 2;
-  private boolean disallowUnknownFields_;
+  public static final int USE_NUMBER_FIELD_NUMBER = 1;
   /**
-   * <pre>
-   * disallow_unknown_fields causes the Unmarshal to return an error when the destination
-   * is a struct and the input contains object keys which do not match any
-   * non-ignored, exported fields in the destination.
-   * </pre>
-   *
-   * <code>bool disallow_unknown_fields = 2;</code>
-   * @return The disallowUnknownFields.
+   * <code>bool use_number = 1;</code>
+   * @return Whether the useNumber field is set.
    */
   @java.lang.Override
-  public boolean getDisallowUnknownFields() {
-    return disallowUnknownFields_;
+  public boolean hasUseNumber() {
+    return formatCase_ == 1;
+  }
+  /**
+   * <code>bool use_number = 1;</code>
+   * @return The useNumber.
+   */
+  @java.lang.Override
+  public boolean getUseNumber() {
+    if (formatCase_ == 1) {
+      return (java.lang.Boolean) format_;
+    }
+    return false;
+  }
+
+  public static final int USE_STRING_FIELD_NUMBER = 2;
+  /**
+   * <code>bool use_string = 2;</code>
+   * @return Whether the useString field is set.
+   */
+  @java.lang.Override
+  public boolean hasUseString() {
+    return formatCase_ == 2;
+  }
+  /**
+   * <code>bool use_string = 2;</code>
+   * @return The useString.
+   */
+  @java.lang.Override
+  public boolean getUseString() {
+    if (formatCase_ == 2) {
+      return (java.lang.Boolean) format_;
+    }
+    return false;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -136,11 +187,13 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (ignore_ != false) {
-      output.writeBool(1, ignore_);
+    if (formatCase_ == 1) {
+      output.writeBool(
+          1, (boolean)((java.lang.Boolean) format_));
     }
-    if (disallowUnknownFields_ != false) {
-      output.writeBool(2, disallowUnknownFields_);
+    if (formatCase_ == 2) {
+      output.writeBool(
+          2, (boolean)((java.lang.Boolean) format_));
     }
     unknownFields.writeTo(output);
   }
@@ -151,13 +204,15 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (ignore_ != false) {
+    if (formatCase_ == 1) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(1, ignore_);
+        .computeBoolSize(
+            1, (boolean)((java.lang.Boolean) format_));
     }
-    if (disallowUnknownFields_ != false) {
+    if (formatCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(2, disallowUnknownFields_);
+        .computeBoolSize(
+            2, (boolean)((java.lang.Boolean) format_));
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -169,15 +224,24 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof io.github.yu31.protoc.pb.pbjson.MessageOptions)) {
+    if (!(obj instanceof io.github.yu31.protoc.pb.pbjson.TypeEnum)) {
       return super.equals(obj);
     }
-    io.github.yu31.protoc.pb.pbjson.MessageOptions other = (io.github.yu31.protoc.pb.pbjson.MessageOptions) obj;
+    io.github.yu31.protoc.pb.pbjson.TypeEnum other = (io.github.yu31.protoc.pb.pbjson.TypeEnum) obj;
 
-    if (getIgnore()
-        != other.getIgnore()) return false;
-    if (getDisallowUnknownFields()
-        != other.getDisallowUnknownFields()) return false;
+    if (!getFormatCase().equals(other.getFormatCase())) return false;
+    switch (formatCase_) {
+      case 1:
+        if (getUseNumber()
+            != other.getUseNumber()) return false;
+        break;
+      case 2:
+        if (getUseString()
+            != other.getUseString()) return false;
+        break;
+      case 0:
+      default:
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -189,80 +253,88 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + IGNORE_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getIgnore());
-    hash = (37 * hash) + DISALLOW_UNKNOWN_FIELDS_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getDisallowUnknownFields());
+    switch (formatCase_) {
+      case 1:
+        hash = (37 * hash) + USE_NUMBER_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getUseNumber());
+        break;
+      case 2:
+        hash = (37 * hash) + USE_STRING_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getUseString());
+        break;
+      case 0:
+      default:
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static io.github.yu31.protoc.pb.pbjson.MessageOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeEnum parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MessageOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeEnum parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MessageOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeEnum parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MessageOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeEnum parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MessageOptions parseFrom(byte[] data)
+  public static io.github.yu31.protoc.pb.pbjson.TypeEnum parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MessageOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeEnum parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MessageOptions parseFrom(java.io.InputStream input)
+  public static io.github.yu31.protoc.pb.pbjson.TypeEnum parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MessageOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeEnum parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MessageOptions parseDelimitedFrom(java.io.InputStream input)
+  public static io.github.yu31.protoc.pb.pbjson.TypeEnum parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MessageOptions parseDelimitedFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeEnum parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MessageOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeEnum parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MessageOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeEnum parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -275,7 +347,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(io.github.yu31.protoc.pb.pbjson.MessageOptions prototype) {
+  public static Builder newBuilder(io.github.yu31.protoc.pb.pbjson.TypeEnum prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -291,26 +363,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code json.MessageOptions}
+   * Protobuf type {@code json.TypeEnum}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:json.MessageOptions)
-      io.github.yu31.protoc.pb.pbjson.MessageOptionsOrBuilder {
+      // @@protoc_insertion_point(builder_implements:json.TypeEnum)
+      io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_MessageOptions_descriptor;
+      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeEnum_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_MessageOptions_fieldAccessorTable
+      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeEnum_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              io.github.yu31.protoc.pb.pbjson.MessageOptions.class, io.github.yu31.protoc.pb.pbjson.MessageOptions.Builder.class);
+              io.github.yu31.protoc.pb.pbjson.TypeEnum.class, io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder.class);
     }
 
-    // Construct using io.github.yu31.protoc.pb.pbjson.MessageOptions.newBuilder()
+    // Construct using io.github.yu31.protoc.pb.pbjson.TypeEnum.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -328,27 +400,25 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      ignore_ = false;
-
-      disallowUnknownFields_ = false;
-
+      formatCase_ = 0;
+      format_ = null;
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_MessageOptions_descriptor;
+      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeEnum_descriptor;
     }
 
     @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.MessageOptions getDefaultInstanceForType() {
-      return io.github.yu31.protoc.pb.pbjson.MessageOptions.getDefaultInstance();
+    public io.github.yu31.protoc.pb.pbjson.TypeEnum getDefaultInstanceForType() {
+      return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
     }
 
     @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.MessageOptions build() {
-      io.github.yu31.protoc.pb.pbjson.MessageOptions result = buildPartial();
+    public io.github.yu31.protoc.pb.pbjson.TypeEnum build() {
+      io.github.yu31.protoc.pb.pbjson.TypeEnum result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -356,10 +426,15 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.MessageOptions buildPartial() {
-      io.github.yu31.protoc.pb.pbjson.MessageOptions result = new io.github.yu31.protoc.pb.pbjson.MessageOptions(this);
-      result.ignore_ = ignore_;
-      result.disallowUnknownFields_ = disallowUnknownFields_;
+    public io.github.yu31.protoc.pb.pbjson.TypeEnum buildPartial() {
+      io.github.yu31.protoc.pb.pbjson.TypeEnum result = new io.github.yu31.protoc.pb.pbjson.TypeEnum(this);
+      if (formatCase_ == 1) {
+        result.format_ = format_;
+      }
+      if (formatCase_ == 2) {
+        result.format_ = format_;
+      }
+      result.formatCase_ = formatCase_;
       onBuilt();
       return result;
     }
@@ -398,21 +473,28 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.github.yu31.protoc.pb.pbjson.MessageOptions) {
-        return mergeFrom((io.github.yu31.protoc.pb.pbjson.MessageOptions)other);
+      if (other instanceof io.github.yu31.protoc.pb.pbjson.TypeEnum) {
+        return mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeEnum)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(io.github.yu31.protoc.pb.pbjson.MessageOptions other) {
-      if (other == io.github.yu31.protoc.pb.pbjson.MessageOptions.getDefaultInstance()) return this;
-      if (other.getIgnore() != false) {
-        setIgnore(other.getIgnore());
-      }
-      if (other.getDisallowUnknownFields() != false) {
-        setDisallowUnknownFields(other.getDisallowUnknownFields());
+    public Builder mergeFrom(io.github.yu31.protoc.pb.pbjson.TypeEnum other) {
+      if (other == io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance()) return this;
+      switch (other.getFormatCase()) {
+        case USE_NUMBER: {
+          setUseNumber(other.getUseNumber());
+          break;
+        }
+        case USE_STRING: {
+          setUseString(other.getUseString());
+          break;
+        }
+        case FORMAT_NOT_SET: {
+          break;
+        }
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -429,11 +511,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      io.github.yu31.protoc.pb.pbjson.MessageOptions parsedMessage = null;
+      io.github.yu31.protoc.pb.pbjson.TypeEnum parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.github.yu31.protoc.pb.pbjson.MessageOptions) e.getUnfinishedMessage();
+        parsedMessage = (io.github.yu31.protoc.pb.pbjson.TypeEnum) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -442,96 +524,101 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+    private int formatCase_ = 0;
+    private java.lang.Object format_;
+    public FormatCase
+        getFormatCase() {
+      return FormatCase.forNumber(
+          formatCase_);
+    }
 
-    private boolean ignore_ ;
-    /**
-     * <pre>
-     * Whether ignore generating code for the this message.
-     * </pre>
-     *
-     * <code>bool ignore = 1;</code>
-     * @return The ignore.
-     */
-    @java.lang.Override
-    public boolean getIgnore() {
-      return ignore_;
-    }
-    /**
-     * <pre>
-     * Whether ignore generating code for the this message.
-     * </pre>
-     *
-     * <code>bool ignore = 1;</code>
-     * @param value The ignore to set.
-     * @return This builder for chaining.
-     */
-    public Builder setIgnore(boolean value) {
-      
-      ignore_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Whether ignore generating code for the this message.
-     * </pre>
-     *
-     * <code>bool ignore = 1;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearIgnore() {
-      
-      ignore_ = false;
+    public Builder clearFormat() {
+      formatCase_ = 0;
+      format_ = null;
       onChanged();
       return this;
     }
 
-    private boolean disallowUnknownFields_ ;
+
     /**
-     * <pre>
-     * disallow_unknown_fields causes the Unmarshal to return an error when the destination
-     * is a struct and the input contains object keys which do not match any
-     * non-ignored, exported fields in the destination.
-     * </pre>
-     *
-     * <code>bool disallow_unknown_fields = 2;</code>
-     * @return The disallowUnknownFields.
+     * <code>bool use_number = 1;</code>
+     * @return Whether the useNumber field is set.
      */
-    @java.lang.Override
-    public boolean getDisallowUnknownFields() {
-      return disallowUnknownFields_;
+    public boolean hasUseNumber() {
+      return formatCase_ == 1;
     }
     /**
-     * <pre>
-     * disallow_unknown_fields causes the Unmarshal to return an error when the destination
-     * is a struct and the input contains object keys which do not match any
-     * non-ignored, exported fields in the destination.
-     * </pre>
-     *
-     * <code>bool disallow_unknown_fields = 2;</code>
-     * @param value The disallowUnknownFields to set.
+     * <code>bool use_number = 1;</code>
+     * @return The useNumber.
+     */
+    public boolean getUseNumber() {
+      if (formatCase_ == 1) {
+        return (java.lang.Boolean) format_;
+      }
+      return false;
+    }
+    /**
+     * <code>bool use_number = 1;</code>
+     * @param value The useNumber to set.
      * @return This builder for chaining.
      */
-    public Builder setDisallowUnknownFields(boolean value) {
-      
-      disallowUnknownFields_ = value;
+    public Builder setUseNumber(boolean value) {
+      formatCase_ = 1;
+      format_ = value;
       onChanged();
       return this;
     }
     /**
-     * <pre>
-     * disallow_unknown_fields causes the Unmarshal to return an error when the destination
-     * is a struct and the input contains object keys which do not match any
-     * non-ignored, exported fields in the destination.
-     * </pre>
-     *
-     * <code>bool disallow_unknown_fields = 2;</code>
+     * <code>bool use_number = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearDisallowUnknownFields() {
-      
-      disallowUnknownFields_ = false;
+    public Builder clearUseNumber() {
+      if (formatCase_ == 1) {
+        formatCase_ = 0;
+        format_ = null;
+        onChanged();
+      }
+      return this;
+    }
+
+    /**
+     * <code>bool use_string = 2;</code>
+     * @return Whether the useString field is set.
+     */
+    public boolean hasUseString() {
+      return formatCase_ == 2;
+    }
+    /**
+     * <code>bool use_string = 2;</code>
+     * @return The useString.
+     */
+    public boolean getUseString() {
+      if (formatCase_ == 2) {
+        return (java.lang.Boolean) format_;
+      }
+      return false;
+    }
+    /**
+     * <code>bool use_string = 2;</code>
+     * @param value The useString to set.
+     * @return This builder for chaining.
+     */
+    public Builder setUseString(boolean value) {
+      formatCase_ = 2;
+      format_ = value;
       onChanged();
+      return this;
+    }
+    /**
+     * <code>bool use_string = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearUseString() {
+      if (formatCase_ == 2) {
+        formatCase_ = 0;
+        format_ = null;
+        onChanged();
+      }
       return this;
     }
     @java.lang.Override
@@ -547,41 +634,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:json.MessageOptions)
+    // @@protoc_insertion_point(builder_scope:json.TypeEnum)
   }
 
-  // @@protoc_insertion_point(class_scope:json.MessageOptions)
-  private static final io.github.yu31.protoc.pb.pbjson.MessageOptions DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:json.TypeEnum)
+  private static final io.github.yu31.protoc.pb.pbjson.TypeEnum DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new io.github.yu31.protoc.pb.pbjson.MessageOptions();
+    DEFAULT_INSTANCE = new io.github.yu31.protoc.pb.pbjson.TypeEnum();
   }
 
-  public static io.github.yu31.protoc.pb.pbjson.MessageOptions getDefaultInstance() {
+  public static io.github.yu31.protoc.pb.pbjson.TypeEnum getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<MessageOptions>
-      PARSER = new com.google.protobuf.AbstractParser<MessageOptions>() {
+  private static final com.google.protobuf.Parser<TypeEnum>
+      PARSER = new com.google.protobuf.AbstractParser<TypeEnum>() {
     @java.lang.Override
-    public MessageOptions parsePartialFrom(
+    public TypeEnum parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new MessageOptions(input, extensionRegistry);
+      return new TypeEnum(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<MessageOptions> parser() {
+  public static com.google.protobuf.Parser<TypeEnum> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<MessageOptions> getParserForType() {
+  public com.google.protobuf.Parser<TypeEnum> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.MessageOptions getDefaultInstanceForType() {
+  public io.github.yu31.protoc.pb.pbjson.TypeEnum getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

@@ -19,7 +19,6 @@ func (p *Plugin) generateCodeUnmarshal(fields []*protogen.Field) {
 	p.g.P("    if x == nil {")
 	p.g.P("        return ", importpkg.Errors.Ident("New"), `("json: Unmarshal: `, string(msg.GoIdent.GoImportPath), ".(*", msg.GoIdent.GoName, `) is nil")`)
 	p.g.P("    }")
-
 	if len(fields) != 0 {
 		// Generated flag variables to check oneof are loaded.
 		p.unmarshalGenVariables(fields)
@@ -27,9 +26,7 @@ func (p *Plugin) generateCodeUnmarshal(fields []*protogen.Field) {
 		// Generated scan code.
 		p.unmarshalLoopScan(fields)
 	}
-
 	p.g.P("    return nil")
-	// End function.
 	p.g.P("}")
 }
 func (p *Plugin) unmarshalGenVariables(fields []*protogen.Field) {
@@ -39,10 +36,11 @@ func (p *Plugin) unmarshalGenVariables(fields []*protogen.Field) {
 			continue
 		}
 		options := p.loadOneofOptions(field.Oneof)
-		if !(options.Ignore) {
-			oneOfName := field.Oneof.GoName
-			p.g.P("var ", p.genVariableOneofIsFill(oneOfName), " bool")
+		if options.Ignore {
+			continue
 		}
+		varIsFill := p.genVariableOneofIsFill(field.Oneof.GoName)
+		p.g.P("var ", varIsFill, " bool")
 	}
 	p.g.P("")
 }
@@ -63,9 +61,8 @@ func (p *Plugin) unmarshalLoopScan(fields []*protogen.Field) {
 	p.g.P("    return nil")
 	p.g.P("}")
 
-	p.g.P("// Loop to scan object.")
 	p.g.P("LOOP_SCAN:")
-	p.g.P("for {")
+	p.g.P("for { // Loop to scan object.")
 	p.unmarshalLoopRead(fields)
 	p.g.P("}")
 }
@@ -84,7 +81,7 @@ func (p *Plugin) unmarshalLoopRead(fields []*protogen.Field) {
 	p.g.P("if jsonKey, err = decoder.ReadJSONKey(); err != nil {")
 	p.g.P("    return err")
 	p.g.P("}")
-	p.g.P("switch { // match the JSON KEY")
+	p.g.P("switch jsonKey { // match the JSON key")
 LOOP:
 	for _, field := range fields {
 		var jsonKey string
@@ -94,7 +91,7 @@ LOOP:
 				continue LOOP
 			}
 			if options.Hide {
-				p.unmarshalOneOfField(field, "jsonKey")
+				p.unmarshalOneOfField(field)
 				continue LOOP
 			}
 			jsonKey = p.getJSONKeyForOneof(options, field.Oneof)
@@ -105,7 +102,7 @@ LOOP:
 			}
 			jsonKey = p.getJSONKeyForField(options, field)
 		}
-		p.g.P("case jsonKey == ", strconv.Quote(jsonKey), ":")
+		p.g.P("case ", strconv.Quote(jsonKey), ":")
 		switch {
 		case pkfield.FieldIsOneOf(field):
 			p.unmarshalOneOf(field)
@@ -131,8 +128,6 @@ LOOP:
 }
 
 func (p *Plugin) unmarshalOneOf(field *protogen.Field) {
-	loopLabel := "LOOP_ONEOF_" + string(field.Oneof.Desc.Name())
-
 	// Read and parse oneof.
 	p.g.P("if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {")
 	p.g.P("    return err")
@@ -141,21 +136,19 @@ func (p *Plugin) unmarshalOneOf(field *protogen.Field) {
 	p.g.P("    x.", field.Oneof.GoName, " = nil")
 	p.g.P("    continue LOOP_SCAN")
 	p.g.P("}")
-	p.g.P(loopLabel, ":")
 	p.g.P("for {")
 	p.g.P("    var oneofKey string")
 	p.g.P("	if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {")
 	p.g.P("    	return err ")
 	p.g.P("	}")
 	p.g.P("	if isEnd {")
-	p.g.P("    	break ", loopLabel)
+	p.g.P("    	break")
 	p.g.P("	}")
 	p.g.P("	if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {")
 	p.g.P("    	return err")
 	p.g.P("	}")
-	// Read and process value.
-	p.g.P("    switch {")
-	p.unmarshalOneOfField(field, "oneofKey")
+	p.g.P("    switch oneofKey { // match oneof key")
+	p.unmarshalOneOfField(field)
 	p.g.P("    default:")
 	if p.msgOptions.DisallowUnknownFields {
 		p.g.P("    return ", importpkg.FMT.Ident("Errorf"), `("json: unknown field %q in oneof parts", oneofKey)`)
@@ -171,7 +164,6 @@ func (p *Plugin) unmarshalOneOf(field *protogen.Field) {
 func (p *Plugin) unmarshalMap(field *protogen.Field) {
 	goName := field.GoName
 	goType := pkfield.FieldGoType(p.g, field)
-	loopLabel := "LOOP_MAP_" + string(field.Desc.Name())
 
 	// Read and parse map.
 	p.g.P("if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {")
@@ -184,13 +176,12 @@ func (p *Plugin) unmarshalMap(field *protogen.Field) {
 	p.g.P("if x.", goName, " == nil {")
 	p.g.P("    x.", goName, " = ", "make(", goType, ")")
 	p.g.P("}")
-	p.g.P(loopLabel, ":")
 	p.g.P("for {") // start loop.
 	p.g.P("	if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {")
 	p.g.P("    	return err ")
 	p.g.P("	}")
 	p.g.P("	if isEnd {")
-	p.g.P("    	break ", loopLabel)
+	p.g.P("    	break")
 	p.g.P("	}")
 	p.unmarshalReadMapKey(field)
 	p.unmarshalReadMapValue(field)
@@ -200,8 +191,6 @@ func (p *Plugin) unmarshalMap(field *protogen.Field) {
 func (p *Plugin) unmarshalRepeated(field *protogen.Field) {
 	goName := field.GoName
 	goType := pkfield.FieldGoType(p.g, field)
-
-	loopLabel := "LOOP_LIST_" + string(field.Desc.Name())
 
 	// Read and parse array. same as the standard json.
 	p.g.P("if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {")
@@ -216,13 +205,12 @@ func (p *Plugin) unmarshalRepeated(field *protogen.Field) {
 	p.g.P("}")
 	p.g.P("i := 0")
 	p.g.P("length := len(x.", goName, ")")
-	p.g.P(loopLabel, ":")
 	p.g.P("for {") // start loop.
 	p.g.P("	if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {")
 	p.g.P("   		return err")
 	p.g.P("	}")
 	p.g.P("	if isEnd {")
-	p.g.P("   		break ", loopLabel)
+	p.g.P("   		break")
 	p.g.P("	}")
 	p.unmarshalReadArrayElem(field)
 	p.g.P("}") // end loop.
@@ -236,13 +224,14 @@ func (p *Plugin) unmarshalPlain(field *protogen.Field) {
 	p.unmarshalReadLiteralValue(field)
 }
 
-func (p *Plugin) unmarshalOneOfField(field *protogen.Field, keyVariable string) {
+func (p *Plugin) unmarshalOneOfField(field *protogen.Field) {
 	for _, oneField := range field.Oneof.Fields {
 		options := p.loadFieldOptions(field)
 		if options.Ignore {
 			continue
 		}
-		p.g.P("case ", keyVariable, " == ", `"`, p.getJSONKeyForField(options, oneField), `"`, ":")
+		jsonKey := p.getJSONKeyForField(options, oneField)
+		p.g.P("case ", strconv.Quote(jsonKey), ":")
 		p.unmarshalReadLiteralValue(oneField)
 	}
 }
@@ -322,7 +311,7 @@ func (p *Plugin) unmarshalReadMapValue(field *protogen.Field) {
 		} else {
 			p.g.P("v1, err = decoder.ReadMapValueEnumNumber", "(jsonKey,", goType, "_name)")
 		}
-		p.g.P("	mapVal = ", goType, "(v1)")
+		p.g.P("mapVal = ", goType, "(v1)")
 	default:
 		panic(fmt.Sprintf(
 			"gojson: unmarshal: unsupported kind of %s as value, field: %s", _field.Desc.Kind().String(), _field.Desc.FullName(),
@@ -381,7 +370,7 @@ func (p *Plugin) unmarshalReadArrayElem(field *protogen.Field) {
 		} else {
 			p.g.P("v1, err = decoder.ReadArrayElemEnumNumber", "(jsonKey,", goType, "_name)")
 		}
-		p.g.P("	vv = ", goType, "(v1)")
+		p.g.P("vv = ", goType, "(v1)")
 	default:
 		panic(fmt.Sprintf(
 			"gojson: unmarshal: unsupported kind of %s as value, field: %s", field.Desc.Kind().String(), field.Desc.FullName(),
@@ -508,7 +497,7 @@ func (p *Plugin) unmarshalReadLiteralValue(field *protogen.Field) {
 			} else {
 				p.g.P("v1, err = decoder.ReadValueEnumNumber", "(jsonKey,", goType, "_name)")
 			}
-			p.g.P("	vv = ", goType, "(v1)")
+			p.g.P("vv = ", goType, "(v1)")
 		}
 	default:
 		panic(fmt.Sprintf(

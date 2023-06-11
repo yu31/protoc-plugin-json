@@ -270,9 +270,8 @@ func (x *Example1) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -286,15 +285,15 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString1 = vv
-		case jsonKey == "OnetType1":
+		case "OnetType1":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -302,20 +301,19 @@ LOOP_SCAN:
 				x.OnetType1 = nil
 				continue LOOP_SCAN
 			}
-		LOOP_ONEOF_OnetType1:
 			for {
 				var oneofKey string
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_ONEOF_OnetType1
+					break
 				}
 				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
 					return err
 				}
-				switch {
-				case oneofKey == "f_string2":
+				switch oneofKey { // match oneof key
+				case "f_string2":
 					var ok bool
 					var ot *Example1_FString2
 					if ot, ok = x.OnetType1.(*Example1_FString2); !ok {
@@ -332,7 +330,7 @@ LOOP_SCAN:
 					oneOfIsFill_OnetType1 = true
 					ot.FString2 = vv
 					x.OnetType1 = ot
-				case oneofKey == "f_string3":
+				case "f_string3":
 					var ok bool
 					var ot *Example1_FString3
 					if ot, ok = x.OnetType1.(*Example1_FString3); !ok {
@@ -355,7 +353,7 @@ LOOP_SCAN:
 					}
 				}
 			}
-		case jsonKey == "f_string4":
+		case "f_string4":
 			var ok bool
 			var ot *Example1_FString4
 			if ot, ok = x.OnetType2.(*Example1_FString4); !ok {
@@ -372,7 +370,7 @@ LOOP_SCAN:
 			oneOfIsFill_OnetType2 = true
 			ot.FString4 = vv
 			x.OnetType2 = ot
-		case jsonKey == "f_string5":
+		case "f_string5":
 			var ok bool
 			var ot *Example1_FString5
 			if ot, ok = x.OnetType2.(*Example1_FString5); !ok {
@@ -389,105 +387,105 @@ LOOP_SCAN:
 			oneOfIsFill_OnetType2 = true
 			ot.FString5 = vv
 			x.OnetType2 = ot
-		case jsonKey == "f_int32":
+		case "f_int32":
 			var vv int32
 			vv, err = decoder.ReadValueInt32(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FInt32 = vv
-		case jsonKey == "f_int64":
+		case "f_int64":
 			var vv int64
 			vv, err = decoder.ReadValueInt64(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FInt64 = vv
-		case jsonKey == "f_uint32":
+		case "f_uint32":
 			var vv uint32
 			vv, err = decoder.ReadValueUint32(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FUint32 = vv
-		case jsonKey == "f_uint64":
+		case "f_uint64":
 			var vv uint64
 			vv, err = decoder.ReadValueUint64(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FUint64 = vv
-		case jsonKey == "f_sint32":
+		case "f_sint32":
 			var vv int32
 			vv, err = decoder.ReadValueInt32(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FSint32 = vv
-		case jsonKey == "f_sint64":
+		case "f_sint64":
 			var vv int64
 			vv, err = decoder.ReadValueInt64(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FSint64 = vv
-		case jsonKey == "f_sfixed32":
+		case "f_sfixed32":
 			var vv int32
 			vv, err = decoder.ReadValueInt32(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FSfixed32 = vv
-		case jsonKey == "f_sfixed64":
+		case "f_sfixed64":
 			var vv int64
 			vv, err = decoder.ReadValueInt64(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FSfixed64 = vv
-		case jsonKey == "f_fixed32":
+		case "f_fixed32":
 			var vv uint32
 			vv, err = decoder.ReadValueUint32(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FFixed32 = vv
-		case jsonKey == "f_fixed64":
+		case "f_fixed64":
 			var vv uint64
 			vv, err = decoder.ReadValueUint64(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FFixed64 = vv
-		case jsonKey == "f_float":
+		case "f_float":
 			var vv float32
 			vv, err = decoder.ReadValueFloat32(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FFloat = vv
-		case jsonKey == "f_double":
+		case "f_double":
 			var vv float64
 			vv, err = decoder.ReadValueFloat64(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FDouble = vv
-		case jsonKey == "f_bool1":
+		case "f_bool1":
 			var vv bool
 			vv, err = decoder.ReadValueBool(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FBool1 = vv
-		case jsonKey == "f_bytes1":
+		case "f_bytes1":
 			var vv []byte
 			vv, err = decoder.ReadValueBytes(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FBytes1 = vv
-		case jsonKey == "f_enum1":
+		case "f_enum1":
 			var vv Enum1
 			var v1 int32
 			v1, err = decoder.ReadValueEnumString(jsonKey, Enum1_value)
@@ -496,7 +494,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FEnum1 = vv
-		case jsonKey == "f_enum2":
+		case "f_enum2":
 			var vv Enum1
 			var v1 int32
 			v1, err = decoder.ReadValueEnumNumber(jsonKey, Enum1_name)
@@ -505,7 +503,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FEnum2 = vv
-		case jsonKey == "f_enum5":
+		case "f_enum5":
 			var vv *Enum1
 			var v1 *int32
 			v1, err = decoder.ReadPointerEnumString(jsonKey, Enum1_value)
@@ -517,7 +515,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FEnum5 = vv
-		case jsonKey == "f_enum6":
+		case "f_enum6":
 			var vv *Enum1
 			var v1 *int32
 			v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name)
@@ -529,7 +527,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FEnum6 = vv
-		case jsonKey == "f_duration1":
+		case "f_duration1":
 			var vv *durationpb.Duration
 			initFN := func() interface{} {
 				if x.FDuration1 != nil {
@@ -544,7 +542,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FDuration1 = vv
-		case jsonKey == "f_timestamp1":
+		case "f_timestamp1":
 			var vv *timestamppb.Timestamp
 			initFN := func() interface{} {
 				if x.FTimestamp1 != nil {
@@ -559,7 +557,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FTimestamp1 = vv
-		case jsonKey == "f_message11":
+		case "f_message11":
 			var vv *Message1
 			initFN := func() interface{} {
 				if x.FMessage11 != nil {
@@ -574,7 +572,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FMessage11 = vv
-		case jsonKey == "f_message12":
+		case "f_message12":
 			var vv *Message1_Embed1
 			initFN := func() interface{} {
 				if x.FMessage12 != nil {
@@ -589,7 +587,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FMessage12 = vv
-		case jsonKey == "f_message13":
+		case "f_message13":
 			var vv *Message1_Embed1_Embed2
 			initFN := func() interface{} {
 				if x.FMessage13 != nil {
@@ -604,7 +602,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FMessage13 = vv
-		case jsonKey == "f_any1":
+		case "f_any1":
 			var vv *anypb.Any
 			initFN := func() interface{} {
 				if x.FAny1 != nil {
@@ -619,7 +617,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FAny1 = vv
-		case jsonKey == "r_string1":
+		case "r_string1":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -632,13 +630,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.RString1)
-		LOOP_LIST_r_string1:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_r_string1
+					break
 				}
 				var vv string
 				vv, err = decoder.ReadArrayElemString(jsonKey)
@@ -656,7 +653,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.RString1 = x.RString1[:i]
 			}
-		case jsonKey == "r_int32":
+		case "r_int32":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -669,13 +666,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.RInt32)
-		LOOP_LIST_r_int32:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_r_int32
+					break
 				}
 				var vv int32
 				vv, err = decoder.ReadArrayElemInt32(jsonKey)
@@ -693,7 +689,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.RInt32 = x.RInt32[:i]
 			}
-		case jsonKey == "r_message":
+		case "r_message":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -706,13 +702,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.RMessage)
-		LOOP_LIST_r_message:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_r_message
+					break
 				}
 				var vv *Message1
 				initFN := func() interface{} {
@@ -739,7 +734,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.RMessage = x.RMessage[:i]
 			}
-		case jsonKey == "r_enum":
+		case "r_enum":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err
 			}
@@ -752,13 +747,12 @@ LOOP_SCAN:
 			}
 			i := 0
 			length := len(x.REnum)
-		LOOP_LIST_r_enum:
 			for {
 				if isEnd, err = decoder.BeforeReadArrayElem(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_LIST_r_enum
+					break
 				}
 				var vv Enum1
 				var v1 int32
@@ -778,7 +772,7 @@ LOOP_SCAN:
 				// truncate the slice to Consistent with standard library json.
 				x.REnum = x.REnum[:i]
 			}
-		case jsonKey == "m_string1":
+		case "m_string1":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -789,13 +783,12 @@ LOOP_SCAN:
 			if x.MString1 == nil {
 				x.MString1 = make(map[string]string)
 			}
-		LOOP_MAP_m_string1:
 			for {
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_MAP_m_string1
+					break
 				}
 				var mapKey string
 				mapKey, err = decoder.ReadMapKeyString(jsonKey)
@@ -809,7 +802,7 @@ LOOP_SCAN:
 				}
 				x.MString1[mapKey] = mapVal
 			}
-		case jsonKey == "m_string2":
+		case "m_string2":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -820,13 +813,12 @@ LOOP_SCAN:
 			if x.MString2 == nil {
 				x.MString2 = make(map[int32]string)
 			}
-		LOOP_MAP_m_string2:
 			for {
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_MAP_m_string2
+					break
 				}
 				var mapKey int32
 				mapKey, err = decoder.ReadMapKeyInt32(jsonKey)
@@ -840,7 +832,7 @@ LOOP_SCAN:
 				}
 				x.MString2[mapKey] = mapVal
 			}
-		case jsonKey == "m_message1":
+		case "m_message1":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -851,13 +843,12 @@ LOOP_SCAN:
 			if x.MMessage1 == nil {
 				x.MMessage1 = make(map[string]*Message1)
 			}
-		LOOP_MAP_m_message1:
 			for {
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_MAP_m_message1
+					break
 				}
 				var mapKey string
 				mapKey, err = decoder.ReadMapKeyString(jsonKey)
@@ -878,7 +869,7 @@ LOOP_SCAN:
 				}
 				x.MMessage1[mapKey] = mapVal
 			}
-		case jsonKey == "m_enum":
+		case "m_enum":
 			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
 				return err
 			}
@@ -889,13 +880,12 @@ LOOP_SCAN:
 			if x.MEnum == nil {
 				x.MEnum = make(map[string]Enum1)
 			}
-		LOOP_MAP_m_enum:
 			for {
 				if isEnd, err = decoder.BeforeReadObjectKey(jsonKey); err != nil {
 					return err
 				}
 				if isEnd {
-					break LOOP_MAP_m_enum
+					break
 				}
 				var mapKey string
 				mapKey, err = decoder.ReadMapKeyString(jsonKey)
@@ -961,9 +951,8 @@ func (x *Message1) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -977,15 +966,15 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString1 = vv
-		case jsonKey == "f_string2":
+		case "f_string2":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
@@ -1042,9 +1031,8 @@ func (x *Message1_Embed1) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -1058,15 +1046,15 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString1 = vv
-		case jsonKey == "f_string2":
+		case "f_string2":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
@@ -1123,9 +1111,8 @@ func (x *Message1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -1139,15 +1126,15 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString1 = vv
-		case jsonKey == "f_string2":
+		case "f_string2":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {

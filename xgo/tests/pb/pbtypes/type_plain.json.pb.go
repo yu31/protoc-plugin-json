@@ -59,9 +59,8 @@ func (x *MessagePlain1) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -75,22 +74,22 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString1 = vv
-		case jsonKey == "f_string2":
+		case "f_string2":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString2 = vv
-		case jsonKey == "f_string3":
+		case "f_string3":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
@@ -149,9 +148,8 @@ func (x *MessagePlain1_Embed1) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -165,22 +163,22 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString1 = vv
-		case jsonKey == "f_string2":
+		case "f_string2":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString2 = vv
-		case jsonKey == "f_string3":
+		case "f_string3":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
@@ -239,9 +237,8 @@ func (x *MessagePlain1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -255,22 +252,22 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString1 = vv
-		case jsonKey == "f_string2":
+		case "f_string2":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString2 = vv
-		case jsonKey == "f_string3":
+		case "f_string3":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
@@ -442,9 +439,8 @@ func (x *TypePlain1) UnmarshalJSON(b []byte) error {
 	if isNULL {
 		return nil
 	}
-	// Loop to scan object.
 LOOP_SCAN:
-	for {
+	for { // Loop to scan object.
 		var (
 			jsonKey string
 			isEnd   bool
@@ -458,120 +454,120 @@ LOOP_SCAN:
 		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
 			return err
 		}
-		switch { // match the JSON KEY
-		case jsonKey == "f_string1":
+		switch jsonKey { // match the JSON key
+		case "f_string1":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString1 = vv
-		case jsonKey == "f_string2":
+		case "f_string2":
 			var vv string
 			vv, err = decoder.ReadValueString(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FString2 = vv
-		case jsonKey == "f_int32":
+		case "f_int32":
 			var vv int32
 			vv, err = decoder.ReadValueInt32(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FInt32 = vv
-		case jsonKey == "f_int64":
+		case "f_int64":
 			var vv int64
 			vv, err = decoder.ReadValueInt64(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FInt64 = vv
-		case jsonKey == "f_uint32":
+		case "f_uint32":
 			var vv uint32
 			vv, err = decoder.ReadValueUint32(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FUint32 = vv
-		case jsonKey == "f_uint64":
+		case "f_uint64":
 			var vv uint64
 			vv, err = decoder.ReadValueUint64(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FUint64 = vv
-		case jsonKey == "f_sint32":
+		case "f_sint32":
 			var vv int32
 			vv, err = decoder.ReadValueInt32(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FSint32 = vv
-		case jsonKey == "f_sint64":
+		case "f_sint64":
 			var vv int64
 			vv, err = decoder.ReadValueInt64(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FSint64 = vv
-		case jsonKey == "f_sfixed32":
+		case "f_sfixed32":
 			var vv int32
 			vv, err = decoder.ReadValueInt32(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FSfixed32 = vv
-		case jsonKey == "f_sfixed64":
+		case "f_sfixed64":
 			var vv int64
 			vv, err = decoder.ReadValueInt64(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FSfixed64 = vv
-		case jsonKey == "f_fixed32":
+		case "f_fixed32":
 			var vv uint32
 			vv, err = decoder.ReadValueUint32(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FFixed32 = vv
-		case jsonKey == "f_fixed64":
+		case "f_fixed64":
 			var vv uint64
 			vv, err = decoder.ReadValueUint64(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FFixed64 = vv
-		case jsonKey == "f_float":
+		case "f_float":
 			var vv float32
 			vv, err = decoder.ReadValueFloat32(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FFloat = vv
-		case jsonKey == "f_double":
+		case "f_double":
 			var vv float64
 			vv, err = decoder.ReadValueFloat64(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FDouble = vv
-		case jsonKey == "f_bool1":
+		case "f_bool1":
 			var vv bool
 			vv, err = decoder.ReadValueBool(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FBool1 = vv
-		case jsonKey == "f_bytes1":
+		case "f_bytes1":
 			var vv []byte
 			vv, err = decoder.ReadValueBytes(jsonKey)
 			if err != nil {
 				return err
 			}
 			x.FBytes1 = vv
-		case jsonKey == "f_enum1":
+		case "f_enum1":
 			var vv EnumPlain1
 			var v1 int32
 			v1, err = decoder.ReadValueEnumNumber(jsonKey, EnumPlain1_name)
@@ -580,7 +576,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FEnum1 = vv
-		case jsonKey == "f_enum2":
+		case "f_enum2":
 			var vv pbexternal.Enum1
 			var v1 int32
 			v1, err = decoder.ReadValueEnumNumber(jsonKey, pbexternal.Enum1_name)
@@ -589,7 +585,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FEnum2 = vv
-		case jsonKey == "f_enum3":
+		case "f_enum3":
 			var vv pbexternal.Embed_Enum1
 			var v1 int32
 			v1, err = decoder.ReadValueEnumNumber(jsonKey, pbexternal.Embed_Enum1_name)
@@ -598,7 +594,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FEnum3 = vv
-		case jsonKey == "f_enum4":
+		case "f_enum4":
 			var vv pbexternal.Embed_Message_Enum1
 			var v1 int32
 			v1, err = decoder.ReadValueEnumNumber(jsonKey, pbexternal.Embed_Message_Enum1_name)
@@ -607,7 +603,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FEnum4 = vv
-		case jsonKey == "f_enum5":
+		case "f_enum5":
 			var vv EnumCommon1
 			var v1 int32
 			v1, err = decoder.ReadValueEnumNumber(jsonKey, EnumCommon1_name)
@@ -616,7 +612,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FEnum5 = vv
-		case jsonKey == "f_enum6":
+		case "f_enum6":
 			var vv MessageCommon1_Enum1
 			var v1 int32
 			v1, err = decoder.ReadValueEnumNumber(jsonKey, MessageCommon1_Enum1_name)
@@ -625,7 +621,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FEnum6 = vv
-		case jsonKey == "f_duration1":
+		case "f_duration1":
 			var vv *durationpb.Duration
 			initFN := func() interface{} {
 				if x.FDuration1 != nil {
@@ -640,7 +636,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FDuration1 = vv
-		case jsonKey == "f_duration2":
+		case "f_duration2":
 			var vv *durationpb.Duration
 			initFN := func() interface{} {
 				if x.FDuration2 != nil {
@@ -655,7 +651,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FDuration2 = vv
-		case jsonKey == "f_timestamp1":
+		case "f_timestamp1":
 			var vv *timestamppb.Timestamp
 			initFN := func() interface{} {
 				if x.FTimestamp1 != nil {
@@ -670,7 +666,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FTimestamp1 = vv
-		case jsonKey == "f_timestamp2":
+		case "f_timestamp2":
 			var vv *timestamppb.Timestamp
 			initFN := func() interface{} {
 				if x.FTimestamp2 != nil {
@@ -685,7 +681,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FTimestamp2 = vv
-		case jsonKey == "f_any1":
+		case "f_any1":
 			var vv *anypb.Any
 			initFN := func() interface{} {
 				if x.FAny1 != nil {
@@ -700,7 +696,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FAny1 = vv
-		case jsonKey == "f_any2":
+		case "f_any2":
 			var vv *anypb.Any
 			initFN := func() interface{} {
 				if x.FAny2 != nil {
@@ -715,7 +711,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FAny2 = vv
-		case jsonKey == "f_message1":
+		case "f_message1":
 			var vv *MessagePlain1
 			initFN := func() interface{} {
 				if x.FMessage1 != nil {
@@ -730,7 +726,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FMessage1 = vv
-		case jsonKey == "f_message2":
+		case "f_message2":
 			var vv *MessagePlain1_Embed1
 			initFN := func() interface{} {
 				if x.FMessage2 != nil {
@@ -745,7 +741,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FMessage2 = vv
-		case jsonKey == "f_message3":
+		case "f_message3":
 			var vv *MessagePlain1_Embed1_Embed2
 			initFN := func() interface{} {
 				if x.FMessage3 != nil {
@@ -760,7 +756,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FMessage3 = vv
-		case jsonKey == "f_message4":
+		case "f_message4":
 			var vv *pbexternal.Message1
 			initFN := func() interface{} {
 				if x.FMessage4 != nil {
@@ -775,7 +771,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FMessage4 = vv
-		case jsonKey == "f_message5":
+		case "f_message5":
 			var vv *pbexternal.Message1_Embed1
 			initFN := func() interface{} {
 				if x.FMessage5 != nil {
@@ -790,7 +786,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FMessage5 = vv
-		case jsonKey == "f_message6":
+		case "f_message6":
 			var vv *pbexternal.Message1_Embed1_Embed2
 			initFN := func() interface{} {
 				if x.FMessage6 != nil {
@@ -805,7 +801,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FMessage6 = vv
-		case jsonKey == "f_message7":
+		case "f_message7":
 			var vv *MessageCommon1
 			initFN := func() interface{} {
 				if x.FMessage7 != nil {
@@ -820,7 +816,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FMessage7 = vv
-		case jsonKey == "f_message8":
+		case "f_message8":
 			var vv *MessageCommon1_Embed1
 			initFN := func() interface{} {
 				if x.FMessage8 != nil {
@@ -835,7 +831,7 @@ LOOP_SCAN:
 				return err
 			}
 			x.FMessage8 = vv
-		case jsonKey == "f_message9":
+		case "f_message9":
 			var vv *MessageCommon1_Embed1_Embed2
 			initFN := func() interface{} {
 				if x.FMessage9 != nil {

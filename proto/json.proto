@@ -29,12 +29,12 @@ extend google.protobuf.OneofOptions {
 
 message MessageOptions {
   // Whether ignore generating code for the this message.
-  bool ignore = 2;
+  bool ignore = 1;
 
   // disallow_unknown_fields causes the Unmarshal to return an error when the destination
   // is a struct and the input contains object keys which do not match any
   // non-ignored, exported fields in the destination.
-  bool disallow_unknown_fields = 6;
+  bool disallow_unknown_fields = 2;
 }
 
 message OneofOptions {
@@ -55,7 +55,7 @@ message OneofOptions {
   bool hide = 4;
 }
 
-// FIXME: unsupported the type of bool as map key.
+// TODO: unsupported the type of bool as map key same as the standard JSON.
 message FieldOptions {
   // The key name in json format. Default is field's name in proto.
   // If "json" is "-", The field will be ignore.
@@ -71,5 +71,69 @@ message FieldOptions {
   // Whether use string format for enum type. default use integer.
   bool use_enum_string = 4;
 
-  // TODO: supported any, duration, timestamp.
+  // TODO: supported well know type. any, duration, timestamp...
+  oneof WKT {
+    TypeEnum enum = 11;
+
+    TypeAny any = 12;
+
+    TypeDuration duration = 13;
+
+    TypeTimestamp timestamp = 14;
+  }
 }
+
+message TypeEnum {
+  // Default to use use_number.
+  oneof Format {
+    bool use_number = 1;
+    bool use_string = 2;
+  }
+}
+
+message TypeAny {
+  // Default to use native.
+  oneof Format {
+    bool native = 1;
+
+    bool expand = 2;
+  }
+}
+
+message TypeDuration {
+  // Default to use native.
+  oneof Format {
+    bool native = 1;
+
+    bool string = 2;
+
+    bool nanoseconds = 3;
+    bool microseconds = 4;
+    bool milliseconds = 5;
+    bool seconds = 6;
+    bool minutes = 7;
+    bool hours = 8;
+  }
+}
+
+message TypeTimestamp {
+  message TimeLayout {
+    string golang = 1;
+    string java = 2;
+    string rust = 3;
+    string python = 4;
+  }
+
+  // Default to use native.
+  oneof Format {
+    bool native = 1;
+
+    TimeLayout time_layout = 2;
+
+    bool unix_nano = 3;
+    bool unix_micro = 4;
+    bool unix_milli = 5;
+    bool unix_sec = 6;
+  }
+}
+
