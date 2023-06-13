@@ -40,38 +40,38 @@ func (p *Plugin) loadFieldOptions(field *protogen.Field) *pbjson.FieldOptions {
 	return fieldOptions
 }
 
-func (p *Plugin) loadOneofOptions(oneof *protogen.Oneof) *pbjson.OneofOptions {
+func (p *Plugin) loadOneOfOptions(oneof *protogen.Oneof) *pbjson.OneofOptions {
 	i := proto.GetExtension(oneof.Desc.Options(), pbjson.E_Oneof)
-	oneofOptions := i.(*pbjson.OneofOptions)
-	if oneofOptions == nil {
-		oneofOptions = &pbjson.OneofOptions{}
+	oneOfOptions := i.(*pbjson.OneofOptions)
+	if oneOfOptions == nil {
+		oneOfOptions = &pbjson.OneofOptions{}
 	}
 	// Ignore field if json == "-"
-	if oneofOptions.Json != nil && *oneofOptions.Json == "-" {
-		oneofOptions.Ignore = true
+	if oneOfOptions.Json != nil && *oneOfOptions.Json == "-" {
+		oneOfOptions.Ignore = true
 	}
-	return oneofOptions
+	return oneOfOptions
 }
 
-//func (p *Plugin) loadTypeSetEnum(options *pbjson.FieldOptions) *pbjson.TypeEnum {
-//	if options.TypeSet == nil {
-//		return &pbjson.TypeEnum{}
-//	}
-//
-//	switch ot := options.TypeSet.(type) {
-//	case *pbjson.FieldOptions_Enum:
-//		return ot.Enum
-//	default:
-//		err := pkerror.New(
-//			"type google.protobuf.Any only supports kind of TypeSet <any> and you provided: <%s>",
-//			p.getTagName(ot),
-//		)
-//		panic(err)
-//	}
-//}
+func (p *Plugin) loadTypeSetEnum(options *pbjson.FieldOptions) *pbjson.TypeEnum {
+	if options.TypeSet == nil {
+		return &pbjson.TypeEnum{Format: pbjson.TypeEnum_Number}
+	}
+
+	switch ot := options.TypeSet.(type) {
+	case *pbjson.FieldOptions_Enum:
+		return ot.Enum
+	default:
+		err := pkerror.New(
+			"type google.protobuf.Any only supports kind of TypeSet <any> and you provided: <%s>",
+			p.getTagName(ot),
+		)
+		panic(err)
+	}
+}
 func (p *Plugin) loadTypeSetAny(options *pbjson.FieldOptions) *pbjson.TypeAny {
 	if options.TypeSet == nil {
-		return &pbjson.TypeAny{}
+		return &pbjson.TypeAny{Format: pbjson.TypeAny_Native}
 	}
 
 	switch ot := options.TypeSet.(type) {
@@ -87,7 +87,7 @@ func (p *Plugin) loadTypeSetAny(options *pbjson.FieldOptions) *pbjson.TypeAny {
 }
 func (p *Plugin) loadTypeSetDuration(options *pbjson.FieldOptions) *pbjson.TypeDuration {
 	if options.TypeSet == nil {
-		return &pbjson.TypeDuration{}
+		return &pbjson.TypeDuration{Format: pbjson.TypeDuration_Native}
 	}
 
 	switch ot := options.TypeSet.(type) {
@@ -103,7 +103,7 @@ func (p *Plugin) loadTypeSetDuration(options *pbjson.FieldOptions) *pbjson.TypeD
 }
 func (p *Plugin) loadTypeSetTimestamp(options *pbjson.FieldOptions) *pbjson.TypeTimestamp {
 	if options.TypeSet == nil {
-		return &pbjson.TypeTimestamp{}
+		return &pbjson.TypeTimestamp{Format: pbjson.TypeTimestamp_Native}
 	}
 
 	switch ot := options.TypeSet.(type) {

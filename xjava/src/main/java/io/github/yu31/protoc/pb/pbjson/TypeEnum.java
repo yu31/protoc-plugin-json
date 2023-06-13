@@ -97,6 +97,10 @@ private static final long serialVersionUID = 0L;
      */
     Number(0),
     /**
+     * <pre>
+     * format the enum field as string.
+     * </pre>
+     *
      * <code>String = 1;</code>
      */
     String(1),
@@ -108,6 +112,10 @@ private static final long serialVersionUID = 0L;
      */
     public static final int Number_VALUE = 0;
     /**
+     * <pre>
+     * format the enum field as string.
+     * </pre>
+     *
      * <code>String = 1;</code>
      */
     public static final int String_VALUE = 1;

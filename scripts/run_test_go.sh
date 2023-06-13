@@ -25,3 +25,7 @@ fi
 for dir in "${ROOT}"/*; do
   runCases "${dir}"
 done
+
+go test -v -test.count=1 -test.failfast -test.run="${CASE}" ./xgo/pkg/jsonencoder/
+
+go test -v -test.count=1 -test.failfast -test.run="${CASE}" ./xgo/pkg/jsondecoder/

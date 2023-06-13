@@ -21,11 +21,33 @@ func (x *TypeSetMap1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(704)
+	encoder := jsonencoder.New(768)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
 
+	encoder.AppendObjectKey("f_enum_number1")
+	if x.FEnumNumber1 != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.FEnumNumber1 {
+			encoder.AppendMapKeyString(mk)
+			encoder.AppendLiteralInt32(int32(mv.Number()))
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+	encoder.AppendObjectKey("f_enum_string1")
+	if x.FEnumString1 != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.FEnumString1 {
+			encoder.AppendMapKeyString(mk)
+			encoder.AppendLiteralString(mv.String())
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
 	encoder.AppendObjectKey("f_any_native1")
 	if x.FAnyNative1 != nil {
 		encoder.AppendObjectBegin()
@@ -252,6 +274,66 @@ LOOP_SCAN:
 			return err
 		}
 		switch jsonKey { // match the jsonKey
+		case "f_enum_number1":
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FEnumNumber1 = nil
+				continue LOOP_SCAN
+			}
+			if x.FEnumNumber1 == nil {
+				x.FEnumNumber1 = make(map[string]Enum1)
+			}
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var mk string
+				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
+					return err
+				}
+				var vv Enum1
+				var v1 int32
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+					return err
+				}
+				vv = Enum1(v1)
+				x.FEnumNumber1[mk] = vv
+			}
+		case "f_enum_string1":
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FEnumString1 = nil
+				continue LOOP_SCAN
+			}
+			if x.FEnumString1 == nil {
+				x.FEnumString1 = make(map[string]Enum1)
+			}
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var mk string
+				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
+					return err
+				}
+				var vv Enum1
+				var v1 int32
+				if v1, err = decoder.ReadLiteralEnumString(jsonKey, Enum1_value); err != nil {
+					return err
+				}
+				vv = Enum1(v1)
+				x.FEnumString1[mk] = vv
+			}
 		case "f_any_native1":
 			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
 				return err

@@ -70,11 +70,6 @@ private static final long serialVersionUID = 0L;
             omitempty_ = input.readBool();
             break;
           }
-          case 32: {
-
-            useEnumString_ = input.readBool();
-            break;
-          }
           case 90: {
             io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder subBuilder = null;
             if (typeSetCase_ == 11) {
@@ -301,21 +296,6 @@ private static final long serialVersionUID = 0L;
     return omitempty_;
   }
 
-  public static final int USE_ENUM_STRING_FIELD_NUMBER = 4;
-  private boolean useEnumString_;
-  /**
-   * <pre>
-   * Whether use string format for enum type. default use integer.
-   * </pre>
-   *
-   * <code>bool use_enum_string = 4;</code>
-   * @return The useEnumString.
-   */
-  @java.lang.Override
-  public boolean getUseEnumString() {
-    return useEnumString_;
-  }
-
   public static final int ENUM_FIELD_NUMBER = 11;
   /**
    * <code>.json.TypeEnum enum = 11;</code>
@@ -463,9 +443,6 @@ private static final long serialVersionUID = 0L;
     if (omitempty_ != false) {
       output.writeBool(3, omitempty_);
     }
-    if (useEnumString_ != false) {
-      output.writeBool(4, useEnumString_);
-    }
     if (typeSetCase_ == 11) {
       output.writeMessage(11, (io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_);
     }
@@ -497,10 +474,6 @@ private static final long serialVersionUID = 0L;
     if (omitempty_ != false) {
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(3, omitempty_);
-    }
-    if (useEnumString_ != false) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(4, useEnumString_);
     }
     if (typeSetCase_ == 11) {
       size += com.google.protobuf.CodedOutputStream
@@ -542,8 +515,6 @@ private static final long serialVersionUID = 0L;
         != other.getIgnore()) return false;
     if (getOmitempty()
         != other.getOmitempty()) return false;
-    if (getUseEnumString()
-        != other.getUseEnumString()) return false;
     if (!getTypeSetCase().equals(other.getTypeSetCase())) return false;
     switch (typeSetCase_) {
       case 11:
@@ -586,9 +557,6 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + OMITEMPTY_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getOmitempty());
-    hash = (37 * hash) + USE_ENUM_STRING_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getUseEnumString());
     switch (typeSetCase_) {
       case 11:
         hash = (37 * hash) + ENUM_FIELD_NUMBER;
@@ -752,8 +720,6 @@ private static final long serialVersionUID = 0L;
 
       omitempty_ = false;
 
-      useEnumString_ = false;
-
       typeSetCase_ = 0;
       typeSet_ = null;
       return this;
@@ -790,7 +756,6 @@ private static final long serialVersionUID = 0L;
       result.json_ = json_;
       result.ignore_ = ignore_;
       result.omitempty_ = omitempty_;
-      result.useEnumString_ = useEnumString_;
       if (typeSetCase_ == 11) {
         if (enumBuilder_ == null) {
           result.typeSet_ = typeSet_;
@@ -879,9 +844,6 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getOmitempty() != false) {
         setOmitempty(other.getOmitempty());
-      }
-      if (other.getUseEnumString() != false) {
-        setUseEnumString(other.getUseEnumString());
       }
       switch (other.getTypeSetCase()) {
         case ENUM: {
@@ -1147,49 +1109,6 @@ private static final long serialVersionUID = 0L;
     public Builder clearOmitempty() {
       
       omitempty_ = false;
-      onChanged();
-      return this;
-    }
-
-    private boolean useEnumString_ ;
-    /**
-     * <pre>
-     * Whether use string format for enum type. default use integer.
-     * </pre>
-     *
-     * <code>bool use_enum_string = 4;</code>
-     * @return The useEnumString.
-     */
-    @java.lang.Override
-    public boolean getUseEnumString() {
-      return useEnumString_;
-    }
-    /**
-     * <pre>
-     * Whether use string format for enum type. default use integer.
-     * </pre>
-     *
-     * <code>bool use_enum_string = 4;</code>
-     * @param value The useEnumString to set.
-     * @return This builder for chaining.
-     */
-    public Builder setUseEnumString(boolean value) {
-      
-      useEnumString_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Whether use string format for enum type. default use integer.
-     * </pre>
-     *
-     * <code>bool use_enum_string = 4;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearUseEnumString() {
-      
-      useEnumString_ = false;
       onChanged();
       return this;
     }

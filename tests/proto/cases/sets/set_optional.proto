@@ -10,13 +10,16 @@ import "google/protobuf/timestamp.proto";
 
 //import "tests/proto/module/external.proto";
 
-//import "tests/proto/cases/sets/set_common.proto";
+import "tests/proto/cases/sets/set_common.proto";
 
 import "proto/json.proto";
 
 message TypeSetOptional1 {
-  optional google.protobuf.Any f_any_native1 = 1 [ (json.field) = { any: { format: Native } } ];
-  optional google.protobuf.Any f_any_proto1  = 2 [ (json.field) = { any: { format: Proto  } } ];
+  optional set_common.Enum1 f_enum_number1 = 1 [ (json.field) = { enum: { format: Number } } ];
+  optional set_common.Enum1 f_enum_string1 = 2 [ (json.field) = { enum: { format: String } } ];
+
+  optional google.protobuf.Any f_any_native1 = 3 [ (json.field) = { any: { format: Native } } ];
+  optional google.protobuf.Any f_any_proto1  = 4 [ (json.field) = { any: { format: Proto  } } ];
 
   optional google.protobuf.Duration f_duration_native1       = 11 [ (json.field) = { duration: { format: Native } } ];
   optional google.protobuf.Duration f_duration_string1       = 12 [ (json.field) = { duration: { format: String } } ];

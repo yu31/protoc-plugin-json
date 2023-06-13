@@ -56,14 +56,14 @@ func (p *Plugin) marshalForField(field *protogen.Field) {
 	case field.Desc.IsList():
 		p.marshalForRepeated(field)
 	case pkfield.FieldIsOneOf(field):
-		p.marshalForOneof(field.Oneof)
+		p.marshalForOneOf(field.Oneof)
 	default:
 		p.marshalForPlain(field)
 	}
 }
 
-func (p *Plugin) marshalForOneof(oneof *protogen.Oneof) {
-	options := p.loadOneofOptions(oneof)
+func (p *Plugin) marshalForOneOf(oneof *protogen.Oneof) {
+	options := p.loadOneOfOptions(oneof)
 	if options.Ignore {
 		return
 	}
@@ -302,14 +302,18 @@ func (p *Plugin) marshalAppendValue(field *protogen.Field) {
 	case protoreflect.MessageKind:
 		p.marshalValueMessage(field, options, varName)
 	case protoreflect.EnumKind:
+		typeEnum := p.loadTypeSetEnum(options)
+
 		if isOptional {
 			p.g.P("if ", varName, "!= nil {")
 		}
-		if options.UseEnumString {
+
+		if typeEnum.Format == pbjson.TypeEnum_String {
 			p.g.P("encoder.AppendLiteralString(", varName, ".String()", ")")
 		} else {
 			p.g.P("encoder.AppendLiteralInt32(int32(", varName, ".Number()", "))")
 		}
+
 		if isOptional {
 			p.g.P("} else {")
 			p.marshalAppendNULL()
@@ -365,10 +369,8 @@ func (p *Plugin) marshalValueMessage(field *protogen.Field, options *pbjson.Fiel
 		switch typeTimestamp.Format {
 		case pbjson.TypeTimestamp_Native:
 		case pbjson.TypeTimestamp_TimeLayout:
+			// TODO: check the layout.
 			layout := typeTimestamp.Layout.Golang
-			if layout == "" {
-				// TODO: check the layout.
-			}
 			p.g.P("encoder.AppendLiteralString(", varName, ".AsTime().Format(", strconv.Quote(layout), "))")
 			return
 		case pbjson.TypeTimestamp_UnixNano:

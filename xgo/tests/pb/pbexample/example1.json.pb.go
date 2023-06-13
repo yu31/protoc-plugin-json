@@ -38,7 +38,7 @@ func (x *Example1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(738)
+	encoder := jsonencoder.New(814)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -104,23 +104,43 @@ func (x *Example1) MarshalJSON() ([]byte, error) {
 	encoder.AppendLiteralBytes(x.FBytes1)
 	if x.FEnum1 != 0 {
 		encoder.AppendObjectKey("f_enum1")
-		encoder.AppendLiteralString(x.FEnum1.String())
+		encoder.AppendLiteralInt32(int32(x.FEnum1.Number()))
 	}
 	encoder.AppendObjectKey("f_enum2")
-	encoder.AppendLiteralInt32(int32(x.FEnum2.Number()))
+	encoder.AppendLiteralString(x.FEnum2.String())
+	encoder.AppendObjectKey("f_enum3")
+	encoder.AppendLiteralInt32(int32(x.FEnum3.Number()))
+	if x.FEnum4 != 0 {
+		encoder.AppendObjectKey("f_enum4")
+		encoder.AppendLiteralString(x.FEnum4.String())
+	}
 	if x.FEnum5 != nil {
 		encoder.AppendObjectKey("f_enum5")
 		if x.FEnum5 != nil {
-			encoder.AppendLiteralString(x.FEnum5.String())
+			encoder.AppendLiteralInt32(int32(x.FEnum5.Number()))
 		} else {
 			encoder.AppendLiteralNULL()
 		}
 	}
 	encoder.AppendObjectKey("f_enum6")
 	if x.FEnum6 != nil {
-		encoder.AppendLiteralInt32(int32(x.FEnum6.Number()))
+		encoder.AppendLiteralString(x.FEnum6.String())
 	} else {
 		encoder.AppendLiteralNULL()
+	}
+	encoder.AppendObjectKey("f_enum7")
+	if x.FEnum7 != nil {
+		encoder.AppendLiteralInt32(int32(x.FEnum7.Number()))
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+	if x.FEnum8 != nil {
+		encoder.AppendObjectKey("f_enum8")
+		if x.FEnum8 != nil {
+			encoder.AppendLiteralString(x.FEnum8.String())
+		} else {
+			encoder.AppendLiteralNULL()
+		}
 	}
 	encoder.AppendObjectKey("f_duration1")
 	if err = encoder.AppendLiteralInterface(x.FDuration1); err != nil {
@@ -465,7 +485,7 @@ LOOP_SCAN:
 		case "f_enum1":
 			var vv Enum1
 			var v1 int32
-			if v1, err = decoder.ReadLiteralEnumString(jsonKey, Enum1_value); err != nil {
+			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
 				return err
 			}
 			vv = Enum1(v1)
@@ -473,15 +493,31 @@ LOOP_SCAN:
 		case "f_enum2":
 			var vv Enum1
 			var v1 int32
-			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+			if v1, err = decoder.ReadLiteralEnumString(jsonKey, Enum1_value); err != nil {
 				return err
 			}
 			vv = Enum1(v1)
 			x.FEnum2 = vv
+		case "f_enum3":
+			var vv Enum1
+			var v1 int32
+			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+				return err
+			}
+			vv = Enum1(v1)
+			x.FEnum3 = vv
+		case "f_enum4":
+			var vv Enum1
+			var v1 int32
+			if v1, err = decoder.ReadLiteralEnumString(jsonKey, Enum1_value); err != nil {
+				return err
+			}
+			vv = Enum1(v1)
+			x.FEnum4 = vv
 		case "f_enum5":
 			var vv *Enum1
 			var v1 *int32
-			if v1, err = decoder.ReadPointerEnumString(jsonKey, Enum1_value); err != nil {
+			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name); err != nil {
 				return err
 			}
 			if v1 != nil {
@@ -492,7 +528,7 @@ LOOP_SCAN:
 		case "f_enum6":
 			var vv *Enum1
 			var v1 *int32
-			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name); err != nil {
+			if v1, err = decoder.ReadPointerEnumString(jsonKey, Enum1_value); err != nil {
 				return err
 			}
 			if v1 != nil {
@@ -500,6 +536,28 @@ LOOP_SCAN:
 				vv = &v2
 			}
 			x.FEnum6 = vv
+		case "f_enum7":
+			var vv *Enum1
+			var v1 *int32
+			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name); err != nil {
+				return err
+			}
+			if v1 != nil {
+				v2 := Enum1(*v1)
+				vv = &v2
+			}
+			x.FEnum7 = vv
+		case "f_enum8":
+			var vv *Enum1
+			var v1 *int32
+			if v1, err = decoder.ReadPointerEnumString(jsonKey, Enum1_value); err != nil {
+				return err
+			}
+			if v1 != nil {
+				v2 := Enum1(*v1)
+				vv = &v2
+			}
+			x.FEnum8 = vv
 		case "f_duration1":
 			var vv *durationpb.Duration
 			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {

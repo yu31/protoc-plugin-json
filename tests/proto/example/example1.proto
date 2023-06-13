@@ -61,15 +61,15 @@ message Example1 {
   bool  f_bool1  = 31;
   bytes f_bytes1 = 32;
 
-  Enum1 f_enum1 = 61 [ (json.field) = { use_enum_string: true, omitempty: true } ];
-  Enum1 f_enum2 = 62 [ (json.field) = { use_enum_string: false, omitempty: false } ];
-//  Enum1 f_enum3 = 63 [ (json.field) = { use_enum_string: false, omitempty: false } ];
-//  Enum1 f_enum4 = 64 [ (json.field) = { use_enum_string: false, omitempty: true } ];
+  Enum1 f_enum1 = 61 [ (json.field) = { enum: { format: Number}, omitempty: true } ];
+  Enum1 f_enum2 = 62 [ (json.field) = { enum: { format: String}, omitempty: false } ];
+  Enum1 f_enum3 = 63 [ (json.field) = { enum: { format: Number}, omitempty: false } ];
+  Enum1 f_enum4 = 64 [ (json.field) = { enum: { format: String}, omitempty: true } ];
 
-  optional Enum1 f_enum5 = 65 [ (json.field) = { use_enum_string: true, omitempty: true } ];
-  optional Enum1 f_enum6 = 66 [ (json.field) = { use_enum_string: false, omitempty: false } ];
-//  optional Enum1 f_enum7 = 67 [ (json.field) = { use_enum_string: false, omitempty: false } ];
-//  optional Enum1 f_enum8 = 68 [ (json.field) = { use_enum_string: false, omitempty: true } ];
+  optional Enum1 f_enum5 = 65 [ (json.field) = { enum: { format: Number}, omitempty: true } ];
+  optional Enum1 f_enum6 = 66 [ (json.field) = { enum: { format: String}, omitempty: false } ];
+  optional Enum1 f_enum7 = 67 [ (json.field) = { enum: { format: Number}, omitempty: false } ];
+  optional Enum1 f_enum8 = 68 [ (json.field) = { enum: { format: String}, omitempty: true } ];
 
   google.protobuf.Duration f_duration1   = 41;
   google.protobuf.Timestamp f_timestamp1 = 42;

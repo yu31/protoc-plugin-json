@@ -21,11 +21,31 @@ func (x *TypeSetRepeated1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(704)
+	encoder := jsonencoder.New(768)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
 
+	encoder.AppendObjectKey("f_enum_number1")
+	if x.FEnumNumber1 != nil {
+		encoder.AppendArrayBegin()
+		for _, ri := range x.FEnumNumber1 {
+			encoder.AppendLiteralInt32(int32(ri.Number()))
+		}
+		encoder.AppendArrayEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+	encoder.AppendObjectKey("f_enum_string1")
+	if x.FEnumString1 != nil {
+		encoder.AppendArrayBegin()
+		for _, ri := range x.FEnumString1 {
+			encoder.AppendLiteralString(ri.String())
+		}
+		encoder.AppendArrayEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
 	encoder.AppendObjectKey("f_any_native1")
 	if x.FAnyNative1 != nil {
 		encoder.AppendArrayBegin()
@@ -236,6 +256,72 @@ LOOP_SCAN:
 			return err
 		}
 		switch jsonKey { // match the jsonKey
+		case "f_enum_number1":
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FEnumNumber1 = nil
+				continue LOOP_SCAN
+			}
+			if x.FEnumNumber1 == nil {
+				x.FEnumNumber1 = make([]Enum1, 0)
+			}
+			i := 0
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var vv Enum1
+				if i >= len(x.FEnumNumber1) {
+					x.FEnumNumber1 = append(x.FEnumNumber1, vv)
+				}
+				var v1 int32
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+					return err
+				}
+				vv = Enum1(v1)
+				x.FEnumNumber1[i] = vv
+				i++
+			}
+			// truncate the slice to consistent with standard library json.
+			x.FEnumNumber1 = x.FEnumNumber1[:i]
+		case "f_enum_string1":
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FEnumString1 = nil
+				continue LOOP_SCAN
+			}
+			if x.FEnumString1 == nil {
+				x.FEnumString1 = make([]Enum1, 0)
+			}
+			i := 0
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var vv Enum1
+				if i >= len(x.FEnumString1) {
+					x.FEnumString1 = append(x.FEnumString1, vv)
+				}
+				var v1 int32
+				if v1, err = decoder.ReadLiteralEnumString(jsonKey, Enum1_value); err != nil {
+					return err
+				}
+				vv = Enum1(v1)
+				x.FEnumString1[i] = vv
+				i++
+			}
+			// truncate the slice to consistent with standard library json.
+			x.FEnumString1 = x.FEnumString1[:i]
 		case "f_any_native1":
 			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
 				return err

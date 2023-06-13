@@ -10,13 +10,16 @@ import "google/protobuf/timestamp.proto";
 
 //import "tests/proto/module/external.proto";
 
-//import "tests/proto/cases/sets/set_common.proto";
+import "tests/proto/cases/sets/set_common.proto";
 
 import "proto/json.proto";
 
 message TypeSetMap1 {
-  map<string, google.protobuf.Any> f_any_native1 = 1 [ (json.field) = { any: { format: Native } } ];
-  map<string, google.protobuf.Any> f_any_proto1  = 2 [ (json.field) = { any: { format: Proto  } } ];
+  map<string, set_common.Enum1> f_enum_number1 = 1 [ (json.field) = { enum: { format: Number } } ];
+  map<string, set_common.Enum1> f_enum_string1 = 2 [ (json.field) = { enum: { format: String } } ];
+
+  map<string, google.protobuf.Any> f_any_native1 = 3 [ (json.field) = { any: { format: Native } } ];
+  map<string, google.protobuf.Any> f_any_proto1  = 4 [ (json.field) = { any: { format: Proto  } } ];
 
   map<string, google.protobuf.Duration> f_duration_native1       = 11 [ (json.field) = { duration: { format: Native } } ];
   map<string, google.protobuf.Duration> f_duration_string1       = 12 [ (json.field) = { duration: { format: String } } ];

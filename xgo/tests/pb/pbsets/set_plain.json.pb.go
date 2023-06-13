@@ -21,11 +21,15 @@ func (x *TypeSetPlain1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(704)
+	encoder := jsonencoder.New(768)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
 
+	encoder.AppendObjectKey("f_enum_number1")
+	encoder.AppendLiteralInt32(int32(x.FEnumNumber1.Number()))
+	encoder.AppendObjectKey("f_enum_string1")
+	encoder.AppendLiteralString(x.FEnumString1.String())
 	encoder.AppendObjectKey("f_any_native1")
 	if err = encoder.AppendLiteralInterface(x.FAnyNative1); err != nil {
 		return nil, err
@@ -108,6 +112,22 @@ LOOP_SCAN:
 			return err
 		}
 		switch jsonKey { // match the jsonKey
+		case "f_enum_number1":
+			var vv Enum1
+			var v1 int32
+			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+				return err
+			}
+			vv = Enum1(v1)
+			x.FEnumNumber1 = vv
+		case "f_enum_string1":
+			var vv Enum1
+			var v1 int32
+			if v1, err = decoder.ReadLiteralEnumString(jsonKey, Enum1_value); err != nil {
+				return err
+			}
+			vv = Enum1(v1)
+			x.FEnumString1 = vv
 		case "f_any_native1":
 			var vv *anypb.Any
 			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {

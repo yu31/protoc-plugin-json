@@ -61,16 +61,6 @@ public interface FieldOptionsOrBuilder extends
   boolean getOmitempty();
 
   /**
-   * <pre>
-   * Whether use string format for enum type. default use integer.
-   * </pre>
-   *
-   * <code>bool use_enum_string = 4;</code>
-   * @return The useEnumString.
-   */
-  boolean getUseEnumString();
-
-  /**
    * <code>.json.TypeEnum enum = 11;</code>
    * @return Whether the enum field is set.
    */

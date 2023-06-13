@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import descriptor_pb2 as google_dot_protobuf_dot_descriptor__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10proto/json.proto\x12\x04json\x1a google/protobuf/descriptor.proto\"A\n\x0eMessageOptions\x12\x0e\n\x06ignore\x18\x01 \x01(\x08\x12\x1f\n\x17\x64isallow_unknown_fields\x18\x02 \x01(\x08\"[\n\x0cOneofOptions\x12\x11\n\x04json\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\x0e\n\x06ignore\x18\x02 \x01(\x08\x12\x11\n\tomitempty\x18\x03 \x01(\x08\x12\x0c\n\x04hide\x18\x04 \x01(\x08\x42\x07\n\x05_json\"\x81\x02\n\x0c\x46ieldOptions\x12\x11\n\x04json\x18\x01 \x01(\tH\x01\x88\x01\x01\x12\x0e\n\x06ignore\x18\x02 \x01(\x08\x12\x11\n\tomitempty\x18\x03 \x01(\x08\x12\x17\n\x0fuse_enum_string\x18\x04 \x01(\x08\x12\x1e\n\x04\x65num\x18\x0b \x01(\x0b\x32\x0e.json.TypeEnumH\x00\x12\x1c\n\x03\x61ny\x18\x0c \x01(\x0b\x32\r.json.TypeAnyH\x00\x12&\n\x08\x64uration\x18\r \x01(\x0b\x32\x12.json.TypeDurationH\x00\x12(\n\ttimestamp\x18\x0e \x01(\x0b\x32\x13.json.TypeTimestampH\x00\x42\t\n\x07TypeSetB\x07\n\x05_json\"S\n\x08TypeEnum\x12%\n\x06\x66ormat\x18\x01 \x01(\x0e\x32\x15.json.TypeEnum.Format\" \n\x06\x46ormat\x12\n\n\x06Number\x10\x00\x12\n\n\x06String\x10\x01\"P\n\x07TypeAny\x12$\n\x06\x66ormat\x18\x01 \x01(\x0e\x32\x14.json.TypeAny.Format\"\x1f\n\x06\x46ormat\x12\n\n\x06Native\x10\x00\x12\t\n\x05Proto\x10\x01\"\xb5\x01\n\x0cTypeDuration\x12)\n\x06\x66ormat\x18\x01 \x01(\x0e\x32\x19.json.TypeDuration.Format\"z\n\x06\x46ormat\x12\n\n\x06Native\x10\x00\x12\n\n\x06String\x10\x01\x12\x0f\n\x0bNanoseconds\x10\x02\x12\x10\n\x0cMicroseconds\x10\x03\x12\x10\n\x0cMilliseconds\x10\x04\x12\x0b\n\x07Seconds\x10\x05\x12\x0b\n\x07Minutes\x10\x06\x12\t\n\x05Hours\x10\x07\"\x8c\x02\n\rTypeTimestamp\x12*\n\x06\x66ormat\x18\x01 \x01(\x0e\x32\x1a.json.TypeTimestamp.Format\x12*\n\x06layout\x18\x02 \x01(\x0b\x32\x1a.json.TypeTimestamp.Layout\x1a\x44\n\x06Layout\x12\x0e\n\x06golang\x18\x01 \x01(\t\x12\x0c\n\x04java\x18\x02 \x01(\t\x12\x0c\n\x04rust\x18\x03 \x01(\t\x12\x0e\n\x06python\x18\x04 \x01(\t\"]\n\x06\x46ormat\x12\n\n\x06Native\x10\x00\x12\x0e\n\nTimeLayout\x10\x01\x12\x0c\n\x08UnixNano\x10\x02\x12\r\n\tUnixMicro\x10\x03\x12\r\n\tUnixMilli\x10\x04\x12\x0b\n\x07UnixSec\x10\x05:H\n\x07message\x12\x1f.google.protobuf.MessageOptions\x18\xa0\xf4\x03 \x01(\x0b\x32\x14.json.MessageOptions:B\n\x05\x66ield\x12\x1d.google.protobuf.FieldOptions\x18\xa1\xf4\x03 \x01(\x0b\x32\x12.json.FieldOptions:B\n\x05oneof\x12\x1d.google.protobuf.OneofOptions\x18\xa2\xf4\x03 \x01(\x0b\x32\x12.json.OneofOptionsB]\n\x1fio.github.yu31.protoc.pb.pbjsonB\x06PBJSONP\x01Z0github.com/yu31/protoc-plugin-json/xgo/pb/pbjsonb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10proto/json.proto\x12\x04json\x1a google/protobuf/descriptor.proto\"A\n\x0eMessageOptions\x12\x0e\n\x06ignore\x18\x01 \x01(\x08\x12\x1f\n\x17\x64isallow_unknown_fields\x18\x02 \x01(\x08\"[\n\x0cOneofOptions\x12\x11\n\x04json\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\x0e\n\x06ignore\x18\x02 \x01(\x08\x12\x11\n\tomitempty\x18\x03 \x01(\x08\x12\x0c\n\x04hide\x18\x04 \x01(\x08\x42\x07\n\x05_json\"\xe8\x01\n\x0c\x46ieldOptions\x12\x11\n\x04json\x18\x01 \x01(\tH\x01\x88\x01\x01\x12\x0e\n\x06ignore\x18\x02 \x01(\x08\x12\x11\n\tomitempty\x18\x03 \x01(\x08\x12\x1e\n\x04\x65num\x18\x0b \x01(\x0b\x32\x0e.json.TypeEnumH\x00\x12\x1c\n\x03\x61ny\x18\x0c \x01(\x0b\x32\r.json.TypeAnyH\x00\x12&\n\x08\x64uration\x18\r \x01(\x0b\x32\x12.json.TypeDurationH\x00\x12(\n\ttimestamp\x18\x0e \x01(\x0b\x32\x13.json.TypeTimestampH\x00\x42\t\n\x07TypeSetB\x07\n\x05_json\"S\n\x08TypeEnum\x12%\n\x06\x66ormat\x18\x01 \x01(\x0e\x32\x15.json.TypeEnum.Format\" \n\x06\x46ormat\x12\n\n\x06Number\x10\x00\x12\n\n\x06String\x10\x01\"P\n\x07TypeAny\x12$\n\x06\x66ormat\x18\x01 \x01(\x0e\x32\x14.json.TypeAny.Format\"\x1f\n\x06\x46ormat\x12\n\n\x06Native\x10\x00\x12\t\n\x05Proto\x10\x01\"\xb5\x01\n\x0cTypeDuration\x12)\n\x06\x66ormat\x18\x01 \x01(\x0e\x32\x19.json.TypeDuration.Format\"z\n\x06\x46ormat\x12\n\n\x06Native\x10\x00\x12\n\n\x06String\x10\x01\x12\x0f\n\x0bNanoseconds\x10\x02\x12\x10\n\x0cMicroseconds\x10\x03\x12\x10\n\x0cMilliseconds\x10\x04\x12\x0b\n\x07Seconds\x10\x05\x12\x0b\n\x07Minutes\x10\x06\x12\t\n\x05Hours\x10\x07\"\x8c\x02\n\rTypeTimestamp\x12*\n\x06\x66ormat\x18\x01 \x01(\x0e\x32\x1a.json.TypeTimestamp.Format\x12*\n\x06layout\x18\x02 \x01(\x0b\x32\x1a.json.TypeTimestamp.Layout\x1a\x44\n\x06Layout\x12\x0e\n\x06golang\x18\x01 \x01(\t\x12\x0c\n\x04java\x18\x02 \x01(\t\x12\x0c\n\x04rust\x18\x03 \x01(\t\x12\x0e\n\x06python\x18\x04 \x01(\t\"]\n\x06\x46ormat\x12\n\n\x06Native\x10\x00\x12\x0e\n\nTimeLayout\x10\x01\x12\x0c\n\x08UnixNano\x10\x02\x12\r\n\tUnixMicro\x10\x03\x12\r\n\tUnixMilli\x10\x04\x12\x0b\n\x07UnixSec\x10\x05:H\n\x07message\x12\x1f.google.protobuf.MessageOptions\x18\xa0\xf4\x03 \x01(\x0b\x32\x14.json.MessageOptions:B\n\x05\x66ield\x12\x1d.google.protobuf.FieldOptions\x18\xa1\xf4\x03 \x01(\x0b\x32\x12.json.FieldOptions:B\n\x05oneof\x12\x1d.google.protobuf.OneofOptions\x18\xa2\xf4\x03 \x01(\x0b\x32\x12.json.OneofOptionsB]\n\x1fio.github.yu31.protoc.pb.pbjsonB\x06PBJSONP\x01Z0github.com/yu31/protoc-plugin-json/xgo/pb/pbjsonb\x06proto3')
 
 
 MESSAGE_FIELD_NUMBER = 64032
@@ -106,23 +106,23 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _ONEOFOPTIONS._serialized_start=127
   _ONEOFOPTIONS._serialized_end=218
   _FIELDOPTIONS._serialized_start=221
-  _FIELDOPTIONS._serialized_end=478
-  _TYPEENUM._serialized_start=480
-  _TYPEENUM._serialized_end=563
-  _TYPEENUM_FORMAT._serialized_start=531
-  _TYPEENUM_FORMAT._serialized_end=563
-  _TYPEANY._serialized_start=565
-  _TYPEANY._serialized_end=645
-  _TYPEANY_FORMAT._serialized_start=614
-  _TYPEANY_FORMAT._serialized_end=645
-  _TYPEDURATION._serialized_start=648
-  _TYPEDURATION._serialized_end=829
-  _TYPEDURATION_FORMAT._serialized_start=707
-  _TYPEDURATION_FORMAT._serialized_end=829
-  _TYPETIMESTAMP._serialized_start=832
-  _TYPETIMESTAMP._serialized_end=1100
-  _TYPETIMESTAMP_LAYOUT._serialized_start=937
-  _TYPETIMESTAMP_LAYOUT._serialized_end=1005
-  _TYPETIMESTAMP_FORMAT._serialized_start=1007
-  _TYPETIMESTAMP_FORMAT._serialized_end=1100
+  _FIELDOPTIONS._serialized_end=453
+  _TYPEENUM._serialized_start=455
+  _TYPEENUM._serialized_end=538
+  _TYPEENUM_FORMAT._serialized_start=506
+  _TYPEENUM_FORMAT._serialized_end=538
+  _TYPEANY._serialized_start=540
+  _TYPEANY._serialized_end=620
+  _TYPEANY_FORMAT._serialized_start=589
+  _TYPEANY_FORMAT._serialized_end=620
+  _TYPEDURATION._serialized_start=623
+  _TYPEDURATION._serialized_end=804
+  _TYPEDURATION_FORMAT._serialized_start=682
+  _TYPEDURATION_FORMAT._serialized_end=804
+  _TYPETIMESTAMP._serialized_start=807
+  _TYPETIMESTAMP._serialized_end=1075
+  _TYPETIMESTAMP_LAYOUT._serialized_start=912
+  _TYPETIMESTAMP_LAYOUT._serialized_end=980
+  _TYPETIMESTAMP_FORMAT._serialized_start=982
+  _TYPETIMESTAMP_FORMAT._serialized_end=1075
 # @@protoc_insertion_point(module_scope)

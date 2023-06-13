@@ -46,11 +46,11 @@ message Example2 {
 
   int32    f_int32    = 11;
 
-  Enum2 f_enum1 = 61 [ (json.field) = { use_enum_string: true, omitempty: true } ];
-  Enum2 f_enum2 = 62 [ (json.field) = { use_enum_string: false, omitempty: false } ];
+  Enum2 f_enum1 = 61 [ (json.field) = { enum: { format: Number}, omitempty: true } ];
+  Enum2 f_enum2 = 62 [ (json.field) = { enum: { format: String}, omitempty: false } ];
 
-  optional Enum2 f_enum5 = 65 [ (json.field) = { use_enum_string: true, omitempty: true } ];
-  optional Enum2 f_enum6 = 66 [ (json.field) = { use_enum_string: false, omitempty: false } ];
+  optional Enum2 f_enum5 = 65 [ (json.field) = { enum: { format: Number}, omitempty: true } ];
+  optional Enum2 f_enum6 = 66 [ (json.field) = { enum: { format: String}, omitempty: false } ];
 
   google.protobuf.Duration f_duration1   = 41;
   google.protobuf.Timestamp f_timestamp1 = 42;

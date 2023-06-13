@@ -38,7 +38,7 @@ func (p *Plugin) guessBufLength(fields []*protogen.Field) int {
 	for _, field := range fields {
 		var jsonKey string
 		if field.Oneof != nil {
-			options := p.loadOneofOptions(field.Oneof)
+			options := p.loadOneOfOptions(field.Oneof)
 			if options.Ignore {
 				continue
 			}

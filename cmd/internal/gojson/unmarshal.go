@@ -37,7 +37,7 @@ func (p *Plugin) unmarshalGenVariables(fields []*protogen.Field) {
 		if !pkfield.FieldIsOneOf(field) {
 			continue
 		}
-		options := p.loadOneofOptions(field.Oneof)
+		options := p.loadOneOfOptions(field.Oneof)
 		if options.Ignore {
 			continue
 		}
@@ -87,7 +87,7 @@ func (p *Plugin) unmarshalLoopRead(fields []*protogen.Field) {
 	for _, field := range fields {
 		var jsonKey string
 		if pkfield.FieldIsOneOf(field) {
-			options := p.loadOneofOptions(field.Oneof)
+			options := p.loadOneOfOptions(field.Oneof)
 			if options.Ignore {
 				continue
 			}
@@ -412,9 +412,11 @@ func (p *Plugin) unmarshalReadLiteral(field *protogen.Field) {
 	case protoreflect.MessageKind:
 		p.unmarshalReadMessage(field, options, goType, receiver)
 	case protoreflect.EnumKind:
+		typeEnum := p.loadTypeSetEnum(options)
+
 		if isOptional {
 			p.g.P("var v1 *int32")
-			if options.UseEnumString {
+			if typeEnum.Format == pbjson.TypeEnum_String {
 				p.g.P("if v1, err = decoder.ReadPointerEnumString", "(jsonKey,", goType, "_value); err != nil {")
 				p.g.P("    return err")
 				p.g.P("}")
@@ -429,7 +431,7 @@ func (p *Plugin) unmarshalReadLiteral(field *protogen.Field) {
 			p.g.P("}")
 		} else {
 			p.g.P("var v1 int32")
-			if options.UseEnumString {
+			if typeEnum.Format == pbjson.TypeEnum_String {
 				p.g.P("if v1, err = decoder.ReadLiteralEnumString", "(jsonKey,", goType, "_value); err != nil {")
 				p.g.P("    return err")
 				p.g.P("}")
@@ -496,10 +498,8 @@ func (p *Plugin) unmarshalReadMessage(field *protogen.Field, options *pbjson.Fie
 		switch typeTimestamp.Format {
 		case pbjson.TypeTimestamp_Native:
 		case pbjson.TypeTimestamp_TimeLayout:
+			// TODO: check the layout.
 			layout := typeTimestamp.Layout.Golang
-			if layout == "" {
-				// TODO: check the layout.
-			}
 			code = "decoder.ReadWKTTimestampByString(jsonKey, vv, " + strconv.Quote(layout) + ")"
 			checkNULL = false
 		case pbjson.TypeTimestamp_UnixNano:

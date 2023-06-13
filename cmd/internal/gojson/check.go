@@ -43,7 +43,7 @@ LOOP:
 			continue LOOP
 		}
 
-		oneOfOptions := p.loadOneofOptions(field.Oneof)
+		oneOfOptions := p.loadOneOfOptions(field.Oneof)
 		if oneOfOptions.Ignore {
 			continue LOOP
 		}

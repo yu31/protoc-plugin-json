@@ -68,9 +68,6 @@ message FieldOptions {
   // It same as the struct tag `json:"xxx,omitempty"`.
   bool omitempty = 3;
 
-  // Whether use string format for enum type. default use integer.
-  bool use_enum_string = 4;
-
   // TypeSet for specific fields.
   oneof TypeSet {
     TypeEnum enum = 11;

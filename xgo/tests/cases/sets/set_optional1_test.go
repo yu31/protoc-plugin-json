@@ -14,9 +14,9 @@ import (
 )
 
 // timestamp: 1686416585 -> 2023-06-11 01:03:05
-var seedPlain1 = &pbsets.TypeSetPlain1{
-	FEnumNumber1:           2,
-	FEnumString1:           5,
+var seedOptional1 = &pbsets.TypeSetOptional1{
+	FEnumNumber1:           pbsets.Enum1(2).Enum(),
+	FEnumString1:           pbsets.Enum1(5).Enum(),
 	FAnyNative1:            utils.MustNewAny(&pbsets.Message1{FString1: "s101", FString2: "s102", FString3: "s103"}),
 	FAnyProto1:             utils.MustNewAny(&pbsets.Message1{FString1: "s301", FString2: "s302", FString3: "s303"}),
 	FDurationNative1:       &durationpb.Duration{Seconds: 111, Nanos: 0},
@@ -35,21 +35,21 @@ var seedPlain1 = &pbsets.TypeSetPlain1{
 	FTimestampUnixSec1:     &timestamppb.Timestamp{Seconds: 1686416585, Nanos: 0},
 }
 
-func Test_Set_Plain1_General(t *testing.T) {
-	bb, err := seedPlain1.MarshalJSON()
+func Test_Set_Optional1_General(t *testing.T) {
+	bb, err := seedOptional1.MarshalJSON()
 	require.Nil(t, err)
 
 	fmt.Println(string(bb))
 
-	dataNew := &pbsets.TypeSetPlain1{}
+	dataNew := &pbsets.TypeSetOptional1{}
 	err = dataNew.UnmarshalJSON(bb)
 	require.Nil(t, err)
 
-	require.Equal(t, seedPlain1, dataNew)
+	require.Equal(t, seedOptional1, dataNew)
 }
 
-func Test_Set_Plain1_Check(t *testing.T) {
-	bb, err := seedPlain1.MarshalJSON()
+func Test_Set_Optional1_Check(t *testing.T) {
+	bb, err := seedOptional1.MarshalJSON()
 	require.Nil(t, err)
 
 	data := map[string]interface{}{}
