@@ -15,53 +15,24 @@ import "google/protobuf/timestamp.proto";
 import "proto/json.proto";
 
 message TypeSetRepeated1 {
-  repeated google.protobuf.Any f_any_native1 = 1 [ (json.field) = { any: { native: true } } ];
-  repeated google.protobuf.Any f_any_native2 = 2 [ (json.field) = { any: { native: false } } ];
+  repeated google.protobuf.Any f_any_native1 = 1 [ (json.field) = { any: { format: Native } } ];
+  repeated google.protobuf.Any f_any_proto1  = 2 [ (json.field) = { any: { format: Proto  } } ];
 
-  repeated google.protobuf.Any f_any_proto1 = 3 [ (json.field) = { any: { proto: true } } ];
-  repeated google.protobuf.Any f_any_proto2 = 4 [ (json.field) = { any: { proto: false } } ];
+  repeated google.protobuf.Duration f_duration_native1       = 11 [ (json.field) = { duration: { format: Native } } ];
+  repeated google.protobuf.Duration f_duration_string1       = 12 [ (json.field) = { duration: { format: String } } ];
+  repeated google.protobuf.Duration f_duration_nanoseconds1  = 13 [ (json.field) = { duration: { format: Nanoseconds } } ];
+  repeated google.protobuf.Duration f_duration_microseconds1 = 14 [ (json.field) = { duration: { format: Microseconds } } ];
+  repeated google.protobuf.Duration f_duration_milliseconds1 = 15 [ (json.field) = { duration: { format: Milliseconds } } ];
+  repeated google.protobuf.Duration f_duration_seconds1      = 16 [ (json.field) = { duration: { format: Seconds } } ];
+  repeated google.protobuf.Duration f_duration_minutes1      = 17 [ (json.field) = { duration: { format: Minutes } } ];
+  repeated google.protobuf.Duration f_duration_hours1        = 18 [ (json.field) = { duration: { format: Hours } } ];
 
-
-  repeated google.protobuf.Duration f_duration_native1 = 11 [ (json.field) = { duration: { native: true } } ];
-  repeated google.protobuf.Duration f_duration_native2 = 21 [ (json.field) = { duration: { native: false } } ];
-
-  repeated google.protobuf.Duration f_duration_string1 = 12 [ (json.field) = { duration: { string: true } } ];
-  repeated google.protobuf.Duration f_duration_string2 = 22 [ (json.field) = { duration: { string: false } } ];
-
-  repeated google.protobuf.Duration f_duration_nanoseconds1 = 13 [ (json.field) = { duration: { nanoseconds: true } } ];
-  repeated google.protobuf.Duration f_duration_nanoseconds2 = 23 [ (json.field) = { duration: { nanoseconds: false } } ];
-
-  repeated google.protobuf.Duration f_duration_microseconds1 = 14 [ (json.field) = { duration: { microseconds: true } } ];
-  repeated google.protobuf.Duration f_duration_microseconds2 = 24 [ (json.field) = { duration: { microseconds: false } } ];
-
-  repeated google.protobuf.Duration f_duration_milliseconds1 = 15 [ (json.field) = { duration: { milliseconds: true } } ];
-  repeated google.protobuf.Duration f_duration_milliseconds2 = 25 [ (json.field) = { duration: { milliseconds: false } } ];
-
-  repeated google.protobuf.Duration f_duration_seconds1 = 16 [ (json.field) = { duration: { seconds: true } } ];
-  repeated google.protobuf.Duration f_duration_seconds2 = 26 [ (json.field) = { duration: { seconds: false } } ];
-
-  repeated google.protobuf.Duration f_duration_minutes1 = 17 [ (json.field) = { duration: { minutes: true } } ];
-  repeated google.protobuf.Duration f_duration_minutes2 = 27 [ (json.field) = { duration: { minutes: false } } ];
-
-  repeated google.protobuf.Duration f_duration_hours1 = 18 [ (json.field) = { duration: { hours: true } } ];
-  repeated google.protobuf.Duration f_duration_hours2 = 28 [ (json.field) = { duration: { hours: false } } ];
-
-
-  repeated google.protobuf.Timestamp f_timestamp_native1 = 31 [ (json.field) = { timestamp: { native: true } } ];
-  repeated google.protobuf.Timestamp f_timestamp_native2 = 41 [ (json.field) = { timestamp: { native: false } } ];
-
-  repeated google.protobuf.Timestamp f_timestamp_time_layout1 = 32 [ (json.field) = { timestamp: { time_layout: { golang: "2006-01-02T15:04:05Z07:00" } } } ];
-  repeated google.protobuf.Timestamp f_timestamp_time_layout2 = 42 [ (json.field) = { timestamp: { time_layout: { golang: "Mon, 02 Jan 2006 15:04:05 MST" } } } ];
-
-  repeated google.protobuf.Timestamp f_timestamp_unix_nano1 = 33 [ (json.field) = { timestamp: { unix_nano: true } } ];
-  repeated google.protobuf.Timestamp f_timestamp_unix_nano2 = 43 [ (json.field) = { timestamp: { unix_nano: false } } ];
-
-  repeated google.protobuf.Timestamp f_timestamp_unix_micro1 = 34 [ (json.field) = { timestamp: { unix_micro: true } } ];
-  repeated google.protobuf.Timestamp f_timestamp_unix_micro2 = 44 [ (json.field) = { timestamp: { unix_micro: false } } ];
-
-  repeated google.protobuf.Timestamp f_timestamp_unix_milli1 = 35 [ (json.field) = { timestamp: { unix_milli: true } } ];
-  repeated google.protobuf.Timestamp f_timestamp_unix_milli2 = 45 [ (json.field) = { timestamp: { unix_milli: false } } ];
-
-  repeated google.protobuf.Timestamp f_timestamp_unix_sec1 = 36 [ (json.field) = { timestamp: { unix_sec: true } } ];
-  repeated google.protobuf.Timestamp f_timestamp_unix_sec2 = 46 [ (json.field) = { timestamp: { unix_sec: false } } ];
+  repeated google.protobuf.Timestamp f_timestamp_native1      = 21 [ (json.field) = { timestamp: { format: Native } } ];
+  repeated google.protobuf.Timestamp f_timestamp_time_layout1 = 22 [ (json.field) = {
+    timestamp: { format: TimeLayout, layout: { golang: "2006-01-02T15:04:05Z07:00" } },
+  } ];
+  repeated google.protobuf.Timestamp f_timestamp_unix_nano1   = 23 [ (json.field) = { timestamp: { format: UnixNano } } ];
+  repeated google.protobuf.Timestamp f_timestamp_unix_micro1  = 24 [ (json.field) = { timestamp: { format: UnixMicro } } ];
+  repeated google.protobuf.Timestamp f_timestamp_unix_milli1  = 25 [ (json.field) = { timestamp: { format: UnixMilli } } ];
+  repeated google.protobuf.Timestamp f_timestamp_unix_sec1    = 26 [ (json.field) = { timestamp: { format: UnixSec } } ];
 }

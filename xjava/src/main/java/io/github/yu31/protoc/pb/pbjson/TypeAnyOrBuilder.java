@@ -8,26 +8,13 @@ public interface TypeAnyOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>bool native = 1;</code>
-   * @return Whether the native field is set.
+   * <code>.json.TypeAny.Format format = 1;</code>
+   * @return The enum numeric value on the wire for format.
    */
-  boolean hasNative();
+  int getFormatValue();
   /**
-   * <code>bool native = 1;</code>
-   * @return The native.
+   * <code>.json.TypeAny.Format format = 1;</code>
+   * @return The format.
    */
-  boolean getNative();
-
-  /**
-   * <code>bool proto = 2;</code>
-   * @return Whether the proto field is set.
-   */
-  boolean hasProto();
-  /**
-   * <code>bool proto = 2;</code>
-   * @return The proto.
-   */
-  boolean getProto();
-
-  public io.github.yu31.protoc.pb.pbjson.TypeAny.FormatCase getFormatCase();
+  io.github.yu31.protoc.pb.pbjson.TypeAny.Format getFormat();
 }

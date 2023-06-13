@@ -8,74 +8,28 @@ public interface TypeTimestampOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>bool native = 1;</code>
-   * @return Whether the native field is set.
+   * <code>.json.TypeTimestamp.Format format = 1;</code>
+   * @return The enum numeric value on the wire for format.
    */
-  boolean hasNative();
+  int getFormatValue();
   /**
-   * <code>bool native = 1;</code>
-   * @return The native.
+   * <code>.json.TypeTimestamp.Format format = 1;</code>
+   * @return The format.
    */
-  boolean getNative();
+  io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format getFormat();
 
   /**
-   * <code>.json.TypeTimestamp.TimeLayout time_layout = 2;</code>
-   * @return Whether the timeLayout field is set.
+   * <code>.json.TypeTimestamp.Layout layout = 2;</code>
+   * @return Whether the layout field is set.
    */
-  boolean hasTimeLayout();
+  boolean hasLayout();
   /**
-   * <code>.json.TypeTimestamp.TimeLayout time_layout = 2;</code>
-   * @return The timeLayout.
+   * <code>.json.TypeTimestamp.Layout layout = 2;</code>
+   * @return The layout.
    */
-  io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout getTimeLayout();
+  io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout getLayout();
   /**
-   * <code>.json.TypeTimestamp.TimeLayout time_layout = 2;</code>
+   * <code>.json.TypeTimestamp.Layout layout = 2;</code>
    */
-  io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayoutOrBuilder getTimeLayoutOrBuilder();
-
-  /**
-   * <code>bool unix_nano = 3;</code>
-   * @return Whether the unixNano field is set.
-   */
-  boolean hasUnixNano();
-  /**
-   * <code>bool unix_nano = 3;</code>
-   * @return The unixNano.
-   */
-  boolean getUnixNano();
-
-  /**
-   * <code>bool unix_micro = 4;</code>
-   * @return Whether the unixMicro field is set.
-   */
-  boolean hasUnixMicro();
-  /**
-   * <code>bool unix_micro = 4;</code>
-   * @return The unixMicro.
-   */
-  boolean getUnixMicro();
-
-  /**
-   * <code>bool unix_milli = 5;</code>
-   * @return Whether the unixMilli field is set.
-   */
-  boolean hasUnixMilli();
-  /**
-   * <code>bool unix_milli = 5;</code>
-   * @return The unixMilli.
-   */
-  boolean getUnixMilli();
-
-  /**
-   * <code>bool unix_sec = 6;</code>
-   * @return Whether the unixSec field is set.
-   */
-  boolean hasUnixSec();
-  /**
-   * <code>bool unix_sec = 6;</code>
-   * @return The unixSec.
-   */
-  boolean getUnixSec();
-
-  public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.FormatCase getFormatCase();
+  io.github.yu31.protoc.pb.pbjson.TypeTimestamp.LayoutOrBuilder getLayoutOrBuilder();
 }

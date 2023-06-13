@@ -21,7 +21,7 @@ func (x *TypeSetOptional1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(1470)
+	encoder := jsonencoder.New(736)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -30,104 +30,42 @@ func (x *TypeSetOptional1) MarshalJSON() ([]byte, error) {
 	if err = encoder.AppendLiteralInterface(x.FAnyNative1); err != nil {
 		return nil, err
 	}
-	encoder.AppendObjectKey("f_any_native2")
-	if err = encoder.AppendLiteralInterface(x.FAnyNative2); err != nil {
-		return nil, err
-	}
 	encoder.AppendObjectKey("f_any_proto1")
 	if err = encoder.AppendWKTAnyByProto(x.FAnyProto1); err != nil {
-		return nil, err
-	}
-	encoder.AppendObjectKey("f_any_proto2")
-	if err = encoder.AppendLiteralInterface(x.FAnyProto2); err != nil {
 		return nil, err
 	}
 	encoder.AppendObjectKey("f_duration_native1")
 	if err = encoder.AppendLiteralInterface(x.FDurationNative1); err != nil {
 		return nil, err
 	}
-	encoder.AppendObjectKey("f_duration_native2")
-	if err = encoder.AppendLiteralInterface(x.FDurationNative2); err != nil {
-		return nil, err
-	}
 	encoder.AppendObjectKey("f_duration_string1")
 	encoder.AppendLiteralString(x.FDurationString1.AsDuration().String())
-	encoder.AppendObjectKey("f_duration_string2")
-	if err = encoder.AppendLiteralInterface(x.FDurationString2); err != nil {
-		return nil, err
-	}
 	encoder.AppendObjectKey("f_duration_nanoseconds1")
 	encoder.AppendLiteralInt64(x.FDurationNanoseconds1.AsDuration().Nanoseconds())
-	encoder.AppendObjectKey("f_duration_nanoseconds2")
-	if err = encoder.AppendLiteralInterface(x.FDurationNanoseconds2); err != nil {
-		return nil, err
-	}
 	encoder.AppendObjectKey("f_duration_microseconds1")
 	encoder.AppendLiteralInt64(x.FDurationMicroseconds1.AsDuration().Microseconds())
-	encoder.AppendObjectKey("f_duration_microseconds2")
-	if err = encoder.AppendLiteralInterface(x.FDurationMicroseconds2); err != nil {
-		return nil, err
-	}
 	encoder.AppendObjectKey("f_duration_milliseconds1")
 	encoder.AppendLiteralInt64(x.FDurationMilliseconds1.AsDuration().Milliseconds())
-	encoder.AppendObjectKey("f_duration_milliseconds2")
-	if err = encoder.AppendLiteralInterface(x.FDurationMilliseconds2); err != nil {
-		return nil, err
-	}
 	encoder.AppendObjectKey("f_duration_seconds1")
 	encoder.AppendLiteralFloat64(x.FDurationSeconds1.AsDuration().Seconds())
-	encoder.AppendObjectKey("f_duration_seconds2")
-	if err = encoder.AppendLiteralInterface(x.FDurationSeconds2); err != nil {
-		return nil, err
-	}
 	encoder.AppendObjectKey("f_duration_minutes1")
 	encoder.AppendLiteralFloat64(x.FDurationMinutes1.AsDuration().Minutes())
-	encoder.AppendObjectKey("f_duration_minutes2")
-	if err = encoder.AppendLiteralInterface(x.FDurationMinutes2); err != nil {
-		return nil, err
-	}
 	encoder.AppendObjectKey("f_duration_hours1")
 	encoder.AppendLiteralFloat64(x.FDurationHours1.AsDuration().Hours())
-	encoder.AppendObjectKey("f_duration_hours2")
-	if err = encoder.AppendLiteralInterface(x.FDurationHours2); err != nil {
-		return nil, err
-	}
 	encoder.AppendObjectKey("f_timestamp_native1")
 	if err = encoder.AppendLiteralInterface(x.FTimestampNative1); err != nil {
 		return nil, err
 	}
-	encoder.AppendObjectKey("f_timestamp_native2")
-	if err = encoder.AppendLiteralInterface(x.FTimestampNative2); err != nil {
-		return nil, err
-	}
 	encoder.AppendObjectKey("f_timestamp_time_layout1")
 	encoder.AppendLiteralString(x.FTimestampTimeLayout1.AsTime().Format("2006-01-02T15:04:05Z07:00"))
-	encoder.AppendObjectKey("f_timestamp_time_layout2")
-	encoder.AppendLiteralString(x.FTimestampTimeLayout2.AsTime().Format("Mon, 02 Jan 2006 15:04:05 MST"))
 	encoder.AppendObjectKey("f_timestamp_unix_nano1")
 	encoder.AppendLiteralInt64(x.FTimestampUnixNano1.AsTime().UnixNano())
-	encoder.AppendObjectKey("f_timestamp_unix_nano2")
-	if err = encoder.AppendLiteralInterface(x.FTimestampUnixNano2); err != nil {
-		return nil, err
-	}
 	encoder.AppendObjectKey("f_timestamp_unix_micro1")
 	encoder.AppendLiteralInt64(x.FTimestampUnixMicro1.AsTime().UnixMicro())
-	encoder.AppendObjectKey("f_timestamp_unix_micro2")
-	if err = encoder.AppendLiteralInterface(x.FTimestampUnixMicro2); err != nil {
-		return nil, err
-	}
 	encoder.AppendObjectKey("f_timestamp_unix_milli1")
 	encoder.AppendLiteralInt64(x.FTimestampUnixMilli1.AsTime().UnixMilli())
-	encoder.AppendObjectKey("f_timestamp_unix_milli2")
-	if err = encoder.AppendLiteralInterface(x.FTimestampUnixMilli2); err != nil {
-		return nil, err
-	}
 	encoder.AppendObjectKey("f_timestamp_unix_sec1")
 	encoder.AppendLiteralInt64(x.FTimestampUnixSec1.AsTime().Unix())
-	encoder.AppendObjectKey("f_timestamp_unix_sec2")
-	if err = encoder.AppendLiteralInterface(x.FTimestampUnixSec2); err != nil {
-		return nil, err
-	}
 
 	// Add end JSON identifier
 	encoder.AppendObjectEnd()
@@ -186,22 +124,6 @@ LOOP_SCAN:
 				}
 			}
 			x.FAnyNative1 = vv
-		case "f_any_native2":
-			var vv *anypb.Any
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-				return err
-			}
-			if !isNULL {
-				if x.FAnyNative2 != nil {
-					vv = x.FAnyNative2
-				} else {
-					vv = new(anypb.Any)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FAnyNative2 = vv
 		case "f_any_proto1":
 			var vv *anypb.Any
 			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
@@ -218,22 +140,6 @@ LOOP_SCAN:
 				}
 			}
 			x.FAnyProto1 = vv
-		case "f_any_proto2":
-			var vv *anypb.Any
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-				return err
-			}
-			if !isNULL {
-				if x.FAnyProto2 != nil {
-					vv = x.FAnyProto2
-				} else {
-					vv = new(anypb.Any)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FAnyProto2 = vv
 		case "f_duration_native1":
 			var vv *durationpb.Duration
 			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
@@ -250,22 +156,6 @@ LOOP_SCAN:
 				}
 			}
 			x.FDurationNative1 = vv
-		case "f_duration_native2":
-			var vv *durationpb.Duration
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-				return err
-			}
-			if !isNULL {
-				if x.FDurationNative2 != nil {
-					vv = x.FDurationNative2
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FDurationNative2 = vv
 		case "f_duration_string1":
 			var vv *durationpb.Duration
 			if x.FDurationString1 != nil {
@@ -277,22 +167,6 @@ LOOP_SCAN:
 				return err
 			}
 			x.FDurationString1 = vv
-		case "f_duration_string2":
-			var vv *durationpb.Duration
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-				return err
-			}
-			if !isNULL {
-				if x.FDurationString2 != nil {
-					vv = x.FDurationString2
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FDurationString2 = vv
 		case "f_duration_nanoseconds1":
 			var vv *durationpb.Duration
 			if x.FDurationNanoseconds1 != nil {
@@ -304,22 +178,6 @@ LOOP_SCAN:
 				return err
 			}
 			x.FDurationNanoseconds1 = vv
-		case "f_duration_nanoseconds2":
-			var vv *durationpb.Duration
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-				return err
-			}
-			if !isNULL {
-				if x.FDurationNanoseconds2 != nil {
-					vv = x.FDurationNanoseconds2
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FDurationNanoseconds2 = vv
 		case "f_duration_microseconds1":
 			var vv *durationpb.Duration
 			if x.FDurationMicroseconds1 != nil {
@@ -331,22 +189,6 @@ LOOP_SCAN:
 				return err
 			}
 			x.FDurationMicroseconds1 = vv
-		case "f_duration_microseconds2":
-			var vv *durationpb.Duration
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-				return err
-			}
-			if !isNULL {
-				if x.FDurationMicroseconds2 != nil {
-					vv = x.FDurationMicroseconds2
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FDurationMicroseconds2 = vv
 		case "f_duration_milliseconds1":
 			var vv *durationpb.Duration
 			if x.FDurationMilliseconds1 != nil {
@@ -358,22 +200,6 @@ LOOP_SCAN:
 				return err
 			}
 			x.FDurationMilliseconds1 = vv
-		case "f_duration_milliseconds2":
-			var vv *durationpb.Duration
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-				return err
-			}
-			if !isNULL {
-				if x.FDurationMilliseconds2 != nil {
-					vv = x.FDurationMilliseconds2
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FDurationMilliseconds2 = vv
 		case "f_duration_seconds1":
 			var vv *durationpb.Duration
 			if x.FDurationSeconds1 != nil {
@@ -385,22 +211,6 @@ LOOP_SCAN:
 				return err
 			}
 			x.FDurationSeconds1 = vv
-		case "f_duration_seconds2":
-			var vv *durationpb.Duration
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-				return err
-			}
-			if !isNULL {
-				if x.FDurationSeconds2 != nil {
-					vv = x.FDurationSeconds2
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FDurationSeconds2 = vv
 		case "f_duration_minutes1":
 			var vv *durationpb.Duration
 			if x.FDurationMinutes1 != nil {
@@ -412,22 +222,6 @@ LOOP_SCAN:
 				return err
 			}
 			x.FDurationMinutes1 = vv
-		case "f_duration_minutes2":
-			var vv *durationpb.Duration
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-				return err
-			}
-			if !isNULL {
-				if x.FDurationMinutes2 != nil {
-					vv = x.FDurationMinutes2
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FDurationMinutes2 = vv
 		case "f_duration_hours1":
 			var vv *durationpb.Duration
 			if x.FDurationHours1 != nil {
@@ -439,22 +233,6 @@ LOOP_SCAN:
 				return err
 			}
 			x.FDurationHours1 = vv
-		case "f_duration_hours2":
-			var vv *durationpb.Duration
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-				return err
-			}
-			if !isNULL {
-				if x.FDurationHours2 != nil {
-					vv = x.FDurationHours2
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FDurationHours2 = vv
 		case "f_timestamp_native1":
 			var vv *timestamppb.Timestamp
 			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
@@ -471,22 +249,6 @@ LOOP_SCAN:
 				}
 			}
 			x.FTimestampNative1 = vv
-		case "f_timestamp_native2":
-			var vv *timestamppb.Timestamp
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-				return err
-			}
-			if !isNULL {
-				if x.FTimestampNative2 != nil {
-					vv = x.FTimestampNative2
-				} else {
-					vv = new(timestamppb.Timestamp)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FTimestampNative2 = vv
 		case "f_timestamp_time_layout1":
 			var vv *timestamppb.Timestamp
 			if x.FTimestampTimeLayout1 != nil {
@@ -498,17 +260,6 @@ LOOP_SCAN:
 				return err
 			}
 			x.FTimestampTimeLayout1 = vv
-		case "f_timestamp_time_layout2":
-			var vv *timestamppb.Timestamp
-			if x.FTimestampTimeLayout2 != nil {
-				vv = x.FTimestampTimeLayout2
-			} else {
-				vv = new(timestamppb.Timestamp)
-			}
-			if err = decoder.ReadWKTTimestampByString(jsonKey, vv, "Mon, 02 Jan 2006 15:04:05 MST"); err != nil {
-				return err
-			}
-			x.FTimestampTimeLayout2 = vv
 		case "f_timestamp_unix_nano1":
 			var vv *timestamppb.Timestamp
 			if x.FTimestampUnixNano1 != nil {
@@ -520,22 +271,6 @@ LOOP_SCAN:
 				return err
 			}
 			x.FTimestampUnixNano1 = vv
-		case "f_timestamp_unix_nano2":
-			var vv *timestamppb.Timestamp
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-				return err
-			}
-			if !isNULL {
-				if x.FTimestampUnixNano2 != nil {
-					vv = x.FTimestampUnixNano2
-				} else {
-					vv = new(timestamppb.Timestamp)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FTimestampUnixNano2 = vv
 		case "f_timestamp_unix_micro1":
 			var vv *timestamppb.Timestamp
 			if x.FTimestampUnixMicro1 != nil {
@@ -547,22 +282,6 @@ LOOP_SCAN:
 				return err
 			}
 			x.FTimestampUnixMicro1 = vv
-		case "f_timestamp_unix_micro2":
-			var vv *timestamppb.Timestamp
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-				return err
-			}
-			if !isNULL {
-				if x.FTimestampUnixMicro2 != nil {
-					vv = x.FTimestampUnixMicro2
-				} else {
-					vv = new(timestamppb.Timestamp)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FTimestampUnixMicro2 = vv
 		case "f_timestamp_unix_milli1":
 			var vv *timestamppb.Timestamp
 			if x.FTimestampUnixMilli1 != nil {
@@ -574,22 +293,6 @@ LOOP_SCAN:
 				return err
 			}
 			x.FTimestampUnixMilli1 = vv
-		case "f_timestamp_unix_milli2":
-			var vv *timestamppb.Timestamp
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-				return err
-			}
-			if !isNULL {
-				if x.FTimestampUnixMilli2 != nil {
-					vv = x.FTimestampUnixMilli2
-				} else {
-					vv = new(timestamppb.Timestamp)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FTimestampUnixMilli2 = vv
 		case "f_timestamp_unix_sec1":
 			var vv *timestamppb.Timestamp
 			if x.FTimestampUnixSec1 != nil {
@@ -601,22 +304,6 @@ LOOP_SCAN:
 				return err
 			}
 			x.FTimestampUnixSec1 = vv
-		case "f_timestamp_unix_sec2":
-			var vv *timestamppb.Timestamp
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-				return err
-			}
-			if !isNULL {
-				if x.FTimestampUnixSec2 != nil {
-					vv = x.FTimestampUnixSec2
-				} else {
-					vv = new(timestamppb.Timestamp)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FTimestampUnixSec2 = vv
 		default:
 			if err = decoder.DiscardValue(jsonKey); err != nil {
 				return err

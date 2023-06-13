@@ -55,7 +55,7 @@ func (p *Plugin) loadOneofOptions(oneof *protogen.Oneof) *pbjson.OneofOptions {
 
 //func (p *Plugin) loadTypeSetEnum(options *pbjson.FieldOptions) *pbjson.TypeEnum {
 //	if options.TypeSet == nil {
-//		return &pbjson.TypeEnum{Format: nil}
+//		return &pbjson.TypeEnum{}
 //	}
 //
 //	switch ot := options.TypeSet.(type) {
@@ -71,7 +71,7 @@ func (p *Plugin) loadOneofOptions(oneof *protogen.Oneof) *pbjson.OneofOptions {
 //}
 func (p *Plugin) loadTypeSetAny(options *pbjson.FieldOptions) *pbjson.TypeAny {
 	if options.TypeSet == nil {
-		return &pbjson.TypeAny{Format: nil}
+		return &pbjson.TypeAny{}
 	}
 
 	switch ot := options.TypeSet.(type) {
@@ -87,7 +87,7 @@ func (p *Plugin) loadTypeSetAny(options *pbjson.FieldOptions) *pbjson.TypeAny {
 }
 func (p *Plugin) loadTypeSetDuration(options *pbjson.FieldOptions) *pbjson.TypeDuration {
 	if options.TypeSet == nil {
-		return &pbjson.TypeDuration{Format: nil}
+		return &pbjson.TypeDuration{}
 	}
 
 	switch ot := options.TypeSet.(type) {
@@ -103,7 +103,7 @@ func (p *Plugin) loadTypeSetDuration(options *pbjson.FieldOptions) *pbjson.TypeD
 }
 func (p *Plugin) loadTypeSetTimestamp(options *pbjson.FieldOptions) *pbjson.TypeTimestamp {
 	if options.TypeSet == nil {
-		return &pbjson.TypeTimestamp{Format: nil}
+		return &pbjson.TypeTimestamp{}
 	}
 
 	switch ot := options.TypeSet.(type) {

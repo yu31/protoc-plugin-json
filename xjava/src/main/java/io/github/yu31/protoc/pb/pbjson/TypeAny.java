@@ -16,6 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private TypeAny() {
+    format_ = 0;
   }
 
   @java.lang.Override
@@ -49,13 +50,9 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 8: {
-            format_ = input.readBool();
-            formatCase_ = 1;
-            break;
-          }
-          case 16: {
-            format_ = input.readBool();
-            formatCase_ = 2;
+            int rawValue = input.readEnum();
+
+            format_ = rawValue;
             break;
           }
           default: {
@@ -90,87 +87,131 @@ private static final long serialVersionUID = 0L;
             io.github.yu31.protoc.pb.pbjson.TypeAny.class, io.github.yu31.protoc.pb.pbjson.TypeAny.Builder.class);
   }
 
-  private int formatCase_ = 0;
-  private java.lang.Object format_;
-  public enum FormatCase
-      implements com.google.protobuf.Internal.EnumLite,
-          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-    NATIVE(1),
-    PROTO(2),
-    FORMAT_NOT_SET(0);
-    private final int value;
-    private FormatCase(int value) {
-      this.value = value;
-    }
+  /**
+   * Protobuf enum {@code json.TypeAny.Format}
+   */
+  public enum Format
+      implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * @param value The number of the enum to look for.
-     * @return The enum associated with the given number.
+     * <code>Native = 0;</code>
+     */
+    Native(0),
+    /**
+     * <code>Proto = 1;</code>
+     */
+    Proto(1),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>Native = 0;</code>
+     */
+    public static final int Native_VALUE = 0;
+    /**
+     * <code>Proto = 1;</code>
+     */
+    public static final int Proto_VALUE = 1;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @java.lang.Deprecated
-    public static FormatCase valueOf(int value) {
+    public static Format valueOf(int value) {
       return forNumber(value);
     }
 
-    public static FormatCase forNumber(int value) {
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static Format forNumber(int value) {
       switch (value) {
-        case 1: return NATIVE;
-        case 2: return PROTO;
-        case 0: return FORMAT_NOT_SET;
+        case 0: return Native;
+        case 1: return Proto;
         default: return null;
       }
     }
-    public int getNumber() {
-      return this.value;
-    }
-  };
 
-  public FormatCase
-  getFormatCase() {
-    return FormatCase.forNumber(
-        formatCase_);
+    public static com.google.protobuf.Internal.EnumLiteMap<Format>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        Format> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<Format>() {
+            public Format findValueByNumber(int number) {
+              return Format.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return io.github.yu31.protoc.pb.pbjson.TypeAny.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final Format[] VALUES = values();
+
+    public static Format valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private Format(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:json.TypeAny.Format)
   }
 
-  public static final int NATIVE_FIELD_NUMBER = 1;
+  public static final int FORMAT_FIELD_NUMBER = 1;
+  private int format_;
   /**
-   * <code>bool native = 1;</code>
-   * @return Whether the native field is set.
+   * <code>.json.TypeAny.Format format = 1;</code>
+   * @return The enum numeric value on the wire for format.
    */
-  @java.lang.Override
-  public boolean hasNative() {
-    return formatCase_ == 1;
+  @java.lang.Override public int getFormatValue() {
+    return format_;
   }
   /**
-   * <code>bool native = 1;</code>
-   * @return The native.
+   * <code>.json.TypeAny.Format format = 1;</code>
+   * @return The format.
    */
-  @java.lang.Override
-  public boolean getNative() {
-    if (formatCase_ == 1) {
-      return (java.lang.Boolean) format_;
-    }
-    return false;
-  }
-
-  public static final int PROTO_FIELD_NUMBER = 2;
-  /**
-   * <code>bool proto = 2;</code>
-   * @return Whether the proto field is set.
-   */
-  @java.lang.Override
-  public boolean hasProto() {
-    return formatCase_ == 2;
-  }
-  /**
-   * <code>bool proto = 2;</code>
-   * @return The proto.
-   */
-  @java.lang.Override
-  public boolean getProto() {
-    if (formatCase_ == 2) {
-      return (java.lang.Boolean) format_;
-    }
-    return false;
+  @java.lang.Override public io.github.yu31.protoc.pb.pbjson.TypeAny.Format getFormat() {
+    @SuppressWarnings("deprecation")
+    io.github.yu31.protoc.pb.pbjson.TypeAny.Format result = io.github.yu31.protoc.pb.pbjson.TypeAny.Format.valueOf(format_);
+    return result == null ? io.github.yu31.protoc.pb.pbjson.TypeAny.Format.UNRECOGNIZED : result;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -187,13 +228,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (formatCase_ == 1) {
-      output.writeBool(
-          1, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 2) {
-      output.writeBool(
-          2, (boolean)((java.lang.Boolean) format_));
+    if (format_ != io.github.yu31.protoc.pb.pbjson.TypeAny.Format.Native.getNumber()) {
+      output.writeEnum(1, format_);
     }
     unknownFields.writeTo(output);
   }
@@ -204,15 +240,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (formatCase_ == 1) {
+    if (format_ != io.github.yu31.protoc.pb.pbjson.TypeAny.Format.Native.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(
-            1, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 2) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(
-            2, (boolean)((java.lang.Boolean) format_));
+        .computeEnumSize(1, format_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -229,19 +259,7 @@ private static final long serialVersionUID = 0L;
     }
     io.github.yu31.protoc.pb.pbjson.TypeAny other = (io.github.yu31.protoc.pb.pbjson.TypeAny) obj;
 
-    if (!getFormatCase().equals(other.getFormatCase())) return false;
-    switch (formatCase_) {
-      case 1:
-        if (getNative()
-            != other.getNative()) return false;
-        break;
-      case 2:
-        if (getProto()
-            != other.getProto()) return false;
-        break;
-      case 0:
-      default:
-    }
+    if (format_ != other.format_) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -253,20 +271,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    switch (formatCase_) {
-      case 1:
-        hash = (37 * hash) + NATIVE_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getNative());
-        break;
-      case 2:
-        hash = (37 * hash) + PROTO_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getProto());
-        break;
-      case 0:
-      default:
-    }
+    hash = (37 * hash) + FORMAT_FIELD_NUMBER;
+    hash = (53 * hash) + format_;
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -400,8 +406,8 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      formatCase_ = 0;
-      format_ = null;
+      format_ = 0;
+
       return this;
     }
 
@@ -428,13 +434,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeAny buildPartial() {
       io.github.yu31.protoc.pb.pbjson.TypeAny result = new io.github.yu31.protoc.pb.pbjson.TypeAny(this);
-      if (formatCase_ == 1) {
-        result.format_ = format_;
-      }
-      if (formatCase_ == 2) {
-        result.format_ = format_;
-      }
-      result.formatCase_ = formatCase_;
+      result.format_ = format_;
       onBuilt();
       return result;
     }
@@ -483,18 +483,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(io.github.yu31.protoc.pb.pbjson.TypeAny other) {
       if (other == io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance()) return this;
-      switch (other.getFormatCase()) {
-        case NATIVE: {
-          setNative(other.getNative());
-          break;
-        }
-        case PROTO: {
-          setProto(other.getProto());
-          break;
-        }
-        case FORMAT_NOT_SET: {
-          break;
-        }
+      if (other.format_ != 0) {
+        setFormatValue(other.getFormatValue());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -524,101 +514,58 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
-    private int formatCase_ = 0;
-    private java.lang.Object format_;
-    public FormatCase
-        getFormatCase() {
-      return FormatCase.forNumber(
-          formatCase_);
-    }
 
+    private int format_ = 0;
+    /**
+     * <code>.json.TypeAny.Format format = 1;</code>
+     * @return The enum numeric value on the wire for format.
+     */
+    @java.lang.Override public int getFormatValue() {
+      return format_;
+    }
+    /**
+     * <code>.json.TypeAny.Format format = 1;</code>
+     * @param value The enum numeric value on the wire for format to set.
+     * @return This builder for chaining.
+     */
+    public Builder setFormatValue(int value) {
+      
+      format_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.json.TypeAny.Format format = 1;</code>
+     * @return The format.
+     */
+    @java.lang.Override
+    public io.github.yu31.protoc.pb.pbjson.TypeAny.Format getFormat() {
+      @SuppressWarnings("deprecation")
+      io.github.yu31.protoc.pb.pbjson.TypeAny.Format result = io.github.yu31.protoc.pb.pbjson.TypeAny.Format.valueOf(format_);
+      return result == null ? io.github.yu31.protoc.pb.pbjson.TypeAny.Format.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>.json.TypeAny.Format format = 1;</code>
+     * @param value The format to set.
+     * @return This builder for chaining.
+     */
+    public Builder setFormat(io.github.yu31.protoc.pb.pbjson.TypeAny.Format value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      format_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.json.TypeAny.Format format = 1;</code>
+     * @return This builder for chaining.
+     */
     public Builder clearFormat() {
-      formatCase_ = 0;
-      format_ = null;
+      
+      format_ = 0;
       onChanged();
-      return this;
-    }
-
-
-    /**
-     * <code>bool native = 1;</code>
-     * @return Whether the native field is set.
-     */
-    public boolean hasNative() {
-      return formatCase_ == 1;
-    }
-    /**
-     * <code>bool native = 1;</code>
-     * @return The native.
-     */
-    public boolean getNative() {
-      if (formatCase_ == 1) {
-        return (java.lang.Boolean) format_;
-      }
-      return false;
-    }
-    /**
-     * <code>bool native = 1;</code>
-     * @param value The native to set.
-     * @return This builder for chaining.
-     */
-    public Builder setNative(boolean value) {
-      formatCase_ = 1;
-      format_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool native = 1;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearNative() {
-      if (formatCase_ == 1) {
-        formatCase_ = 0;
-        format_ = null;
-        onChanged();
-      }
-      return this;
-    }
-
-    /**
-     * <code>bool proto = 2;</code>
-     * @return Whether the proto field is set.
-     */
-    public boolean hasProto() {
-      return formatCase_ == 2;
-    }
-    /**
-     * <code>bool proto = 2;</code>
-     * @return The proto.
-     */
-    public boolean getProto() {
-      if (formatCase_ == 2) {
-        return (java.lang.Boolean) format_;
-      }
-      return false;
-    }
-    /**
-     * <code>bool proto = 2;</code>
-     * @param value The proto to set.
-     * @return This builder for chaining.
-     */
-    public Builder setProto(boolean value) {
-      formatCase_ = 2;
-      format_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool proto = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearProto() {
-      if (formatCase_ == 2) {
-        formatCase_ = 0;
-        format_ = null;
-        onChanged();
-      }
       return this;
     }
     @java.lang.Override

@@ -84,68 +84,57 @@ message FieldOptions {
 }
 
 message TypeEnum {
-  // Default to use use_number.
-  oneof Format {
-    bool number = 1;
-    bool string = 2;
+  enum Format {
+    Number = 0;
+    String = 1;
   }
+
+  Format format = 1;
 }
 
 message TypeAny {
-  // Default to use native.
-  oneof Format {
-    bool native = 1;
-
-    // Do marshal/unmarshal by protojson.
-    bool proto = 2;
+  enum Format {
+    Native = 0;
+    Proto = 1;
   }
+
+  Format format = 1;
 }
 
 message TypeDuration {
-  // Default to use native.
-  oneof Format {
-    bool native = 1;
-
-    bool string = 2;
-
-    bool nanoseconds = 3;
-
-    bool microseconds = 4;
-
-    bool milliseconds = 5;
-
-    bool seconds = 6;
-
-    bool minutes = 7;
-
-    bool hours = 8;
+  enum Format {
+   Native = 0;
+   String = 1;
+   Nanoseconds = 2;
+   Microseconds = 3;
+   Milliseconds = 4;
+   Seconds = 5;
+   Minutes = 6;
+   Hours = 7;
   }
+
+  Format format = 1;
 }
 
 message TypeTimestamp {
-  message TimeLayout {
+  message Layout {
     string golang = 1;
-
     string java = 2;
-
     string rust = 3;
-
     string python = 4;
   }
 
-  // Default to use native.
-  oneof Format {
-    bool native = 1;
-
-    TimeLayout time_layout = 2;
-
-    bool unix_nano = 3;
-
-    bool unix_micro = 4;
-
-    bool unix_milli = 5;
-
-    bool unix_sec = 6;
+  enum Format {
+     Native = 0;
+     TimeLayout = 1;
+     UnixNano = 2;
+     UnixMicro = 3;
+     UnixMilli = 4;
+     UnixSec = 5;
   }
+
+  Format format = 1;
+
+  Layout layout = 2;
 }
 

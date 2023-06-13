@@ -16,6 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private TypeDuration() {
+    format_ = 0;
   }
 
   @java.lang.Override
@@ -49,43 +50,9 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 8: {
-            format_ = input.readBool();
-            formatCase_ = 1;
-            break;
-          }
-          case 16: {
-            format_ = input.readBool();
-            formatCase_ = 2;
-            break;
-          }
-          case 24: {
-            format_ = input.readBool();
-            formatCase_ = 3;
-            break;
-          }
-          case 32: {
-            format_ = input.readBool();
-            formatCase_ = 4;
-            break;
-          }
-          case 40: {
-            format_ = input.readBool();
-            formatCase_ = 5;
-            break;
-          }
-          case 48: {
-            format_ = input.readBool();
-            formatCase_ = 6;
-            break;
-          }
-          case 56: {
-            format_ = input.readBool();
-            formatCase_ = 7;
-            break;
-          }
-          case 64: {
-            format_ = input.readBool();
-            formatCase_ = 8;
+            int rawValue = input.readEnum();
+
+            format_ = rawValue;
             break;
           }
           default: {
@@ -120,225 +87,185 @@ private static final long serialVersionUID = 0L;
             io.github.yu31.protoc.pb.pbjson.TypeDuration.class, io.github.yu31.protoc.pb.pbjson.TypeDuration.Builder.class);
   }
 
-  private int formatCase_ = 0;
-  private java.lang.Object format_;
-  public enum FormatCase
-      implements com.google.protobuf.Internal.EnumLite,
-          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-    NATIVE(1),
-    STRING(2),
-    NANOSECONDS(3),
-    MICROSECONDS(4),
-    MILLISECONDS(5),
-    SECONDS(6),
-    MINUTES(7),
-    HOURS(8),
-    FORMAT_NOT_SET(0);
-    private final int value;
-    private FormatCase(int value) {
-      this.value = value;
-    }
+  /**
+   * Protobuf enum {@code json.TypeDuration.Format}
+   */
+  public enum Format
+      implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * @param value The number of the enum to look for.
-     * @return The enum associated with the given number.
+     * <code>Native = 0;</code>
+     */
+    Native(0),
+    /**
+     * <code>String = 1;</code>
+     */
+    String(1),
+    /**
+     * <code>Nanoseconds = 2;</code>
+     */
+    Nanoseconds(2),
+    /**
+     * <code>Microseconds = 3;</code>
+     */
+    Microseconds(3),
+    /**
+     * <code>Milliseconds = 4;</code>
+     */
+    Milliseconds(4),
+    /**
+     * <code>Seconds = 5;</code>
+     */
+    Seconds(5),
+    /**
+     * <code>Minutes = 6;</code>
+     */
+    Minutes(6),
+    /**
+     * <code>Hours = 7;</code>
+     */
+    Hours(7),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>Native = 0;</code>
+     */
+    public static final int Native_VALUE = 0;
+    /**
+     * <code>String = 1;</code>
+     */
+    public static final int String_VALUE = 1;
+    /**
+     * <code>Nanoseconds = 2;</code>
+     */
+    public static final int Nanoseconds_VALUE = 2;
+    /**
+     * <code>Microseconds = 3;</code>
+     */
+    public static final int Microseconds_VALUE = 3;
+    /**
+     * <code>Milliseconds = 4;</code>
+     */
+    public static final int Milliseconds_VALUE = 4;
+    /**
+     * <code>Seconds = 5;</code>
+     */
+    public static final int Seconds_VALUE = 5;
+    /**
+     * <code>Minutes = 6;</code>
+     */
+    public static final int Minutes_VALUE = 6;
+    /**
+     * <code>Hours = 7;</code>
+     */
+    public static final int Hours_VALUE = 7;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @java.lang.Deprecated
-    public static FormatCase valueOf(int value) {
+    public static Format valueOf(int value) {
       return forNumber(value);
     }
 
-    public static FormatCase forNumber(int value) {
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static Format forNumber(int value) {
       switch (value) {
-        case 1: return NATIVE;
-        case 2: return STRING;
-        case 3: return NANOSECONDS;
-        case 4: return MICROSECONDS;
-        case 5: return MILLISECONDS;
-        case 6: return SECONDS;
-        case 7: return MINUTES;
-        case 8: return HOURS;
-        case 0: return FORMAT_NOT_SET;
+        case 0: return Native;
+        case 1: return String;
+        case 2: return Nanoseconds;
+        case 3: return Microseconds;
+        case 4: return Milliseconds;
+        case 5: return Seconds;
+        case 6: return Minutes;
+        case 7: return Hours;
         default: return null;
       }
     }
-    public int getNumber() {
-      return this.value;
-    }
-  };
 
-  public FormatCase
-  getFormatCase() {
-    return FormatCase.forNumber(
-        formatCase_);
-  }
-
-  public static final int NATIVE_FIELD_NUMBER = 1;
-  /**
-   * <code>bool native = 1;</code>
-   * @return Whether the native field is set.
-   */
-  @java.lang.Override
-  public boolean hasNative() {
-    return formatCase_ == 1;
-  }
-  /**
-   * <code>bool native = 1;</code>
-   * @return The native.
-   */
-  @java.lang.Override
-  public boolean getNative() {
-    if (formatCase_ == 1) {
-      return (java.lang.Boolean) format_;
+    public static com.google.protobuf.Internal.EnumLiteMap<Format>
+        internalGetValueMap() {
+      return internalValueMap;
     }
-    return false;
-  }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        Format> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<Format>() {
+            public Format findValueByNumber(int number) {
+              return Format.forNumber(number);
+            }
+          };
 
-  public static final int STRING_FIELD_NUMBER = 2;
-  /**
-   * <code>bool string = 2;</code>
-   * @return Whether the string field is set.
-   */
-  @java.lang.Override
-  public boolean hasString() {
-    return formatCase_ == 2;
-  }
-  /**
-   * <code>bool string = 2;</code>
-   * @return The string.
-   */
-  @java.lang.Override
-  public boolean getString() {
-    if (formatCase_ == 2) {
-      return (java.lang.Boolean) format_;
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
     }
-    return false;
-  }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return io.github.yu31.protoc.pb.pbjson.TypeDuration.getDescriptor().getEnumTypes().get(0);
+    }
 
-  public static final int NANOSECONDS_FIELD_NUMBER = 3;
-  /**
-   * <code>bool nanoseconds = 3;</code>
-   * @return Whether the nanoseconds field is set.
-   */
-  @java.lang.Override
-  public boolean hasNanoseconds() {
-    return formatCase_ == 3;
-  }
-  /**
-   * <code>bool nanoseconds = 3;</code>
-   * @return The nanoseconds.
-   */
-  @java.lang.Override
-  public boolean getNanoseconds() {
-    if (formatCase_ == 3) {
-      return (java.lang.Boolean) format_;
+    private static final Format[] VALUES = values();
+
+    public static Format valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
     }
-    return false;
+
+    private final int value;
+
+    private Format(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:json.TypeDuration.Format)
   }
 
-  public static final int MICROSECONDS_FIELD_NUMBER = 4;
+  public static final int FORMAT_FIELD_NUMBER = 1;
+  private int format_;
   /**
-   * <code>bool microseconds = 4;</code>
-   * @return Whether the microseconds field is set.
+   * <code>.json.TypeDuration.Format format = 1;</code>
+   * @return The enum numeric value on the wire for format.
    */
-  @java.lang.Override
-  public boolean hasMicroseconds() {
-    return formatCase_ == 4;
+  @java.lang.Override public int getFormatValue() {
+    return format_;
   }
   /**
-   * <code>bool microseconds = 4;</code>
-   * @return The microseconds.
+   * <code>.json.TypeDuration.Format format = 1;</code>
+   * @return The format.
    */
-  @java.lang.Override
-  public boolean getMicroseconds() {
-    if (formatCase_ == 4) {
-      return (java.lang.Boolean) format_;
-    }
-    return false;
-  }
-
-  public static final int MILLISECONDS_FIELD_NUMBER = 5;
-  /**
-   * <code>bool milliseconds = 5;</code>
-   * @return Whether the milliseconds field is set.
-   */
-  @java.lang.Override
-  public boolean hasMilliseconds() {
-    return formatCase_ == 5;
-  }
-  /**
-   * <code>bool milliseconds = 5;</code>
-   * @return The milliseconds.
-   */
-  @java.lang.Override
-  public boolean getMilliseconds() {
-    if (formatCase_ == 5) {
-      return (java.lang.Boolean) format_;
-    }
-    return false;
-  }
-
-  public static final int SECONDS_FIELD_NUMBER = 6;
-  /**
-   * <code>bool seconds = 6;</code>
-   * @return Whether the seconds field is set.
-   */
-  @java.lang.Override
-  public boolean hasSeconds() {
-    return formatCase_ == 6;
-  }
-  /**
-   * <code>bool seconds = 6;</code>
-   * @return The seconds.
-   */
-  @java.lang.Override
-  public boolean getSeconds() {
-    if (formatCase_ == 6) {
-      return (java.lang.Boolean) format_;
-    }
-    return false;
-  }
-
-  public static final int MINUTES_FIELD_NUMBER = 7;
-  /**
-   * <code>bool minutes = 7;</code>
-   * @return Whether the minutes field is set.
-   */
-  @java.lang.Override
-  public boolean hasMinutes() {
-    return formatCase_ == 7;
-  }
-  /**
-   * <code>bool minutes = 7;</code>
-   * @return The minutes.
-   */
-  @java.lang.Override
-  public boolean getMinutes() {
-    if (formatCase_ == 7) {
-      return (java.lang.Boolean) format_;
-    }
-    return false;
-  }
-
-  public static final int HOURS_FIELD_NUMBER = 8;
-  /**
-   * <code>bool hours = 8;</code>
-   * @return Whether the hours field is set.
-   */
-  @java.lang.Override
-  public boolean hasHours() {
-    return formatCase_ == 8;
-  }
-  /**
-   * <code>bool hours = 8;</code>
-   * @return The hours.
-   */
-  @java.lang.Override
-  public boolean getHours() {
-    if (formatCase_ == 8) {
-      return (java.lang.Boolean) format_;
-    }
-    return false;
+  @java.lang.Override public io.github.yu31.protoc.pb.pbjson.TypeDuration.Format getFormat() {
+    @SuppressWarnings("deprecation")
+    io.github.yu31.protoc.pb.pbjson.TypeDuration.Format result = io.github.yu31.protoc.pb.pbjson.TypeDuration.Format.valueOf(format_);
+    return result == null ? io.github.yu31.protoc.pb.pbjson.TypeDuration.Format.UNRECOGNIZED : result;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -355,37 +282,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (formatCase_ == 1) {
-      output.writeBool(
-          1, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 2) {
-      output.writeBool(
-          2, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 3) {
-      output.writeBool(
-          3, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 4) {
-      output.writeBool(
-          4, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 5) {
-      output.writeBool(
-          5, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 6) {
-      output.writeBool(
-          6, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 7) {
-      output.writeBool(
-          7, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 8) {
-      output.writeBool(
-          8, (boolean)((java.lang.Boolean) format_));
+    if (format_ != io.github.yu31.protoc.pb.pbjson.TypeDuration.Format.Native.getNumber()) {
+      output.writeEnum(1, format_);
     }
     unknownFields.writeTo(output);
   }
@@ -396,45 +294,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (formatCase_ == 1) {
+    if (format_ != io.github.yu31.protoc.pb.pbjson.TypeDuration.Format.Native.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(
-            1, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 2) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(
-            2, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 3) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(
-            3, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 4) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(
-            4, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 5) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(
-            5, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 6) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(
-            6, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 7) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(
-            7, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 8) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(
-            8, (boolean)((java.lang.Boolean) format_));
+        .computeEnumSize(1, format_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -451,43 +313,7 @@ private static final long serialVersionUID = 0L;
     }
     io.github.yu31.protoc.pb.pbjson.TypeDuration other = (io.github.yu31.protoc.pb.pbjson.TypeDuration) obj;
 
-    if (!getFormatCase().equals(other.getFormatCase())) return false;
-    switch (formatCase_) {
-      case 1:
-        if (getNative()
-            != other.getNative()) return false;
-        break;
-      case 2:
-        if (getString()
-            != other.getString()) return false;
-        break;
-      case 3:
-        if (getNanoseconds()
-            != other.getNanoseconds()) return false;
-        break;
-      case 4:
-        if (getMicroseconds()
-            != other.getMicroseconds()) return false;
-        break;
-      case 5:
-        if (getMilliseconds()
-            != other.getMilliseconds()) return false;
-        break;
-      case 6:
-        if (getSeconds()
-            != other.getSeconds()) return false;
-        break;
-      case 7:
-        if (getMinutes()
-            != other.getMinutes()) return false;
-        break;
-      case 8:
-        if (getHours()
-            != other.getHours()) return false;
-        break;
-      case 0:
-      default:
-    }
+    if (format_ != other.format_) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -499,50 +325,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    switch (formatCase_) {
-      case 1:
-        hash = (37 * hash) + NATIVE_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getNative());
-        break;
-      case 2:
-        hash = (37 * hash) + STRING_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getString());
-        break;
-      case 3:
-        hash = (37 * hash) + NANOSECONDS_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getNanoseconds());
-        break;
-      case 4:
-        hash = (37 * hash) + MICROSECONDS_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getMicroseconds());
-        break;
-      case 5:
-        hash = (37 * hash) + MILLISECONDS_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getMilliseconds());
-        break;
-      case 6:
-        hash = (37 * hash) + SECONDS_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getSeconds());
-        break;
-      case 7:
-        hash = (37 * hash) + MINUTES_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getMinutes());
-        break;
-      case 8:
-        hash = (37 * hash) + HOURS_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getHours());
-        break;
-      case 0:
-      default:
-    }
+    hash = (37 * hash) + FORMAT_FIELD_NUMBER;
+    hash = (53 * hash) + format_;
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -676,8 +460,8 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      formatCase_ = 0;
-      format_ = null;
+      format_ = 0;
+
       return this;
     }
 
@@ -704,31 +488,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeDuration buildPartial() {
       io.github.yu31.protoc.pb.pbjson.TypeDuration result = new io.github.yu31.protoc.pb.pbjson.TypeDuration(this);
-      if (formatCase_ == 1) {
-        result.format_ = format_;
-      }
-      if (formatCase_ == 2) {
-        result.format_ = format_;
-      }
-      if (formatCase_ == 3) {
-        result.format_ = format_;
-      }
-      if (formatCase_ == 4) {
-        result.format_ = format_;
-      }
-      if (formatCase_ == 5) {
-        result.format_ = format_;
-      }
-      if (formatCase_ == 6) {
-        result.format_ = format_;
-      }
-      if (formatCase_ == 7) {
-        result.format_ = format_;
-      }
-      if (formatCase_ == 8) {
-        result.format_ = format_;
-      }
-      result.formatCase_ = formatCase_;
+      result.format_ = format_;
       onBuilt();
       return result;
     }
@@ -777,42 +537,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(io.github.yu31.protoc.pb.pbjson.TypeDuration other) {
       if (other == io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance()) return this;
-      switch (other.getFormatCase()) {
-        case NATIVE: {
-          setNative(other.getNative());
-          break;
-        }
-        case STRING: {
-          setString(other.getString());
-          break;
-        }
-        case NANOSECONDS: {
-          setNanoseconds(other.getNanoseconds());
-          break;
-        }
-        case MICROSECONDS: {
-          setMicroseconds(other.getMicroseconds());
-          break;
-        }
-        case MILLISECONDS: {
-          setMilliseconds(other.getMilliseconds());
-          break;
-        }
-        case SECONDS: {
-          setSeconds(other.getSeconds());
-          break;
-        }
-        case MINUTES: {
-          setMinutes(other.getMinutes());
-          break;
-        }
-        case HOURS: {
-          setHours(other.getHours());
-          break;
-        }
-        case FORMAT_NOT_SET: {
-          break;
-        }
+      if (other.format_ != 0) {
+        setFormatValue(other.getFormatValue());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -842,347 +568,58 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
-    private int formatCase_ = 0;
-    private java.lang.Object format_;
-    public FormatCase
-        getFormatCase() {
-      return FormatCase.forNumber(
-          formatCase_);
-    }
 
+    private int format_ = 0;
+    /**
+     * <code>.json.TypeDuration.Format format = 1;</code>
+     * @return The enum numeric value on the wire for format.
+     */
+    @java.lang.Override public int getFormatValue() {
+      return format_;
+    }
+    /**
+     * <code>.json.TypeDuration.Format format = 1;</code>
+     * @param value The enum numeric value on the wire for format to set.
+     * @return This builder for chaining.
+     */
+    public Builder setFormatValue(int value) {
+      
+      format_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.json.TypeDuration.Format format = 1;</code>
+     * @return The format.
+     */
+    @java.lang.Override
+    public io.github.yu31.protoc.pb.pbjson.TypeDuration.Format getFormat() {
+      @SuppressWarnings("deprecation")
+      io.github.yu31.protoc.pb.pbjson.TypeDuration.Format result = io.github.yu31.protoc.pb.pbjson.TypeDuration.Format.valueOf(format_);
+      return result == null ? io.github.yu31.protoc.pb.pbjson.TypeDuration.Format.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>.json.TypeDuration.Format format = 1;</code>
+     * @param value The format to set.
+     * @return This builder for chaining.
+     */
+    public Builder setFormat(io.github.yu31.protoc.pb.pbjson.TypeDuration.Format value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      format_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.json.TypeDuration.Format format = 1;</code>
+     * @return This builder for chaining.
+     */
     public Builder clearFormat() {
-      formatCase_ = 0;
-      format_ = null;
+      
+      format_ = 0;
       onChanged();
-      return this;
-    }
-
-
-    /**
-     * <code>bool native = 1;</code>
-     * @return Whether the native field is set.
-     */
-    public boolean hasNative() {
-      return formatCase_ == 1;
-    }
-    /**
-     * <code>bool native = 1;</code>
-     * @return The native.
-     */
-    public boolean getNative() {
-      if (formatCase_ == 1) {
-        return (java.lang.Boolean) format_;
-      }
-      return false;
-    }
-    /**
-     * <code>bool native = 1;</code>
-     * @param value The native to set.
-     * @return This builder for chaining.
-     */
-    public Builder setNative(boolean value) {
-      formatCase_ = 1;
-      format_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool native = 1;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearNative() {
-      if (formatCase_ == 1) {
-        formatCase_ = 0;
-        format_ = null;
-        onChanged();
-      }
-      return this;
-    }
-
-    /**
-     * <code>bool string = 2;</code>
-     * @return Whether the string field is set.
-     */
-    public boolean hasString() {
-      return formatCase_ == 2;
-    }
-    /**
-     * <code>bool string = 2;</code>
-     * @return The string.
-     */
-    public boolean getString() {
-      if (formatCase_ == 2) {
-        return (java.lang.Boolean) format_;
-      }
-      return false;
-    }
-    /**
-     * <code>bool string = 2;</code>
-     * @param value The string to set.
-     * @return This builder for chaining.
-     */
-    public Builder setString(boolean value) {
-      formatCase_ = 2;
-      format_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool string = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearString() {
-      if (formatCase_ == 2) {
-        formatCase_ = 0;
-        format_ = null;
-        onChanged();
-      }
-      return this;
-    }
-
-    /**
-     * <code>bool nanoseconds = 3;</code>
-     * @return Whether the nanoseconds field is set.
-     */
-    public boolean hasNanoseconds() {
-      return formatCase_ == 3;
-    }
-    /**
-     * <code>bool nanoseconds = 3;</code>
-     * @return The nanoseconds.
-     */
-    public boolean getNanoseconds() {
-      if (formatCase_ == 3) {
-        return (java.lang.Boolean) format_;
-      }
-      return false;
-    }
-    /**
-     * <code>bool nanoseconds = 3;</code>
-     * @param value The nanoseconds to set.
-     * @return This builder for chaining.
-     */
-    public Builder setNanoseconds(boolean value) {
-      formatCase_ = 3;
-      format_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool nanoseconds = 3;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearNanoseconds() {
-      if (formatCase_ == 3) {
-        formatCase_ = 0;
-        format_ = null;
-        onChanged();
-      }
-      return this;
-    }
-
-    /**
-     * <code>bool microseconds = 4;</code>
-     * @return Whether the microseconds field is set.
-     */
-    public boolean hasMicroseconds() {
-      return formatCase_ == 4;
-    }
-    /**
-     * <code>bool microseconds = 4;</code>
-     * @return The microseconds.
-     */
-    public boolean getMicroseconds() {
-      if (formatCase_ == 4) {
-        return (java.lang.Boolean) format_;
-      }
-      return false;
-    }
-    /**
-     * <code>bool microseconds = 4;</code>
-     * @param value The microseconds to set.
-     * @return This builder for chaining.
-     */
-    public Builder setMicroseconds(boolean value) {
-      formatCase_ = 4;
-      format_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool microseconds = 4;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearMicroseconds() {
-      if (formatCase_ == 4) {
-        formatCase_ = 0;
-        format_ = null;
-        onChanged();
-      }
-      return this;
-    }
-
-    /**
-     * <code>bool milliseconds = 5;</code>
-     * @return Whether the milliseconds field is set.
-     */
-    public boolean hasMilliseconds() {
-      return formatCase_ == 5;
-    }
-    /**
-     * <code>bool milliseconds = 5;</code>
-     * @return The milliseconds.
-     */
-    public boolean getMilliseconds() {
-      if (formatCase_ == 5) {
-        return (java.lang.Boolean) format_;
-      }
-      return false;
-    }
-    /**
-     * <code>bool milliseconds = 5;</code>
-     * @param value The milliseconds to set.
-     * @return This builder for chaining.
-     */
-    public Builder setMilliseconds(boolean value) {
-      formatCase_ = 5;
-      format_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool milliseconds = 5;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearMilliseconds() {
-      if (formatCase_ == 5) {
-        formatCase_ = 0;
-        format_ = null;
-        onChanged();
-      }
-      return this;
-    }
-
-    /**
-     * <code>bool seconds = 6;</code>
-     * @return Whether the seconds field is set.
-     */
-    public boolean hasSeconds() {
-      return formatCase_ == 6;
-    }
-    /**
-     * <code>bool seconds = 6;</code>
-     * @return The seconds.
-     */
-    public boolean getSeconds() {
-      if (formatCase_ == 6) {
-        return (java.lang.Boolean) format_;
-      }
-      return false;
-    }
-    /**
-     * <code>bool seconds = 6;</code>
-     * @param value The seconds to set.
-     * @return This builder for chaining.
-     */
-    public Builder setSeconds(boolean value) {
-      formatCase_ = 6;
-      format_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool seconds = 6;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearSeconds() {
-      if (formatCase_ == 6) {
-        formatCase_ = 0;
-        format_ = null;
-        onChanged();
-      }
-      return this;
-    }
-
-    /**
-     * <code>bool minutes = 7;</code>
-     * @return Whether the minutes field is set.
-     */
-    public boolean hasMinutes() {
-      return formatCase_ == 7;
-    }
-    /**
-     * <code>bool minutes = 7;</code>
-     * @return The minutes.
-     */
-    public boolean getMinutes() {
-      if (formatCase_ == 7) {
-        return (java.lang.Boolean) format_;
-      }
-      return false;
-    }
-    /**
-     * <code>bool minutes = 7;</code>
-     * @param value The minutes to set.
-     * @return This builder for chaining.
-     */
-    public Builder setMinutes(boolean value) {
-      formatCase_ = 7;
-      format_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool minutes = 7;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearMinutes() {
-      if (formatCase_ == 7) {
-        formatCase_ = 0;
-        format_ = null;
-        onChanged();
-      }
-      return this;
-    }
-
-    /**
-     * <code>bool hours = 8;</code>
-     * @return Whether the hours field is set.
-     */
-    public boolean hasHours() {
-      return formatCase_ == 8;
-    }
-    /**
-     * <code>bool hours = 8;</code>
-     * @return The hours.
-     */
-    public boolean getHours() {
-      if (formatCase_ == 8) {
-        return (java.lang.Boolean) format_;
-      }
-      return false;
-    }
-    /**
-     * <code>bool hours = 8;</code>
-     * @param value The hours to set.
-     * @return This builder for chaining.
-     */
-    public Builder setHours(boolean value) {
-      formatCase_ = 8;
-      format_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool hours = 8;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearHours() {
-      if (formatCase_ == 8) {
-        formatCase_ = 0;
-        format_ = null;
-        onChanged();
-      }
       return this;
     }
     @java.lang.Override

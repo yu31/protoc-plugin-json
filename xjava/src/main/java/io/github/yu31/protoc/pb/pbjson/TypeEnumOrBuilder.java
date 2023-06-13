@@ -8,26 +8,13 @@ public interface TypeEnumOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>bool number = 1;</code>
-   * @return Whether the number field is set.
+   * <code>.json.TypeEnum.Format format = 1;</code>
+   * @return The enum numeric value on the wire for format.
    */
-  boolean hasNumber();
+  int getFormatValue();
   /**
-   * <code>bool number = 1;</code>
-   * @return The number.
+   * <code>.json.TypeEnum.Format format = 1;</code>
+   * @return The format.
    */
-  boolean getNumber();
-
-  /**
-   * <code>bool string = 2;</code>
-   * @return Whether the string field is set.
-   */
-  boolean hasString();
-  /**
-   * <code>bool string = 2;</code>
-   * @return The string.
-   */
-  boolean getString();
-
-  public io.github.yu31.protoc.pb.pbjson.TypeEnum.FormatCase getFormatCase();
+  io.github.yu31.protoc.pb.pbjson.TypeEnum.Format getFormat();
 }

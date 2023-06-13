@@ -21,7 +21,7 @@ func (x *TypeSetMap1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(1406)
+	encoder := jsonencoder.New(704)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -30,19 +30,6 @@ func (x *TypeSetMap1) MarshalJSON() ([]byte, error) {
 	if x.FAnyNative1 != nil {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FAnyNative1 {
-			encoder.AppendMapKeyString(mk)
-			if err = encoder.AppendLiteralInterface(mv); err != nil {
-				return nil, err
-			}
-		}
-		encoder.AppendObjectEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_any_native2")
-	if x.FAnyNative2 != nil {
-		encoder.AppendObjectBegin()
-		for mk, mv := range x.FAnyNative2 {
 			encoder.AppendMapKeyString(mk)
 			if err = encoder.AppendLiteralInterface(mv); err != nil {
 				return nil, err
@@ -65,36 +52,10 @@ func (x *TypeSetMap1) MarshalJSON() ([]byte, error) {
 	} else {
 		encoder.AppendLiteralNULL()
 	}
-	encoder.AppendObjectKey("f_any_proto2")
-	if x.FAnyProto2 != nil {
-		encoder.AppendObjectBegin()
-		for mk, mv := range x.FAnyProto2 {
-			encoder.AppendMapKeyString(mk)
-			if err = encoder.AppendLiteralInterface(mv); err != nil {
-				return nil, err
-			}
-		}
-		encoder.AppendObjectEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
 	encoder.AppendObjectKey("f_duration_native1")
 	if x.FDurationNative1 != nil {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FDurationNative1 {
-			encoder.AppendMapKeyString(mk)
-			if err = encoder.AppendLiteralInterface(mv); err != nil {
-				return nil, err
-			}
-		}
-		encoder.AppendObjectEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_native2")
-	if x.FDurationNative2 != nil {
-		encoder.AppendObjectBegin()
-		for mk, mv := range x.FDurationNative2 {
 			encoder.AppendMapKeyString(mk)
 			if err = encoder.AppendLiteralInterface(mv); err != nil {
 				return nil, err
@@ -115,38 +76,12 @@ func (x *TypeSetMap1) MarshalJSON() ([]byte, error) {
 	} else {
 		encoder.AppendLiteralNULL()
 	}
-	encoder.AppendObjectKey("f_duration_string2")
-	if x.FDurationString2 != nil {
-		encoder.AppendObjectBegin()
-		for mk, mv := range x.FDurationString2 {
-			encoder.AppendMapKeyString(mk)
-			if err = encoder.AppendLiteralInterface(mv); err != nil {
-				return nil, err
-			}
-		}
-		encoder.AppendObjectEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
 	encoder.AppendObjectKey("f_duration_nanoseconds1")
 	if x.FDurationNanoseconds1 != nil {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FDurationNanoseconds1 {
 			encoder.AppendMapKeyString(mk)
 			encoder.AppendLiteralInt64(mv.AsDuration().Nanoseconds())
-		}
-		encoder.AppendObjectEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_nanoseconds2")
-	if x.FDurationNanoseconds2 != nil {
-		encoder.AppendObjectBegin()
-		for mk, mv := range x.FDurationNanoseconds2 {
-			encoder.AppendMapKeyString(mk)
-			if err = encoder.AppendLiteralInterface(mv); err != nil {
-				return nil, err
-			}
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -163,38 +98,12 @@ func (x *TypeSetMap1) MarshalJSON() ([]byte, error) {
 	} else {
 		encoder.AppendLiteralNULL()
 	}
-	encoder.AppendObjectKey("f_duration_microseconds2")
-	if x.FDurationMicroseconds2 != nil {
-		encoder.AppendObjectBegin()
-		for mk, mv := range x.FDurationMicroseconds2 {
-			encoder.AppendMapKeyString(mk)
-			if err = encoder.AppendLiteralInterface(mv); err != nil {
-				return nil, err
-			}
-		}
-		encoder.AppendObjectEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
 	encoder.AppendObjectKey("f_duration_milliseconds1")
 	if x.FDurationMilliseconds1 != nil {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FDurationMilliseconds1 {
 			encoder.AppendMapKeyString(mk)
 			encoder.AppendLiteralInt64(mv.AsDuration().Milliseconds())
-		}
-		encoder.AppendObjectEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_milliseconds2")
-	if x.FDurationMilliseconds2 != nil {
-		encoder.AppendObjectBegin()
-		for mk, mv := range x.FDurationMilliseconds2 {
-			encoder.AppendMapKeyString(mk)
-			if err = encoder.AppendLiteralInterface(mv); err != nil {
-				return nil, err
-			}
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -211,38 +120,12 @@ func (x *TypeSetMap1) MarshalJSON() ([]byte, error) {
 	} else {
 		encoder.AppendLiteralNULL()
 	}
-	encoder.AppendObjectKey("f_duration_seconds2")
-	if x.FDurationSeconds2 != nil {
-		encoder.AppendObjectBegin()
-		for mk, mv := range x.FDurationSeconds2 {
-			encoder.AppendMapKeyString(mk)
-			if err = encoder.AppendLiteralInterface(mv); err != nil {
-				return nil, err
-			}
-		}
-		encoder.AppendObjectEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
 	encoder.AppendObjectKey("f_duration_minutes1")
 	if x.FDurationMinutes1 != nil {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FDurationMinutes1 {
 			encoder.AppendMapKeyString(mk)
 			encoder.AppendLiteralFloat64(mv.AsDuration().Minutes())
-		}
-		encoder.AppendObjectEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_minutes2")
-	if x.FDurationMinutes2 != nil {
-		encoder.AppendObjectBegin()
-		for mk, mv := range x.FDurationMinutes2 {
-			encoder.AppendMapKeyString(mk)
-			if err = encoder.AppendLiteralInterface(mv); err != nil {
-				return nil, err
-			}
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -259,36 +142,10 @@ func (x *TypeSetMap1) MarshalJSON() ([]byte, error) {
 	} else {
 		encoder.AppendLiteralNULL()
 	}
-	encoder.AppendObjectKey("f_duration_hours2")
-	if x.FDurationHours2 != nil {
-		encoder.AppendObjectBegin()
-		for mk, mv := range x.FDurationHours2 {
-			encoder.AppendMapKeyString(mk)
-			if err = encoder.AppendLiteralInterface(mv); err != nil {
-				return nil, err
-			}
-		}
-		encoder.AppendObjectEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
 	encoder.AppendObjectKey("f_timestamp_native1")
 	if x.FTimestampNative1 != nil {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FTimestampNative1 {
-			encoder.AppendMapKeyString(mk)
-			if err = encoder.AppendLiteralInterface(mv); err != nil {
-				return nil, err
-			}
-		}
-		encoder.AppendObjectEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_timestamp_native2")
-	if x.FTimestampNative2 != nil {
-		encoder.AppendObjectBegin()
-		for mk, mv := range x.FTimestampNative2 {
 			encoder.AppendMapKeyString(mk)
 			if err = encoder.AppendLiteralInterface(mv); err != nil {
 				return nil, err
@@ -309,36 +166,12 @@ func (x *TypeSetMap1) MarshalJSON() ([]byte, error) {
 	} else {
 		encoder.AppendLiteralNULL()
 	}
-	encoder.AppendObjectKey("f_timestamp_time_layout2")
-	if x.FTimestampTimeLayout2 != nil {
-		encoder.AppendObjectBegin()
-		for mk, mv := range x.FTimestampTimeLayout2 {
-			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralString(mv.AsTime().Format("Mon, 02 Jan 2006 15:04:05 MST"))
-		}
-		encoder.AppendObjectEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
 	encoder.AppendObjectKey("f_timestamp_unix_nano1")
 	if x.FTimestampUnixNano1 != nil {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FTimestampUnixNano1 {
 			encoder.AppendMapKeyString(mk)
 			encoder.AppendLiteralInt64(mv.AsTime().UnixNano())
-		}
-		encoder.AppendObjectEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_timestamp_unix_nano2")
-	if x.FTimestampUnixNano2 != nil {
-		encoder.AppendObjectBegin()
-		for mk, mv := range x.FTimestampUnixNano2 {
-			encoder.AppendMapKeyString(mk)
-			if err = encoder.AppendLiteralInterface(mv); err != nil {
-				return nil, err
-			}
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -355,19 +188,6 @@ func (x *TypeSetMap1) MarshalJSON() ([]byte, error) {
 	} else {
 		encoder.AppendLiteralNULL()
 	}
-	encoder.AppendObjectKey("f_timestamp_unix_micro2")
-	if x.FTimestampUnixMicro2 != nil {
-		encoder.AppendObjectBegin()
-		for mk, mv := range x.FTimestampUnixMicro2 {
-			encoder.AppendMapKeyString(mk)
-			if err = encoder.AppendLiteralInterface(mv); err != nil {
-				return nil, err
-			}
-		}
-		encoder.AppendObjectEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
 	encoder.AppendObjectKey("f_timestamp_unix_milli1")
 	if x.FTimestampUnixMilli1 != nil {
 		encoder.AppendObjectBegin()
@@ -379,38 +199,12 @@ func (x *TypeSetMap1) MarshalJSON() ([]byte, error) {
 	} else {
 		encoder.AppendLiteralNULL()
 	}
-	encoder.AppendObjectKey("f_timestamp_unix_milli2")
-	if x.FTimestampUnixMilli2 != nil {
-		encoder.AppendObjectBegin()
-		for mk, mv := range x.FTimestampUnixMilli2 {
-			encoder.AppendMapKeyString(mk)
-			if err = encoder.AppendLiteralInterface(mv); err != nil {
-				return nil, err
-			}
-		}
-		encoder.AppendObjectEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
 	encoder.AppendObjectKey("f_timestamp_unix_sec1")
 	if x.FTimestampUnixSec1 != nil {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.FTimestampUnixSec1 {
 			encoder.AppendMapKeyString(mk)
 			encoder.AppendLiteralInt64(mv.AsTime().Unix())
-		}
-		encoder.AppendObjectEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_timestamp_unix_sec2")
-	if x.FTimestampUnixSec2 != nil {
-		encoder.AppendObjectBegin()
-		for mk, mv := range x.FTimestampUnixSec2 {
-			encoder.AppendMapKeyString(mk)
-			if err = encoder.AppendLiteralInterface(mv); err != nil {
-				return nil, err
-			}
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -496,44 +290,6 @@ LOOP_SCAN:
 				}
 				x.FAnyNative1[mk] = vv
 			}
-		case "f_any_native2":
-			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
-				return err
-			}
-			if isNULL {
-				x.FAnyNative2 = nil
-				continue LOOP_SCAN
-			}
-			if x.FAnyNative2 == nil {
-				x.FAnyNative2 = make(map[string]*anypb.Any)
-			}
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var mk string
-				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
-					return err
-				}
-				var vv *anypb.Any
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FAnyNative2[mk] != nil {
-						vv = x.FAnyNative2[mk]
-					} else {
-						vv = new(anypb.Any)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FAnyNative2[mk] = vv
-			}
 		case "f_any_proto1":
 			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
 				return err
@@ -571,44 +327,6 @@ LOOP_SCAN:
 					}
 				}
 				x.FAnyProto1[mk] = vv
-			}
-		case "f_any_proto2":
-			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
-				return err
-			}
-			if isNULL {
-				x.FAnyProto2 = nil
-				continue LOOP_SCAN
-			}
-			if x.FAnyProto2 == nil {
-				x.FAnyProto2 = make(map[string]*anypb.Any)
-			}
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var mk string
-				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
-					return err
-				}
-				var vv *anypb.Any
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FAnyProto2[mk] != nil {
-						vv = x.FAnyProto2[mk]
-					} else {
-						vv = new(anypb.Any)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FAnyProto2[mk] = vv
 			}
 		case "f_duration_native1":
 			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
@@ -648,44 +366,6 @@ LOOP_SCAN:
 				}
 				x.FDurationNative1[mk] = vv
 			}
-		case "f_duration_native2":
-			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
-				return err
-			}
-			if isNULL {
-				x.FDurationNative2 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationNative2 == nil {
-				x.FDurationNative2 = make(map[string]*durationpb.Duration)
-			}
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var mk string
-				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
-					return err
-				}
-				var vv *durationpb.Duration
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FDurationNative2[mk] != nil {
-						vv = x.FDurationNative2[mk]
-					} else {
-						vv = new(durationpb.Duration)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FDurationNative2[mk] = vv
-			}
 		case "f_duration_string1":
 			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
 				return err
@@ -718,44 +398,6 @@ LOOP_SCAN:
 					return err
 				}
 				x.FDurationString1[mk] = vv
-			}
-		case "f_duration_string2":
-			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
-				return err
-			}
-			if isNULL {
-				x.FDurationString2 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationString2 == nil {
-				x.FDurationString2 = make(map[string]*durationpb.Duration)
-			}
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var mk string
-				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
-					return err
-				}
-				var vv *durationpb.Duration
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FDurationString2[mk] != nil {
-						vv = x.FDurationString2[mk]
-					} else {
-						vv = new(durationpb.Duration)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FDurationString2[mk] = vv
 			}
 		case "f_duration_nanoseconds1":
 			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
@@ -790,44 +432,6 @@ LOOP_SCAN:
 				}
 				x.FDurationNanoseconds1[mk] = vv
 			}
-		case "f_duration_nanoseconds2":
-			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
-				return err
-			}
-			if isNULL {
-				x.FDurationNanoseconds2 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationNanoseconds2 == nil {
-				x.FDurationNanoseconds2 = make(map[string]*durationpb.Duration)
-			}
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var mk string
-				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
-					return err
-				}
-				var vv *durationpb.Duration
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FDurationNanoseconds2[mk] != nil {
-						vv = x.FDurationNanoseconds2[mk]
-					} else {
-						vv = new(durationpb.Duration)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FDurationNanoseconds2[mk] = vv
-			}
 		case "f_duration_microseconds1":
 			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
 				return err
@@ -860,44 +464,6 @@ LOOP_SCAN:
 					return err
 				}
 				x.FDurationMicroseconds1[mk] = vv
-			}
-		case "f_duration_microseconds2":
-			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
-				return err
-			}
-			if isNULL {
-				x.FDurationMicroseconds2 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationMicroseconds2 == nil {
-				x.FDurationMicroseconds2 = make(map[string]*durationpb.Duration)
-			}
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var mk string
-				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
-					return err
-				}
-				var vv *durationpb.Duration
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FDurationMicroseconds2[mk] != nil {
-						vv = x.FDurationMicroseconds2[mk]
-					} else {
-						vv = new(durationpb.Duration)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FDurationMicroseconds2[mk] = vv
 			}
 		case "f_duration_milliseconds1":
 			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
@@ -932,44 +498,6 @@ LOOP_SCAN:
 				}
 				x.FDurationMilliseconds1[mk] = vv
 			}
-		case "f_duration_milliseconds2":
-			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
-				return err
-			}
-			if isNULL {
-				x.FDurationMilliseconds2 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationMilliseconds2 == nil {
-				x.FDurationMilliseconds2 = make(map[string]*durationpb.Duration)
-			}
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var mk string
-				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
-					return err
-				}
-				var vv *durationpb.Duration
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FDurationMilliseconds2[mk] != nil {
-						vv = x.FDurationMilliseconds2[mk]
-					} else {
-						vv = new(durationpb.Duration)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FDurationMilliseconds2[mk] = vv
-			}
 		case "f_duration_seconds1":
 			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
 				return err
@@ -1002,44 +530,6 @@ LOOP_SCAN:
 					return err
 				}
 				x.FDurationSeconds1[mk] = vv
-			}
-		case "f_duration_seconds2":
-			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
-				return err
-			}
-			if isNULL {
-				x.FDurationSeconds2 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationSeconds2 == nil {
-				x.FDurationSeconds2 = make(map[string]*durationpb.Duration)
-			}
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var mk string
-				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
-					return err
-				}
-				var vv *durationpb.Duration
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FDurationSeconds2[mk] != nil {
-						vv = x.FDurationSeconds2[mk]
-					} else {
-						vv = new(durationpb.Duration)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FDurationSeconds2[mk] = vv
 			}
 		case "f_duration_minutes1":
 			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
@@ -1074,44 +564,6 @@ LOOP_SCAN:
 				}
 				x.FDurationMinutes1[mk] = vv
 			}
-		case "f_duration_minutes2":
-			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
-				return err
-			}
-			if isNULL {
-				x.FDurationMinutes2 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationMinutes2 == nil {
-				x.FDurationMinutes2 = make(map[string]*durationpb.Duration)
-			}
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var mk string
-				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
-					return err
-				}
-				var vv *durationpb.Duration
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FDurationMinutes2[mk] != nil {
-						vv = x.FDurationMinutes2[mk]
-					} else {
-						vv = new(durationpb.Duration)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FDurationMinutes2[mk] = vv
-			}
 		case "f_duration_hours1":
 			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
 				return err
@@ -1144,44 +596,6 @@ LOOP_SCAN:
 					return err
 				}
 				x.FDurationHours1[mk] = vv
-			}
-		case "f_duration_hours2":
-			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
-				return err
-			}
-			if isNULL {
-				x.FDurationHours2 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationHours2 == nil {
-				x.FDurationHours2 = make(map[string]*durationpb.Duration)
-			}
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var mk string
-				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
-					return err
-				}
-				var vv *durationpb.Duration
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FDurationHours2[mk] != nil {
-						vv = x.FDurationHours2[mk]
-					} else {
-						vv = new(durationpb.Duration)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FDurationHours2[mk] = vv
 			}
 		case "f_timestamp_native1":
 			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
@@ -1221,44 +635,6 @@ LOOP_SCAN:
 				}
 				x.FTimestampNative1[mk] = vv
 			}
-		case "f_timestamp_native2":
-			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
-				return err
-			}
-			if isNULL {
-				x.FTimestampNative2 = nil
-				continue LOOP_SCAN
-			}
-			if x.FTimestampNative2 == nil {
-				x.FTimestampNative2 = make(map[string]*timestamppb.Timestamp)
-			}
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var mk string
-				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
-					return err
-				}
-				var vv *timestamppb.Timestamp
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FTimestampNative2[mk] != nil {
-						vv = x.FTimestampNative2[mk]
-					} else {
-						vv = new(timestamppb.Timestamp)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FTimestampNative2[mk] = vv
-			}
 		case "f_timestamp_time_layout1":
 			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
 				return err
@@ -1291,39 +667,6 @@ LOOP_SCAN:
 					return err
 				}
 				x.FTimestampTimeLayout1[mk] = vv
-			}
-		case "f_timestamp_time_layout2":
-			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
-				return err
-			}
-			if isNULL {
-				x.FTimestampTimeLayout2 = nil
-				continue LOOP_SCAN
-			}
-			if x.FTimestampTimeLayout2 == nil {
-				x.FTimestampTimeLayout2 = make(map[string]*timestamppb.Timestamp)
-			}
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var mk string
-				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
-					return err
-				}
-				var vv *timestamppb.Timestamp
-				if x.FTimestampTimeLayout2[mk] != nil {
-					vv = x.FTimestampTimeLayout2[mk]
-				} else {
-					vv = new(timestamppb.Timestamp)
-				}
-				if err = decoder.ReadWKTTimestampByString(jsonKey, vv, "Mon, 02 Jan 2006 15:04:05 MST"); err != nil {
-					return err
-				}
-				x.FTimestampTimeLayout2[mk] = vv
 			}
 		case "f_timestamp_unix_nano1":
 			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
@@ -1358,44 +701,6 @@ LOOP_SCAN:
 				}
 				x.FTimestampUnixNano1[mk] = vv
 			}
-		case "f_timestamp_unix_nano2":
-			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
-				return err
-			}
-			if isNULL {
-				x.FTimestampUnixNano2 = nil
-				continue LOOP_SCAN
-			}
-			if x.FTimestampUnixNano2 == nil {
-				x.FTimestampUnixNano2 = make(map[string]*timestamppb.Timestamp)
-			}
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var mk string
-				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
-					return err
-				}
-				var vv *timestamppb.Timestamp
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FTimestampUnixNano2[mk] != nil {
-						vv = x.FTimestampUnixNano2[mk]
-					} else {
-						vv = new(timestamppb.Timestamp)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FTimestampUnixNano2[mk] = vv
-			}
 		case "f_timestamp_unix_micro1":
 			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
 				return err
@@ -1428,44 +733,6 @@ LOOP_SCAN:
 					return err
 				}
 				x.FTimestampUnixMicro1[mk] = vv
-			}
-		case "f_timestamp_unix_micro2":
-			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
-				return err
-			}
-			if isNULL {
-				x.FTimestampUnixMicro2 = nil
-				continue LOOP_SCAN
-			}
-			if x.FTimestampUnixMicro2 == nil {
-				x.FTimestampUnixMicro2 = make(map[string]*timestamppb.Timestamp)
-			}
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var mk string
-				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
-					return err
-				}
-				var vv *timestamppb.Timestamp
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FTimestampUnixMicro2[mk] != nil {
-						vv = x.FTimestampUnixMicro2[mk]
-					} else {
-						vv = new(timestamppb.Timestamp)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FTimestampUnixMicro2[mk] = vv
 			}
 		case "f_timestamp_unix_milli1":
 			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
@@ -1500,44 +767,6 @@ LOOP_SCAN:
 				}
 				x.FTimestampUnixMilli1[mk] = vv
 			}
-		case "f_timestamp_unix_milli2":
-			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
-				return err
-			}
-			if isNULL {
-				x.FTimestampUnixMilli2 = nil
-				continue LOOP_SCAN
-			}
-			if x.FTimestampUnixMilli2 == nil {
-				x.FTimestampUnixMilli2 = make(map[string]*timestamppb.Timestamp)
-			}
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var mk string
-				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
-					return err
-				}
-				var vv *timestamppb.Timestamp
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FTimestampUnixMilli2[mk] != nil {
-						vv = x.FTimestampUnixMilli2[mk]
-					} else {
-						vv = new(timestamppb.Timestamp)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FTimestampUnixMilli2[mk] = vv
-			}
 		case "f_timestamp_unix_sec1":
 			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
 				return err
@@ -1570,44 +799,6 @@ LOOP_SCAN:
 					return err
 				}
 				x.FTimestampUnixSec1[mk] = vv
-			}
-		case "f_timestamp_unix_sec2":
-			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
-				return err
-			}
-			if isNULL {
-				x.FTimestampUnixSec2 = nil
-				continue LOOP_SCAN
-			}
-			if x.FTimestampUnixSec2 == nil {
-				x.FTimestampUnixSec2 = make(map[string]*timestamppb.Timestamp)
-			}
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var mk string
-				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
-					return err
-				}
-				var vv *timestamppb.Timestamp
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FTimestampUnixSec2[mk] != nil {
-						vv = x.FTimestampUnixSec2[mk]
-					} else {
-						vv = new(timestamppb.Timestamp)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FTimestampUnixSec2[mk] = vv
 			}
 		default:
 			if err = decoder.DiscardValue(jsonKey); err != nil {

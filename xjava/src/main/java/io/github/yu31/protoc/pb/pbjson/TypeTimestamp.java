@@ -16,6 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private TypeTimestamp() {
+    format_ = 0;
   }
 
   @java.lang.Override
@@ -49,42 +50,22 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 8: {
-            format_ = input.readBool();
-            formatCase_ = 1;
+            int rawValue = input.readEnum();
+
+            format_ = rawValue;
             break;
           }
           case 18: {
-            io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.Builder subBuilder = null;
-            if (formatCase_ == 2) {
-              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout) format_).toBuilder();
+            io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.Builder subBuilder = null;
+            if (layout_ != null) {
+              subBuilder = layout_.toBuilder();
             }
-            format_ =
-                input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.parser(), extensionRegistry);
+            layout_ = input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.parser(), extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout) format_);
-              format_ = subBuilder.buildPartial();
+              subBuilder.mergeFrom(layout_);
+              layout_ = subBuilder.buildPartial();
             }
-            formatCase_ = 2;
-            break;
-          }
-          case 24: {
-            format_ = input.readBool();
-            formatCase_ = 3;
-            break;
-          }
-          case 32: {
-            format_ = input.readBool();
-            formatCase_ = 4;
-            break;
-          }
-          case 40: {
-            format_ = input.readBool();
-            formatCase_ = 5;
-            break;
-          }
-          case 48: {
-            format_ = input.readBool();
-            formatCase_ = 6;
+
             break;
           }
           default: {
@@ -119,8 +100,152 @@ private static final long serialVersionUID = 0L;
             io.github.yu31.protoc.pb.pbjson.TypeTimestamp.class, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Builder.class);
   }
 
-  public interface TimeLayoutOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:json.TypeTimestamp.TimeLayout)
+  /**
+   * Protobuf enum {@code json.TypeTimestamp.Format}
+   */
+  public enum Format
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>Native = 0;</code>
+     */
+    Native(0),
+    /**
+     * <code>TimeLayout = 1;</code>
+     */
+    TimeLayout(1),
+    /**
+     * <code>UnixNano = 2;</code>
+     */
+    UnixNano(2),
+    /**
+     * <code>UnixMicro = 3;</code>
+     */
+    UnixMicro(3),
+    /**
+     * <code>UnixMilli = 4;</code>
+     */
+    UnixMilli(4),
+    /**
+     * <code>UnixSec = 5;</code>
+     */
+    UnixSec(5),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>Native = 0;</code>
+     */
+    public static final int Native_VALUE = 0;
+    /**
+     * <code>TimeLayout = 1;</code>
+     */
+    public static final int TimeLayout_VALUE = 1;
+    /**
+     * <code>UnixNano = 2;</code>
+     */
+    public static final int UnixNano_VALUE = 2;
+    /**
+     * <code>UnixMicro = 3;</code>
+     */
+    public static final int UnixMicro_VALUE = 3;
+    /**
+     * <code>UnixMilli = 4;</code>
+     */
+    public static final int UnixMilli_VALUE = 4;
+    /**
+     * <code>UnixSec = 5;</code>
+     */
+    public static final int UnixSec_VALUE = 5;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static Format valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static Format forNumber(int value) {
+      switch (value) {
+        case 0: return Native;
+        case 1: return TimeLayout;
+        case 2: return UnixNano;
+        case 3: return UnixMicro;
+        case 4: return UnixMilli;
+        case 5: return UnixSec;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<Format>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        Format> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<Format>() {
+            public Format findValueByNumber(int number) {
+              return Format.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final Format[] VALUES = values();
+
+    public static Format valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private Format(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:json.TypeTimestamp.Format)
+  }
+
+  public interface LayoutOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:json.TypeTimestamp.Layout)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -172,18 +297,18 @@ private static final long serialVersionUID = 0L;
         getPythonBytes();
   }
   /**
-   * Protobuf type {@code json.TypeTimestamp.TimeLayout}
+   * Protobuf type {@code json.TypeTimestamp.Layout}
    */
-  public static final class TimeLayout extends
+  public static final class Layout extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:json.TypeTimestamp.TimeLayout)
-      TimeLayoutOrBuilder {
+      // @@protoc_insertion_point(message_implements:json.TypeTimestamp.Layout)
+      LayoutOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use TimeLayout.newBuilder() to construct.
-    private TimeLayout(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use Layout.newBuilder() to construct.
+    private Layout(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private TimeLayout() {
+    private Layout() {
       golang_ = "";
       java_ = "";
       rust_ = "";
@@ -194,7 +319,7 @@ private static final long serialVersionUID = 0L;
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new TimeLayout();
+      return new Layout();
     }
 
     @java.lang.Override
@@ -202,7 +327,7 @@ private static final long serialVersionUID = 0L;
     getUnknownFields() {
       return this.unknownFields;
     }
-    private TimeLayout(
+    private Layout(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -265,15 +390,15 @@ private static final long serialVersionUID = 0L;
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeTimestamp_TimeLayout_descriptor;
+      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeTimestamp_Layout_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeTimestamp_TimeLayout_fieldAccessorTable
+      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeTimestamp_Layout_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.class, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.Builder.class);
+              io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.class, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.Builder.class);
     }
 
     public static final int GOLANG_FIELD_NUMBER = 1;
@@ -485,10 +610,10 @@ private static final long serialVersionUID = 0L;
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout)) {
+      if (!(obj instanceof io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout)) {
         return super.equals(obj);
       }
-      io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout other = (io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout) obj;
+      io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout other = (io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout) obj;
 
       if (!getGolang()
           .equals(other.getGolang())) return false;
@@ -522,69 +647,69 @@ private static final long serialVersionUID = 0L;
       return hash;
     }
 
-    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout parseFrom(
+    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout parseFrom(
+    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout parseFrom(
+    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout parseFrom(
+    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout parseFrom(byte[] data)
+    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout parseFrom(
+    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout parseFrom(java.io.InputStream input)
+    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout parseFrom(
+    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout parseDelimitedFrom(java.io.InputStream input)
+    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout parseDelimitedFrom(
+    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout parseFrom(
+    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout parseFrom(
+    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -597,7 +722,7 @@ private static final long serialVersionUID = 0L;
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout prototype) {
+    public static Builder newBuilder(io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -613,26 +738,26 @@ private static final long serialVersionUID = 0L;
       return builder;
     }
     /**
-     * Protobuf type {@code json.TypeTimestamp.TimeLayout}
+     * Protobuf type {@code json.TypeTimestamp.Layout}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:json.TypeTimestamp.TimeLayout)
-        io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayoutOrBuilder {
+        // @@protoc_insertion_point(builder_implements:json.TypeTimestamp.Layout)
+        io.github.yu31.protoc.pb.pbjson.TypeTimestamp.LayoutOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeTimestamp_TimeLayout_descriptor;
+        return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeTimestamp_Layout_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeTimestamp_TimeLayout_fieldAccessorTable
+        return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeTimestamp_Layout_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.class, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.Builder.class);
+                io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.class, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.Builder.class);
       }
 
-      // Construct using io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.newBuilder()
+      // Construct using io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -664,17 +789,17 @@ private static final long serialVersionUID = 0L;
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeTimestamp_TimeLayout_descriptor;
+        return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeTimestamp_Layout_descriptor;
       }
 
       @java.lang.Override
-      public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout getDefaultInstanceForType() {
-        return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.getDefaultInstance();
+      public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout getDefaultInstanceForType() {
+        return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.getDefaultInstance();
       }
 
       @java.lang.Override
-      public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout build() {
-        io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout result = buildPartial();
+      public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout build() {
+        io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -682,8 +807,8 @@ private static final long serialVersionUID = 0L;
       }
 
       @java.lang.Override
-      public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout buildPartial() {
-        io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout result = new io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout(this);
+      public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout buildPartial() {
+        io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout result = new io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout(this);
         result.golang_ = golang_;
         result.java_ = java_;
         result.rust_ = rust_;
@@ -726,16 +851,16 @@ private static final long serialVersionUID = 0L;
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout) {
-          return mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout)other);
+        if (other instanceof io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout) {
+          return mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout other) {
-        if (other == io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.getDefaultInstance()) return this;
+      public Builder mergeFrom(io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout other) {
+        if (other == io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.getDefaultInstance()) return this;
         if (!other.getGolang().isEmpty()) {
           golang_ = other.golang_;
           onChanged();
@@ -767,11 +892,11 @@ private static final long serialVersionUID = 0L;
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout parsedMessage = null;
+        io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout) e.getUnfinishedMessage();
+          parsedMessage = (io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1097,229 +1222,89 @@ private static final long serialVersionUID = 0L;
       }
 
 
-      // @@protoc_insertion_point(builder_scope:json.TypeTimestamp.TimeLayout)
+      // @@protoc_insertion_point(builder_scope:json.TypeTimestamp.Layout)
     }
 
-    // @@protoc_insertion_point(class_scope:json.TypeTimestamp.TimeLayout)
-    private static final io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:json.TypeTimestamp.Layout)
+    private static final io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout();
+      DEFAULT_INSTANCE = new io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout();
     }
 
-    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout getDefaultInstance() {
+    public static io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<TimeLayout>
-        PARSER = new com.google.protobuf.AbstractParser<TimeLayout>() {
+    private static final com.google.protobuf.Parser<Layout>
+        PARSER = new com.google.protobuf.AbstractParser<Layout>() {
       @java.lang.Override
-      public TimeLayout parsePartialFrom(
+      public Layout parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new TimeLayout(input, extensionRegistry);
+        return new Layout(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<TimeLayout> parser() {
+    public static com.google.protobuf.Parser<Layout> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<TimeLayout> getParserForType() {
+    public com.google.protobuf.Parser<Layout> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout getDefaultInstanceForType() {
+    public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  private int formatCase_ = 0;
-  private java.lang.Object format_;
-  public enum FormatCase
-      implements com.google.protobuf.Internal.EnumLite,
-          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-    NATIVE(1),
-    TIME_LAYOUT(2),
-    UNIX_NANO(3),
-    UNIX_MICRO(4),
-    UNIX_MILLI(5),
-    UNIX_SEC(6),
-    FORMAT_NOT_SET(0);
-    private final int value;
-    private FormatCase(int value) {
-      this.value = value;
-    }
-    /**
-     * @param value The number of the enum to look for.
-     * @return The enum associated with the given number.
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static FormatCase valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static FormatCase forNumber(int value) {
-      switch (value) {
-        case 1: return NATIVE;
-        case 2: return TIME_LAYOUT;
-        case 3: return UNIX_NANO;
-        case 4: return UNIX_MICRO;
-        case 5: return UNIX_MILLI;
-        case 6: return UNIX_SEC;
-        case 0: return FORMAT_NOT_SET;
-        default: return null;
-      }
-    }
-    public int getNumber() {
-      return this.value;
-    }
-  };
-
-  public FormatCase
-  getFormatCase() {
-    return FormatCase.forNumber(
-        formatCase_);
+  public static final int FORMAT_FIELD_NUMBER = 1;
+  private int format_;
+  /**
+   * <code>.json.TypeTimestamp.Format format = 1;</code>
+   * @return The enum numeric value on the wire for format.
+   */
+  @java.lang.Override public int getFormatValue() {
+    return format_;
+  }
+  /**
+   * <code>.json.TypeTimestamp.Format format = 1;</code>
+   * @return The format.
+   */
+  @java.lang.Override public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format getFormat() {
+    @SuppressWarnings("deprecation")
+    io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format result = io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format.valueOf(format_);
+    return result == null ? io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format.UNRECOGNIZED : result;
   }
 
-  public static final int NATIVE_FIELD_NUMBER = 1;
+  public static final int LAYOUT_FIELD_NUMBER = 2;
+  private io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout layout_;
   /**
-   * <code>bool native = 1;</code>
-   * @return Whether the native field is set.
+   * <code>.json.TypeTimestamp.Layout layout = 2;</code>
+   * @return Whether the layout field is set.
    */
   @java.lang.Override
-  public boolean hasNative() {
-    return formatCase_ == 1;
+  public boolean hasLayout() {
+    return layout_ != null;
   }
   /**
-   * <code>bool native = 1;</code>
-   * @return The native.
+   * <code>.json.TypeTimestamp.Layout layout = 2;</code>
+   * @return The layout.
    */
   @java.lang.Override
-  public boolean getNative() {
-    if (formatCase_ == 1) {
-      return (java.lang.Boolean) format_;
-    }
-    return false;
-  }
-
-  public static final int TIME_LAYOUT_FIELD_NUMBER = 2;
-  /**
-   * <code>.json.TypeTimestamp.TimeLayout time_layout = 2;</code>
-   * @return Whether the timeLayout field is set.
-   */
-  @java.lang.Override
-  public boolean hasTimeLayout() {
-    return formatCase_ == 2;
+  public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout getLayout() {
+    return layout_ == null ? io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.getDefaultInstance() : layout_;
   }
   /**
-   * <code>.json.TypeTimestamp.TimeLayout time_layout = 2;</code>
-   * @return The timeLayout.
+   * <code>.json.TypeTimestamp.Layout layout = 2;</code>
    */
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout getTimeLayout() {
-    if (formatCase_ == 2) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout) format_;
-    }
-    return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.getDefaultInstance();
-  }
-  /**
-   * <code>.json.TypeTimestamp.TimeLayout time_layout = 2;</code>
-   */
-  @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayoutOrBuilder getTimeLayoutOrBuilder() {
-    if (formatCase_ == 2) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout) format_;
-    }
-    return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.getDefaultInstance();
-  }
-
-  public static final int UNIX_NANO_FIELD_NUMBER = 3;
-  /**
-   * <code>bool unix_nano = 3;</code>
-   * @return Whether the unixNano field is set.
-   */
-  @java.lang.Override
-  public boolean hasUnixNano() {
-    return formatCase_ == 3;
-  }
-  /**
-   * <code>bool unix_nano = 3;</code>
-   * @return The unixNano.
-   */
-  @java.lang.Override
-  public boolean getUnixNano() {
-    if (formatCase_ == 3) {
-      return (java.lang.Boolean) format_;
-    }
-    return false;
-  }
-
-  public static final int UNIX_MICRO_FIELD_NUMBER = 4;
-  /**
-   * <code>bool unix_micro = 4;</code>
-   * @return Whether the unixMicro field is set.
-   */
-  @java.lang.Override
-  public boolean hasUnixMicro() {
-    return formatCase_ == 4;
-  }
-  /**
-   * <code>bool unix_micro = 4;</code>
-   * @return The unixMicro.
-   */
-  @java.lang.Override
-  public boolean getUnixMicro() {
-    if (formatCase_ == 4) {
-      return (java.lang.Boolean) format_;
-    }
-    return false;
-  }
-
-  public static final int UNIX_MILLI_FIELD_NUMBER = 5;
-  /**
-   * <code>bool unix_milli = 5;</code>
-   * @return Whether the unixMilli field is set.
-   */
-  @java.lang.Override
-  public boolean hasUnixMilli() {
-    return formatCase_ == 5;
-  }
-  /**
-   * <code>bool unix_milli = 5;</code>
-   * @return The unixMilli.
-   */
-  @java.lang.Override
-  public boolean getUnixMilli() {
-    if (formatCase_ == 5) {
-      return (java.lang.Boolean) format_;
-    }
-    return false;
-  }
-
-  public static final int UNIX_SEC_FIELD_NUMBER = 6;
-  /**
-   * <code>bool unix_sec = 6;</code>
-   * @return Whether the unixSec field is set.
-   */
-  @java.lang.Override
-  public boolean hasUnixSec() {
-    return formatCase_ == 6;
-  }
-  /**
-   * <code>bool unix_sec = 6;</code>
-   * @return The unixSec.
-   */
-  @java.lang.Override
-  public boolean getUnixSec() {
-    if (formatCase_ == 6) {
-      return (java.lang.Boolean) format_;
-    }
-    return false;
+  public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.LayoutOrBuilder getLayoutOrBuilder() {
+    return getLayout();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -1336,28 +1321,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (formatCase_ == 1) {
-      output.writeBool(
-          1, (boolean)((java.lang.Boolean) format_));
+    if (format_ != io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format.Native.getNumber()) {
+      output.writeEnum(1, format_);
     }
-    if (formatCase_ == 2) {
-      output.writeMessage(2, (io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout) format_);
-    }
-    if (formatCase_ == 3) {
-      output.writeBool(
-          3, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 4) {
-      output.writeBool(
-          4, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 5) {
-      output.writeBool(
-          5, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 6) {
-      output.writeBool(
-          6, (boolean)((java.lang.Boolean) format_));
+    if (layout_ != null) {
+      output.writeMessage(2, getLayout());
     }
     unknownFields.writeTo(output);
   }
@@ -1368,34 +1336,13 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (formatCase_ == 1) {
+    if (format_ != io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format.Native.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(
-            1, (boolean)((java.lang.Boolean) format_));
+        .computeEnumSize(1, format_);
     }
-    if (formatCase_ == 2) {
+    if (layout_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, (io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout) format_);
-    }
-    if (formatCase_ == 3) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(
-            3, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 4) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(
-            4, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 5) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(
-            5, (boolean)((java.lang.Boolean) format_));
-    }
-    if (formatCase_ == 6) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(
-            6, (boolean)((java.lang.Boolean) format_));
+        .computeMessageSize(2, getLayout());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -1412,34 +1359,11 @@ private static final long serialVersionUID = 0L;
     }
     io.github.yu31.protoc.pb.pbjson.TypeTimestamp other = (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) obj;
 
-    if (!getFormatCase().equals(other.getFormatCase())) return false;
-    switch (formatCase_) {
-      case 1:
-        if (getNative()
-            != other.getNative()) return false;
-        break;
-      case 2:
-        if (!getTimeLayout()
-            .equals(other.getTimeLayout())) return false;
-        break;
-      case 3:
-        if (getUnixNano()
-            != other.getUnixNano()) return false;
-        break;
-      case 4:
-        if (getUnixMicro()
-            != other.getUnixMicro()) return false;
-        break;
-      case 5:
-        if (getUnixMilli()
-            != other.getUnixMilli()) return false;
-        break;
-      case 6:
-        if (getUnixSec()
-            != other.getUnixSec()) return false;
-        break;
-      case 0:
-      default:
+    if (format_ != other.format_) return false;
+    if (hasLayout() != other.hasLayout()) return false;
+    if (hasLayout()) {
+      if (!getLayout()
+          .equals(other.getLayout())) return false;
     }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
@@ -1452,38 +1376,11 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    switch (formatCase_) {
-      case 1:
-        hash = (37 * hash) + NATIVE_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getNative());
-        break;
-      case 2:
-        hash = (37 * hash) + TIME_LAYOUT_FIELD_NUMBER;
-        hash = (53 * hash) + getTimeLayout().hashCode();
-        break;
-      case 3:
-        hash = (37 * hash) + UNIX_NANO_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getUnixNano());
-        break;
-      case 4:
-        hash = (37 * hash) + UNIX_MICRO_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getUnixMicro());
-        break;
-      case 5:
-        hash = (37 * hash) + UNIX_MILLI_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getUnixMilli());
-        break;
-      case 6:
-        hash = (37 * hash) + UNIX_SEC_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getUnixSec());
-        break;
-      case 0:
-      default:
+    hash = (37 * hash) + FORMAT_FIELD_NUMBER;
+    hash = (53 * hash) + format_;
+    if (hasLayout()) {
+      hash = (37 * hash) + LAYOUT_FIELD_NUMBER;
+      hash = (53 * hash) + getLayout().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -1618,8 +1515,14 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      formatCase_ = 0;
-      format_ = null;
+      format_ = 0;
+
+      if (layoutBuilder_ == null) {
+        layout_ = null;
+      } else {
+        layout_ = null;
+        layoutBuilder_ = null;
+      }
       return this;
     }
 
@@ -1646,29 +1549,12 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeTimestamp buildPartial() {
       io.github.yu31.protoc.pb.pbjson.TypeTimestamp result = new io.github.yu31.protoc.pb.pbjson.TypeTimestamp(this);
-      if (formatCase_ == 1) {
-        result.format_ = format_;
+      result.format_ = format_;
+      if (layoutBuilder_ == null) {
+        result.layout_ = layout_;
+      } else {
+        result.layout_ = layoutBuilder_.build();
       }
-      if (formatCase_ == 2) {
-        if (timeLayoutBuilder_ == null) {
-          result.format_ = format_;
-        } else {
-          result.format_ = timeLayoutBuilder_.build();
-        }
-      }
-      if (formatCase_ == 3) {
-        result.format_ = format_;
-      }
-      if (formatCase_ == 4) {
-        result.format_ = format_;
-      }
-      if (formatCase_ == 5) {
-        result.format_ = format_;
-      }
-      if (formatCase_ == 6) {
-        result.format_ = format_;
-      }
-      result.formatCase_ = formatCase_;
       onBuilt();
       return result;
     }
@@ -1717,34 +1603,11 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(io.github.yu31.protoc.pb.pbjson.TypeTimestamp other) {
       if (other == io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance()) return this;
-      switch (other.getFormatCase()) {
-        case NATIVE: {
-          setNative(other.getNative());
-          break;
-        }
-        case TIME_LAYOUT: {
-          mergeTimeLayout(other.getTimeLayout());
-          break;
-        }
-        case UNIX_NANO: {
-          setUnixNano(other.getUnixNano());
-          break;
-        }
-        case UNIX_MICRO: {
-          setUnixMicro(other.getUnixMicro());
-          break;
-        }
-        case UNIX_MILLI: {
-          setUnixMilli(other.getUnixMilli());
-          break;
-        }
-        case UNIX_SEC: {
-          setUnixSec(other.getUnixSec());
-          break;
-        }
-        case FORMAT_NOT_SET: {
-          break;
-        }
+      if (other.format_ != 0) {
+        setFormatValue(other.getFormatValue());
+      }
+      if (other.hasLayout()) {
+        mergeLayout(other.getLayout());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1774,366 +1637,178 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
-    private int formatCase_ = 0;
-    private java.lang.Object format_;
-    public FormatCase
-        getFormatCase() {
-      return FormatCase.forNumber(
-          formatCase_);
-    }
 
-    public Builder clearFormat() {
-      formatCase_ = 0;
-      format_ = null;
-      onChanged();
-      return this;
-    }
-
-
+    private int format_ = 0;
     /**
-     * <code>bool native = 1;</code>
-     * @return Whether the native field is set.
+     * <code>.json.TypeTimestamp.Format format = 1;</code>
+     * @return The enum numeric value on the wire for format.
      */
-    public boolean hasNative() {
-      return formatCase_ == 1;
+    @java.lang.Override public int getFormatValue() {
+      return format_;
     }
     /**
-     * <code>bool native = 1;</code>
-     * @return The native.
-     */
-    public boolean getNative() {
-      if (formatCase_ == 1) {
-        return (java.lang.Boolean) format_;
-      }
-      return false;
-    }
-    /**
-     * <code>bool native = 1;</code>
-     * @param value The native to set.
+     * <code>.json.TypeTimestamp.Format format = 1;</code>
+     * @param value The enum numeric value on the wire for format to set.
      * @return This builder for chaining.
      */
-    public Builder setNative(boolean value) {
-      formatCase_ = 1;
+    public Builder setFormatValue(int value) {
+      
       format_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>bool native = 1;</code>
+     * <code>.json.TypeTimestamp.Format format = 1;</code>
+     * @return The format.
+     */
+    @java.lang.Override
+    public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format getFormat() {
+      @SuppressWarnings("deprecation")
+      io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format result = io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format.valueOf(format_);
+      return result == null ? io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>.json.TypeTimestamp.Format format = 1;</code>
+     * @param value The format to set.
      * @return This builder for chaining.
      */
-    public Builder clearNative() {
-      if (formatCase_ == 1) {
-        formatCase_ = 0;
-        format_ = null;
-        onChanged();
+    public Builder setFormat(io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format value) {
+      if (value == null) {
+        throw new NullPointerException();
       }
+      
+      format_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.json.TypeTimestamp.Format format = 1;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearFormat() {
+      
+      format_ = 0;
+      onChanged();
       return this;
     }
 
+    private io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout layout_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.Builder, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayoutOrBuilder> timeLayoutBuilder_;
+        io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.Builder, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.LayoutOrBuilder> layoutBuilder_;
     /**
-     * <code>.json.TypeTimestamp.TimeLayout time_layout = 2;</code>
-     * @return Whether the timeLayout field is set.
+     * <code>.json.TypeTimestamp.Layout layout = 2;</code>
+     * @return Whether the layout field is set.
      */
-    @java.lang.Override
-    public boolean hasTimeLayout() {
-      return formatCase_ == 2;
+    public boolean hasLayout() {
+      return layoutBuilder_ != null || layout_ != null;
     }
     /**
-     * <code>.json.TypeTimestamp.TimeLayout time_layout = 2;</code>
-     * @return The timeLayout.
+     * <code>.json.TypeTimestamp.Layout layout = 2;</code>
+     * @return The layout.
      */
-    @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout getTimeLayout() {
-      if (timeLayoutBuilder_ == null) {
-        if (formatCase_ == 2) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout) format_;
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.getDefaultInstance();
+    public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout getLayout() {
+      if (layoutBuilder_ == null) {
+        return layout_ == null ? io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.getDefaultInstance() : layout_;
       } else {
-        if (formatCase_ == 2) {
-          return timeLayoutBuilder_.getMessage();
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.getDefaultInstance();
+        return layoutBuilder_.getMessage();
       }
     }
     /**
-     * <code>.json.TypeTimestamp.TimeLayout time_layout = 2;</code>
+     * <code>.json.TypeTimestamp.Layout layout = 2;</code>
      */
-    public Builder setTimeLayout(io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout value) {
-      if (timeLayoutBuilder_ == null) {
+    public Builder setLayout(io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout value) {
+      if (layoutBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        format_ = value;
+        layout_ = value;
         onChanged();
       } else {
-        timeLayoutBuilder_.setMessage(value);
+        layoutBuilder_.setMessage(value);
       }
-      formatCase_ = 2;
+
       return this;
     }
     /**
-     * <code>.json.TypeTimestamp.TimeLayout time_layout = 2;</code>
+     * <code>.json.TypeTimestamp.Layout layout = 2;</code>
      */
-    public Builder setTimeLayout(
-        io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.Builder builderForValue) {
-      if (timeLayoutBuilder_ == null) {
-        format_ = builderForValue.build();
+    public Builder setLayout(
+        io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.Builder builderForValue) {
+      if (layoutBuilder_ == null) {
+        layout_ = builderForValue.build();
         onChanged();
       } else {
-        timeLayoutBuilder_.setMessage(builderForValue.build());
+        layoutBuilder_.setMessage(builderForValue.build());
       }
-      formatCase_ = 2;
+
       return this;
     }
     /**
-     * <code>.json.TypeTimestamp.TimeLayout time_layout = 2;</code>
+     * <code>.json.TypeTimestamp.Layout layout = 2;</code>
      */
-    public Builder mergeTimeLayout(io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout value) {
-      if (timeLayoutBuilder_ == null) {
-        if (formatCase_ == 2 &&
-            format_ != io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.getDefaultInstance()) {
-          format_ = io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout) format_)
-              .mergeFrom(value).buildPartial();
+    public Builder mergeLayout(io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout value) {
+      if (layoutBuilder_ == null) {
+        if (layout_ != null) {
+          layout_ =
+            io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.newBuilder(layout_).mergeFrom(value).buildPartial();
         } else {
-          format_ = value;
+          layout_ = value;
         }
         onChanged();
       } else {
-        if (formatCase_ == 2) {
-          timeLayoutBuilder_.mergeFrom(value);
-        }
-        timeLayoutBuilder_.setMessage(value);
+        layoutBuilder_.mergeFrom(value);
       }
-      formatCase_ = 2;
+
       return this;
     }
     /**
-     * <code>.json.TypeTimestamp.TimeLayout time_layout = 2;</code>
+     * <code>.json.TypeTimestamp.Layout layout = 2;</code>
      */
-    public Builder clearTimeLayout() {
-      if (timeLayoutBuilder_ == null) {
-        if (formatCase_ == 2) {
-          formatCase_ = 0;
-          format_ = null;
-          onChanged();
-        }
+    public Builder clearLayout() {
+      if (layoutBuilder_ == null) {
+        layout_ = null;
+        onChanged();
       } else {
-        if (formatCase_ == 2) {
-          formatCase_ = 0;
-          format_ = null;
-        }
-        timeLayoutBuilder_.clear();
+        layout_ = null;
+        layoutBuilder_ = null;
       }
+
       return this;
     }
     /**
-     * <code>.json.TypeTimestamp.TimeLayout time_layout = 2;</code>
+     * <code>.json.TypeTimestamp.Layout layout = 2;</code>
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.Builder getTimeLayoutBuilder() {
-      return getTimeLayoutFieldBuilder().getBuilder();
+    public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.Builder getLayoutBuilder() {
+      
+      onChanged();
+      return getLayoutFieldBuilder().getBuilder();
     }
     /**
-     * <code>.json.TypeTimestamp.TimeLayout time_layout = 2;</code>
+     * <code>.json.TypeTimestamp.Layout layout = 2;</code>
      */
-    @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayoutOrBuilder getTimeLayoutOrBuilder() {
-      if ((formatCase_ == 2) && (timeLayoutBuilder_ != null)) {
-        return timeLayoutBuilder_.getMessageOrBuilder();
+    public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.LayoutOrBuilder getLayoutOrBuilder() {
+      if (layoutBuilder_ != null) {
+        return layoutBuilder_.getMessageOrBuilder();
       } else {
-        if (formatCase_ == 2) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout) format_;
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.getDefaultInstance();
+        return layout_ == null ?
+            io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.getDefaultInstance() : layout_;
       }
     }
     /**
-     * <code>.json.TypeTimestamp.TimeLayout time_layout = 2;</code>
+     * <code>.json.TypeTimestamp.Layout layout = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.Builder, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayoutOrBuilder> 
-        getTimeLayoutFieldBuilder() {
-      if (timeLayoutBuilder_ == null) {
-        if (!(formatCase_ == 2)) {
-          format_ = io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.getDefaultInstance();
-        }
-        timeLayoutBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout.Builder, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayoutOrBuilder>(
-                (io.github.yu31.protoc.pb.pbjson.TypeTimestamp.TimeLayout) format_,
+        io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.Builder, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.LayoutOrBuilder> 
+        getLayoutFieldBuilder() {
+      if (layoutBuilder_ == null) {
+        layoutBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.Builder, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.LayoutOrBuilder>(
+                getLayout(),
                 getParentForChildren(),
                 isClean());
-        format_ = null;
+        layout_ = null;
       }
-      formatCase_ = 2;
-      onChanged();;
-      return timeLayoutBuilder_;
-    }
-
-    /**
-     * <code>bool unix_nano = 3;</code>
-     * @return Whether the unixNano field is set.
-     */
-    public boolean hasUnixNano() {
-      return formatCase_ == 3;
-    }
-    /**
-     * <code>bool unix_nano = 3;</code>
-     * @return The unixNano.
-     */
-    public boolean getUnixNano() {
-      if (formatCase_ == 3) {
-        return (java.lang.Boolean) format_;
-      }
-      return false;
-    }
-    /**
-     * <code>bool unix_nano = 3;</code>
-     * @param value The unixNano to set.
-     * @return This builder for chaining.
-     */
-    public Builder setUnixNano(boolean value) {
-      formatCase_ = 3;
-      format_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool unix_nano = 3;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearUnixNano() {
-      if (formatCase_ == 3) {
-        formatCase_ = 0;
-        format_ = null;
-        onChanged();
-      }
-      return this;
-    }
-
-    /**
-     * <code>bool unix_micro = 4;</code>
-     * @return Whether the unixMicro field is set.
-     */
-    public boolean hasUnixMicro() {
-      return formatCase_ == 4;
-    }
-    /**
-     * <code>bool unix_micro = 4;</code>
-     * @return The unixMicro.
-     */
-    public boolean getUnixMicro() {
-      if (formatCase_ == 4) {
-        return (java.lang.Boolean) format_;
-      }
-      return false;
-    }
-    /**
-     * <code>bool unix_micro = 4;</code>
-     * @param value The unixMicro to set.
-     * @return This builder for chaining.
-     */
-    public Builder setUnixMicro(boolean value) {
-      formatCase_ = 4;
-      format_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool unix_micro = 4;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearUnixMicro() {
-      if (formatCase_ == 4) {
-        formatCase_ = 0;
-        format_ = null;
-        onChanged();
-      }
-      return this;
-    }
-
-    /**
-     * <code>bool unix_milli = 5;</code>
-     * @return Whether the unixMilli field is set.
-     */
-    public boolean hasUnixMilli() {
-      return formatCase_ == 5;
-    }
-    /**
-     * <code>bool unix_milli = 5;</code>
-     * @return The unixMilli.
-     */
-    public boolean getUnixMilli() {
-      if (formatCase_ == 5) {
-        return (java.lang.Boolean) format_;
-      }
-      return false;
-    }
-    /**
-     * <code>bool unix_milli = 5;</code>
-     * @param value The unixMilli to set.
-     * @return This builder for chaining.
-     */
-    public Builder setUnixMilli(boolean value) {
-      formatCase_ = 5;
-      format_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool unix_milli = 5;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearUnixMilli() {
-      if (formatCase_ == 5) {
-        formatCase_ = 0;
-        format_ = null;
-        onChanged();
-      }
-      return this;
-    }
-
-    /**
-     * <code>bool unix_sec = 6;</code>
-     * @return Whether the unixSec field is set.
-     */
-    public boolean hasUnixSec() {
-      return formatCase_ == 6;
-    }
-    /**
-     * <code>bool unix_sec = 6;</code>
-     * @return The unixSec.
-     */
-    public boolean getUnixSec() {
-      if (formatCase_ == 6) {
-        return (java.lang.Boolean) format_;
-      }
-      return false;
-    }
-    /**
-     * <code>bool unix_sec = 6;</code>
-     * @param value The unixSec to set.
-     * @return This builder for chaining.
-     */
-    public Builder setUnixSec(boolean value) {
-      formatCase_ = 6;
-      format_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool unix_sec = 6;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearUnixSec() {
-      if (formatCase_ == 6) {
-        formatCase_ = 0;
-        format_ = null;
-        onChanged();
-      }
-      return this;
+      return layoutBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

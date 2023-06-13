@@ -451,99 +451,69 @@ func (p *Plugin) unmarshalReadLiteral(field *protogen.Field) {
 func (p *Plugin) unmarshalReadMessage(field *protogen.Field, options *pbjson.FieldOptions,
 	goType string, receiver string) {
 
-	// The default codes.
-	codes := "decoder.ReadLiteralInterface(jsonKey, vv)"
+	// The default code.
+	code := "decoder.ReadLiteralInterface(jsonKey, vv)"
 	checkNULL := true
 
 	// Supported Well Know Type.
 	switch pkwkt.Lookup(string(field.Message.Desc.FullName())) {
 	case pkwkt.Any:
 		typeAny := p.loadTypeSetAny(options)
-
-		switch format := typeAny.Format.(type) {
-		case *pbjson.TypeAny_Proto:
-			if format.Proto {
-				codes = "decoder.ReadWKTAnyByProto(jsonKey, vv)"
-				checkNULL = true
-			}
-		case *pbjson.TypeAny_Native:
-		default:
+		switch typeAny.Format {
+		case pbjson.TypeAny_Native:
+		case pbjson.TypeAny_Proto:
+			code = "decoder.ReadWKTAnyByProto(jsonKey, vv)"
+			checkNULL = true
 		}
 	case pkwkt.Duration:
 		typeDuration := p.loadTypeSetDuration(options)
-
-		switch format := typeDuration.Format.(type) {
-		case *pbjson.TypeDuration_Native:
-		case *pbjson.TypeDuration_String_:
-			if format.String_ {
-				codes = "decoder.ReadWKTDurationByString(jsonKey, vv)"
-				checkNULL = false
-			}
-		case *pbjson.TypeDuration_Nanoseconds:
-			if format.Nanoseconds {
-				codes = "decoder.ReadWKTDurationByNanoseconds(jsonKey, vv)"
-				checkNULL = false
-			}
-		case *pbjson.TypeDuration_Microseconds:
-			if format.Microseconds {
-				codes = "decoder.ReadWKTDurationByMicroseconds(jsonKey, vv)"
-				checkNULL = false
-			}
-		case *pbjson.TypeDuration_Milliseconds:
-			if format.Milliseconds {
-				codes = "decoder.ReadWKTDurationByMilliseconds(jsonKey, vv)"
-				checkNULL = false
-			}
-		case *pbjson.TypeDuration_Seconds:
-			if format.Seconds {
-				codes = "decoder.ReadWKTDurationBySeconds(jsonKey, vv)"
-				checkNULL = false
-			}
-		case *pbjson.TypeDuration_Minutes:
-			if format.Minutes {
-				codes = "decoder.ReadWKTDurationByMinutes(jsonKey, vv)"
-				checkNULL = false
-			}
-		case *pbjson.TypeDuration_Hours:
-			if format.Hours {
-				codes = "decoder.ReadWKTDurationByHours(jsonKey, vv)"
-				checkNULL = false
-			}
-		default:
+		switch typeDuration.Format {
+		case pbjson.TypeDuration_Native:
+		case pbjson.TypeDuration_String:
+			code = "decoder.ReadWKTDurationByString(jsonKey, vv)"
+			checkNULL = false
+		case pbjson.TypeDuration_Nanoseconds:
+			code = "decoder.ReadWKTDurationByNanoseconds(jsonKey, vv)"
+			checkNULL = false
+		case pbjson.TypeDuration_Microseconds:
+			code = "decoder.ReadWKTDurationByMicroseconds(jsonKey, vv)"
+			checkNULL = false
+		case pbjson.TypeDuration_Milliseconds:
+			code = "decoder.ReadWKTDurationByMilliseconds(jsonKey, vv)"
+			checkNULL = false
+		case pbjson.TypeDuration_Seconds:
+			code = "decoder.ReadWKTDurationBySeconds(jsonKey, vv)"
+			checkNULL = false
+		case pbjson.TypeDuration_Minutes:
+			code = "decoder.ReadWKTDurationByMinutes(jsonKey, vv)"
+			checkNULL = false
+		case pbjson.TypeDuration_Hours:
+			code = "decoder.ReadWKTDurationByHours(jsonKey, vv)"
+			checkNULL = false
 		}
 	case pkwkt.Timestamp:
 		typeTimestamp := p.loadTypeSetTimestamp(options)
-
-		switch format := typeTimestamp.Format.(type) {
-		case *pbjson.TypeTimestamp_Native:
-		case *pbjson.TypeTimestamp_TimeLayout_:
-			// FIXME: valid the time layout.
-			if format.TimeLayout != nil && format.TimeLayout.Golang != "" {
-				layout := strconv.Quote(format.TimeLayout.Golang)
-				codes = "decoder.ReadWKTTimestampByString(jsonKey, vv, " + layout + ")"
-				checkNULL = false
+		switch typeTimestamp.Format {
+		case pbjson.TypeTimestamp_Native:
+		case pbjson.TypeTimestamp_TimeLayout:
+			layout := typeTimestamp.Layout.Golang
+			if layout == "" {
+				// TODO: check the layout.
 			}
-		case *pbjson.TypeTimestamp_UnixNano:
-			if format.UnixNano {
-				codes = "decoder.ReadWKTTimestampByUnixNano(jsonKey, vv)"
-				checkNULL = false
-			}
-		case *pbjson.TypeTimestamp_UnixMicro:
-			if format.UnixMicro {
-				codes = "decoder.ReadWKTTimestampByUnixMicro(jsonKey, vv)"
-				checkNULL = false
-			}
-		case *pbjson.TypeTimestamp_UnixMilli:
-			if format.UnixMilli {
-				codes = "decoder.ReadWKTTimestampByUnixMilli(jsonKey, vv)"
-				checkNULL = false
-			}
-		case *pbjson.TypeTimestamp_UnixSec:
-			if format.UnixSec {
-				codes = "decoder.ReadWKTTimestampByUnixSec(jsonKey, vv)"
-				checkNULL = false
-			}
-		default:
+			code = "decoder.ReadWKTTimestampByString(jsonKey, vv, " + strconv.Quote(layout) + ")"
+			checkNULL = false
+		case pbjson.TypeTimestamp_UnixNano:
+			code = "decoder.ReadWKTTimestampByUnixNano(jsonKey, vv)"
+			checkNULL = false
+		case pbjson.TypeTimestamp_UnixMicro:
+			code = "decoder.ReadWKTTimestampByUnixMicro(jsonKey, vv)"
+			checkNULL = false
+		case pbjson.TypeTimestamp_UnixMilli:
+			code = "decoder.ReadWKTTimestampByUnixMilli(jsonKey, vv)"
+			checkNULL = false
+		case pbjson.TypeTimestamp_UnixSec:
+			code = "decoder.ReadWKTTimestampByUnixSec(jsonKey, vv)"
+			checkNULL = false
 		}
 	default:
 	}
@@ -560,7 +530,7 @@ func (p *Plugin) unmarshalReadMessage(field *protogen.Field, options *pbjson.Fie
 	p.g.P("} else {")
 	p.g.P("    vv = new(", goType, ")")
 	p.g.P("}")
-	p.g.P("if err = ", codes, "; err != nil {")
+	p.g.P("if err = ", code, "; err != nil {")
 	p.g.P("    return err")
 	p.g.P("}")
 

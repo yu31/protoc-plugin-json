@@ -326,93 +326,63 @@ func (p *Plugin) marshalValueMessage(field *protogen.Field, options *pbjson.Fiel
 	switch pkwkt.Lookup(string(field.Message.Desc.FullName())) {
 	case pkwkt.Any:
 		typeAny := p.loadTypeSetAny(options)
-
-		switch format := typeAny.Format.(type) {
-		case *pbjson.TypeAny_Proto:
-			if format.Proto {
-				p.g.P("if err = encoder.AppendWKTAnyByProto(", varName, "); err != nil {")
-				p.g.P("    return nil, err")
-				p.g.P("}")
-				return
-			}
-		case *pbjson.TypeAny_Native:
-		default:
+		switch typeAny.Format {
+		case pbjson.TypeAny_Native:
+		case pbjson.TypeAny_Proto:
+			p.g.P("if err = encoder.AppendWKTAnyByProto(", varName, "); err != nil {")
+			p.g.P("    return nil, err")
+			p.g.P("}")
+			return
 		}
 	case pkwkt.Duration:
 		typeDuration := p.loadTypeSetDuration(options)
-
-		switch format := typeDuration.Format.(type) {
-		case *pbjson.TypeDuration_Native:
-		case *pbjson.TypeDuration_String_:
-			if format.String_ {
-				p.g.P("encoder.AppendLiteralString(", varName, ".AsDuration().String())")
-				return
-			}
-		case *pbjson.TypeDuration_Nanoseconds:
-			if format.Nanoseconds {
-				p.g.P("encoder.AppendLiteralInt64(", varName, ".AsDuration().Nanoseconds())")
-				return
-			}
-		case *pbjson.TypeDuration_Microseconds:
-			if format.Microseconds {
-				p.g.P("encoder.AppendLiteralInt64(", varName, ".AsDuration().Microseconds())")
-				return
-			}
-		case *pbjson.TypeDuration_Milliseconds:
-			if format.Milliseconds {
-				p.g.P("encoder.AppendLiteralInt64(", varName, ".AsDuration().Milliseconds())")
-				return
-			}
-		case *pbjson.TypeDuration_Seconds:
-			if format.Seconds {
-				p.g.P("encoder.AppendLiteralFloat64(", varName, ".AsDuration().Seconds())")
-				return
-			}
-		case *pbjson.TypeDuration_Minutes:
-			if format.Minutes {
-				p.g.P("encoder.AppendLiteralFloat64(", varName, ".AsDuration().Minutes())")
-				return
-			}
-		case *pbjson.TypeDuration_Hours:
-			if format.Hours {
-				p.g.P("encoder.AppendLiteralFloat64(", varName, ".AsDuration().Hours())")
-				return
-			}
-		default:
+		switch typeDuration.Format {
+		case pbjson.TypeDuration_Native:
+		case pbjson.TypeDuration_String:
+			p.g.P("encoder.AppendLiteralString(", varName, ".AsDuration().String())")
+			return
+		case pbjson.TypeDuration_Nanoseconds:
+			p.g.P("encoder.AppendLiteralInt64(", varName, ".AsDuration().Nanoseconds())")
+			return
+		case pbjson.TypeDuration_Microseconds:
+			p.g.P("encoder.AppendLiteralInt64(", varName, ".AsDuration().Microseconds())")
+			return
+		case pbjson.TypeDuration_Milliseconds:
+			p.g.P("encoder.AppendLiteralInt64(", varName, ".AsDuration().Milliseconds())")
+			return
+		case pbjson.TypeDuration_Seconds:
+			p.g.P("encoder.AppendLiteralFloat64(", varName, ".AsDuration().Seconds())")
+			return
+		case pbjson.TypeDuration_Minutes:
+			p.g.P("encoder.AppendLiteralFloat64(", varName, ".AsDuration().Minutes())")
+			return
+		case pbjson.TypeDuration_Hours:
+			p.g.P("encoder.AppendLiteralFloat64(", varName, ".AsDuration().Hours())")
+			return
 		}
 	case pkwkt.Timestamp:
 		typeTimestamp := p.loadTypeSetTimestamp(options)
-
-		switch format := typeTimestamp.Format.(type) {
-		case *pbjson.TypeTimestamp_Native:
-		case *pbjson.TypeTimestamp_TimeLayout_:
-			if format.TimeLayout != nil && format.TimeLayout.Golang != "" {
-				// FIXME: valid the time layout.
-				layout := strconv.Quote(format.TimeLayout.Golang)
-				p.g.P("encoder.AppendLiteralString(", varName, ".AsTime().Format(", layout, "))")
-				return
+		switch typeTimestamp.Format {
+		case pbjson.TypeTimestamp_Native:
+		case pbjson.TypeTimestamp_TimeLayout:
+			layout := typeTimestamp.Layout.Golang
+			if layout == "" {
+				// TODO: check the layout.
 			}
-		case *pbjson.TypeTimestamp_UnixNano:
-			if format.UnixNano {
-				p.g.P("encoder.AppendLiteralInt64(", varName, ".AsTime().UnixNano())")
-				return
-			}
-		case *pbjson.TypeTimestamp_UnixMicro:
-			if format.UnixMicro {
-				p.g.P("encoder.AppendLiteralInt64(", varName, ".AsTime().UnixMicro())")
-				return
-			}
-		case *pbjson.TypeTimestamp_UnixMilli:
-			if format.UnixMilli {
-				p.g.P("encoder.AppendLiteralInt64(", varName, ".AsTime().UnixMilli())")
-				return
-			}
-		case *pbjson.TypeTimestamp_UnixSec:
-			if format.UnixSec {
-				p.g.P("encoder.AppendLiteralInt64(", varName, ".AsTime().Unix())")
-				return
-			}
-		default:
+			p.g.P("encoder.AppendLiteralString(", varName, ".AsTime().Format(", strconv.Quote(layout), "))")
+			return
+		case pbjson.TypeTimestamp_UnixNano:
+			p.g.P("encoder.AppendLiteralInt64(", varName, ".AsTime().UnixNano())")
+			return
+		case pbjson.TypeTimestamp_UnixMicro:
+			p.g.P("encoder.AppendLiteralInt64(", varName, ".AsTime().UnixMicro())")
+			return
+		case pbjson.TypeTimestamp_UnixMilli:
+			p.g.P("encoder.AppendLiteralInt64(", varName, ".AsTime().UnixMilli())")
+			return
+		case pbjson.TypeTimestamp_UnixSec:
+			p.g.P("encoder.AppendLiteralInt64(", varName, ".AsTime().Unix())")
+			return
 		}
 	default:
 	}
