@@ -93,12 +93,16 @@ private static final long serialVersionUID = 0L;
   public enum Format
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
+     * <pre>
+     * Number represents format the field type of Enum to the number. And it is the default Format.
+     * </pre>
+     *
      * <code>Number = 0;</code>
      */
     Number(0),
     /**
      * <pre>
-     * format the enum field as string.
+     * String represents format the field type of Enum to the string.
      * </pre>
      *
      * <code>String = 1;</code>
@@ -108,12 +112,16 @@ private static final long serialVersionUID = 0L;
     ;
 
     /**
+     * <pre>
+     * Number represents format the field type of Enum to the number. And it is the default Format.
+     * </pre>
+     *
      * <code>Number = 0;</code>
      */
     public static final int Number_VALUE = 0;
     /**
      * <pre>
-     * format the enum field as string.
+     * String represents format the field type of Enum to the string.
      * </pre>
      *
      * <code>String = 1;</code>

@@ -106,10 +106,19 @@ private static final long serialVersionUID = 0L;
   public enum Format
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
+     * <pre>
+     * Native represents consider the google.protobuf.Timestamp as a interface and format it by standard JSON.
+     * And it is the default Format.
+     * </pre>
+     *
      * <code>Native = 0;</code>
      */
     Native(0),
     /**
+     * <pre>
+     * TimeLayout represents format the google.protobuf.Timestamp to a time string and format by `Layout`.
+     * </pre>
+     *
      * <code>TimeLayout = 1;</code>
      */
     TimeLayout(1),
@@ -133,10 +142,19 @@ private static final long serialVersionUID = 0L;
     ;
 
     /**
+     * <pre>
+     * Native represents consider the google.protobuf.Timestamp as a interface and format it by standard JSON.
+     * And it is the default Format.
+     * </pre>
+     *
      * <code>Native = 0;</code>
      */
     public static final int Native_VALUE = 0;
     /**
+     * <pre>
+     * TimeLayout represents format the google.protobuf.Timestamp to a time string and format by `Layout`.
+     * </pre>
+     *
      * <code>TimeLayout = 1;</code>
      */
     public static final int TimeLayout_VALUE = 1;
@@ -249,11 +267,21 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * Used to set the time layout for language Golang.
+     * Default is time.RFC3339Nano(`2006-01-02T15:04:05.999999999Z07:00`)
+     * </pre>
+     *
      * <code>string golang = 1;</code>
      * @return The golang.
      */
     java.lang.String getGolang();
     /**
+     * <pre>
+     * Used to set the time layout for language Golang.
+     * Default is time.RFC3339Nano(`2006-01-02T15:04:05.999999999Z07:00`)
+     * </pre>
+     *
      * <code>string golang = 1;</code>
      * @return The bytes for golang.
      */
@@ -261,11 +289,19 @@ private static final long serialVersionUID = 0L;
         getGolangBytes();
 
     /**
+     * <pre>
+     * Used to set the time layout for language Java.
+     * </pre>
+     *
      * <code>string java = 2;</code>
      * @return The java.
      */
     java.lang.String getJava();
     /**
+     * <pre>
+     * Used to set the time layout for language Java.
+     * </pre>
+     *
      * <code>string java = 2;</code>
      * @return The bytes for java.
      */
@@ -273,11 +309,19 @@ private static final long serialVersionUID = 0L;
         getJavaBytes();
 
     /**
+     * <pre>
+     * Used to set the time layout for language Rust.
+     * </pre>
+     *
      * <code>string rust = 3;</code>
      * @return The rust.
      */
     java.lang.String getRust();
     /**
+     * <pre>
+     * Used to set the time layout for language Rust.
+     * </pre>
+     *
      * <code>string rust = 3;</code>
      * @return The bytes for rust.
      */
@@ -285,11 +329,19 @@ private static final long serialVersionUID = 0L;
         getRustBytes();
 
     /**
+     * <pre>
+     * Used to set the time layout for language Python.
+     * </pre>
+     *
      * <code>string python = 4;</code>
      * @return The python.
      */
     java.lang.String getPython();
     /**
+     * <pre>
+     * Used to set the time layout for language Python.
+     * </pre>
+     *
      * <code>string python = 4;</code>
      * @return The bytes for python.
      */
@@ -404,6 +456,11 @@ private static final long serialVersionUID = 0L;
     public static final int GOLANG_FIELD_NUMBER = 1;
     private volatile java.lang.Object golang_;
     /**
+     * <pre>
+     * Used to set the time layout for language Golang.
+     * Default is time.RFC3339Nano(`2006-01-02T15:04:05.999999999Z07:00`)
+     * </pre>
+     *
      * <code>string golang = 1;</code>
      * @return The golang.
      */
@@ -421,6 +478,11 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Used to set the time layout for language Golang.
+     * Default is time.RFC3339Nano(`2006-01-02T15:04:05.999999999Z07:00`)
+     * </pre>
+     *
      * <code>string golang = 1;</code>
      * @return The bytes for golang.
      */
@@ -442,6 +504,10 @@ private static final long serialVersionUID = 0L;
     public static final int JAVA_FIELD_NUMBER = 2;
     private volatile java.lang.Object java_;
     /**
+     * <pre>
+     * Used to set the time layout for language Java.
+     * </pre>
+     *
      * <code>string java = 2;</code>
      * @return The java.
      */
@@ -459,6 +525,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Used to set the time layout for language Java.
+     * </pre>
+     *
      * <code>string java = 2;</code>
      * @return The bytes for java.
      */
@@ -480,6 +550,10 @@ private static final long serialVersionUID = 0L;
     public static final int RUST_FIELD_NUMBER = 3;
     private volatile java.lang.Object rust_;
     /**
+     * <pre>
+     * Used to set the time layout for language Rust.
+     * </pre>
+     *
      * <code>string rust = 3;</code>
      * @return The rust.
      */
@@ -497,6 +571,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Used to set the time layout for language Rust.
+     * </pre>
+     *
      * <code>string rust = 3;</code>
      * @return The bytes for rust.
      */
@@ -518,6 +596,10 @@ private static final long serialVersionUID = 0L;
     public static final int PYTHON_FIELD_NUMBER = 4;
     private volatile java.lang.Object python_;
     /**
+     * <pre>
+     * Used to set the time layout for language Python.
+     * </pre>
+     *
      * <code>string python = 4;</code>
      * @return The python.
      */
@@ -535,6 +617,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Used to set the time layout for language Python.
+     * </pre>
+     *
      * <code>string python = 4;</code>
      * @return The bytes for python.
      */
@@ -908,6 +994,11 @@ private static final long serialVersionUID = 0L;
 
       private java.lang.Object golang_ = "";
       /**
+       * <pre>
+       * Used to set the time layout for language Golang.
+       * Default is time.RFC3339Nano(`2006-01-02T15:04:05.999999999Z07:00`)
+       * </pre>
+       *
        * <code>string golang = 1;</code>
        * @return The golang.
        */
@@ -924,6 +1015,11 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
+       * <pre>
+       * Used to set the time layout for language Golang.
+       * Default is time.RFC3339Nano(`2006-01-02T15:04:05.999999999Z07:00`)
+       * </pre>
+       *
        * <code>string golang = 1;</code>
        * @return The bytes for golang.
        */
@@ -941,6 +1037,11 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
+       * <pre>
+       * Used to set the time layout for language Golang.
+       * Default is time.RFC3339Nano(`2006-01-02T15:04:05.999999999Z07:00`)
+       * </pre>
+       *
        * <code>string golang = 1;</code>
        * @param value The golang to set.
        * @return This builder for chaining.
@@ -956,6 +1057,11 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
+       * <pre>
+       * Used to set the time layout for language Golang.
+       * Default is time.RFC3339Nano(`2006-01-02T15:04:05.999999999Z07:00`)
+       * </pre>
+       *
        * <code>string golang = 1;</code>
        * @return This builder for chaining.
        */
@@ -966,6 +1072,11 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
+       * <pre>
+       * Used to set the time layout for language Golang.
+       * Default is time.RFC3339Nano(`2006-01-02T15:04:05.999999999Z07:00`)
+       * </pre>
+       *
        * <code>string golang = 1;</code>
        * @param value The bytes for golang to set.
        * @return This builder for chaining.
@@ -984,6 +1095,10 @@ private static final long serialVersionUID = 0L;
 
       private java.lang.Object java_ = "";
       /**
+       * <pre>
+       * Used to set the time layout for language Java.
+       * </pre>
+       *
        * <code>string java = 2;</code>
        * @return The java.
        */
@@ -1000,6 +1115,10 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
+       * <pre>
+       * Used to set the time layout for language Java.
+       * </pre>
+       *
        * <code>string java = 2;</code>
        * @return The bytes for java.
        */
@@ -1017,6 +1136,10 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
+       * <pre>
+       * Used to set the time layout for language Java.
+       * </pre>
+       *
        * <code>string java = 2;</code>
        * @param value The java to set.
        * @return This builder for chaining.
@@ -1032,6 +1155,10 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
+       * <pre>
+       * Used to set the time layout for language Java.
+       * </pre>
+       *
        * <code>string java = 2;</code>
        * @return This builder for chaining.
        */
@@ -1042,6 +1169,10 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
+       * <pre>
+       * Used to set the time layout for language Java.
+       * </pre>
+       *
        * <code>string java = 2;</code>
        * @param value The bytes for java to set.
        * @return This builder for chaining.
@@ -1060,6 +1191,10 @@ private static final long serialVersionUID = 0L;
 
       private java.lang.Object rust_ = "";
       /**
+       * <pre>
+       * Used to set the time layout for language Rust.
+       * </pre>
+       *
        * <code>string rust = 3;</code>
        * @return The rust.
        */
@@ -1076,6 +1211,10 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
+       * <pre>
+       * Used to set the time layout for language Rust.
+       * </pre>
+       *
        * <code>string rust = 3;</code>
        * @return The bytes for rust.
        */
@@ -1093,6 +1232,10 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
+       * <pre>
+       * Used to set the time layout for language Rust.
+       * </pre>
+       *
        * <code>string rust = 3;</code>
        * @param value The rust to set.
        * @return This builder for chaining.
@@ -1108,6 +1251,10 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
+       * <pre>
+       * Used to set the time layout for language Rust.
+       * </pre>
+       *
        * <code>string rust = 3;</code>
        * @return This builder for chaining.
        */
@@ -1118,6 +1265,10 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
+       * <pre>
+       * Used to set the time layout for language Rust.
+       * </pre>
+       *
        * <code>string rust = 3;</code>
        * @param value The bytes for rust to set.
        * @return This builder for chaining.
@@ -1136,6 +1287,10 @@ private static final long serialVersionUID = 0L;
 
       private java.lang.Object python_ = "";
       /**
+       * <pre>
+       * Used to set the time layout for language Python.
+       * </pre>
+       *
        * <code>string python = 4;</code>
        * @return The python.
        */
@@ -1152,6 +1307,10 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
+       * <pre>
+       * Used to set the time layout for language Python.
+       * </pre>
+       *
        * <code>string python = 4;</code>
        * @return The bytes for python.
        */
@@ -1169,6 +1328,10 @@ private static final long serialVersionUID = 0L;
         }
       }
       /**
+       * <pre>
+       * Used to set the time layout for language Python.
+       * </pre>
+       *
        * <code>string python = 4;</code>
        * @param value The python to set.
        * @return This builder for chaining.
@@ -1184,6 +1347,10 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
+       * <pre>
+       * Used to set the time layout for language Python.
+       * </pre>
+       *
        * <code>string python = 4;</code>
        * @return This builder for chaining.
        */
@@ -1194,6 +1361,10 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
+       * <pre>
+       * Used to set the time layout for language Python.
+       * </pre>
+       *
        * <code>string python = 4;</code>
        * @param value The bytes for python to set.
        * @return This builder for chaining.
@@ -1284,6 +1455,10 @@ private static final long serialVersionUID = 0L;
   public static final int LAYOUT_FIELD_NUMBER = 2;
   private io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout layout_;
   /**
+   * <pre>
+   * Only used if the format is TimeLayout.
+   * </pre>
+   *
    * <code>.json.TypeTimestamp.Layout layout = 2;</code>
    * @return Whether the layout field is set.
    */
@@ -1292,6 +1467,10 @@ private static final long serialVersionUID = 0L;
     return layout_ != null;
   }
   /**
+   * <pre>
+   * Only used if the format is TimeLayout.
+   * </pre>
+   *
    * <code>.json.TypeTimestamp.Layout layout = 2;</code>
    * @return The layout.
    */
@@ -1300,6 +1479,10 @@ private static final long serialVersionUID = 0L;
     return layout_ == null ? io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.getDefaultInstance() : layout_;
   }
   /**
+   * <pre>
+   * Only used if the format is TimeLayout.
+   * </pre>
+   *
    * <code>.json.TypeTimestamp.Layout layout = 2;</code>
    */
   @java.lang.Override
@@ -1696,6 +1879,10 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.Builder, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.LayoutOrBuilder> layoutBuilder_;
     /**
+     * <pre>
+     * Only used if the format is TimeLayout.
+     * </pre>
+     *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>
      * @return Whether the layout field is set.
      */
@@ -1703,6 +1890,10 @@ private static final long serialVersionUID = 0L;
       return layoutBuilder_ != null || layout_ != null;
     }
     /**
+     * <pre>
+     * Only used if the format is TimeLayout.
+     * </pre>
+     *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>
      * @return The layout.
      */
@@ -1714,6 +1905,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Only used if the format is TimeLayout.
+     * </pre>
+     *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>
      */
     public Builder setLayout(io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout value) {
@@ -1730,6 +1925,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Only used if the format is TimeLayout.
+     * </pre>
+     *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>
      */
     public Builder setLayout(
@@ -1744,6 +1943,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Only used if the format is TimeLayout.
+     * </pre>
+     *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>
      */
     public Builder mergeLayout(io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout value) {
@@ -1762,6 +1965,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Only used if the format is TimeLayout.
+     * </pre>
+     *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>
      */
     public Builder clearLayout() {
@@ -1776,6 +1983,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Only used if the format is TimeLayout.
+     * </pre>
+     *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>
      */
     public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.Builder getLayoutBuilder() {
@@ -1784,6 +1995,10 @@ private static final long serialVersionUID = 0L;
       return getLayoutFieldBuilder().getBuilder();
     }
     /**
+     * <pre>
+     * Only used if the format is TimeLayout.
+     * </pre>
+     *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>
      */
     public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.LayoutOrBuilder getLayoutOrBuilder() {
@@ -1795,6 +2010,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Only used if the format is TimeLayout.
+     * </pre>
+     *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<

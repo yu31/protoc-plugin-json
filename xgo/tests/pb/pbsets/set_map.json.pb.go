@@ -21,7 +21,7 @@ func (x *TypeSetMap1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(768)
+	encoder := jsonencoder.New(776)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -243,7 +243,6 @@ func (x *TypeSetMap1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbsets.(*TypeSetMap1) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool

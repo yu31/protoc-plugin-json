@@ -21,7 +21,7 @@ func (dec *Decoder) ReadMapKeyBool(jsonKey string) (vv bool, err error) {
 	if key, err = dec.readObjectKey(); err != nil {
 		return
 	}
-	if key, err = dec.unquoteKey(key); err != nil {
+	if key, err = dec.unquoteString(key); err != nil {
 		return
 	}
 	if vv, err = bytesToBool(key); err != nil {
@@ -35,7 +35,7 @@ func (dec *Decoder) ReadMapKeyInt32(jsonKey string) (vv int32, err error) {
 	if key, err = dec.readObjectKey(); err != nil {
 		return
 	}
-	if key, err = dec.unquoteKey(key); err != nil {
+	if key, err = dec.unquoteString(key); err != nil {
 		return
 	}
 	if vv, err = bytesToInt32(key); err != nil {
@@ -49,7 +49,7 @@ func (dec *Decoder) ReadMapKeyInt64(jsonKey string) (vv int64, err error) {
 	if key, err = dec.readObjectKey(); err != nil {
 		return
 	}
-	if key, err = dec.unquoteKey(key); err != nil {
+	if key, err = dec.unquoteString(key); err != nil {
 		return
 	}
 	if vv, err = bytesToInt64(key); err != nil {
@@ -63,7 +63,7 @@ func (dec *Decoder) ReadMapKeyUint32(jsonKey string) (vv uint32, err error) {
 	if key, err = dec.readObjectKey(); err != nil {
 		return
 	}
-	if key, err = dec.unquoteKey(key); err != nil {
+	if key, err = dec.unquoteString(key); err != nil {
 		return
 	}
 	if vv, err = bytesToUint32(key); err != nil {
@@ -77,7 +77,7 @@ func (dec *Decoder) ReadMapKeyUint64(jsonKey string) (vv uint64, err error) {
 	if key, err = dec.readObjectKey(); err != nil {
 		return
 	}
-	if key, err = dec.unquoteKey(key); err != nil {
+	if key, err = dec.unquoteString(key); err != nil {
 		return
 	}
 	if vv, err = bytesToUint64(key); err != nil {

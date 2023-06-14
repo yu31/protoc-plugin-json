@@ -38,7 +38,7 @@ func (x *Example2) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(380)
+	encoder := jsonencoder.New(472)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -192,9 +192,10 @@ func (x *Example2) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbexample.(*Example2) is nil")
 	}
-	var oneOfIsFill_OnetType1 bool
-	var oneOfIsFill_OnetType2 bool
-
+	var (
+		oneOfIsFill_OnetType1 bool
+		oneOfIsFill_OnetType2 bool
+	)
 	var (
 		err     error
 		isNULL  bool

@@ -22,7 +22,7 @@ func (x *MessageRepeated1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(68)
+	encoder := jsonencoder.New(72)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -44,7 +44,6 @@ func (x *MessageRepeated1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*MessageRepeated1) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -108,7 +107,7 @@ func (x *MessageRepeated1_Embed1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(68)
+	encoder := jsonencoder.New(72)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -130,7 +129,6 @@ func (x *MessageRepeated1_Embed1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*MessageRepeated1_Embed1) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -194,7 +192,7 @@ func (x *MessageRepeated1_Embed1_Embed2) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(68)
+	encoder := jsonencoder.New(72)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -216,7 +214,6 @@ func (x *MessageRepeated1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*MessageRepeated1_Embed1_Embed2) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -280,7 +277,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(794)
+	encoder := jsonencoder.New(800)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -696,7 +693,6 @@ func (x *TypeRepeated1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*TypeRepeated1) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool

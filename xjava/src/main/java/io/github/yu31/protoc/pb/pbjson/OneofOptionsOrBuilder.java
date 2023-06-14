@@ -9,8 +9,9 @@ public interface OneofOptionsOrBuilder extends
 
   /**
    * <pre>
-   * The key name in json format. Default is field's name in proto.
-   * If "json" is "-", The field will be ignore.
+   * The key name in JSON content. Default is the field's name in proto file.
+   * Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
+   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>optional string json = 1;</code>
@@ -19,8 +20,9 @@ public interface OneofOptionsOrBuilder extends
   boolean hasJson();
   /**
    * <pre>
-   * The key name in json format. Default is field's name in proto.
-   * If "json" is "-", The field will be ignore.
+   * The key name in JSON content. Default is the field's name in proto file.
+   * Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
+   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>optional string json = 1;</code>
@@ -29,8 +31,9 @@ public interface OneofOptionsOrBuilder extends
   java.lang.String getJson();
   /**
    * <pre>
-   * The key name in json format. Default is field's name in proto.
-   * If "json" is "-", The field will be ignore.
+   * The key name in JSON content. Default is the field's name in proto file.
+   * Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
+   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>optional string json = 1;</code>
@@ -41,8 +44,8 @@ public interface OneofOptionsOrBuilder extends
 
   /**
    * <pre>
-   * If true, the field will be ignore. It same as `json: "-"`
-   * If true, the all fields in `oneof` part will be ignore.
+   * Same as `json: "-"`, The field and all fields in the oneof parts will be ignored if true.
+   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>bool ignore = 2;</code>
@@ -52,8 +55,8 @@ public interface OneofOptionsOrBuilder extends
 
   /**
    * <pre>
-   * Whether omit the field of empty value in encoding(MarshalJSON).
-   * It same as the go struct tag `json:"xxx,omitempty"`.
+   * Same as the go struct tag `json:"xxx,omitempty"`.
+   * omitempty indicates whether omit the field if it is empty in MarshalJSON.
    * </pre>
    *
    * <code>bool omitempty = 3;</code>
@@ -63,8 +66,9 @@ public interface OneofOptionsOrBuilder extends
 
   /**
    * <pre>
-   * Whether hide the `oneof` key in json format.
-   * If the oneof field are hide, It will be omitted for empty value.
+   * hide indicates whether hide the `oneof` key in JSON content.
+   * If the oneof field is hided, the empty value will be omitted in JSON content.
+   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>bool hide = 4;</code>

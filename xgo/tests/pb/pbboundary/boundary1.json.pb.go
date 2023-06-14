@@ -18,7 +18,7 @@ func (x *Message1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(68)
+	encoder := jsonencoder.New(72)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -40,7 +40,6 @@ func (x *Message1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Message1) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -104,7 +103,7 @@ func (x *Repeated1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(24)
+	encoder := jsonencoder.New(32)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -130,7 +129,6 @@ func (x *Repeated1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Repeated1) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -207,7 +205,7 @@ func (x *Map1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(24)
+	encoder := jsonencoder.New(32)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -234,7 +232,6 @@ func (x *Map1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Map1) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -308,7 +305,7 @@ func (x *Complex1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(100)
+	encoder := jsonencoder.New(104)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -353,7 +350,6 @@ func (x *Complex1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Complex1) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -486,7 +482,7 @@ func (x *Complex2) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(96)
+	encoder := jsonencoder.New(104)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -542,7 +538,6 @@ func (x *Complex2) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Complex2) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -723,7 +718,7 @@ func (x *Complex2_Level1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(58)
+	encoder := jsonencoder.New(64)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -755,7 +750,6 @@ func (x *Complex2_Level1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Complex2_Level1) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -854,7 +848,7 @@ func (x *Complex2_Level2) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(56)
+	encoder := jsonencoder.New(64)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -886,7 +880,6 @@ func (x *Complex2_Level2) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Complex2_Level2) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -985,7 +978,7 @@ func (x *Complex2_Level3) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(76)
+	encoder := jsonencoder.New(80)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -1026,7 +1019,6 @@ func (x *Complex2_Level3) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Complex2_Level3) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool

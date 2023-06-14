@@ -93,10 +93,19 @@ private static final long serialVersionUID = 0L;
   public enum Format
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
+     * <pre>
+     * Native represents consider the google.protobuf.Duration as a interface and format it by standard JSON.
+     * And it is the default Format.
+     * </pre>
+     *
      * <code>Native = 0;</code>
      */
     Native(0),
     /**
+     * <pre>
+     * String represents format the google.protobuf.Duration to a string. e.g: "1m1s".
+     * </pre>
+     *
      * <code>String = 1;</code>
      */
     String(1),
@@ -128,10 +137,19 @@ private static final long serialVersionUID = 0L;
     ;
 
     /**
+     * <pre>
+     * Native represents consider the google.protobuf.Duration as a interface and format it by standard JSON.
+     * And it is the default Format.
+     * </pre>
+     *
      * <code>Native = 0;</code>
      */
     public static final int Native_VALUE = 0;
     /**
+     * <pre>
+     * String represents format the google.protobuf.Duration to a string. e.g: "1m1s".
+     * </pre>
+     *
      * <code>String = 1;</code>
      */
     public static final int String_VALUE = 1;

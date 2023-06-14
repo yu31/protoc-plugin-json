@@ -9,8 +9,9 @@ public interface FieldOptionsOrBuilder extends
 
   /**
    * <pre>
-   * The key name in json format. Default is field's name in proto.
-   * If "json" is "-", The field will be ignore.
+   * The key name in JSON content. Default is the field's name in proto file.
+   * Same as `ignore: true`, the field will be ignored if set its value to `json: "-"`
+   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>optional string json = 1;</code>
@@ -19,8 +20,9 @@ public interface FieldOptionsOrBuilder extends
   boolean hasJson();
   /**
    * <pre>
-   * The key name in json format. Default is field's name in proto.
-   * If "json" is "-", The field will be ignore.
+   * The key name in JSON content. Default is the field's name in proto file.
+   * Same as `ignore: true`, the field will be ignored if set its value to `json: "-"`
+   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>optional string json = 1;</code>
@@ -29,8 +31,9 @@ public interface FieldOptionsOrBuilder extends
   java.lang.String getJson();
   /**
    * <pre>
-   * The key name in json format. Default is field's name in proto.
-   * If "json" is "-", The field will be ignore.
+   * The key name in JSON content. Default is the field's name in proto file.
+   * Same as `ignore: true`, the field will be ignored if set its value to `json: "-"`
+   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>optional string json = 1;</code>
@@ -41,7 +44,8 @@ public interface FieldOptionsOrBuilder extends
 
   /**
    * <pre>
-   * If true, the field will be ignore. It same as `json: "-"`
+   * Same as `json: "-"`, The field will be ignored if its true.
+   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>bool ignore = 2;</code>
@@ -51,8 +55,8 @@ public interface FieldOptionsOrBuilder extends
 
   /**
    * <pre>
-   * Whether omit the field of empty value in encoding(MarshalJSON).
-   * It same as the struct tag `json:"xxx,omitempty"`.
+   * Same as the go struct tag `json:"xxx,omitempty"`.
+   * omitempty indicates whether omit the field if it is empty in MarshalJSON.
    * </pre>
    *
    * <code>bool omitempty = 3;</code>

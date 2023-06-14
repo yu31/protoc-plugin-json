@@ -19,16 +19,28 @@ public interface TypeTimestampOrBuilder extends
   io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format getFormat();
 
   /**
+   * <pre>
+   * Only used if the format is TimeLayout.
+   * </pre>
+   *
    * <code>.json.TypeTimestamp.Layout layout = 2;</code>
    * @return Whether the layout field is set.
    */
   boolean hasLayout();
   /**
+   * <pre>
+   * Only used if the format is TimeLayout.
+   * </pre>
+   *
    * <code>.json.TypeTimestamp.Layout layout = 2;</code>
    * @return The layout.
    */
   io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout getLayout();
   /**
+   * <pre>
+   * Only used if the format is TimeLayout.
+   * </pre>
+   *
    * <code>.json.TypeTimestamp.Layout layout = 2;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeTimestamp.LayoutOrBuilder getLayoutOrBuilder();

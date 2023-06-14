@@ -1,10 +1,10 @@
 package jsondecoder
 
-func (dec *Decoder) unquoteKey(b []byte) (t []byte, err error) {
+func (dec *Decoder) unquoteString(b []byte) (t []byte, err error) {
 	var ok bool
 	if t, ok = unquoteBytes(b); !ok {
 		err = &SyntaxError{
-			reason: "invalid object key of JSON input",
+			reason: "invalid string of JSON input",
 			Offset: dec.offset,
 		}
 		return nil, err

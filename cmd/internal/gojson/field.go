@@ -1,102 +1,90 @@
 package gojson
 
 import (
-	"fmt"
-
-	"google.golang.org/protobuf/reflect/protoreflect"
+	"github.com/yu31/protoc-kit-go/utils/pkfield"
+	"google.golang.org/protobuf/compiler/protogen"
 
 	"github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
-
-	"google.golang.org/protobuf/compiler/protogen"
 )
 
-func (p *Plugin) getJSONKeyForField(fieldOptions *pbjson.FieldOptions, field *protogen.Field) string {
-	jsonKey := fieldOptions.Json
-	if (fieldOptions.Ignore) || (jsonKey != nil && *jsonKey == "-") {
-		panic("the field should be ignore.")
-	}
-	if jsonKey != nil {
-		return *jsonKey
-	}
-	return string(field.Desc.Name())
+type Field struct {
+	Field   *protogen.Field
+	Options *pbjson.FieldOptions
+	JSONKey string
+	OneOf   *OneOf
 }
 
-func (p *Plugin) getJSONKeyForOneof(oneofOptions *pbjson.OneofOptions, oneof *protogen.Oneof) string {
-	jsonKey := oneofOptions.Json
-	if (oneofOptions.Ignore) || (jsonKey != nil && *jsonKey == "-") {
-		panic("the oneof field should be ignore.")
-	}
-	if jsonKey != nil {
-		return *jsonKey
-	}
-	return string(oneof.Desc.Name())
+type OneOf struct {
+	Options *pbjson.OneofOptions
+	Parts   []*Field
 }
 
-func (p *Plugin) guessBufLength(fields []*protogen.Field) int {
-	n := 0
+// codes is variables for flag oneof is fill.
+func loadFields(msg *protogen.Message) (fields []*Field, bufLen int, variables []string) {
+	if len(msg.Fields) == 0 {
+		return
+	}
 
-	for _, field := range fields {
-		var jsonKey string
-		if field.Oneof != nil {
-			options := p.loadOneOfOptions(field.Oneof)
-			if options.Ignore {
-				continue
-			}
-			jsonKey = p.getJSONKeyForOneof(options, field.Oneof)
-		} else {
-			options := p.loadFieldOptions(field)
-			if options.Ignore {
-				continue
-			}
-			jsonKey = p.getJSONKeyForField(options, field)
+	fields = make([]*Field, 0, len(msg.Fields))
+	// Sum json beginning(`{`) and closing(`}`).
+	bufLen += 2
+
+	for _, field := range msg.Fields {
+		isOneOf := pkfield.FieldIsOneOf(field)
+		if isOneOf && field.Oneof.Fields[0] != field {
+			continue // only generate for first appearance
 		}
 
-		// Sum key length.
-		n += len(jsonKey)
-		// Sum key/value separator(':')
-		n += 1
-		// Sum field separator(',')
-		n += 1
+		var fieldOptions *pbjson.FieldOptions
+		var jsonKey string
+		var oneOf *OneOf
 
-		// Sum value of length.
+		if !isOneOf {
+			fieldOptions = loadFieldOptions(field)
+			if fieldOptions.Ignore {
+				continue
+			}
+			jsonKey = getJSONKeyForField(field, fieldOptions)
+		} else {
+			oneOfOptions := loadOneOfOptions(field)
+			if oneOfOptions.Ignore {
+				continue
+			}
+			variables = append(variables, genVariableOneOfIsFill(field.Oneof.GoName))
+			jsonKey = getJSONKeyForOneOf(field, oneOfOptions)
+
+			parts := make([]*Field, 0, len(field.Oneof.Fields))
+			for _, oneField := range field.Oneof.Fields {
+				oneOptions := loadFieldOptions(oneField)
+				if oneOfOptions.Ignore {
+					continue
+				}
+				oneKey := getJSONKeyForField(oneField, oneOptions)
+				parts = append(parts, &Field{
+					Field:   oneField,
+					Options: oneOptions,
+					JSONKey: oneKey,
+					OneOf:   nil,
+				})
+				// Sum key length, colon separator(`:`) and comma separator(`,`).
+				bufLen += len(oneKey) + 2
+			}
+			oneOf = &OneOf{
+				Options: oneOfOptions,
+				Parts:   parts,
+			}
+		}
+
+		fields = append(fields, &Field{
+			Field:   field,
+			Options: fieldOptions,
+			JSONKey: jsonKey,
+			OneOf:   oneOf,
+		})
+		// Sum key length, colon separator(`:`) and comma separator(`,`).
+		bufLen += len(jsonKey) + 2
 	}
+	bufLen = truncateBufLen(bufLen * 2)
+	return
 
-	n *= 2
-
-	// Sum object begin and end marker('{', '}').
-	n += 2
-	return n
-}
-
-func (p *Plugin) fieldGoType(field *protogen.Field) (goType string) {
-	if field.Desc.IsWeak() {
-		//return "struct{}", false
-		panic(fmt.Sprintf("unsupported case IsWeak; field: %s", field.Desc.FullName()))
-	}
-
-	switch field.Desc.Kind() {
-	case protoreflect.Int32Kind, protoreflect.Sint32Kind, protoreflect.Sfixed32Kind:
-		goType = "int32"
-	case protoreflect.Uint32Kind, protoreflect.Fixed32Kind:
-		goType = "uint32"
-	case protoreflect.Int64Kind, protoreflect.Sint64Kind, protoreflect.Sfixed64Kind:
-		goType = "int64"
-	case protoreflect.Uint64Kind, protoreflect.Fixed64Kind:
-		goType = "uint64"
-	case protoreflect.FloatKind:
-		goType = "float32"
-	case protoreflect.DoubleKind:
-		goType = "float64"
-	case protoreflect.StringKind:
-		goType = "string"
-	case protoreflect.BytesKind:
-		goType = "[]byte"
-	case protoreflect.BoolKind:
-		goType = "bool"
-	case protoreflect.EnumKind:
-		goType = p.g.QualifiedGoIdent(field.Enum.GoIdent)
-	case protoreflect.MessageKind, protoreflect.GroupKind:
-		goType = p.g.QualifiedGoIdent(field.Message.GoIdent)
-	}
-	return goType
 }

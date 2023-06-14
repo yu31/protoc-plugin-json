@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/yu31/protoc-kit-go/utils/pkfield"
 	"google.golang.org/protobuf/compiler/protogen"
 )
 
-func (p *Plugin) checkJSONKey(fields []*protogen.Field) {
+func (p *Plugin) checkJSONKey(fields []*Field) {
 	msg := p.message
 
 	cacheFields := make(map[string]*protogen.Field)
@@ -18,76 +19,55 @@ func (p *Plugin) checkJSONKey(fields []*protogen.Field) {
 	emptyFields := make([]string, 0)
 	dupFields := make(map[string][]string)
 
-	checkFieldDup := func(field *protogen.Field) {
-		options := p.loadFieldOptions(field)
-		if options.Ignore {
-			return
-		}
-		jsonKey := p.getJSONKeyForField(options, field)
+	checkFieldDup := func(field *Field) {
+		jsonKey := field.JSONKey
 		if jsonKey == "" {
-			emptyFields = append(emptyFields, string(field.Desc.Name()))
+			emptyFields = append(emptyFields, string(field.Field.Desc.Name()))
 			return
 		}
 		if _, ok := cacheFields[jsonKey]; ok {
-			dupFields[jsonKey] = append(dupFields[jsonKey], string(field.Desc.Name()))
+			dupFields[jsonKey] = append(dupFields[jsonKey], string(field.Field.Desc.Name()))
 			return
 		}
-		cacheFields[jsonKey] = field
+		cacheFields[jsonKey] = field.Field
 	}
 
 LOOP:
 	for _, field := range fields {
 		// Check general field.
-		if field.Oneof == nil || field.Oneof.Desc.IsSynthetic() {
+		if field.OneOf == nil {
 			checkFieldDup(field)
 			continue LOOP
 		}
 
-		oneOfOptions := p.loadOneOfOptions(field.Oneof)
-		if oneOfOptions.Ignore {
-			continue LOOP
+		if isOneOf := pkfield.FieldIsOneOf(field.Field); !isOneOf {
+			checkFieldDup(field)
+			continue
 		}
-
-		if oneOfOptions.Hide {
-			for _, f := range field.Oneof.Fields {
-				checkFieldDup(f)
+		if field.OneOf.Options.Hide {
+			for _, oneField := range field.OneOf.Parts {
+				checkFieldDup(oneField)
 			}
 			continue LOOP
 		}
-
 		// oneOf key not hide in json. check it.
-		oneOfKey := p.getJSONKeyForOneof(oneOfOptions, field.Oneof)
-		if oneOfKey == "" {
-			emptyFields = append(emptyFields, field.Oneof.GoName)
-		} else {
-			if _, ok := cacheFields[oneOfKey]; ok {
-				// find duplicate key
-				dupFields[oneOfKey] = append(dupFields[oneOfKey], field.Oneof.GoName)
-			} else {
-				cacheFields[oneOfKey] = field
-			}
-		}
+		checkFieldDup(field)
 
-		// Check oneof's fields
+		// Check the fields in oneof part.
 		cacheOneOf := make(map[string]*protogen.Field)
 		dupOneOf := make(map[string][]string)
 		emptyOneOf := make([]string, 0)
 
-	ONEOF:
-		for _, f := range field.Oneof.Fields {
-			fieldOptions := p.loadFieldOptions(f)
-			if fieldOptions.Ignore {
-				continue ONEOF
-			}
-			jsonKey := p.getJSONKeyForField(fieldOptions, f)
+		for _, oneField := range field.OneOf.Parts {
+			jsonKey := oneField.JSONKey
 			if jsonKey == "" {
-				emptyOneOf = append(emptyOneOf, string(f.Desc.Name()))
+				emptyOneOf = append(emptyOneOf, string(oneField.Field.Desc.Name()))
 			} else {
 				if _, ok := cacheOneOf[jsonKey]; ok {
-					dupOneOf[jsonKey] = append(dupOneOf[jsonKey], string(f.Desc.Name()))
-					continue ONEOF
+					dupOneOf[jsonKey] = append(dupOneOf[jsonKey], string(oneField.Field.Desc.Name()))
+					continue
 				}
-				cacheOneOf[jsonKey] = f
+				cacheOneOf[jsonKey] = oneField.Field
 			}
 		}
 
@@ -104,7 +84,10 @@ LOOP:
 		}
 	}
 
-	if len(dupFields) == 0 && len(dupOneOfs) == 0 && len(emptyFields) == 0 && len(emptyOneOfs) == 0 {
+	if len(dupFields) == 0 &&
+		len(dupOneOfs) == 0 &&
+		len(emptyFields) == 0 &&
+		len(emptyOneOfs) == 0 {
 		return
 	}
 

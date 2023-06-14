@@ -18,7 +18,7 @@ func (x *Message1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(68)
+	encoder := jsonencoder.New(72)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -40,7 +40,6 @@ func (x *Message1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbbenchmark.(*Message1) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -104,7 +103,7 @@ func (x *BenchModelSimple) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(500)
+	encoder := jsonencoder.New(504)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -168,7 +167,6 @@ func (x *BenchModelSimple) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbbenchmark.(*BenchModelSimple) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -358,7 +356,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(3492)
+	encoder := jsonencoder.New(3416)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -1483,7 +1481,6 @@ func (x *BenchModelComplex) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbbenchmark.(*BenchModelComplex) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool

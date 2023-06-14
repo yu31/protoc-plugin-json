@@ -38,7 +38,7 @@ func (x *Example1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(814)
+	encoder := jsonencoder.New(904)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -265,9 +265,10 @@ func (x *Example1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbexample.(*Example1) is nil")
 	}
-	var oneOfIsFill_OnetType1 bool
-	var oneOfIsFill_OnetType2 bool
-
+	var (
+		oneOfIsFill_OnetType1 bool
+		oneOfIsFill_OnetType2 bool
+	)
 	var (
 		err     error
 		isNULL  bool
@@ -929,7 +930,7 @@ func (x *Message1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(46)
+	encoder := jsonencoder.New(56)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -949,7 +950,6 @@ func (x *Message1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbexample.(*Message1) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -1007,7 +1007,7 @@ func (x *Message1_Embed1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(46)
+	encoder := jsonencoder.New(56)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -1027,7 +1027,6 @@ func (x *Message1_Embed1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbexample.(*Message1_Embed1) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -1085,7 +1084,7 @@ func (x *Message1_Embed1_Embed2) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(46)
+	encoder := jsonencoder.New(56)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -1105,7 +1104,6 @@ func (x *Message1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbexample.(*Message1_Embed1_Embed2) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool

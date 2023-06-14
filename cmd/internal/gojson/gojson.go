@@ -3,10 +3,9 @@ package gojson
 import (
 	"flag"
 
+	"github.com/yu31/protoc-kit-go/pkgenerator"
 	"github.com/yu31/protoc-kit-go/utils/pkmessage"
 	"google.golang.org/protobuf/compiler/protogen"
-
-	"github.com/yu31/protoc-kit-go/pkgenerator"
 
 	"github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 )
@@ -66,14 +65,13 @@ func (p *Plugin) Init(pp *protogen.Plugin, file *protogen.File) bool {
 // except for the imports, by calling the generator's methods P, In, and Out.
 func (p *Plugin) Generate(g *protogen.GeneratedFile) {
 	p.g = g
-
 	for _, msg := range p.messages {
 		p.generateForMessage(msg)
 	}
 }
 
 func (p *Plugin) generateForMessage(msg *protogen.Message) {
-	msgOptions := p.loadMessageOptions(msg)
+	msgOptions := loadMessageOptions(msg)
 	if msgOptions.Ignore {
 		return
 	}
@@ -81,11 +79,10 @@ func (p *Plugin) generateForMessage(msg *protogen.Message) {
 	p.message = msg
 	p.msgOptions = msgOptions
 
-	fields := pkmessage.LoadFieldLists(msg)
+	fields, bufLen, variables := loadFields(msg)
 
 	p.checkJSONKey(fields)
 
-	p.generateCodeForMarshal(fields)
-
-	p.generateCodeUnmarshal(fields)
+	p.generateCodeMarshal(fields, bufLen)
+	p.generateCodeUnmarshal(fields, variables)
 }

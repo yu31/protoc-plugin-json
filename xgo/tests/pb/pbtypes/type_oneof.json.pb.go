@@ -23,7 +23,7 @@ func (x *MessageOneOf1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(68)
+	encoder := jsonencoder.New(72)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -45,7 +45,6 @@ func (x *MessageOneOf1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*MessageOneOf1) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -109,7 +108,7 @@ func (x *MessageOneOf1_Embed1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(68)
+	encoder := jsonencoder.New(72)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -131,7 +130,6 @@ func (x *MessageOneOf1_Embed1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*MessageOneOf1_Embed1) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -195,7 +193,7 @@ func (x *MessageOneOf1_Embed1_Embed2) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(68)
+	encoder := jsonencoder.New(72)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -217,7 +215,6 @@ func (x *MessageOneOf1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*MessageOneOf1_Embed1_Embed2) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -281,7 +278,7 @@ func (x *TypeOneOf1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(296)
+	encoder := jsonencoder.New(1096)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -640,20 +637,21 @@ func (x *TypeOneOf1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*TypeOneOf1) is nil")
 	}
-	var oneOfIsFill_OneType01 bool
-	var oneOfIsFill_One_Type02 bool
-	var oneOfIsFill_OneType03 bool
-	var oneOfIsFill_One_Type04 bool
-	var oneOfIsFill_OneType05 bool
-	var oneOfIsFill_OneType06 bool
-	var oneOfIsFill_Onetype07 bool
-	var oneOfIsFill_Onetype08 bool
-	var oneOfIsFill_OneType09 bool
-	var oneOfIsFill_OneType10 bool
-	var oneOfIsFill_OneType11 bool
-	var oneOfIsFill_OneType12 bool
-	var oneOfIsFill_OneType13 bool
-
+	var (
+		oneOfIsFill_OneType01  bool
+		oneOfIsFill_One_Type02 bool
+		oneOfIsFill_OneType03  bool
+		oneOfIsFill_One_Type04 bool
+		oneOfIsFill_OneType05  bool
+		oneOfIsFill_OneType06  bool
+		oneOfIsFill_Onetype07  bool
+		oneOfIsFill_Onetype08  bool
+		oneOfIsFill_OneType09  bool
+		oneOfIsFill_OneType10  bool
+		oneOfIsFill_OneType11  bool
+		oneOfIsFill_OneType12  bool
+		oneOfIsFill_OneType13  bool
+	)
 	var (
 		err     error
 		isNULL  bool
@@ -1828,7 +1826,7 @@ func (x *TypeOneOfHide1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(90)
+	encoder := jsonencoder.New(280)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -1901,11 +1899,12 @@ func (x *TypeOneOfHide1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*TypeOneOfHide1) is nil")
 	}
-	var oneOfIsFill_OneType01 bool
-	var oneOfIsFill_OneType02 bool
-	var oneOfIsFill_OneType03 bool
-	var oneOfIsFill_OneType04 bool
-
+	var (
+		oneOfIsFill_OneType01 bool
+		oneOfIsFill_OneType02 bool
+		oneOfIsFill_OneType03 bool
+		oneOfIsFill_OneType04 bool
+	)
 	var (
 		err     error
 		isNULL  bool

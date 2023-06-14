@@ -24,7 +24,9 @@ const (
 type TypeEnum_Format int32
 
 const (
+	// Number represents format the field type of Enum to the number. And it is the default Format.
 	TypeEnum_Number TypeEnum_Format = 0
+	// String represents format the field type of Enum to the string.
 	TypeEnum_String TypeEnum_Format = 1
 )
 
@@ -70,8 +72,11 @@ func (TypeEnum_Format) EnumDescriptor() ([]byte, []int) {
 type TypeAny_Format int32
 
 const (
+	// Native represents consider the google.protobuf.Any as a interface and format it by standard JSON.
+	// And it is the default Format.
 	TypeAny_Native TypeAny_Format = 0
-	TypeAny_Proto  TypeAny_Format = 1
+	// Proto represents format the google.protobuf.Any by library protojson.
+	TypeAny_Proto TypeAny_Format = 1
 )
 
 // Enum value maps for TypeAny_Format.
@@ -116,7 +121,10 @@ func (TypeAny_Format) EnumDescriptor() ([]byte, []int) {
 type TypeDuration_Format int32
 
 const (
-	TypeDuration_Native       TypeDuration_Format = 0
+	// Native represents consider the google.protobuf.Duration as a interface and format it by standard JSON.
+	// And it is the default Format.
+	TypeDuration_Native TypeDuration_Format = 0
+	// String represents format the google.protobuf.Duration to a string. e.g: "1m1s".
 	TypeDuration_String       TypeDuration_Format = 1
 	TypeDuration_Nanoseconds  TypeDuration_Format = 2
 	TypeDuration_Microseconds TypeDuration_Format = 3
@@ -180,7 +188,10 @@ func (TypeDuration_Format) EnumDescriptor() ([]byte, []int) {
 type TypeTimestamp_Format int32
 
 const (
-	TypeTimestamp_Native     TypeTimestamp_Format = 0
+	// Native represents consider the google.protobuf.Timestamp as a interface and format it by standard JSON.
+	// And it is the default Format.
+	TypeTimestamp_Native TypeTimestamp_Format = 0
+	// TimeLayout represents format the google.protobuf.Timestamp to a time string and format by `Layout`.
 	TypeTimestamp_TimeLayout TypeTimestamp_Format = 1
 	TypeTimestamp_UnixNano   TypeTimestamp_Format = 2
 	TypeTimestamp_UnixMicro  TypeTimestamp_Format = 3
@@ -241,10 +252,12 @@ type MessageOptions struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Whether ignore generating code for the this message.
+	// It effect the MarshalJSON and UnmarshalJSON.
 	Ignore bool `protobuf:"varint,1,opt,name=ignore,proto3" json:"ignore,omitempty"`
 	// disallow_unknown_fields causes the Unmarshal to return an error when the destination
 	// is a struct and the input contains object keys which do not match any
 	// non-ignored, exported fields in the destination.
+	// It effect the UnmarshalJSON.
 	DisallowUnknownFields bool `protobuf:"varint,2,opt,name=disallow_unknown_fields,json=disallowUnknownFields,proto3" json:"disallow_unknown_fields,omitempty"`
 }
 
@@ -299,17 +312,19 @@ type OneofOptions struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The key name in json format. Default is field's name in proto.
-	// If "json" is "-", The field will be ignore.
+	// The key name in JSON content. Default is the field's name in proto file.
+	// Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
+	// It effect the MarshalJSON and UnmarshalJSON.
 	Json *string `protobuf:"bytes,1,opt,name=json,proto3,oneof" json:"json,omitempty"`
-	// If true, the field will be ignore. It same as `json: "-"`
-	// If true, the all fields in `oneof` part will be ignore.
+	// Same as `json: "-"`, The field and all fields in the oneof parts will be ignored if true.
+	// It effect the MarshalJSON and UnmarshalJSON.
 	Ignore bool `protobuf:"varint,2,opt,name=ignore,proto3" json:"ignore,omitempty"`
-	// Whether omit the field of empty value in encoding(MarshalJSON).
-	// It same as the go struct tag `json:"xxx,omitempty"`.
+	// Same as the go struct tag `json:"xxx,omitempty"`.
+	// omitempty indicates whether omit the field if it is empty in MarshalJSON.
 	Omitempty bool `protobuf:"varint,3,opt,name=omitempty,proto3" json:"omitempty,omitempty"`
-	// Whether hide the `oneof` key in json format.
-	// If the oneof field are hide, It will be omitted for empty value.
+	// hide indicates whether hide the `oneof` key in JSON content.
+	// If the oneof field is hided, the empty value will be omitted in JSON content.
+	// It effect the MarshalJSON and UnmarshalJSON.
 	Hide bool `protobuf:"varint,4,opt,name=hide,proto3" json:"hide,omitempty"`
 }
 
@@ -373,21 +388,24 @@ func (x *OneofOptions) GetHide() bool {
 	return false
 }
 
-// TODO: unsupported the type of bool as map key same as the standard JSON.
+// TODO: same as the standard JSON., unsupported the type of bool as map key.
 type FieldOptions struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The key name in json format. Default is field's name in proto.
-	// If "json" is "-", The field will be ignore.
+	// The key name in JSON content. Default is the field's name in proto file.
+	// Same as `ignore: true`, the field will be ignored if set its value to `json: "-"`
+	// It effect the MarshalJSON and UnmarshalJSON.
 	Json *string `protobuf:"bytes,1,opt,name=json,proto3,oneof" json:"json,omitempty"`
-	// If true, the field will be ignore. It same as `json: "-"`
+	// Same as `json: "-"`, The field will be ignored if its true.
+	// It effect the MarshalJSON and UnmarshalJSON.
 	Ignore bool `protobuf:"varint,2,opt,name=ignore,proto3" json:"ignore,omitempty"`
-	// Whether omit the field of empty value in encoding(MarshalJSON).
-	// It same as the struct tag `json:"xxx,omitempty"`.
+	// Same as the go struct tag `json:"xxx,omitempty"`.
+	// omitempty indicates whether omit the field if it is empty in MarshalJSON.
 	Omitempty bool `protobuf:"varint,3,opt,name=omitempty,proto3" json:"omitempty,omitempty"`
 	// TypeSet for specific fields.
+	// It effect the MarshalJSON and UnmarshalJSON.
 	//
 	// Types that are assignable to TypeSet:
 	//	*FieldOptions_Enum
@@ -659,7 +677,8 @@ type TypeTimestamp struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Format TypeTimestamp_Format  `protobuf:"varint,1,opt,name=format,proto3,enum=json.TypeTimestamp_Format" json:"format,omitempty"`
+	Format TypeTimestamp_Format `protobuf:"varint,1,opt,name=format,proto3,enum=json.TypeTimestamp_Format" json:"format,omitempty"`
+	// Only used if the format is TimeLayout.
 	Layout *TypeTimestamp_Layout `protobuf:"bytes,2,opt,name=layout,proto3" json:"layout,omitempty"`
 }
 
@@ -714,9 +733,14 @@ type TypeTimestamp_Layout struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// Used to set the time layout for language Golang.
+	// Default is time.RFC3339Nano(`2006-01-02T15:04:05.999999999Z07:00`)
 	Golang string `protobuf:"bytes,1,opt,name=golang,proto3" json:"golang,omitempty"`
-	Java   string `protobuf:"bytes,2,opt,name=java,proto3" json:"java,omitempty"`
-	Rust   string `protobuf:"bytes,3,opt,name=rust,proto3" json:"rust,omitempty"`
+	// Used to set the time layout for language Java.
+	Java string `protobuf:"bytes,2,opt,name=java,proto3" json:"java,omitempty"`
+	// Used to set the time layout for language Rust.
+	Rust string `protobuf:"bytes,3,opt,name=rust,proto3" json:"rust,omitempty"`
+	// Used to set the time layout for language Python.
 	Python string `protobuf:"bytes,4,opt,name=python,proto3" json:"python,omitempty"`
 }
 

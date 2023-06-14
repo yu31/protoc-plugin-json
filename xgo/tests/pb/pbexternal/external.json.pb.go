@@ -50,7 +50,7 @@ func (x *Message1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(68)
+	encoder := jsonencoder.New(72)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -72,7 +72,6 @@ func (x *Message1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal.(*Message1) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -136,7 +135,7 @@ func (x *Message1_Embed1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(68)
+	encoder := jsonencoder.New(72)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -158,7 +157,6 @@ func (x *Message1_Embed1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal.(*Message1_Embed1) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool
@@ -222,7 +220,7 @@ func (x *Message1_Embed1_Embed2) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(68)
+	encoder := jsonencoder.New(72)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -244,7 +242,6 @@ func (x *Message1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal.(*Message1_Embed1_Embed2) is nil")
 	}
-
 	var (
 		err     error
 		isNULL  bool

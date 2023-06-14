@@ -29,60 +29,67 @@ extend google.protobuf.OneofOptions {
 
 message MessageOptions {
   // Whether ignore generating code for the this message.
+  // It effect the MarshalJSON and UnmarshalJSON.
   bool ignore = 1;
 
   // disallow_unknown_fields causes the Unmarshal to return an error when the destination
   // is a struct and the input contains object keys which do not match any
   // non-ignored, exported fields in the destination.
+  // It effect the UnmarshalJSON.
   bool disallow_unknown_fields = 2;
 }
 
 message OneofOptions {
-  // The key name in json format. Default is field's name in proto.
-  // If "json" is "-", The field will be ignore.
+  // The key name in JSON content. Default is the field's name in proto file.
+  // Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
+  // It effect the MarshalJSON and UnmarshalJSON.
   optional string json = 1;
 
-  // If true, the field will be ignore. It same as `json: "-"`
-  // If true, the all fields in `oneof` part will be ignore.
+  // Same as `json: "-"`, The field and all fields in the oneof parts will be ignored if true.
+  // It effect the MarshalJSON and UnmarshalJSON.
   bool ignore = 2;
 
-  // Whether omit the field of empty value in encoding(MarshalJSON).
-  // It same as the go struct tag `json:"xxx,omitempty"`.
+  // Same as the go struct tag `json:"xxx,omitempty"`.
+  // omitempty indicates whether omit the field if it is empty in MarshalJSON.
   bool omitempty = 3;
 
-  // Whether hide the `oneof` key in json format.
-  // If the oneof field are hide, It will be omitted for empty value.
+  // hide indicates whether hide the `oneof` key in JSON content.
+  // If the oneof field is hided, the empty value will be omitted in JSON content.
+  // It effect the MarshalJSON and UnmarshalJSON.
   bool hide = 4;
 }
 
-// TODO: unsupported the type of bool as map key same as the standard JSON.
+// TODO: same as the standard JSON., unsupported the type of bool as map key.
 message FieldOptions {
-  // The key name in json format. Default is field's name in proto.
-  // If "json" is "-", The field will be ignore.
+  // The key name in JSON content. Default is the field's name in proto file.
+  // Same as `ignore: true`, the field will be ignored if set its value to `json: "-"`
+  // It effect the MarshalJSON and UnmarshalJSON.
   optional string json = 1;
 
-  // If true, the field will be ignore. It same as `json: "-"`
+  // Same as `json: "-"`, The field will be ignored if its true.
+  // It effect the MarshalJSON and UnmarshalJSON.
   bool ignore = 2;
 
-  // Whether omit the field of empty value in encoding(MarshalJSON).
-  // It same as the struct tag `json:"xxx,omitempty"`.
+  // Same as the go struct tag `json:"xxx,omitempty"`.
+  // omitempty indicates whether omit the field if it is empty in MarshalJSON.
   bool omitempty = 3;
 
   // TypeSet for specific fields.
+  // It effect the MarshalJSON and UnmarshalJSON.
   oneof TypeSet {
-    TypeEnum enum = 11;
-
-    TypeAny any = 12;
-
-    TypeDuration duration = 13;
-
+    TypeEnum      enum      = 11;
+    TypeAny       any       = 12;
+    TypeDuration  duration  = 13;
     TypeTimestamp timestamp = 14;
   }
 }
 
 message TypeEnum {
   enum Format {
+    // Number represents format the field type of Enum to the number. And it is the default Format.
     Number = 0;
+
+    // String represents format the field type of Enum to the string.
     String = 1;
   }
 
@@ -91,7 +98,11 @@ message TypeEnum {
 
 message TypeAny {
   enum Format {
+    // Native represents consider the google.protobuf.Any as a interface and format it by standard JSON.
+    // And it is the default Format.
     Native = 0;
+
+    // Proto represents format the google.protobuf.Any by library protojson.
     Proto = 1;
   }
 
@@ -100,7 +111,10 @@ message TypeAny {
 
 message TypeDuration {
   enum Format {
+   // Native represents consider the google.protobuf.Duration as a interface and format it by standard JSON.
+   // And it is the default Format.
    Native = 0;
+   // String represents format the google.protobuf.Duration to a string. e.g: "1m1s".
    String = 1;
    Nanoseconds = 2;
    Microseconds = 3;
@@ -115,23 +129,35 @@ message TypeDuration {
 
 message TypeTimestamp {
   message Layout {
+    // Used to set the time layout for language Golang.
+    // Default is time.RFC3339Nano(`2006-01-02T15:04:05.999999999Z07:00`)
     string golang = 1;
+
+    // Used to set the time layout for language Java.
     string java = 2;
+
+    // Used to set the time layout for language Rust.
     string rust = 3;
+
+    // Used to set the time layout for language Python.
     string python = 4;
   }
 
   enum Format {
-     Native = 0;
-     TimeLayout = 1;
-     UnixNano = 2;
-     UnixMicro = 3;
-     UnixMilli = 4;
-     UnixSec = 5;
+    // Native represents consider the google.protobuf.Timestamp as a interface and format it by standard JSON.
+    // And it is the default Format.
+    Native = 0;
+    // TimeLayout represents format the google.protobuf.Timestamp to a time string and format by `Layout`.
+    TimeLayout = 1;
+    UnixNano = 2;
+    UnixMicro = 3;
+    UnixMilli = 4;
+    UnixSec = 5;
   }
 
   Format format = 1;
 
+  // Only used if the format is TimeLayout.
   Layout layout = 2;
 }
 

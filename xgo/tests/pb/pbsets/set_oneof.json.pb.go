@@ -22,7 +22,7 @@ func (x *TypeSetOneOf1) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 	var err error
-	encoder := jsonencoder.New(260)
+	encoder := jsonencoder.New(1032)
 
 	// Add begin JSON identifier
 	encoder.AppendObjectBegin()
@@ -181,16 +181,17 @@ func (x *TypeSetOneOf1) UnmarshalJSON(b []byte) error {
 	if x == nil {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbsets.(*TypeSetOneOf1) is nil")
 	}
-	var oneOfIsFill_OneEnum1 bool
-	var oneOfIsFill_OneAny1 bool
-	var oneOfIsFill_OneDuration1 bool
-	var oneOfIsFill_OneDuration2 bool
-	var oneOfIsFill_OneDuration3 bool
-	var oneOfIsFill_OneDuration4 bool
-	var oneOfIsFill_OneTimestamp1 bool
-	var oneOfIsFill_OneTimestamp2 bool
-	var oneOfIsFill_OneTimestamp3 bool
-
+	var (
+		oneOfIsFill_OneEnum1      bool
+		oneOfIsFill_OneAny1       bool
+		oneOfIsFill_OneDuration1  bool
+		oneOfIsFill_OneDuration2  bool
+		oneOfIsFill_OneDuration3  bool
+		oneOfIsFill_OneDuration4  bool
+		oneOfIsFill_OneTimestamp1 bool
+		oneOfIsFill_OneTimestamp2 bool
+		oneOfIsFill_OneTimestamp3 bool
+	)
 	var (
 		err     error
 		isNULL  bool
