@@ -256,12 +256,12 @@ func (p *Plugin) unmarshalReadMapKey(field *protogen.Field) {
 		p.g.P("if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {")
 		p.g.P("    return err ")
 		p.g.P("}")
-	//case protoreflect.BoolKind:
-	//	p.g.P("if mk, err = decoder.ReadMapKeyBool(jsonKey); err != nil {")
-	//	p.g.P("    return err ")
-	//	p.g.P("}")
+	case protoreflect.BoolKind:
+		p.g.P("if mk, err = decoder.ReadMapKeyBool(jsonKey); err != nil {")
+		p.g.P("    return err ")
+		p.g.P("}")
 	default:
-		err := pkerror.New("unmarshal: unsupported kind of %s as map key", field.Desc.MapKey().Kind().String())
+		err := pkerror.New("unmarshal: unsupported kind of %s as map key", field.Desc.Kind().String())
 		panic(err)
 	}
 }

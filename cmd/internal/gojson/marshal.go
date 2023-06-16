@@ -215,8 +215,8 @@ func (p *Plugin) marshalAppendMapKey(field *protogen.Field) {
 		p.g.P("encoder.AppendMapKeyUInt64(mk)")
 	case protoreflect.StringKind:
 		p.g.P("encoder.AppendMapKeyString(mk)")
-	//case protoreflect.BoolKind:
-	//	p.g.P("encoder.AppendMapKeyBool(mk)")
+	case protoreflect.BoolKind:
+		p.g.P("encoder.AppendMapKeyBool(mk)")
 	default:
 		err := pkerror.New("marshal: unsupported kind of %s as map key", kind.String())
 		panic(err)

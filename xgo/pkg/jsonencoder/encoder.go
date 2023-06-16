@@ -283,11 +283,13 @@ func (enc *Encoder) AppendMapKeyUInt64(v uint64) {
 	enc.writeByte(':')
 }
 
-//func (enc *Encoder) AppendMapKeyBool(v bool) {
-//	enc.appendItemSeparator()
-//	enc.buf = strconv.AppendBool(enc.buf, v)
-//	enc.writeByte(':')
-//}
+func (enc *Encoder) AppendMapKeyBool(v bool) {
+	enc.appendItemSeparator()
+	enc.buf = append(enc.buf, '"')
+	enc.buf = strconv.AppendBool(enc.buf, v)
+	enc.buf = append(enc.buf, '"')
+	enc.writeByte(':')
+}
 
 // Add elements separator.
 func (enc *Encoder) appendItemSeparator() {

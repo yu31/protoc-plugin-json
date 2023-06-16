@@ -2456,3 +2456,532 @@ LOOP_SCAN:
 	}
 	return nil
 }
+
+// MarshalJSON implements interface json.Marshaler for proto message TypeMap3 in file tests/proto/cases/types/type_map.proto
+func (x *TypeMap3) MarshalJSON() ([]byte, error) {
+	if x == nil {
+		return []byte("null"), nil
+	}
+	var err error
+	encoder := jsonencoder.New(256)
+
+	// Add begin JSON identifier
+	encoder.AppendObjectBegin()
+
+	encoder.AppendObjectKey("f_string1")
+	if x.FString1 != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.FString1 {
+			encoder.AppendMapKeyBool(mk)
+			encoder.AppendLiteralString(mv)
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+	encoder.AppendObjectKey("f_int32")
+	if x.FInt32 != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.FInt32 {
+			encoder.AppendMapKeyBool(mk)
+			encoder.AppendLiteralInt32(mv)
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+	encoder.AppendObjectKey("f_int64")
+	if x.FInt64 != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.FInt64 {
+			encoder.AppendMapKeyBool(mk)
+			encoder.AppendLiteralInt64(mv)
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+	encoder.AppendObjectKey("f_uint32")
+	if x.FUint32 != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.FUint32 {
+			encoder.AppendMapKeyBool(mk)
+			encoder.AppendLiteralUint32(mv)
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+	encoder.AppendObjectKey("f_uint64")
+	if x.FUint64 != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.FUint64 {
+			encoder.AppendMapKeyBool(mk)
+			encoder.AppendLiteralUint64(mv)
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+	encoder.AppendObjectKey("f_sint32")
+	if x.FSint32 != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.FSint32 {
+			encoder.AppendMapKeyBool(mk)
+			encoder.AppendLiteralInt32(mv)
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+	encoder.AppendObjectKey("f_sint64")
+	if x.FSint64 != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.FSint64 {
+			encoder.AppendMapKeyBool(mk)
+			encoder.AppendLiteralInt64(mv)
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+	encoder.AppendObjectKey("f_sfixed32")
+	if x.FSfixed32 != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.FSfixed32 {
+			encoder.AppendMapKeyBool(mk)
+			encoder.AppendLiteralInt32(mv)
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+	encoder.AppendObjectKey("f_sfixed64")
+	if x.FSfixed64 != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.FSfixed64 {
+			encoder.AppendMapKeyBool(mk)
+			encoder.AppendLiteralInt64(mv)
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+	encoder.AppendObjectKey("f_fixed32")
+	if x.FFixed32 != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.FFixed32 {
+			encoder.AppendMapKeyBool(mk)
+			encoder.AppendLiteralUint32(mv)
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+	encoder.AppendObjectKey("f_fixed64")
+	if x.FFixed64 != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.FFixed64 {
+			encoder.AppendMapKeyBool(mk)
+			encoder.AppendLiteralUint64(mv)
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+	encoder.AppendObjectKey("f_bool")
+	if x.FBool != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.FBool {
+			encoder.AppendMapKeyBool(mk)
+			encoder.AppendLiteralBool(mv)
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+
+	// Add end JSON identifier
+	encoder.AppendObjectEnd()
+	return encoder.Bytes(), err
+}
+
+// UnmarshalJSON implements json.Unmarshaler for proto message TypeMap3 in file tests/proto/cases/types/type_map.proto
+func (x *TypeMap3) UnmarshalJSON(b []byte) error {
+	if x == nil {
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbtypes.(*TypeMap3) is nil")
+	}
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
+		return err
+	}
+	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+		return err
+	}
+	if isNULL {
+		return nil
+	}
+LOOP_SCAN:
+	for { // Loop to scan object.
+		var (
+			jsonKey string
+			isEnd   bool
+		)
+		if isEnd, err = decoder.BeforeScanNext(); err != nil {
+			return err
+		}
+		if isEnd {
+			break LOOP_SCAN
+		}
+		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+			return err
+		}
+		switch jsonKey { // match the jsonKey
+		case "f_string1":
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FString1 = nil
+				continue LOOP_SCAN
+			}
+			if x.FString1 == nil {
+				x.FString1 = make(map[bool]string)
+			}
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var mk bool
+				if mk, err = decoder.ReadMapKeyBool(jsonKey); err != nil {
+					return err
+				}
+				var vv string
+				if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+					return err
+				}
+				x.FString1[mk] = vv
+			}
+		case "f_int32":
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FInt32 = nil
+				continue LOOP_SCAN
+			}
+			if x.FInt32 == nil {
+				x.FInt32 = make(map[bool]int32)
+			}
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var mk bool
+				if mk, err = decoder.ReadMapKeyBool(jsonKey); err != nil {
+					return err
+				}
+				var vv int32
+				if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+					return err
+				}
+				x.FInt32[mk] = vv
+			}
+		case "f_int64":
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FInt64 = nil
+				continue LOOP_SCAN
+			}
+			if x.FInt64 == nil {
+				x.FInt64 = make(map[bool]int64)
+			}
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var mk bool
+				if mk, err = decoder.ReadMapKeyBool(jsonKey); err != nil {
+					return err
+				}
+				var vv int64
+				if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+					return err
+				}
+				x.FInt64[mk] = vv
+			}
+		case "f_uint32":
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FUint32 = nil
+				continue LOOP_SCAN
+			}
+			if x.FUint32 == nil {
+				x.FUint32 = make(map[bool]uint32)
+			}
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var mk bool
+				if mk, err = decoder.ReadMapKeyBool(jsonKey); err != nil {
+					return err
+				}
+				var vv uint32
+				if vv, err = decoder.ReadLiteralUint32(jsonKey); err != nil {
+					return err
+				}
+				x.FUint32[mk] = vv
+			}
+		case "f_uint64":
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FUint64 = nil
+				continue LOOP_SCAN
+			}
+			if x.FUint64 == nil {
+				x.FUint64 = make(map[bool]uint64)
+			}
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var mk bool
+				if mk, err = decoder.ReadMapKeyBool(jsonKey); err != nil {
+					return err
+				}
+				var vv uint64
+				if vv, err = decoder.ReadLiteralUint64(jsonKey); err != nil {
+					return err
+				}
+				x.FUint64[mk] = vv
+			}
+		case "f_sint32":
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FSint32 = nil
+				continue LOOP_SCAN
+			}
+			if x.FSint32 == nil {
+				x.FSint32 = make(map[bool]int32)
+			}
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var mk bool
+				if mk, err = decoder.ReadMapKeyBool(jsonKey); err != nil {
+					return err
+				}
+				var vv int32
+				if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+					return err
+				}
+				x.FSint32[mk] = vv
+			}
+		case "f_sint64":
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FSint64 = nil
+				continue LOOP_SCAN
+			}
+			if x.FSint64 == nil {
+				x.FSint64 = make(map[bool]int64)
+			}
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var mk bool
+				if mk, err = decoder.ReadMapKeyBool(jsonKey); err != nil {
+					return err
+				}
+				var vv int64
+				if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+					return err
+				}
+				x.FSint64[mk] = vv
+			}
+		case "f_sfixed32":
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FSfixed32 = nil
+				continue LOOP_SCAN
+			}
+			if x.FSfixed32 == nil {
+				x.FSfixed32 = make(map[bool]int32)
+			}
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var mk bool
+				if mk, err = decoder.ReadMapKeyBool(jsonKey); err != nil {
+					return err
+				}
+				var vv int32
+				if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+					return err
+				}
+				x.FSfixed32[mk] = vv
+			}
+		case "f_sfixed64":
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FSfixed64 = nil
+				continue LOOP_SCAN
+			}
+			if x.FSfixed64 == nil {
+				x.FSfixed64 = make(map[bool]int64)
+			}
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var mk bool
+				if mk, err = decoder.ReadMapKeyBool(jsonKey); err != nil {
+					return err
+				}
+				var vv int64
+				if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+					return err
+				}
+				x.FSfixed64[mk] = vv
+			}
+		case "f_fixed32":
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FFixed32 = nil
+				continue LOOP_SCAN
+			}
+			if x.FFixed32 == nil {
+				x.FFixed32 = make(map[bool]uint32)
+			}
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var mk bool
+				if mk, err = decoder.ReadMapKeyBool(jsonKey); err != nil {
+					return err
+				}
+				var vv uint32
+				if vv, err = decoder.ReadLiteralUint32(jsonKey); err != nil {
+					return err
+				}
+				x.FFixed32[mk] = vv
+			}
+		case "f_fixed64":
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FFixed64 = nil
+				continue LOOP_SCAN
+			}
+			if x.FFixed64 == nil {
+				x.FFixed64 = make(map[bool]uint64)
+			}
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var mk bool
+				if mk, err = decoder.ReadMapKeyBool(jsonKey); err != nil {
+					return err
+				}
+				var vv uint64
+				if vv, err = decoder.ReadLiteralUint64(jsonKey); err != nil {
+					return err
+				}
+				x.FFixed64[mk] = vv
+			}
+		case "f_bool":
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FBool = nil
+				continue LOOP_SCAN
+			}
+			if x.FBool == nil {
+				x.FBool = make(map[bool]bool)
+			}
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var mk bool
+				if mk, err = decoder.ReadMapKeyBool(jsonKey); err != nil {
+					return err
+				}
+				var vv bool
+				if vv, err = decoder.ReadLiteralBool(jsonKey); err != nil {
+					return err
+				}
+				x.FBool[mk] = vv
+			}
+		default:
+			if err = decoder.DiscardValue(jsonKey); err != nil {
+				return err
+			}
+		} // end switch
+	}
+	return nil
+}

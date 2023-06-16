@@ -516,7 +516,7 @@ type TypeMap2 struct {
 	FSfixed32 map[int32]int32   `protobuf:"bytes,17,rep,name=f_sfixed32,json=fSfixed32,proto3" json:"f_sfixed32,omitempty" protobuf_key:"fixed32,1,opt,name=key,proto3" protobuf_val:"fixed32,2,opt,name=value,proto3"`
 	FSfixed64 map[int64]int64   `protobuf:"bytes,18,rep,name=f_sfixed64,json=fSfixed64,proto3" json:"f_sfixed64,omitempty" protobuf_key:"fixed64,1,opt,name=key,proto3" protobuf_val:"fixed64,2,opt,name=value,proto3"`
 	FFixed32  map[uint32]uint32 `protobuf:"bytes,19,rep,name=f_fixed32,json=fFixed32,proto3" json:"f_fixed32,omitempty" protobuf_key:"fixed32,1,opt,name=key,proto3" protobuf_val:"fixed32,2,opt,name=value,proto3"`
-	FFixed64  map[uint64]uint64 `protobuf:"bytes,20,rep,name=f_fixed64,json=fFixed64,proto3" json:"f_fixed64,omitempty" protobuf_key:"fixed64,1,opt,name=key,proto3" protobuf_val:"fixed64,2,opt,name=value,proto3"` //  map<bool, bool> f_bool1 = 31 [ (json.field) = { } ];
+	FFixed64  map[uint64]uint64 `protobuf:"bytes,20,rep,name=f_fixed64,json=fFixed64,proto3" json:"f_fixed64,omitempty" protobuf_key:"fixed64,1,opt,name=key,proto3" protobuf_val:"fixed64,2,opt,name=value,proto3"`
 }
 
 func (x *TypeMap2) Reset() {
@@ -628,6 +628,142 @@ func (x *TypeMap2) GetFFixed64() map[uint64]uint64 {
 	return nil
 }
 
+// For test the key of map is bool
+type TypeMap3 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FString1  map[bool]string `protobuf:"bytes,1,rep,name=f_string1,json=fString1,proto3" json:"f_string1,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	FInt32    map[bool]int32  `protobuf:"bytes,11,rep,name=f_int32,json=fInt32,proto3" json:"f_int32,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+	FInt64    map[bool]int64  `protobuf:"bytes,12,rep,name=f_int64,json=fInt64,proto3" json:"f_int64,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+	FUint32   map[bool]uint32 `protobuf:"bytes,13,rep,name=f_uint32,json=fUint32,proto3" json:"f_uint32,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+	FUint64   map[bool]uint64 `protobuf:"bytes,14,rep,name=f_uint64,json=fUint64,proto3" json:"f_uint64,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+	FSint32   map[bool]int32  `protobuf:"bytes,15,rep,name=f_sint32,json=fSint32,proto3" json:"f_sint32,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"zigzag32,2,opt,name=value,proto3"`
+	FSint64   map[bool]int64  `protobuf:"bytes,16,rep,name=f_sint64,json=fSint64,proto3" json:"f_sint64,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"zigzag64,2,opt,name=value,proto3"`
+	FSfixed32 map[bool]int32  `protobuf:"bytes,17,rep,name=f_sfixed32,json=fSfixed32,proto3" json:"f_sfixed32,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"fixed32,2,opt,name=value,proto3"`
+	FSfixed64 map[bool]int64  `protobuf:"bytes,18,rep,name=f_sfixed64,json=fSfixed64,proto3" json:"f_sfixed64,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"fixed64,2,opt,name=value,proto3"`
+	FFixed32  map[bool]uint32 `protobuf:"bytes,19,rep,name=f_fixed32,json=fFixed32,proto3" json:"f_fixed32,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"fixed32,2,opt,name=value,proto3"`
+	FFixed64  map[bool]uint64 `protobuf:"bytes,20,rep,name=f_fixed64,json=fFixed64,proto3" json:"f_fixed64,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"fixed64,2,opt,name=value,proto3"`
+	FBool     map[bool]bool   `protobuf:"bytes,21,rep,name=f_bool,json=fBool,proto3" json:"f_bool,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+}
+
+func (x *TypeMap3) Reset() {
+	*x = TypeMap3{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tests_proto_cases_types_type_map_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TypeMap3) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TypeMap3) ProtoMessage() {}
+
+func (x *TypeMap3) ProtoReflect() protoreflect.Message {
+	mi := &file_tests_proto_cases_types_type_map_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TypeMap3.ProtoReflect.Descriptor instead.
+func (*TypeMap3) Descriptor() ([]byte, []int) {
+	return file_tests_proto_cases_types_type_map_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *TypeMap3) GetFString1() map[bool]string {
+	if x != nil {
+		return x.FString1
+	}
+	return nil
+}
+
+func (x *TypeMap3) GetFInt32() map[bool]int32 {
+	if x != nil {
+		return x.FInt32
+	}
+	return nil
+}
+
+func (x *TypeMap3) GetFInt64() map[bool]int64 {
+	if x != nil {
+		return x.FInt64
+	}
+	return nil
+}
+
+func (x *TypeMap3) GetFUint32() map[bool]uint32 {
+	if x != nil {
+		return x.FUint32
+	}
+	return nil
+}
+
+func (x *TypeMap3) GetFUint64() map[bool]uint64 {
+	if x != nil {
+		return x.FUint64
+	}
+	return nil
+}
+
+func (x *TypeMap3) GetFSint32() map[bool]int32 {
+	if x != nil {
+		return x.FSint32
+	}
+	return nil
+}
+
+func (x *TypeMap3) GetFSint64() map[bool]int64 {
+	if x != nil {
+		return x.FSint64
+	}
+	return nil
+}
+
+func (x *TypeMap3) GetFSfixed32() map[bool]int32 {
+	if x != nil {
+		return x.FSfixed32
+	}
+	return nil
+}
+
+func (x *TypeMap3) GetFSfixed64() map[bool]int64 {
+	if x != nil {
+		return x.FSfixed64
+	}
+	return nil
+}
+
+func (x *TypeMap3) GetFFixed32() map[bool]uint32 {
+	if x != nil {
+		return x.FFixed32
+	}
+	return nil
+}
+
+func (x *TypeMap3) GetFFixed64() map[bool]uint64 {
+	if x != nil {
+		return x.FFixed64
+	}
+	return nil
+}
+
+func (x *TypeMap3) GetFBool() map[bool]bool {
+	if x != nil {
+		return x.FBool
+	}
+	return nil
+}
+
 type MessageMap1_Embed1 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -641,7 +777,7 @@ type MessageMap1_Embed1 struct {
 func (x *MessageMap1_Embed1) Reset() {
 	*x = MessageMap1_Embed1{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_tests_proto_cases_types_type_map_proto_msgTypes[3]
+		mi := &file_tests_proto_cases_types_type_map_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -654,7 +790,7 @@ func (x *MessageMap1_Embed1) String() string {
 func (*MessageMap1_Embed1) ProtoMessage() {}
 
 func (x *MessageMap1_Embed1) ProtoReflect() protoreflect.Message {
-	mi := &file_tests_proto_cases_types_type_map_proto_msgTypes[3]
+	mi := &file_tests_proto_cases_types_type_map_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -704,7 +840,7 @@ type MessageMap1_Embed1_Embed2 struct {
 func (x *MessageMap1_Embed1_Embed2) Reset() {
 	*x = MessageMap1_Embed1_Embed2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_tests_proto_cases_types_type_map_proto_msgTypes[4]
+		mi := &file_tests_proto_cases_types_type_map_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -717,7 +853,7 @@ func (x *MessageMap1_Embed1_Embed2) String() string {
 func (*MessageMap1_Embed1_Embed2) ProtoMessage() {}
 
 func (x *MessageMap1_Embed1_Embed2) ProtoReflect() protoreflect.Message {
-	mi := &file_tests_proto_cases_types_type_map_proto_msgTypes[4]
+	mi := &file_tests_proto_cases_types_type_map_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1217,17 +1353,113 @@ var file_tests_proto_cases_types_type_map_proto_rawDesc = []byte{
 	0x1a, 0x3b, 0x0a, 0x0d, 0x46, 0x46, 0x69, 0x78, 0x65, 0x64, 0x36, 0x34, 0x45, 0x6e, 0x74, 0x72,
 	0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x06, 0x52, 0x03,
 	0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x06, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x2a, 0x77, 0x0a,
-	0x08, 0x45, 0x6e, 0x75, 0x6d, 0x4d, 0x61, 0x70, 0x31, 0x12, 0x08, 0x0a, 0x04, 0x5a, 0x65, 0x72,
-	0x6f, 0x10, 0x00, 0x12, 0x07, 0x0a, 0x03, 0x4f, 0x6e, 0x65, 0x10, 0x02, 0x12, 0x07, 0x0a, 0x03,
-	0x54, 0x77, 0x6f, 0x10, 0x03, 0x12, 0x09, 0x0a, 0x05, 0x54, 0x68, 0x72, 0x65, 0x65, 0x10, 0x05,
-	0x12, 0x08, 0x0a, 0x04, 0x46, 0x6f, 0x75, 0x72, 0x10, 0x06, 0x12, 0x08, 0x0a, 0x04, 0x46, 0x69,
-	0x76, 0x65, 0x10, 0x07, 0x12, 0x07, 0x0a, 0x03, 0x53, 0x69, 0x78, 0x10, 0x09, 0x12, 0x09, 0x0a,
-	0x05, 0x53, 0x65, 0x76, 0x65, 0x6e, 0x10, 0x0b, 0x12, 0x09, 0x0a, 0x05, 0x45, 0x69, 0x67, 0x68,
-	0x74, 0x10, 0x0c, 0x12, 0x08, 0x0a, 0x04, 0x4e, 0x69, 0x6e, 0x65, 0x10, 0x0f, 0x12, 0x07, 0x0a,
-	0x03, 0x54, 0x65, 0x6e, 0x10, 0x11, 0x42, 0x16, 0x5a, 0x14, 0x78, 0x67, 0x6f, 0x2f, 0x74, 0x65,
-	0x73, 0x74, 0x73, 0x2f, 0x70, 0x62, 0x2f, 0x70, 0x62, 0x74, 0x79, 0x70, 0x65, 0x73, 0x62, 0x06,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x28, 0x06, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0xfe, 0x0b,
+	0x0a, 0x08, 0x54, 0x79, 0x70, 0x65, 0x4d, 0x61, 0x70, 0x33, 0x12, 0x43, 0x0a, 0x09, 0x66, 0x5f,
+	0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x20, 0x2e,
+	0x74, 0x79, 0x70, 0x65, 0x5f, 0x6d, 0x61, 0x70, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x4d, 0x61, 0x70,
+	0x33, 0x2e, 0x46, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x42,
+	0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x52, 0x08, 0x66, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31, 0x12,
+	0x3d, 0x0a, 0x07, 0x66, 0x5f, 0x69, 0x6e, 0x74, 0x33, 0x32, 0x18, 0x0b, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x1e, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x6d, 0x61, 0x70, 0x2e, 0x54, 0x79, 0x70, 0x65,
+	0x4d, 0x61, 0x70, 0x33, 0x2e, 0x46, 0x49, 0x6e, 0x74, 0x33, 0x32, 0x45, 0x6e, 0x74, 0x72, 0x79,
+	0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x52, 0x06, 0x66, 0x49, 0x6e, 0x74, 0x33, 0x32, 0x12, 0x3d,
+	0x0a, 0x07, 0x66, 0x5f, 0x69, 0x6e, 0x74, 0x36, 0x34, 0x18, 0x0c, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x1e, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x6d, 0x61, 0x70, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x4d,
+	0x61, 0x70, 0x33, 0x2e, 0x46, 0x49, 0x6e, 0x74, 0x36, 0x34, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x42,
+	0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x52, 0x06, 0x66, 0x49, 0x6e, 0x74, 0x36, 0x34, 0x12, 0x40, 0x0a,
+	0x08, 0x66, 0x5f, 0x75, 0x69, 0x6e, 0x74, 0x33, 0x32, 0x18, 0x0d, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x1f, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x6d, 0x61, 0x70, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x4d,
+	0x61, 0x70, 0x33, 0x2e, 0x46, 0x55, 0x69, 0x6e, 0x74, 0x33, 0x32, 0x45, 0x6e, 0x74, 0x72, 0x79,
+	0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x52, 0x07, 0x66, 0x55, 0x69, 0x6e, 0x74, 0x33, 0x32, 0x12,
+	0x40, 0x0a, 0x08, 0x66, 0x5f, 0x75, 0x69, 0x6e, 0x74, 0x36, 0x34, 0x18, 0x0e, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x1f, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x6d, 0x61, 0x70, 0x2e, 0x54, 0x79, 0x70,
+	0x65, 0x4d, 0x61, 0x70, 0x33, 0x2e, 0x46, 0x55, 0x69, 0x6e, 0x74, 0x36, 0x34, 0x45, 0x6e, 0x74,
+	0x72, 0x79, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x52, 0x07, 0x66, 0x55, 0x69, 0x6e, 0x74, 0x36,
+	0x34, 0x12, 0x40, 0x0a, 0x08, 0x66, 0x5f, 0x73, 0x69, 0x6e, 0x74, 0x33, 0x32, 0x18, 0x0f, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x6d, 0x61, 0x70, 0x2e, 0x54,
+	0x79, 0x70, 0x65, 0x4d, 0x61, 0x70, 0x33, 0x2e, 0x46, 0x53, 0x69, 0x6e, 0x74, 0x33, 0x32, 0x45,
+	0x6e, 0x74, 0x72, 0x79, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x52, 0x07, 0x66, 0x53, 0x69, 0x6e,
+	0x74, 0x33, 0x32, 0x12, 0x40, 0x0a, 0x08, 0x66, 0x5f, 0x73, 0x69, 0x6e, 0x74, 0x36, 0x34, 0x18,
+	0x10, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x6d, 0x61, 0x70,
+	0x2e, 0x54, 0x79, 0x70, 0x65, 0x4d, 0x61, 0x70, 0x33, 0x2e, 0x46, 0x53, 0x69, 0x6e, 0x74, 0x36,
+	0x34, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x52, 0x07, 0x66, 0x53,
+	0x69, 0x6e, 0x74, 0x36, 0x34, 0x12, 0x46, 0x0a, 0x0a, 0x66, 0x5f, 0x73, 0x66, 0x69, 0x78, 0x65,
+	0x64, 0x33, 0x32, 0x18, 0x11, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x74, 0x79, 0x70, 0x65,
+	0x5f, 0x6d, 0x61, 0x70, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x4d, 0x61, 0x70, 0x33, 0x2e, 0x46, 0x53,
+	0x66, 0x69, 0x78, 0x65, 0x64, 0x33, 0x32, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x42, 0x04, 0x8a, 0xa2,
+	0x1f, 0x00, 0x52, 0x09, 0x66, 0x53, 0x66, 0x69, 0x78, 0x65, 0x64, 0x33, 0x32, 0x12, 0x46, 0x0a,
+	0x0a, 0x66, 0x5f, 0x73, 0x66, 0x69, 0x78, 0x65, 0x64, 0x36, 0x34, 0x18, 0x12, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x21, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x6d, 0x61, 0x70, 0x2e, 0x54, 0x79, 0x70,
+	0x65, 0x4d, 0x61, 0x70, 0x33, 0x2e, 0x46, 0x53, 0x66, 0x69, 0x78, 0x65, 0x64, 0x36, 0x34, 0x45,
+	0x6e, 0x74, 0x72, 0x79, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x52, 0x09, 0x66, 0x53, 0x66, 0x69,
+	0x78, 0x65, 0x64, 0x36, 0x34, 0x12, 0x43, 0x0a, 0x09, 0x66, 0x5f, 0x66, 0x69, 0x78, 0x65, 0x64,
+	0x33, 0x32, 0x18, 0x13, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x5f,
+	0x6d, 0x61, 0x70, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x4d, 0x61, 0x70, 0x33, 0x2e, 0x46, 0x46, 0x69,
+	0x78, 0x65, 0x64, 0x33, 0x32, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00,
+	0x52, 0x08, 0x66, 0x46, 0x69, 0x78, 0x65, 0x64, 0x33, 0x32, 0x12, 0x43, 0x0a, 0x09, 0x66, 0x5f,
+	0x66, 0x69, 0x78, 0x65, 0x64, 0x36, 0x34, 0x18, 0x14, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x20, 0x2e,
+	0x74, 0x79, 0x70, 0x65, 0x5f, 0x6d, 0x61, 0x70, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x4d, 0x61, 0x70,
+	0x33, 0x2e, 0x46, 0x46, 0x69, 0x78, 0x65, 0x64, 0x36, 0x34, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x42,
+	0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x52, 0x08, 0x66, 0x46, 0x69, 0x78, 0x65, 0x64, 0x36, 0x34, 0x12,
+	0x3a, 0x0a, 0x06, 0x66, 0x5f, 0x62, 0x6f, 0x6f, 0x6c, 0x18, 0x15, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x1d, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x6d, 0x61, 0x70, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x4d,
+	0x61, 0x70, 0x33, 0x2e, 0x46, 0x42, 0x6f, 0x6f, 0x6c, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x42, 0x04,
+	0x8a, 0xa2, 0x1f, 0x00, 0x52, 0x05, 0x66, 0x42, 0x6f, 0x6f, 0x6c, 0x1a, 0x3b, 0x0a, 0x0d, 0x46,
+	0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03,
+	0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14,
+	0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76,
+	0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x1a, 0x39, 0x0a, 0x0b, 0x46, 0x49, 0x6e, 0x74,
+	0x33, 0x32, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x08, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c,
+	0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a,
+	0x02, 0x38, 0x01, 0x1a, 0x39, 0x0a, 0x0b, 0x46, 0x49, 0x6e, 0x74, 0x36, 0x34, 0x45, 0x6e, 0x74,
+	0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52,
+	0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x1a, 0x3a,
+	0x0a, 0x0c, 0x46, 0x55, 0x69, 0x6e, 0x74, 0x33, 0x32, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10,
+	0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x03, 0x6b, 0x65, 0x79,
+	0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52,
+	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x1a, 0x3a, 0x0a, 0x0c, 0x46, 0x55,
+	0x69, 0x6e, 0x74, 0x36, 0x34, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65,
+	0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05,
+	0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x76, 0x61, 0x6c,
+	0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x1a, 0x3a, 0x0a, 0x0c, 0x46, 0x53, 0x69, 0x6e, 0x74, 0x33,
+	0x32, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x08, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75,
+	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x11, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02,
+	0x38, 0x01, 0x1a, 0x3a, 0x0a, 0x0c, 0x46, 0x53, 0x69, 0x6e, 0x74, 0x36, 0x34, 0x45, 0x6e, 0x74,
+	0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52,
+	0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x12, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x1a, 0x3c,
+	0x0a, 0x0e, 0x46, 0x53, 0x66, 0x69, 0x78, 0x65, 0x64, 0x33, 0x32, 0x45, 0x6e, 0x74, 0x72, 0x79,
+	0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x03, 0x6b,
+	0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x0f, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x1a, 0x3c, 0x0a, 0x0e,
+	0x46, 0x53, 0x66, 0x69, 0x78, 0x65, 0x64, 0x36, 0x34, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10,
+	0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x03, 0x6b, 0x65, 0x79,
+	0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x10, 0x52,
+	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x1a, 0x3b, 0x0a, 0x0d, 0x46, 0x46,
+	0x69, 0x78, 0x65, 0x64, 0x33, 0x32, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b,
+	0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a,
+	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x07, 0x52, 0x05, 0x76, 0x61,
+	0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x1a, 0x3b, 0x0a, 0x0d, 0x46, 0x46, 0x69, 0x78, 0x65,
+	0x64, 0x36, 0x34, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61,
+	0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x06, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65,
+	0x3a, 0x02, 0x38, 0x01, 0x1a, 0x38, 0x0a, 0x0a, 0x46, 0x42, 0x6f, 0x6f, 0x6c, 0x45, 0x6e, 0x74,
+	0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52,
+	0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x08, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x2a, 0x77,
+	0x0a, 0x08, 0x45, 0x6e, 0x75, 0x6d, 0x4d, 0x61, 0x70, 0x31, 0x12, 0x08, 0x0a, 0x04, 0x5a, 0x65,
+	0x72, 0x6f, 0x10, 0x00, 0x12, 0x07, 0x0a, 0x03, 0x4f, 0x6e, 0x65, 0x10, 0x02, 0x12, 0x07, 0x0a,
+	0x03, 0x54, 0x77, 0x6f, 0x10, 0x03, 0x12, 0x09, 0x0a, 0x05, 0x54, 0x68, 0x72, 0x65, 0x65, 0x10,
+	0x05, 0x12, 0x08, 0x0a, 0x04, 0x46, 0x6f, 0x75, 0x72, 0x10, 0x06, 0x12, 0x08, 0x0a, 0x04, 0x46,
+	0x69, 0x76, 0x65, 0x10, 0x07, 0x12, 0x07, 0x0a, 0x03, 0x53, 0x69, 0x78, 0x10, 0x09, 0x12, 0x09,
+	0x0a, 0x05, 0x53, 0x65, 0x76, 0x65, 0x6e, 0x10, 0x0b, 0x12, 0x09, 0x0a, 0x05, 0x45, 0x69, 0x67,
+	0x68, 0x74, 0x10, 0x0c, 0x12, 0x08, 0x0a, 0x04, 0x4e, 0x69, 0x6e, 0x65, 0x10, 0x0f, 0x12, 0x07,
+	0x0a, 0x03, 0x54, 0x65, 0x6e, 0x10, 0x11, 0x42, 0x16, 0x5a, 0x14, 0x78, 0x67, 0x6f, 0x2f, 0x74,
+	0x65, 0x73, 0x74, 0x73, 0x2f, 0x70, 0x62, 0x2f, 0x70, 0x62, 0x74, 0x79, 0x70, 0x65, 0x73, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1243,152 +1475,177 @@ func file_tests_proto_cases_types_type_map_proto_rawDescGZIP() []byte {
 }
 
 var file_tests_proto_cases_types_type_map_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_tests_proto_cases_types_type_map_proto_msgTypes = make([]protoimpl.MessageInfo, 53)
+var file_tests_proto_cases_types_type_map_proto_msgTypes = make([]protoimpl.MessageInfo, 66)
 var file_tests_proto_cases_types_type_map_proto_goTypes = []interface{}{
 	(EnumMap1)(0),                       // 0: type_map.EnumMap1
 	(*MessageMap1)(nil),                 // 1: type_map.MessageMap1
 	(*TypeMap1)(nil),                    // 2: type_map.TypeMap1
 	(*TypeMap2)(nil),                    // 3: type_map.TypeMap2
-	(*MessageMap1_Embed1)(nil),          // 4: type_map.MessageMap1.Embed1
-	(*MessageMap1_Embed1_Embed2)(nil),   // 5: type_map.MessageMap1.Embed1.Embed2
-	nil,                                 // 6: type_map.TypeMap1.FString1Entry
-	nil,                                 // 7: type_map.TypeMap1.FString2Entry
-	nil,                                 // 8: type_map.TypeMap1.FInt32Entry
-	nil,                                 // 9: type_map.TypeMap1.FInt64Entry
-	nil,                                 // 10: type_map.TypeMap1.FUint32Entry
-	nil,                                 // 11: type_map.TypeMap1.FUint64Entry
-	nil,                                 // 12: type_map.TypeMap1.FSint32Entry
-	nil,                                 // 13: type_map.TypeMap1.FSint64Entry
-	nil,                                 // 14: type_map.TypeMap1.FSfixed32Entry
-	nil,                                 // 15: type_map.TypeMap1.FSfixed64Entry
-	nil,                                 // 16: type_map.TypeMap1.FFixed32Entry
-	nil,                                 // 17: type_map.TypeMap1.FFixed64Entry
-	nil,                                 // 18: type_map.TypeMap1.FFloatEntry
-	nil,                                 // 19: type_map.TypeMap1.FDoubleEntry
-	nil,                                 // 20: type_map.TypeMap1.FBool1Entry
-	nil,                                 // 21: type_map.TypeMap1.FBytes1Entry
-	nil,                                 // 22: type_map.TypeMap1.FEnum1Entry
-	nil,                                 // 23: type_map.TypeMap1.FEnum2Entry
-	nil,                                 // 24: type_map.TypeMap1.FEnum3Entry
-	nil,                                 // 25: type_map.TypeMap1.FEnum4Entry
-	nil,                                 // 26: type_map.TypeMap1.FEnum5Entry
-	nil,                                 // 27: type_map.TypeMap1.FEnum6Entry
-	nil,                                 // 28: type_map.TypeMap1.FDuration1Entry
-	nil,                                 // 29: type_map.TypeMap1.FDuration2Entry
-	nil,                                 // 30: type_map.TypeMap1.FTimestamp1Entry
-	nil,                                 // 31: type_map.TypeMap1.FTimestamp2Entry
-	nil,                                 // 32: type_map.TypeMap1.FAny1Entry
-	nil,                                 // 33: type_map.TypeMap1.FAny2Entry
-	nil,                                 // 34: type_map.TypeMap1.FMessage1Entry
-	nil,                                 // 35: type_map.TypeMap1.FMessage2Entry
-	nil,                                 // 36: type_map.TypeMap1.FMessage3Entry
-	nil,                                 // 37: type_map.TypeMap1.FMessage4Entry
-	nil,                                 // 38: type_map.TypeMap1.FMessage5Entry
-	nil,                                 // 39: type_map.TypeMap1.FMessage6Entry
-	nil,                                 // 40: type_map.TypeMap1.FMessage7Entry
-	nil,                                 // 41: type_map.TypeMap1.FMessage8Entry
-	nil,                                 // 42: type_map.TypeMap1.FMessage9Entry
-	nil,                                 // 43: type_map.TypeMap2.FString1Entry
-	nil,                                 // 44: type_map.TypeMap2.FInt32Entry
-	nil,                                 // 45: type_map.TypeMap2.FInt64Entry
-	nil,                                 // 46: type_map.TypeMap2.FUint32Entry
-	nil,                                 // 47: type_map.TypeMap2.FUint64Entry
-	nil,                                 // 48: type_map.TypeMap2.FSint32Entry
-	nil,                                 // 49: type_map.TypeMap2.FSint64Entry
-	nil,                                 // 50: type_map.TypeMap2.FSfixed32Entry
-	nil,                                 // 51: type_map.TypeMap2.FSfixed64Entry
-	nil,                                 // 52: type_map.TypeMap2.FFixed32Entry
-	nil,                                 // 53: type_map.TypeMap2.FFixed64Entry
-	(pbexternal.Enum1)(0),               // 54: external.Enum1
-	(pbexternal.Embed_Enum1)(0),         // 55: external.Embed.Enum1
-	(pbexternal.Embed_Message_Enum1)(0), // 56: external.Embed.Message.Enum1
-	(EnumCommon1)(0),                    // 57: type_common.EnumCommon1
-	(MessageCommon1_Enum1)(0),           // 58: type_common.MessageCommon1.Enum1
-	(*durationpb.Duration)(nil),         // 59: google.protobuf.Duration
-	(*timestamppb.Timestamp)(nil),       // 60: google.protobuf.Timestamp
-	(*anypb.Any)(nil),                   // 61: google.protobuf.Any
-	(*pbexternal.Message1)(nil),         // 62: external.Message1
-	(*pbexternal.Message1_Embed1)(nil),  // 63: external.Message1.Embed1
-	(*pbexternal.Message1_Embed1_Embed2)(nil), // 64: external.Message1.Embed1.Embed2
-	(*MessageCommon1)(nil),                    // 65: type_common.MessageCommon1
-	(*MessageCommon1_Embed1)(nil),             // 66: type_common.MessageCommon1.Embed1
-	(*MessageCommon1_Embed1_Embed2)(nil),      // 67: type_common.MessageCommon1.Embed1.Embed2
+	(*TypeMap3)(nil),                    // 4: type_map.TypeMap3
+	(*MessageMap1_Embed1)(nil),          // 5: type_map.MessageMap1.Embed1
+	(*MessageMap1_Embed1_Embed2)(nil),   // 6: type_map.MessageMap1.Embed1.Embed2
+	nil,                                 // 7: type_map.TypeMap1.FString1Entry
+	nil,                                 // 8: type_map.TypeMap1.FString2Entry
+	nil,                                 // 9: type_map.TypeMap1.FInt32Entry
+	nil,                                 // 10: type_map.TypeMap1.FInt64Entry
+	nil,                                 // 11: type_map.TypeMap1.FUint32Entry
+	nil,                                 // 12: type_map.TypeMap1.FUint64Entry
+	nil,                                 // 13: type_map.TypeMap1.FSint32Entry
+	nil,                                 // 14: type_map.TypeMap1.FSint64Entry
+	nil,                                 // 15: type_map.TypeMap1.FSfixed32Entry
+	nil,                                 // 16: type_map.TypeMap1.FSfixed64Entry
+	nil,                                 // 17: type_map.TypeMap1.FFixed32Entry
+	nil,                                 // 18: type_map.TypeMap1.FFixed64Entry
+	nil,                                 // 19: type_map.TypeMap1.FFloatEntry
+	nil,                                 // 20: type_map.TypeMap1.FDoubleEntry
+	nil,                                 // 21: type_map.TypeMap1.FBool1Entry
+	nil,                                 // 22: type_map.TypeMap1.FBytes1Entry
+	nil,                                 // 23: type_map.TypeMap1.FEnum1Entry
+	nil,                                 // 24: type_map.TypeMap1.FEnum2Entry
+	nil,                                 // 25: type_map.TypeMap1.FEnum3Entry
+	nil,                                 // 26: type_map.TypeMap1.FEnum4Entry
+	nil,                                 // 27: type_map.TypeMap1.FEnum5Entry
+	nil,                                 // 28: type_map.TypeMap1.FEnum6Entry
+	nil,                                 // 29: type_map.TypeMap1.FDuration1Entry
+	nil,                                 // 30: type_map.TypeMap1.FDuration2Entry
+	nil,                                 // 31: type_map.TypeMap1.FTimestamp1Entry
+	nil,                                 // 32: type_map.TypeMap1.FTimestamp2Entry
+	nil,                                 // 33: type_map.TypeMap1.FAny1Entry
+	nil,                                 // 34: type_map.TypeMap1.FAny2Entry
+	nil,                                 // 35: type_map.TypeMap1.FMessage1Entry
+	nil,                                 // 36: type_map.TypeMap1.FMessage2Entry
+	nil,                                 // 37: type_map.TypeMap1.FMessage3Entry
+	nil,                                 // 38: type_map.TypeMap1.FMessage4Entry
+	nil,                                 // 39: type_map.TypeMap1.FMessage5Entry
+	nil,                                 // 40: type_map.TypeMap1.FMessage6Entry
+	nil,                                 // 41: type_map.TypeMap1.FMessage7Entry
+	nil,                                 // 42: type_map.TypeMap1.FMessage8Entry
+	nil,                                 // 43: type_map.TypeMap1.FMessage9Entry
+	nil,                                 // 44: type_map.TypeMap2.FString1Entry
+	nil,                                 // 45: type_map.TypeMap2.FInt32Entry
+	nil,                                 // 46: type_map.TypeMap2.FInt64Entry
+	nil,                                 // 47: type_map.TypeMap2.FUint32Entry
+	nil,                                 // 48: type_map.TypeMap2.FUint64Entry
+	nil,                                 // 49: type_map.TypeMap2.FSint32Entry
+	nil,                                 // 50: type_map.TypeMap2.FSint64Entry
+	nil,                                 // 51: type_map.TypeMap2.FSfixed32Entry
+	nil,                                 // 52: type_map.TypeMap2.FSfixed64Entry
+	nil,                                 // 53: type_map.TypeMap2.FFixed32Entry
+	nil,                                 // 54: type_map.TypeMap2.FFixed64Entry
+	nil,                                 // 55: type_map.TypeMap3.FString1Entry
+	nil,                                 // 56: type_map.TypeMap3.FInt32Entry
+	nil,                                 // 57: type_map.TypeMap3.FInt64Entry
+	nil,                                 // 58: type_map.TypeMap3.FUint32Entry
+	nil,                                 // 59: type_map.TypeMap3.FUint64Entry
+	nil,                                 // 60: type_map.TypeMap3.FSint32Entry
+	nil,                                 // 61: type_map.TypeMap3.FSint64Entry
+	nil,                                 // 62: type_map.TypeMap3.FSfixed32Entry
+	nil,                                 // 63: type_map.TypeMap3.FSfixed64Entry
+	nil,                                 // 64: type_map.TypeMap3.FFixed32Entry
+	nil,                                 // 65: type_map.TypeMap3.FFixed64Entry
+	nil,                                 // 66: type_map.TypeMap3.FBoolEntry
+	(pbexternal.Enum1)(0),               // 67: external.Enum1
+	(pbexternal.Embed_Enum1)(0),         // 68: external.Embed.Enum1
+	(pbexternal.Embed_Message_Enum1)(0), // 69: external.Embed.Message.Enum1
+	(EnumCommon1)(0),                    // 70: type_common.EnumCommon1
+	(MessageCommon1_Enum1)(0),           // 71: type_common.MessageCommon1.Enum1
+	(*durationpb.Duration)(nil),         // 72: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil),       // 73: google.protobuf.Timestamp
+	(*anypb.Any)(nil),                   // 74: google.protobuf.Any
+	(*pbexternal.Message1)(nil),         // 75: external.Message1
+	(*pbexternal.Message1_Embed1)(nil),  // 76: external.Message1.Embed1
+	(*pbexternal.Message1_Embed1_Embed2)(nil), // 77: external.Message1.Embed1.Embed2
+	(*MessageCommon1)(nil),                    // 78: type_common.MessageCommon1
+	(*MessageCommon1_Embed1)(nil),             // 79: type_common.MessageCommon1.Embed1
+	(*MessageCommon1_Embed1_Embed2)(nil),      // 80: type_common.MessageCommon1.Embed1.Embed2
 }
 var file_tests_proto_cases_types_type_map_proto_depIdxs = []int32{
-	6,  // 0: type_map.TypeMap1.f_string1:type_name -> type_map.TypeMap1.FString1Entry
-	7,  // 1: type_map.TypeMap1.f_string2:type_name -> type_map.TypeMap1.FString2Entry
-	8,  // 2: type_map.TypeMap1.f_int32:type_name -> type_map.TypeMap1.FInt32Entry
-	9,  // 3: type_map.TypeMap1.f_int64:type_name -> type_map.TypeMap1.FInt64Entry
-	10, // 4: type_map.TypeMap1.f_uint32:type_name -> type_map.TypeMap1.FUint32Entry
-	11, // 5: type_map.TypeMap1.f_uint64:type_name -> type_map.TypeMap1.FUint64Entry
-	12, // 6: type_map.TypeMap1.f_sint32:type_name -> type_map.TypeMap1.FSint32Entry
-	13, // 7: type_map.TypeMap1.f_sint64:type_name -> type_map.TypeMap1.FSint64Entry
-	14, // 8: type_map.TypeMap1.f_sfixed32:type_name -> type_map.TypeMap1.FSfixed32Entry
-	15, // 9: type_map.TypeMap1.f_sfixed64:type_name -> type_map.TypeMap1.FSfixed64Entry
-	16, // 10: type_map.TypeMap1.f_fixed32:type_name -> type_map.TypeMap1.FFixed32Entry
-	17, // 11: type_map.TypeMap1.f_fixed64:type_name -> type_map.TypeMap1.FFixed64Entry
-	18, // 12: type_map.TypeMap1.f_float:type_name -> type_map.TypeMap1.FFloatEntry
-	19, // 13: type_map.TypeMap1.f_double:type_name -> type_map.TypeMap1.FDoubleEntry
-	20, // 14: type_map.TypeMap1.f_bool1:type_name -> type_map.TypeMap1.FBool1Entry
-	21, // 15: type_map.TypeMap1.f_bytes1:type_name -> type_map.TypeMap1.FBytes1Entry
-	22, // 16: type_map.TypeMap1.f_enum1:type_name -> type_map.TypeMap1.FEnum1Entry
-	23, // 17: type_map.TypeMap1.f_enum2:type_name -> type_map.TypeMap1.FEnum2Entry
-	24, // 18: type_map.TypeMap1.f_enum3:type_name -> type_map.TypeMap1.FEnum3Entry
-	25, // 19: type_map.TypeMap1.f_enum4:type_name -> type_map.TypeMap1.FEnum4Entry
-	26, // 20: type_map.TypeMap1.f_enum5:type_name -> type_map.TypeMap1.FEnum5Entry
-	27, // 21: type_map.TypeMap1.f_enum6:type_name -> type_map.TypeMap1.FEnum6Entry
-	28, // 22: type_map.TypeMap1.f_duration1:type_name -> type_map.TypeMap1.FDuration1Entry
-	29, // 23: type_map.TypeMap1.f_duration2:type_name -> type_map.TypeMap1.FDuration2Entry
-	30, // 24: type_map.TypeMap1.f_timestamp1:type_name -> type_map.TypeMap1.FTimestamp1Entry
-	31, // 25: type_map.TypeMap1.f_timestamp2:type_name -> type_map.TypeMap1.FTimestamp2Entry
-	32, // 26: type_map.TypeMap1.f_any1:type_name -> type_map.TypeMap1.FAny1Entry
-	33, // 27: type_map.TypeMap1.f_any2:type_name -> type_map.TypeMap1.FAny2Entry
-	34, // 28: type_map.TypeMap1.f_message1:type_name -> type_map.TypeMap1.FMessage1Entry
-	35, // 29: type_map.TypeMap1.f_message2:type_name -> type_map.TypeMap1.FMessage2Entry
-	36, // 30: type_map.TypeMap1.f_message3:type_name -> type_map.TypeMap1.FMessage3Entry
-	37, // 31: type_map.TypeMap1.f_message4:type_name -> type_map.TypeMap1.FMessage4Entry
-	38, // 32: type_map.TypeMap1.f_message5:type_name -> type_map.TypeMap1.FMessage5Entry
-	39, // 33: type_map.TypeMap1.f_message6:type_name -> type_map.TypeMap1.FMessage6Entry
-	40, // 34: type_map.TypeMap1.f_message7:type_name -> type_map.TypeMap1.FMessage7Entry
-	41, // 35: type_map.TypeMap1.f_message8:type_name -> type_map.TypeMap1.FMessage8Entry
-	42, // 36: type_map.TypeMap1.f_message9:type_name -> type_map.TypeMap1.FMessage9Entry
-	43, // 37: type_map.TypeMap2.f_string1:type_name -> type_map.TypeMap2.FString1Entry
-	44, // 38: type_map.TypeMap2.f_int32:type_name -> type_map.TypeMap2.FInt32Entry
-	45, // 39: type_map.TypeMap2.f_int64:type_name -> type_map.TypeMap2.FInt64Entry
-	46, // 40: type_map.TypeMap2.f_uint32:type_name -> type_map.TypeMap2.FUint32Entry
-	47, // 41: type_map.TypeMap2.f_uint64:type_name -> type_map.TypeMap2.FUint64Entry
-	48, // 42: type_map.TypeMap2.f_sint32:type_name -> type_map.TypeMap2.FSint32Entry
-	49, // 43: type_map.TypeMap2.f_sint64:type_name -> type_map.TypeMap2.FSint64Entry
-	50, // 44: type_map.TypeMap2.f_sfixed32:type_name -> type_map.TypeMap2.FSfixed32Entry
-	51, // 45: type_map.TypeMap2.f_sfixed64:type_name -> type_map.TypeMap2.FSfixed64Entry
-	52, // 46: type_map.TypeMap2.f_fixed32:type_name -> type_map.TypeMap2.FFixed32Entry
-	53, // 47: type_map.TypeMap2.f_fixed64:type_name -> type_map.TypeMap2.FFixed64Entry
-	0,  // 48: type_map.TypeMap1.FEnum1Entry.value:type_name -> type_map.EnumMap1
-	54, // 49: type_map.TypeMap1.FEnum2Entry.value:type_name -> external.Enum1
-	55, // 50: type_map.TypeMap1.FEnum3Entry.value:type_name -> external.Embed.Enum1
-	56, // 51: type_map.TypeMap1.FEnum4Entry.value:type_name -> external.Embed.Message.Enum1
-	57, // 52: type_map.TypeMap1.FEnum5Entry.value:type_name -> type_common.EnumCommon1
-	58, // 53: type_map.TypeMap1.FEnum6Entry.value:type_name -> type_common.MessageCommon1.Enum1
-	59, // 54: type_map.TypeMap1.FDuration1Entry.value:type_name -> google.protobuf.Duration
-	59, // 55: type_map.TypeMap1.FDuration2Entry.value:type_name -> google.protobuf.Duration
-	60, // 56: type_map.TypeMap1.FTimestamp1Entry.value:type_name -> google.protobuf.Timestamp
-	60, // 57: type_map.TypeMap1.FTimestamp2Entry.value:type_name -> google.protobuf.Timestamp
-	61, // 58: type_map.TypeMap1.FAny1Entry.value:type_name -> google.protobuf.Any
-	61, // 59: type_map.TypeMap1.FAny2Entry.value:type_name -> google.protobuf.Any
-	1,  // 60: type_map.TypeMap1.FMessage1Entry.value:type_name -> type_map.MessageMap1
-	4,  // 61: type_map.TypeMap1.FMessage2Entry.value:type_name -> type_map.MessageMap1.Embed1
-	5,  // 62: type_map.TypeMap1.FMessage3Entry.value:type_name -> type_map.MessageMap1.Embed1.Embed2
-	62, // 63: type_map.TypeMap1.FMessage4Entry.value:type_name -> external.Message1
-	63, // 64: type_map.TypeMap1.FMessage5Entry.value:type_name -> external.Message1.Embed1
-	64, // 65: type_map.TypeMap1.FMessage6Entry.value:type_name -> external.Message1.Embed1.Embed2
-	65, // 66: type_map.TypeMap1.FMessage7Entry.value:type_name -> type_common.MessageCommon1
-	66, // 67: type_map.TypeMap1.FMessage8Entry.value:type_name -> type_common.MessageCommon1.Embed1
-	67, // 68: type_map.TypeMap1.FMessage9Entry.value:type_name -> type_common.MessageCommon1.Embed1.Embed2
-	69, // [69:69] is the sub-list for method output_type
-	69, // [69:69] is the sub-list for method input_type
-	69, // [69:69] is the sub-list for extension type_name
-	69, // [69:69] is the sub-list for extension extendee
-	0,  // [0:69] is the sub-list for field type_name
+	7,  // 0: type_map.TypeMap1.f_string1:type_name -> type_map.TypeMap1.FString1Entry
+	8,  // 1: type_map.TypeMap1.f_string2:type_name -> type_map.TypeMap1.FString2Entry
+	9,  // 2: type_map.TypeMap1.f_int32:type_name -> type_map.TypeMap1.FInt32Entry
+	10, // 3: type_map.TypeMap1.f_int64:type_name -> type_map.TypeMap1.FInt64Entry
+	11, // 4: type_map.TypeMap1.f_uint32:type_name -> type_map.TypeMap1.FUint32Entry
+	12, // 5: type_map.TypeMap1.f_uint64:type_name -> type_map.TypeMap1.FUint64Entry
+	13, // 6: type_map.TypeMap1.f_sint32:type_name -> type_map.TypeMap1.FSint32Entry
+	14, // 7: type_map.TypeMap1.f_sint64:type_name -> type_map.TypeMap1.FSint64Entry
+	15, // 8: type_map.TypeMap1.f_sfixed32:type_name -> type_map.TypeMap1.FSfixed32Entry
+	16, // 9: type_map.TypeMap1.f_sfixed64:type_name -> type_map.TypeMap1.FSfixed64Entry
+	17, // 10: type_map.TypeMap1.f_fixed32:type_name -> type_map.TypeMap1.FFixed32Entry
+	18, // 11: type_map.TypeMap1.f_fixed64:type_name -> type_map.TypeMap1.FFixed64Entry
+	19, // 12: type_map.TypeMap1.f_float:type_name -> type_map.TypeMap1.FFloatEntry
+	20, // 13: type_map.TypeMap1.f_double:type_name -> type_map.TypeMap1.FDoubleEntry
+	21, // 14: type_map.TypeMap1.f_bool1:type_name -> type_map.TypeMap1.FBool1Entry
+	22, // 15: type_map.TypeMap1.f_bytes1:type_name -> type_map.TypeMap1.FBytes1Entry
+	23, // 16: type_map.TypeMap1.f_enum1:type_name -> type_map.TypeMap1.FEnum1Entry
+	24, // 17: type_map.TypeMap1.f_enum2:type_name -> type_map.TypeMap1.FEnum2Entry
+	25, // 18: type_map.TypeMap1.f_enum3:type_name -> type_map.TypeMap1.FEnum3Entry
+	26, // 19: type_map.TypeMap1.f_enum4:type_name -> type_map.TypeMap1.FEnum4Entry
+	27, // 20: type_map.TypeMap1.f_enum5:type_name -> type_map.TypeMap1.FEnum5Entry
+	28, // 21: type_map.TypeMap1.f_enum6:type_name -> type_map.TypeMap1.FEnum6Entry
+	29, // 22: type_map.TypeMap1.f_duration1:type_name -> type_map.TypeMap1.FDuration1Entry
+	30, // 23: type_map.TypeMap1.f_duration2:type_name -> type_map.TypeMap1.FDuration2Entry
+	31, // 24: type_map.TypeMap1.f_timestamp1:type_name -> type_map.TypeMap1.FTimestamp1Entry
+	32, // 25: type_map.TypeMap1.f_timestamp2:type_name -> type_map.TypeMap1.FTimestamp2Entry
+	33, // 26: type_map.TypeMap1.f_any1:type_name -> type_map.TypeMap1.FAny1Entry
+	34, // 27: type_map.TypeMap1.f_any2:type_name -> type_map.TypeMap1.FAny2Entry
+	35, // 28: type_map.TypeMap1.f_message1:type_name -> type_map.TypeMap1.FMessage1Entry
+	36, // 29: type_map.TypeMap1.f_message2:type_name -> type_map.TypeMap1.FMessage2Entry
+	37, // 30: type_map.TypeMap1.f_message3:type_name -> type_map.TypeMap1.FMessage3Entry
+	38, // 31: type_map.TypeMap1.f_message4:type_name -> type_map.TypeMap1.FMessage4Entry
+	39, // 32: type_map.TypeMap1.f_message5:type_name -> type_map.TypeMap1.FMessage5Entry
+	40, // 33: type_map.TypeMap1.f_message6:type_name -> type_map.TypeMap1.FMessage6Entry
+	41, // 34: type_map.TypeMap1.f_message7:type_name -> type_map.TypeMap1.FMessage7Entry
+	42, // 35: type_map.TypeMap1.f_message8:type_name -> type_map.TypeMap1.FMessage8Entry
+	43, // 36: type_map.TypeMap1.f_message9:type_name -> type_map.TypeMap1.FMessage9Entry
+	44, // 37: type_map.TypeMap2.f_string1:type_name -> type_map.TypeMap2.FString1Entry
+	45, // 38: type_map.TypeMap2.f_int32:type_name -> type_map.TypeMap2.FInt32Entry
+	46, // 39: type_map.TypeMap2.f_int64:type_name -> type_map.TypeMap2.FInt64Entry
+	47, // 40: type_map.TypeMap2.f_uint32:type_name -> type_map.TypeMap2.FUint32Entry
+	48, // 41: type_map.TypeMap2.f_uint64:type_name -> type_map.TypeMap2.FUint64Entry
+	49, // 42: type_map.TypeMap2.f_sint32:type_name -> type_map.TypeMap2.FSint32Entry
+	50, // 43: type_map.TypeMap2.f_sint64:type_name -> type_map.TypeMap2.FSint64Entry
+	51, // 44: type_map.TypeMap2.f_sfixed32:type_name -> type_map.TypeMap2.FSfixed32Entry
+	52, // 45: type_map.TypeMap2.f_sfixed64:type_name -> type_map.TypeMap2.FSfixed64Entry
+	53, // 46: type_map.TypeMap2.f_fixed32:type_name -> type_map.TypeMap2.FFixed32Entry
+	54, // 47: type_map.TypeMap2.f_fixed64:type_name -> type_map.TypeMap2.FFixed64Entry
+	55, // 48: type_map.TypeMap3.f_string1:type_name -> type_map.TypeMap3.FString1Entry
+	56, // 49: type_map.TypeMap3.f_int32:type_name -> type_map.TypeMap3.FInt32Entry
+	57, // 50: type_map.TypeMap3.f_int64:type_name -> type_map.TypeMap3.FInt64Entry
+	58, // 51: type_map.TypeMap3.f_uint32:type_name -> type_map.TypeMap3.FUint32Entry
+	59, // 52: type_map.TypeMap3.f_uint64:type_name -> type_map.TypeMap3.FUint64Entry
+	60, // 53: type_map.TypeMap3.f_sint32:type_name -> type_map.TypeMap3.FSint32Entry
+	61, // 54: type_map.TypeMap3.f_sint64:type_name -> type_map.TypeMap3.FSint64Entry
+	62, // 55: type_map.TypeMap3.f_sfixed32:type_name -> type_map.TypeMap3.FSfixed32Entry
+	63, // 56: type_map.TypeMap3.f_sfixed64:type_name -> type_map.TypeMap3.FSfixed64Entry
+	64, // 57: type_map.TypeMap3.f_fixed32:type_name -> type_map.TypeMap3.FFixed32Entry
+	65, // 58: type_map.TypeMap3.f_fixed64:type_name -> type_map.TypeMap3.FFixed64Entry
+	66, // 59: type_map.TypeMap3.f_bool:type_name -> type_map.TypeMap3.FBoolEntry
+	0,  // 60: type_map.TypeMap1.FEnum1Entry.value:type_name -> type_map.EnumMap1
+	67, // 61: type_map.TypeMap1.FEnum2Entry.value:type_name -> external.Enum1
+	68, // 62: type_map.TypeMap1.FEnum3Entry.value:type_name -> external.Embed.Enum1
+	69, // 63: type_map.TypeMap1.FEnum4Entry.value:type_name -> external.Embed.Message.Enum1
+	70, // 64: type_map.TypeMap1.FEnum5Entry.value:type_name -> type_common.EnumCommon1
+	71, // 65: type_map.TypeMap1.FEnum6Entry.value:type_name -> type_common.MessageCommon1.Enum1
+	72, // 66: type_map.TypeMap1.FDuration1Entry.value:type_name -> google.protobuf.Duration
+	72, // 67: type_map.TypeMap1.FDuration2Entry.value:type_name -> google.protobuf.Duration
+	73, // 68: type_map.TypeMap1.FTimestamp1Entry.value:type_name -> google.protobuf.Timestamp
+	73, // 69: type_map.TypeMap1.FTimestamp2Entry.value:type_name -> google.protobuf.Timestamp
+	74, // 70: type_map.TypeMap1.FAny1Entry.value:type_name -> google.protobuf.Any
+	74, // 71: type_map.TypeMap1.FAny2Entry.value:type_name -> google.protobuf.Any
+	1,  // 72: type_map.TypeMap1.FMessage1Entry.value:type_name -> type_map.MessageMap1
+	5,  // 73: type_map.TypeMap1.FMessage2Entry.value:type_name -> type_map.MessageMap1.Embed1
+	6,  // 74: type_map.TypeMap1.FMessage3Entry.value:type_name -> type_map.MessageMap1.Embed1.Embed2
+	75, // 75: type_map.TypeMap1.FMessage4Entry.value:type_name -> external.Message1
+	76, // 76: type_map.TypeMap1.FMessage5Entry.value:type_name -> external.Message1.Embed1
+	77, // 77: type_map.TypeMap1.FMessage6Entry.value:type_name -> external.Message1.Embed1.Embed2
+	78, // 78: type_map.TypeMap1.FMessage7Entry.value:type_name -> type_common.MessageCommon1
+	79, // 79: type_map.TypeMap1.FMessage8Entry.value:type_name -> type_common.MessageCommon1.Embed1
+	80, // 80: type_map.TypeMap1.FMessage9Entry.value:type_name -> type_common.MessageCommon1.Embed1.Embed2
+	81, // [81:81] is the sub-list for method output_type
+	81, // [81:81] is the sub-list for method input_type
+	81, // [81:81] is the sub-list for extension type_name
+	81, // [81:81] is the sub-list for extension extendee
+	0,  // [0:81] is the sub-list for field type_name
 }
 
 func init() { file_tests_proto_cases_types_type_map_proto_init() }
@@ -1435,7 +1692,7 @@ func file_tests_proto_cases_types_type_map_proto_init() {
 			}
 		}
 		file_tests_proto_cases_types_type_map_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MessageMap1_Embed1); i {
+			switch v := v.(*TypeMap3); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1447,6 +1704,18 @@ func file_tests_proto_cases_types_type_map_proto_init() {
 			}
 		}
 		file_tests_proto_cases_types_type_map_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MessageMap1_Embed1); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_tests_proto_cases_types_type_map_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MessageMap1_Embed1_Embed2); i {
 			case 0:
 				return &v.state
@@ -1465,7 +1734,7 @@ func file_tests_proto_cases_types_type_map_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_tests_proto_cases_types_type_map_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   53,
+			NumMessages:   66,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
