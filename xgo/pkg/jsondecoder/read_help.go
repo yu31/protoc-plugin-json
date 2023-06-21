@@ -1,17 +1,5 @@
 package jsondecoder
 
-func (dec *Decoder) unquoteString(b []byte) (t []byte, err error) {
-	var ok bool
-	if t, ok = unquoteBytes(b); !ok {
-		err = &SyntaxError{
-			reason: "invalid string of JSON input",
-			Offset: dec.offset,
-		}
-		return nil, err
-	}
-	return
-}
-
 // BeforeReadJSON only used to check if the JSON is NULL.
 func (dec *Decoder) BeforeReadJSON() (isNULL bool, err error) {
 	if isNULL, err = dec.beforeReadObject(); err != nil {

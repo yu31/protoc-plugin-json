@@ -31,9 +31,9 @@ func TestEncoder_Build1(t *testing.T) {
 	enc.AppendObjectKey("sk1")
 	enc.AppendLiteralString("sv1")
 	enc.AppendObjectKey("ik64")
-	enc.AppendLiteralInt64(64)
+	enc.AppendLiteralInt64(64, false)
 	enc.AppendObjectKey("ikb")
-	enc.AppendLiteralBool(true)
+	enc.AppendLiteralBool(true, false)
 	enc.AppendObjectEnd()
 
 	b := enc.Bytes()

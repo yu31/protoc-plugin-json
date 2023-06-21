@@ -311,12 +311,12 @@ func (x *Complex1) MarshalJSON() ([]byte, error) {
 	encoder.AppendObjectBegin()
 
 	encoder.AppendObjectKey("f_int32")
-	encoder.AppendLiteralInt32(x.FInt32)
+	encoder.AppendLiteralInt32(x.FInt32, false)
 	encoder.AppendObjectKey("r_int64")
 	if x.RInt64 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RInt64 {
-			encoder.AppendLiteralInt64(ri)
+			encoder.AppendLiteralInt64(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -331,14 +331,14 @@ func (x *Complex1) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MInt32 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralInt32(mv)
+			encoder.AppendLiteralInt32(mv, false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
 		encoder.AppendLiteralNULL()
 	}
 	encoder.AppendObjectKey("f_int64")
-	encoder.AppendPointerInt64(x.FInt64)
+	encoder.AppendPointerInt64(x.FInt64, false)
 
 	// Add end JSON identifier
 	encoder.AppendObjectEnd()
@@ -382,7 +382,7 @@ LOOP_SCAN:
 		switch jsonKey { // match the jsonKey
 		case "f_int32":
 			var vv int32
-			if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
 				return err
 			}
 			x.FInt32 = vv
@@ -409,7 +409,7 @@ LOOP_SCAN:
 				if i >= len(x.RInt64) {
 					x.RInt64 = append(x.RInt64, vv)
 				}
-				if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
 					return err
 				}
 				x.RInt64[i] = vv
@@ -456,14 +456,14 @@ LOOP_SCAN:
 					return err
 				}
 				var vv int32
-				if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
 					return err
 				}
 				x.MInt32[mk] = vv
 			}
 		case "f_int64":
 			var vv *int64
-			if vv, err = decoder.ReadPointerInt64(jsonKey); err != nil {
+			if vv, err = decoder.ReadPointerInt64(jsonKey, false); err != nil {
 				return err
 			}
 			x.FInt64 = vv
@@ -493,7 +493,7 @@ func (x *Complex2) MarshalJSON() ([]byte, error) {
 	if x.RInt64 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RInt64 {
-			encoder.AppendLiteralInt64(ri)
+			encoder.AppendLiteralInt64(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -597,7 +597,7 @@ LOOP_SCAN:
 				if i >= len(x.RInt64) {
 					x.RInt64 = append(x.RInt64, vv)
 				}
-				if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
 					return err
 				}
 				x.RInt64[i] = vv
@@ -863,7 +863,7 @@ func (x *Complex2_Level2) MarshalJSON() ([]byte, error) {
 	if x.RInt64 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RInt64 {
-			encoder.AppendLiteralInt64(ri)
+			encoder.AppendLiteralInt64(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -955,7 +955,7 @@ LOOP_SCAN:
 				if i >= len(x.RInt64) {
 					x.RInt64 = append(x.RInt64, vv)
 				}
-				if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
 					return err
 				}
 				x.RInt64[i] = vv
@@ -984,12 +984,12 @@ func (x *Complex2_Level3) MarshalJSON() ([]byte, error) {
 	encoder.AppendObjectBegin()
 
 	encoder.AppendObjectKey("f_int32")
-	encoder.AppendLiteralInt32(x.FInt32)
+	encoder.AppendLiteralInt32(x.FInt32, false)
 	encoder.AppendObjectKey("r_int64")
 	if x.RInt64 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RInt64 {
-			encoder.AppendLiteralInt64(ri)
+			encoder.AppendLiteralInt64(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -1000,14 +1000,14 @@ func (x *Complex2_Level3) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MInt32 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralInt32(mv)
+			encoder.AppendLiteralInt32(mv, false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
 		encoder.AppendLiteralNULL()
 	}
 	encoder.AppendObjectKey("p_int64")
-	encoder.AppendPointerInt64(x.PInt64)
+	encoder.AppendPointerInt64(x.PInt64, false)
 
 	// Add end JSON identifier
 	encoder.AppendObjectEnd()
@@ -1051,7 +1051,7 @@ LOOP_SCAN:
 		switch jsonKey { // match the jsonKey
 		case "f_int32":
 			var vv int32
-			if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
 				return err
 			}
 			x.FInt32 = vv
@@ -1078,7 +1078,7 @@ LOOP_SCAN:
 				if i >= len(x.RInt64) {
 					x.RInt64 = append(x.RInt64, vv)
 				}
-				if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
 					return err
 				}
 				x.RInt64[i] = vv
@@ -1109,14 +1109,14 @@ LOOP_SCAN:
 					return err
 				}
 				var vv int32
-				if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
 					return err
 				}
 				x.MInt32[mk] = vv
 			}
 		case "p_int64":
 			var vv *int64
-			if vv, err = decoder.ReadPointerInt64(jsonKey); err != nil {
+			if vv, err = decoder.ReadPointerInt64(jsonKey, false); err != nil {
 				return err
 			}
 			x.PInt64 = vv

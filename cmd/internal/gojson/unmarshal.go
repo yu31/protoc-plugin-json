@@ -137,7 +137,7 @@ func (p *Plugin) unmarshalMap(field *Field) {
 	p.g.P("	if isEnd {")
 	p.g.P("    	break")
 	p.g.P("	}")
-	p.unmarshalReadMapKey(field.Field)
+	p.unmarshalReadMapKey(field.Field, field.Options)
 	p.unmarshalReadLiteral(field.Field, field.Options)
 	p.g.P("}") // end loop
 }
@@ -230,34 +230,115 @@ func (p *Plugin) unmarshalOneOfField(field *Field) {
 	}
 }
 
-func (p *Plugin) unmarshalReadMapKey(field *protogen.Field) {
+func (p *Plugin) unmarshalReadMapKey(field *protogen.Field, options *pbjson.FieldOptions) {
+	typeCodec := loadMapOptions(field, options).Key
+
 	field = field.Message.Fields[0]
 	goType := fieldGoType(p.g, field)
 
 	p.g.P("var mk ", goType)
 	switch field.Desc.Kind() {
-	case protoreflect.Int32Kind, protoreflect.Sint32Kind, protoreflect.Sfixed32Kind:
-		p.g.P("if mk, err = decoder.ReadMapKeyInt32(jsonKey); err != nil {")
-		p.g.P("    return err ")
-		p.g.P("}")
-	case protoreflect.Int64Kind, protoreflect.Sint64Kind, protoreflect.Sfixed64Kind:
-		p.g.P("if mk, err = decoder.ReadMapKeyInt64(jsonKey); err != nil {")
-		p.g.P("    return err ")
-		p.g.P("}")
-	case protoreflect.Uint32Kind, protoreflect.Fixed32Kind:
-		p.g.P("if mk, err = decoder.ReadMapKeyUint32(jsonKey); err != nil {")
-		p.g.P("    return err ")
-		p.g.P("}")
-	case protoreflect.Uint64Kind, protoreflect.Fixed64Kind:
-		p.g.P("if mk, err = decoder.ReadMapKeyUint64(jsonKey); err != nil {")
-		p.g.P("    return err ")
-		p.g.P("}")
 	case protoreflect.StringKind:
 		p.g.P("if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {")
 		p.g.P("    return err ")
 		p.g.P("}")
+	case protoreflect.Int32Kind:
+		unquote := "true"
+		typeInt32 := loadTypeCodecInt32(typeCodec)
+		if typeInt32.Codec == pbjson.TypeInt32_Number {
+			unquote = "false"
+		}
+		p.g.P("if mk, err = decoder.ReadMapKeyInt32(jsonKey, ", unquote, "); err != nil {")
+		p.g.P("    return err ")
+		p.g.P("}")
+	case protoreflect.Int64Kind:
+		unquote := "true"
+		typeInt64 := loadTypeCodecInt64(typeCodec)
+		if typeInt64.Codec == pbjson.TypeInt64_Number {
+			unquote = "false"
+		}
+		p.g.P("if mk, err = decoder.ReadMapKeyInt64(jsonKey, ", unquote, "); err != nil {")
+		p.g.P("    return err ")
+		p.g.P("}")
+	case protoreflect.Sint32Kind:
+		unquote := "true"
+		typeSInt32 := loadTypeCodecSInt32(typeCodec)
+		if typeSInt32.Codec == pbjson.TypeSInt32_Number {
+			unquote = "false"
+		}
+		p.g.P("if mk, err = decoder.ReadMapKeyInt32(jsonKey, ", unquote, "); err != nil {")
+		p.g.P("    return err ")
+		p.g.P("}")
+	case protoreflect.Sint64Kind:
+		unquote := "true"
+		typeSInt64 := loadTypeCodecSInt64(typeCodec)
+		if typeSInt64.Codec == pbjson.TypeSInt64_Number {
+			unquote = "false"
+		}
+		p.g.P("if mk, err = decoder.ReadMapKeyInt64(jsonKey, ", unquote, "); err != nil {")
+		p.g.P("    return err ")
+		p.g.P("}")
+	case protoreflect.Sfixed32Kind:
+		unquote := "true"
+		typeSFixed32 := loadTypeCodecSFInt32(typeCodec)
+		if typeSFixed32.Codec == pbjson.TypeSFixed32_Number {
+			unquote = "false"
+		}
+		p.g.P("if mk, err = decoder.ReadMapKeyInt32(jsonKey, ", unquote, "); err != nil {")
+		p.g.P("    return err ")
+		p.g.P("}")
+	case protoreflect.Sfixed64Kind:
+		unquote := "true"
+		typeSFixed64 := loadTypeCodecSFInt64(typeCodec)
+		if typeSFixed64.Codec == pbjson.TypeSFixed64_Number {
+			unquote = "false"
+		}
+		p.g.P("if mk, err = decoder.ReadMapKeyInt64(jsonKey, ", unquote, "); err != nil {")
+		p.g.P("    return err ")
+		p.g.P("}")
+	case protoreflect.Uint32Kind:
+		unquote := "true"
+		typeUint32 := loadTypeCodecUint32(typeCodec)
+		if typeUint32.Codec == pbjson.TypeUint32_Number {
+			unquote = "false"
+		}
+		p.g.P("if mk, err = decoder.ReadMapKeyUint32(jsonKey, ", unquote, "); err != nil {")
+		p.g.P("    return err ")
+		p.g.P("}")
+	case protoreflect.Uint64Kind:
+		unquote := "true"
+		typeUint64 := loadTypeCodecUint64(typeCodec)
+		if typeUint64.Codec == pbjson.TypeUint64_Number {
+			unquote = "false"
+		}
+		p.g.P("if mk, err = decoder.ReadMapKeyUint64(jsonKey, ", unquote, "); err != nil {")
+		p.g.P("    return err ")
+		p.g.P("}")
+	case protoreflect.Fixed32Kind:
+		unquote := "true"
+		typeFixed32 := loadTypeCodecFixed32(typeCodec)
+		if typeFixed32.Codec == pbjson.TypeFixed32_Number {
+			unquote = "false"
+		}
+		p.g.P("if mk, err = decoder.ReadMapKeyUint32(jsonKey, ", unquote, "); err != nil {")
+		p.g.P("    return err ")
+		p.g.P("}")
+	case protoreflect.Fixed64Kind:
+		unquote := "true"
+		typeFixed64 := loadTypeCodecFixed64(typeCodec)
+		if typeFixed64.Codec == pbjson.TypeFixed64_Number {
+			unquote = "false"
+		}
+		p.g.P("if mk, err = decoder.ReadMapKeyUint64(jsonKey, ", unquote, "); err != nil {")
+		p.g.P("    return err ")
+		p.g.P("}")
 	case protoreflect.BoolKind:
-		p.g.P("if mk, err = decoder.ReadMapKeyBool(jsonKey); err != nil {")
+		unquote := "true"
+		typeBool := loadTypeCodecBool(typeCodec)
+		if typeBool.Codec == pbjson.TypeBool_Bool {
+			unquote = "false"
+		}
+		p.g.P("if mk, err = decoder.ReadMapKeyBool(jsonKey, ", unquote, "); err != nil {")
 		p.g.P("    return err ")
 		p.g.P("}")
 	default:
@@ -267,6 +348,16 @@ func (p *Plugin) unmarshalReadMapKey(field *protogen.Field) {
 }
 
 func (p *Plugin) unmarshalReadLiteral(field *protogen.Field, options *pbjson.FieldOptions) {
+	var typeCodec *pbjson.TypeCodec
+	switch {
+	case field.Desc.IsMap():
+		typeCodec = loadMapOptions(field, options).Value
+	case field.Desc.IsList():
+		typeCodec = loadRepeatedOptions(field, options).Elem
+	default:
+		typeCodec = loadPlainOptions(field, options).Value
+	}
+
 	goName := field.GoName
 	isMap := field.Desc.IsMap()
 	isList := field.Desc.IsList()
@@ -311,73 +402,198 @@ func (p *Plugin) unmarshalReadLiteral(field *protogen.Field, options *pbjson.Fie
 			p.g.P("    return err")
 			p.g.P("}")
 		}
-	case protoreflect.Int32Kind, protoreflect.Sint32Kind, protoreflect.Sfixed32Kind:
+	case protoreflect.Int32Kind:
+		unquote := "false"
+		typeInt32 := loadTypeCodecInt32(typeCodec)
+		if typeInt32.Codec == pbjson.TypeInt32_String {
+			unquote = "true"
+		}
 		if isOptional {
-			p.g.P("if vv, err = decoder.ReadPointerInt32", "(jsonKey); err != nil {")
+			p.g.P("if vv, err = decoder.ReadPointerInt32", "(jsonKey, ", unquote, "); err != nil {")
 			p.g.P("    return err")
 			p.g.P("}")
 		} else {
-			p.g.P("if vv, err = decoder.ReadLiteralInt32", "(jsonKey); err != nil {")
+			p.g.P("if vv, err = decoder.ReadLiteralInt32", "(jsonKey, ", unquote, "); err != nil {")
 			p.g.P("    return err")
 			p.g.P("}")
 		}
-	case protoreflect.Int64Kind, protoreflect.Sint64Kind, protoreflect.Sfixed64Kind:
+	case protoreflect.Int64Kind:
+		unquote := "false"
+		typeInt64 := loadTypeCodecInt64(typeCodec)
+		if typeInt64.Codec == pbjson.TypeInt64_String {
+			unquote = "true"
+		}
 		if isOptional {
-			p.g.P("if vv, err = decoder.ReadPointerInt64", "(jsonKey); err != nil {")
+			p.g.P("if vv, err = decoder.ReadPointerInt64", "(jsonKey, ", unquote, "); err != nil {")
 			p.g.P("    return err")
 			p.g.P("}")
 		} else {
-			p.g.P("if vv, err = decoder.ReadLiteralInt64", "(jsonKey); err != nil {")
+			p.g.P("if vv, err = decoder.ReadLiteralInt64", "(jsonKey, ", unquote, "); err != nil {")
 			p.g.P("    return err")
 			p.g.P("}")
 		}
-	case protoreflect.Uint32Kind, protoreflect.Fixed32Kind:
+	case protoreflect.Sint32Kind:
+		unquote := "false"
+		typeSInt32 := loadTypeCodecSInt32(typeCodec)
+		if typeSInt32.Codec == pbjson.TypeSInt32_String {
+			unquote = "true"
+		}
 		if isOptional {
-			p.g.P("if vv, err = decoder.ReadPointerUint32", "(jsonKey); err != nil {")
+			p.g.P("if vv, err = decoder.ReadPointerInt32", "(jsonKey, ", unquote, "); err != nil {")
 			p.g.P("    return err")
 			p.g.P("}")
 		} else {
-			p.g.P("if vv, err = decoder.ReadLiteralUint32", "(jsonKey); err != nil {")
+			p.g.P("if vv, err = decoder.ReadLiteralInt32", "(jsonKey, ", unquote, "); err != nil {")
 			p.g.P("    return err")
 			p.g.P("}")
 		}
-	case protoreflect.Uint64Kind, protoreflect.Fixed64Kind:
+	case protoreflect.Sint64Kind:
+		unquote := "false"
+		typeSInt64 := loadTypeCodecSInt64(typeCodec)
+		if typeSInt64.Codec == pbjson.TypeSInt64_String {
+			unquote = "true"
+		}
 		if isOptional {
-			p.g.P("if vv, err = decoder.ReadPointerUint64", "(jsonKey); err != nil {")
+			p.g.P("if vv, err = decoder.ReadPointerInt64", "(jsonKey, ", unquote, "); err != nil {")
 			p.g.P("    return err")
 			p.g.P("}")
 		} else {
-			p.g.P("if vv, err = decoder.ReadLiteralUint64", "(jsonKey); err != nil {")
+			p.g.P("if vv, err = decoder.ReadLiteralInt64", "(jsonKey, ", unquote, "); err != nil {")
+			p.g.P("    return err")
+			p.g.P("}")
+		}
+	case protoreflect.Sfixed32Kind:
+		unquote := "false"
+		typeSFixed32 := loadTypeCodecSFInt32(typeCodec)
+		if typeSFixed32.Codec == pbjson.TypeSFixed32_String {
+			unquote = "true"
+		}
+		if isOptional {
+			p.g.P("if vv, err = decoder.ReadPointerInt32", "(jsonKey, ", unquote, "); err != nil {")
+			p.g.P("    return err")
+			p.g.P("}")
+		} else {
+			p.g.P("if vv, err = decoder.ReadLiteralInt32", "(jsonKey, ", unquote, "); err != nil {")
+			p.g.P("    return err")
+			p.g.P("}")
+		}
+	case protoreflect.Sfixed64Kind:
+		unquote := "false"
+		typeSFixed64 := loadTypeCodecSFInt64(typeCodec)
+		if typeSFixed64.Codec == pbjson.TypeSFixed64_String {
+			unquote = "true"
+		}
+		if isOptional {
+			p.g.P("if vv, err = decoder.ReadPointerInt64", "(jsonKey, ", unquote, "); err != nil {")
+			p.g.P("    return err")
+			p.g.P("}")
+		} else {
+			p.g.P("if vv, err = decoder.ReadLiteralInt64", "(jsonKey, ", unquote, "); err != nil {")
+			p.g.P("    return err")
+			p.g.P("}")
+		}
+	case protoreflect.Uint32Kind:
+		unquote := "false"
+		typeUint32 := loadTypeCodecUint32(typeCodec)
+		if typeUint32.Codec == pbjson.TypeUint32_String {
+			unquote = "true"
+		}
+		if isOptional {
+			p.g.P("if vv, err = decoder.ReadPointerUint32", "(jsonKey, ", unquote, "); err != nil {")
+			p.g.P("    return err")
+			p.g.P("}")
+		} else {
+			p.g.P("if vv, err = decoder.ReadLiteralUint32", "(jsonKey, ", unquote, "); err != nil {")
+			p.g.P("    return err")
+			p.g.P("}")
+		}
+	case protoreflect.Uint64Kind:
+		unquote := "false"
+		typeUint64 := loadTypeCodecUint64(typeCodec)
+		if typeUint64.Codec == pbjson.TypeUint64_String {
+			unquote = "true"
+		}
+		if isOptional {
+			p.g.P("if vv, err = decoder.ReadPointerUint64", "(jsonKey, ", unquote, "); err != nil {")
+			p.g.P("    return err")
+			p.g.P("}")
+		} else {
+			p.g.P("if vv, err = decoder.ReadLiteralUint64", "(jsonKey, ", unquote, "); err != nil {")
+			p.g.P("    return err")
+			p.g.P("}")
+		}
+	case protoreflect.Fixed32Kind:
+		unquote := "false"
+		typeFixed32 := loadTypeCodecFixed32(typeCodec)
+		if typeFixed32.Codec == pbjson.TypeFixed32_String {
+			unquote = "true"
+		}
+		if isOptional {
+			p.g.P("if vv, err = decoder.ReadPointerUint32", "(jsonKey, ", unquote, "); err != nil {")
+			p.g.P("    return err")
+			p.g.P("}")
+		} else {
+			p.g.P("if vv, err = decoder.ReadLiteralUint32", "(jsonKey, ", unquote, "); err != nil {")
+			p.g.P("    return err")
+			p.g.P("}")
+		}
+	case protoreflect.Fixed64Kind:
+		unquote := "false"
+		typeFixed64 := loadTypeCodecFixed64(typeCodec)
+		if typeFixed64.Codec == pbjson.TypeFixed64_String {
+			unquote = "true"
+		}
+		if isOptional {
+			p.g.P("if vv, err = decoder.ReadPointerUint64", "(jsonKey, ", unquote, "); err != nil {")
+			p.g.P("    return err")
+			p.g.P("}")
+		} else {
+			p.g.P("if vv, err = decoder.ReadLiteralUint64", "(jsonKey, ", unquote, "); err != nil {")
 			p.g.P("    return err")
 			p.g.P("}")
 		}
 	case protoreflect.FloatKind:
+		unquote := "false"
+		typeFloat := loadTypeCodecFloat(typeCodec)
+		if typeFloat.Codec == pbjson.TypeFloat_String {
+			unquote = "true"
+		}
 		if isOptional {
-			p.g.P("if vv, err = decoder.ReadPointerFloat32", "(jsonKey); err != nil {")
+			p.g.P("if vv, err = decoder.ReadPointerFloat32", "(jsonKey, ", unquote, "); err != nil {")
 			p.g.P("    return err")
 			p.g.P("}")
 		} else {
-			p.g.P("if vv, err = decoder.ReadLiteralFloat32", "(jsonKey); err != nil {")
+			p.g.P("if vv, err = decoder.ReadLiteralFloat32", "(jsonKey, ", unquote, "); err != nil {")
 			p.g.P("    return err")
 			p.g.P("}")
 		}
 	case protoreflect.DoubleKind:
+		unquote := "false"
+		typeDouble := loadTypeCodecDouble(typeCodec)
+		if typeDouble.Codec == pbjson.TypeDouble_String {
+			unquote = "true"
+		}
 		if isOptional {
-			p.g.P("if vv, err = decoder.ReadPointerFloat64", "(jsonKey); err != nil {")
+			p.g.P("if vv, err = decoder.ReadPointerFloat64", "(jsonKey, ", unquote, "); err != nil {")
 			p.g.P("    return err")
 			p.g.P("}")
 		} else {
-			p.g.P("if vv, err = decoder.ReadLiteralFloat64", "(jsonKey); err != nil {")
+			p.g.P("if vv, err = decoder.ReadLiteralFloat64", "(jsonKey, ", unquote, "); err != nil {")
 			p.g.P("    return err")
 			p.g.P("}")
 		}
 	case protoreflect.BoolKind:
+		unquote := "false"
+		typeBool := loadTypeCodecBool(typeCodec)
+		if typeBool.Codec == pbjson.TypeBool_String {
+			unquote = "true"
+		}
 		if isOptional {
-			p.g.P("if vv, err = decoder.ReadPointerBool", "(jsonKey); err != nil {")
+			p.g.P("if vv, err = decoder.ReadPointerBool", "(jsonKey, ", unquote, "); err != nil {")
 			p.g.P("    return err")
 			p.g.P("}")
 		} else {
-			p.g.P("if vv, err = decoder.ReadLiteralBool", "(jsonKey); err != nil {")
+			p.g.P("if vv, err = decoder.ReadLiteralBool", "(jsonKey, ", unquote, "); err != nil {")
 			p.g.P("    return err")
 			p.g.P("}")
 		}
@@ -386,7 +602,7 @@ func (p *Plugin) unmarshalReadLiteral(field *protogen.Field, options *pbjson.Fie
 		p.g.P("    return err")
 		p.g.P("}")
 	case protoreflect.MessageKind:
-		code, checkNULL := p.unmarshalReadMessage(field, options)
+		code, checkNULL := p.unmarshalReadMessage(field, typeCodec)
 		if checkNULL {
 			p.g.P("if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {")
 			p.g.P("    return err")
@@ -408,17 +624,22 @@ func (p *Plugin) unmarshalReadLiteral(field *protogen.Field, options *pbjson.Fie
 		}
 	case protoreflect.EnumKind:
 		enumValue := goType + "_value"
-		enumName := goType + "_name"
-		typeEnum := loadTypeSetEnum(options)
+		//enumName := goType + "_name"
+		typeEnum := loadTypeCodecEnum(typeCodec)
 
 		if isOptional {
 			p.g.P("var v1 *int32")
-			if typeEnum.Format == pbjson.TypeEnum_String {
-				p.g.P("if v1, err = decoder.ReadPointerEnumString", "(jsonKey,", enumValue, "); err != nil {")
+			switch typeEnum.Codec {
+			case pbjson.TypeEnum_Unset, pbjson.TypeEnum_Number:
+				p.g.P("if v1, err = decoder.ReadPointerEnumNumber", "(jsonKey, false); err != nil {")
 				p.g.P("    return err")
 				p.g.P("}")
-			} else {
-				p.g.P("if v1, err = decoder.ReadPointerEnumNumber", "(jsonKey,", enumName, "); err != nil {")
+			case pbjson.TypeEnum_NumberString:
+				p.g.P("if v1, err = decoder.ReadPointerEnumNumber", "(jsonKey, true); err != nil {")
+				p.g.P("    return err")
+				p.g.P("}")
+			case pbjson.TypeEnum_String:
+				p.g.P("if v1, err = decoder.ReadPointerEnumString", "(jsonKey,", enumValue, "); err != nil {")
 				p.g.P("    return err")
 				p.g.P("}")
 			}
@@ -428,12 +649,17 @@ func (p *Plugin) unmarshalReadLiteral(field *protogen.Field, options *pbjson.Fie
 			p.g.P("}")
 		} else {
 			p.g.P("var v1 int32")
-			if typeEnum.Format == pbjson.TypeEnum_String {
-				p.g.P("if v1, err = decoder.ReadLiteralEnumString", "(jsonKey,", enumValue, "); err != nil {")
+			switch typeEnum.Codec {
+			case pbjson.TypeEnum_Unset, pbjson.TypeEnum_Number:
+				p.g.P("if v1, err = decoder.ReadLiteralEnumNumber", "(jsonKey, false); err != nil {")
 				p.g.P("    return err")
 				p.g.P("}")
-			} else {
-				p.g.P("if v1, err = decoder.ReadLiteralEnumNumber", "(jsonKey,", enumName, "); err != nil {")
+			case pbjson.TypeEnum_NumberString:
+				p.g.P("if v1, err = decoder.ReadLiteralEnumNumber", "(jsonKey, true); err != nil {")
+				p.g.P("    return err")
+				p.g.P("}")
+			case pbjson.TypeEnum_String:
+				p.g.P("if v1, err = decoder.ReadLiteralEnumString", "(jsonKey,", enumValue, "); err != nil {")
 				p.g.P("    return err")
 				p.g.P("}")
 			}
@@ -446,63 +672,93 @@ func (p *Plugin) unmarshalReadLiteral(field *protogen.Field, options *pbjson.Fie
 	// Store the value.
 	p.g.P(receiver, " = vv")
 }
-func (p *Plugin) unmarshalReadMessage(field *protogen.Field, options *pbjson.FieldOptions,
+func (p *Plugin) unmarshalReadMessage(field *protogen.Field, typeCodec *pbjson.TypeCodec,
 ) (code string, checkNULL bool) {
 	// Supported Well Know Type.
 	switch pkwkt.Lookup(string(field.Message.Desc.FullName())) {
 	case pkwkt.Any:
-		typeAny := loadTypeSetAny(options)
-		switch typeAny.Format {
-		case pbjson.TypeAny_Native:
+		typeAny := loadTypeCodecAny(typeCodec)
+		switch typeAny.Codec {
+		case pbjson.TypeAny_Object:
 		case pbjson.TypeAny_Proto:
 			code = "decoder.ReadWKTAnyByProto(jsonKey, vv)"
 			return code, true
 		}
 	case pkwkt.Duration:
-		typeDuration := loadTypeSetDuration(options)
-		switch typeDuration.Format {
-		case pbjson.TypeDuration_Native:
+		typeDuration := loadTypeCodecDuration(typeCodec)
+		switch typeDuration.Codec {
+		case pbjson.TypeDuration_Object:
 		case pbjson.TypeDuration_String:
 			code = "decoder.ReadWKTDurationByString(jsonKey, vv)"
 			return code, false
-		case pbjson.TypeDuration_Nanoseconds:
-			code = "decoder.ReadWKTDurationByNanoseconds(jsonKey, vv)"
+		case pbjson.TypeDuration_Nanosecond:
+			code = "decoder.ReadWKTDurationByNanoseconds(jsonKey, vv, false)"
 			return code, false
-		case pbjson.TypeDuration_Microseconds:
-			code = "decoder.ReadWKTDurationByMicroseconds(jsonKey, vv)"
+		case pbjson.TypeDuration_NanosecondString:
+			code = "decoder.ReadWKTDurationByNanoseconds(jsonKey, vv, true)"
 			return code, false
-		case pbjson.TypeDuration_Milliseconds:
-			code = "decoder.ReadWKTDurationByMilliseconds(jsonKey, vv)"
+		case pbjson.TypeDuration_Microsecond:
+			code = "decoder.ReadWKTDurationByMicroseconds(jsonKey, vv, false)"
 			return code, false
-		case pbjson.TypeDuration_Seconds:
-			code = "decoder.ReadWKTDurationBySeconds(jsonKey, vv)"
+		case pbjson.TypeDuration_MicrosecondString:
+			code = "decoder.ReadWKTDurationByMicroseconds(jsonKey, vv, true)"
 			return code, false
-		case pbjson.TypeDuration_Minutes:
-			code = "decoder.ReadWKTDurationByMinutes(jsonKey, vv)"
+		case pbjson.TypeDuration_Millisecond:
+			code = "decoder.ReadWKTDurationByMilliseconds(jsonKey, vv, false)"
 			return code, false
-		case pbjson.TypeDuration_Hours:
-			code = "decoder.ReadWKTDurationByHours(jsonKey, vv)"
+		case pbjson.TypeDuration_MillisecondString:
+			code = "decoder.ReadWKTDurationByMilliseconds(jsonKey, vv, true)"
+			return code, false
+		case pbjson.TypeDuration_Second:
+			code = "decoder.ReadWKTDurationBySeconds(jsonKey, vv, false)"
+			return code, false
+		case pbjson.TypeDuration_SecondString:
+			code = "decoder.ReadWKTDurationBySeconds(jsonKey, vv, true)"
+			return code, false
+		case pbjson.TypeDuration_Minute:
+			code = "decoder.ReadWKTDurationByMinutes(jsonKey, vv, false)"
+			return code, false
+		case pbjson.TypeDuration_MinuteString:
+			code = "decoder.ReadWKTDurationByMinutes(jsonKey, vv, true)"
+			return code, false
+		case pbjson.TypeDuration_Hour:
+			code = "decoder.ReadWKTDurationByHours(jsonKey, vv, false)"
+			return code, false
+		case pbjson.TypeDuration_HourString:
+			code = "decoder.ReadWKTDurationByHours(jsonKey, vv, true)"
 			return code, false
 		}
 	case pkwkt.Timestamp:
-		typeTimestamp := loadTypeSetTimestamp(options)
-		switch typeTimestamp.Format {
-		case pbjson.TypeTimestamp_Native:
+		typeTimestamp := loadTypeCodecTimestamp(typeCodec)
+		switch typeTimestamp.Codec {
+		case pbjson.TypeTimestamp_Object:
 		case pbjson.TypeTimestamp_TimeLayout:
 			layout := typeTimestamp.Layout.Golang
 			code = "decoder.ReadWKTTimestampByString(jsonKey, vv, " + strconv.Quote(layout) + ")"
 			return code, false
 		case pbjson.TypeTimestamp_UnixNano:
-			code = "decoder.ReadWKTTimestampByUnixNano(jsonKey, vv)"
+			code = "decoder.ReadWKTTimestampByUnixNano(jsonKey, vv, false)"
+			return code, false
+		case pbjson.TypeTimestamp_UnixNanoString:
+			code = "decoder.ReadWKTTimestampByUnixNano(jsonKey, vv, true)"
 			return code, false
 		case pbjson.TypeTimestamp_UnixMicro:
-			code = "decoder.ReadWKTTimestampByUnixMicro(jsonKey, vv)"
+			code = "decoder.ReadWKTTimestampByUnixMicro(jsonKey, vv, false)"
+			return code, false
+		case pbjson.TypeTimestamp_UnixMicroString:
+			code = "decoder.ReadWKTTimestampByUnixMicro(jsonKey, vv, true)"
 			return code, false
 		case pbjson.TypeTimestamp_UnixMilli:
-			code = "decoder.ReadWKTTimestampByUnixMilli(jsonKey, vv)"
+			code = "decoder.ReadWKTTimestampByUnixMilli(jsonKey, vv, false)"
+			return code, false
+		case pbjson.TypeTimestamp_UnixMilliString:
+			code = "decoder.ReadWKTTimestampByUnixMilli(jsonKey, vv, true)"
 			return code, false
 		case pbjson.TypeTimestamp_UnixSec:
-			code = "decoder.ReadWKTTimestampByUnixSec(jsonKey, vv)"
+			code = "decoder.ReadWKTTimestampByUnixSec(jsonKey, vv, false)"
+			return code, false
+		case pbjson.TypeTimestamp_UnixSecString:
+			code = "decoder.ReadWKTTimestampByUnixSec(jsonKey, vv, true)"
 			return code, false
 		}
 	default:

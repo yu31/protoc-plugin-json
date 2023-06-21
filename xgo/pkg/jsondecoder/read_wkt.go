@@ -12,7 +12,6 @@ import (
 func (dec *Decoder) ReadWKTAnyByProto(jsonKey string, vv *any.Any) (err error) {
 	assertInterface(vv)
 
-	_ = jsonKey
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -34,11 +33,12 @@ func (dec *Decoder) ReadWKTDurationByString(jsonKey string, vv *durationpb.Durat
 		return
 	}
 	var ss string
-	if ss, err = bytesToString(value); err != nil {
-		err = fmt.Errorf("json: cannot unmarshal %s into field %s of type string", string(value), jsonKey)
+	if ss, err = dec.convertToString(jsonKey, value); err != nil {
 		return
 	}
-	if ss == "" { // Ignore empty string.
+	if ss == "" { // Empty string represents empty Duration.
+		vv.Seconds = 0
+		vv.Nanos = 0
 		return err
 	}
 	var dd time.Duration
@@ -48,7 +48,7 @@ func (dec *Decoder) ReadWKTDurationByString(jsonKey string, vv *durationpb.Durat
 	durationToPB(dd, vv)
 	return nil
 }
-func (dec *Decoder) ReadWKTDurationByNanoseconds(jsonKey string, vv *durationpb.Duration) (err error) {
+func (dec *Decoder) ReadWKTDurationByNanoseconds(jsonKey string, vv *durationpb.Duration, unquote bool) (err error) {
 	assertInterface(vv)
 
 	var value []byte
@@ -56,14 +56,13 @@ func (dec *Decoder) ReadWKTDurationByNanoseconds(jsonKey string, vv *durationpb.
 		return
 	}
 	var ii int64
-	if ii, err = bytesToInt64(value); err != nil {
-		err = fmt.Errorf("json: cannot unmarshal %s into field %s of type int64", string(value), jsonKey)
-		return
+	if ii, err = dec.convertToInt64(jsonKey, value, unquote); err != nil {
+		return err
 	}
 	durationToPB(time.Duration(ii), vv)
 	return nil
 }
-func (dec *Decoder) ReadWKTDurationByMicroseconds(jsonKey string, vv *durationpb.Duration) (err error) {
+func (dec *Decoder) ReadWKTDurationByMicroseconds(jsonKey string, vv *durationpb.Duration, unquote bool) (err error) {
 	assertInterface(vv)
 
 	var value []byte
@@ -71,14 +70,13 @@ func (dec *Decoder) ReadWKTDurationByMicroseconds(jsonKey string, vv *durationpb
 		return
 	}
 	var ii int64
-	if ii, err = bytesToInt64(value); err != nil {
-		err = fmt.Errorf("json: cannot unmarshal %s into field %s of type int64", string(value), jsonKey)
-		return
+	if ii, err = dec.convertToInt64(jsonKey, value, unquote); err != nil {
+		return err
 	}
 	durationToPB(time.Duration(ii)*time.Microsecond, vv)
 	return nil
 }
-func (dec *Decoder) ReadWKTDurationByMilliseconds(jsonKey string, vv *durationpb.Duration) (err error) {
+func (dec *Decoder) ReadWKTDurationByMilliseconds(jsonKey string, vv *durationpb.Duration, unquote bool) (err error) {
 	assertInterface(vv)
 
 	var value []byte
@@ -86,15 +84,14 @@ func (dec *Decoder) ReadWKTDurationByMilliseconds(jsonKey string, vv *durationpb
 		return
 	}
 	var ii int64
-	if ii, err = bytesToInt64(value); err != nil {
-		err = fmt.Errorf("json: cannot unmarshal %s into field %s of type int64", string(value), jsonKey)
-		return
+	if ii, err = dec.convertToInt64(jsonKey, value, unquote); err != nil {
+		return err
 	}
 	durationToPB(time.Duration(ii)*time.Millisecond, vv)
 	return nil
 }
 
-func (dec *Decoder) ReadWKTDurationBySeconds(jsonKey string, vv *durationpb.Duration) (err error) {
+func (dec *Decoder) ReadWKTDurationBySeconds(jsonKey string, vv *durationpb.Duration, unquote bool) (err error) {
 	assertInterface(vv)
 
 	var value []byte
@@ -102,14 +99,13 @@ func (dec *Decoder) ReadWKTDurationBySeconds(jsonKey string, vv *durationpb.Dura
 		return
 	}
 	var ff float64
-	if ff, err = bytesToFloat64(value); err != nil {
-		err = fmt.Errorf("json: cannot unmarshal %s into field %s of type float64", string(value), jsonKey)
-		return
+	if ff, err = dec.convertToFloat64(jsonKey, value, unquote); err != nil {
+		return err
 	}
 	durationToPB(time.Duration(ff*float64(time.Second)), vv)
 	return nil
 }
-func (dec *Decoder) ReadWKTDurationByMinutes(jsonKey string, vv *durationpb.Duration) (err error) {
+func (dec *Decoder) ReadWKTDurationByMinutes(jsonKey string, vv *durationpb.Duration, unquote bool) (err error) {
 	assertInterface(vv)
 
 	var value []byte
@@ -117,14 +113,13 @@ func (dec *Decoder) ReadWKTDurationByMinutes(jsonKey string, vv *durationpb.Dura
 		return
 	}
 	var ff float64
-	if ff, err = bytesToFloat64(value); err != nil {
-		err = fmt.Errorf("json: cannot unmarshal %s into field %s of type float64", string(value), jsonKey)
-		return
+	if ff, err = dec.convertToFloat64(jsonKey, value, unquote); err != nil {
+		return err
 	}
 	durationToPB(time.Duration(ff*float64(time.Minute)), vv)
 	return nil
 }
-func (dec *Decoder) ReadWKTDurationByHours(jsonKey string, vv *durationpb.Duration) (err error) {
+func (dec *Decoder) ReadWKTDurationByHours(jsonKey string, vv *durationpb.Duration, unquote bool) (err error) {
 	assertInterface(vv)
 
 	var value []byte
@@ -132,9 +127,8 @@ func (dec *Decoder) ReadWKTDurationByHours(jsonKey string, vv *durationpb.Durati
 		return
 	}
 	var ff float64
-	if ff, err = bytesToFloat64(value); err != nil {
-		err = fmt.Errorf("json: cannot unmarshal %s into field %s of type float64", string(value), jsonKey)
-		return
+	if ff, err = dec.convertToFloat64(jsonKey, value, unquote); err != nil {
+		return err
 	}
 	durationToPB(time.Duration(ff*float64(time.Hour)), vv)
 	return nil
@@ -165,7 +159,7 @@ func (dec *Decoder) ReadWKTTimestampByString(jsonKey string, vv *timestamppb.Tim
 	vv.Nanos = int32(tt.Nanosecond())
 	return nil
 }
-func (dec *Decoder) ReadWKTTimestampByUnixNano(jsonKey string, vv *timestamppb.Timestamp) (err error) {
+func (dec *Decoder) ReadWKTTimestampByUnixNano(jsonKey string, vv *timestamppb.Timestamp, unquote bool) (err error) {
 	assertInterface(vv)
 
 	var value []byte
@@ -173,9 +167,8 @@ func (dec *Decoder) ReadWKTTimestampByUnixNano(jsonKey string, vv *timestamppb.T
 		return
 	}
 	var ii int64
-	if ii, err = bytesToInt64(value); err != nil {
-		err = fmt.Errorf("json: cannot unmarshal %s into field %s of type int64", string(value), jsonKey)
-		return
+	if ii, err = dec.convertToInt64(jsonKey, value, unquote); err != nil {
+		return err
 	}
 
 	tt := time.Unix(0, ii)
@@ -183,7 +176,7 @@ func (dec *Decoder) ReadWKTTimestampByUnixNano(jsonKey string, vv *timestamppb.T
 	vv.Nanos = int32(tt.Nanosecond())
 	return nil
 }
-func (dec *Decoder) ReadWKTTimestampByUnixMicro(jsonKey string, vv *timestamppb.Timestamp) (err error) {
+func (dec *Decoder) ReadWKTTimestampByUnixMicro(jsonKey string, vv *timestamppb.Timestamp, unquote bool) (err error) {
 	assertInterface(vv)
 
 	var value []byte
@@ -191,9 +184,8 @@ func (dec *Decoder) ReadWKTTimestampByUnixMicro(jsonKey string, vv *timestamppb.
 		return
 	}
 	var ii int64
-	if ii, err = bytesToInt64(value); err != nil {
-		err = fmt.Errorf("json: cannot unmarshal %s into field %s of type int64", string(value), jsonKey)
-		return
+	if ii, err = dec.convertToInt64(jsonKey, value, unquote); err != nil {
+		return err
 	}
 
 	tt := time.UnixMicro(ii)
@@ -201,7 +193,7 @@ func (dec *Decoder) ReadWKTTimestampByUnixMicro(jsonKey string, vv *timestamppb.
 	vv.Nanos = int32(tt.Nanosecond())
 	return nil
 }
-func (dec *Decoder) ReadWKTTimestampByUnixMilli(jsonKey string, vv *timestamppb.Timestamp) (err error) {
+func (dec *Decoder) ReadWKTTimestampByUnixMilli(jsonKey string, vv *timestamppb.Timestamp, unquote bool) (err error) {
 	assertInterface(vv)
 
 	var value []byte
@@ -209,9 +201,8 @@ func (dec *Decoder) ReadWKTTimestampByUnixMilli(jsonKey string, vv *timestamppb.
 		return
 	}
 	var ii int64
-	if ii, err = bytesToInt64(value); err != nil {
-		err = fmt.Errorf("json: cannot unmarshal %s into field %s of type int64", string(value), jsonKey)
-		return
+	if ii, err = dec.convertToInt64(jsonKey, value, unquote); err != nil {
+		return err
 	}
 
 	tt := time.UnixMilli(ii)
@@ -219,7 +210,7 @@ func (dec *Decoder) ReadWKTTimestampByUnixMilli(jsonKey string, vv *timestamppb.
 	vv.Nanos = int32(tt.Nanosecond())
 	return nil
 }
-func (dec *Decoder) ReadWKTTimestampByUnixSec(jsonKey string, vv *timestamppb.Timestamp) (err error) {
+func (dec *Decoder) ReadWKTTimestampByUnixSec(jsonKey string, vv *timestamppb.Timestamp, unquote bool) (err error) {
 	assertInterface(vv)
 
 	var value []byte
@@ -227,9 +218,8 @@ func (dec *Decoder) ReadWKTTimestampByUnixSec(jsonKey string, vv *timestamppb.Ti
 		return
 	}
 	var ii int64
-	if ii, err = bytesToInt64(value); err != nil {
-		err = fmt.Errorf("json: cannot unmarshal %s into field %s of type int64", string(value), jsonKey)
-		return
+	if ii, err = dec.convertToInt64(jsonKey, value, unquote); err != nil {
+		return err
 	}
 
 	tt := time.Unix(ii, 0)

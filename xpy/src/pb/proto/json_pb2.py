@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import descriptor_pb2 as google_dot_protobuf_dot_descriptor__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10proto/json.proto\x12\x04json\x1a google/protobuf/descriptor.proto\"A\n\x0eMessageOptions\x12\x0e\n\x06ignore\x18\x01 \x01(\x08\x12\x1f\n\x17\x64isallow_unknown_fields\x18\x02 \x01(\x08\"[\n\x0cOneofOptions\x12\x11\n\x04json\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\x0e\n\x06ignore\x18\x02 \x01(\x08\x12\x11\n\tomitempty\x18\x03 \x01(\x08\x12\x0c\n\x04hide\x18\x04 \x01(\x08\x42\x07\n\x05_json\"\xe8\x01\n\x0c\x46ieldOptions\x12\x11\n\x04json\x18\x01 \x01(\tH\x01\x88\x01\x01\x12\x0e\n\x06ignore\x18\x02 \x01(\x08\x12\x11\n\tomitempty\x18\x03 \x01(\x08\x12\x1e\n\x04\x65num\x18\x0b \x01(\x0b\x32\x0e.json.TypeEnumH\x00\x12\x1c\n\x03\x61ny\x18\x0c \x01(\x0b\x32\r.json.TypeAnyH\x00\x12&\n\x08\x64uration\x18\r \x01(\x0b\x32\x12.json.TypeDurationH\x00\x12(\n\ttimestamp\x18\x0e \x01(\x0b\x32\x13.json.TypeTimestampH\x00\x42\t\n\x07TypeSetB\x07\n\x05_json\"S\n\x08TypeEnum\x12%\n\x06\x66ormat\x18\x01 \x01(\x0e\x32\x15.json.TypeEnum.Format\" \n\x06\x46ormat\x12\n\n\x06Number\x10\x00\x12\n\n\x06String\x10\x01\"P\n\x07TypeAny\x12$\n\x06\x66ormat\x18\x01 \x01(\x0e\x32\x14.json.TypeAny.Format\"\x1f\n\x06\x46ormat\x12\n\n\x06Native\x10\x00\x12\t\n\x05Proto\x10\x01\"\xb5\x01\n\x0cTypeDuration\x12)\n\x06\x66ormat\x18\x01 \x01(\x0e\x32\x19.json.TypeDuration.Format\"z\n\x06\x46ormat\x12\n\n\x06Native\x10\x00\x12\n\n\x06String\x10\x01\x12\x0f\n\x0bNanoseconds\x10\x02\x12\x10\n\x0cMicroseconds\x10\x03\x12\x10\n\x0cMilliseconds\x10\x04\x12\x0b\n\x07Seconds\x10\x05\x12\x0b\n\x07Minutes\x10\x06\x12\t\n\x05Hours\x10\x07\"\x8c\x02\n\rTypeTimestamp\x12*\n\x06\x66ormat\x18\x01 \x01(\x0e\x32\x1a.json.TypeTimestamp.Format\x12*\n\x06layout\x18\x02 \x01(\x0b\x32\x1a.json.TypeTimestamp.Layout\x1a\x44\n\x06Layout\x12\x0e\n\x06golang\x18\x01 \x01(\t\x12\x0c\n\x04java\x18\x02 \x01(\t\x12\x0c\n\x04rust\x18\x03 \x01(\t\x12\x0e\n\x06python\x18\x04 \x01(\t\"]\n\x06\x46ormat\x12\n\n\x06Native\x10\x00\x12\x0e\n\nTimeLayout\x10\x01\x12\x0c\n\x08UnixNano\x10\x02\x12\r\n\tUnixMicro\x10\x03\x12\r\n\tUnixMilli\x10\x04\x12\x0b\n\x07UnixSec\x10\x05:H\n\x07message\x12\x1f.google.protobuf.MessageOptions\x18\xa0\xf4\x03 \x01(\x0b\x32\x14.json.MessageOptions:B\n\x05\x66ield\x12\x1d.google.protobuf.FieldOptions\x18\xa1\xf4\x03 \x01(\x0b\x32\x12.json.FieldOptions:B\n\x05oneof\x12\x1d.google.protobuf.OneofOptions\x18\xa2\xf4\x03 \x01(\x0b\x32\x12.json.OneofOptionsB]\n\x1fio.github.yu31.protoc.pb.pbjsonB\x06PBJSONP\x01Z0github.com/yu31/protoc-plugin-json/xgo/pb/pbjsonb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10proto/json.proto\x12\x04json\x1a google/protobuf/descriptor.proto\"A\n\x0eMessageOptions\x12\x0e\n\x06ignore\x18\x01 \x01(\x08\x12\x1f\n\x17\x64isallow_unknown_fields\x18\x02 \x01(\x08\"[\n\x0cOneofOptions\x12\x11\n\x04json\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\x0e\n\x06ignore\x18\x02 \x01(\x08\x12\x11\n\tomitempty\x18\x03 \x01(\x08\x12\x0c\n\x04hide\x18\x04 \x01(\x08\x42\x07\n\x05_json\"u\n\x0c\x46ieldOptions\x12\x11\n\x04json\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\x0e\n\x06ignore\x18\x02 \x01(\x08\x12\x11\n\tomitempty\x18\x03 \x01(\x08\x12&\n\treference\x18\x04 \x01(\x0b\x32\x13.json.TypeReferenceB\x07\n\x05_json\"\x88\x01\n\rTypeReference\x12#\n\x05plain\x18\x01 \x01(\x0b\x32\x12.json.PlainOptionsH\x00\x12)\n\x08repeated\x18\x02 \x01(\x0b\x32\x15.json.RepeatedOptionsH\x00\x12\x1f\n\x03map\x18\x03 \x01(\x0b\x32\x10.json.MapOptionsH\x00\x42\x06\n\x04Kind\".\n\x0cPlainOptions\x12\x1e\n\x05value\x18\x01 \x01(\x0b\x32\x0f.json.TypeCodec\"0\n\x0fRepeatedOptions\x12\x1d\n\x04\x65lem\x18\x01 \x01(\x0b\x32\x0f.json.TypeCodec\"J\n\nMapOptions\x12\x1c\n\x03key\x18\x01 \x01(\x0b\x32\x0f.json.TypeCodec\x12\x1e\n\x05value\x18\x02 \x01(\x0b\x32\x0f.json.TypeCodec\"\xf9\x04\n\tTypeCodec\x12 \n\x05int32\x18\x0b \x01(\x0b\x32\x0f.json.TypeInt32H\x00\x12 \n\x05int64\x18\x0c \x01(\x0b\x32\x0f.json.TypeInt64H\x00\x12\"\n\x06sint32\x18\r \x01(\x0b\x32\x10.json.TypeSInt32H\x00\x12\"\n\x06sint64\x18\x0e \x01(\x0b\x32\x10.json.TypeSInt64H\x00\x12&\n\x08sfixed32\x18\x0f \x01(\x0b\x32\x12.json.TypeSFixed32H\x00\x12&\n\x08sfixed64\x18\x10 \x01(\x0b\x32\x12.json.TypeSFixed64H\x00\x12\"\n\x06uint32\x18\x11 \x01(\x0b\x32\x10.json.TypeUint32H\x00\x12\"\n\x06uint64\x18\x12 \x01(\x0b\x32\x10.json.TypeUint64H\x00\x12$\n\x07\x66ixed32\x18\x13 \x01(\x0b\x32\x11.json.TypeFixed32H\x00\x12$\n\x07\x66ixed64\x18\x14 \x01(\x0b\x32\x11.json.TypeFixed64H\x00\x12 \n\x05\x66loat\x18\x15 \x01(\x0b\x32\x0f.json.TypeFloatH\x00\x12\"\n\x06\x64ouble\x18\x16 \x01(\x0b\x32\x10.json.TypeDoubleH\x00\x12\x1e\n\x04\x62ool\x18\x17 \x01(\x0b\x32\x0e.json.TypeBoolH\x00\x12\x1e\n\x04\x65num\x18\x18 \x01(\x0b\x32\x0e.json.TypeEnumH\x00\x12\x1c\n\x03\x61ny\x18\x19 \x01(\x0b\x32\r.json.TypeAnyH\x00\x12&\n\x08\x64uration\x18\x1a \x01(\x0b\x32\x12.json.TypeDurationH\x00\x12(\n\ttimestamp\x18\x1b \x01(\x0b\x32\x13.json.TypeTimestampH\x00\x42\x06\n\x04Kind\"]\n\tTypeInt32\x12$\n\x05\x63odec\x18\x01 \x01(\x0e\x32\x15.json.TypeInt32.Codec\"*\n\x05\x43odec\x12\t\n\x05Unset\x10\x00\x12\n\n\x06Number\x10\x01\x12\n\n\x06String\x10\x02\"]\n\tTypeInt64\x12$\n\x05\x63odec\x18\x01 \x01(\x0e\x32\x15.json.TypeInt64.Codec\"*\n\x05\x43odec\x12\t\n\x05Unset\x10\x00\x12\n\n\x06Number\x10\x01\x12\n\n\x06String\x10\x02\"_\n\nTypeSInt32\x12%\n\x05\x63odec\x18\x01 \x01(\x0e\x32\x16.json.TypeSInt32.Codec\"*\n\x05\x43odec\x12\t\n\x05Unset\x10\x00\x12\n\n\x06Number\x10\x01\x12\n\n\x06String\x10\x02\"_\n\nTypeSInt64\x12%\n\x05\x63odec\x18\x01 \x01(\x0e\x32\x16.json.TypeSInt64.Codec\"*\n\x05\x43odec\x12\t\n\x05Unset\x10\x00\x12\n\n\x06Number\x10\x01\x12\n\n\x06String\x10\x02\"c\n\x0cTypeSFixed32\x12\'\n\x05\x63odec\x18\x01 \x01(\x0e\x32\x18.json.TypeSFixed32.Codec\"*\n\x05\x43odec\x12\t\n\x05Unset\x10\x00\x12\n\n\x06Number\x10\x01\x12\n\n\x06String\x10\x02\"c\n\x0cTypeSFixed64\x12\'\n\x05\x63odec\x18\x01 \x01(\x0e\x32\x18.json.TypeSFixed64.Codec\"*\n\x05\x43odec\x12\t\n\x05Unset\x10\x00\x12\n\n\x06Number\x10\x01\x12\n\n\x06String\x10\x02\"_\n\nTypeUint32\x12%\n\x05\x63odec\x18\x01 \x01(\x0e\x32\x16.json.TypeUint32.Codec\"*\n\x05\x43odec\x12\t\n\x05Unset\x10\x00\x12\n\n\x06Number\x10\x01\x12\n\n\x06String\x10\x02\"_\n\nTypeUint64\x12%\n\x05\x63odec\x18\x01 \x01(\x0e\x32\x16.json.TypeUint64.Codec\"*\n\x05\x43odec\x12\t\n\x05Unset\x10\x00\x12\n\n\x06Number\x10\x01\x12\n\n\x06String\x10\x02\"a\n\x0bTypeFixed32\x12&\n\x05\x63odec\x18\x01 \x01(\x0e\x32\x17.json.TypeFixed32.Codec\"*\n\x05\x43odec\x12\t\n\x05Unset\x10\x00\x12\n\n\x06Number\x10\x01\x12\n\n\x06String\x10\x02\"a\n\x0bTypeFixed64\x12&\n\x05\x63odec\x18\x01 \x01(\x0e\x32\x17.json.TypeFixed64.Codec\"*\n\x05\x43odec\x12\t\n\x05Unset\x10\x00\x12\n\n\x06Number\x10\x01\x12\n\n\x06String\x10\x02\"]\n\tTypeFloat\x12$\n\x05\x63odec\x18\x01 \x01(\x0e\x32\x15.json.TypeFloat.Codec\"*\n\x05\x43odec\x12\t\n\x05Unset\x10\x00\x12\n\n\x06Number\x10\x01\x12\n\n\x06String\x10\x02\"_\n\nTypeDouble\x12%\n\x05\x63odec\x18\x01 \x01(\x0e\x32\x16.json.TypeDouble.Codec\"*\n\x05\x43odec\x12\t\n\x05Unset\x10\x00\x12\n\n\x06Number\x10\x01\x12\n\n\x06String\x10\x02\"Y\n\x08TypeBool\x12#\n\x05\x63odec\x18\x01 \x01(\x0e\x32\x14.json.TypeBool.Codec\"(\n\x05\x43odec\x12\t\n\x05Unset\x10\x00\x12\x08\n\x04\x42ool\x10\x01\x12\n\n\x06String\x10\x02\"m\n\x08TypeEnum\x12#\n\x05\x63odec\x18\x01 \x01(\x0e\x32\x14.json.TypeEnum.Codec\"<\n\x05\x43odec\x12\t\n\x05Unset\x10\x00\x12\n\n\x06Number\x10\x01\x12\x10\n\x0cNumberString\x10\x02\x12\n\n\x06String\x10\x03\"X\n\x07TypeAny\x12\"\n\x05\x63odec\x18\x01 \x01(\x0e\x32\x13.json.TypeAny.Codec\")\n\x05\x43odec\x12\t\n\x05Unset\x10\x00\x12\n\n\x06Object\x10\x01\x12\t\n\x05Proto\x10\x02\"\xb0\x02\n\x0cTypeDuration\x12\'\n\x05\x63odec\x18\x01 \x01(\x0e\x32\x18.json.TypeDuration.Codec\"\xf6\x01\n\x05\x43odec\x12\t\n\x05Unset\x10\x00\x12\n\n\x06Object\x10\x01\x12\n\n\x06String\x10\x02\x12\x0e\n\nNanosecond\x10\x03\x12\x14\n\x10NanosecondString\x10\x04\x12\x0f\n\x0bMicrosecond\x10\x05\x12\x15\n\x11MicrosecondString\x10\x06\x12\x0f\n\x0bMillisecond\x10\x07\x12\x15\n\x11MillisecondString\x10\x08\x12\n\n\x06Second\x10\t\x12\x10\n\x0cSecondString\x10\n\x12\n\n\x06Minute\x10\x0b\x12\x10\n\x0cMinuteString\x10\x0c\x12\x08\n\x04Hour\x10\r\x12\x0e\n\nHourString\x10\x0e\"\xe6\x02\n\rTypeTimestamp\x12(\n\x05\x63odec\x18\x01 \x01(\x0e\x32\x19.json.TypeTimestamp.Codec\x12*\n\x06layout\x18\x02 \x01(\x0b\x32\x1a.json.TypeTimestamp.Layout\x1a\x44\n\x06Layout\x12\x0e\n\x06golang\x18\x01 \x01(\t\x12\x0c\n\x04java\x18\x02 \x01(\t\x12\x0c\n\x04rust\x18\x03 \x01(\t\x12\x0e\n\x06python\x18\x04 \x01(\t\"\xb8\x01\n\x05\x43odec\x12\t\n\x05Unset\x10\x00\x12\n\n\x06Object\x10\x01\x12\x0e\n\nTimeLayout\x10\x02\x12\x0c\n\x08UnixNano\x10\x03\x12\x12\n\x0eUnixNanoString\x10\x04\x12\r\n\tUnixMicro\x10\x05\x12\x13\n\x0fUnixMicroString\x10\x06\x12\r\n\tUnixMilli\x10\x07\x12\x13\n\x0fUnixMilliString\x10\x08\x12\x0b\n\x07UnixSec\x10\t\x12\x11\n\rUnixSecString\x10\n:H\n\x07message\x12\x1f.google.protobuf.MessageOptions\x18\xa0\xf4\x03 \x01(\x0b\x32\x14.json.MessageOptions:B\n\x05\x66ield\x12\x1d.google.protobuf.FieldOptions\x18\xa1\xf4\x03 \x01(\x0b\x32\x12.json.FieldOptions:B\n\x05oneof\x12\x1d.google.protobuf.OneofOptions\x18\xa2\xf4\x03 \x01(\x0b\x32\x12.json.OneofOptionsB]\n\x1fio.github.yu31.protoc.pb.pbjsonB\x06PBJSONP\x01Z0github.com/yu31/protoc-plugin-json/xgo/pb/pbjsonb\x06proto3')
 
 
 MESSAGE_FIELD_NUMBER = 64032
@@ -28,15 +28,46 @@ oneof = DESCRIPTOR.extensions_by_name['oneof']
 _MESSAGEOPTIONS = DESCRIPTOR.message_types_by_name['MessageOptions']
 _ONEOFOPTIONS = DESCRIPTOR.message_types_by_name['OneofOptions']
 _FIELDOPTIONS = DESCRIPTOR.message_types_by_name['FieldOptions']
+_TYPEREFERENCE = DESCRIPTOR.message_types_by_name['TypeReference']
+_PLAINOPTIONS = DESCRIPTOR.message_types_by_name['PlainOptions']
+_REPEATEDOPTIONS = DESCRIPTOR.message_types_by_name['RepeatedOptions']
+_MAPOPTIONS = DESCRIPTOR.message_types_by_name['MapOptions']
+_TYPECODEC = DESCRIPTOR.message_types_by_name['TypeCodec']
+_TYPEINT32 = DESCRIPTOR.message_types_by_name['TypeInt32']
+_TYPEINT64 = DESCRIPTOR.message_types_by_name['TypeInt64']
+_TYPESINT32 = DESCRIPTOR.message_types_by_name['TypeSInt32']
+_TYPESINT64 = DESCRIPTOR.message_types_by_name['TypeSInt64']
+_TYPESFIXED32 = DESCRIPTOR.message_types_by_name['TypeSFixed32']
+_TYPESFIXED64 = DESCRIPTOR.message_types_by_name['TypeSFixed64']
+_TYPEUINT32 = DESCRIPTOR.message_types_by_name['TypeUint32']
+_TYPEUINT64 = DESCRIPTOR.message_types_by_name['TypeUint64']
+_TYPEFIXED32 = DESCRIPTOR.message_types_by_name['TypeFixed32']
+_TYPEFIXED64 = DESCRIPTOR.message_types_by_name['TypeFixed64']
+_TYPEFLOAT = DESCRIPTOR.message_types_by_name['TypeFloat']
+_TYPEDOUBLE = DESCRIPTOR.message_types_by_name['TypeDouble']
+_TYPEBOOL = DESCRIPTOR.message_types_by_name['TypeBool']
 _TYPEENUM = DESCRIPTOR.message_types_by_name['TypeEnum']
 _TYPEANY = DESCRIPTOR.message_types_by_name['TypeAny']
 _TYPEDURATION = DESCRIPTOR.message_types_by_name['TypeDuration']
 _TYPETIMESTAMP = DESCRIPTOR.message_types_by_name['TypeTimestamp']
 _TYPETIMESTAMP_LAYOUT = _TYPETIMESTAMP.nested_types_by_name['Layout']
-_TYPEENUM_FORMAT = _TYPEENUM.enum_types_by_name['Format']
-_TYPEANY_FORMAT = _TYPEANY.enum_types_by_name['Format']
-_TYPEDURATION_FORMAT = _TYPEDURATION.enum_types_by_name['Format']
-_TYPETIMESTAMP_FORMAT = _TYPETIMESTAMP.enum_types_by_name['Format']
+_TYPEINT32_CODEC = _TYPEINT32.enum_types_by_name['Codec']
+_TYPEINT64_CODEC = _TYPEINT64.enum_types_by_name['Codec']
+_TYPESINT32_CODEC = _TYPESINT32.enum_types_by_name['Codec']
+_TYPESINT64_CODEC = _TYPESINT64.enum_types_by_name['Codec']
+_TYPESFIXED32_CODEC = _TYPESFIXED32.enum_types_by_name['Codec']
+_TYPESFIXED64_CODEC = _TYPESFIXED64.enum_types_by_name['Codec']
+_TYPEUINT32_CODEC = _TYPEUINT32.enum_types_by_name['Codec']
+_TYPEUINT64_CODEC = _TYPEUINT64.enum_types_by_name['Codec']
+_TYPEFIXED32_CODEC = _TYPEFIXED32.enum_types_by_name['Codec']
+_TYPEFIXED64_CODEC = _TYPEFIXED64.enum_types_by_name['Codec']
+_TYPEFLOAT_CODEC = _TYPEFLOAT.enum_types_by_name['Codec']
+_TYPEDOUBLE_CODEC = _TYPEDOUBLE.enum_types_by_name['Codec']
+_TYPEBOOL_CODEC = _TYPEBOOL.enum_types_by_name['Codec']
+_TYPEENUM_CODEC = _TYPEENUM.enum_types_by_name['Codec']
+_TYPEANY_CODEC = _TYPEANY.enum_types_by_name['Codec']
+_TYPEDURATION_CODEC = _TYPEDURATION.enum_types_by_name['Codec']
+_TYPETIMESTAMP_CODEC = _TYPETIMESTAMP.enum_types_by_name['Codec']
 MessageOptions = _reflection.GeneratedProtocolMessageType('MessageOptions', (_message.Message,), {
   'DESCRIPTOR' : _MESSAGEOPTIONS,
   '__module__' : 'proto.json_pb2'
@@ -57,6 +88,132 @@ FieldOptions = _reflection.GeneratedProtocolMessageType('FieldOptions', (_messag
   # @@protoc_insertion_point(class_scope:json.FieldOptions)
   })
 _sym_db.RegisterMessage(FieldOptions)
+
+TypeReference = _reflection.GeneratedProtocolMessageType('TypeReference', (_message.Message,), {
+  'DESCRIPTOR' : _TYPEREFERENCE,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.TypeReference)
+  })
+_sym_db.RegisterMessage(TypeReference)
+
+PlainOptions = _reflection.GeneratedProtocolMessageType('PlainOptions', (_message.Message,), {
+  'DESCRIPTOR' : _PLAINOPTIONS,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.PlainOptions)
+  })
+_sym_db.RegisterMessage(PlainOptions)
+
+RepeatedOptions = _reflection.GeneratedProtocolMessageType('RepeatedOptions', (_message.Message,), {
+  'DESCRIPTOR' : _REPEATEDOPTIONS,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.RepeatedOptions)
+  })
+_sym_db.RegisterMessage(RepeatedOptions)
+
+MapOptions = _reflection.GeneratedProtocolMessageType('MapOptions', (_message.Message,), {
+  'DESCRIPTOR' : _MAPOPTIONS,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.MapOptions)
+  })
+_sym_db.RegisterMessage(MapOptions)
+
+TypeCodec = _reflection.GeneratedProtocolMessageType('TypeCodec', (_message.Message,), {
+  'DESCRIPTOR' : _TYPECODEC,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.TypeCodec)
+  })
+_sym_db.RegisterMessage(TypeCodec)
+
+TypeInt32 = _reflection.GeneratedProtocolMessageType('TypeInt32', (_message.Message,), {
+  'DESCRIPTOR' : _TYPEINT32,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.TypeInt32)
+  })
+_sym_db.RegisterMessage(TypeInt32)
+
+TypeInt64 = _reflection.GeneratedProtocolMessageType('TypeInt64', (_message.Message,), {
+  'DESCRIPTOR' : _TYPEINT64,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.TypeInt64)
+  })
+_sym_db.RegisterMessage(TypeInt64)
+
+TypeSInt32 = _reflection.GeneratedProtocolMessageType('TypeSInt32', (_message.Message,), {
+  'DESCRIPTOR' : _TYPESINT32,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.TypeSInt32)
+  })
+_sym_db.RegisterMessage(TypeSInt32)
+
+TypeSInt64 = _reflection.GeneratedProtocolMessageType('TypeSInt64', (_message.Message,), {
+  'DESCRIPTOR' : _TYPESINT64,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.TypeSInt64)
+  })
+_sym_db.RegisterMessage(TypeSInt64)
+
+TypeSFixed32 = _reflection.GeneratedProtocolMessageType('TypeSFixed32', (_message.Message,), {
+  'DESCRIPTOR' : _TYPESFIXED32,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.TypeSFixed32)
+  })
+_sym_db.RegisterMessage(TypeSFixed32)
+
+TypeSFixed64 = _reflection.GeneratedProtocolMessageType('TypeSFixed64', (_message.Message,), {
+  'DESCRIPTOR' : _TYPESFIXED64,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.TypeSFixed64)
+  })
+_sym_db.RegisterMessage(TypeSFixed64)
+
+TypeUint32 = _reflection.GeneratedProtocolMessageType('TypeUint32', (_message.Message,), {
+  'DESCRIPTOR' : _TYPEUINT32,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.TypeUint32)
+  })
+_sym_db.RegisterMessage(TypeUint32)
+
+TypeUint64 = _reflection.GeneratedProtocolMessageType('TypeUint64', (_message.Message,), {
+  'DESCRIPTOR' : _TYPEUINT64,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.TypeUint64)
+  })
+_sym_db.RegisterMessage(TypeUint64)
+
+TypeFixed32 = _reflection.GeneratedProtocolMessageType('TypeFixed32', (_message.Message,), {
+  'DESCRIPTOR' : _TYPEFIXED32,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.TypeFixed32)
+  })
+_sym_db.RegisterMessage(TypeFixed32)
+
+TypeFixed64 = _reflection.GeneratedProtocolMessageType('TypeFixed64', (_message.Message,), {
+  'DESCRIPTOR' : _TYPEFIXED64,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.TypeFixed64)
+  })
+_sym_db.RegisterMessage(TypeFixed64)
+
+TypeFloat = _reflection.GeneratedProtocolMessageType('TypeFloat', (_message.Message,), {
+  'DESCRIPTOR' : _TYPEFLOAT,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.TypeFloat)
+  })
+_sym_db.RegisterMessage(TypeFloat)
+
+TypeDouble = _reflection.GeneratedProtocolMessageType('TypeDouble', (_message.Message,), {
+  'DESCRIPTOR' : _TYPEDOUBLE,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.TypeDouble)
+  })
+_sym_db.RegisterMessage(TypeDouble)
+
+TypeBool = _reflection.GeneratedProtocolMessageType('TypeBool', (_message.Message,), {
+  'DESCRIPTOR' : _TYPEBOOL,
+  '__module__' : 'proto.json_pb2'
+  # @@protoc_insertion_point(class_scope:json.TypeBool)
+  })
+_sym_db.RegisterMessage(TypeBool)
 
 TypeEnum = _reflection.GeneratedProtocolMessageType('TypeEnum', (_message.Message,), {
   'DESCRIPTOR' : _TYPEENUM,
@@ -105,24 +262,86 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _MESSAGEOPTIONS._serialized_end=125
   _ONEOFOPTIONS._serialized_start=127
   _ONEOFOPTIONS._serialized_end=218
-  _FIELDOPTIONS._serialized_start=221
-  _FIELDOPTIONS._serialized_end=453
-  _TYPEENUM._serialized_start=455
-  _TYPEENUM._serialized_end=538
-  _TYPEENUM_FORMAT._serialized_start=506
-  _TYPEENUM_FORMAT._serialized_end=538
-  _TYPEANY._serialized_start=540
-  _TYPEANY._serialized_end=620
-  _TYPEANY_FORMAT._serialized_start=589
-  _TYPEANY_FORMAT._serialized_end=620
-  _TYPEDURATION._serialized_start=623
-  _TYPEDURATION._serialized_end=804
-  _TYPEDURATION_FORMAT._serialized_start=682
-  _TYPEDURATION_FORMAT._serialized_end=804
-  _TYPETIMESTAMP._serialized_start=807
-  _TYPETIMESTAMP._serialized_end=1075
-  _TYPETIMESTAMP_LAYOUT._serialized_start=912
-  _TYPETIMESTAMP_LAYOUT._serialized_end=980
-  _TYPETIMESTAMP_FORMAT._serialized_start=982
-  _TYPETIMESTAMP_FORMAT._serialized_end=1075
+  _FIELDOPTIONS._serialized_start=220
+  _FIELDOPTIONS._serialized_end=337
+  _TYPEREFERENCE._serialized_start=340
+  _TYPEREFERENCE._serialized_end=476
+  _PLAINOPTIONS._serialized_start=478
+  _PLAINOPTIONS._serialized_end=524
+  _REPEATEDOPTIONS._serialized_start=526
+  _REPEATEDOPTIONS._serialized_end=574
+  _MAPOPTIONS._serialized_start=576
+  _MAPOPTIONS._serialized_end=650
+  _TYPECODEC._serialized_start=653
+  _TYPECODEC._serialized_end=1286
+  _TYPEINT32._serialized_start=1288
+  _TYPEINT32._serialized_end=1381
+  _TYPEINT32_CODEC._serialized_start=1339
+  _TYPEINT32_CODEC._serialized_end=1381
+  _TYPEINT64._serialized_start=1383
+  _TYPEINT64._serialized_end=1476
+  _TYPEINT64_CODEC._serialized_start=1339
+  _TYPEINT64_CODEC._serialized_end=1381
+  _TYPESINT32._serialized_start=1478
+  _TYPESINT32._serialized_end=1573
+  _TYPESINT32_CODEC._serialized_start=1339
+  _TYPESINT32_CODEC._serialized_end=1381
+  _TYPESINT64._serialized_start=1575
+  _TYPESINT64._serialized_end=1670
+  _TYPESINT64_CODEC._serialized_start=1339
+  _TYPESINT64_CODEC._serialized_end=1381
+  _TYPESFIXED32._serialized_start=1672
+  _TYPESFIXED32._serialized_end=1771
+  _TYPESFIXED32_CODEC._serialized_start=1339
+  _TYPESFIXED32_CODEC._serialized_end=1381
+  _TYPESFIXED64._serialized_start=1773
+  _TYPESFIXED64._serialized_end=1872
+  _TYPESFIXED64_CODEC._serialized_start=1339
+  _TYPESFIXED64_CODEC._serialized_end=1381
+  _TYPEUINT32._serialized_start=1874
+  _TYPEUINT32._serialized_end=1969
+  _TYPEUINT32_CODEC._serialized_start=1339
+  _TYPEUINT32_CODEC._serialized_end=1381
+  _TYPEUINT64._serialized_start=1971
+  _TYPEUINT64._serialized_end=2066
+  _TYPEUINT64_CODEC._serialized_start=1339
+  _TYPEUINT64_CODEC._serialized_end=1381
+  _TYPEFIXED32._serialized_start=2068
+  _TYPEFIXED32._serialized_end=2165
+  _TYPEFIXED32_CODEC._serialized_start=1339
+  _TYPEFIXED32_CODEC._serialized_end=1381
+  _TYPEFIXED64._serialized_start=2167
+  _TYPEFIXED64._serialized_end=2264
+  _TYPEFIXED64_CODEC._serialized_start=1339
+  _TYPEFIXED64_CODEC._serialized_end=1381
+  _TYPEFLOAT._serialized_start=2266
+  _TYPEFLOAT._serialized_end=2359
+  _TYPEFLOAT_CODEC._serialized_start=1339
+  _TYPEFLOAT_CODEC._serialized_end=1381
+  _TYPEDOUBLE._serialized_start=2361
+  _TYPEDOUBLE._serialized_end=2456
+  _TYPEDOUBLE_CODEC._serialized_start=1339
+  _TYPEDOUBLE_CODEC._serialized_end=1381
+  _TYPEBOOL._serialized_start=2458
+  _TYPEBOOL._serialized_end=2547
+  _TYPEBOOL_CODEC._serialized_start=2507
+  _TYPEBOOL_CODEC._serialized_end=2547
+  _TYPEENUM._serialized_start=2549
+  _TYPEENUM._serialized_end=2658
+  _TYPEENUM_CODEC._serialized_start=2598
+  _TYPEENUM_CODEC._serialized_end=2658
+  _TYPEANY._serialized_start=2660
+  _TYPEANY._serialized_end=2748
+  _TYPEANY_CODEC._serialized_start=2707
+  _TYPEANY_CODEC._serialized_end=2748
+  _TYPEDURATION._serialized_start=2751
+  _TYPEDURATION._serialized_end=3055
+  _TYPEDURATION_CODEC._serialized_start=2809
+  _TYPEDURATION_CODEC._serialized_end=3055
+  _TYPETIMESTAMP._serialized_start=3058
+  _TYPETIMESTAMP._serialized_end=3416
+  _TYPETIMESTAMP_LAYOUT._serialized_start=3161
+  _TYPETIMESTAMP_LAYOUT._serialized_end=3229
+  _TYPETIMESTAMP_CODEC._serialized_start=3232
+  _TYPETIMESTAMP_CODEC._serialized_end=3416
 # @@protoc_insertion_point(module_scope)

@@ -4,6 +4,10 @@
 package io.github.yu31.protoc.pb.pbjson;
 
 /**
+ * <pre>
+ * TypeInt32 declares the codec for field type enum.
+ * </pre>
+ *
  * Protobuf type {@code json.TypeEnum}
  */
 public final class TypeEnum extends
@@ -16,7 +20,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private TypeEnum() {
-    format_ = 0;
+    codec_ = 0;
   }
 
   @java.lang.Override
@@ -52,7 +56,7 @@ private static final long serialVersionUID = 0L;
           case 8: {
             int rawValue = input.readEnum();
 
-            format_ = rawValue;
+            codec_ = rawValue;
             break;
           }
           default: {
@@ -88,45 +92,77 @@ private static final long serialVersionUID = 0L;
   }
 
   /**
-   * Protobuf enum {@code json.TypeEnum.Format}
+   * Protobuf enum {@code json.TypeEnum.Codec}
    */
-  public enum Format
+  public enum Codec
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <pre>
-     * Number represents format the field type of Enum to the number. And it is the default Format.
+     * Unset represents the default value will be applied when encoding and decoding JSON.
      * </pre>
      *
-     * <code>Number = 0;</code>
+     * <code>Unset = 0;</code>
      */
-    Number(0),
+    Unset(0),
     /**
      * <pre>
-     * String represents format the field type of Enum to the string.
+     * Number represents use the enum number in encoding and decoding JSON.
      * </pre>
      *
-     * <code>String = 1;</code>
+     * <code>Number = 1;</code>
      */
-    String(1),
+    Number(1),
+    /**
+     * <pre>
+     * NumberString represents use the enum number and convert to string when encoding and decoding JSON.
+     * </pre>
+     *
+     * <code>NumberString = 2;</code>
+     */
+    NumberString(2),
+    /**
+     * <pre>
+     * String represents use the enum string in encoding and decoding JSON.
+     * </pre>
+     *
+     * <code>String = 3;</code>
+     */
+    String(3),
     UNRECOGNIZED(-1),
     ;
 
     /**
      * <pre>
-     * Number represents format the field type of Enum to the number. And it is the default Format.
+     * Unset represents the default value will be applied when encoding and decoding JSON.
      * </pre>
      *
-     * <code>Number = 0;</code>
+     * <code>Unset = 0;</code>
      */
-    public static final int Number_VALUE = 0;
+    public static final int Unset_VALUE = 0;
     /**
      * <pre>
-     * String represents format the field type of Enum to the string.
+     * Number represents use the enum number in encoding and decoding JSON.
      * </pre>
      *
-     * <code>String = 1;</code>
+     * <code>Number = 1;</code>
      */
-    public static final int String_VALUE = 1;
+    public static final int Number_VALUE = 1;
+    /**
+     * <pre>
+     * NumberString represents use the enum number and convert to string when encoding and decoding JSON.
+     * </pre>
+     *
+     * <code>NumberString = 2;</code>
+     */
+    public static final int NumberString_VALUE = 2;
+    /**
+     * <pre>
+     * String represents use the enum string in encoding and decoding JSON.
+     * </pre>
+     *
+     * <code>String = 3;</code>
+     */
+    public static final int String_VALUE = 3;
 
 
     public final int getNumber() {
@@ -143,7 +179,7 @@ private static final long serialVersionUID = 0L;
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @java.lang.Deprecated
-    public static Format valueOf(int value) {
+    public static Codec valueOf(int value) {
       return forNumber(value);
     }
 
@@ -151,23 +187,25 @@ private static final long serialVersionUID = 0L;
      * @param value The numeric wire value of the corresponding enum entry.
      * @return The enum associated with the given numeric wire value.
      */
-    public static Format forNumber(int value) {
+    public static Codec forNumber(int value) {
       switch (value) {
-        case 0: return Number;
-        case 1: return String;
+        case 0: return Unset;
+        case 1: return Number;
+        case 2: return NumberString;
+        case 3: return String;
         default: return null;
       }
     }
 
-    public static com.google.protobuf.Internal.EnumLiteMap<Format>
+    public static com.google.protobuf.Internal.EnumLiteMap<Codec>
         internalGetValueMap() {
       return internalValueMap;
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
-        Format> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<Format>() {
-            public Format findValueByNumber(int number) {
-              return Format.forNumber(number);
+        Codec> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<Codec>() {
+            public Codec findValueByNumber(int number) {
+              return Codec.forNumber(number);
             }
           };
 
@@ -188,9 +226,9 @@ private static final long serialVersionUID = 0L;
       return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDescriptor().getEnumTypes().get(0);
     }
 
-    private static final Format[] VALUES = values();
+    private static final Codec[] VALUES = values();
 
-    public static Format valueOf(
+    public static Codec valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
@@ -204,30 +242,40 @@ private static final long serialVersionUID = 0L;
 
     private final int value;
 
-    private Format(int value) {
+    private Codec(int value) {
       this.value = value;
     }
 
-    // @@protoc_insertion_point(enum_scope:json.TypeEnum.Format)
+    // @@protoc_insertion_point(enum_scope:json.TypeEnum.Codec)
   }
 
-  public static final int FORMAT_FIELD_NUMBER = 1;
-  private int format_;
+  public static final int CODEC_FIELD_NUMBER = 1;
+  private int codec_;
   /**
-   * <code>.json.TypeEnum.Format format = 1;</code>
-   * @return The enum numeric value on the wire for format.
+   * <pre>
+   * Codec specifies encoding format for the field type of Enum.
+   * The default is `Number` in plain value, repeated elements and map value.
+   * </pre>
+   *
+   * <code>.json.TypeEnum.Codec codec = 1;</code>
+   * @return The enum numeric value on the wire for codec.
    */
-  @java.lang.Override public int getFormatValue() {
-    return format_;
+  @java.lang.Override public int getCodecValue() {
+    return codec_;
   }
   /**
-   * <code>.json.TypeEnum.Format format = 1;</code>
-   * @return The format.
+   * <pre>
+   * Codec specifies encoding format for the field type of Enum.
+   * The default is `Number` in plain value, repeated elements and map value.
+   * </pre>
+   *
+   * <code>.json.TypeEnum.Codec codec = 1;</code>
+   * @return The codec.
    */
-  @java.lang.Override public io.github.yu31.protoc.pb.pbjson.TypeEnum.Format getFormat() {
+  @java.lang.Override public io.github.yu31.protoc.pb.pbjson.TypeEnum.Codec getCodec() {
     @SuppressWarnings("deprecation")
-    io.github.yu31.protoc.pb.pbjson.TypeEnum.Format result = io.github.yu31.protoc.pb.pbjson.TypeEnum.Format.valueOf(format_);
-    return result == null ? io.github.yu31.protoc.pb.pbjson.TypeEnum.Format.UNRECOGNIZED : result;
+    io.github.yu31.protoc.pb.pbjson.TypeEnum.Codec result = io.github.yu31.protoc.pb.pbjson.TypeEnum.Codec.valueOf(codec_);
+    return result == null ? io.github.yu31.protoc.pb.pbjson.TypeEnum.Codec.UNRECOGNIZED : result;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -244,8 +292,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (format_ != io.github.yu31.protoc.pb.pbjson.TypeEnum.Format.Number.getNumber()) {
-      output.writeEnum(1, format_);
+    if (codec_ != io.github.yu31.protoc.pb.pbjson.TypeEnum.Codec.Unset.getNumber()) {
+      output.writeEnum(1, codec_);
     }
     unknownFields.writeTo(output);
   }
@@ -256,9 +304,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (format_ != io.github.yu31.protoc.pb.pbjson.TypeEnum.Format.Number.getNumber()) {
+    if (codec_ != io.github.yu31.protoc.pb.pbjson.TypeEnum.Codec.Unset.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(1, format_);
+        .computeEnumSize(1, codec_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -275,7 +323,7 @@ private static final long serialVersionUID = 0L;
     }
     io.github.yu31.protoc.pb.pbjson.TypeEnum other = (io.github.yu31.protoc.pb.pbjson.TypeEnum) obj;
 
-    if (format_ != other.format_) return false;
+    if (codec_ != other.codec_) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -287,8 +335,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + FORMAT_FIELD_NUMBER;
-    hash = (53 * hash) + format_;
+    hash = (37 * hash) + CODEC_FIELD_NUMBER;
+    hash = (53 * hash) + codec_;
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -385,6 +433,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * TypeInt32 declares the codec for field type enum.
+   * </pre>
+   *
    * Protobuf type {@code json.TypeEnum}
    */
   public static final class Builder extends
@@ -422,7 +474,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      format_ = 0;
+      codec_ = 0;
 
       return this;
     }
@@ -450,7 +502,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeEnum buildPartial() {
       io.github.yu31.protoc.pb.pbjson.TypeEnum result = new io.github.yu31.protoc.pb.pbjson.TypeEnum(this);
-      result.format_ = format_;
+      result.codec_ = codec_;
       onBuilt();
       return result;
     }
@@ -499,8 +551,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(io.github.yu31.protoc.pb.pbjson.TypeEnum other) {
       if (other == io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance()) return this;
-      if (other.format_ != 0) {
-        setFormatValue(other.getFormatValue());
+      if (other.codec_ != 0) {
+        setCodecValue(other.getCodecValue());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -531,56 +583,81 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int format_ = 0;
+    private int codec_ = 0;
     /**
-     * <code>.json.TypeEnum.Format format = 1;</code>
-     * @return The enum numeric value on the wire for format.
+     * <pre>
+     * Codec specifies encoding format for the field type of Enum.
+     * The default is `Number` in plain value, repeated elements and map value.
+     * </pre>
+     *
+     * <code>.json.TypeEnum.Codec codec = 1;</code>
+     * @return The enum numeric value on the wire for codec.
      */
-    @java.lang.Override public int getFormatValue() {
-      return format_;
+    @java.lang.Override public int getCodecValue() {
+      return codec_;
     }
     /**
-     * <code>.json.TypeEnum.Format format = 1;</code>
-     * @param value The enum numeric value on the wire for format to set.
+     * <pre>
+     * Codec specifies encoding format for the field type of Enum.
+     * The default is `Number` in plain value, repeated elements and map value.
+     * </pre>
+     *
+     * <code>.json.TypeEnum.Codec codec = 1;</code>
+     * @param value The enum numeric value on the wire for codec to set.
      * @return This builder for chaining.
      */
-    public Builder setFormatValue(int value) {
+    public Builder setCodecValue(int value) {
       
-      format_ = value;
+      codec_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>.json.TypeEnum.Format format = 1;</code>
-     * @return The format.
+     * <pre>
+     * Codec specifies encoding format for the field type of Enum.
+     * The default is `Number` in plain value, repeated elements and map value.
+     * </pre>
+     *
+     * <code>.json.TypeEnum.Codec codec = 1;</code>
+     * @return The codec.
      */
     @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeEnum.Format getFormat() {
+    public io.github.yu31.protoc.pb.pbjson.TypeEnum.Codec getCodec() {
       @SuppressWarnings("deprecation")
-      io.github.yu31.protoc.pb.pbjson.TypeEnum.Format result = io.github.yu31.protoc.pb.pbjson.TypeEnum.Format.valueOf(format_);
-      return result == null ? io.github.yu31.protoc.pb.pbjson.TypeEnum.Format.UNRECOGNIZED : result;
+      io.github.yu31.protoc.pb.pbjson.TypeEnum.Codec result = io.github.yu31.protoc.pb.pbjson.TypeEnum.Codec.valueOf(codec_);
+      return result == null ? io.github.yu31.protoc.pb.pbjson.TypeEnum.Codec.UNRECOGNIZED : result;
     }
     /**
-     * <code>.json.TypeEnum.Format format = 1;</code>
-     * @param value The format to set.
+     * <pre>
+     * Codec specifies encoding format for the field type of Enum.
+     * The default is `Number` in plain value, repeated elements and map value.
+     * </pre>
+     *
+     * <code>.json.TypeEnum.Codec codec = 1;</code>
+     * @param value The codec to set.
      * @return This builder for chaining.
      */
-    public Builder setFormat(io.github.yu31.protoc.pb.pbjson.TypeEnum.Format value) {
+    public Builder setCodec(io.github.yu31.protoc.pb.pbjson.TypeEnum.Codec value) {
       if (value == null) {
         throw new NullPointerException();
       }
       
-      format_ = value.getNumber();
+      codec_ = value.getNumber();
       onChanged();
       return this;
     }
     /**
-     * <code>.json.TypeEnum.Format format = 1;</code>
+     * <pre>
+     * Codec specifies encoding format for the field type of Enum.
+     * The default is `Number` in plain value, repeated elements and map value.
+     * </pre>
+     *
+     * <code>.json.TypeEnum.Codec codec = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearFormat() {
+    public Builder clearCodec() {
       
-      format_ = 0;
+      codec_ = 0;
       onChanged();
       return this;
     }

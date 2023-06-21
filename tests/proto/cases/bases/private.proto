@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package private;
+
+option go_package = "xgo/tests/pb/pbbases";
+
+import "proto/json.proto";
+
+// EnumCommon1 used tests cases in this file.
+enum EnumCommon1 {
+  Zero  = 0;
+  One   = 2;
+  Two   = 3;
+  Three = 5;
+  Four  = 6;
+  Five  = 7;
+  Six   = 9;
+  Seven = 11;
+  Eight = 12;
+  Nine  = 15;
+  Ten   = 17;
+}
+
+// MessageCommon1 used tests cases in this file.
+message MessageCommon1 {
+  enum Enum1 {
+    Zero  = 0;
+    One   = 2;
+    Two   = 3;
+    Three = 5;
+    Four  = 6;
+    Five  = 7;
+    Six   = 9;
+    Seven = 11;
+    Eight = 12;
+    Nine  = 15;
+    Ten   = 17;
+  }
+
+  message Embed1 {
+    message Embed2 {
+      string f_string1 = 1 [ (json.field) = { } ];
+      string f_string2 = 2 [ (json.field) = { } ];
+      string f_string3 = 3 [ (json.field) = { } ];
+    }
+    string f_string1 = 1 [ (json.field) = { } ];
+    string f_string2 = 2 [ (json.field) = { } ];
+    string f_string3 = 3 [ (json.field) = { } ];
+  }
+  string f_string1 = 1 [ (json.field) = { } ];
+  string f_string2 = 2 [ (json.field) = { } ];
+  string f_string3 = 3 [ (json.field) = { } ];
+}
+

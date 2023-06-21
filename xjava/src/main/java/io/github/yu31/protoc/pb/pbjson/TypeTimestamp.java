@@ -4,6 +4,10 @@
 package io.github.yu31.protoc.pb.pbjson;
 
 /**
+ * <pre>
+ * TypeInt32 declares the codec for field type google.proto.Timestamp.
+ * </pre>
+ *
  * Protobuf type {@code json.TypeTimestamp}
  */
 public final class TypeTimestamp extends
@@ -16,7 +20,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private TypeTimestamp() {
-    format_ = 0;
+    codec_ = 0;
   }
 
   @java.lang.Override
@@ -52,7 +56,7 @@ private static final long serialVersionUID = 0L;
           case 8: {
             int rawValue = input.readEnum();
 
-            format_ = rawValue;
+            codec_ = rawValue;
             break;
           }
           case 18: {
@@ -101,79 +105,189 @@ private static final long serialVersionUID = 0L;
   }
 
   /**
-   * Protobuf enum {@code json.TypeTimestamp.Format}
+   * Protobuf enum {@code json.TypeTimestamp.Codec}
    */
-  public enum Format
+  public enum Codec
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <pre>
-     * Native represents consider the google.protobuf.Timestamp as a interface and format it by standard JSON.
-     * And it is the default Format.
+     * Unset represents the default value will be applied when encoding and decoding JSON.
      * </pre>
      *
-     * <code>Native = 0;</code>
+     * <code>Unset = 0;</code>
      */
-    Native(0),
+    Unset(0),
     /**
      * <pre>
-     * TimeLayout represents format the google.protobuf.Timestamp to a time string and format by `Layout`.
+     * Object represents convert the google.protobuf.Timestamp as objects and encoding and decoding by standard JSON.
      * </pre>
      *
-     * <code>TimeLayout = 1;</code>
+     * <code>Object = 1;</code>
      */
-    TimeLayout(1),
+    Object(1),
     /**
-     * <code>UnixNano = 2;</code>
+     * <pre>
+     * TimeLayout represents convert the google.protobuf.Timestamp as time strings by `Layout` when encoding and decoding.
+     * </pre>
+     *
+     * <code>TimeLayout = 2;</code>
      */
-    UnixNano(2),
+    TimeLayout(2),
     /**
-     * <code>UnixMicro = 3;</code>
+     * <pre>
+     * UnixNano represents convert the google.protobuf.Timestamp as nanosecond timestamp of type int64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>UnixNano = 3;</code>
      */
-    UnixMicro(3),
+    UnixNano(3),
     /**
-     * <code>UnixMilli = 4;</code>
+     * <pre>
+     * String represents use the UnixNano and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>UnixNanoString = 4;</code>
      */
-    UnixMilli(4),
+    UnixNanoString(4),
     /**
-     * <code>UnixSec = 5;</code>
+     * <pre>
+     * UnixMicro represents convert the google.protobuf.Timestamp as microsecond timestamp of type int64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>UnixMicro = 5;</code>
      */
-    UnixSec(5),
+    UnixMicro(5),
+    /**
+     * <pre>
+     * String represents use the UnixMicro and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>UnixMicroString = 6;</code>
+     */
+    UnixMicroString(6),
+    /**
+     * <pre>
+     * UnixMilli represents convert the google.protobuf.Timestamp as millisecond timestamp of type int64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>UnixMilli = 7;</code>
+     */
+    UnixMilli(7),
+    /**
+     * <pre>
+     * String represents use the UnixMilli and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>UnixMilliString = 8;</code>
+     */
+    UnixMilliString(8),
+    /**
+     * <pre>
+     * UnixSec represents convert the google.protobuf.Timestamp as second timestamp of type int64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>UnixSec = 9;</code>
+     */
+    UnixSec(9),
+    /**
+     * <pre>
+     * String represents use the UnixSec and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>UnixSecString = 10;</code>
+     */
+    UnixSecString(10),
     UNRECOGNIZED(-1),
     ;
 
     /**
      * <pre>
-     * Native represents consider the google.protobuf.Timestamp as a interface and format it by standard JSON.
-     * And it is the default Format.
+     * Unset represents the default value will be applied when encoding and decoding JSON.
      * </pre>
      *
-     * <code>Native = 0;</code>
+     * <code>Unset = 0;</code>
      */
-    public static final int Native_VALUE = 0;
+    public static final int Unset_VALUE = 0;
     /**
      * <pre>
-     * TimeLayout represents format the google.protobuf.Timestamp to a time string and format by `Layout`.
+     * Object represents convert the google.protobuf.Timestamp as objects and encoding and decoding by standard JSON.
      * </pre>
      *
-     * <code>TimeLayout = 1;</code>
+     * <code>Object = 1;</code>
      */
-    public static final int TimeLayout_VALUE = 1;
+    public static final int Object_VALUE = 1;
     /**
-     * <code>UnixNano = 2;</code>
+     * <pre>
+     * TimeLayout represents convert the google.protobuf.Timestamp as time strings by `Layout` when encoding and decoding.
+     * </pre>
+     *
+     * <code>TimeLayout = 2;</code>
      */
-    public static final int UnixNano_VALUE = 2;
+    public static final int TimeLayout_VALUE = 2;
     /**
-     * <code>UnixMicro = 3;</code>
+     * <pre>
+     * UnixNano represents convert the google.protobuf.Timestamp as nanosecond timestamp of type int64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>UnixNano = 3;</code>
      */
-    public static final int UnixMicro_VALUE = 3;
+    public static final int UnixNano_VALUE = 3;
     /**
-     * <code>UnixMilli = 4;</code>
+     * <pre>
+     * String represents use the UnixNano and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>UnixNanoString = 4;</code>
      */
-    public static final int UnixMilli_VALUE = 4;
+    public static final int UnixNanoString_VALUE = 4;
     /**
-     * <code>UnixSec = 5;</code>
+     * <pre>
+     * UnixMicro represents convert the google.protobuf.Timestamp as microsecond timestamp of type int64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>UnixMicro = 5;</code>
      */
-    public static final int UnixSec_VALUE = 5;
+    public static final int UnixMicro_VALUE = 5;
+    /**
+     * <pre>
+     * String represents use the UnixMicro and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>UnixMicroString = 6;</code>
+     */
+    public static final int UnixMicroString_VALUE = 6;
+    /**
+     * <pre>
+     * UnixMilli represents convert the google.protobuf.Timestamp as millisecond timestamp of type int64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>UnixMilli = 7;</code>
+     */
+    public static final int UnixMilli_VALUE = 7;
+    /**
+     * <pre>
+     * String represents use the UnixMilli and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>UnixMilliString = 8;</code>
+     */
+    public static final int UnixMilliString_VALUE = 8;
+    /**
+     * <pre>
+     * UnixSec represents convert the google.protobuf.Timestamp as second timestamp of type int64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>UnixSec = 9;</code>
+     */
+    public static final int UnixSec_VALUE = 9;
+    /**
+     * <pre>
+     * String represents use the UnixSec and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>UnixSecString = 10;</code>
+     */
+    public static final int UnixSecString_VALUE = 10;
 
 
     public final int getNumber() {
@@ -190,7 +304,7 @@ private static final long serialVersionUID = 0L;
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @java.lang.Deprecated
-    public static Format valueOf(int value) {
+    public static Codec valueOf(int value) {
       return forNumber(value);
     }
 
@@ -198,27 +312,32 @@ private static final long serialVersionUID = 0L;
      * @param value The numeric wire value of the corresponding enum entry.
      * @return The enum associated with the given numeric wire value.
      */
-    public static Format forNumber(int value) {
+    public static Codec forNumber(int value) {
       switch (value) {
-        case 0: return Native;
-        case 1: return TimeLayout;
-        case 2: return UnixNano;
-        case 3: return UnixMicro;
-        case 4: return UnixMilli;
-        case 5: return UnixSec;
+        case 0: return Unset;
+        case 1: return Object;
+        case 2: return TimeLayout;
+        case 3: return UnixNano;
+        case 4: return UnixNanoString;
+        case 5: return UnixMicro;
+        case 6: return UnixMicroString;
+        case 7: return UnixMilli;
+        case 8: return UnixMilliString;
+        case 9: return UnixSec;
+        case 10: return UnixSecString;
         default: return null;
       }
     }
 
-    public static com.google.protobuf.Internal.EnumLiteMap<Format>
+    public static com.google.protobuf.Internal.EnumLiteMap<Codec>
         internalGetValueMap() {
       return internalValueMap;
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
-        Format> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<Format>() {
-            public Format findValueByNumber(int number) {
-              return Format.forNumber(number);
+        Codec> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<Codec>() {
+            public Codec findValueByNumber(int number) {
+              return Codec.forNumber(number);
             }
           };
 
@@ -239,9 +358,9 @@ private static final long serialVersionUID = 0L;
       return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDescriptor().getEnumTypes().get(0);
     }
 
-    private static final Format[] VALUES = values();
+    private static final Codec[] VALUES = values();
 
-    public static Format valueOf(
+    public static Codec valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
@@ -255,11 +374,11 @@ private static final long serialVersionUID = 0L;
 
     private final int value;
 
-    private Format(int value) {
+    private Codec(int value) {
       this.value = value;
     }
 
-    // @@protoc_insertion_point(enum_scope:json.TypeTimestamp.Format)
+    // @@protoc_insertion_point(enum_scope:json.TypeTimestamp.Codec)
   }
 
   public interface LayoutOrBuilder extends
@@ -1433,30 +1552,40 @@ private static final long serialVersionUID = 0L;
 
   }
 
-  public static final int FORMAT_FIELD_NUMBER = 1;
-  private int format_;
+  public static final int CODEC_FIELD_NUMBER = 1;
+  private int codec_;
   /**
-   * <code>.json.TypeTimestamp.Format format = 1;</code>
-   * @return The enum numeric value on the wire for format.
+   * <pre>
+   * Codec specifies encoding format for the field type of google.protobuf.Timestamp.
+   * The default is `Object` in plain value, repeated elements and map value.
+   * </pre>
+   *
+   * <code>.json.TypeTimestamp.Codec codec = 1;</code>
+   * @return The enum numeric value on the wire for codec.
    */
-  @java.lang.Override public int getFormatValue() {
-    return format_;
+  @java.lang.Override public int getCodecValue() {
+    return codec_;
   }
   /**
-   * <code>.json.TypeTimestamp.Format format = 1;</code>
-   * @return The format.
+   * <pre>
+   * Codec specifies encoding format for the field type of google.protobuf.Timestamp.
+   * The default is `Object` in plain value, repeated elements and map value.
+   * </pre>
+   *
+   * <code>.json.TypeTimestamp.Codec codec = 1;</code>
+   * @return The codec.
    */
-  @java.lang.Override public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format getFormat() {
+  @java.lang.Override public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Codec getCodec() {
     @SuppressWarnings("deprecation")
-    io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format result = io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format.valueOf(format_);
-    return result == null ? io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format.UNRECOGNIZED : result;
+    io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Codec result = io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Codec.valueOf(codec_);
+    return result == null ? io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Codec.UNRECOGNIZED : result;
   }
 
   public static final int LAYOUT_FIELD_NUMBER = 2;
   private io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout layout_;
   /**
    * <pre>
-   * Only used if the format is TimeLayout.
+   * Only used if the codec is `TimeLayout`.
    * </pre>
    *
    * <code>.json.TypeTimestamp.Layout layout = 2;</code>
@@ -1468,7 +1597,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Only used if the format is TimeLayout.
+   * Only used if the codec is `TimeLayout`.
    * </pre>
    *
    * <code>.json.TypeTimestamp.Layout layout = 2;</code>
@@ -1480,7 +1609,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Only used if the format is TimeLayout.
+   * Only used if the codec is `TimeLayout`.
    * </pre>
    *
    * <code>.json.TypeTimestamp.Layout layout = 2;</code>
@@ -1504,8 +1633,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (format_ != io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format.Native.getNumber()) {
-      output.writeEnum(1, format_);
+    if (codec_ != io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Codec.Unset.getNumber()) {
+      output.writeEnum(1, codec_);
     }
     if (layout_ != null) {
       output.writeMessage(2, getLayout());
@@ -1519,9 +1648,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (format_ != io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format.Native.getNumber()) {
+    if (codec_ != io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Codec.Unset.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(1, format_);
+        .computeEnumSize(1, codec_);
     }
     if (layout_ != null) {
       size += com.google.protobuf.CodedOutputStream
@@ -1542,7 +1671,7 @@ private static final long serialVersionUID = 0L;
     }
     io.github.yu31.protoc.pb.pbjson.TypeTimestamp other = (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) obj;
 
-    if (format_ != other.format_) return false;
+    if (codec_ != other.codec_) return false;
     if (hasLayout() != other.hasLayout()) return false;
     if (hasLayout()) {
       if (!getLayout()
@@ -1559,8 +1688,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + FORMAT_FIELD_NUMBER;
-    hash = (53 * hash) + format_;
+    hash = (37 * hash) + CODEC_FIELD_NUMBER;
+    hash = (53 * hash) + codec_;
     if (hasLayout()) {
       hash = (37 * hash) + LAYOUT_FIELD_NUMBER;
       hash = (53 * hash) + getLayout().hashCode();
@@ -1661,6 +1790,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * TypeInt32 declares the codec for field type google.proto.Timestamp.
+   * </pre>
+   *
    * Protobuf type {@code json.TypeTimestamp}
    */
   public static final class Builder extends
@@ -1698,7 +1831,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      format_ = 0;
+      codec_ = 0;
 
       if (layoutBuilder_ == null) {
         layout_ = null;
@@ -1732,7 +1865,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeTimestamp buildPartial() {
       io.github.yu31.protoc.pb.pbjson.TypeTimestamp result = new io.github.yu31.protoc.pb.pbjson.TypeTimestamp(this);
-      result.format_ = format_;
+      result.codec_ = codec_;
       if (layoutBuilder_ == null) {
         result.layout_ = layout_;
       } else {
@@ -1786,8 +1919,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(io.github.yu31.protoc.pb.pbjson.TypeTimestamp other) {
       if (other == io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance()) return this;
-      if (other.format_ != 0) {
-        setFormatValue(other.getFormatValue());
+      if (other.codec_ != 0) {
+        setCodecValue(other.getCodecValue());
       }
       if (other.hasLayout()) {
         mergeLayout(other.getLayout());
@@ -1821,56 +1954,81 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int format_ = 0;
+    private int codec_ = 0;
     /**
-     * <code>.json.TypeTimestamp.Format format = 1;</code>
-     * @return The enum numeric value on the wire for format.
+     * <pre>
+     * Codec specifies encoding format for the field type of google.protobuf.Timestamp.
+     * The default is `Object` in plain value, repeated elements and map value.
+     * </pre>
+     *
+     * <code>.json.TypeTimestamp.Codec codec = 1;</code>
+     * @return The enum numeric value on the wire for codec.
      */
-    @java.lang.Override public int getFormatValue() {
-      return format_;
+    @java.lang.Override public int getCodecValue() {
+      return codec_;
     }
     /**
-     * <code>.json.TypeTimestamp.Format format = 1;</code>
-     * @param value The enum numeric value on the wire for format to set.
+     * <pre>
+     * Codec specifies encoding format for the field type of google.protobuf.Timestamp.
+     * The default is `Object` in plain value, repeated elements and map value.
+     * </pre>
+     *
+     * <code>.json.TypeTimestamp.Codec codec = 1;</code>
+     * @param value The enum numeric value on the wire for codec to set.
      * @return This builder for chaining.
      */
-    public Builder setFormatValue(int value) {
+    public Builder setCodecValue(int value) {
       
-      format_ = value;
+      codec_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>.json.TypeTimestamp.Format format = 1;</code>
-     * @return The format.
+     * <pre>
+     * Codec specifies encoding format for the field type of google.protobuf.Timestamp.
+     * The default is `Object` in plain value, repeated elements and map value.
+     * </pre>
+     *
+     * <code>.json.TypeTimestamp.Codec codec = 1;</code>
+     * @return The codec.
      */
     @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format getFormat() {
+    public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Codec getCodec() {
       @SuppressWarnings("deprecation")
-      io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format result = io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format.valueOf(format_);
-      return result == null ? io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format.UNRECOGNIZED : result;
+      io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Codec result = io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Codec.valueOf(codec_);
+      return result == null ? io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Codec.UNRECOGNIZED : result;
     }
     /**
-     * <code>.json.TypeTimestamp.Format format = 1;</code>
-     * @param value The format to set.
+     * <pre>
+     * Codec specifies encoding format for the field type of google.protobuf.Timestamp.
+     * The default is `Object` in plain value, repeated elements and map value.
+     * </pre>
+     *
+     * <code>.json.TypeTimestamp.Codec codec = 1;</code>
+     * @param value The codec to set.
      * @return This builder for chaining.
      */
-    public Builder setFormat(io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format value) {
+    public Builder setCodec(io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Codec value) {
       if (value == null) {
         throw new NullPointerException();
       }
       
-      format_ = value.getNumber();
+      codec_ = value.getNumber();
       onChanged();
       return this;
     }
     /**
-     * <code>.json.TypeTimestamp.Format format = 1;</code>
+     * <pre>
+     * Codec specifies encoding format for the field type of google.protobuf.Timestamp.
+     * The default is `Object` in plain value, repeated elements and map value.
+     * </pre>
+     *
+     * <code>.json.TypeTimestamp.Codec codec = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearFormat() {
+    public Builder clearCodec() {
       
-      format_ = 0;
+      codec_ = 0;
       onChanged();
       return this;
     }
@@ -1880,7 +2038,7 @@ private static final long serialVersionUID = 0L;
         io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout.Builder, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.LayoutOrBuilder> layoutBuilder_;
     /**
      * <pre>
-     * Only used if the format is TimeLayout.
+     * Only used if the codec is `TimeLayout`.
      * </pre>
      *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>
@@ -1891,7 +2049,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Only used if the format is TimeLayout.
+     * Only used if the codec is `TimeLayout`.
      * </pre>
      *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>
@@ -1906,7 +2064,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Only used if the format is TimeLayout.
+     * Only used if the codec is `TimeLayout`.
      * </pre>
      *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>
@@ -1926,7 +2084,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Only used if the format is TimeLayout.
+     * Only used if the codec is `TimeLayout`.
      * </pre>
      *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>
@@ -1944,7 +2102,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Only used if the format is TimeLayout.
+     * Only used if the codec is `TimeLayout`.
      * </pre>
      *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>
@@ -1966,7 +2124,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Only used if the format is TimeLayout.
+     * Only used if the codec is `TimeLayout`.
      * </pre>
      *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>
@@ -1984,7 +2142,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Only used if the format is TimeLayout.
+     * Only used if the codec is `TimeLayout`.
      * </pre>
      *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>
@@ -1996,7 +2154,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Only used if the format is TimeLayout.
+     * Only used if the codec is `TimeLayout`.
      * </pre>
      *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>
@@ -2011,7 +2169,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Only used if the format is TimeLayout.
+     * Only used if the codec is `TimeLayout`.
      * </pre>
      *
      * <code>.json.TypeTimestamp.Layout layout = 2;</code>

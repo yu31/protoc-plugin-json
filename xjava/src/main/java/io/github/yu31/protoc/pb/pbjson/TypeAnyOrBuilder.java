@@ -8,13 +8,23 @@ public interface TypeAnyOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.json.TypeAny.Format format = 1;</code>
-   * @return The enum numeric value on the wire for format.
+   * <pre>
+   * Codec specifies encoding format for the field type of google.protobuf.Any.
+   * The default is `Object` in plain value, repeated elements and map value.
+   * </pre>
+   *
+   * <code>.json.TypeAny.Codec codec = 1;</code>
+   * @return The enum numeric value on the wire for codec.
    */
-  int getFormatValue();
+  int getCodecValue();
   /**
-   * <code>.json.TypeAny.Format format = 1;</code>
-   * @return The format.
+   * <pre>
+   * Codec specifies encoding format for the field type of google.protobuf.Any.
+   * The default is `Object` in plain value, repeated elements and map value.
+   * </pre>
+   *
+   * <code>.json.TypeAny.Codec codec = 1;</code>
+   * @return The codec.
    */
-  io.github.yu31.protoc.pb.pbjson.TypeAny.Format getFormat();
+  io.github.yu31.protoc.pb.pbjson.TypeAny.Codec getCodec();
 }

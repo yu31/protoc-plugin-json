@@ -61,15 +61,31 @@ message Example1 {
   bool  f_bool1  = 31;
   bytes f_bytes1 = 32;
 
-  Enum1 f_enum1 = 61 [ (json.field) = { enum: { format: Number}, omitempty: true } ];
-  Enum1 f_enum2 = 62 [ (json.field) = { enum: { format: String}, omitempty: false } ];
-  Enum1 f_enum3 = 63 [ (json.field) = { enum: { format: Number}, omitempty: false } ];
-  Enum1 f_enum4 = 64 [ (json.field) = { enum: { format: String}, omitempty: true } ];
+  Enum1 f_enum1 = 61 [ (json.field) = {
+    omitempty: true, reference: { plain : { value: { enum: { codec: Number } } } }
+  } ];
+  Enum1 f_enum2 = 62 [ (json.field) = {
+    omitempty: true, reference: { plain : { value: { enum: { codec: String } } } }
+  } ];
+  Enum1 f_enum3 = 63 [ (json.field) = {
+    omitempty: false, reference: { plain : { value: { enum: { codec: Number } } } }
+  } ];
+  Enum1 f_enum4 = 64 [ (json.field) = {
+    omitempty: false, reference: { plain : { value: { enum: { codec: String } } } }
+  } ];
 
-  optional Enum1 f_enum5 = 65 [ (json.field) = { enum: { format: Number}, omitempty: true } ];
-  optional Enum1 f_enum6 = 66 [ (json.field) = { enum: { format: String}, omitempty: false } ];
-  optional Enum1 f_enum7 = 67 [ (json.field) = { enum: { format: Number}, omitempty: false } ];
-  optional Enum1 f_enum8 = 68 [ (json.field) = { enum: { format: String}, omitempty: true } ];
+  optional Enum1 f_enum5 = 65 [ (json.field) = {
+    omitempty: true, reference: { plain : { value: { enum: { codec: Number } } } }
+  } ];
+  optional Enum1 f_enum6 = 66 [ (json.field) = {
+    omitempty: true, reference: { plain : { value: { enum: { codec: String } } } }
+  } ];
+  optional Enum1 f_enum7 = 67 [ (json.field) = {
+    omitempty: false, reference: { plain : { value: { enum: { codec: Number } } } }
+  } ];
+  optional Enum1 f_enum8 = 68 [ (json.field) = {
+    omitempty: false, reference: { plain : { value: { enum: { codec: String } } } }
+  } ];
 
   google.protobuf.Duration f_duration1   = 41;
   google.protobuf.Timestamp f_timestamp1 = 42;

@@ -4,10 +4,6 @@
 package io.github.yu31.protoc.pb.pbjson;
 
 /**
- * <pre>
- * TODO: same as the standard JSON., unsupported the type of bool as map key.
- * </pre>
- *
  * Protobuf type {@code json.FieldOptions}
  */
 public final class FieldOptions extends
@@ -70,60 +66,17 @@ private static final long serialVersionUID = 0L;
             omitempty_ = input.readBool();
             break;
           }
-          case 90: {
-            io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder subBuilder = null;
-            if (typeSetCase_ == 11) {
-              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_).toBuilder();
+          case 34: {
+            io.github.yu31.protoc.pb.pbjson.TypeReference.Builder subBuilder = null;
+            if (reference_ != null) {
+              subBuilder = reference_.toBuilder();
             }
-            typeSet_ =
-                input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeEnum.parser(), extensionRegistry);
+            reference_ = input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeReference.parser(), extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_);
-              typeSet_ = subBuilder.buildPartial();
+              subBuilder.mergeFrom(reference_);
+              reference_ = subBuilder.buildPartial();
             }
-            typeSetCase_ = 11;
-            break;
-          }
-          case 98: {
-            io.github.yu31.protoc.pb.pbjson.TypeAny.Builder subBuilder = null;
-            if (typeSetCase_ == 12) {
-              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_).toBuilder();
-            }
-            typeSet_ =
-                input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeAny.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_);
-              typeSet_ = subBuilder.buildPartial();
-            }
-            typeSetCase_ = 12;
-            break;
-          }
-          case 106: {
-            io.github.yu31.protoc.pb.pbjson.TypeDuration.Builder subBuilder = null;
-            if (typeSetCase_ == 13) {
-              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_).toBuilder();
-            }
-            typeSet_ =
-                input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeDuration.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_);
-              typeSet_ = subBuilder.buildPartial();
-            }
-            typeSetCase_ = 13;
-            break;
-          }
-          case 114: {
-            io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Builder subBuilder = null;
-            if (typeSetCase_ == 14) {
-              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_).toBuilder();
-            }
-            typeSet_ =
-                input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeTimestamp.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_);
-              typeSet_ = subBuilder.buildPartial();
-            }
-            typeSetCase_ = 14;
+
             break;
           }
           default: {
@@ -159,51 +112,6 @@ private static final long serialVersionUID = 0L;
   }
 
   private int bitField0_;
-  private int typeSetCase_ = 0;
-  private java.lang.Object typeSet_;
-  public enum TypeSetCase
-      implements com.google.protobuf.Internal.EnumLite,
-          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-    ENUM(11),
-    ANY(12),
-    DURATION(13),
-    TIMESTAMP(14),
-    TYPESET_NOT_SET(0);
-    private final int value;
-    private TypeSetCase(int value) {
-      this.value = value;
-    }
-    /**
-     * @param value The number of the enum to look for.
-     * @return The enum associated with the given number.
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static TypeSetCase valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static TypeSetCase forNumber(int value) {
-      switch (value) {
-        case 11: return ENUM;
-        case 12: return ANY;
-        case 13: return DURATION;
-        case 14: return TIMESTAMP;
-        case 0: return TYPESET_NOT_SET;
-        default: return null;
-      }
-    }
-    public int getNumber() {
-      return this.value;
-    }
-  };
-
-  public TypeSetCase
-  getTypeSetCase() {
-    return TypeSetCase.forNumber(
-        typeSetCase_);
-  }
-
   public static final int JSON_FIELD_NUMBER = 1;
   private volatile java.lang.Object json_;
   /**
@@ -272,7 +180,7 @@ private static final long serialVersionUID = 0L;
   private boolean ignore_;
   /**
    * <pre>
-   * Same as `json: "-"`, The field will be ignored if its true.
+   * Same as `json: "-"`, The field will be ignored if true.
    * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
@@ -300,128 +208,42 @@ private static final long serialVersionUID = 0L;
     return omitempty_;
   }
 
-  public static final int ENUM_FIELD_NUMBER = 11;
+  public static final int REFERENCE_FIELD_NUMBER = 4;
+  private io.github.yu31.protoc.pb.pbjson.TypeReference reference_;
   /**
-   * <code>.json.TypeEnum enum = 11;</code>
-   * @return Whether the enum field is set.
+   * <pre>
+   * Format set for field.
+   * </pre>
+   *
+   * <code>.json.TypeReference reference = 4;</code>
+   * @return Whether the reference field is set.
    */
   @java.lang.Override
-  public boolean hasEnum() {
-    return typeSetCase_ == 11;
+  public boolean hasReference() {
+    return reference_ != null;
   }
   /**
-   * <code>.json.TypeEnum enum = 11;</code>
-   * @return The enum.
+   * <pre>
+   * Format set for field.
+   * </pre>
+   *
+   * <code>.json.TypeReference reference = 4;</code>
+   * @return The reference.
    */
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeEnum getEnum() {
-    if (typeSetCase_ == 11) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_;
-    }
-    return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
+  public io.github.yu31.protoc.pb.pbjson.TypeReference getReference() {
+    return reference_ == null ? io.github.yu31.protoc.pb.pbjson.TypeReference.getDefaultInstance() : reference_;
   }
   /**
-   * <code>.json.TypeEnum enum = 11;</code>
+   * <pre>
+   * Format set for field.
+   * </pre>
+   *
+   * <code>.json.TypeReference reference = 4;</code>
    */
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder getEnumOrBuilder() {
-    if (typeSetCase_ == 11) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_;
-    }
-    return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
-  }
-
-  public static final int ANY_FIELD_NUMBER = 12;
-  /**
-   * <code>.json.TypeAny any = 12;</code>
-   * @return Whether the any field is set.
-   */
-  @java.lang.Override
-  public boolean hasAny() {
-    return typeSetCase_ == 12;
-  }
-  /**
-   * <code>.json.TypeAny any = 12;</code>
-   * @return The any.
-   */
-  @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeAny getAny() {
-    if (typeSetCase_ == 12) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_;
-    }
-    return io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
-  }
-  /**
-   * <code>.json.TypeAny any = 12;</code>
-   */
-  @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeAnyOrBuilder getAnyOrBuilder() {
-    if (typeSetCase_ == 12) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_;
-    }
-    return io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
-  }
-
-  public static final int DURATION_FIELD_NUMBER = 13;
-  /**
-   * <code>.json.TypeDuration duration = 13;</code>
-   * @return Whether the duration field is set.
-   */
-  @java.lang.Override
-  public boolean hasDuration() {
-    return typeSetCase_ == 13;
-  }
-  /**
-   * <code>.json.TypeDuration duration = 13;</code>
-   * @return The duration.
-   */
-  @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeDuration getDuration() {
-    if (typeSetCase_ == 13) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_;
-    }
-    return io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
-  }
-  /**
-   * <code>.json.TypeDuration duration = 13;</code>
-   */
-  @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeDurationOrBuilder getDurationOrBuilder() {
-    if (typeSetCase_ == 13) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_;
-    }
-    return io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
-  }
-
-  public static final int TIMESTAMP_FIELD_NUMBER = 14;
-  /**
-   * <code>.json.TypeTimestamp timestamp = 14;</code>
-   * @return Whether the timestamp field is set.
-   */
-  @java.lang.Override
-  public boolean hasTimestamp() {
-    return typeSetCase_ == 14;
-  }
-  /**
-   * <code>.json.TypeTimestamp timestamp = 14;</code>
-   * @return The timestamp.
-   */
-  @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeTimestamp getTimestamp() {
-    if (typeSetCase_ == 14) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_;
-    }
-    return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
-  }
-  /**
-   * <code>.json.TypeTimestamp timestamp = 14;</code>
-   */
-  @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder getTimestampOrBuilder() {
-    if (typeSetCase_ == 14) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_;
-    }
-    return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
+  public io.github.yu31.protoc.pb.pbjson.TypeReferenceOrBuilder getReferenceOrBuilder() {
+    return getReference();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -447,17 +269,8 @@ private static final long serialVersionUID = 0L;
     if (omitempty_ != false) {
       output.writeBool(3, omitempty_);
     }
-    if (typeSetCase_ == 11) {
-      output.writeMessage(11, (io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_);
-    }
-    if (typeSetCase_ == 12) {
-      output.writeMessage(12, (io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_);
-    }
-    if (typeSetCase_ == 13) {
-      output.writeMessage(13, (io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_);
-    }
-    if (typeSetCase_ == 14) {
-      output.writeMessage(14, (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_);
+    if (reference_ != null) {
+      output.writeMessage(4, getReference());
     }
     unknownFields.writeTo(output);
   }
@@ -479,21 +292,9 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(3, omitempty_);
     }
-    if (typeSetCase_ == 11) {
+    if (reference_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(11, (io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_);
-    }
-    if (typeSetCase_ == 12) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(12, (io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_);
-    }
-    if (typeSetCase_ == 13) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(13, (io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_);
-    }
-    if (typeSetCase_ == 14) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(14, (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_);
+        .computeMessageSize(4, getReference());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -519,26 +320,10 @@ private static final long serialVersionUID = 0L;
         != other.getIgnore()) return false;
     if (getOmitempty()
         != other.getOmitempty()) return false;
-    if (!getTypeSetCase().equals(other.getTypeSetCase())) return false;
-    switch (typeSetCase_) {
-      case 11:
-        if (!getEnum()
-            .equals(other.getEnum())) return false;
-        break;
-      case 12:
-        if (!getAny()
-            .equals(other.getAny())) return false;
-        break;
-      case 13:
-        if (!getDuration()
-            .equals(other.getDuration())) return false;
-        break;
-      case 14:
-        if (!getTimestamp()
-            .equals(other.getTimestamp())) return false;
-        break;
-      case 0:
-      default:
+    if (hasReference() != other.hasReference()) return false;
+    if (hasReference()) {
+      if (!getReference()
+          .equals(other.getReference())) return false;
     }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
@@ -561,25 +346,9 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + OMITEMPTY_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getOmitempty());
-    switch (typeSetCase_) {
-      case 11:
-        hash = (37 * hash) + ENUM_FIELD_NUMBER;
-        hash = (53 * hash) + getEnum().hashCode();
-        break;
-      case 12:
-        hash = (37 * hash) + ANY_FIELD_NUMBER;
-        hash = (53 * hash) + getAny().hashCode();
-        break;
-      case 13:
-        hash = (37 * hash) + DURATION_FIELD_NUMBER;
-        hash = (53 * hash) + getDuration().hashCode();
-        break;
-      case 14:
-        hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
-        hash = (53 * hash) + getTimestamp().hashCode();
-        break;
-      case 0:
-      default:
+    if (hasReference()) {
+      hash = (37 * hash) + REFERENCE_FIELD_NUMBER;
+      hash = (53 * hash) + getReference().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -677,10 +446,6 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * <pre>
-   * TODO: same as the standard JSON., unsupported the type of bool as map key.
-   * </pre>
-   *
    * Protobuf type {@code json.FieldOptions}
    */
   public static final class Builder extends
@@ -724,8 +489,12 @@ private static final long serialVersionUID = 0L;
 
       omitempty_ = false;
 
-      typeSetCase_ = 0;
-      typeSet_ = null;
+      if (referenceBuilder_ == null) {
+        reference_ = null;
+      } else {
+        reference_ = null;
+        referenceBuilder_ = null;
+      }
       return this;
     }
 
@@ -760,36 +529,12 @@ private static final long serialVersionUID = 0L;
       result.json_ = json_;
       result.ignore_ = ignore_;
       result.omitempty_ = omitempty_;
-      if (typeSetCase_ == 11) {
-        if (enumBuilder_ == null) {
-          result.typeSet_ = typeSet_;
-        } else {
-          result.typeSet_ = enumBuilder_.build();
-        }
-      }
-      if (typeSetCase_ == 12) {
-        if (anyBuilder_ == null) {
-          result.typeSet_ = typeSet_;
-        } else {
-          result.typeSet_ = anyBuilder_.build();
-        }
-      }
-      if (typeSetCase_ == 13) {
-        if (durationBuilder_ == null) {
-          result.typeSet_ = typeSet_;
-        } else {
-          result.typeSet_ = durationBuilder_.build();
-        }
-      }
-      if (typeSetCase_ == 14) {
-        if (timestampBuilder_ == null) {
-          result.typeSet_ = typeSet_;
-        } else {
-          result.typeSet_ = timestampBuilder_.build();
-        }
+      if (referenceBuilder_ == null) {
+        result.reference_ = reference_;
+      } else {
+        result.reference_ = referenceBuilder_.build();
       }
       result.bitField0_ = to_bitField0_;
-      result.typeSetCase_ = typeSetCase_;
       onBuilt();
       return result;
     }
@@ -849,26 +594,8 @@ private static final long serialVersionUID = 0L;
       if (other.getOmitempty() != false) {
         setOmitempty(other.getOmitempty());
       }
-      switch (other.getTypeSetCase()) {
-        case ENUM: {
-          mergeEnum(other.getEnum());
-          break;
-        }
-        case ANY: {
-          mergeAny(other.getAny());
-          break;
-        }
-        case DURATION: {
-          mergeDuration(other.getDuration());
-          break;
-        }
-        case TIMESTAMP: {
-          mergeTimestamp(other.getTimestamp());
-          break;
-        }
-        case TYPESET_NOT_SET: {
-          break;
-        }
+      if (other.hasReference()) {
+        mergeReference(other.getReference());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -898,21 +625,6 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
-    private int typeSetCase_ = 0;
-    private java.lang.Object typeSet_;
-    public TypeSetCase
-        getTypeSetCase() {
-      return TypeSetCase.forNumber(
-          typeSetCase_);
-    }
-
-    public Builder clearTypeSet() {
-      typeSetCase_ = 0;
-      typeSet_ = null;
-      onChanged();
-      return this;
-    }
-
     private int bitField0_;
 
     private java.lang.Object json_ = "";
@@ -1037,7 +749,7 @@ private static final long serialVersionUID = 0L;
     private boolean ignore_ ;
     /**
      * <pre>
-     * Same as `json: "-"`, The field will be ignored if its true.
+     * Same as `json: "-"`, The field will be ignored if true.
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
@@ -1050,7 +762,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Same as `json: "-"`, The field will be ignored if its true.
+     * Same as `json: "-"`, The field will be ignored if true.
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
@@ -1066,7 +778,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Same as `json: "-"`, The field will be ignored if its true.
+     * Same as `json: "-"`, The field will be ignored if true.
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
@@ -1126,568 +838,159 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private io.github.yu31.protoc.pb.pbjson.TypeReference reference_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeEnum, io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder, io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder> enumBuilder_;
+        io.github.yu31.protoc.pb.pbjson.TypeReference, io.github.yu31.protoc.pb.pbjson.TypeReference.Builder, io.github.yu31.protoc.pb.pbjson.TypeReferenceOrBuilder> referenceBuilder_;
     /**
-     * <code>.json.TypeEnum enum = 11;</code>
-     * @return Whether the enum field is set.
+     * <pre>
+     * Format set for field.
+     * </pre>
+     *
+     * <code>.json.TypeReference reference = 4;</code>
+     * @return Whether the reference field is set.
      */
-    @java.lang.Override
-    public boolean hasEnum() {
-      return typeSetCase_ == 11;
+    public boolean hasReference() {
+      return referenceBuilder_ != null || reference_ != null;
     }
     /**
-     * <code>.json.TypeEnum enum = 11;</code>
-     * @return The enum.
+     * <pre>
+     * Format set for field.
+     * </pre>
+     *
+     * <code>.json.TypeReference reference = 4;</code>
+     * @return The reference.
      */
-    @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeEnum getEnum() {
-      if (enumBuilder_ == null) {
-        if (typeSetCase_ == 11) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_;
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
+    public io.github.yu31.protoc.pb.pbjson.TypeReference getReference() {
+      if (referenceBuilder_ == null) {
+        return reference_ == null ? io.github.yu31.protoc.pb.pbjson.TypeReference.getDefaultInstance() : reference_;
       } else {
-        if (typeSetCase_ == 11) {
-          return enumBuilder_.getMessage();
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
+        return referenceBuilder_.getMessage();
       }
     }
     /**
-     * <code>.json.TypeEnum enum = 11;</code>
+     * <pre>
+     * Format set for field.
+     * </pre>
+     *
+     * <code>.json.TypeReference reference = 4;</code>
      */
-    public Builder setEnum(io.github.yu31.protoc.pb.pbjson.TypeEnum value) {
-      if (enumBuilder_ == null) {
+    public Builder setReference(io.github.yu31.protoc.pb.pbjson.TypeReference value) {
+      if (referenceBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        typeSet_ = value;
+        reference_ = value;
         onChanged();
       } else {
-        enumBuilder_.setMessage(value);
+        referenceBuilder_.setMessage(value);
       }
-      typeSetCase_ = 11;
-      return this;
-    }
-    /**
-     * <code>.json.TypeEnum enum = 11;</code>
-     */
-    public Builder setEnum(
-        io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder builderForValue) {
-      if (enumBuilder_ == null) {
-        typeSet_ = builderForValue.build();
-        onChanged();
-      } else {
-        enumBuilder_.setMessage(builderForValue.build());
-      }
-      typeSetCase_ = 11;
-      return this;
-    }
-    /**
-     * <code>.json.TypeEnum enum = 11;</code>
-     */
-    public Builder mergeEnum(io.github.yu31.protoc.pb.pbjson.TypeEnum value) {
-      if (enumBuilder_ == null) {
-        if (typeSetCase_ == 11 &&
-            typeSet_ != io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance()) {
-          typeSet_ = io.github.yu31.protoc.pb.pbjson.TypeEnum.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_)
-              .mergeFrom(value).buildPartial();
-        } else {
-          typeSet_ = value;
-        }
-        onChanged();
-      } else {
-        if (typeSetCase_ == 11) {
-          enumBuilder_.mergeFrom(value);
-        }
-        enumBuilder_.setMessage(value);
-      }
-      typeSetCase_ = 11;
-      return this;
-    }
-    /**
-     * <code>.json.TypeEnum enum = 11;</code>
-     */
-    public Builder clearEnum() {
-      if (enumBuilder_ == null) {
-        if (typeSetCase_ == 11) {
-          typeSetCase_ = 0;
-          typeSet_ = null;
-          onChanged();
-        }
-      } else {
-        if (typeSetCase_ == 11) {
-          typeSetCase_ = 0;
-          typeSet_ = null;
-        }
-        enumBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <code>.json.TypeEnum enum = 11;</code>
-     */
-    public io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder getEnumBuilder() {
-      return getEnumFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.json.TypeEnum enum = 11;</code>
-     */
-    @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder getEnumOrBuilder() {
-      if ((typeSetCase_ == 11) && (enumBuilder_ != null)) {
-        return enumBuilder_.getMessageOrBuilder();
-      } else {
-        if (typeSetCase_ == 11) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_;
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
-      }
-    }
-    /**
-     * <code>.json.TypeEnum enum = 11;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeEnum, io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder, io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder> 
-        getEnumFieldBuilder() {
-      if (enumBuilder_ == null) {
-        if (!(typeSetCase_ == 11)) {
-          typeSet_ = io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
-        }
-        enumBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.github.yu31.protoc.pb.pbjson.TypeEnum, io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder, io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder>(
-                (io.github.yu31.protoc.pb.pbjson.TypeEnum) typeSet_,
-                getParentForChildren(),
-                isClean());
-        typeSet_ = null;
-      }
-      typeSetCase_ = 11;
-      onChanged();;
-      return enumBuilder_;
-    }
 
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeAny, io.github.yu31.protoc.pb.pbjson.TypeAny.Builder, io.github.yu31.protoc.pb.pbjson.TypeAnyOrBuilder> anyBuilder_;
-    /**
-     * <code>.json.TypeAny any = 12;</code>
-     * @return Whether the any field is set.
-     */
-    @java.lang.Override
-    public boolean hasAny() {
-      return typeSetCase_ == 12;
+      return this;
     }
     /**
-     * <code>.json.TypeAny any = 12;</code>
-     * @return The any.
+     * <pre>
+     * Format set for field.
+     * </pre>
+     *
+     * <code>.json.TypeReference reference = 4;</code>
      */
-    @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeAny getAny() {
-      if (anyBuilder_ == null) {
-        if (typeSetCase_ == 12) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_;
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
-      } else {
-        if (typeSetCase_ == 12) {
-          return anyBuilder_.getMessage();
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
-      }
-    }
-    /**
-     * <code>.json.TypeAny any = 12;</code>
-     */
-    public Builder setAny(io.github.yu31.protoc.pb.pbjson.TypeAny value) {
-      if (anyBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        typeSet_ = value;
+    public Builder setReference(
+        io.github.yu31.protoc.pb.pbjson.TypeReference.Builder builderForValue) {
+      if (referenceBuilder_ == null) {
+        reference_ = builderForValue.build();
         onChanged();
       } else {
-        anyBuilder_.setMessage(value);
+        referenceBuilder_.setMessage(builderForValue.build());
       }
-      typeSetCase_ = 12;
-      return this;
-    }
-    /**
-     * <code>.json.TypeAny any = 12;</code>
-     */
-    public Builder setAny(
-        io.github.yu31.protoc.pb.pbjson.TypeAny.Builder builderForValue) {
-      if (anyBuilder_ == null) {
-        typeSet_ = builderForValue.build();
-        onChanged();
-      } else {
-        anyBuilder_.setMessage(builderForValue.build());
-      }
-      typeSetCase_ = 12;
-      return this;
-    }
-    /**
-     * <code>.json.TypeAny any = 12;</code>
-     */
-    public Builder mergeAny(io.github.yu31.protoc.pb.pbjson.TypeAny value) {
-      if (anyBuilder_ == null) {
-        if (typeSetCase_ == 12 &&
-            typeSet_ != io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance()) {
-          typeSet_ = io.github.yu31.protoc.pb.pbjson.TypeAny.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_)
-              .mergeFrom(value).buildPartial();
-        } else {
-          typeSet_ = value;
-        }
-        onChanged();
-      } else {
-        if (typeSetCase_ == 12) {
-          anyBuilder_.mergeFrom(value);
-        }
-        anyBuilder_.setMessage(value);
-      }
-      typeSetCase_ = 12;
-      return this;
-    }
-    /**
-     * <code>.json.TypeAny any = 12;</code>
-     */
-    public Builder clearAny() {
-      if (anyBuilder_ == null) {
-        if (typeSetCase_ == 12) {
-          typeSetCase_ = 0;
-          typeSet_ = null;
-          onChanged();
-        }
-      } else {
-        if (typeSetCase_ == 12) {
-          typeSetCase_ = 0;
-          typeSet_ = null;
-        }
-        anyBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <code>.json.TypeAny any = 12;</code>
-     */
-    public io.github.yu31.protoc.pb.pbjson.TypeAny.Builder getAnyBuilder() {
-      return getAnyFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.json.TypeAny any = 12;</code>
-     */
-    @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeAnyOrBuilder getAnyOrBuilder() {
-      if ((typeSetCase_ == 12) && (anyBuilder_ != null)) {
-        return anyBuilder_.getMessageOrBuilder();
-      } else {
-        if (typeSetCase_ == 12) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_;
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
-      }
-    }
-    /**
-     * <code>.json.TypeAny any = 12;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeAny, io.github.yu31.protoc.pb.pbjson.TypeAny.Builder, io.github.yu31.protoc.pb.pbjson.TypeAnyOrBuilder> 
-        getAnyFieldBuilder() {
-      if (anyBuilder_ == null) {
-        if (!(typeSetCase_ == 12)) {
-          typeSet_ = io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
-        }
-        anyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.github.yu31.protoc.pb.pbjson.TypeAny, io.github.yu31.protoc.pb.pbjson.TypeAny.Builder, io.github.yu31.protoc.pb.pbjson.TypeAnyOrBuilder>(
-                (io.github.yu31.protoc.pb.pbjson.TypeAny) typeSet_,
-                getParentForChildren(),
-                isClean());
-        typeSet_ = null;
-      }
-      typeSetCase_ = 12;
-      onChanged();;
-      return anyBuilder_;
-    }
 
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeDuration, io.github.yu31.protoc.pb.pbjson.TypeDuration.Builder, io.github.yu31.protoc.pb.pbjson.TypeDurationOrBuilder> durationBuilder_;
-    /**
-     * <code>.json.TypeDuration duration = 13;</code>
-     * @return Whether the duration field is set.
-     */
-    @java.lang.Override
-    public boolean hasDuration() {
-      return typeSetCase_ == 13;
-    }
-    /**
-     * <code>.json.TypeDuration duration = 13;</code>
-     * @return The duration.
-     */
-    @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeDuration getDuration() {
-      if (durationBuilder_ == null) {
-        if (typeSetCase_ == 13) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_;
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
-      } else {
-        if (typeSetCase_ == 13) {
-          return durationBuilder_.getMessage();
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
-      }
-    }
-    /**
-     * <code>.json.TypeDuration duration = 13;</code>
-     */
-    public Builder setDuration(io.github.yu31.protoc.pb.pbjson.TypeDuration value) {
-      if (durationBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        typeSet_ = value;
-        onChanged();
-      } else {
-        durationBuilder_.setMessage(value);
-      }
-      typeSetCase_ = 13;
       return this;
     }
     /**
-     * <code>.json.TypeDuration duration = 13;</code>
+     * <pre>
+     * Format set for field.
+     * </pre>
+     *
+     * <code>.json.TypeReference reference = 4;</code>
      */
-    public Builder setDuration(
-        io.github.yu31.protoc.pb.pbjson.TypeDuration.Builder builderForValue) {
-      if (durationBuilder_ == null) {
-        typeSet_ = builderForValue.build();
-        onChanged();
-      } else {
-        durationBuilder_.setMessage(builderForValue.build());
-      }
-      typeSetCase_ = 13;
-      return this;
-    }
-    /**
-     * <code>.json.TypeDuration duration = 13;</code>
-     */
-    public Builder mergeDuration(io.github.yu31.protoc.pb.pbjson.TypeDuration value) {
-      if (durationBuilder_ == null) {
-        if (typeSetCase_ == 13 &&
-            typeSet_ != io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance()) {
-          typeSet_ = io.github.yu31.protoc.pb.pbjson.TypeDuration.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_)
-              .mergeFrom(value).buildPartial();
+    public Builder mergeReference(io.github.yu31.protoc.pb.pbjson.TypeReference value) {
+      if (referenceBuilder_ == null) {
+        if (reference_ != null) {
+          reference_ =
+            io.github.yu31.protoc.pb.pbjson.TypeReference.newBuilder(reference_).mergeFrom(value).buildPartial();
         } else {
-          typeSet_ = value;
+          reference_ = value;
         }
         onChanged();
       } else {
-        if (typeSetCase_ == 13) {
-          durationBuilder_.mergeFrom(value);
-        }
-        durationBuilder_.setMessage(value);
+        referenceBuilder_.mergeFrom(value);
       }
-      typeSetCase_ = 13;
-      return this;
-    }
-    /**
-     * <code>.json.TypeDuration duration = 13;</code>
-     */
-    public Builder clearDuration() {
-      if (durationBuilder_ == null) {
-        if (typeSetCase_ == 13) {
-          typeSetCase_ = 0;
-          typeSet_ = null;
-          onChanged();
-        }
-      } else {
-        if (typeSetCase_ == 13) {
-          typeSetCase_ = 0;
-          typeSet_ = null;
-        }
-        durationBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <code>.json.TypeDuration duration = 13;</code>
-     */
-    public io.github.yu31.protoc.pb.pbjson.TypeDuration.Builder getDurationBuilder() {
-      return getDurationFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.json.TypeDuration duration = 13;</code>
-     */
-    @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeDurationOrBuilder getDurationOrBuilder() {
-      if ((typeSetCase_ == 13) && (durationBuilder_ != null)) {
-        return durationBuilder_.getMessageOrBuilder();
-      } else {
-        if (typeSetCase_ == 13) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_;
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
-      }
-    }
-    /**
-     * <code>.json.TypeDuration duration = 13;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeDuration, io.github.yu31.protoc.pb.pbjson.TypeDuration.Builder, io.github.yu31.protoc.pb.pbjson.TypeDurationOrBuilder> 
-        getDurationFieldBuilder() {
-      if (durationBuilder_ == null) {
-        if (!(typeSetCase_ == 13)) {
-          typeSet_ = io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
-        }
-        durationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.github.yu31.protoc.pb.pbjson.TypeDuration, io.github.yu31.protoc.pb.pbjson.TypeDuration.Builder, io.github.yu31.protoc.pb.pbjson.TypeDurationOrBuilder>(
-                (io.github.yu31.protoc.pb.pbjson.TypeDuration) typeSet_,
-                getParentForChildren(),
-                isClean());
-        typeSet_ = null;
-      }
-      typeSetCase_ = 13;
-      onChanged();;
-      return durationBuilder_;
-    }
 
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeTimestamp, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Builder, io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder> timestampBuilder_;
-    /**
-     * <code>.json.TypeTimestamp timestamp = 14;</code>
-     * @return Whether the timestamp field is set.
-     */
-    @java.lang.Override
-    public boolean hasTimestamp() {
-      return typeSetCase_ == 14;
+      return this;
     }
     /**
-     * <code>.json.TypeTimestamp timestamp = 14;</code>
-     * @return The timestamp.
+     * <pre>
+     * Format set for field.
+     * </pre>
+     *
+     * <code>.json.TypeReference reference = 4;</code>
      */
-    @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeTimestamp getTimestamp() {
-      if (timestampBuilder_ == null) {
-        if (typeSetCase_ == 14) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_;
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
-      } else {
-        if (typeSetCase_ == 14) {
-          return timestampBuilder_.getMessage();
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
-      }
-    }
-    /**
-     * <code>.json.TypeTimestamp timestamp = 14;</code>
-     */
-    public Builder setTimestamp(io.github.yu31.protoc.pb.pbjson.TypeTimestamp value) {
-      if (timestampBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        typeSet_ = value;
+    public Builder clearReference() {
+      if (referenceBuilder_ == null) {
+        reference_ = null;
         onChanged();
       } else {
-        timestampBuilder_.setMessage(value);
+        reference_ = null;
+        referenceBuilder_ = null;
       }
-      typeSetCase_ = 14;
+
       return this;
     }
     /**
-     * <code>.json.TypeTimestamp timestamp = 14;</code>
+     * <pre>
+     * Format set for field.
+     * </pre>
+     *
+     * <code>.json.TypeReference reference = 4;</code>
      */
-    public Builder setTimestamp(
-        io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Builder builderForValue) {
-      if (timestampBuilder_ == null) {
-        typeSet_ = builderForValue.build();
-        onChanged();
-      } else {
-        timestampBuilder_.setMessage(builderForValue.build());
-      }
-      typeSetCase_ = 14;
-      return this;
+    public io.github.yu31.protoc.pb.pbjson.TypeReference.Builder getReferenceBuilder() {
+      
+      onChanged();
+      return getReferenceFieldBuilder().getBuilder();
     }
     /**
-     * <code>.json.TypeTimestamp timestamp = 14;</code>
+     * <pre>
+     * Format set for field.
+     * </pre>
+     *
+     * <code>.json.TypeReference reference = 4;</code>
      */
-    public Builder mergeTimestamp(io.github.yu31.protoc.pb.pbjson.TypeTimestamp value) {
-      if (timestampBuilder_ == null) {
-        if (typeSetCase_ == 14 &&
-            typeSet_ != io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance()) {
-          typeSet_ = io.github.yu31.protoc.pb.pbjson.TypeTimestamp.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_)
-              .mergeFrom(value).buildPartial();
-        } else {
-          typeSet_ = value;
-        }
-        onChanged();
+    public io.github.yu31.protoc.pb.pbjson.TypeReferenceOrBuilder getReferenceOrBuilder() {
+      if (referenceBuilder_ != null) {
+        return referenceBuilder_.getMessageOrBuilder();
       } else {
-        if (typeSetCase_ == 14) {
-          timestampBuilder_.mergeFrom(value);
-        }
-        timestampBuilder_.setMessage(value);
-      }
-      typeSetCase_ = 14;
-      return this;
-    }
-    /**
-     * <code>.json.TypeTimestamp timestamp = 14;</code>
-     */
-    public Builder clearTimestamp() {
-      if (timestampBuilder_ == null) {
-        if (typeSetCase_ == 14) {
-          typeSetCase_ = 0;
-          typeSet_ = null;
-          onChanged();
-        }
-      } else {
-        if (typeSetCase_ == 14) {
-          typeSetCase_ = 0;
-          typeSet_ = null;
-        }
-        timestampBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <code>.json.TypeTimestamp timestamp = 14;</code>
-     */
-    public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Builder getTimestampBuilder() {
-      return getTimestampFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.json.TypeTimestamp timestamp = 14;</code>
-     */
-    @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder getTimestampOrBuilder() {
-      if ((typeSetCase_ == 14) && (timestampBuilder_ != null)) {
-        return timestampBuilder_.getMessageOrBuilder();
-      } else {
-        if (typeSetCase_ == 14) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_;
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
+        return reference_ == null ?
+            io.github.yu31.protoc.pb.pbjson.TypeReference.getDefaultInstance() : reference_;
       }
     }
     /**
-     * <code>.json.TypeTimestamp timestamp = 14;</code>
+     * <pre>
+     * Format set for field.
+     * </pre>
+     *
+     * <code>.json.TypeReference reference = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeTimestamp, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Builder, io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder> 
-        getTimestampFieldBuilder() {
-      if (timestampBuilder_ == null) {
-        if (!(typeSetCase_ == 14)) {
-          typeSet_ = io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
-        }
-        timestampBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.github.yu31.protoc.pb.pbjson.TypeTimestamp, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Builder, io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder>(
-                (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) typeSet_,
+        io.github.yu31.protoc.pb.pbjson.TypeReference, io.github.yu31.protoc.pb.pbjson.TypeReference.Builder, io.github.yu31.protoc.pb.pbjson.TypeReferenceOrBuilder> 
+        getReferenceFieldBuilder() {
+      if (referenceBuilder_ == null) {
+        referenceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            io.github.yu31.protoc.pb.pbjson.TypeReference, io.github.yu31.protoc.pb.pbjson.TypeReference.Builder, io.github.yu31.protoc.pb.pbjson.TypeReferenceOrBuilder>(
+                getReference(),
                 getParentForChildren(),
                 isClean());
-        typeSet_ = null;
+        reference_ = null;
       }
-      typeSetCase_ = 14;
-      onChanged();;
-      return timestampBuilder_;
+      return referenceBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

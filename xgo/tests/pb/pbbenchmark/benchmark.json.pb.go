@@ -127,35 +127,35 @@ func (x *BenchModelSimple) MarshalJSON() ([]byte, error) {
 	encoder.AppendObjectKey("f_string9")
 	encoder.AppendLiteralString(x.FString9)
 	encoder.AppendObjectKey("f_int32")
-	encoder.AppendLiteralInt32(x.FInt32)
+	encoder.AppendLiteralInt32(x.FInt32, false)
 	encoder.AppendObjectKey("f_int64")
-	encoder.AppendLiteralInt64(x.FInt64)
+	encoder.AppendLiteralInt64(x.FInt64, false)
 	encoder.AppendObjectKey("f_uint32")
-	encoder.AppendLiteralUint32(x.FUint32)
+	encoder.AppendLiteralUint32(x.FUint32, false)
 	encoder.AppendObjectKey("f_uint64")
-	encoder.AppendLiteralUint64(x.FUint64)
+	encoder.AppendLiteralUint64(x.FUint64, false)
 	encoder.AppendObjectKey("f_sint32")
-	encoder.AppendLiteralInt32(x.FSint32)
+	encoder.AppendLiteralInt32(x.FSint32, false)
 	encoder.AppendObjectKey("f_sint64")
-	encoder.AppendLiteralInt64(x.FSint64)
+	encoder.AppendLiteralInt64(x.FSint64, false)
 	encoder.AppendObjectKey("f_sfixed32")
-	encoder.AppendLiteralInt32(x.FSfixed32)
+	encoder.AppendLiteralInt32(x.FSfixed32, false)
 	encoder.AppendObjectKey("f_sfixed64")
-	encoder.AppendLiteralInt64(x.FSfixed64)
+	encoder.AppendLiteralInt64(x.FSfixed64, false)
 	encoder.AppendObjectKey("f_fixed32")
-	encoder.AppendLiteralUint32(x.FFixed32)
+	encoder.AppendLiteralUint32(x.FFixed32, false)
 	encoder.AppendObjectKey("f_fixed64")
-	encoder.AppendLiteralUint64(x.FFixed64)
+	encoder.AppendLiteralUint64(x.FFixed64, false)
 	encoder.AppendObjectKey("f_float")
-	encoder.AppendLiteralFloat32(x.FFloat)
+	encoder.AppendLiteralFloat32(x.FFloat, false)
 	encoder.AppendObjectKey("f_double")
-	encoder.AppendLiteralFloat64(x.FDouble)
+	encoder.AppendLiteralFloat64(x.FDouble, false)
 	encoder.AppendObjectKey("f_bool1")
-	encoder.AppendLiteralBool(x.FBool1)
+	encoder.AppendLiteralBool(x.FBool1, false)
 	encoder.AppendObjectKey("f_bool2")
-	encoder.AppendLiteralBool(x.FBool2)
+	encoder.AppendLiteralBool(x.FBool2, false)
 	encoder.AppendObjectKey("f_bool3")
-	encoder.AppendLiteralBool(x.FBool3)
+	encoder.AppendLiteralBool(x.FBool3, false)
 
 	// Add end JSON identifier
 	encoder.AppendObjectEnd()
@@ -253,91 +253,91 @@ LOOP_SCAN:
 			x.FString9 = vv
 		case "f_int32":
 			var vv int32
-			if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
 				return err
 			}
 			x.FInt32 = vv
 		case "f_int64":
 			var vv int64
-			if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
 				return err
 			}
 			x.FInt64 = vv
 		case "f_uint32":
 			var vv uint32
-			if vv, err = decoder.ReadLiteralUint32(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralUint32(jsonKey, false); err != nil {
 				return err
 			}
 			x.FUint32 = vv
 		case "f_uint64":
 			var vv uint64
-			if vv, err = decoder.ReadLiteralUint64(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralUint64(jsonKey, false); err != nil {
 				return err
 			}
 			x.FUint64 = vv
 		case "f_sint32":
 			var vv int32
-			if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
 				return err
 			}
 			x.FSint32 = vv
 		case "f_sint64":
 			var vv int64
-			if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
 				return err
 			}
 			x.FSint64 = vv
 		case "f_sfixed32":
 			var vv int32
-			if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
 				return err
 			}
 			x.FSfixed32 = vv
 		case "f_sfixed64":
 			var vv int64
-			if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
 				return err
 			}
 			x.FSfixed64 = vv
 		case "f_fixed32":
 			var vv uint32
-			if vv, err = decoder.ReadLiteralUint32(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralUint32(jsonKey, false); err != nil {
 				return err
 			}
 			x.FFixed32 = vv
 		case "f_fixed64":
 			var vv uint64
-			if vv, err = decoder.ReadLiteralUint64(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralUint64(jsonKey, false); err != nil {
 				return err
 			}
 			x.FFixed64 = vv
 		case "f_float":
 			var vv float32
-			if vv, err = decoder.ReadLiteralFloat32(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralFloat32(jsonKey, false); err != nil {
 				return err
 			}
 			x.FFloat = vv
 		case "f_double":
 			var vv float64
-			if vv, err = decoder.ReadLiteralFloat64(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralFloat64(jsonKey, false); err != nil {
 				return err
 			}
 			x.FDouble = vv
 		case "f_bool1":
 			var vv bool
-			if vv, err = decoder.ReadLiteralBool(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralBool(jsonKey, false); err != nil {
 				return err
 			}
 			x.FBool1 = vv
 		case "f_bool2":
 			var vv bool
-			if vv, err = decoder.ReadLiteralBool(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralBool(jsonKey, false); err != nil {
 				return err
 			}
 			x.FBool2 = vv
 		case "f_bool3":
 			var vv bool
-			if vv, err = decoder.ReadLiteralBool(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralBool(jsonKey, false); err != nil {
 				return err
 			}
 			x.FBool3 = vv
@@ -380,35 +380,35 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	encoder.AppendObjectKey("f_string9")
 	encoder.AppendLiteralString(x.FString9)
 	encoder.AppendObjectKey("f_int32")
-	encoder.AppendLiteralInt32(x.FInt32)
+	encoder.AppendLiteralInt32(x.FInt32, false)
 	encoder.AppendObjectKey("f_int64")
-	encoder.AppendLiteralInt64(x.FInt64)
+	encoder.AppendLiteralInt64(x.FInt64, false)
 	encoder.AppendObjectKey("f_uint32")
-	encoder.AppendLiteralUint32(x.FUint32)
+	encoder.AppendLiteralUint32(x.FUint32, false)
 	encoder.AppendObjectKey("f_uint64")
-	encoder.AppendLiteralUint64(x.FUint64)
+	encoder.AppendLiteralUint64(x.FUint64, false)
 	encoder.AppendObjectKey("f_sint32")
-	encoder.AppendLiteralInt32(x.FSint32)
+	encoder.AppendLiteralInt32(x.FSint32, false)
 	encoder.AppendObjectKey("f_sint64")
-	encoder.AppendLiteralInt64(x.FSint64)
+	encoder.AppendLiteralInt64(x.FSint64, false)
 	encoder.AppendObjectKey("f_sfixed32")
-	encoder.AppendLiteralInt32(x.FSfixed32)
+	encoder.AppendLiteralInt32(x.FSfixed32, false)
 	encoder.AppendObjectKey("f_sfixed64")
-	encoder.AppendLiteralInt64(x.FSfixed64)
+	encoder.AppendLiteralInt64(x.FSfixed64, false)
 	encoder.AppendObjectKey("f_fixed32")
-	encoder.AppendLiteralUint32(x.FFixed32)
+	encoder.AppendLiteralUint32(x.FFixed32, false)
 	encoder.AppendObjectKey("f_fixed64")
-	encoder.AppendLiteralUint64(x.FFixed64)
+	encoder.AppendLiteralUint64(x.FFixed64, false)
 	encoder.AppendObjectKey("f_float")
-	encoder.AppendLiteralFloat32(x.FFloat)
+	encoder.AppendLiteralFloat32(x.FFloat, false)
 	encoder.AppendObjectKey("f_double")
-	encoder.AppendLiteralFloat64(x.FDouble)
+	encoder.AppendLiteralFloat64(x.FDouble, false)
 	encoder.AppendObjectKey("f_bool1")
-	encoder.AppendLiteralBool(x.FBool1)
+	encoder.AppendLiteralBool(x.FBool1, false)
 	encoder.AppendObjectKey("f_bool2")
-	encoder.AppendLiteralBool(x.FBool2)
+	encoder.AppendLiteralBool(x.FBool2, false)
 	encoder.AppendObjectKey("f_bool3")
-	encoder.AppendLiteralBool(x.FBool3)
+	encoder.AppendLiteralBool(x.FBool3, false)
 	encoder.AppendObjectKey("f_bytes1")
 	encoder.AppendLiteralBytes(x.FBytes1)
 	encoder.AppendObjectKey("f_bytes2")
@@ -416,19 +416,19 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	encoder.AppendObjectKey("f_bytes3")
 	encoder.AppendLiteralBytes(x.FBytes3)
 	encoder.AppendObjectKey("f_enum1")
-	encoder.AppendLiteralInt32(int32(x.FEnum1.Number()))
+	encoder.AppendLiteralInt32(int32(x.FEnum1.Number()), false)
 	encoder.AppendObjectKey("f_enum2")
-	encoder.AppendLiteralInt32(int32(x.FEnum2.Number()))
+	encoder.AppendLiteralInt32(int32(x.FEnum2.Number()), false)
 	encoder.AppendObjectKey("f_enum3")
-	encoder.AppendLiteralInt32(int32(x.FEnum3.Number()))
+	encoder.AppendLiteralInt32(int32(x.FEnum3.Number()), false)
 	encoder.AppendObjectKey("f_enum4")
-	encoder.AppendLiteralInt32(int32(x.FEnum4.Number()))
+	encoder.AppendLiteralInt32(int32(x.FEnum4.Number()), false)
 	encoder.AppendObjectKey("f_enum5")
-	encoder.AppendLiteralInt32(int32(x.FEnum5.Number()))
+	encoder.AppendLiteralInt32(int32(x.FEnum5.Number()), false)
 	encoder.AppendObjectKey("f_enum6")
-	encoder.AppendLiteralInt32(int32(x.FEnum6.Number()))
+	encoder.AppendLiteralInt32(int32(x.FEnum6.Number()), false)
 	encoder.AppendObjectKey("f_enum7")
-	encoder.AppendLiteralInt32(int32(x.FEnum7.Number()))
+	encoder.AppendLiteralInt32(int32(x.FEnum7.Number()), false)
 	encoder.AppendObjectKey("f_message1")
 	if err = encoder.AppendLiteralInterface(x.FMessage1); err != nil {
 		return nil, err
@@ -476,35 +476,35 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	encoder.AppendObjectKey("p_string9")
 	encoder.AppendPointerString(x.PString9)
 	encoder.AppendObjectKey("p_int32")
-	encoder.AppendPointerInt32(x.PInt32)
+	encoder.AppendPointerInt32(x.PInt32, false)
 	encoder.AppendObjectKey("p_int64")
-	encoder.AppendPointerInt64(x.PInt64)
+	encoder.AppendPointerInt64(x.PInt64, false)
 	encoder.AppendObjectKey("p_uint32")
-	encoder.AppendPointerUint32(x.PUint32)
+	encoder.AppendPointerUint32(x.PUint32, false)
 	encoder.AppendObjectKey("p_uint64")
-	encoder.AppendPointerUint64(x.PUint64)
+	encoder.AppendPointerUint64(x.PUint64, false)
 	encoder.AppendObjectKey("p_sint32")
-	encoder.AppendPointerInt32(x.PSint32)
+	encoder.AppendPointerInt32(x.PSint32, false)
 	encoder.AppendObjectKey("p_sint64")
-	encoder.AppendPointerInt64(x.PSint64)
+	encoder.AppendPointerInt64(x.PSint64, false)
 	encoder.AppendObjectKey("p_sfixed32")
-	encoder.AppendPointerInt32(x.PSfixed32)
+	encoder.AppendPointerInt32(x.PSfixed32, false)
 	encoder.AppendObjectKey("p_sfixed64")
-	encoder.AppendPointerInt64(x.PSfixed64)
+	encoder.AppendPointerInt64(x.PSfixed64, false)
 	encoder.AppendObjectKey("p_fixed32")
-	encoder.AppendPointerUint32(x.PFixed32)
+	encoder.AppendPointerUint32(x.PFixed32, false)
 	encoder.AppendObjectKey("p_fixed64")
-	encoder.AppendPointerUint64(x.PFixed64)
+	encoder.AppendPointerUint64(x.PFixed64, false)
 	encoder.AppendObjectKey("p_float")
-	encoder.AppendPointerFloat32(x.PFloat)
+	encoder.AppendPointerFloat32(x.PFloat, false)
 	encoder.AppendObjectKey("p_double")
-	encoder.AppendPointerFloat64(x.PDouble)
+	encoder.AppendPointerFloat64(x.PDouble, false)
 	encoder.AppendObjectKey("p_bool1")
-	encoder.AppendPointerBool(x.PBool1)
+	encoder.AppendPointerBool(x.PBool1, false)
 	encoder.AppendObjectKey("p_bool2")
-	encoder.AppendPointerBool(x.PBool2)
+	encoder.AppendPointerBool(x.PBool2, false)
 	encoder.AppendObjectKey("p_bool3")
-	encoder.AppendPointerBool(x.PBool3)
+	encoder.AppendPointerBool(x.PBool3, false)
 	encoder.AppendObjectKey("p_bytes1")
 	encoder.AppendLiteralBytes(x.PBytes1)
 	encoder.AppendObjectKey("p_bytes2")
@@ -513,43 +513,43 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	encoder.AppendLiteralBytes(x.PBytes3)
 	encoder.AppendObjectKey("p_enum1")
 	if x.PEnum1 != nil {
-		encoder.AppendLiteralInt32(int32(x.PEnum1.Number()))
+		encoder.AppendLiteralInt32(int32(x.PEnum1.Number()), false)
 	} else {
 		encoder.AppendLiteralNULL()
 	}
 	encoder.AppendObjectKey("p_enum2")
 	if x.PEnum2 != nil {
-		encoder.AppendLiteralInt32(int32(x.PEnum2.Number()))
+		encoder.AppendLiteralInt32(int32(x.PEnum2.Number()), false)
 	} else {
 		encoder.AppendLiteralNULL()
 	}
 	encoder.AppendObjectKey("p_enum3")
 	if x.PEnum3 != nil {
-		encoder.AppendLiteralInt32(int32(x.PEnum3.Number()))
+		encoder.AppendLiteralInt32(int32(x.PEnum3.Number()), false)
 	} else {
 		encoder.AppendLiteralNULL()
 	}
 	encoder.AppendObjectKey("p_enum4")
 	if x.PEnum4 != nil {
-		encoder.AppendLiteralInt32(int32(x.PEnum4.Number()))
+		encoder.AppendLiteralInt32(int32(x.PEnum4.Number()), false)
 	} else {
 		encoder.AppendLiteralNULL()
 	}
 	encoder.AppendObjectKey("p_enum5")
 	if x.PEnum5 != nil {
-		encoder.AppendLiteralInt32(int32(x.PEnum5.Number()))
+		encoder.AppendLiteralInt32(int32(x.PEnum5.Number()), false)
 	} else {
 		encoder.AppendLiteralNULL()
 	}
 	encoder.AppendObjectKey("p_enum6")
 	if x.PEnum6 != nil {
-		encoder.AppendLiteralInt32(int32(x.PEnum6.Number()))
+		encoder.AppendLiteralInt32(int32(x.PEnum6.Number()), false)
 	} else {
 		encoder.AppendLiteralNULL()
 	}
 	encoder.AppendObjectKey("p_enum7")
 	if x.PEnum7 != nil {
-		encoder.AppendLiteralInt32(int32(x.PEnum7.Number()))
+		encoder.AppendLiteralInt32(int32(x.PEnum7.Number()), false)
 	} else {
 		encoder.AppendLiteralNULL()
 	}
@@ -675,7 +675,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RInt32 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RInt32 {
-			encoder.AppendLiteralInt32(ri)
+			encoder.AppendLiteralInt32(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -685,7 +685,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RInt64 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RInt64 {
-			encoder.AppendLiteralInt64(ri)
+			encoder.AppendLiteralInt64(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -695,7 +695,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RUint32 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RUint32 {
-			encoder.AppendLiteralUint32(ri)
+			encoder.AppendLiteralUint32(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -705,7 +705,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RUint64 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RUint64 {
-			encoder.AppendLiteralUint64(ri)
+			encoder.AppendLiteralUint64(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -715,7 +715,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RSint32 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RSint32 {
-			encoder.AppendLiteralInt32(ri)
+			encoder.AppendLiteralInt32(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -725,7 +725,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RSint64 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RSint64 {
-			encoder.AppendLiteralInt64(ri)
+			encoder.AppendLiteralInt64(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -735,7 +735,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RSfixed32 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RSfixed32 {
-			encoder.AppendLiteralInt32(ri)
+			encoder.AppendLiteralInt32(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -745,7 +745,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RSfixed64 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RSfixed64 {
-			encoder.AppendLiteralInt64(ri)
+			encoder.AppendLiteralInt64(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -755,7 +755,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RFixed32 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RFixed32 {
-			encoder.AppendLiteralUint32(ri)
+			encoder.AppendLiteralUint32(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -765,7 +765,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RFixed64 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RFixed64 {
-			encoder.AppendLiteralUint64(ri)
+			encoder.AppendLiteralUint64(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -775,7 +775,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RFloat != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RFloat {
-			encoder.AppendLiteralFloat32(ri)
+			encoder.AppendLiteralFloat32(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -785,7 +785,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RDouble != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RDouble {
-			encoder.AppendLiteralFloat64(ri)
+			encoder.AppendLiteralFloat64(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -795,7 +795,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RBool1 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RBool1 {
-			encoder.AppendLiteralBool(ri)
+			encoder.AppendLiteralBool(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -805,7 +805,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RBool2 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RBool2 {
-			encoder.AppendLiteralBool(ri)
+			encoder.AppendLiteralBool(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -815,7 +815,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.RBool3 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.RBool3 {
-			encoder.AppendLiteralBool(ri)
+			encoder.AppendLiteralBool(ri, false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -855,7 +855,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.REnum1 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.REnum1 {
-			encoder.AppendLiteralInt32(int32(ri.Number()))
+			encoder.AppendLiteralInt32(int32(ri.Number()), false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -865,7 +865,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.REnum2 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.REnum2 {
-			encoder.AppendLiteralInt32(int32(ri.Number()))
+			encoder.AppendLiteralInt32(int32(ri.Number()), false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -875,7 +875,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.REnum3 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.REnum3 {
-			encoder.AppendLiteralInt32(int32(ri.Number()))
+			encoder.AppendLiteralInt32(int32(ri.Number()), false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -885,7 +885,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.REnum4 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.REnum4 {
-			encoder.AppendLiteralInt32(int32(ri.Number()))
+			encoder.AppendLiteralInt32(int32(ri.Number()), false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -895,7 +895,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.REnum5 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.REnum5 {
-			encoder.AppendLiteralInt32(int32(ri.Number()))
+			encoder.AppendLiteralInt32(int32(ri.Number()), false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -905,7 +905,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.REnum6 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.REnum6 {
-			encoder.AppendLiteralInt32(int32(ri.Number()))
+			encoder.AppendLiteralInt32(int32(ri.Number()), false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -915,7 +915,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 	if x.REnum7 != nil {
 		encoder.AppendArrayBegin()
 		for _, ri := range x.REnum7 {
-			encoder.AppendLiteralInt32(int32(ri.Number()))
+			encoder.AppendLiteralInt32(int32(ri.Number()), false)
 		}
 		encoder.AppendArrayEnd()
 	} else {
@@ -1109,7 +1109,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MInt32 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralInt32(mv)
+			encoder.AppendLiteralInt32(mv, false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1120,7 +1120,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MInt64 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralInt64(mv)
+			encoder.AppendLiteralInt64(mv, false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1131,7 +1131,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MUint32 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralUint32(mv)
+			encoder.AppendLiteralUint32(mv, false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1142,7 +1142,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MUint64 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralUint64(mv)
+			encoder.AppendLiteralUint64(mv, false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1153,7 +1153,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MSint32 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralInt32(mv)
+			encoder.AppendLiteralInt32(mv, false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1164,7 +1164,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MSint64 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralInt64(mv)
+			encoder.AppendLiteralInt64(mv, false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1175,7 +1175,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MSfixed32 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralInt32(mv)
+			encoder.AppendLiteralInt32(mv, false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1186,7 +1186,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MSfixed64 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralInt64(mv)
+			encoder.AppendLiteralInt64(mv, false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1197,7 +1197,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MFixed32 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralUint32(mv)
+			encoder.AppendLiteralUint32(mv, false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1208,7 +1208,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MFixed64 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralUint64(mv)
+			encoder.AppendLiteralUint64(mv, false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1219,7 +1219,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MFloat {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralFloat32(mv)
+			encoder.AppendLiteralFloat32(mv, false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1230,7 +1230,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MDouble {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralFloat64(mv)
+			encoder.AppendLiteralFloat64(mv, false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1241,7 +1241,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MBool1 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralBool(mv)
+			encoder.AppendLiteralBool(mv, false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1252,7 +1252,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MBool2 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralBool(mv)
+			encoder.AppendLiteralBool(mv, false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1263,7 +1263,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MBool3 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralBool(mv)
+			encoder.AppendLiteralBool(mv, false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1307,7 +1307,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MEnum1 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralInt32(int32(mv.Number()))
+			encoder.AppendLiteralInt32(int32(mv.Number()), false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1318,7 +1318,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MEnum2 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralInt32(int32(mv.Number()))
+			encoder.AppendLiteralInt32(int32(mv.Number()), false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1329,7 +1329,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MEnum3 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralInt32(int32(mv.Number()))
+			encoder.AppendLiteralInt32(int32(mv.Number()), false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1340,7 +1340,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MEnum4 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralInt32(int32(mv.Number()))
+			encoder.AppendLiteralInt32(int32(mv.Number()), false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1351,7 +1351,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MEnum5 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralInt32(int32(mv.Number()))
+			encoder.AppendLiteralInt32(int32(mv.Number()), false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1362,7 +1362,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MEnum6 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralInt32(int32(mv.Number()))
+			encoder.AppendLiteralInt32(int32(mv.Number()), false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1373,7 +1373,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 		encoder.AppendObjectBegin()
 		for mk, mv := range x.MEnum7 {
 			encoder.AppendMapKeyString(mk)
-			encoder.AppendLiteralInt32(int32(mv.Number()))
+			encoder.AppendLiteralInt32(int32(mv.Number()), false)
 		}
 		encoder.AppendObjectEnd()
 	} else {
@@ -1567,91 +1567,91 @@ LOOP_SCAN:
 			x.FString9 = vv
 		case "f_int32":
 			var vv int32
-			if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
 				return err
 			}
 			x.FInt32 = vv
 		case "f_int64":
 			var vv int64
-			if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
 				return err
 			}
 			x.FInt64 = vv
 		case "f_uint32":
 			var vv uint32
-			if vv, err = decoder.ReadLiteralUint32(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralUint32(jsonKey, false); err != nil {
 				return err
 			}
 			x.FUint32 = vv
 		case "f_uint64":
 			var vv uint64
-			if vv, err = decoder.ReadLiteralUint64(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralUint64(jsonKey, false); err != nil {
 				return err
 			}
 			x.FUint64 = vv
 		case "f_sint32":
 			var vv int32
-			if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
 				return err
 			}
 			x.FSint32 = vv
 		case "f_sint64":
 			var vv int64
-			if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
 				return err
 			}
 			x.FSint64 = vv
 		case "f_sfixed32":
 			var vv int32
-			if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
 				return err
 			}
 			x.FSfixed32 = vv
 		case "f_sfixed64":
 			var vv int64
-			if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
 				return err
 			}
 			x.FSfixed64 = vv
 		case "f_fixed32":
 			var vv uint32
-			if vv, err = decoder.ReadLiteralUint32(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralUint32(jsonKey, false); err != nil {
 				return err
 			}
 			x.FFixed32 = vv
 		case "f_fixed64":
 			var vv uint64
-			if vv, err = decoder.ReadLiteralUint64(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralUint64(jsonKey, false); err != nil {
 				return err
 			}
 			x.FFixed64 = vv
 		case "f_float":
 			var vv float32
-			if vv, err = decoder.ReadLiteralFloat32(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralFloat32(jsonKey, false); err != nil {
 				return err
 			}
 			x.FFloat = vv
 		case "f_double":
 			var vv float64
-			if vv, err = decoder.ReadLiteralFloat64(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralFloat64(jsonKey, false); err != nil {
 				return err
 			}
 			x.FDouble = vv
 		case "f_bool1":
 			var vv bool
-			if vv, err = decoder.ReadLiteralBool(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralBool(jsonKey, false); err != nil {
 				return err
 			}
 			x.FBool1 = vv
 		case "f_bool2":
 			var vv bool
-			if vv, err = decoder.ReadLiteralBool(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralBool(jsonKey, false); err != nil {
 				return err
 			}
 			x.FBool2 = vv
 		case "f_bool3":
 			var vv bool
-			if vv, err = decoder.ReadLiteralBool(jsonKey); err != nil {
+			if vv, err = decoder.ReadLiteralBool(jsonKey, false); err != nil {
 				return err
 			}
 			x.FBool3 = vv
@@ -1676,7 +1676,7 @@ LOOP_SCAN:
 		case "f_enum1":
 			var vv Enum1
 			var v1 int32
-			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 				return err
 			}
 			vv = Enum1(v1)
@@ -1684,7 +1684,7 @@ LOOP_SCAN:
 		case "f_enum2":
 			var vv Enum1
 			var v1 int32
-			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 				return err
 			}
 			vv = Enum1(v1)
@@ -1692,7 +1692,7 @@ LOOP_SCAN:
 		case "f_enum3":
 			var vv Enum1
 			var v1 int32
-			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 				return err
 			}
 			vv = Enum1(v1)
@@ -1700,7 +1700,7 @@ LOOP_SCAN:
 		case "f_enum4":
 			var vv Enum1
 			var v1 int32
-			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 				return err
 			}
 			vv = Enum1(v1)
@@ -1708,7 +1708,7 @@ LOOP_SCAN:
 		case "f_enum5":
 			var vv Enum1
 			var v1 int32
-			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 				return err
 			}
 			vv = Enum1(v1)
@@ -1716,7 +1716,7 @@ LOOP_SCAN:
 		case "f_enum6":
 			var vv Enum1
 			var v1 int32
-			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 				return err
 			}
 			vv = Enum1(v1)
@@ -1724,7 +1724,7 @@ LOOP_SCAN:
 		case "f_enum7":
 			var vv Enum1
 			var v1 int32
-			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 				return err
 			}
 			vv = Enum1(v1)
@@ -1897,91 +1897,91 @@ LOOP_SCAN:
 			x.PString9 = vv
 		case "p_int32":
 			var vv *int32
-			if vv, err = decoder.ReadPointerInt32(jsonKey); err != nil {
+			if vv, err = decoder.ReadPointerInt32(jsonKey, false); err != nil {
 				return err
 			}
 			x.PInt32 = vv
 		case "p_int64":
 			var vv *int64
-			if vv, err = decoder.ReadPointerInt64(jsonKey); err != nil {
+			if vv, err = decoder.ReadPointerInt64(jsonKey, false); err != nil {
 				return err
 			}
 			x.PInt64 = vv
 		case "p_uint32":
 			var vv *uint32
-			if vv, err = decoder.ReadPointerUint32(jsonKey); err != nil {
+			if vv, err = decoder.ReadPointerUint32(jsonKey, false); err != nil {
 				return err
 			}
 			x.PUint32 = vv
 		case "p_uint64":
 			var vv *uint64
-			if vv, err = decoder.ReadPointerUint64(jsonKey); err != nil {
+			if vv, err = decoder.ReadPointerUint64(jsonKey, false); err != nil {
 				return err
 			}
 			x.PUint64 = vv
 		case "p_sint32":
 			var vv *int32
-			if vv, err = decoder.ReadPointerInt32(jsonKey); err != nil {
+			if vv, err = decoder.ReadPointerInt32(jsonKey, false); err != nil {
 				return err
 			}
 			x.PSint32 = vv
 		case "p_sint64":
 			var vv *int64
-			if vv, err = decoder.ReadPointerInt64(jsonKey); err != nil {
+			if vv, err = decoder.ReadPointerInt64(jsonKey, false); err != nil {
 				return err
 			}
 			x.PSint64 = vv
 		case "p_sfixed32":
 			var vv *int32
-			if vv, err = decoder.ReadPointerInt32(jsonKey); err != nil {
+			if vv, err = decoder.ReadPointerInt32(jsonKey, false); err != nil {
 				return err
 			}
 			x.PSfixed32 = vv
 		case "p_sfixed64":
 			var vv *int64
-			if vv, err = decoder.ReadPointerInt64(jsonKey); err != nil {
+			if vv, err = decoder.ReadPointerInt64(jsonKey, false); err != nil {
 				return err
 			}
 			x.PSfixed64 = vv
 		case "p_fixed32":
 			var vv *uint32
-			if vv, err = decoder.ReadPointerUint32(jsonKey); err != nil {
+			if vv, err = decoder.ReadPointerUint32(jsonKey, false); err != nil {
 				return err
 			}
 			x.PFixed32 = vv
 		case "p_fixed64":
 			var vv *uint64
-			if vv, err = decoder.ReadPointerUint64(jsonKey); err != nil {
+			if vv, err = decoder.ReadPointerUint64(jsonKey, false); err != nil {
 				return err
 			}
 			x.PFixed64 = vv
 		case "p_float":
 			var vv *float32
-			if vv, err = decoder.ReadPointerFloat32(jsonKey); err != nil {
+			if vv, err = decoder.ReadPointerFloat32(jsonKey, false); err != nil {
 				return err
 			}
 			x.PFloat = vv
 		case "p_double":
 			var vv *float64
-			if vv, err = decoder.ReadPointerFloat64(jsonKey); err != nil {
+			if vv, err = decoder.ReadPointerFloat64(jsonKey, false); err != nil {
 				return err
 			}
 			x.PDouble = vv
 		case "p_bool1":
 			var vv *bool
-			if vv, err = decoder.ReadPointerBool(jsonKey); err != nil {
+			if vv, err = decoder.ReadPointerBool(jsonKey, false); err != nil {
 				return err
 			}
 			x.PBool1 = vv
 		case "p_bool2":
 			var vv *bool
-			if vv, err = decoder.ReadPointerBool(jsonKey); err != nil {
+			if vv, err = decoder.ReadPointerBool(jsonKey, false); err != nil {
 				return err
 			}
 			x.PBool2 = vv
 		case "p_bool3":
 			var vv *bool
-			if vv, err = decoder.ReadPointerBool(jsonKey); err != nil {
+			if vv, err = decoder.ReadPointerBool(jsonKey, false); err != nil {
 				return err
 			}
 			x.PBool3 = vv
@@ -2006,7 +2006,7 @@ LOOP_SCAN:
 		case "p_enum1":
 			var vv *Enum1
 			var v1 *int32
-			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name); err != nil {
+			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, false); err != nil {
 				return err
 			}
 			if v1 != nil {
@@ -2017,7 +2017,7 @@ LOOP_SCAN:
 		case "p_enum2":
 			var vv *Enum1
 			var v1 *int32
-			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name); err != nil {
+			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, false); err != nil {
 				return err
 			}
 			if v1 != nil {
@@ -2028,7 +2028,7 @@ LOOP_SCAN:
 		case "p_enum3":
 			var vv *Enum1
 			var v1 *int32
-			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name); err != nil {
+			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, false); err != nil {
 				return err
 			}
 			if v1 != nil {
@@ -2039,7 +2039,7 @@ LOOP_SCAN:
 		case "p_enum4":
 			var vv *Enum1
 			var v1 *int32
-			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name); err != nil {
+			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, false); err != nil {
 				return err
 			}
 			if v1 != nil {
@@ -2050,7 +2050,7 @@ LOOP_SCAN:
 		case "p_enum5":
 			var vv *Enum1
 			var v1 *int32
-			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name); err != nil {
+			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, false); err != nil {
 				return err
 			}
 			if v1 != nil {
@@ -2061,7 +2061,7 @@ LOOP_SCAN:
 		case "p_enum6":
 			var vv *Enum1
 			var v1 *int32
-			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name); err != nil {
+			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, false); err != nil {
 				return err
 			}
 			if v1 != nil {
@@ -2072,7 +2072,7 @@ LOOP_SCAN:
 		case "p_enum7":
 			var vv *Enum1
 			var v1 *int32
-			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, Enum1_name); err != nil {
+			if v1, err = decoder.ReadPointerEnumNumber(jsonKey, false); err != nil {
 				return err
 			}
 			if v1 != nil {
@@ -2494,7 +2494,7 @@ LOOP_SCAN:
 				if i >= len(x.RInt32) {
 					x.RInt32 = append(x.RInt32, vv)
 				}
-				if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
 					return err
 				}
 				x.RInt32[i] = vv
@@ -2525,7 +2525,7 @@ LOOP_SCAN:
 				if i >= len(x.RInt64) {
 					x.RInt64 = append(x.RInt64, vv)
 				}
-				if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
 					return err
 				}
 				x.RInt64[i] = vv
@@ -2556,7 +2556,7 @@ LOOP_SCAN:
 				if i >= len(x.RUint32) {
 					x.RUint32 = append(x.RUint32, vv)
 				}
-				if vv, err = decoder.ReadLiteralUint32(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralUint32(jsonKey, false); err != nil {
 					return err
 				}
 				x.RUint32[i] = vv
@@ -2587,7 +2587,7 @@ LOOP_SCAN:
 				if i >= len(x.RUint64) {
 					x.RUint64 = append(x.RUint64, vv)
 				}
-				if vv, err = decoder.ReadLiteralUint64(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralUint64(jsonKey, false); err != nil {
 					return err
 				}
 				x.RUint64[i] = vv
@@ -2618,7 +2618,7 @@ LOOP_SCAN:
 				if i >= len(x.RSint32) {
 					x.RSint32 = append(x.RSint32, vv)
 				}
-				if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
 					return err
 				}
 				x.RSint32[i] = vv
@@ -2649,7 +2649,7 @@ LOOP_SCAN:
 				if i >= len(x.RSint64) {
 					x.RSint64 = append(x.RSint64, vv)
 				}
-				if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
 					return err
 				}
 				x.RSint64[i] = vv
@@ -2680,7 +2680,7 @@ LOOP_SCAN:
 				if i >= len(x.RSfixed32) {
 					x.RSfixed32 = append(x.RSfixed32, vv)
 				}
-				if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
 					return err
 				}
 				x.RSfixed32[i] = vv
@@ -2711,7 +2711,7 @@ LOOP_SCAN:
 				if i >= len(x.RSfixed64) {
 					x.RSfixed64 = append(x.RSfixed64, vv)
 				}
-				if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
 					return err
 				}
 				x.RSfixed64[i] = vv
@@ -2742,7 +2742,7 @@ LOOP_SCAN:
 				if i >= len(x.RFixed32) {
 					x.RFixed32 = append(x.RFixed32, vv)
 				}
-				if vv, err = decoder.ReadLiteralUint32(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralUint32(jsonKey, false); err != nil {
 					return err
 				}
 				x.RFixed32[i] = vv
@@ -2773,7 +2773,7 @@ LOOP_SCAN:
 				if i >= len(x.RFixed64) {
 					x.RFixed64 = append(x.RFixed64, vv)
 				}
-				if vv, err = decoder.ReadLiteralUint64(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralUint64(jsonKey, false); err != nil {
 					return err
 				}
 				x.RFixed64[i] = vv
@@ -2804,7 +2804,7 @@ LOOP_SCAN:
 				if i >= len(x.RFloat) {
 					x.RFloat = append(x.RFloat, vv)
 				}
-				if vv, err = decoder.ReadLiteralFloat32(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralFloat32(jsonKey, false); err != nil {
 					return err
 				}
 				x.RFloat[i] = vv
@@ -2835,7 +2835,7 @@ LOOP_SCAN:
 				if i >= len(x.RDouble) {
 					x.RDouble = append(x.RDouble, vv)
 				}
-				if vv, err = decoder.ReadLiteralFloat64(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralFloat64(jsonKey, false); err != nil {
 					return err
 				}
 				x.RDouble[i] = vv
@@ -2866,7 +2866,7 @@ LOOP_SCAN:
 				if i >= len(x.RBool1) {
 					x.RBool1 = append(x.RBool1, vv)
 				}
-				if vv, err = decoder.ReadLiteralBool(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralBool(jsonKey, false); err != nil {
 					return err
 				}
 				x.RBool1[i] = vv
@@ -2897,7 +2897,7 @@ LOOP_SCAN:
 				if i >= len(x.RBool2) {
 					x.RBool2 = append(x.RBool2, vv)
 				}
-				if vv, err = decoder.ReadLiteralBool(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralBool(jsonKey, false); err != nil {
 					return err
 				}
 				x.RBool2[i] = vv
@@ -2928,7 +2928,7 @@ LOOP_SCAN:
 				if i >= len(x.RBool3) {
 					x.RBool3 = append(x.RBool3, vv)
 				}
-				if vv, err = decoder.ReadLiteralBool(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralBool(jsonKey, false); err != nil {
 					return err
 				}
 				x.RBool3[i] = vv
@@ -3053,7 +3053,7 @@ LOOP_SCAN:
 					x.REnum1 = append(x.REnum1, vv)
 				}
 				var v1 int32
-				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 					return err
 				}
 				vv = Enum1(v1)
@@ -3086,7 +3086,7 @@ LOOP_SCAN:
 					x.REnum2 = append(x.REnum2, vv)
 				}
 				var v1 int32
-				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 					return err
 				}
 				vv = Enum1(v1)
@@ -3119,7 +3119,7 @@ LOOP_SCAN:
 					x.REnum3 = append(x.REnum3, vv)
 				}
 				var v1 int32
-				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 					return err
 				}
 				vv = Enum1(v1)
@@ -3152,7 +3152,7 @@ LOOP_SCAN:
 					x.REnum4 = append(x.REnum4, vv)
 				}
 				var v1 int32
-				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 					return err
 				}
 				vv = Enum1(v1)
@@ -3185,7 +3185,7 @@ LOOP_SCAN:
 					x.REnum5 = append(x.REnum5, vv)
 				}
 				var v1 int32
-				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 					return err
 				}
 				vv = Enum1(v1)
@@ -3218,7 +3218,7 @@ LOOP_SCAN:
 					x.REnum6 = append(x.REnum6, vv)
 				}
 				var v1 int32
-				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 					return err
 				}
 				vv = Enum1(v1)
@@ -3251,7 +3251,7 @@ LOOP_SCAN:
 					x.REnum7 = append(x.REnum7, vv)
 				}
 				var v1 int32
-				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 					return err
 				}
 				vv = Enum1(v1)
@@ -3822,7 +3822,7 @@ LOOP_SCAN:
 					return err
 				}
 				var vv int32
-				if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
 					return err
 				}
 				x.MInt32[mk] = vv
@@ -3850,7 +3850,7 @@ LOOP_SCAN:
 					return err
 				}
 				var vv int64
-				if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
 					return err
 				}
 				x.MInt64[mk] = vv
@@ -3878,7 +3878,7 @@ LOOP_SCAN:
 					return err
 				}
 				var vv uint32
-				if vv, err = decoder.ReadLiteralUint32(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralUint32(jsonKey, false); err != nil {
 					return err
 				}
 				x.MUint32[mk] = vv
@@ -3906,7 +3906,7 @@ LOOP_SCAN:
 					return err
 				}
 				var vv uint64
-				if vv, err = decoder.ReadLiteralUint64(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralUint64(jsonKey, false); err != nil {
 					return err
 				}
 				x.MUint64[mk] = vv
@@ -3934,7 +3934,7 @@ LOOP_SCAN:
 					return err
 				}
 				var vv int32
-				if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
 					return err
 				}
 				x.MSint32[mk] = vv
@@ -3962,7 +3962,7 @@ LOOP_SCAN:
 					return err
 				}
 				var vv int64
-				if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
 					return err
 				}
 				x.MSint64[mk] = vv
@@ -3990,7 +3990,7 @@ LOOP_SCAN:
 					return err
 				}
 				var vv int32
-				if vv, err = decoder.ReadLiteralInt32(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
 					return err
 				}
 				x.MSfixed32[mk] = vv
@@ -4018,7 +4018,7 @@ LOOP_SCAN:
 					return err
 				}
 				var vv int64
-				if vv, err = decoder.ReadLiteralInt64(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
 					return err
 				}
 				x.MSfixed64[mk] = vv
@@ -4046,7 +4046,7 @@ LOOP_SCAN:
 					return err
 				}
 				var vv uint32
-				if vv, err = decoder.ReadLiteralUint32(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralUint32(jsonKey, false); err != nil {
 					return err
 				}
 				x.MFixed32[mk] = vv
@@ -4074,7 +4074,7 @@ LOOP_SCAN:
 					return err
 				}
 				var vv uint64
-				if vv, err = decoder.ReadLiteralUint64(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralUint64(jsonKey, false); err != nil {
 					return err
 				}
 				x.MFixed64[mk] = vv
@@ -4102,7 +4102,7 @@ LOOP_SCAN:
 					return err
 				}
 				var vv float32
-				if vv, err = decoder.ReadLiteralFloat32(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralFloat32(jsonKey, false); err != nil {
 					return err
 				}
 				x.MFloat[mk] = vv
@@ -4130,7 +4130,7 @@ LOOP_SCAN:
 					return err
 				}
 				var vv float64
-				if vv, err = decoder.ReadLiteralFloat64(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralFloat64(jsonKey, false); err != nil {
 					return err
 				}
 				x.MDouble[mk] = vv
@@ -4158,7 +4158,7 @@ LOOP_SCAN:
 					return err
 				}
 				var vv bool
-				if vv, err = decoder.ReadLiteralBool(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralBool(jsonKey, false); err != nil {
 					return err
 				}
 				x.MBool1[mk] = vv
@@ -4186,7 +4186,7 @@ LOOP_SCAN:
 					return err
 				}
 				var vv bool
-				if vv, err = decoder.ReadLiteralBool(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralBool(jsonKey, false); err != nil {
 					return err
 				}
 				x.MBool2[mk] = vv
@@ -4214,7 +4214,7 @@ LOOP_SCAN:
 					return err
 				}
 				var vv bool
-				if vv, err = decoder.ReadLiteralBool(jsonKey); err != nil {
+				if vv, err = decoder.ReadLiteralBool(jsonKey, false); err != nil {
 					return err
 				}
 				x.MBool3[mk] = vv
@@ -4327,7 +4327,7 @@ LOOP_SCAN:
 				}
 				var vv Enum1
 				var v1 int32
-				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 					return err
 				}
 				vv = Enum1(v1)
@@ -4357,7 +4357,7 @@ LOOP_SCAN:
 				}
 				var vv Enum1
 				var v1 int32
-				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 					return err
 				}
 				vv = Enum1(v1)
@@ -4387,7 +4387,7 @@ LOOP_SCAN:
 				}
 				var vv Enum1
 				var v1 int32
-				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 					return err
 				}
 				vv = Enum1(v1)
@@ -4417,7 +4417,7 @@ LOOP_SCAN:
 				}
 				var vv Enum1
 				var v1 int32
-				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 					return err
 				}
 				vv = Enum1(v1)
@@ -4447,7 +4447,7 @@ LOOP_SCAN:
 				}
 				var vv Enum1
 				var v1 int32
-				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 					return err
 				}
 				vv = Enum1(v1)
@@ -4477,7 +4477,7 @@ LOOP_SCAN:
 				}
 				var vv Enum1
 				var v1 int32
-				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 					return err
 				}
 				vv = Enum1(v1)
@@ -4507,7 +4507,7 @@ LOOP_SCAN:
 				}
 				var vv Enum1
 				var v1 int32
-				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, Enum1_name); err != nil {
+				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
 					return err
 				}
 				vv = Enum1(v1)

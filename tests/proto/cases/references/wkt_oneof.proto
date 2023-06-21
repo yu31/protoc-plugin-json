@@ -1,0 +1,179 @@
+syntax = "proto3";
+
+package wkt_oneof;
+
+option go_package = "xgo/tests/pb/pbreferences";
+
+import "google/protobuf/any.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+//import "tests/proto/module/external.proto";
+
+import "tests/proto/cases/references/private.proto";
+
+import "proto/json.proto";
+
+message WKTOneOf1 {
+  // Cases for Enum
+  //
+  oneof OneEnum1 {
+    option (json.oneof) = { json: "one_enum1", hide: false };
+
+    private.Enum1 f_enum_number1 = 1 [ (json.field) = {
+      reference: { plain: { value: { enum: { codec: Number } } } }
+    } ];
+    private.Enum1 f_enum_string1 = 2 [ (json.field) = {
+      reference: { plain: { value: { enum: { codec: String } } } }
+    } ];
+  }
+  oneof OneEnum2 {
+    option (json.oneof) = { json: "one_enum2", hide: true };
+
+    private.Enum1 f_enum_number_string1 = 3 [ (json.field) = {
+      reference: { plain: { value: { enum: { codec: NumberString } } } }
+    } ];
+    private.Enum1 f_enum_number_string2 = 4 [ (json.field) = {
+      reference: { plain: { value: { enum: { codec: NumberString } } } }
+    } ];
+  }
+
+  // Cases for google.protobuf.Any
+  //
+  oneof OneAny1 {
+    option (json.oneof) = { json: "one_any1", hide: true };
+
+    google.protobuf.Any f_any_native1 = 5 [ (json.field) = {
+      reference: { plain: { value: { any: { codec: Object } } } }
+    } ];
+    google.protobuf.Any f_any_proto1  = 6 [ (json.field) = {
+      reference: { plain: { value: { any: { codec: Proto } } } }
+    } ];
+  }
+
+  // Cases for google.protobuf.Duration
+  //
+  oneof OneDuration1 {
+    option (json.oneof) = { json: "one_duration1", hide: false };
+
+    google.protobuf.Duration f_duration_native1 = 11 [ (json.field) = {
+      reference: { plain: { value: { duration: { codec: Object } } } }
+    } ];
+    google.protobuf.Duration f_duration_string1 = 12 [ (json.field) = {
+      reference: { plain: { value: { duration: { codec: String } } } }
+    } ];
+  }
+  oneof OneDuration2 {
+    option (json.oneof) = { json: "one_duration2", hide: true };
+
+    google.protobuf.Duration f_duration_nanosecond1 = 13 [ (json.field) = {
+      reference: { plain: { value: { duration: { codec: Nanosecond } } } }
+    } ];
+    google.protobuf.Duration f_duration_microsecond1 = 14 [ (json.field) = {
+      reference: { plain: { value: { duration: { codec: Microsecond } } } }
+    } ];
+  }
+  oneof OneDuration3 {
+    option (json.oneof) = { json: "one_duration3", hide: false };
+
+    google.protobuf.Duration f_duration_millisecond1 = 15 [ (json.field) = {
+      reference: { plain: { value: { duration: { codec: Millisecond } } } }
+    } ];
+    google.protobuf.Duration f_duration_second1 = 16 [ (json.field) = {
+      reference: { plain: { value: { duration: { codec: Second } } } }
+    } ];
+  }
+  oneof OneDuration4 {
+    option (json.oneof) = { json: "one_duration4", hide: true };
+
+    google.protobuf.Duration f_duration_minute1 = 17 [ (json.field) = {
+      reference: { plain: { value: { duration: { codec: Minute } } } }
+    } ];
+    google.protobuf.Duration f_duration_hour1 = 18 [ (json.field) = {
+      reference: { plain: { value: { duration: { codec: Hour } } } }
+    } ];
+  }
+  oneof OneDuration5 {
+    option (json.oneof) = { json: "one_duration5", hide: false };
+
+    google.protobuf.Duration f_duration_nanosecond_string1 = 19 [ (json.field) = {
+      reference: { plain: { value: { duration: { codec: NanosecondString } } } }
+    } ];
+    google.protobuf.Duration f_duration_microsecond_string1 = 20 [ (json.field) = {
+      reference: { plain: { value: { duration: { codec: MicrosecondString } } } }
+    } ];
+  }
+  oneof OneDuration6 {
+    option (json.oneof) = { json: "one_duration6", hide: true };
+
+    google.protobuf.Duration f_duration_millisecond_string1 = 21 [ (json.field) = {
+      reference: { plain: { value: { duration: { codec: MillisecondString } } } }
+    } ];
+    google.protobuf.Duration f_duration_second_string1 = 22 [ (json.field) = {
+      reference: { plain: { value: { duration: { codec: SecondString } } } }
+    } ];
+  }
+  oneof OneDuration7 {
+    option (json.oneof) = { json: "one_duration7", hide: false };
+
+    google.protobuf.Duration f_duration_minute_string1 = 23 [ (json.field) = {
+      reference: { plain: { value: { duration: { codec: MinuteString } } } }
+    } ];
+    google.protobuf.Duration f_duration_hour_string1 = 24 [ (json.field) = {
+      reference: { plain: { value: { duration: { codec: HourString } } } }
+    } ];
+  }
+
+  // Cases for google.protobuf.Timestamp
+  //
+  oneof OneTimestamp1 {
+    option (json.oneof) = { json: "one_timestamp1", hide: false };
+
+    google.protobuf.Timestamp f_timestamp_native1 = 31 [ (json.field) = {
+      reference: { plain: { value: { timestamp: { codec: Object } } } }
+    } ];
+    google.protobuf.Timestamp f_timestamp_time_layout1 = 32 [ (json.field) = {
+      reference: { plain: { value: { timestamp: { codec: TimeLayout, layout: { golang: "2006-01-02T15:04:05Z07:00" } } } } }
+    } ];
+  }
+  oneof OneTimestamp2 {
+    option (json.oneof) = { json: "one_timestamp2", hide: true };
+
+    google.protobuf.Timestamp f_timestamp_unix_nano1 = 33 [ (json.field) = {
+      reference: { plain: { value: { timestamp: { codec: UnixNano } } } }
+    } ];
+    google.protobuf.Timestamp f_timestamp_unix_micro1 = 34 [ (json.field) = {
+      reference: { plain: { value: { timestamp: { codec: UnixMicro } } } }
+    } ];
+  }
+  oneof OneTimestamp3 {
+    option (json.oneof) = { json: "one_timestamp3", hide: false };
+
+    google.protobuf.Timestamp f_timestamp_unix_milli1 = 35 [ (json.field) = {
+      reference: { plain: { value: { timestamp: { codec: UnixMilli } } } }
+    } ];
+    google.protobuf.Timestamp f_timestamp_unix_sec1 = 36 [ (json.field) = {
+      reference: { plain: { value: { timestamp: { codec: UnixSec } } } }
+    } ];
+  }
+  oneof OneTimestamp4 {
+    option (json.oneof) = { json: "one_timestamp4", hide: true };
+
+    google.protobuf.Timestamp f_timestamp_unix_nano_string1 = 37 [ (json.field) = {
+      reference: { plain: { value: { timestamp: { codec: UnixNanoString } } } }
+    } ];
+    google.protobuf.Timestamp f_timestamp_unix_micro_string1 = 38 [ (json.field) = {
+      reference: { plain: { value: { timestamp: { codec: UnixMicroString } } } }
+    } ];
+  }
+  oneof OneTimestamp5 {
+    option (json.oneof) = { json: "one_timestamp5", hide: false };
+
+    google.protobuf.Timestamp f_timestamp_unix_milli_string1 = 39 [ (json.field) = {
+      reference: { plain: { value: { timestamp: { codec: UnixMilliString } } } }
+    } ];
+    google.protobuf.Timestamp f_timestamp_unix_sec_string1 = 40 [ (json.field) = {
+      reference: { plain: { value: { timestamp: { codec: UnixSecString } } } }
+    } ];
+  }
+}

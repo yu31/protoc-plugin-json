@@ -21,229 +21,973 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type TypeEnum_Format int32
+type TypeInt32_Codec int32
 
 const (
-	// Number represents format the field type of Enum to the number. And it is the default Format.
-	TypeEnum_Number TypeEnum_Format = 0
-	// String represents format the field type of Enum to the string.
-	TypeEnum_String TypeEnum_Format = 1
+	// Unset represents the default value will be applied when encoding and decoding JSON.
+	TypeInt32_Unset TypeInt32_Codec = 0
+	// Number represents convert the field as numbers when encoding and decoding JSON.
+	TypeInt32_Number TypeInt32_Codec = 1
+	// String represents convert the field as strings when encoding and decoding JSON.
+	TypeInt32_String TypeInt32_Codec = 2
 )
 
-// Enum value maps for TypeEnum_Format.
+// Enum value maps for TypeInt32_Codec.
 var (
-	TypeEnum_Format_name = map[int32]string{
-		0: "Number",
-		1: "String",
+	TypeInt32_Codec_name = map[int32]string{
+		0: "Unset",
+		1: "Number",
+		2: "String",
 	}
-	TypeEnum_Format_value = map[string]int32{
-		"Number": 0,
-		"String": 1,
+	TypeInt32_Codec_value = map[string]int32{
+		"Unset":  0,
+		"Number": 1,
+		"String": 2,
 	}
 )
 
-func (x TypeEnum_Format) Enum() *TypeEnum_Format {
-	p := new(TypeEnum_Format)
+func (x TypeInt32_Codec) Enum() *TypeInt32_Codec {
+	p := new(TypeInt32_Codec)
 	*p = x
 	return p
 }
 
-func (x TypeEnum_Format) String() string {
+func (x TypeInt32_Codec) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (TypeEnum_Format) Descriptor() protoreflect.EnumDescriptor {
+func (TypeInt32_Codec) Descriptor() protoreflect.EnumDescriptor {
 	return file_json_proto_enumTypes[0].Descriptor()
 }
 
-func (TypeEnum_Format) Type() protoreflect.EnumType {
+func (TypeInt32_Codec) Type() protoreflect.EnumType {
 	return &file_json_proto_enumTypes[0]
 }
 
-func (x TypeEnum_Format) Number() protoreflect.EnumNumber {
+func (x TypeInt32_Codec) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use TypeEnum_Format.Descriptor instead.
-func (TypeEnum_Format) EnumDescriptor() ([]byte, []int) {
-	return file_json_proto_rawDescGZIP(), []int{3, 0}
+// Deprecated: Use TypeInt32_Codec.Descriptor instead.
+func (TypeInt32_Codec) EnumDescriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{8, 0}
 }
 
-type TypeAny_Format int32
+type TypeInt64_Codec int32
 
 const (
-	// Native represents consider the google.protobuf.Any as a interface and format it by standard JSON.
-	// And it is the default Format.
-	TypeAny_Native TypeAny_Format = 0
-	// Proto represents format the google.protobuf.Any by library protojson.
-	TypeAny_Proto TypeAny_Format = 1
+	// Unset represents the default value will be applied when encoding and decoding JSON.
+	TypeInt64_Unset TypeInt64_Codec = 0
+	// Number represents convert the field as numbers when encoding and decoding JSON.
+	TypeInt64_Number TypeInt64_Codec = 1
+	// String represents convert the field as strings when encoding and decoding JSON.
+	TypeInt64_String TypeInt64_Codec = 2
 )
 
-// Enum value maps for TypeAny_Format.
+// Enum value maps for TypeInt64_Codec.
 var (
-	TypeAny_Format_name = map[int32]string{
-		0: "Native",
-		1: "Proto",
+	TypeInt64_Codec_name = map[int32]string{
+		0: "Unset",
+		1: "Number",
+		2: "String",
 	}
-	TypeAny_Format_value = map[string]int32{
-		"Native": 0,
-		"Proto":  1,
+	TypeInt64_Codec_value = map[string]int32{
+		"Unset":  0,
+		"Number": 1,
+		"String": 2,
 	}
 )
 
-func (x TypeAny_Format) Enum() *TypeAny_Format {
-	p := new(TypeAny_Format)
+func (x TypeInt64_Codec) Enum() *TypeInt64_Codec {
+	p := new(TypeInt64_Codec)
 	*p = x
 	return p
 }
 
-func (x TypeAny_Format) String() string {
+func (x TypeInt64_Codec) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (TypeAny_Format) Descriptor() protoreflect.EnumDescriptor {
+func (TypeInt64_Codec) Descriptor() protoreflect.EnumDescriptor {
 	return file_json_proto_enumTypes[1].Descriptor()
 }
 
-func (TypeAny_Format) Type() protoreflect.EnumType {
+func (TypeInt64_Codec) Type() protoreflect.EnumType {
 	return &file_json_proto_enumTypes[1]
 }
 
-func (x TypeAny_Format) Number() protoreflect.EnumNumber {
+func (x TypeInt64_Codec) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use TypeAny_Format.Descriptor instead.
-func (TypeAny_Format) EnumDescriptor() ([]byte, []int) {
-	return file_json_proto_rawDescGZIP(), []int{4, 0}
+// Deprecated: Use TypeInt64_Codec.Descriptor instead.
+func (TypeInt64_Codec) EnumDescriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{9, 0}
 }
 
-type TypeDuration_Format int32
+type TypeSInt32_Codec int32
 
 const (
-	// Native represents consider the google.protobuf.Duration as a interface and format it by standard JSON.
-	// And it is the default Format.
-	TypeDuration_Native TypeDuration_Format = 0
-	// String represents format the google.protobuf.Duration to a string. e.g: "1m1s".
-	TypeDuration_String       TypeDuration_Format = 1
-	TypeDuration_Nanoseconds  TypeDuration_Format = 2
-	TypeDuration_Microseconds TypeDuration_Format = 3
-	TypeDuration_Milliseconds TypeDuration_Format = 4
-	TypeDuration_Seconds      TypeDuration_Format = 5
-	TypeDuration_Minutes      TypeDuration_Format = 6
-	TypeDuration_Hours        TypeDuration_Format = 7
+	// Unset represents the default value will be applied when encoding and decoding JSON.
+	TypeSInt32_Unset TypeSInt32_Codec = 0
+	// Number represents convert the field as numbers when encoding and decoding JSON.
+	TypeSInt32_Number TypeSInt32_Codec = 1
+	// String represents convert the field as strings when encoding and decoding JSON.
+	TypeSInt32_String TypeSInt32_Codec = 2
 )
 
-// Enum value maps for TypeDuration_Format.
+// Enum value maps for TypeSInt32_Codec.
 var (
-	TypeDuration_Format_name = map[int32]string{
-		0: "Native",
-		1: "String",
-		2: "Nanoseconds",
-		3: "Microseconds",
-		4: "Milliseconds",
-		5: "Seconds",
-		6: "Minutes",
-		7: "Hours",
+	TypeSInt32_Codec_name = map[int32]string{
+		0: "Unset",
+		1: "Number",
+		2: "String",
 	}
-	TypeDuration_Format_value = map[string]int32{
-		"Native":       0,
-		"String":       1,
-		"Nanoseconds":  2,
-		"Microseconds": 3,
-		"Milliseconds": 4,
-		"Seconds":      5,
-		"Minutes":      6,
-		"Hours":        7,
+	TypeSInt32_Codec_value = map[string]int32{
+		"Unset":  0,
+		"Number": 1,
+		"String": 2,
 	}
 )
 
-func (x TypeDuration_Format) Enum() *TypeDuration_Format {
-	p := new(TypeDuration_Format)
+func (x TypeSInt32_Codec) Enum() *TypeSInt32_Codec {
+	p := new(TypeSInt32_Codec)
 	*p = x
 	return p
 }
 
-func (x TypeDuration_Format) String() string {
+func (x TypeSInt32_Codec) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (TypeDuration_Format) Descriptor() protoreflect.EnumDescriptor {
+func (TypeSInt32_Codec) Descriptor() protoreflect.EnumDescriptor {
 	return file_json_proto_enumTypes[2].Descriptor()
 }
 
-func (TypeDuration_Format) Type() protoreflect.EnumType {
+func (TypeSInt32_Codec) Type() protoreflect.EnumType {
 	return &file_json_proto_enumTypes[2]
 }
 
-func (x TypeDuration_Format) Number() protoreflect.EnumNumber {
+func (x TypeSInt32_Codec) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use TypeDuration_Format.Descriptor instead.
-func (TypeDuration_Format) EnumDescriptor() ([]byte, []int) {
-	return file_json_proto_rawDescGZIP(), []int{5, 0}
+// Deprecated: Use TypeSInt32_Codec.Descriptor instead.
+func (TypeSInt32_Codec) EnumDescriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{10, 0}
 }
 
-type TypeTimestamp_Format int32
+type TypeSInt64_Codec int32
 
 const (
-	// Native represents consider the google.protobuf.Timestamp as a interface and format it by standard JSON.
-	// And it is the default Format.
-	TypeTimestamp_Native TypeTimestamp_Format = 0
-	// TimeLayout represents format the google.protobuf.Timestamp to a time string and format by `Layout`.
-	TypeTimestamp_TimeLayout TypeTimestamp_Format = 1
-	TypeTimestamp_UnixNano   TypeTimestamp_Format = 2
-	TypeTimestamp_UnixMicro  TypeTimestamp_Format = 3
-	TypeTimestamp_UnixMilli  TypeTimestamp_Format = 4
-	TypeTimestamp_UnixSec    TypeTimestamp_Format = 5
+	// Unset represents the default value will be applied when encoding and decoding JSON.
+	TypeSInt64_Unset TypeSInt64_Codec = 0
+	// Number represents convert the field as numbers when encoding and decoding JSON.
+	TypeSInt64_Number TypeSInt64_Codec = 1
+	// String represents convert the field as strings when encoding and decoding JSON.
+	TypeSInt64_String TypeSInt64_Codec = 2
 )
 
-// Enum value maps for TypeTimestamp_Format.
+// Enum value maps for TypeSInt64_Codec.
 var (
-	TypeTimestamp_Format_name = map[int32]string{
-		0: "Native",
-		1: "TimeLayout",
-		2: "UnixNano",
-		3: "UnixMicro",
-		4: "UnixMilli",
-		5: "UnixSec",
+	TypeSInt64_Codec_name = map[int32]string{
+		0: "Unset",
+		1: "Number",
+		2: "String",
 	}
-	TypeTimestamp_Format_value = map[string]int32{
-		"Native":     0,
-		"TimeLayout": 1,
-		"UnixNano":   2,
-		"UnixMicro":  3,
-		"UnixMilli":  4,
-		"UnixSec":    5,
+	TypeSInt64_Codec_value = map[string]int32{
+		"Unset":  0,
+		"Number": 1,
+		"String": 2,
 	}
 )
 
-func (x TypeTimestamp_Format) Enum() *TypeTimestamp_Format {
-	p := new(TypeTimestamp_Format)
+func (x TypeSInt64_Codec) Enum() *TypeSInt64_Codec {
+	p := new(TypeSInt64_Codec)
 	*p = x
 	return p
 }
 
-func (x TypeTimestamp_Format) String() string {
+func (x TypeSInt64_Codec) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (TypeTimestamp_Format) Descriptor() protoreflect.EnumDescriptor {
+func (TypeSInt64_Codec) Descriptor() protoreflect.EnumDescriptor {
 	return file_json_proto_enumTypes[3].Descriptor()
 }
 
-func (TypeTimestamp_Format) Type() protoreflect.EnumType {
+func (TypeSInt64_Codec) Type() protoreflect.EnumType {
 	return &file_json_proto_enumTypes[3]
 }
 
-func (x TypeTimestamp_Format) Number() protoreflect.EnumNumber {
+func (x TypeSInt64_Codec) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use TypeTimestamp_Format.Descriptor instead.
-func (TypeTimestamp_Format) EnumDescriptor() ([]byte, []int) {
-	return file_json_proto_rawDescGZIP(), []int{6, 0}
+// Deprecated: Use TypeSInt64_Codec.Descriptor instead.
+func (TypeSInt64_Codec) EnumDescriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{11, 0}
+}
+
+type TypeSFixed32_Codec int32
+
+const (
+	// Unset represents the default value will be applied when encoding and decoding JSON.
+	TypeSFixed32_Unset TypeSFixed32_Codec = 0
+	// Number represents convert the field as numbers when encoding and decoding JSON.
+	TypeSFixed32_Number TypeSFixed32_Codec = 1
+	// String represents convert the field as strings when encoding and decoding JSON.
+	TypeSFixed32_String TypeSFixed32_Codec = 2
+)
+
+// Enum value maps for TypeSFixed32_Codec.
+var (
+	TypeSFixed32_Codec_name = map[int32]string{
+		0: "Unset",
+		1: "Number",
+		2: "String",
+	}
+	TypeSFixed32_Codec_value = map[string]int32{
+		"Unset":  0,
+		"Number": 1,
+		"String": 2,
+	}
+)
+
+func (x TypeSFixed32_Codec) Enum() *TypeSFixed32_Codec {
+	p := new(TypeSFixed32_Codec)
+	*p = x
+	return p
+}
+
+func (x TypeSFixed32_Codec) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TypeSFixed32_Codec) Descriptor() protoreflect.EnumDescriptor {
+	return file_json_proto_enumTypes[4].Descriptor()
+}
+
+func (TypeSFixed32_Codec) Type() protoreflect.EnumType {
+	return &file_json_proto_enumTypes[4]
+}
+
+func (x TypeSFixed32_Codec) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TypeSFixed32_Codec.Descriptor instead.
+func (TypeSFixed32_Codec) EnumDescriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{12, 0}
+}
+
+type TypeSFixed64_Codec int32
+
+const (
+	// Unset represents the default value will be applied when encoding and decoding JSON.
+	TypeSFixed64_Unset TypeSFixed64_Codec = 0
+	// Number represents convert the field as numbers when encoding and decoding JSON.
+	TypeSFixed64_Number TypeSFixed64_Codec = 1
+	// String represents convert the field as strings when encoding and decoding JSON.
+	TypeSFixed64_String TypeSFixed64_Codec = 2
+)
+
+// Enum value maps for TypeSFixed64_Codec.
+var (
+	TypeSFixed64_Codec_name = map[int32]string{
+		0: "Unset",
+		1: "Number",
+		2: "String",
+	}
+	TypeSFixed64_Codec_value = map[string]int32{
+		"Unset":  0,
+		"Number": 1,
+		"String": 2,
+	}
+)
+
+func (x TypeSFixed64_Codec) Enum() *TypeSFixed64_Codec {
+	p := new(TypeSFixed64_Codec)
+	*p = x
+	return p
+}
+
+func (x TypeSFixed64_Codec) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TypeSFixed64_Codec) Descriptor() protoreflect.EnumDescriptor {
+	return file_json_proto_enumTypes[5].Descriptor()
+}
+
+func (TypeSFixed64_Codec) Type() protoreflect.EnumType {
+	return &file_json_proto_enumTypes[5]
+}
+
+func (x TypeSFixed64_Codec) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TypeSFixed64_Codec.Descriptor instead.
+func (TypeSFixed64_Codec) EnumDescriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{13, 0}
+}
+
+type TypeUint32_Codec int32
+
+const (
+	// Unset represents the default value will be applied when encoding and decoding JSON.
+	TypeUint32_Unset TypeUint32_Codec = 0
+	// Number represents convert the field as numbers when encoding and decoding JSON.
+	TypeUint32_Number TypeUint32_Codec = 1
+	// String represents convert the field as strings when encoding and decoding JSON.
+	TypeUint32_String TypeUint32_Codec = 2
+)
+
+// Enum value maps for TypeUint32_Codec.
+var (
+	TypeUint32_Codec_name = map[int32]string{
+		0: "Unset",
+		1: "Number",
+		2: "String",
+	}
+	TypeUint32_Codec_value = map[string]int32{
+		"Unset":  0,
+		"Number": 1,
+		"String": 2,
+	}
+)
+
+func (x TypeUint32_Codec) Enum() *TypeUint32_Codec {
+	p := new(TypeUint32_Codec)
+	*p = x
+	return p
+}
+
+func (x TypeUint32_Codec) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TypeUint32_Codec) Descriptor() protoreflect.EnumDescriptor {
+	return file_json_proto_enumTypes[6].Descriptor()
+}
+
+func (TypeUint32_Codec) Type() protoreflect.EnumType {
+	return &file_json_proto_enumTypes[6]
+}
+
+func (x TypeUint32_Codec) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TypeUint32_Codec.Descriptor instead.
+func (TypeUint32_Codec) EnumDescriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{14, 0}
+}
+
+type TypeUint64_Codec int32
+
+const (
+	// Unset represents the default value will be applied when encoding and decoding JSON.
+	TypeUint64_Unset TypeUint64_Codec = 0
+	// Number represents convert the field as numbers when encoding and decoding JSON.
+	TypeUint64_Number TypeUint64_Codec = 1
+	// String represents convert the field as strings when encoding and decoding JSON.
+	TypeUint64_String TypeUint64_Codec = 2
+)
+
+// Enum value maps for TypeUint64_Codec.
+var (
+	TypeUint64_Codec_name = map[int32]string{
+		0: "Unset",
+		1: "Number",
+		2: "String",
+	}
+	TypeUint64_Codec_value = map[string]int32{
+		"Unset":  0,
+		"Number": 1,
+		"String": 2,
+	}
+)
+
+func (x TypeUint64_Codec) Enum() *TypeUint64_Codec {
+	p := new(TypeUint64_Codec)
+	*p = x
+	return p
+}
+
+func (x TypeUint64_Codec) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TypeUint64_Codec) Descriptor() protoreflect.EnumDescriptor {
+	return file_json_proto_enumTypes[7].Descriptor()
+}
+
+func (TypeUint64_Codec) Type() protoreflect.EnumType {
+	return &file_json_proto_enumTypes[7]
+}
+
+func (x TypeUint64_Codec) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TypeUint64_Codec.Descriptor instead.
+func (TypeUint64_Codec) EnumDescriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{15, 0}
+}
+
+type TypeFixed32_Codec int32
+
+const (
+	// Unset represents the default value will be applied when encoding and decoding JSON.
+	TypeFixed32_Unset TypeFixed32_Codec = 0
+	// Number represents convert the field as numbers when encoding and decoding JSON.
+	TypeFixed32_Number TypeFixed32_Codec = 1
+	// String represents convert the field as strings when encoding and decoding JSON.
+	TypeFixed32_String TypeFixed32_Codec = 2
+)
+
+// Enum value maps for TypeFixed32_Codec.
+var (
+	TypeFixed32_Codec_name = map[int32]string{
+		0: "Unset",
+		1: "Number",
+		2: "String",
+	}
+	TypeFixed32_Codec_value = map[string]int32{
+		"Unset":  0,
+		"Number": 1,
+		"String": 2,
+	}
+)
+
+func (x TypeFixed32_Codec) Enum() *TypeFixed32_Codec {
+	p := new(TypeFixed32_Codec)
+	*p = x
+	return p
+}
+
+func (x TypeFixed32_Codec) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TypeFixed32_Codec) Descriptor() protoreflect.EnumDescriptor {
+	return file_json_proto_enumTypes[8].Descriptor()
+}
+
+func (TypeFixed32_Codec) Type() protoreflect.EnumType {
+	return &file_json_proto_enumTypes[8]
+}
+
+func (x TypeFixed32_Codec) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TypeFixed32_Codec.Descriptor instead.
+func (TypeFixed32_Codec) EnumDescriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{16, 0}
+}
+
+type TypeFixed64_Codec int32
+
+const (
+	// Unset represents the default value will be applied when encoding and decoding JSON.
+	TypeFixed64_Unset TypeFixed64_Codec = 0
+	// Number represents convert the field as numbers when encoding and decoding JSON.
+	TypeFixed64_Number TypeFixed64_Codec = 1
+	// String represents convert the field as strings when encoding and decoding JSON.
+	TypeFixed64_String TypeFixed64_Codec = 2
+)
+
+// Enum value maps for TypeFixed64_Codec.
+var (
+	TypeFixed64_Codec_name = map[int32]string{
+		0: "Unset",
+		1: "Number",
+		2: "String",
+	}
+	TypeFixed64_Codec_value = map[string]int32{
+		"Unset":  0,
+		"Number": 1,
+		"String": 2,
+	}
+)
+
+func (x TypeFixed64_Codec) Enum() *TypeFixed64_Codec {
+	p := new(TypeFixed64_Codec)
+	*p = x
+	return p
+}
+
+func (x TypeFixed64_Codec) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TypeFixed64_Codec) Descriptor() protoreflect.EnumDescriptor {
+	return file_json_proto_enumTypes[9].Descriptor()
+}
+
+func (TypeFixed64_Codec) Type() protoreflect.EnumType {
+	return &file_json_proto_enumTypes[9]
+}
+
+func (x TypeFixed64_Codec) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TypeFixed64_Codec.Descriptor instead.
+func (TypeFixed64_Codec) EnumDescriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{17, 0}
+}
+
+type TypeFloat_Codec int32
+
+const (
+	// Unset represents the default value will be applied when encoding and decoding JSON.
+	TypeFloat_Unset TypeFloat_Codec = 0
+	// Number represents convert the field as numbers when encoding and decoding JSON.
+	TypeFloat_Number TypeFloat_Codec = 1
+	// String represents convert the field as strings when encoding and decoding JSON.
+	TypeFloat_String TypeFloat_Codec = 2
+)
+
+// Enum value maps for TypeFloat_Codec.
+var (
+	TypeFloat_Codec_name = map[int32]string{
+		0: "Unset",
+		1: "Number",
+		2: "String",
+	}
+	TypeFloat_Codec_value = map[string]int32{
+		"Unset":  0,
+		"Number": 1,
+		"String": 2,
+	}
+)
+
+func (x TypeFloat_Codec) Enum() *TypeFloat_Codec {
+	p := new(TypeFloat_Codec)
+	*p = x
+	return p
+}
+
+func (x TypeFloat_Codec) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TypeFloat_Codec) Descriptor() protoreflect.EnumDescriptor {
+	return file_json_proto_enumTypes[10].Descriptor()
+}
+
+func (TypeFloat_Codec) Type() protoreflect.EnumType {
+	return &file_json_proto_enumTypes[10]
+}
+
+func (x TypeFloat_Codec) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TypeFloat_Codec.Descriptor instead.
+func (TypeFloat_Codec) EnumDescriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{18, 0}
+}
+
+type TypeDouble_Codec int32
+
+const (
+	// Unset represents the default value will be applied when encoding and decoding JSON.
+	TypeDouble_Unset TypeDouble_Codec = 0
+	// Number represents convert the field as numbers when encoding and decoding JSON.
+	TypeDouble_Number TypeDouble_Codec = 1
+	// String represents convert the field as strings when encoding and decoding JSON.
+	TypeDouble_String TypeDouble_Codec = 2
+)
+
+// Enum value maps for TypeDouble_Codec.
+var (
+	TypeDouble_Codec_name = map[int32]string{
+		0: "Unset",
+		1: "Number",
+		2: "String",
+	}
+	TypeDouble_Codec_value = map[string]int32{
+		"Unset":  0,
+		"Number": 1,
+		"String": 2,
+	}
+)
+
+func (x TypeDouble_Codec) Enum() *TypeDouble_Codec {
+	p := new(TypeDouble_Codec)
+	*p = x
+	return p
+}
+
+func (x TypeDouble_Codec) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TypeDouble_Codec) Descriptor() protoreflect.EnumDescriptor {
+	return file_json_proto_enumTypes[11].Descriptor()
+}
+
+func (TypeDouble_Codec) Type() protoreflect.EnumType {
+	return &file_json_proto_enumTypes[11]
+}
+
+func (x TypeDouble_Codec) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TypeDouble_Codec.Descriptor instead.
+func (TypeDouble_Codec) EnumDescriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{19, 0}
+}
+
+type TypeBool_Codec int32
+
+const (
+	// Unset represents the default value will be applied when encoding and decoding JSON.
+	TypeBool_Unset TypeBool_Codec = 0
+	// Bool represents convert the field as bools when encoding and decoding JSON.
+	TypeBool_Bool TypeBool_Codec = 1
+	// String represents convert the field as strings when encoding and decoding JSON.
+	TypeBool_String TypeBool_Codec = 2
+)
+
+// Enum value maps for TypeBool_Codec.
+var (
+	TypeBool_Codec_name = map[int32]string{
+		0: "Unset",
+		1: "Bool",
+		2: "String",
+	}
+	TypeBool_Codec_value = map[string]int32{
+		"Unset":  0,
+		"Bool":   1,
+		"String": 2,
+	}
+)
+
+func (x TypeBool_Codec) Enum() *TypeBool_Codec {
+	p := new(TypeBool_Codec)
+	*p = x
+	return p
+}
+
+func (x TypeBool_Codec) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TypeBool_Codec) Descriptor() protoreflect.EnumDescriptor {
+	return file_json_proto_enumTypes[12].Descriptor()
+}
+
+func (TypeBool_Codec) Type() protoreflect.EnumType {
+	return &file_json_proto_enumTypes[12]
+}
+
+func (x TypeBool_Codec) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TypeBool_Codec.Descriptor instead.
+func (TypeBool_Codec) EnumDescriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{20, 0}
+}
+
+type TypeEnum_Codec int32
+
+const (
+	// Unset represents the default value will be applied when encoding and decoding JSON.
+	TypeEnum_Unset TypeEnum_Codec = 0
+	// Number represents use the enum number in encoding and decoding JSON.
+	TypeEnum_Number TypeEnum_Codec = 1
+	// NumberString represents use the enum number and convert to string when encoding and decoding JSON.
+	TypeEnum_NumberString TypeEnum_Codec = 2
+	// String represents use the enum string in encoding and decoding JSON.
+	TypeEnum_String TypeEnum_Codec = 3
+)
+
+// Enum value maps for TypeEnum_Codec.
+var (
+	TypeEnum_Codec_name = map[int32]string{
+		0: "Unset",
+		1: "Number",
+		2: "NumberString",
+		3: "String",
+	}
+	TypeEnum_Codec_value = map[string]int32{
+		"Unset":        0,
+		"Number":       1,
+		"NumberString": 2,
+		"String":       3,
+	}
+)
+
+func (x TypeEnum_Codec) Enum() *TypeEnum_Codec {
+	p := new(TypeEnum_Codec)
+	*p = x
+	return p
+}
+
+func (x TypeEnum_Codec) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TypeEnum_Codec) Descriptor() protoreflect.EnumDescriptor {
+	return file_json_proto_enumTypes[13].Descriptor()
+}
+
+func (TypeEnum_Codec) Type() protoreflect.EnumType {
+	return &file_json_proto_enumTypes[13]
+}
+
+func (x TypeEnum_Codec) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TypeEnum_Codec.Descriptor instead.
+func (TypeEnum_Codec) EnumDescriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{21, 0}
+}
+
+type TypeAny_Codec int32
+
+const (
+	// Unset represents the default value will be applied when encoding and decoding JSON.
+	TypeAny_Unset TypeAny_Codec = 0
+	// Object represents convert the google.protobuf.Any as objects and encoding and decoding by standard JSON.
+	TypeAny_Object TypeAny_Codec = 1
+	// Proto represents encoding and decoding the google.protobuf.Any by library protojson.
+	TypeAny_Proto TypeAny_Codec = 2
+)
+
+// Enum value maps for TypeAny_Codec.
+var (
+	TypeAny_Codec_name = map[int32]string{
+		0: "Unset",
+		1: "Object",
+		2: "Proto",
+	}
+	TypeAny_Codec_value = map[string]int32{
+		"Unset":  0,
+		"Object": 1,
+		"Proto":  2,
+	}
+)
+
+func (x TypeAny_Codec) Enum() *TypeAny_Codec {
+	p := new(TypeAny_Codec)
+	*p = x
+	return p
+}
+
+func (x TypeAny_Codec) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TypeAny_Codec) Descriptor() protoreflect.EnumDescriptor {
+	return file_json_proto_enumTypes[14].Descriptor()
+}
+
+func (TypeAny_Codec) Type() protoreflect.EnumType {
+	return &file_json_proto_enumTypes[14]
+}
+
+func (x TypeAny_Codec) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TypeAny_Codec.Descriptor instead.
+func (TypeAny_Codec) EnumDescriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{22, 0}
+}
+
+type TypeDuration_Codec int32
+
+const (
+	// Unset represents the default value will be applied when encoding and decoding JSON.
+	TypeDuration_Unset TypeDuration_Codec = 0
+	// Object represents convert the google.protobuf.Duration as objects and encoding and decoding by standard JSON.
+	TypeDuration_Object TypeDuration_Codec = 1
+	// String represents covert the google.protobuf.Duration as strings when encoding and decoding.
+	// e.g: "1m1s".
+	TypeDuration_String TypeDuration_Codec = 2
+	// String represents covert the google.protobuf.Duration as nanoseconds of type int64 when encoding and decoding.
+	TypeDuration_Nanosecond TypeDuration_Codec = 3
+	// String represents use the Nanosecond and convert to string when encoding and decoding.
+	TypeDuration_NanosecondString TypeDuration_Codec = 4
+	// String represents covert the google.protobuf.Duration as microseconds of type int64 when encoding and decoding.
+	TypeDuration_Microsecond TypeDuration_Codec = 5
+	// String represents use the Microsecond and convert to string when encoding and decoding.
+	TypeDuration_MicrosecondString TypeDuration_Codec = 6
+	// String represents covert the google.protobuf.Duration as milliseconds of type int64 when encoding and decoding.
+	TypeDuration_Millisecond TypeDuration_Codec = 7
+	// String represents use the Millisecond and convert to string when encoding and decoding.
+	TypeDuration_MillisecondString TypeDuration_Codec = 8
+	// String represents covert the google.protobuf.Duration as seconds of type float64 when encoding and decoding.
+	TypeDuration_Second TypeDuration_Codec = 9
+	// String represents use the Second and convert to string when encoding and decoding.
+	TypeDuration_SecondString TypeDuration_Codec = 10
+	// String represents covert the google.protobuf.Duration as minutes of type float64 when encoding and decoding.
+	TypeDuration_Minute TypeDuration_Codec = 11
+	// String represents use the Minute and convert to string when encoding and decoding.
+	TypeDuration_MinuteString TypeDuration_Codec = 12
+	// String represents covert the google.protobuf.Duration as hours of type float64 when encoding and decoding.
+	TypeDuration_Hour TypeDuration_Codec = 13
+	// String represents use the Hour and convert to string when encoding and decoding.
+	TypeDuration_HourString TypeDuration_Codec = 14
+)
+
+// Enum value maps for TypeDuration_Codec.
+var (
+	TypeDuration_Codec_name = map[int32]string{
+		0:  "Unset",
+		1:  "Object",
+		2:  "String",
+		3:  "Nanosecond",
+		4:  "NanosecondString",
+		5:  "Microsecond",
+		6:  "MicrosecondString",
+		7:  "Millisecond",
+		8:  "MillisecondString",
+		9:  "Second",
+		10: "SecondString",
+		11: "Minute",
+		12: "MinuteString",
+		13: "Hour",
+		14: "HourString",
+	}
+	TypeDuration_Codec_value = map[string]int32{
+		"Unset":             0,
+		"Object":            1,
+		"String":            2,
+		"Nanosecond":        3,
+		"NanosecondString":  4,
+		"Microsecond":       5,
+		"MicrosecondString": 6,
+		"Millisecond":       7,
+		"MillisecondString": 8,
+		"Second":            9,
+		"SecondString":      10,
+		"Minute":            11,
+		"MinuteString":      12,
+		"Hour":              13,
+		"HourString":        14,
+	}
+)
+
+func (x TypeDuration_Codec) Enum() *TypeDuration_Codec {
+	p := new(TypeDuration_Codec)
+	*p = x
+	return p
+}
+
+func (x TypeDuration_Codec) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TypeDuration_Codec) Descriptor() protoreflect.EnumDescriptor {
+	return file_json_proto_enumTypes[15].Descriptor()
+}
+
+func (TypeDuration_Codec) Type() protoreflect.EnumType {
+	return &file_json_proto_enumTypes[15]
+}
+
+func (x TypeDuration_Codec) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TypeDuration_Codec.Descriptor instead.
+func (TypeDuration_Codec) EnumDescriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{23, 0}
+}
+
+type TypeTimestamp_Codec int32
+
+const (
+	// Unset represents the default value will be applied when encoding and decoding JSON.
+	TypeTimestamp_Unset TypeTimestamp_Codec = 0
+	// Object represents convert the google.protobuf.Timestamp as objects and encoding and decoding by standard JSON.
+	TypeTimestamp_Object TypeTimestamp_Codec = 1
+	// TimeLayout represents convert the google.protobuf.Timestamp as time strings by `Layout` when encoding and decoding.
+	TypeTimestamp_TimeLayout TypeTimestamp_Codec = 2
+	// UnixNano represents convert the google.protobuf.Timestamp as nanosecond timestamp of type int64 when encoding and decoding.
+	TypeTimestamp_UnixNano TypeTimestamp_Codec = 3
+	// String represents use the UnixNano and convert to string when encoding and decoding.
+	TypeTimestamp_UnixNanoString TypeTimestamp_Codec = 4
+	// UnixMicro represents convert the google.protobuf.Timestamp as microsecond timestamp of type int64 when encoding and decoding.
+	TypeTimestamp_UnixMicro TypeTimestamp_Codec = 5
+	// String represents use the UnixMicro and convert to string when encoding and decoding.
+	TypeTimestamp_UnixMicroString TypeTimestamp_Codec = 6
+	// UnixMilli represents convert the google.protobuf.Timestamp as millisecond timestamp of type int64 when encoding and decoding.
+	TypeTimestamp_UnixMilli TypeTimestamp_Codec = 7
+	// String represents use the UnixMilli and convert to string when encoding and decoding.
+	TypeTimestamp_UnixMilliString TypeTimestamp_Codec = 8
+	// UnixSec represents convert the google.protobuf.Timestamp as second timestamp of type int64 when encoding and decoding.
+	TypeTimestamp_UnixSec TypeTimestamp_Codec = 9
+	// String represents use the UnixSec and convert to string when encoding and decoding.
+	TypeTimestamp_UnixSecString TypeTimestamp_Codec = 10
+)
+
+// Enum value maps for TypeTimestamp_Codec.
+var (
+	TypeTimestamp_Codec_name = map[int32]string{
+		0:  "Unset",
+		1:  "Object",
+		2:  "TimeLayout",
+		3:  "UnixNano",
+		4:  "UnixNanoString",
+		5:  "UnixMicro",
+		6:  "UnixMicroString",
+		7:  "UnixMilli",
+		8:  "UnixMilliString",
+		9:  "UnixSec",
+		10: "UnixSecString",
+	}
+	TypeTimestamp_Codec_value = map[string]int32{
+		"Unset":           0,
+		"Object":          1,
+		"TimeLayout":      2,
+		"UnixNano":        3,
+		"UnixNanoString":  4,
+		"UnixMicro":       5,
+		"UnixMicroString": 6,
+		"UnixMilli":       7,
+		"UnixMilliString": 8,
+		"UnixSec":         9,
+		"UnixSecString":   10,
+	}
+)
+
+func (x TypeTimestamp_Codec) Enum() *TypeTimestamp_Codec {
+	p := new(TypeTimestamp_Codec)
+	*p = x
+	return p
+}
+
+func (x TypeTimestamp_Codec) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TypeTimestamp_Codec) Descriptor() protoreflect.EnumDescriptor {
+	return file_json_proto_enumTypes[16].Descriptor()
+}
+
+func (TypeTimestamp_Codec) Type() protoreflect.EnumType {
+	return &file_json_proto_enumTypes[16]
+}
+
+func (x TypeTimestamp_Codec) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TypeTimestamp_Codec.Descriptor instead.
+func (TypeTimestamp_Codec) EnumDescriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{24, 0}
 }
 
 type MessageOptions struct {
@@ -388,7 +1132,6 @@ func (x *OneofOptions) GetHide() bool {
 	return false
 }
 
-// TODO: same as the standard JSON., unsupported the type of bool as map key.
 type FieldOptions struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -398,21 +1141,14 @@ type FieldOptions struct {
 	// Same as `ignore: true`, the field will be ignored if set its value to `json: "-"`
 	// It effect the MarshalJSON and UnmarshalJSON.
 	Json *string `protobuf:"bytes,1,opt,name=json,proto3,oneof" json:"json,omitempty"`
-	// Same as `json: "-"`, The field will be ignored if its true.
+	// Same as `json: "-"`, The field will be ignored if true.
 	// It effect the MarshalJSON and UnmarshalJSON.
 	Ignore bool `protobuf:"varint,2,opt,name=ignore,proto3" json:"ignore,omitempty"`
 	// Same as the go struct tag `json:"xxx,omitempty"`.
 	// omitempty indicates whether omit the field if it is empty in MarshalJSON.
 	Omitempty bool `protobuf:"varint,3,opt,name=omitempty,proto3" json:"omitempty,omitempty"`
-	// TypeSet for specific fields.
-	// It effect the MarshalJSON and UnmarshalJSON.
-	//
-	// Types that are assignable to TypeSet:
-	//	*FieldOptions_Enum
-	//	*FieldOptions_Any
-	//	*FieldOptions_Duration
-	//	*FieldOptions_Timestamp
-	TypeSet isFieldOptions_TypeSet `protobuf_oneof:"TypeSet"`
+	// Format set for field.
+	Reference *TypeReference `protobuf:"bytes,4,opt,name=reference,proto3" json:"reference,omitempty"`
 }
 
 func (x *FieldOptions) Reset() {
@@ -468,81 +1204,1229 @@ func (x *FieldOptions) GetOmitempty() bool {
 	return false
 }
 
-func (m *FieldOptions) GetTypeSet() isFieldOptions_TypeSet {
-	if m != nil {
-		return m.TypeSet
+func (x *FieldOptions) GetReference() *TypeReference {
+	if x != nil {
+		return x.Reference
 	}
 	return nil
 }
 
-func (x *FieldOptions) GetEnum() *TypeEnum {
-	if x, ok := x.GetTypeSet().(*FieldOptions_Enum); ok {
+type TypeReference struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Types that are assignable to Kind:
+	//	*TypeReference_Plain
+	//	*TypeReference_Repeated
+	//	*TypeReference_Map
+	Kind isTypeReference_Kind `protobuf_oneof:"Kind"`
+}
+
+func (x *TypeReference) Reset() {
+	*x = TypeReference{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TypeReference) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TypeReference) ProtoMessage() {}
+
+func (x *TypeReference) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TypeReference.ProtoReflect.Descriptor instead.
+func (*TypeReference) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{3}
+}
+
+func (m *TypeReference) GetKind() isTypeReference_Kind {
+	if m != nil {
+		return m.Kind
+	}
+	return nil
+}
+
+func (x *TypeReference) GetPlain() *PlainOptions {
+	if x, ok := x.GetKind().(*TypeReference_Plain); ok {
+		return x.Plain
+	}
+	return nil
+}
+
+func (x *TypeReference) GetRepeated() *RepeatedOptions {
+	if x, ok := x.GetKind().(*TypeReference_Repeated); ok {
+		return x.Repeated
+	}
+	return nil
+}
+
+func (x *TypeReference) GetMap() *MapOptions {
+	if x, ok := x.GetKind().(*TypeReference_Map); ok {
+		return x.Map
+	}
+	return nil
+}
+
+type isTypeReference_Kind interface {
+	isTypeReference_Kind()
+}
+
+type TypeReference_Plain struct {
+	// PlainOptions declares the tags applied to the plain field.
+	Plain *PlainOptions `protobuf:"bytes,1,opt,name=plain,proto3,oneof"`
+}
+
+type TypeReference_Repeated struct {
+	// RepeatedOptions declares the tags applied to the repeated field.
+	Repeated *RepeatedOptions `protobuf:"bytes,2,opt,name=repeated,proto3,oneof"`
+}
+
+type TypeReference_Map struct {
+	// MapTags declares the tags applied to the map field.
+	Map *MapOptions `protobuf:"bytes,3,opt,name=map,proto3,oneof"`
+}
+
+func (*TypeReference_Plain) isTypeReference_Kind() {}
+
+func (*TypeReference_Repeated) isTypeReference_Kind() {}
+
+func (*TypeReference_Map) isTypeReference_Kind() {}
+
+// PlainOptions declares the options applied to the field plain.
+type PlainOptions struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// value declares the default value for field.
+	Value *TypeCodec `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
+}
+
+func (x *PlainOptions) Reset() {
+	*x = PlainOptions{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PlainOptions) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlainOptions) ProtoMessage() {}
+
+func (x *PlainOptions) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlainOptions.ProtoReflect.Descriptor instead.
+func (*PlainOptions) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *PlainOptions) GetValue() *TypeCodec {
+	if x != nil {
+		return x.Value
+	}
+	return nil
+}
+
+// RepeatedOptions declares the options applied to the field repeated.
+type RepeatedOptions struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// items declares the default value for field.
+	Elem *TypeCodec `protobuf:"bytes,1,opt,name=elem,proto3" json:"elem,omitempty"`
+}
+
+func (x *RepeatedOptions) Reset() {
+	*x = RepeatedOptions{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RepeatedOptions) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RepeatedOptions) ProtoMessage() {}
+
+func (x *RepeatedOptions) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RepeatedOptions.ProtoReflect.Descriptor instead.
+func (*RepeatedOptions) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *RepeatedOptions) GetElem() *TypeCodec {
+	if x != nil {
+		return x.Elem
+	}
+	return nil
+}
+
+// MapOptions declares the options applied to the field map.
+type MapOptions struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key   *TypeCodec `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Value *TypeCodec `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+}
+
+func (x *MapOptions) Reset() {
+	*x = MapOptions{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MapOptions) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MapOptions) ProtoMessage() {}
+
+func (x *MapOptions) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MapOptions.ProtoReflect.Descriptor instead.
+func (*MapOptions) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *MapOptions) GetKey() *TypeCodec {
+	if x != nil {
+		return x.Key
+	}
+	return nil
+}
+
+func (x *MapOptions) GetValue() *TypeCodec {
+	if x != nil {
+		return x.Value
+	}
+	return nil
+}
+
+type TypeCodec struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Types that are assignable to Kind:
+	//	*TypeCodec_Int32
+	//	*TypeCodec_Int64
+	//	*TypeCodec_Sint32
+	//	*TypeCodec_Sint64
+	//	*TypeCodec_Sfixed32
+	//	*TypeCodec_Sfixed64
+	//	*TypeCodec_Uint32
+	//	*TypeCodec_Uint64
+	//	*TypeCodec_Fixed32
+	//	*TypeCodec_Fixed64
+	//	*TypeCodec_Float
+	//	*TypeCodec_Double
+	//	*TypeCodec_Bool
+	//	*TypeCodec_Enum
+	//	*TypeCodec_Any
+	//	*TypeCodec_Duration
+	//	*TypeCodec_Timestamp
+	Kind isTypeCodec_Kind `protobuf_oneof:"Kind"`
+}
+
+func (x *TypeCodec) Reset() {
+	*x = TypeCodec{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TypeCodec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TypeCodec) ProtoMessage() {}
+
+func (x *TypeCodec) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TypeCodec.ProtoReflect.Descriptor instead.
+func (*TypeCodec) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{7}
+}
+
+func (m *TypeCodec) GetKind() isTypeCodec_Kind {
+	if m != nil {
+		return m.Kind
+	}
+	return nil
+}
+
+func (x *TypeCodec) GetInt32() *TypeInt32 {
+	if x, ok := x.GetKind().(*TypeCodec_Int32); ok {
+		return x.Int32
+	}
+	return nil
+}
+
+func (x *TypeCodec) GetInt64() *TypeInt64 {
+	if x, ok := x.GetKind().(*TypeCodec_Int64); ok {
+		return x.Int64
+	}
+	return nil
+}
+
+func (x *TypeCodec) GetSint32() *TypeSInt32 {
+	if x, ok := x.GetKind().(*TypeCodec_Sint32); ok {
+		return x.Sint32
+	}
+	return nil
+}
+
+func (x *TypeCodec) GetSint64() *TypeSInt64 {
+	if x, ok := x.GetKind().(*TypeCodec_Sint64); ok {
+		return x.Sint64
+	}
+	return nil
+}
+
+func (x *TypeCodec) GetSfixed32() *TypeSFixed32 {
+	if x, ok := x.GetKind().(*TypeCodec_Sfixed32); ok {
+		return x.Sfixed32
+	}
+	return nil
+}
+
+func (x *TypeCodec) GetSfixed64() *TypeSFixed64 {
+	if x, ok := x.GetKind().(*TypeCodec_Sfixed64); ok {
+		return x.Sfixed64
+	}
+	return nil
+}
+
+func (x *TypeCodec) GetUint32() *TypeUint32 {
+	if x, ok := x.GetKind().(*TypeCodec_Uint32); ok {
+		return x.Uint32
+	}
+	return nil
+}
+
+func (x *TypeCodec) GetUint64() *TypeUint64 {
+	if x, ok := x.GetKind().(*TypeCodec_Uint64); ok {
+		return x.Uint64
+	}
+	return nil
+}
+
+func (x *TypeCodec) GetFixed32() *TypeFixed32 {
+	if x, ok := x.GetKind().(*TypeCodec_Fixed32); ok {
+		return x.Fixed32
+	}
+	return nil
+}
+
+func (x *TypeCodec) GetFixed64() *TypeFixed64 {
+	if x, ok := x.GetKind().(*TypeCodec_Fixed64); ok {
+		return x.Fixed64
+	}
+	return nil
+}
+
+func (x *TypeCodec) GetFloat() *TypeFloat {
+	if x, ok := x.GetKind().(*TypeCodec_Float); ok {
+		return x.Float
+	}
+	return nil
+}
+
+func (x *TypeCodec) GetDouble() *TypeDouble {
+	if x, ok := x.GetKind().(*TypeCodec_Double); ok {
+		return x.Double
+	}
+	return nil
+}
+
+func (x *TypeCodec) GetBool() *TypeBool {
+	if x, ok := x.GetKind().(*TypeCodec_Bool); ok {
+		return x.Bool
+	}
+	return nil
+}
+
+func (x *TypeCodec) GetEnum() *TypeEnum {
+	if x, ok := x.GetKind().(*TypeCodec_Enum); ok {
 		return x.Enum
 	}
 	return nil
 }
 
-func (x *FieldOptions) GetAny() *TypeAny {
-	if x, ok := x.GetTypeSet().(*FieldOptions_Any); ok {
+func (x *TypeCodec) GetAny() *TypeAny {
+	if x, ok := x.GetKind().(*TypeCodec_Any); ok {
 		return x.Any
 	}
 	return nil
 }
 
-func (x *FieldOptions) GetDuration() *TypeDuration {
-	if x, ok := x.GetTypeSet().(*FieldOptions_Duration); ok {
+func (x *TypeCodec) GetDuration() *TypeDuration {
+	if x, ok := x.GetKind().(*TypeCodec_Duration); ok {
 		return x.Duration
 	}
 	return nil
 }
 
-func (x *FieldOptions) GetTimestamp() *TypeTimestamp {
-	if x, ok := x.GetTypeSet().(*FieldOptions_Timestamp); ok {
+func (x *TypeCodec) GetTimestamp() *TypeTimestamp {
+	if x, ok := x.GetKind().(*TypeCodec_Timestamp); ok {
 		return x.Timestamp
 	}
 	return nil
 }
 
-type isFieldOptions_TypeSet interface {
-	isFieldOptions_TypeSet()
+type isTypeCodec_Kind interface {
+	isTypeCodec_Kind()
 }
 
-type FieldOptions_Enum struct {
-	Enum *TypeEnum `protobuf:"bytes,11,opt,name=enum,proto3,oneof"`
+type TypeCodec_Int32 struct {
+	Int32 *TypeInt32 `protobuf:"bytes,11,opt,name=int32,proto3,oneof"`
 }
 
-type FieldOptions_Any struct {
-	Any *TypeAny `protobuf:"bytes,12,opt,name=any,proto3,oneof"`
+type TypeCodec_Int64 struct {
+	Int64 *TypeInt64 `protobuf:"bytes,12,opt,name=int64,proto3,oneof"`
 }
 
-type FieldOptions_Duration struct {
-	Duration *TypeDuration `protobuf:"bytes,13,opt,name=duration,proto3,oneof"`
+type TypeCodec_Sint32 struct {
+	Sint32 *TypeSInt32 `protobuf:"bytes,13,opt,name=sint32,proto3,oneof"`
 }
 
-type FieldOptions_Timestamp struct {
-	Timestamp *TypeTimestamp `protobuf:"bytes,14,opt,name=timestamp,proto3,oneof"`
+type TypeCodec_Sint64 struct {
+	Sint64 *TypeSInt64 `protobuf:"bytes,14,opt,name=sint64,proto3,oneof"`
 }
 
-func (*FieldOptions_Enum) isFieldOptions_TypeSet() {}
+type TypeCodec_Sfixed32 struct {
+	Sfixed32 *TypeSFixed32 `protobuf:"bytes,15,opt,name=sfixed32,proto3,oneof"`
+}
 
-func (*FieldOptions_Any) isFieldOptions_TypeSet() {}
+type TypeCodec_Sfixed64 struct {
+	Sfixed64 *TypeSFixed64 `protobuf:"bytes,16,opt,name=sfixed64,proto3,oneof"`
+}
 
-func (*FieldOptions_Duration) isFieldOptions_TypeSet() {}
+type TypeCodec_Uint32 struct {
+	Uint32 *TypeUint32 `protobuf:"bytes,17,opt,name=uint32,proto3,oneof"`
+}
 
-func (*FieldOptions_Timestamp) isFieldOptions_TypeSet() {}
+type TypeCodec_Uint64 struct {
+	Uint64 *TypeUint64 `protobuf:"bytes,18,opt,name=uint64,proto3,oneof"`
+}
 
+type TypeCodec_Fixed32 struct {
+	Fixed32 *TypeFixed32 `protobuf:"bytes,19,opt,name=fixed32,proto3,oneof"`
+}
+
+type TypeCodec_Fixed64 struct {
+	Fixed64 *TypeFixed64 `protobuf:"bytes,20,opt,name=fixed64,proto3,oneof"`
+}
+
+type TypeCodec_Float struct {
+	Float *TypeFloat `protobuf:"bytes,21,opt,name=float,proto3,oneof"`
+}
+
+type TypeCodec_Double struct {
+	Double *TypeDouble `protobuf:"bytes,22,opt,name=double,proto3,oneof"`
+}
+
+type TypeCodec_Bool struct {
+	Bool *TypeBool `protobuf:"bytes,23,opt,name=bool,proto3,oneof"`
+}
+
+type TypeCodec_Enum struct {
+	Enum *TypeEnum `protobuf:"bytes,24,opt,name=enum,proto3,oneof"`
+}
+
+type TypeCodec_Any struct {
+	Any *TypeAny `protobuf:"bytes,25,opt,name=any,proto3,oneof"`
+}
+
+type TypeCodec_Duration struct {
+	Duration *TypeDuration `protobuf:"bytes,26,opt,name=duration,proto3,oneof"`
+}
+
+type TypeCodec_Timestamp struct {
+	Timestamp *TypeTimestamp `protobuf:"bytes,27,opt,name=timestamp,proto3,oneof"`
+}
+
+func (*TypeCodec_Int32) isTypeCodec_Kind() {}
+
+func (*TypeCodec_Int64) isTypeCodec_Kind() {}
+
+func (*TypeCodec_Sint32) isTypeCodec_Kind() {}
+
+func (*TypeCodec_Sint64) isTypeCodec_Kind() {}
+
+func (*TypeCodec_Sfixed32) isTypeCodec_Kind() {}
+
+func (*TypeCodec_Sfixed64) isTypeCodec_Kind() {}
+
+func (*TypeCodec_Uint32) isTypeCodec_Kind() {}
+
+func (*TypeCodec_Uint64) isTypeCodec_Kind() {}
+
+func (*TypeCodec_Fixed32) isTypeCodec_Kind() {}
+
+func (*TypeCodec_Fixed64) isTypeCodec_Kind() {}
+
+func (*TypeCodec_Float) isTypeCodec_Kind() {}
+
+func (*TypeCodec_Double) isTypeCodec_Kind() {}
+
+func (*TypeCodec_Bool) isTypeCodec_Kind() {}
+
+func (*TypeCodec_Enum) isTypeCodec_Kind() {}
+
+func (*TypeCodec_Any) isTypeCodec_Kind() {}
+
+func (*TypeCodec_Duration) isTypeCodec_Kind() {}
+
+func (*TypeCodec_Timestamp) isTypeCodec_Kind() {}
+
+// TypeInt32 declares the codec for field type int32.
+type TypeInt32 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Codec specifies encoding format for the field type of int32.
+	// The default is `Number` in plain value, repeated elements and map value.
+	// And the default is `String` in map key.
+	Codec TypeInt32_Codec `protobuf:"varint,1,opt,name=codec,proto3,enum=json.TypeInt32_Codec" json:"codec,omitempty"`
+}
+
+func (x *TypeInt32) Reset() {
+	*x = TypeInt32{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TypeInt32) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TypeInt32) ProtoMessage() {}
+
+func (x *TypeInt32) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TypeInt32.ProtoReflect.Descriptor instead.
+func (*TypeInt32) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *TypeInt32) GetCodec() TypeInt32_Codec {
+	if x != nil {
+		return x.Codec
+	}
+	return TypeInt32_Unset
+}
+
+// TypeInt32 declares the codec for field type int64.
+type TypeInt64 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Codec specifies encoding format for the field type of int32.
+	// The default is `Number` in plain value, repeated elements and map value.
+	// And the default is `String` in map key.
+	Codec TypeInt64_Codec `protobuf:"varint,1,opt,name=codec,proto3,enum=json.TypeInt64_Codec" json:"codec,omitempty"`
+}
+
+func (x *TypeInt64) Reset() {
+	*x = TypeInt64{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TypeInt64) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TypeInt64) ProtoMessage() {}
+
+func (x *TypeInt64) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TypeInt64.ProtoReflect.Descriptor instead.
+func (*TypeInt64) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *TypeInt64) GetCodec() TypeInt64_Codec {
+	if x != nil {
+		return x.Codec
+	}
+	return TypeInt64_Unset
+}
+
+// TypeInt32 declares the codec for field type sint32.
+type TypeSInt32 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Codec specifies encoding format for the field type of sint32.
+	// The default is `Number` in plain value, repeated elements and map value.
+	// And the default is `String` in map key.
+	Codec TypeSInt32_Codec `protobuf:"varint,1,opt,name=codec,proto3,enum=json.TypeSInt32_Codec" json:"codec,omitempty"`
+}
+
+func (x *TypeSInt32) Reset() {
+	*x = TypeSInt32{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TypeSInt32) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TypeSInt32) ProtoMessage() {}
+
+func (x *TypeSInt32) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TypeSInt32.ProtoReflect.Descriptor instead.
+func (*TypeSInt32) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *TypeSInt32) GetCodec() TypeSInt32_Codec {
+	if x != nil {
+		return x.Codec
+	}
+	return TypeSInt32_Unset
+}
+
+// TypeInt32 declares the codec for field type sint64.
+type TypeSInt64 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Codec specifies encoding format for the field type of sint64.
+	// The default is `Number` in plain value, repeated elements and map value.
+	// And the default is `String` in map key.
+	Codec TypeSInt64_Codec `protobuf:"varint,1,opt,name=codec,proto3,enum=json.TypeSInt64_Codec" json:"codec,omitempty"`
+}
+
+func (x *TypeSInt64) Reset() {
+	*x = TypeSInt64{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TypeSInt64) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TypeSInt64) ProtoMessage() {}
+
+func (x *TypeSInt64) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TypeSInt64.ProtoReflect.Descriptor instead.
+func (*TypeSInt64) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *TypeSInt64) GetCodec() TypeSInt64_Codec {
+	if x != nil {
+		return x.Codec
+	}
+	return TypeSInt64_Unset
+}
+
+// TypeInt32 declares the codec for field type sfixed32.
+type TypeSFixed32 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Codec specifies encoding format for the field type of sfixed32.
+	// The default is `Number` in plain value, repeated elements and map value.
+	// And the default is `String` in map key.
+	Codec TypeSFixed32_Codec `protobuf:"varint,1,opt,name=codec,proto3,enum=json.TypeSFixed32_Codec" json:"codec,omitempty"`
+}
+
+func (x *TypeSFixed32) Reset() {
+	*x = TypeSFixed32{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TypeSFixed32) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TypeSFixed32) ProtoMessage() {}
+
+func (x *TypeSFixed32) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TypeSFixed32.ProtoReflect.Descriptor instead.
+func (*TypeSFixed32) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *TypeSFixed32) GetCodec() TypeSFixed32_Codec {
+	if x != nil {
+		return x.Codec
+	}
+	return TypeSFixed32_Unset
+}
+
+// TypeInt32 declares the codec for field type sfixed64.
+type TypeSFixed64 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Codec specifies encoding format for the field type of sfixed64.
+	// The default is `Number` in plain value, repeated elements and map value.
+	// And the default is `String` in map key.
+	Codec TypeSFixed64_Codec `protobuf:"varint,1,opt,name=codec,proto3,enum=json.TypeSFixed64_Codec" json:"codec,omitempty"`
+}
+
+func (x *TypeSFixed64) Reset() {
+	*x = TypeSFixed64{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TypeSFixed64) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TypeSFixed64) ProtoMessage() {}
+
+func (x *TypeSFixed64) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TypeSFixed64.ProtoReflect.Descriptor instead.
+func (*TypeSFixed64) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *TypeSFixed64) GetCodec() TypeSFixed64_Codec {
+	if x != nil {
+		return x.Codec
+	}
+	return TypeSFixed64_Unset
+}
+
+// TypeInt32 declares the codec for field type uint32.
+type TypeUint32 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Codec specifies encoding format for the field type of uint32.
+	// The default is `Number` in plain value, repeated elements and map value.
+	// And the default is `String` in map key.
+	Codec TypeUint32_Codec `protobuf:"varint,1,opt,name=codec,proto3,enum=json.TypeUint32_Codec" json:"codec,omitempty"`
+}
+
+func (x *TypeUint32) Reset() {
+	*x = TypeUint32{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TypeUint32) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TypeUint32) ProtoMessage() {}
+
+func (x *TypeUint32) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TypeUint32.ProtoReflect.Descriptor instead.
+func (*TypeUint32) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *TypeUint32) GetCodec() TypeUint32_Codec {
+	if x != nil {
+		return x.Codec
+	}
+	return TypeUint32_Unset
+}
+
+// TypeInt32 declares the codec for field type uint64.
+type TypeUint64 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Codec specifies encoding format for the field type of uint64.
+	// The default is `Number` in plain value, repeated elements and map value.
+	// And the default is `String` in map key.
+	Codec TypeUint64_Codec `protobuf:"varint,1,opt,name=codec,proto3,enum=json.TypeUint64_Codec" json:"codec,omitempty"`
+}
+
+func (x *TypeUint64) Reset() {
+	*x = TypeUint64{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TypeUint64) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TypeUint64) ProtoMessage() {}
+
+func (x *TypeUint64) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TypeUint64.ProtoReflect.Descriptor instead.
+func (*TypeUint64) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *TypeUint64) GetCodec() TypeUint64_Codec {
+	if x != nil {
+		return x.Codec
+	}
+	return TypeUint64_Unset
+}
+
+// TypeInt32 declares the codec for field type fixed32.
+type TypeFixed32 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Codec specifies encoding format for the field type of fixed32.
+	// The default is `Number` in plain value, repeated elements and map value.
+	// And the default is `String` in map key.
+	Codec TypeFixed32_Codec `protobuf:"varint,1,opt,name=codec,proto3,enum=json.TypeFixed32_Codec" json:"codec,omitempty"`
+}
+
+func (x *TypeFixed32) Reset() {
+	*x = TypeFixed32{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TypeFixed32) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TypeFixed32) ProtoMessage() {}
+
+func (x *TypeFixed32) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TypeFixed32.ProtoReflect.Descriptor instead.
+func (*TypeFixed32) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *TypeFixed32) GetCodec() TypeFixed32_Codec {
+	if x != nil {
+		return x.Codec
+	}
+	return TypeFixed32_Unset
+}
+
+// TypeInt32 declares the codec for field type fixed64.
+type TypeFixed64 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Codec specifies encoding format for the field type of fixed64.
+	// The default is `Number` in plain value, repeated elements and map value.
+	// And the default is `String` in map key.
+	Codec TypeFixed64_Codec `protobuf:"varint,1,opt,name=codec,proto3,enum=json.TypeFixed64_Codec" json:"codec,omitempty"`
+}
+
+func (x *TypeFixed64) Reset() {
+	*x = TypeFixed64{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TypeFixed64) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TypeFixed64) ProtoMessage() {}
+
+func (x *TypeFixed64) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TypeFixed64.ProtoReflect.Descriptor instead.
+func (*TypeFixed64) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *TypeFixed64) GetCodec() TypeFixed64_Codec {
+	if x != nil {
+		return x.Codec
+	}
+	return TypeFixed64_Unset
+}
+
+// TypeInt32 declares the codec for field type float.
+type TypeFloat struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Codec specifies encoding format for the field type of float.
+	// The default is `Number` in plain value, repeated elements and map value.
+	Codec TypeFloat_Codec `protobuf:"varint,1,opt,name=codec,proto3,enum=json.TypeFloat_Codec" json:"codec,omitempty"`
+}
+
+func (x *TypeFloat) Reset() {
+	*x = TypeFloat{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TypeFloat) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TypeFloat) ProtoMessage() {}
+
+func (x *TypeFloat) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TypeFloat.ProtoReflect.Descriptor instead.
+func (*TypeFloat) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *TypeFloat) GetCodec() TypeFloat_Codec {
+	if x != nil {
+		return x.Codec
+	}
+	return TypeFloat_Unset
+}
+
+// TypeInt32 declares the codec for field type double.
+type TypeDouble struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Codec specifies encoding format for the field type of double.
+	// The default is `Number` in plain value, repeated elements and map value.
+	Codec TypeDouble_Codec `protobuf:"varint,1,opt,name=codec,proto3,enum=json.TypeDouble_Codec" json:"codec,omitempty"`
+}
+
+func (x *TypeDouble) Reset() {
+	*x = TypeDouble{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TypeDouble) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TypeDouble) ProtoMessage() {}
+
+func (x *TypeDouble) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TypeDouble.ProtoReflect.Descriptor instead.
+func (*TypeDouble) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *TypeDouble) GetCodec() TypeDouble_Codec {
+	if x != nil {
+		return x.Codec
+	}
+	return TypeDouble_Unset
+}
+
+// TypeInt32 declares the codec for field type bool.
+type TypeBool struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Codec specifies encoding format for the field type of bool.
+	// The default is `Bool` in plain value, repeated elements and map value.
+	Codec TypeBool_Codec `protobuf:"varint,1,opt,name=codec,proto3,enum=json.TypeBool_Codec" json:"codec,omitempty"`
+}
+
+func (x *TypeBool) Reset() {
+	*x = TypeBool{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_json_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TypeBool) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TypeBool) ProtoMessage() {}
+
+func (x *TypeBool) ProtoReflect() protoreflect.Message {
+	mi := &file_json_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TypeBool.ProtoReflect.Descriptor instead.
+func (*TypeBool) Descriptor() ([]byte, []int) {
+	return file_json_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *TypeBool) GetCodec() TypeBool_Codec {
+	if x != nil {
+		return x.Codec
+	}
+	return TypeBool_Unset
+}
+
+// TypeInt32 declares the codec for field type enum.
 type TypeEnum struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Format TypeEnum_Format `protobuf:"varint,1,opt,name=format,proto3,enum=json.TypeEnum_Format" json:"format,omitempty"`
+	// Codec specifies encoding format for the field type of Enum.
+	// The default is `Number` in plain value, repeated elements and map value.
+	Codec TypeEnum_Codec `protobuf:"varint,1,opt,name=codec,proto3,enum=json.TypeEnum_Codec" json:"codec,omitempty"`
 }
 
 func (x *TypeEnum) Reset() {
 	*x = TypeEnum{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_json_proto_msgTypes[3]
+		mi := &file_json_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -555,7 +2439,7 @@ func (x *TypeEnum) String() string {
 func (*TypeEnum) ProtoMessage() {}
 
 func (x *TypeEnum) ProtoReflect() protoreflect.Message {
-	mi := &file_json_proto_msgTypes[3]
+	mi := &file_json_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -568,28 +2452,31 @@ func (x *TypeEnum) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TypeEnum.ProtoReflect.Descriptor instead.
 func (*TypeEnum) Descriptor() ([]byte, []int) {
-	return file_json_proto_rawDescGZIP(), []int{3}
+	return file_json_proto_rawDescGZIP(), []int{21}
 }
 
-func (x *TypeEnum) GetFormat() TypeEnum_Format {
+func (x *TypeEnum) GetCodec() TypeEnum_Codec {
 	if x != nil {
-		return x.Format
+		return x.Codec
 	}
-	return TypeEnum_Number
+	return TypeEnum_Unset
 }
 
+// TypeInt32 declares the codec for field type google.proto.Any.
 type TypeAny struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Format TypeAny_Format `protobuf:"varint,1,opt,name=format,proto3,enum=json.TypeAny_Format" json:"format,omitempty"`
+	// Codec specifies encoding format for the field type of google.protobuf.Any.
+	// The default is `Object` in plain value, repeated elements and map value.
+	Codec TypeAny_Codec `protobuf:"varint,1,opt,name=codec,proto3,enum=json.TypeAny_Codec" json:"codec,omitempty"`
 }
 
 func (x *TypeAny) Reset() {
 	*x = TypeAny{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_json_proto_msgTypes[4]
+		mi := &file_json_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -602,7 +2489,7 @@ func (x *TypeAny) String() string {
 func (*TypeAny) ProtoMessage() {}
 
 func (x *TypeAny) ProtoReflect() protoreflect.Message {
-	mi := &file_json_proto_msgTypes[4]
+	mi := &file_json_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -615,28 +2502,31 @@ func (x *TypeAny) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TypeAny.ProtoReflect.Descriptor instead.
 func (*TypeAny) Descriptor() ([]byte, []int) {
-	return file_json_proto_rawDescGZIP(), []int{4}
+	return file_json_proto_rawDescGZIP(), []int{22}
 }
 
-func (x *TypeAny) GetFormat() TypeAny_Format {
+func (x *TypeAny) GetCodec() TypeAny_Codec {
 	if x != nil {
-		return x.Format
+		return x.Codec
 	}
-	return TypeAny_Native
+	return TypeAny_Unset
 }
 
+// TypeInt32 declares the codec for field type google.proto.Duration.
 type TypeDuration struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Format TypeDuration_Format `protobuf:"varint,1,opt,name=format,proto3,enum=json.TypeDuration_Format" json:"format,omitempty"`
+	// Codec specifies encoding format for the field type of google.protobuf.Duration.
+	// The default is `Object` in plain value, repeated elements and map value.
+	Codec TypeDuration_Codec `protobuf:"varint,1,opt,name=codec,proto3,enum=json.TypeDuration_Codec" json:"codec,omitempty"`
 }
 
 func (x *TypeDuration) Reset() {
 	*x = TypeDuration{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_json_proto_msgTypes[5]
+		mi := &file_json_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -649,7 +2539,7 @@ func (x *TypeDuration) String() string {
 func (*TypeDuration) ProtoMessage() {}
 
 func (x *TypeDuration) ProtoReflect() protoreflect.Message {
-	mi := &file_json_proto_msgTypes[5]
+	mi := &file_json_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -662,30 +2552,33 @@ func (x *TypeDuration) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TypeDuration.ProtoReflect.Descriptor instead.
 func (*TypeDuration) Descriptor() ([]byte, []int) {
-	return file_json_proto_rawDescGZIP(), []int{5}
+	return file_json_proto_rawDescGZIP(), []int{23}
 }
 
-func (x *TypeDuration) GetFormat() TypeDuration_Format {
+func (x *TypeDuration) GetCodec() TypeDuration_Codec {
 	if x != nil {
-		return x.Format
+		return x.Codec
 	}
-	return TypeDuration_Native
+	return TypeDuration_Unset
 }
 
+// TypeInt32 declares the codec for field type google.proto.Timestamp.
 type TypeTimestamp struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Format TypeTimestamp_Format `protobuf:"varint,1,opt,name=format,proto3,enum=json.TypeTimestamp_Format" json:"format,omitempty"`
-	// Only used if the format is TimeLayout.
+	// Codec specifies encoding format for the field type of google.protobuf.Timestamp.
+	// The default is `Object` in plain value, repeated elements and map value.
+	Codec TypeTimestamp_Codec `protobuf:"varint,1,opt,name=codec,proto3,enum=json.TypeTimestamp_Codec" json:"codec,omitempty"`
+	// Only used if the codec is `TimeLayout`.
 	Layout *TypeTimestamp_Layout `protobuf:"bytes,2,opt,name=layout,proto3" json:"layout,omitempty"`
 }
 
 func (x *TypeTimestamp) Reset() {
 	*x = TypeTimestamp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_json_proto_msgTypes[6]
+		mi := &file_json_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -698,7 +2591,7 @@ func (x *TypeTimestamp) String() string {
 func (*TypeTimestamp) ProtoMessage() {}
 
 func (x *TypeTimestamp) ProtoReflect() protoreflect.Message {
-	mi := &file_json_proto_msgTypes[6]
+	mi := &file_json_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -711,14 +2604,14 @@ func (x *TypeTimestamp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TypeTimestamp.ProtoReflect.Descriptor instead.
 func (*TypeTimestamp) Descriptor() ([]byte, []int) {
-	return file_json_proto_rawDescGZIP(), []int{6}
+	return file_json_proto_rawDescGZIP(), []int{24}
 }
 
-func (x *TypeTimestamp) GetFormat() TypeTimestamp_Format {
+func (x *TypeTimestamp) GetCodec() TypeTimestamp_Codec {
 	if x != nil {
-		return x.Format
+		return x.Codec
 	}
-	return TypeTimestamp_Native
+	return TypeTimestamp_Unset
 }
 
 func (x *TypeTimestamp) GetLayout() *TypeTimestamp_Layout {
@@ -747,7 +2640,7 @@ type TypeTimestamp_Layout struct {
 func (x *TypeTimestamp_Layout) Reset() {
 	*x = TypeTimestamp_Layout{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_json_proto_msgTypes[7]
+		mi := &file_json_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -760,7 +2653,7 @@ func (x *TypeTimestamp_Layout) String() string {
 func (*TypeTimestamp_Layout) ProtoMessage() {}
 
 func (x *TypeTimestamp_Layout) ProtoReflect() protoreflect.Message {
-	mi := &file_json_proto_msgTypes[7]
+	mi := &file_json_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -773,7 +2666,7 @@ func (x *TypeTimestamp_Layout) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TypeTimestamp_Layout.ProtoReflect.Descriptor instead.
 func (*TypeTimestamp_Layout) Descriptor() ([]byte, []int) {
-	return file_json_proto_rawDescGZIP(), []int{6, 0}
+	return file_json_proto_rawDescGZIP(), []int{24, 0}
 }
 
 func (x *TypeTimestamp_Layout) GetGolang() string {
@@ -869,68 +2762,230 @@ var file_json_proto_rawDesc = []byte{
 	0x6d, 0x70, 0x74, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x6f, 0x6d, 0x69, 0x74,
 	0x65, 0x6d, 0x70, 0x74, 0x79, 0x12, 0x12, 0x0a, 0x04, 0x68, 0x69, 0x64, 0x65, 0x18, 0x04, 0x20,
 	0x01, 0x28, 0x08, 0x52, 0x04, 0x68, 0x69, 0x64, 0x65, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x6a, 0x73,
-	0x6f, 0x6e, 0x22, 0xa1, 0x02, 0x0a, 0x0c, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x4f, 0x70, 0x74, 0x69,
+	0x6f, 0x6e, 0x22, 0x99, 0x01, 0x0a, 0x0c, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x4f, 0x70, 0x74, 0x69,
 	0x6f, 0x6e, 0x73, 0x12, 0x17, 0x0a, 0x04, 0x6a, 0x73, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x48, 0x01, 0x52, 0x04, 0x6a, 0x73, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x16, 0x0a, 0x06,
+	0x09, 0x48, 0x00, 0x52, 0x04, 0x6a, 0x73, 0x6f, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x16, 0x0a, 0x06,
 	0x69, 0x67, 0x6e, 0x6f, 0x72, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x69, 0x67,
 	0x6e, 0x6f, 0x72, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x6d, 0x70, 0x74,
 	0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x6f, 0x6d, 0x69, 0x74, 0x65, 0x6d, 0x70,
-	0x74, 0x79, 0x12, 0x24, 0x0a, 0x04, 0x65, 0x6e, 0x75, 0x6d, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x0b,
-	0x32, 0x0e, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x45, 0x6e, 0x75, 0x6d,
-	0x48, 0x00, 0x52, 0x04, 0x65, 0x6e, 0x75, 0x6d, 0x12, 0x21, 0x0a, 0x03, 0x61, 0x6e, 0x79, 0x18,
-	0x0c, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70,
-	0x65, 0x41, 0x6e, 0x79, 0x48, 0x00, 0x52, 0x03, 0x61, 0x6e, 0x79, 0x12, 0x30, 0x0a, 0x08, 0x64,
-	0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e,
-	0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x48, 0x00, 0x52, 0x08, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x33, 0x0a,
-	0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x18, 0x0e, 0x20, 0x01, 0x28, 0x0b,
-	0x32, 0x13, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x54, 0x69, 0x6d, 0x65,
-	0x73, 0x74, 0x61, 0x6d, 0x70, 0x48, 0x00, 0x52, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61,
-	0x6d, 0x70, 0x42, 0x09, 0x0a, 0x07, 0x54, 0x79, 0x70, 0x65, 0x53, 0x65, 0x74, 0x42, 0x07, 0x0a,
-	0x05, 0x5f, 0x6a, 0x73, 0x6f, 0x6e, 0x22, 0x5b, 0x0a, 0x08, 0x54, 0x79, 0x70, 0x65, 0x45, 0x6e,
-	0x75, 0x6d, 0x12, 0x2d, 0x0a, 0x06, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x0e, 0x32, 0x15, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x45, 0x6e,
-	0x75, 0x6d, 0x2e, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x52, 0x06, 0x66, 0x6f, 0x72, 0x6d, 0x61,
-	0x74, 0x22, 0x20, 0x0a, 0x06, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x12, 0x0a, 0x0a, 0x06, 0x4e,
-	0x75, 0x6d, 0x62, 0x65, 0x72, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x53, 0x74, 0x72, 0x69, 0x6e,
-	0x67, 0x10, 0x01, 0x22, 0x58, 0x0a, 0x07, 0x54, 0x79, 0x70, 0x65, 0x41, 0x6e, 0x79, 0x12, 0x2c,
-	0x0a, 0x06, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x14,
-	0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x41, 0x6e, 0x79, 0x2e, 0x46, 0x6f,
-	0x72, 0x6d, 0x61, 0x74, 0x52, 0x06, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x22, 0x1f, 0x0a, 0x06,
-	0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x12, 0x0a, 0x0a, 0x06, 0x4e, 0x61, 0x74, 0x69, 0x76, 0x65,
-	0x10, 0x00, 0x12, 0x09, 0x0a, 0x05, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x10, 0x01, 0x22, 0xbd, 0x01,
-	0x0a, 0x0c, 0x54, 0x79, 0x70, 0x65, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x31,
-	0x0a, 0x06, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x19,
+	0x74, 0x79, 0x12, 0x31, 0x0a, 0x09, 0x72, 0x65, 0x66, 0x65, 0x72, 0x65, 0x6e, 0x63, 0x65, 0x18,
+	0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70,
+	0x65, 0x52, 0x65, 0x66, 0x65, 0x72, 0x65, 0x6e, 0x63, 0x65, 0x52, 0x09, 0x72, 0x65, 0x66, 0x65,
+	0x72, 0x65, 0x6e, 0x63, 0x65, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x6a, 0x73, 0x6f, 0x6e, 0x22, 0x9e,
+	0x01, 0x0a, 0x0d, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x66, 0x65, 0x72, 0x65, 0x6e, 0x63, 0x65,
+	0x12, 0x2a, 0x0a, 0x05, 0x70, 0x6c, 0x61, 0x69, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x12, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x50, 0x6c, 0x61, 0x69, 0x6e, 0x4f, 0x70, 0x74, 0x69,
+	0x6f, 0x6e, 0x73, 0x48, 0x00, 0x52, 0x05, 0x70, 0x6c, 0x61, 0x69, 0x6e, 0x12, 0x33, 0x0a, 0x08,
+	0x72, 0x65, 0x70, 0x65, 0x61, 0x74, 0x65, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15,
+	0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x52, 0x65, 0x70, 0x65, 0x61, 0x74, 0x65, 0x64, 0x4f, 0x70,
+	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x48, 0x00, 0x52, 0x08, 0x72, 0x65, 0x70, 0x65, 0x61, 0x74, 0x65,
+	0x64, 0x12, 0x24, 0x0a, 0x03, 0x6d, 0x61, 0x70, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10,
+	0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x4d, 0x61, 0x70, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x48, 0x00, 0x52, 0x03, 0x6d, 0x61, 0x70, 0x42, 0x06, 0x0a, 0x04, 0x4b, 0x69, 0x6e, 0x64, 0x22,
+	0x35, 0x0a, 0x0c, 0x50, 0x6c, 0x61, 0x69, 0x6e, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12,
+	0x25, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0f,
+	0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x52,
+	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x36, 0x0a, 0x0f, 0x52, 0x65, 0x70, 0x65, 0x61, 0x74,
+	0x65, 0x64, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x23, 0x0a, 0x04, 0x65, 0x6c, 0x65,
+	0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54,
+	0x79, 0x70, 0x65, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x52, 0x04, 0x65, 0x6c, 0x65, 0x6d, 0x22, 0x56,
+	0x0a, 0x0a, 0x4d, 0x61, 0x70, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x21, 0x0a, 0x03,
+	0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x6a, 0x73, 0x6f, 0x6e,
+	0x2e, 0x54, 0x79, 0x70, 0x65, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12,
+	0x25, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0f,
+	0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x52,
+	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x82, 0x06, 0x0a, 0x09, 0x54, 0x79, 0x70, 0x65, 0x43,
+	0x6f, 0x64, 0x65, 0x63, 0x12, 0x27, 0x0a, 0x05, 0x69, 0x6e, 0x74, 0x33, 0x32, 0x18, 0x0b, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x49,
+	0x6e, 0x74, 0x33, 0x32, 0x48, 0x00, 0x52, 0x05, 0x69, 0x6e, 0x74, 0x33, 0x32, 0x12, 0x27, 0x0a,
+	0x05, 0x69, 0x6e, 0x74, 0x36, 0x34, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x6a,
+	0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x49, 0x6e, 0x74, 0x36, 0x34, 0x48, 0x00, 0x52,
+	0x05, 0x69, 0x6e, 0x74, 0x36, 0x34, 0x12, 0x2a, 0x0a, 0x06, 0x73, 0x69, 0x6e, 0x74, 0x33, 0x32,
+	0x18, 0x0d, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79,
+	0x70, 0x65, 0x53, 0x49, 0x6e, 0x74, 0x33, 0x32, 0x48, 0x00, 0x52, 0x06, 0x73, 0x69, 0x6e, 0x74,
+	0x33, 0x32, 0x12, 0x2a, 0x0a, 0x06, 0x73, 0x69, 0x6e, 0x74, 0x36, 0x34, 0x18, 0x0e, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x10, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x53, 0x49,
+	0x6e, 0x74, 0x36, 0x34, 0x48, 0x00, 0x52, 0x06, 0x73, 0x69, 0x6e, 0x74, 0x36, 0x34, 0x12, 0x30,
+	0x0a, 0x08, 0x73, 0x66, 0x69, 0x78, 0x65, 0x64, 0x33, 0x32, 0x18, 0x0f, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x12, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x53, 0x46, 0x69, 0x78,
+	0x65, 0x64, 0x33, 0x32, 0x48, 0x00, 0x52, 0x08, 0x73, 0x66, 0x69, 0x78, 0x65, 0x64, 0x33, 0x32,
+	0x12, 0x30, 0x0a, 0x08, 0x73, 0x66, 0x69, 0x78, 0x65, 0x64, 0x36, 0x34, 0x18, 0x10, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x12, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x53, 0x46,
+	0x69, 0x78, 0x65, 0x64, 0x36, 0x34, 0x48, 0x00, 0x52, 0x08, 0x73, 0x66, 0x69, 0x78, 0x65, 0x64,
+	0x36, 0x34, 0x12, 0x2a, 0x0a, 0x06, 0x75, 0x69, 0x6e, 0x74, 0x33, 0x32, 0x18, 0x11, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x10, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x55, 0x69,
+	0x6e, 0x74, 0x33, 0x32, 0x48, 0x00, 0x52, 0x06, 0x75, 0x69, 0x6e, 0x74, 0x33, 0x32, 0x12, 0x2a,
+	0x0a, 0x06, 0x75, 0x69, 0x6e, 0x74, 0x36, 0x34, 0x18, 0x12, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10,
+	0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x55, 0x69, 0x6e, 0x74, 0x36, 0x34,
+	0x48, 0x00, 0x52, 0x06, 0x75, 0x69, 0x6e, 0x74, 0x36, 0x34, 0x12, 0x2d, 0x0a, 0x07, 0x66, 0x69,
+	0x78, 0x65, 0x64, 0x33, 0x32, 0x18, 0x13, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x6a, 0x73,
+	0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x46, 0x69, 0x78, 0x65, 0x64, 0x33, 0x32, 0x48, 0x00,
+	0x52, 0x07, 0x66, 0x69, 0x78, 0x65, 0x64, 0x33, 0x32, 0x12, 0x2d, 0x0a, 0x07, 0x66, 0x69, 0x78,
+	0x65, 0x64, 0x36, 0x34, 0x18, 0x14, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x6a, 0x73, 0x6f,
+	0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x46, 0x69, 0x78, 0x65, 0x64, 0x36, 0x34, 0x48, 0x00, 0x52,
+	0x07, 0x66, 0x69, 0x78, 0x65, 0x64, 0x36, 0x34, 0x12, 0x27, 0x0a, 0x05, 0x66, 0x6c, 0x6f, 0x61,
+	0x74, 0x18, 0x15, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54,
+	0x79, 0x70, 0x65, 0x46, 0x6c, 0x6f, 0x61, 0x74, 0x48, 0x00, 0x52, 0x05, 0x66, 0x6c, 0x6f, 0x61,
+	0x74, 0x12, 0x2a, 0x0a, 0x06, 0x64, 0x6f, 0x75, 0x62, 0x6c, 0x65, 0x18, 0x16, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x10, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x44, 0x6f, 0x75,
+	0x62, 0x6c, 0x65, 0x48, 0x00, 0x52, 0x06, 0x64, 0x6f, 0x75, 0x62, 0x6c, 0x65, 0x12, 0x24, 0x0a,
+	0x04, 0x62, 0x6f, 0x6f, 0x6c, 0x18, 0x17, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x6a, 0x73,
+	0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x42, 0x6f, 0x6f, 0x6c, 0x48, 0x00, 0x52, 0x04, 0x62,
+	0x6f, 0x6f, 0x6c, 0x12, 0x24, 0x0a, 0x04, 0x65, 0x6e, 0x75, 0x6d, 0x18, 0x18, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x0e, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x45, 0x6e, 0x75,
+	0x6d, 0x48, 0x00, 0x52, 0x04, 0x65, 0x6e, 0x75, 0x6d, 0x12, 0x21, 0x0a, 0x03, 0x61, 0x6e, 0x79,
+	0x18, 0x19, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79,
+	0x70, 0x65, 0x41, 0x6e, 0x79, 0x48, 0x00, 0x52, 0x03, 0x61, 0x6e, 0x79, 0x12, 0x30, 0x0a, 0x08,
+	0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x1a, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12,
 	0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x2e, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x52, 0x06, 0x66, 0x6f, 0x72, 0x6d, 0x61,
-	0x74, 0x22, 0x7a, 0x0a, 0x06, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x12, 0x0a, 0x0a, 0x06, 0x4e,
-	0x61, 0x74, 0x69, 0x76, 0x65, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x53, 0x74, 0x72, 0x69, 0x6e,
-	0x67, 0x10, 0x01, 0x12, 0x0f, 0x0a, 0x0b, 0x4e, 0x61, 0x6e, 0x6f, 0x73, 0x65, 0x63, 0x6f, 0x6e,
-	0x64, 0x73, 0x10, 0x02, 0x12, 0x10, 0x0a, 0x0c, 0x4d, 0x69, 0x63, 0x72, 0x6f, 0x73, 0x65, 0x63,
-	0x6f, 0x6e, 0x64, 0x73, 0x10, 0x03, 0x12, 0x10, 0x0a, 0x0c, 0x4d, 0x69, 0x6c, 0x6c, 0x69, 0x73,
-	0x65, 0x63, 0x6f, 0x6e, 0x64, 0x73, 0x10, 0x04, 0x12, 0x0b, 0x0a, 0x07, 0x53, 0x65, 0x63, 0x6f,
-	0x6e, 0x64, 0x73, 0x10, 0x05, 0x12, 0x0b, 0x0a, 0x07, 0x4d, 0x69, 0x6e, 0x75, 0x74, 0x65, 0x73,
-	0x10, 0x06, 0x12, 0x09, 0x0a, 0x05, 0x48, 0x6f, 0x75, 0x72, 0x73, 0x10, 0x07, 0x22, 0xb8, 0x02,
-	0x0a, 0x0d, 0x54, 0x79, 0x70, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x12,
-	0x32, 0x0a, 0x06, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32,
-	0x1a, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x73,
-	0x74, 0x61, 0x6d, 0x70, 0x2e, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x52, 0x06, 0x66, 0x6f, 0x72,
-	0x6d, 0x61, 0x74, 0x12, 0x32, 0x0a, 0x06, 0x6c, 0x61, 0x79, 0x6f, 0x75, 0x74, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x54,
-	0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x4c, 0x61, 0x79, 0x6f, 0x75, 0x74, 0x52,
-	0x06, 0x6c, 0x61, 0x79, 0x6f, 0x75, 0x74, 0x1a, 0x60, 0x0a, 0x06, 0x4c, 0x61, 0x79, 0x6f, 0x75,
-	0x74, 0x12, 0x16, 0x0a, 0x06, 0x67, 0x6f, 0x6c, 0x61, 0x6e, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x06, 0x67, 0x6f, 0x6c, 0x61, 0x6e, 0x67, 0x12, 0x12, 0x0a, 0x04, 0x6a, 0x61, 0x76,
-	0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6a, 0x61, 0x76, 0x61, 0x12, 0x12, 0x0a,
-	0x04, 0x72, 0x75, 0x73, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x72, 0x75, 0x73,
-	0x74, 0x12, 0x16, 0x0a, 0x06, 0x70, 0x79, 0x74, 0x68, 0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x06, 0x70, 0x79, 0x74, 0x68, 0x6f, 0x6e, 0x22, 0x5d, 0x0a, 0x06, 0x46, 0x6f, 0x72,
-	0x6d, 0x61, 0x74, 0x12, 0x0a, 0x0a, 0x06, 0x4e, 0x61, 0x74, 0x69, 0x76, 0x65, 0x10, 0x00, 0x12,
-	0x0e, 0x0a, 0x0a, 0x54, 0x69, 0x6d, 0x65, 0x4c, 0x61, 0x79, 0x6f, 0x75, 0x74, 0x10, 0x01, 0x12,
-	0x0c, 0x0a, 0x08, 0x55, 0x6e, 0x69, 0x78, 0x4e, 0x61, 0x6e, 0x6f, 0x10, 0x02, 0x12, 0x0d, 0x0a,
-	0x09, 0x55, 0x6e, 0x69, 0x78, 0x4d, 0x69, 0x63, 0x72, 0x6f, 0x10, 0x03, 0x12, 0x0d, 0x0a, 0x09,
-	0x55, 0x6e, 0x69, 0x78, 0x4d, 0x69, 0x6c, 0x6c, 0x69, 0x10, 0x04, 0x12, 0x0b, 0x0a, 0x07, 0x55,
-	0x6e, 0x69, 0x78, 0x53, 0x65, 0x63, 0x10, 0x05, 0x3a, 0x51, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73,
+	0x6f, 0x6e, 0x48, 0x00, 0x52, 0x08, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x33,
+	0x0a, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x18, 0x1b, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x13, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x54, 0x69, 0x6d,
+	0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x48, 0x00, 0x52, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74,
+	0x61, 0x6d, 0x70, 0x42, 0x06, 0x0a, 0x04, 0x4b, 0x69, 0x6e, 0x64, 0x22, 0x64, 0x0a, 0x09, 0x54,
+	0x79, 0x70, 0x65, 0x49, 0x6e, 0x74, 0x33, 0x32, 0x12, 0x2b, 0x0a, 0x05, 0x63, 0x6f, 0x64, 0x65,
+	0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x15, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54,
+	0x79, 0x70, 0x65, 0x49, 0x6e, 0x74, 0x33, 0x32, 0x2e, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x52, 0x05,
+	0x63, 0x6f, 0x64, 0x65, 0x63, 0x22, 0x2a, 0x0a, 0x05, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x12, 0x09,
+	0x0a, 0x05, 0x55, 0x6e, 0x73, 0x65, 0x74, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x4e, 0x75, 0x6d,
+	0x62, 0x65, 0x72, 0x10, 0x01, 0x12, 0x0a, 0x0a, 0x06, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10,
+	0x02, 0x22, 0x64, 0x0a, 0x09, 0x54, 0x79, 0x70, 0x65, 0x49, 0x6e, 0x74, 0x36, 0x34, 0x12, 0x2b,
+	0x0a, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x15, 0x2e,
+	0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x49, 0x6e, 0x74, 0x36, 0x34, 0x2e, 0x43,
+	0x6f, 0x64, 0x65, 0x63, 0x52, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x22, 0x2a, 0x0a, 0x05, 0x43,
+	0x6f, 0x64, 0x65, 0x63, 0x12, 0x09, 0x0a, 0x05, 0x55, 0x6e, 0x73, 0x65, 0x74, 0x10, 0x00, 0x12,
+	0x0a, 0x0a, 0x06, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x10, 0x01, 0x12, 0x0a, 0x0a, 0x06, 0x53,
+	0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x02, 0x22, 0x66, 0x0a, 0x0a, 0x54, 0x79, 0x70, 0x65, 0x53,
+	0x49, 0x6e, 0x74, 0x33, 0x32, 0x12, 0x2c, 0x0a, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0e, 0x32, 0x16, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65,
+	0x53, 0x49, 0x6e, 0x74, 0x33, 0x32, 0x2e, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x52, 0x05, 0x63, 0x6f,
+	0x64, 0x65, 0x63, 0x22, 0x2a, 0x0a, 0x05, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x12, 0x09, 0x0a, 0x05,
+	0x55, 0x6e, 0x73, 0x65, 0x74, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x4e, 0x75, 0x6d, 0x62, 0x65,
+	0x72, 0x10, 0x01, 0x12, 0x0a, 0x0a, 0x06, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x02, 0x22,
+	0x66, 0x0a, 0x0a, 0x54, 0x79, 0x70, 0x65, 0x53, 0x49, 0x6e, 0x74, 0x36, 0x34, 0x12, 0x2c, 0x0a,
+	0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x16, 0x2e, 0x6a,
+	0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x53, 0x49, 0x6e, 0x74, 0x36, 0x34, 0x2e, 0x43,
+	0x6f, 0x64, 0x65, 0x63, 0x52, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x22, 0x2a, 0x0a, 0x05, 0x43,
+	0x6f, 0x64, 0x65, 0x63, 0x12, 0x09, 0x0a, 0x05, 0x55, 0x6e, 0x73, 0x65, 0x74, 0x10, 0x00, 0x12,
+	0x0a, 0x0a, 0x06, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x10, 0x01, 0x12, 0x0a, 0x0a, 0x06, 0x53,
+	0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x02, 0x22, 0x6a, 0x0a, 0x0c, 0x54, 0x79, 0x70, 0x65, 0x53,
+	0x46, 0x69, 0x78, 0x65, 0x64, 0x33, 0x32, 0x12, 0x2e, 0x0a, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x18, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79,
+	0x70, 0x65, 0x53, 0x46, 0x69, 0x78, 0x65, 0x64, 0x33, 0x32, 0x2e, 0x43, 0x6f, 0x64, 0x65, 0x63,
+	0x52, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x22, 0x2a, 0x0a, 0x05, 0x43, 0x6f, 0x64, 0x65, 0x63,
+	0x12, 0x09, 0x0a, 0x05, 0x55, 0x6e, 0x73, 0x65, 0x74, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x4e,
+	0x75, 0x6d, 0x62, 0x65, 0x72, 0x10, 0x01, 0x12, 0x0a, 0x0a, 0x06, 0x53, 0x74, 0x72, 0x69, 0x6e,
+	0x67, 0x10, 0x02, 0x22, 0x6a, 0x0a, 0x0c, 0x54, 0x79, 0x70, 0x65, 0x53, 0x46, 0x69, 0x78, 0x65,
+	0x64, 0x36, 0x34, 0x12, 0x2e, 0x0a, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0e, 0x32, 0x18, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x53, 0x46,
+	0x69, 0x78, 0x65, 0x64, 0x36, 0x34, 0x2e, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x52, 0x05, 0x63, 0x6f,
+	0x64, 0x65, 0x63, 0x22, 0x2a, 0x0a, 0x05, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x12, 0x09, 0x0a, 0x05,
+	0x55, 0x6e, 0x73, 0x65, 0x74, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x4e, 0x75, 0x6d, 0x62, 0x65,
+	0x72, 0x10, 0x01, 0x12, 0x0a, 0x0a, 0x06, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x02, 0x22,
+	0x66, 0x0a, 0x0a, 0x54, 0x79, 0x70, 0x65, 0x55, 0x69, 0x6e, 0x74, 0x33, 0x32, 0x12, 0x2c, 0x0a,
+	0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x16, 0x2e, 0x6a,
+	0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x55, 0x69, 0x6e, 0x74, 0x33, 0x32, 0x2e, 0x43,
+	0x6f, 0x64, 0x65, 0x63, 0x52, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x22, 0x2a, 0x0a, 0x05, 0x43,
+	0x6f, 0x64, 0x65, 0x63, 0x12, 0x09, 0x0a, 0x05, 0x55, 0x6e, 0x73, 0x65, 0x74, 0x10, 0x00, 0x12,
+	0x0a, 0x0a, 0x06, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x10, 0x01, 0x12, 0x0a, 0x0a, 0x06, 0x53,
+	0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x02, 0x22, 0x66, 0x0a, 0x0a, 0x54, 0x79, 0x70, 0x65, 0x55,
+	0x69, 0x6e, 0x74, 0x36, 0x34, 0x12, 0x2c, 0x0a, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0e, 0x32, 0x16, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65,
+	0x55, 0x69, 0x6e, 0x74, 0x36, 0x34, 0x2e, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x52, 0x05, 0x63, 0x6f,
+	0x64, 0x65, 0x63, 0x22, 0x2a, 0x0a, 0x05, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x12, 0x09, 0x0a, 0x05,
+	0x55, 0x6e, 0x73, 0x65, 0x74, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x4e, 0x75, 0x6d, 0x62, 0x65,
+	0x72, 0x10, 0x01, 0x12, 0x0a, 0x0a, 0x06, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x02, 0x22,
+	0x68, 0x0a, 0x0b, 0x54, 0x79, 0x70, 0x65, 0x46, 0x69, 0x78, 0x65, 0x64, 0x33, 0x32, 0x12, 0x2d,
+	0x0a, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x17, 0x2e,
+	0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x46, 0x69, 0x78, 0x65, 0x64, 0x33, 0x32,
+	0x2e, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x52, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x22, 0x2a, 0x0a,
+	0x05, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x12, 0x09, 0x0a, 0x05, 0x55, 0x6e, 0x73, 0x65, 0x74, 0x10,
+	0x00, 0x12, 0x0a, 0x0a, 0x06, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x10, 0x01, 0x12, 0x0a, 0x0a,
+	0x06, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x02, 0x22, 0x68, 0x0a, 0x0b, 0x54, 0x79, 0x70,
+	0x65, 0x46, 0x69, 0x78, 0x65, 0x64, 0x36, 0x34, 0x12, 0x2d, 0x0a, 0x05, 0x63, 0x6f, 0x64, 0x65,
+	0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x17, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54,
+	0x79, 0x70, 0x65, 0x46, 0x69, 0x78, 0x65, 0x64, 0x36, 0x34, 0x2e, 0x43, 0x6f, 0x64, 0x65, 0x63,
+	0x52, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x22, 0x2a, 0x0a, 0x05, 0x43, 0x6f, 0x64, 0x65, 0x63,
+	0x12, 0x09, 0x0a, 0x05, 0x55, 0x6e, 0x73, 0x65, 0x74, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x4e,
+	0x75, 0x6d, 0x62, 0x65, 0x72, 0x10, 0x01, 0x12, 0x0a, 0x0a, 0x06, 0x53, 0x74, 0x72, 0x69, 0x6e,
+	0x67, 0x10, 0x02, 0x22, 0x64, 0x0a, 0x09, 0x54, 0x79, 0x70, 0x65, 0x46, 0x6c, 0x6f, 0x61, 0x74,
+	0x12, 0x2b, 0x0a, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32,
+	0x15, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x46, 0x6c, 0x6f, 0x61, 0x74,
+	0x2e, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x52, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x22, 0x2a, 0x0a,
+	0x05, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x12, 0x09, 0x0a, 0x05, 0x55, 0x6e, 0x73, 0x65, 0x74, 0x10,
+	0x00, 0x12, 0x0a, 0x0a, 0x06, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x10, 0x01, 0x12, 0x0a, 0x0a,
+	0x06, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x02, 0x22, 0x66, 0x0a, 0x0a, 0x54, 0x79, 0x70,
+	0x65, 0x44, 0x6f, 0x75, 0x62, 0x6c, 0x65, 0x12, 0x2c, 0x0a, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x16, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79,
+	0x70, 0x65, 0x44, 0x6f, 0x75, 0x62, 0x6c, 0x65, 0x2e, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x52, 0x05,
+	0x63, 0x6f, 0x64, 0x65, 0x63, 0x22, 0x2a, 0x0a, 0x05, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x12, 0x09,
+	0x0a, 0x05, 0x55, 0x6e, 0x73, 0x65, 0x74, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x4e, 0x75, 0x6d,
+	0x62, 0x65, 0x72, 0x10, 0x01, 0x12, 0x0a, 0x0a, 0x06, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10,
+	0x02, 0x22, 0x60, 0x0a, 0x08, 0x54, 0x79, 0x70, 0x65, 0x42, 0x6f, 0x6f, 0x6c, 0x12, 0x2a, 0x0a,
+	0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x14, 0x2e, 0x6a,
+	0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x42, 0x6f, 0x6f, 0x6c, 0x2e, 0x43, 0x6f, 0x64,
+	0x65, 0x63, 0x52, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x22, 0x28, 0x0a, 0x05, 0x43, 0x6f, 0x64,
+	0x65, 0x63, 0x12, 0x09, 0x0a, 0x05, 0x55, 0x6e, 0x73, 0x65, 0x74, 0x10, 0x00, 0x12, 0x08, 0x0a,
+	0x04, 0x42, 0x6f, 0x6f, 0x6c, 0x10, 0x01, 0x12, 0x0a, 0x0a, 0x06, 0x53, 0x74, 0x72, 0x69, 0x6e,
+	0x67, 0x10, 0x02, 0x22, 0x74, 0x0a, 0x08, 0x54, 0x79, 0x70, 0x65, 0x45, 0x6e, 0x75, 0x6d, 0x12,
+	0x2a, 0x0a, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x14,
+	0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x45, 0x6e, 0x75, 0x6d, 0x2e, 0x43,
+	0x6f, 0x64, 0x65, 0x63, 0x52, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x22, 0x3c, 0x0a, 0x05, 0x43,
+	0x6f, 0x64, 0x65, 0x63, 0x12, 0x09, 0x0a, 0x05, 0x55, 0x6e, 0x73, 0x65, 0x74, 0x10, 0x00, 0x12,
+	0x0a, 0x0a, 0x06, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x10, 0x01, 0x12, 0x10, 0x0a, 0x0c, 0x4e,
+	0x75, 0x6d, 0x62, 0x65, 0x72, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x02, 0x12, 0x0a, 0x0a,
+	0x06, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x03, 0x22, 0x5f, 0x0a, 0x07, 0x54, 0x79, 0x70,
+	0x65, 0x41, 0x6e, 0x79, 0x12, 0x29, 0x0a, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0e, 0x32, 0x13, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x41,
+	0x6e, 0x79, 0x2e, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x52, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x22,
+	0x29, 0x0a, 0x05, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x12, 0x09, 0x0a, 0x05, 0x55, 0x6e, 0x73, 0x65,
+	0x74, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x10, 0x01, 0x12,
+	0x09, 0x0a, 0x05, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x10, 0x02, 0x22, 0xb7, 0x02, 0x0a, 0x0c, 0x54,
+	0x79, 0x70, 0x65, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2e, 0x0a, 0x05, 0x63,
+	0x6f, 0x64, 0x65, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x18, 0x2e, 0x6a, 0x73, 0x6f,
+	0x6e, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x43,
+	0x6f, 0x64, 0x65, 0x63, 0x52, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x22, 0xf6, 0x01, 0x0a, 0x05,
+	0x43, 0x6f, 0x64, 0x65, 0x63, 0x12, 0x09, 0x0a, 0x05, 0x55, 0x6e, 0x73, 0x65, 0x74, 0x10, 0x00,
+	0x12, 0x0a, 0x0a, 0x06, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x10, 0x01, 0x12, 0x0a, 0x0a, 0x06,
+	0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x02, 0x12, 0x0e, 0x0a, 0x0a, 0x4e, 0x61, 0x6e, 0x6f,
+	0x73, 0x65, 0x63, 0x6f, 0x6e, 0x64, 0x10, 0x03, 0x12, 0x14, 0x0a, 0x10, 0x4e, 0x61, 0x6e, 0x6f,
+	0x73, 0x65, 0x63, 0x6f, 0x6e, 0x64, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x04, 0x12, 0x0f,
+	0x0a, 0x0b, 0x4d, 0x69, 0x63, 0x72, 0x6f, 0x73, 0x65, 0x63, 0x6f, 0x6e, 0x64, 0x10, 0x05, 0x12,
+	0x15, 0x0a, 0x11, 0x4d, 0x69, 0x63, 0x72, 0x6f, 0x73, 0x65, 0x63, 0x6f, 0x6e, 0x64, 0x53, 0x74,
+	0x72, 0x69, 0x6e, 0x67, 0x10, 0x06, 0x12, 0x0f, 0x0a, 0x0b, 0x4d, 0x69, 0x6c, 0x6c, 0x69, 0x73,
+	0x65, 0x63, 0x6f, 0x6e, 0x64, 0x10, 0x07, 0x12, 0x15, 0x0a, 0x11, 0x4d, 0x69, 0x6c, 0x6c, 0x69,
+	0x73, 0x65, 0x63, 0x6f, 0x6e, 0x64, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x08, 0x12, 0x0a,
+	0x0a, 0x06, 0x53, 0x65, 0x63, 0x6f, 0x6e, 0x64, 0x10, 0x09, 0x12, 0x10, 0x0a, 0x0c, 0x53, 0x65,
+	0x63, 0x6f, 0x6e, 0x64, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x0a, 0x12, 0x0a, 0x0a, 0x06,
+	0x4d, 0x69, 0x6e, 0x75, 0x74, 0x65, 0x10, 0x0b, 0x12, 0x10, 0x0a, 0x0c, 0x4d, 0x69, 0x6e, 0x75,
+	0x74, 0x65, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x0c, 0x12, 0x08, 0x0a, 0x04, 0x48, 0x6f,
+	0x75, 0x72, 0x10, 0x0d, 0x12, 0x0e, 0x0a, 0x0a, 0x48, 0x6f, 0x75, 0x72, 0x53, 0x74, 0x72, 0x69,
+	0x6e, 0x67, 0x10, 0x0e, 0x22, 0x91, 0x03, 0x0a, 0x0d, 0x54, 0x79, 0x70, 0x65, 0x54, 0x69, 0x6d,
+	0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x12, 0x2f, 0x0a, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x19, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54, 0x79, 0x70,
+	0x65, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x43, 0x6f, 0x64, 0x65, 0x63,
+	0x52, 0x05, 0x63, 0x6f, 0x64, 0x65, 0x63, 0x12, 0x32, 0x0a, 0x06, 0x6c, 0x61, 0x79, 0x6f, 0x75,
+	0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x6a, 0x73, 0x6f, 0x6e, 0x2e, 0x54,
+	0x79, 0x70, 0x65, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x4c, 0x61, 0x79,
+	0x6f, 0x75, 0x74, 0x52, 0x06, 0x6c, 0x61, 0x79, 0x6f, 0x75, 0x74, 0x1a, 0x60, 0x0a, 0x06, 0x4c,
+	0x61, 0x79, 0x6f, 0x75, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x67, 0x6f, 0x6c, 0x61, 0x6e, 0x67, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x67, 0x6f, 0x6c, 0x61, 0x6e, 0x67, 0x12, 0x12, 0x0a,
+	0x04, 0x6a, 0x61, 0x76, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6a, 0x61, 0x76,
+	0x61, 0x12, 0x12, 0x0a, 0x04, 0x72, 0x75, 0x73, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x04, 0x72, 0x75, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x70, 0x79, 0x74, 0x68, 0x6f, 0x6e, 0x18,
+	0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x70, 0x79, 0x74, 0x68, 0x6f, 0x6e, 0x22, 0xb8, 0x01,
+	0x0a, 0x05, 0x43, 0x6f, 0x64, 0x65, 0x63, 0x12, 0x09, 0x0a, 0x05, 0x55, 0x6e, 0x73, 0x65, 0x74,
+	0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x10, 0x01, 0x12, 0x0e,
+	0x0a, 0x0a, 0x54, 0x69, 0x6d, 0x65, 0x4c, 0x61, 0x79, 0x6f, 0x75, 0x74, 0x10, 0x02, 0x12, 0x0c,
+	0x0a, 0x08, 0x55, 0x6e, 0x69, 0x78, 0x4e, 0x61, 0x6e, 0x6f, 0x10, 0x03, 0x12, 0x12, 0x0a, 0x0e,
+	0x55, 0x6e, 0x69, 0x78, 0x4e, 0x61, 0x6e, 0x6f, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x04,
+	0x12, 0x0d, 0x0a, 0x09, 0x55, 0x6e, 0x69, 0x78, 0x4d, 0x69, 0x63, 0x72, 0x6f, 0x10, 0x05, 0x12,
+	0x13, 0x0a, 0x0f, 0x55, 0x6e, 0x69, 0x78, 0x4d, 0x69, 0x63, 0x72, 0x6f, 0x53, 0x74, 0x72, 0x69,
+	0x6e, 0x67, 0x10, 0x06, 0x12, 0x0d, 0x0a, 0x09, 0x55, 0x6e, 0x69, 0x78, 0x4d, 0x69, 0x6c, 0x6c,
+	0x69, 0x10, 0x07, 0x12, 0x13, 0x0a, 0x0f, 0x55, 0x6e, 0x69, 0x78, 0x4d, 0x69, 0x6c, 0x6c, 0x69,
+	0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x08, 0x12, 0x0b, 0x0a, 0x07, 0x55, 0x6e, 0x69, 0x78,
+	0x53, 0x65, 0x63, 0x10, 0x09, 0x12, 0x11, 0x0a, 0x0d, 0x55, 0x6e, 0x69, 0x78, 0x53, 0x65, 0x63,
+	0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x10, 0x0a, 0x3a, 0x51, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73,
 	0x61, 0x67, 0x65, 0x12, 0x1f, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x4f, 0x70, 0x74,
 	0x69, 0x6f, 0x6e, 0x73, 0x18, 0xa0, 0xf4, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x6a,
@@ -966,46 +3021,111 @@ func file_json_proto_rawDescGZIP() []byte {
 	return file_json_proto_rawDescData
 }
 
-var file_json_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_json_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_json_proto_enumTypes = make([]protoimpl.EnumInfo, 17)
+var file_json_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
 var file_json_proto_goTypes = []interface{}{
-	(TypeEnum_Format)(0),                // 0: json.TypeEnum.Format
-	(TypeAny_Format)(0),                 // 1: json.TypeAny.Format
-	(TypeDuration_Format)(0),            // 2: json.TypeDuration.Format
-	(TypeTimestamp_Format)(0),           // 3: json.TypeTimestamp.Format
-	(*MessageOptions)(nil),              // 4: json.MessageOptions
-	(*OneofOptions)(nil),                // 5: json.OneofOptions
-	(*FieldOptions)(nil),                // 6: json.FieldOptions
-	(*TypeEnum)(nil),                    // 7: json.TypeEnum
-	(*TypeAny)(nil),                     // 8: json.TypeAny
-	(*TypeDuration)(nil),                // 9: json.TypeDuration
-	(*TypeTimestamp)(nil),               // 10: json.TypeTimestamp
-	(*TypeTimestamp_Layout)(nil),        // 11: json.TypeTimestamp.Layout
-	(*descriptorpb.MessageOptions)(nil), // 12: google.protobuf.MessageOptions
-	(*descriptorpb.FieldOptions)(nil),   // 13: google.protobuf.FieldOptions
-	(*descriptorpb.OneofOptions)(nil),   // 14: google.protobuf.OneofOptions
+	(TypeInt32_Codec)(0),                // 0: json.TypeInt32.Codec
+	(TypeInt64_Codec)(0),                // 1: json.TypeInt64.Codec
+	(TypeSInt32_Codec)(0),               // 2: json.TypeSInt32.Codec
+	(TypeSInt64_Codec)(0),               // 3: json.TypeSInt64.Codec
+	(TypeSFixed32_Codec)(0),             // 4: json.TypeSFixed32.Codec
+	(TypeSFixed64_Codec)(0),             // 5: json.TypeSFixed64.Codec
+	(TypeUint32_Codec)(0),               // 6: json.TypeUint32.Codec
+	(TypeUint64_Codec)(0),               // 7: json.TypeUint64.Codec
+	(TypeFixed32_Codec)(0),              // 8: json.TypeFixed32.Codec
+	(TypeFixed64_Codec)(0),              // 9: json.TypeFixed64.Codec
+	(TypeFloat_Codec)(0),                // 10: json.TypeFloat.Codec
+	(TypeDouble_Codec)(0),               // 11: json.TypeDouble.Codec
+	(TypeBool_Codec)(0),                 // 12: json.TypeBool.Codec
+	(TypeEnum_Codec)(0),                 // 13: json.TypeEnum.Codec
+	(TypeAny_Codec)(0),                  // 14: json.TypeAny.Codec
+	(TypeDuration_Codec)(0),             // 15: json.TypeDuration.Codec
+	(TypeTimestamp_Codec)(0),            // 16: json.TypeTimestamp.Codec
+	(*MessageOptions)(nil),              // 17: json.MessageOptions
+	(*OneofOptions)(nil),                // 18: json.OneofOptions
+	(*FieldOptions)(nil),                // 19: json.FieldOptions
+	(*TypeReference)(nil),               // 20: json.TypeReference
+	(*PlainOptions)(nil),                // 21: json.PlainOptions
+	(*RepeatedOptions)(nil),             // 22: json.RepeatedOptions
+	(*MapOptions)(nil),                  // 23: json.MapOptions
+	(*TypeCodec)(nil),                   // 24: json.TypeCodec
+	(*TypeInt32)(nil),                   // 25: json.TypeInt32
+	(*TypeInt64)(nil),                   // 26: json.TypeInt64
+	(*TypeSInt32)(nil),                  // 27: json.TypeSInt32
+	(*TypeSInt64)(nil),                  // 28: json.TypeSInt64
+	(*TypeSFixed32)(nil),                // 29: json.TypeSFixed32
+	(*TypeSFixed64)(nil),                // 30: json.TypeSFixed64
+	(*TypeUint32)(nil),                  // 31: json.TypeUint32
+	(*TypeUint64)(nil),                  // 32: json.TypeUint64
+	(*TypeFixed32)(nil),                 // 33: json.TypeFixed32
+	(*TypeFixed64)(nil),                 // 34: json.TypeFixed64
+	(*TypeFloat)(nil),                   // 35: json.TypeFloat
+	(*TypeDouble)(nil),                  // 36: json.TypeDouble
+	(*TypeBool)(nil),                    // 37: json.TypeBool
+	(*TypeEnum)(nil),                    // 38: json.TypeEnum
+	(*TypeAny)(nil),                     // 39: json.TypeAny
+	(*TypeDuration)(nil),                // 40: json.TypeDuration
+	(*TypeTimestamp)(nil),               // 41: json.TypeTimestamp
+	(*TypeTimestamp_Layout)(nil),        // 42: json.TypeTimestamp.Layout
+	(*descriptorpb.MessageOptions)(nil), // 43: google.protobuf.MessageOptions
+	(*descriptorpb.FieldOptions)(nil),   // 44: google.protobuf.FieldOptions
+	(*descriptorpb.OneofOptions)(nil),   // 45: google.protobuf.OneofOptions
 }
 var file_json_proto_depIdxs = []int32{
-	7,  // 0: json.FieldOptions.enum:type_name -> json.TypeEnum
-	8,  // 1: json.FieldOptions.any:type_name -> json.TypeAny
-	9,  // 2: json.FieldOptions.duration:type_name -> json.TypeDuration
-	10, // 3: json.FieldOptions.timestamp:type_name -> json.TypeTimestamp
-	0,  // 4: json.TypeEnum.format:type_name -> json.TypeEnum.Format
-	1,  // 5: json.TypeAny.format:type_name -> json.TypeAny.Format
-	2,  // 6: json.TypeDuration.format:type_name -> json.TypeDuration.Format
-	3,  // 7: json.TypeTimestamp.format:type_name -> json.TypeTimestamp.Format
-	11, // 8: json.TypeTimestamp.layout:type_name -> json.TypeTimestamp.Layout
-	12, // 9: json.message:extendee -> google.protobuf.MessageOptions
-	13, // 10: json.field:extendee -> google.protobuf.FieldOptions
-	14, // 11: json.oneof:extendee -> google.protobuf.OneofOptions
-	4,  // 12: json.message:type_name -> json.MessageOptions
-	6,  // 13: json.field:type_name -> json.FieldOptions
-	5,  // 14: json.oneof:type_name -> json.OneofOptions
-	15, // [15:15] is the sub-list for method output_type
-	15, // [15:15] is the sub-list for method input_type
-	12, // [12:15] is the sub-list for extension type_name
-	9,  // [9:12] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	20, // 0: json.FieldOptions.reference:type_name -> json.TypeReference
+	21, // 1: json.TypeReference.plain:type_name -> json.PlainOptions
+	22, // 2: json.TypeReference.repeated:type_name -> json.RepeatedOptions
+	23, // 3: json.TypeReference.map:type_name -> json.MapOptions
+	24, // 4: json.PlainOptions.value:type_name -> json.TypeCodec
+	24, // 5: json.RepeatedOptions.elem:type_name -> json.TypeCodec
+	24, // 6: json.MapOptions.key:type_name -> json.TypeCodec
+	24, // 7: json.MapOptions.value:type_name -> json.TypeCodec
+	25, // 8: json.TypeCodec.int32:type_name -> json.TypeInt32
+	26, // 9: json.TypeCodec.int64:type_name -> json.TypeInt64
+	27, // 10: json.TypeCodec.sint32:type_name -> json.TypeSInt32
+	28, // 11: json.TypeCodec.sint64:type_name -> json.TypeSInt64
+	29, // 12: json.TypeCodec.sfixed32:type_name -> json.TypeSFixed32
+	30, // 13: json.TypeCodec.sfixed64:type_name -> json.TypeSFixed64
+	31, // 14: json.TypeCodec.uint32:type_name -> json.TypeUint32
+	32, // 15: json.TypeCodec.uint64:type_name -> json.TypeUint64
+	33, // 16: json.TypeCodec.fixed32:type_name -> json.TypeFixed32
+	34, // 17: json.TypeCodec.fixed64:type_name -> json.TypeFixed64
+	35, // 18: json.TypeCodec.float:type_name -> json.TypeFloat
+	36, // 19: json.TypeCodec.double:type_name -> json.TypeDouble
+	37, // 20: json.TypeCodec.bool:type_name -> json.TypeBool
+	38, // 21: json.TypeCodec.enum:type_name -> json.TypeEnum
+	39, // 22: json.TypeCodec.any:type_name -> json.TypeAny
+	40, // 23: json.TypeCodec.duration:type_name -> json.TypeDuration
+	41, // 24: json.TypeCodec.timestamp:type_name -> json.TypeTimestamp
+	0,  // 25: json.TypeInt32.codec:type_name -> json.TypeInt32.Codec
+	1,  // 26: json.TypeInt64.codec:type_name -> json.TypeInt64.Codec
+	2,  // 27: json.TypeSInt32.codec:type_name -> json.TypeSInt32.Codec
+	3,  // 28: json.TypeSInt64.codec:type_name -> json.TypeSInt64.Codec
+	4,  // 29: json.TypeSFixed32.codec:type_name -> json.TypeSFixed32.Codec
+	5,  // 30: json.TypeSFixed64.codec:type_name -> json.TypeSFixed64.Codec
+	6,  // 31: json.TypeUint32.codec:type_name -> json.TypeUint32.Codec
+	7,  // 32: json.TypeUint64.codec:type_name -> json.TypeUint64.Codec
+	8,  // 33: json.TypeFixed32.codec:type_name -> json.TypeFixed32.Codec
+	9,  // 34: json.TypeFixed64.codec:type_name -> json.TypeFixed64.Codec
+	10, // 35: json.TypeFloat.codec:type_name -> json.TypeFloat.Codec
+	11, // 36: json.TypeDouble.codec:type_name -> json.TypeDouble.Codec
+	12, // 37: json.TypeBool.codec:type_name -> json.TypeBool.Codec
+	13, // 38: json.TypeEnum.codec:type_name -> json.TypeEnum.Codec
+	14, // 39: json.TypeAny.codec:type_name -> json.TypeAny.Codec
+	15, // 40: json.TypeDuration.codec:type_name -> json.TypeDuration.Codec
+	16, // 41: json.TypeTimestamp.codec:type_name -> json.TypeTimestamp.Codec
+	42, // 42: json.TypeTimestamp.layout:type_name -> json.TypeTimestamp.Layout
+	43, // 43: json.message:extendee -> google.protobuf.MessageOptions
+	44, // 44: json.field:extendee -> google.protobuf.FieldOptions
+	45, // 45: json.oneof:extendee -> google.protobuf.OneofOptions
+	17, // 46: json.message:type_name -> json.MessageOptions
+	19, // 47: json.field:type_name -> json.FieldOptions
+	18, // 48: json.oneof:type_name -> json.OneofOptions
+	49, // [49:49] is the sub-list for method output_type
+	49, // [49:49] is the sub-list for method input_type
+	46, // [46:49] is the sub-list for extension type_name
+	43, // [43:46] is the sub-list for extension extendee
+	0,  // [0:43] is the sub-list for field type_name
 }
 
 func init() { file_json_proto_init() }
@@ -1051,7 +3171,7 @@ func file_json_proto_init() {
 			}
 		}
 		file_json_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TypeEnum); i {
+			switch v := v.(*TypeReference); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1063,7 +3183,7 @@ func file_json_proto_init() {
 			}
 		}
 		file_json_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TypeAny); i {
+			switch v := v.(*PlainOptions); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1075,7 +3195,7 @@ func file_json_proto_init() {
 			}
 		}
 		file_json_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TypeDuration); i {
+			switch v := v.(*RepeatedOptions); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1087,7 +3207,7 @@ func file_json_proto_init() {
 			}
 		}
 		file_json_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TypeTimestamp); i {
+			switch v := v.(*MapOptions); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1099,6 +3219,222 @@ func file_json_proto_init() {
 			}
 		}
 		file_json_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeCodec); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeInt32); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeInt64); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeSInt32); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeSInt64); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeSFixed32); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeSFixed64); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeUint32); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeUint64); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeFixed32); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeFixed64); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeFloat); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeDouble); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeBool); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeEnum); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeAny); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeDuration); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeTimestamp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_json_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TypeTimestamp_Layout); i {
 			case 0:
 				return &v.state
@@ -1112,19 +3448,38 @@ func file_json_proto_init() {
 		}
 	}
 	file_json_proto_msgTypes[1].OneofWrappers = []interface{}{}
-	file_json_proto_msgTypes[2].OneofWrappers = []interface{}{
-		(*FieldOptions_Enum)(nil),
-		(*FieldOptions_Any)(nil),
-		(*FieldOptions_Duration)(nil),
-		(*FieldOptions_Timestamp)(nil),
+	file_json_proto_msgTypes[2].OneofWrappers = []interface{}{}
+	file_json_proto_msgTypes[3].OneofWrappers = []interface{}{
+		(*TypeReference_Plain)(nil),
+		(*TypeReference_Repeated)(nil),
+		(*TypeReference_Map)(nil),
+	}
+	file_json_proto_msgTypes[7].OneofWrappers = []interface{}{
+		(*TypeCodec_Int32)(nil),
+		(*TypeCodec_Int64)(nil),
+		(*TypeCodec_Sint32)(nil),
+		(*TypeCodec_Sint64)(nil),
+		(*TypeCodec_Sfixed32)(nil),
+		(*TypeCodec_Sfixed64)(nil),
+		(*TypeCodec_Uint32)(nil),
+		(*TypeCodec_Uint64)(nil),
+		(*TypeCodec_Fixed32)(nil),
+		(*TypeCodec_Fixed64)(nil),
+		(*TypeCodec_Float)(nil),
+		(*TypeCodec_Double)(nil),
+		(*TypeCodec_Bool)(nil),
+		(*TypeCodec_Enum)(nil),
+		(*TypeCodec_Any)(nil),
+		(*TypeCodec_Duration)(nil),
+		(*TypeCodec_Timestamp)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_json_proto_rawDesc,
-			NumEnums:      4,
-			NumMessages:   8,
+			NumEnums:      17,
+			NumMessages:   26,
 			NumExtensions: 3,
 			NumServices:   0,
 		},

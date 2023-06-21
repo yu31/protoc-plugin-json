@@ -1,5 +1,7 @@
 package jsondecoder
 
+import "strconv"
+
 type OpCode int8
 
 // These values are returned by the state transition functions
@@ -162,7 +164,7 @@ func stateBeginValue(s *scanner, c byte) OpCode {
 		s.step = stateN
 		return scanLiteralBegin
 	}
-	if '1' <= c && c <= '9' { // beginning of 1234.5
+	if '1' <= c && c <= '9' { // beginning of 1234 or 1234.5
 		s.step = state1
 		return scanLiteralBegin
 	}
@@ -179,20 +181,46 @@ func stateBeginStringOrEmpty(s *scanner, c byte) OpCode {
 		s.parseState[n-1] = parseObjectValue
 		return stateEndValue(s, c)
 	}
-	return stateBeginString(s, c)
+	return stateBeginLiteral(s, c)
 }
 
-// stateBeginString is the state after reading `{"key": value,`.
-func stateBeginString(s *scanner, c byte) OpCode {
+// stateBeginLiteral is the state after reading `{"key": value,` or `{key: value,`
+func stateBeginLiteral(s *scanner, c byte) OpCode {
 	if isSpace(c) {
 		return scanSkipSpace
 	}
-	if c == '"' {
+	switch c {
+	case '"':
 		s.step = stateInString
 		return scanLiteralBegin
+	case '-':
+		s.step = stateNeg
+		return scanLiteralBegin
+	case 't': // beginning of true
+		s.step = stateT
+		return scanLiteralBegin
+	case 'f': // beginning of false
+		s.step = stateF
+		return scanLiteralBegin
 	}
-	return s.error(c, "looking for beginning of object key string")
+	if '1' <= c && c <= '9' { // beginning of 1234 or 1234.5
+		s.step = state1
+		return scanLiteralBegin
+	}
+	return s.error(c, "looking for beginning of object key")
 }
+
+//// stateBeginLiteral is the state after reading `{"key": value,`.
+//func stateBeginLiteral(s *scanner, c byte) OpCode {
+//	if isSpace(c) {
+//		return scanSkipSpace
+//	}
+//	if c == '"' {
+//		s.step = stateInString
+//		return scanLiteralBegin
+//	}
+//	return s.error(c, "looking for beginning of object key string")
+//}
 
 // stateEndValue is the state after completing a value,
 // such as after reading `{}` or `true` or `["x"`.
@@ -220,7 +248,7 @@ func stateEndValue(s *scanner, c byte) OpCode {
 	case parseObjectValue:
 		if c == ',' {
 			s.parseState[n-1] = parseObjectKey
-			s.step = stateBeginString
+			s.step = stateBeginLiteral
 			return scanObjectValue
 		}
 		if c == '}' {
@@ -515,4 +543,23 @@ func (s *scanner) error(c byte, context string) OpCode {
 		Offset: s.bytes,
 	}
 	return scanError
+}
+
+func isSpace(c byte) bool {
+	return c <= ' ' && (c == ' ' || c == '\t' || c == '\r' || c == '\n')
+}
+
+// quoteChar formats c as a quoted character literal
+func quoteChar(c byte) string {
+	// special cases - different from quoted strings
+	if c == '\'' {
+		return `'\''`
+	}
+	if c == '"' {
+		return `'"'`
+	}
+
+	// use quoted string with different quotation marks
+	s := strconv.Quote(string(c))
+	return "'" + s[1:len(s)-1] + "'"
 }

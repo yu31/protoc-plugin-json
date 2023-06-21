@@ -190,7 +190,7 @@ func (p *Plugin) marshalAppendNULL() {
 func (p *Plugin) marshalAppendMap(field *Field) {
 	p.g.P("encoder.AppendObjectBegin()")
 	p.g.P("for mk, mv := range ", "x.", field.Field.GoName, " {") // start for loop
-	p.marshalAppendMapKey(field.Field)
+	p.marshalAppendMapKey(field.Field, field.Options)
 	p.marshalAppendLiteral(field.Field, field.Options)
 	p.g.P("}") // end for loop.
 	p.g.P("encoder.AppendObjectEnd()")
@@ -202,21 +202,90 @@ func (p *Plugin) marshalAppendRepeated(field *Field) {
 	p.g.P("}")
 	p.g.P("encoder.AppendArrayEnd()")
 }
-func (p *Plugin) marshalAppendMapKey(field *protogen.Field) {
+func (p *Plugin) marshalAppendMapKey(field *protogen.Field, options *pbjson.FieldOptions) {
+	typeSet := loadMapOptions(field, options).Key
+
 	kind := field.Desc.MapKey().Kind()
 	switch kind {
-	case protoreflect.Int32Kind, protoreflect.Sint32Kind, protoreflect.Sfixed32Kind:
-		p.g.P("encoder.AppendMapKeyInt32(mk)")
-	case protoreflect.Int64Kind, protoreflect.Sint64Kind, protoreflect.Sfixed64Kind:
-		p.g.P("encoder.AppendMapKeyInt64(mk)")
-	case protoreflect.Uint32Kind, protoreflect.Fixed32Kind:
-		p.g.P("encoder.AppendMapKeyUInt32(mk)")
-	case protoreflect.Uint64Kind, protoreflect.Fixed64Kind:
-		p.g.P("encoder.AppendMapKeyUInt64(mk)")
 	case protoreflect.StringKind:
 		p.g.P("encoder.AppendMapKeyString(mk)")
+	case protoreflect.Int32Kind:
+		quote := "true"
+		typeInt32 := loadTypeCodecInt32(typeSet)
+		if typeInt32.Codec == pbjson.TypeInt32_Number {
+			quote = "false"
+		}
+		p.g.P("encoder.AppendMapKeyInt32(mk, ", quote, ")")
+	case protoreflect.Int64Kind:
+		quote := "true"
+		typeInt64 := loadTypeCodecInt64(typeSet)
+		if typeInt64.Codec == pbjson.TypeInt64_Number {
+			quote = "false"
+		}
+		p.g.P("encoder.AppendMapKeyInt64(mk, ", quote, ")")
+	case protoreflect.Sint32Kind:
+		quote := "true"
+		typeSInt32 := loadTypeCodecSInt32(typeSet)
+		if typeSInt32.Codec == pbjson.TypeSInt32_Number {
+			quote = "false"
+		}
+		p.g.P("encoder.AppendMapKeyInt32(mk, ", quote, ")")
+	case protoreflect.Sint64Kind:
+		quote := "true"
+		typeSInt64 := loadTypeCodecSInt64(typeSet)
+		if typeSInt64.Codec == pbjson.TypeSInt64_Number {
+			quote = "false"
+		}
+		p.g.P("encoder.AppendMapKeyInt64(mk, ", quote, ")")
+	case protoreflect.Sfixed32Kind:
+		quote := "true"
+		typeSFixed32 := loadTypeCodecSFInt32(typeSet)
+		if typeSFixed32.Codec == pbjson.TypeSFixed32_Number {
+			quote = "false"
+		}
+		p.g.P("encoder.AppendMapKeyInt32(mk, ", quote, ")")
+	case protoreflect.Sfixed64Kind:
+		quote := "true"
+		typeSFixed64 := loadTypeCodecSFInt64(typeSet)
+		if typeSFixed64.Codec == pbjson.TypeSFixed64_Number {
+			quote = "false"
+		}
+		p.g.P("encoder.AppendMapKeyInt64(mk, ", quote, ")")
+	case protoreflect.Uint32Kind:
+		quote := "true"
+		typeUint32 := loadTypeCodecUint32(typeSet)
+		if typeUint32.Codec == pbjson.TypeUint32_Number {
+			quote = "false"
+		}
+		p.g.P("encoder.AppendMapKeyUInt32(mk, ", quote, ")")
+	case protoreflect.Uint64Kind:
+		quote := "true"
+		typeUint64 := loadTypeCodecUint64(typeSet)
+		if typeUint64.Codec == pbjson.TypeUint64_Number {
+			quote = "false"
+		}
+		p.g.P("encoder.AppendMapKeyUInt64(mk, ", quote, ")")
+	case protoreflect.Fixed32Kind:
+		quote := "true"
+		typeFixed32 := loadTypeCodecFixed32(typeSet)
+		if typeFixed32.Codec == pbjson.TypeFixed32_Number {
+			quote = "false"
+		}
+		p.g.P("encoder.AppendMapKeyUInt32(mk, ", quote, ")")
+	case protoreflect.Fixed64Kind:
+		quote := "true"
+		typeFixed64 := loadTypeCodecFixed64(typeSet)
+		if typeFixed64.Codec == pbjson.TypeFixed64_Number {
+			quote = "false"
+		}
+		p.g.P("encoder.AppendMapKeyUInt64(mk, ", quote, ")")
 	case protoreflect.BoolKind:
-		p.g.P("encoder.AppendMapKeyBool(mk)")
+		quote := "true"
+		typeBool := loadTypeCodecBool(typeSet)
+		if typeBool.Codec == pbjson.TypeBool_Bool {
+			quote = "false"
+		}
+		p.g.P("encoder.AppendMapKeyBool(mk, ", quote, ")")
 	default:
 		err := pkerror.New("marshal: unsupported kind of %s as map key", kind.String())
 		panic(err)
@@ -236,6 +305,16 @@ func (p *Plugin) marshalAppendLiteral(field *protogen.Field, options *pbjson.Fie
 		receiver = "x." + field.GoName
 	}
 
+	var typeCodec *pbjson.TypeCodec
+	switch {
+	case field.Desc.IsMap():
+		typeCodec = loadMapOptions(field, options).Value
+	case field.Desc.IsList():
+		typeCodec = loadRepeatedOptions(field, options).Elem
+	default:
+		typeCodec = loadPlainOptions(field, options).Value
+	}
+
 	isOptional := pkfield.FieldIsOptional(field)
 
 	if field.Desc.IsMap() {
@@ -253,60 +332,164 @@ func (p *Plugin) marshalAppendLiteral(field *protogen.Field, options *pbjson.Fie
 		}
 	case protoreflect.BytesKind:
 		p.g.P("encoder.AppendLiteralBytes(", receiver, ")")
-	case protoreflect.BoolKind:
-		if isOptional {
-			p.g.P("encoder.AppendPointerBool(", receiver, ")")
-		} else {
-			p.g.P("encoder.AppendLiteralBool(", receiver, ")")
+	case protoreflect.Int32Kind:
+		quote := "false"
+		typeInt32 := loadTypeCodecInt32(typeCodec)
+		if typeInt32.Codec == pbjson.TypeInt32_String {
+			quote = "true"
 		}
-	case protoreflect.Int32Kind, protoreflect.Sint32Kind, protoreflect.Sfixed32Kind:
 		if isOptional {
-			p.g.P("encoder.AppendPointerInt32(", receiver, ")")
+			p.g.P("encoder.AppendPointerInt32(", receiver, ", ", quote, ")")
 		} else {
-			p.g.P("encoder.AppendLiteralInt32(", receiver, ")")
+			p.g.P("encoder.AppendLiteralInt32(", receiver, ", ", quote, ")")
 		}
-	case protoreflect.Int64Kind, protoreflect.Sint64Kind, protoreflect.Sfixed64Kind:
-		if isOptional {
-			p.g.P("encoder.AppendPointerInt64(", receiver, ")")
-		} else {
-			p.g.P("encoder.AppendLiteralInt64(", receiver, ")")
+	case protoreflect.Int64Kind:
+		quote := "false"
+		typeInt64 := loadTypeCodecInt64(typeCodec)
+		if typeInt64.Codec == pbjson.TypeInt64_String {
+			quote = "true"
 		}
-	case protoreflect.Uint32Kind, protoreflect.Fixed32Kind:
 		if isOptional {
-			p.g.P("encoder.AppendPointerUint32(", receiver, ")")
+			p.g.P("encoder.AppendPointerInt64(", receiver, ", ", quote, ")")
 		} else {
-			p.g.P("encoder.AppendLiteralUint32(", receiver, ")")
+			p.g.P("encoder.AppendLiteralInt64(", receiver, ", ", quote, ")")
 		}
-	case protoreflect.Uint64Kind, protoreflect.Fixed64Kind:
+	case protoreflect.Sint32Kind:
+		quote := "false"
+		typeSInt32 := loadTypeCodecSInt32(typeCodec)
+		if typeSInt32.Codec == pbjson.TypeSInt32_String {
+			quote = "true"
+		}
 		if isOptional {
-			p.g.P("encoder.AppendPointerUint64(", receiver, ")")
+			p.g.P("encoder.AppendPointerInt32(", receiver, ", ", quote, ")")
 		} else {
-			p.g.P("encoder.AppendLiteralUint64(", receiver, ")")
+			p.g.P("encoder.AppendLiteralInt32(", receiver, ", ", quote, ")")
+		}
+	case protoreflect.Sint64Kind:
+		quote := "false"
+		typeSInt64 := loadTypeCodecSInt64(typeCodec)
+		if typeSInt64.Codec == pbjson.TypeSInt64_String {
+			quote = "true"
+		}
+		if isOptional {
+			p.g.P("encoder.AppendPointerInt64(", receiver, ", ", quote, ")")
+		} else {
+			p.g.P("encoder.AppendLiteralInt64(", receiver, ", ", quote, ")")
+		}
+	case protoreflect.Sfixed32Kind:
+		quote := "false"
+		typeSFixed32 := loadTypeCodecSFInt32(typeCodec)
+		if typeSFixed32.Codec == pbjson.TypeSFixed32_String {
+			quote = "true"
+		}
+		if isOptional {
+			p.g.P("encoder.AppendPointerInt32(", receiver, ", ", quote, ")")
+		} else {
+			p.g.P("encoder.AppendLiteralInt32(", receiver, ", ", quote, ")")
+		}
+	case protoreflect.Sfixed64Kind:
+		quote := "false"
+		typeSFixed64 := loadTypeCodecSFInt64(typeCodec)
+		if typeSFixed64.Codec == pbjson.TypeSFixed64_String {
+			quote = "true"
+		}
+		if isOptional {
+			p.g.P("encoder.AppendPointerInt64(", receiver, ", ", quote, ")")
+		} else {
+			p.g.P("encoder.AppendLiteralInt64(", receiver, ", ", quote, ")")
+		}
+	case protoreflect.Uint32Kind:
+		quote := "false"
+		typeUint32 := loadTypeCodecUint32(typeCodec)
+		if typeUint32.Codec == pbjson.TypeUint32_String {
+			quote = "true"
+		}
+		if isOptional {
+			p.g.P("encoder.AppendPointerUint32(", receiver, ", ", quote, ")")
+		} else {
+			p.g.P("encoder.AppendLiteralUint32(", receiver, ", ", quote, ")")
+		}
+	case protoreflect.Uint64Kind:
+		quote := "false"
+		typeUint64 := loadTypeCodecUint64(typeCodec)
+		if typeUint64.Codec == pbjson.TypeUint64_String {
+			quote = "true"
+		}
+		if isOptional {
+			p.g.P("encoder.AppendPointerUint64(", receiver, ", ", quote, ")")
+		} else {
+			p.g.P("encoder.AppendLiteralUint64(", receiver, ", ", quote, ")")
+		}
+	case protoreflect.Fixed32Kind:
+		quote := "false"
+		typeFixed32 := loadTypeCodecFixed32(typeCodec)
+		if typeFixed32.Codec == pbjson.TypeFixed32_String {
+			quote = "true"
+		}
+		if isOptional {
+			p.g.P("encoder.AppendPointerUint32(", receiver, ", ", quote, ")")
+		} else {
+			p.g.P("encoder.AppendLiteralUint32(", receiver, ", ", quote, ")")
+		}
+	case protoreflect.Fixed64Kind:
+		quote := "false"
+		typeFixed64 := loadTypeCodecFixed64(typeCodec)
+		if typeFixed64.Codec == pbjson.TypeFixed64_String {
+			quote = "true"
+		}
+		if isOptional {
+			p.g.P("encoder.AppendPointerUint64(", receiver, ", ", quote, ")")
+		} else {
+			p.g.P("encoder.AppendLiteralUint64(", receiver, ", ", quote, ")")
 		}
 	case protoreflect.FloatKind:
+		quote := "false"
+		typeFloat := loadTypeCodecFloat(typeCodec)
+		if typeFloat.Codec == pbjson.TypeFloat_String {
+			quote = "true"
+		}
 		if isOptional {
-			p.g.P("encoder.AppendPointerFloat32(", receiver, ")")
+			p.g.P("encoder.AppendPointerFloat32(", receiver, ", ", quote, ")")
 		} else {
-			p.g.P("encoder.AppendLiteralFloat32(", receiver, ")")
+			p.g.P("encoder.AppendLiteralFloat32(", receiver, ", ", quote, ")")
 		}
 	case protoreflect.DoubleKind:
+		quote := "false"
+		typeDouble := loadTypeCodecDouble(typeCodec)
+		if typeDouble.Codec == pbjson.TypeDouble_String {
+			quote = "true"
+		}
 		if isOptional {
-			p.g.P("encoder.AppendPointerFloat64(", receiver, ")")
+			p.g.P("encoder.AppendPointerFloat64(", receiver, ", ", quote, ")")
 		} else {
-			p.g.P("encoder.AppendLiteralFloat64(", receiver, ")")
+			p.g.P("encoder.AppendLiteralFloat64(", receiver, ", ", quote, ")")
+		}
+	case protoreflect.BoolKind:
+		quote := "false"
+		typeBool := loadTypeCodecBool(typeCodec)
+		if typeBool.Codec == pbjson.TypeBool_String {
+			quote = "true"
+		}
+		if isOptional {
+			p.g.P("encoder.AppendPointerBool(", receiver, ", ", quote, ")")
+		} else {
+			p.g.P("encoder.AppendLiteralBool(", receiver, ", ", quote, ")")
 		}
 	case protoreflect.MessageKind:
-		p.marshalAppendMessage(field, options, receiver)
+		p.marshalAppendMessage(field, typeCodec, receiver)
 	case protoreflect.EnumKind:
 		if isOptional {
 			p.g.P("if ", receiver, "!= nil {")
 		}
 
-		typeEnum := loadTypeSetEnum(options)
-		if typeEnum.Format == pbjson.TypeEnum_String {
+		typeEnum := loadTypeCodecEnum(typeCodec)
+		switch typeEnum.Codec {
+		case pbjson.TypeEnum_Unset, pbjson.TypeEnum_Number:
+			p.g.P("encoder.AppendLiteralInt32(int32(", receiver, ".Number()", "), false)")
+		case pbjson.TypeEnum_NumberString:
+			p.g.P("encoder.AppendLiteralInt32(int32(", receiver, ".Number()", "), true)")
+		case pbjson.TypeEnum_String:
 			p.g.P("encoder.AppendLiteralString(", receiver, ".String()", ")")
-		} else {
-			p.g.P("encoder.AppendLiteralInt32(int32(", receiver, ".Number()", "))")
 		}
 
 		if isOptional {
@@ -320,13 +503,13 @@ func (p *Plugin) marshalAppendLiteral(field *protogen.Field, options *pbjson.Fie
 	}
 }
 
-func (p *Plugin) marshalAppendMessage(field *protogen.Field, options *pbjson.FieldOptions, receiver string) {
+func (p *Plugin) marshalAppendMessage(field *protogen.Field, typeCodec *pbjson.TypeCodec, receiver string) {
 	// Supported Well Know Type.
 	switch pkwkt.Lookup(string(field.Message.Desc.FullName())) {
 	case pkwkt.Any:
-		typeAny := loadTypeSetAny(options)
-		switch typeAny.Format {
-		case pbjson.TypeAny_Native:
+		typeAny := loadTypeCodecAny(typeCodec)
+		switch typeAny.Codec {
+		case pbjson.TypeAny_Object:
 		case pbjson.TypeAny_Proto:
 			p.g.P("if err = encoder.AppendWKTAnyByProto(", receiver, "); err != nil {")
 			p.g.P("    return nil, err")
@@ -334,50 +517,80 @@ func (p *Plugin) marshalAppendMessage(field *protogen.Field, options *pbjson.Fie
 			return
 		}
 	case pkwkt.Duration:
-		typeDuration := loadTypeSetDuration(options)
-		switch typeDuration.Format {
-		case pbjson.TypeDuration_Native:
+		typeDuration := loadTypeCodecDuration(typeCodec)
+		switch typeDuration.Codec {
+		case pbjson.TypeDuration_Object:
 		case pbjson.TypeDuration_String:
 			p.g.P("encoder.AppendLiteralString(", receiver, ".AsDuration().String())")
 			return
-		case pbjson.TypeDuration_Nanoseconds:
-			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsDuration().Nanoseconds())")
+		case pbjson.TypeDuration_Nanosecond:
+			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsDuration().Nanoseconds(), false)")
 			return
-		case pbjson.TypeDuration_Microseconds:
-			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsDuration().Microseconds())")
+		case pbjson.TypeDuration_NanosecondString:
+			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsDuration().Nanoseconds(), true)")
 			return
-		case pbjson.TypeDuration_Milliseconds:
-			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsDuration().Milliseconds())")
+		case pbjson.TypeDuration_Microsecond:
+			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsDuration().Microseconds(), false)")
 			return
-		case pbjson.TypeDuration_Seconds:
-			p.g.P("encoder.AppendLiteralFloat64(", receiver, ".AsDuration().Seconds())")
+		case pbjson.TypeDuration_MicrosecondString:
+			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsDuration().Microseconds(), true)")
 			return
-		case pbjson.TypeDuration_Minutes:
-			p.g.P("encoder.AppendLiteralFloat64(", receiver, ".AsDuration().Minutes())")
+		case pbjson.TypeDuration_Millisecond:
+			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsDuration().Milliseconds(), false)")
 			return
-		case pbjson.TypeDuration_Hours:
-			p.g.P("encoder.AppendLiteralFloat64(", receiver, ".AsDuration().Hours())")
+		case pbjson.TypeDuration_MillisecondString:
+			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsDuration().Milliseconds(), true)")
+			return
+		case pbjson.TypeDuration_Second:
+			p.g.P("encoder.AppendLiteralFloat64(", receiver, ".AsDuration().Seconds(), false)")
+			return
+		case pbjson.TypeDuration_SecondString:
+			p.g.P("encoder.AppendLiteralFloat64(", receiver, ".AsDuration().Seconds(), true)")
+			return
+		case pbjson.TypeDuration_Minute:
+			p.g.P("encoder.AppendLiteralFloat64(", receiver, ".AsDuration().Minutes(), false)")
+			return
+		case pbjson.TypeDuration_MinuteString:
+			p.g.P("encoder.AppendLiteralFloat64(", receiver, ".AsDuration().Minutes(), true)")
+			return
+		case pbjson.TypeDuration_Hour:
+			p.g.P("encoder.AppendLiteralFloat64(", receiver, ".AsDuration().Hours(), false)")
+			return
+		case pbjson.TypeDuration_HourString:
+			p.g.P("encoder.AppendLiteralFloat64(", receiver, ".AsDuration().Hours(), true)")
 			return
 		}
 	case pkwkt.Timestamp:
-		typeTimestamp := loadTypeSetTimestamp(options)
-		switch typeTimestamp.Format {
-		case pbjson.TypeTimestamp_Native:
+		typeTimestamp := loadTypeCodecTimestamp(typeCodec)
+		switch typeTimestamp.Codec {
+		case pbjson.TypeTimestamp_Object:
 		case pbjson.TypeTimestamp_TimeLayout:
 			layout := typeTimestamp.Layout.Golang
 			p.g.P("encoder.AppendLiteralString(", receiver, ".AsTime().Format(", strconv.Quote(layout), "))")
 			return
 		case pbjson.TypeTimestamp_UnixNano:
-			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsTime().UnixNano())")
+			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsTime().UnixNano(), false)")
+			return
+		case pbjson.TypeTimestamp_UnixNanoString:
+			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsTime().UnixNano(), true)")
 			return
 		case pbjson.TypeTimestamp_UnixMicro:
-			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsTime().UnixMicro())")
+			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsTime().UnixMicro(), false)")
+			return
+		case pbjson.TypeTimestamp_UnixMicroString:
+			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsTime().UnixMicro(), true)")
 			return
 		case pbjson.TypeTimestamp_UnixMilli:
-			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsTime().UnixMilli())")
+			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsTime().UnixMilli(), false)")
+			return
+		case pbjson.TypeTimestamp_UnixMilliString:
+			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsTime().UnixMilli(), true)")
 			return
 		case pbjson.TypeTimestamp_UnixSec:
-			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsTime().Unix())")
+			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsTime().Unix(), false)")
+			return
+		case pbjson.TypeTimestamp_UnixSecString:
+			p.g.P("encoder.AppendLiteralInt64(", receiver, ".AsTime().Unix(), true)")
 			return
 		}
 	default:

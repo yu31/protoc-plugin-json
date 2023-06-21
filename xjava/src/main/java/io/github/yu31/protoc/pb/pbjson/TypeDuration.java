@@ -4,6 +4,10 @@
 package io.github.yu31.protoc.pb.pbjson;
 
 /**
+ * <pre>
+ * TypeInt32 declares the codec for field type google.proto.Duration.
+ * </pre>
+ *
  * Protobuf type {@code json.TypeDuration}
  */
 public final class TypeDuration extends
@@ -16,7 +20,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private TypeDuration() {
-    format_ = 0;
+    codec_ = 0;
   }
 
   @java.lang.Override
@@ -52,7 +56,7 @@ private static final long serialVersionUID = 0L;
           case 8: {
             int rawValue = input.readEnum();
 
-            format_ = rawValue;
+            codec_ = rawValue;
             break;
           }
           default: {
@@ -88,95 +92,255 @@ private static final long serialVersionUID = 0L;
   }
 
   /**
-   * Protobuf enum {@code json.TypeDuration.Format}
+   * Protobuf enum {@code json.TypeDuration.Codec}
    */
-  public enum Format
+  public enum Codec
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <pre>
-     * Native represents consider the google.protobuf.Duration as a interface and format it by standard JSON.
-     * And it is the default Format.
+     * Unset represents the default value will be applied when encoding and decoding JSON.
      * </pre>
      *
-     * <code>Native = 0;</code>
+     * <code>Unset = 0;</code>
      */
-    Native(0),
+    Unset(0),
     /**
      * <pre>
-     * String represents format the google.protobuf.Duration to a string. e.g: "1m1s".
+     * Object represents convert the google.protobuf.Duration as objects and encoding and decoding by standard JSON.
      * </pre>
      *
-     * <code>String = 1;</code>
+     * <code>Object = 1;</code>
      */
-    String(1),
+    Object(1),
     /**
-     * <code>Nanoseconds = 2;</code>
+     * <pre>
+     * String represents covert the google.protobuf.Duration as strings when encoding and decoding.
+     * e.g: "1m1s".
+     * </pre>
+     *
+     * <code>String = 2;</code>
      */
-    Nanoseconds(2),
+    String(2),
     /**
-     * <code>Microseconds = 3;</code>
+     * <pre>
+     * String represents covert the google.protobuf.Duration as nanoseconds of type int64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>Nanosecond = 3;</code>
      */
-    Microseconds(3),
+    Nanosecond(3),
     /**
-     * <code>Milliseconds = 4;</code>
+     * <pre>
+     * String represents use the Nanosecond and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>NanosecondString = 4;</code>
      */
-    Milliseconds(4),
+    NanosecondString(4),
     /**
-     * <code>Seconds = 5;</code>
+     * <pre>
+     * String represents covert the google.protobuf.Duration as microseconds of type int64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>Microsecond = 5;</code>
      */
-    Seconds(5),
+    Microsecond(5),
     /**
-     * <code>Minutes = 6;</code>
+     * <pre>
+     * String represents use the Microsecond and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>MicrosecondString = 6;</code>
      */
-    Minutes(6),
+    MicrosecondString(6),
     /**
-     * <code>Hours = 7;</code>
+     * <pre>
+     * String represents covert the google.protobuf.Duration as milliseconds of type int64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>Millisecond = 7;</code>
      */
-    Hours(7),
+    Millisecond(7),
+    /**
+     * <pre>
+     * String represents use the Millisecond and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>MillisecondString = 8;</code>
+     */
+    MillisecondString(8),
+    /**
+     * <pre>
+     * String represents covert the google.protobuf.Duration as seconds of type float64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>Second = 9;</code>
+     */
+    Second(9),
+    /**
+     * <pre>
+     * String represents use the Second and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>SecondString = 10;</code>
+     */
+    SecondString(10),
+    /**
+     * <pre>
+     * String represents covert the google.protobuf.Duration as minutes of type float64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>Minute = 11;</code>
+     */
+    Minute(11),
+    /**
+     * <pre>
+     * String represents use the Minute and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>MinuteString = 12;</code>
+     */
+    MinuteString(12),
+    /**
+     * <pre>
+     * String represents covert the google.protobuf.Duration as hours of type float64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>Hour = 13;</code>
+     */
+    Hour(13),
+    /**
+     * <pre>
+     * String represents use the Hour and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>HourString = 14;</code>
+     */
+    HourString(14),
     UNRECOGNIZED(-1),
     ;
 
     /**
      * <pre>
-     * Native represents consider the google.protobuf.Duration as a interface and format it by standard JSON.
-     * And it is the default Format.
+     * Unset represents the default value will be applied when encoding and decoding JSON.
      * </pre>
      *
-     * <code>Native = 0;</code>
+     * <code>Unset = 0;</code>
      */
-    public static final int Native_VALUE = 0;
+    public static final int Unset_VALUE = 0;
     /**
      * <pre>
-     * String represents format the google.protobuf.Duration to a string. e.g: "1m1s".
+     * Object represents convert the google.protobuf.Duration as objects and encoding and decoding by standard JSON.
      * </pre>
      *
-     * <code>String = 1;</code>
+     * <code>Object = 1;</code>
      */
-    public static final int String_VALUE = 1;
+    public static final int Object_VALUE = 1;
     /**
-     * <code>Nanoseconds = 2;</code>
+     * <pre>
+     * String represents covert the google.protobuf.Duration as strings when encoding and decoding.
+     * e.g: "1m1s".
+     * </pre>
+     *
+     * <code>String = 2;</code>
      */
-    public static final int Nanoseconds_VALUE = 2;
+    public static final int String_VALUE = 2;
     /**
-     * <code>Microseconds = 3;</code>
+     * <pre>
+     * String represents covert the google.protobuf.Duration as nanoseconds of type int64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>Nanosecond = 3;</code>
      */
-    public static final int Microseconds_VALUE = 3;
+    public static final int Nanosecond_VALUE = 3;
     /**
-     * <code>Milliseconds = 4;</code>
+     * <pre>
+     * String represents use the Nanosecond and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>NanosecondString = 4;</code>
      */
-    public static final int Milliseconds_VALUE = 4;
+    public static final int NanosecondString_VALUE = 4;
     /**
-     * <code>Seconds = 5;</code>
+     * <pre>
+     * String represents covert the google.protobuf.Duration as microseconds of type int64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>Microsecond = 5;</code>
      */
-    public static final int Seconds_VALUE = 5;
+    public static final int Microsecond_VALUE = 5;
     /**
-     * <code>Minutes = 6;</code>
+     * <pre>
+     * String represents use the Microsecond and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>MicrosecondString = 6;</code>
      */
-    public static final int Minutes_VALUE = 6;
+    public static final int MicrosecondString_VALUE = 6;
     /**
-     * <code>Hours = 7;</code>
+     * <pre>
+     * String represents covert the google.protobuf.Duration as milliseconds of type int64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>Millisecond = 7;</code>
      */
-    public static final int Hours_VALUE = 7;
+    public static final int Millisecond_VALUE = 7;
+    /**
+     * <pre>
+     * String represents use the Millisecond and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>MillisecondString = 8;</code>
+     */
+    public static final int MillisecondString_VALUE = 8;
+    /**
+     * <pre>
+     * String represents covert the google.protobuf.Duration as seconds of type float64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>Second = 9;</code>
+     */
+    public static final int Second_VALUE = 9;
+    /**
+     * <pre>
+     * String represents use the Second and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>SecondString = 10;</code>
+     */
+    public static final int SecondString_VALUE = 10;
+    /**
+     * <pre>
+     * String represents covert the google.protobuf.Duration as minutes of type float64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>Minute = 11;</code>
+     */
+    public static final int Minute_VALUE = 11;
+    /**
+     * <pre>
+     * String represents use the Minute and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>MinuteString = 12;</code>
+     */
+    public static final int MinuteString_VALUE = 12;
+    /**
+     * <pre>
+     * String represents covert the google.protobuf.Duration as hours of type float64 when encoding and decoding.
+     * </pre>
+     *
+     * <code>Hour = 13;</code>
+     */
+    public static final int Hour_VALUE = 13;
+    /**
+     * <pre>
+     * String represents use the Hour and convert to string when encoding and decoding.
+     * </pre>
+     *
+     * <code>HourString = 14;</code>
+     */
+    public static final int HourString_VALUE = 14;
 
 
     public final int getNumber() {
@@ -193,7 +357,7 @@ private static final long serialVersionUID = 0L;
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @java.lang.Deprecated
-    public static Format valueOf(int value) {
+    public static Codec valueOf(int value) {
       return forNumber(value);
     }
 
@@ -201,29 +365,36 @@ private static final long serialVersionUID = 0L;
      * @param value The numeric wire value of the corresponding enum entry.
      * @return The enum associated with the given numeric wire value.
      */
-    public static Format forNumber(int value) {
+    public static Codec forNumber(int value) {
       switch (value) {
-        case 0: return Native;
-        case 1: return String;
-        case 2: return Nanoseconds;
-        case 3: return Microseconds;
-        case 4: return Milliseconds;
-        case 5: return Seconds;
-        case 6: return Minutes;
-        case 7: return Hours;
+        case 0: return Unset;
+        case 1: return Object;
+        case 2: return String;
+        case 3: return Nanosecond;
+        case 4: return NanosecondString;
+        case 5: return Microsecond;
+        case 6: return MicrosecondString;
+        case 7: return Millisecond;
+        case 8: return MillisecondString;
+        case 9: return Second;
+        case 10: return SecondString;
+        case 11: return Minute;
+        case 12: return MinuteString;
+        case 13: return Hour;
+        case 14: return HourString;
         default: return null;
       }
     }
 
-    public static com.google.protobuf.Internal.EnumLiteMap<Format>
+    public static com.google.protobuf.Internal.EnumLiteMap<Codec>
         internalGetValueMap() {
       return internalValueMap;
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
-        Format> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<Format>() {
-            public Format findValueByNumber(int number) {
-              return Format.forNumber(number);
+        Codec> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<Codec>() {
+            public Codec findValueByNumber(int number) {
+              return Codec.forNumber(number);
             }
           };
 
@@ -244,9 +415,9 @@ private static final long serialVersionUID = 0L;
       return io.github.yu31.protoc.pb.pbjson.TypeDuration.getDescriptor().getEnumTypes().get(0);
     }
 
-    private static final Format[] VALUES = values();
+    private static final Codec[] VALUES = values();
 
-    public static Format valueOf(
+    public static Codec valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
@@ -260,30 +431,40 @@ private static final long serialVersionUID = 0L;
 
     private final int value;
 
-    private Format(int value) {
+    private Codec(int value) {
       this.value = value;
     }
 
-    // @@protoc_insertion_point(enum_scope:json.TypeDuration.Format)
+    // @@protoc_insertion_point(enum_scope:json.TypeDuration.Codec)
   }
 
-  public static final int FORMAT_FIELD_NUMBER = 1;
-  private int format_;
+  public static final int CODEC_FIELD_NUMBER = 1;
+  private int codec_;
   /**
-   * <code>.json.TypeDuration.Format format = 1;</code>
-   * @return The enum numeric value on the wire for format.
+   * <pre>
+   * Codec specifies encoding format for the field type of google.protobuf.Duration.
+   * The default is `Object` in plain value, repeated elements and map value.
+   * </pre>
+   *
+   * <code>.json.TypeDuration.Codec codec = 1;</code>
+   * @return The enum numeric value on the wire for codec.
    */
-  @java.lang.Override public int getFormatValue() {
-    return format_;
+  @java.lang.Override public int getCodecValue() {
+    return codec_;
   }
   /**
-   * <code>.json.TypeDuration.Format format = 1;</code>
-   * @return The format.
+   * <pre>
+   * Codec specifies encoding format for the field type of google.protobuf.Duration.
+   * The default is `Object` in plain value, repeated elements and map value.
+   * </pre>
+   *
+   * <code>.json.TypeDuration.Codec codec = 1;</code>
+   * @return The codec.
    */
-  @java.lang.Override public io.github.yu31.protoc.pb.pbjson.TypeDuration.Format getFormat() {
+  @java.lang.Override public io.github.yu31.protoc.pb.pbjson.TypeDuration.Codec getCodec() {
     @SuppressWarnings("deprecation")
-    io.github.yu31.protoc.pb.pbjson.TypeDuration.Format result = io.github.yu31.protoc.pb.pbjson.TypeDuration.Format.valueOf(format_);
-    return result == null ? io.github.yu31.protoc.pb.pbjson.TypeDuration.Format.UNRECOGNIZED : result;
+    io.github.yu31.protoc.pb.pbjson.TypeDuration.Codec result = io.github.yu31.protoc.pb.pbjson.TypeDuration.Codec.valueOf(codec_);
+    return result == null ? io.github.yu31.protoc.pb.pbjson.TypeDuration.Codec.UNRECOGNIZED : result;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -300,8 +481,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (format_ != io.github.yu31.protoc.pb.pbjson.TypeDuration.Format.Native.getNumber()) {
-      output.writeEnum(1, format_);
+    if (codec_ != io.github.yu31.protoc.pb.pbjson.TypeDuration.Codec.Unset.getNumber()) {
+      output.writeEnum(1, codec_);
     }
     unknownFields.writeTo(output);
   }
@@ -312,9 +493,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (format_ != io.github.yu31.protoc.pb.pbjson.TypeDuration.Format.Native.getNumber()) {
+    if (codec_ != io.github.yu31.protoc.pb.pbjson.TypeDuration.Codec.Unset.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(1, format_);
+        .computeEnumSize(1, codec_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -331,7 +512,7 @@ private static final long serialVersionUID = 0L;
     }
     io.github.yu31.protoc.pb.pbjson.TypeDuration other = (io.github.yu31.protoc.pb.pbjson.TypeDuration) obj;
 
-    if (format_ != other.format_) return false;
+    if (codec_ != other.codec_) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -343,8 +524,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + FORMAT_FIELD_NUMBER;
-    hash = (53 * hash) + format_;
+    hash = (37 * hash) + CODEC_FIELD_NUMBER;
+    hash = (53 * hash) + codec_;
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -441,6 +622,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * TypeInt32 declares the codec for field type google.proto.Duration.
+   * </pre>
+   *
    * Protobuf type {@code json.TypeDuration}
    */
   public static final class Builder extends
@@ -478,7 +663,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      format_ = 0;
+      codec_ = 0;
 
       return this;
     }
@@ -506,7 +691,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeDuration buildPartial() {
       io.github.yu31.protoc.pb.pbjson.TypeDuration result = new io.github.yu31.protoc.pb.pbjson.TypeDuration(this);
-      result.format_ = format_;
+      result.codec_ = codec_;
       onBuilt();
       return result;
     }
@@ -555,8 +740,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(io.github.yu31.protoc.pb.pbjson.TypeDuration other) {
       if (other == io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance()) return this;
-      if (other.format_ != 0) {
-        setFormatValue(other.getFormatValue());
+      if (other.codec_ != 0) {
+        setCodecValue(other.getCodecValue());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -587,56 +772,81 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int format_ = 0;
+    private int codec_ = 0;
     /**
-     * <code>.json.TypeDuration.Format format = 1;</code>
-     * @return The enum numeric value on the wire for format.
+     * <pre>
+     * Codec specifies encoding format for the field type of google.protobuf.Duration.
+     * The default is `Object` in plain value, repeated elements and map value.
+     * </pre>
+     *
+     * <code>.json.TypeDuration.Codec codec = 1;</code>
+     * @return The enum numeric value on the wire for codec.
      */
-    @java.lang.Override public int getFormatValue() {
-      return format_;
+    @java.lang.Override public int getCodecValue() {
+      return codec_;
     }
     /**
-     * <code>.json.TypeDuration.Format format = 1;</code>
-     * @param value The enum numeric value on the wire for format to set.
+     * <pre>
+     * Codec specifies encoding format for the field type of google.protobuf.Duration.
+     * The default is `Object` in plain value, repeated elements and map value.
+     * </pre>
+     *
+     * <code>.json.TypeDuration.Codec codec = 1;</code>
+     * @param value The enum numeric value on the wire for codec to set.
      * @return This builder for chaining.
      */
-    public Builder setFormatValue(int value) {
+    public Builder setCodecValue(int value) {
       
-      format_ = value;
+      codec_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>.json.TypeDuration.Format format = 1;</code>
-     * @return The format.
+     * <pre>
+     * Codec specifies encoding format for the field type of google.protobuf.Duration.
+     * The default is `Object` in plain value, repeated elements and map value.
+     * </pre>
+     *
+     * <code>.json.TypeDuration.Codec codec = 1;</code>
+     * @return The codec.
      */
     @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeDuration.Format getFormat() {
+    public io.github.yu31.protoc.pb.pbjson.TypeDuration.Codec getCodec() {
       @SuppressWarnings("deprecation")
-      io.github.yu31.protoc.pb.pbjson.TypeDuration.Format result = io.github.yu31.protoc.pb.pbjson.TypeDuration.Format.valueOf(format_);
-      return result == null ? io.github.yu31.protoc.pb.pbjson.TypeDuration.Format.UNRECOGNIZED : result;
+      io.github.yu31.protoc.pb.pbjson.TypeDuration.Codec result = io.github.yu31.protoc.pb.pbjson.TypeDuration.Codec.valueOf(codec_);
+      return result == null ? io.github.yu31.protoc.pb.pbjson.TypeDuration.Codec.UNRECOGNIZED : result;
     }
     /**
-     * <code>.json.TypeDuration.Format format = 1;</code>
-     * @param value The format to set.
+     * <pre>
+     * Codec specifies encoding format for the field type of google.protobuf.Duration.
+     * The default is `Object` in plain value, repeated elements and map value.
+     * </pre>
+     *
+     * <code>.json.TypeDuration.Codec codec = 1;</code>
+     * @param value The codec to set.
      * @return This builder for chaining.
      */
-    public Builder setFormat(io.github.yu31.protoc.pb.pbjson.TypeDuration.Format value) {
+    public Builder setCodec(io.github.yu31.protoc.pb.pbjson.TypeDuration.Codec value) {
       if (value == null) {
         throw new NullPointerException();
       }
       
-      format_ = value.getNumber();
+      codec_ = value.getNumber();
       onChanged();
       return this;
     }
     /**
-     * <code>.json.TypeDuration.Format format = 1;</code>
+     * <pre>
+     * Codec specifies encoding format for the field type of google.protobuf.Duration.
+     * The default is `Object` in plain value, repeated elements and map value.
+     * </pre>
+     *
+     * <code>.json.TypeDuration.Codec codec = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearFormat() {
+    public Builder clearCodec() {
       
-      format_ = 0;
+      codec_ = 0;
       onChanged();
       return this;
     }

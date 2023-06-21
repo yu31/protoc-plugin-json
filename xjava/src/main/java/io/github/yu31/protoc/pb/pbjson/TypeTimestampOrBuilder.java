@@ -8,19 +8,29 @@ public interface TypeTimestampOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.json.TypeTimestamp.Format format = 1;</code>
-   * @return The enum numeric value on the wire for format.
+   * <pre>
+   * Codec specifies encoding format for the field type of google.protobuf.Timestamp.
+   * The default is `Object` in plain value, repeated elements and map value.
+   * </pre>
+   *
+   * <code>.json.TypeTimestamp.Codec codec = 1;</code>
+   * @return The enum numeric value on the wire for codec.
    */
-  int getFormatValue();
+  int getCodecValue();
   /**
-   * <code>.json.TypeTimestamp.Format format = 1;</code>
-   * @return The format.
+   * <pre>
+   * Codec specifies encoding format for the field type of google.protobuf.Timestamp.
+   * The default is `Object` in plain value, repeated elements and map value.
+   * </pre>
+   *
+   * <code>.json.TypeTimestamp.Codec codec = 1;</code>
+   * @return The codec.
    */
-  io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Format getFormat();
+  io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Codec getCodec();
 
   /**
    * <pre>
-   * Only used if the format is TimeLayout.
+   * Only used if the codec is `TimeLayout`.
    * </pre>
    *
    * <code>.json.TypeTimestamp.Layout layout = 2;</code>
@@ -29,7 +39,7 @@ public interface TypeTimestampOrBuilder extends
   boolean hasLayout();
   /**
    * <pre>
-   * Only used if the format is TimeLayout.
+   * Only used if the codec is `TimeLayout`.
    * </pre>
    *
    * <code>.json.TypeTimestamp.Layout layout = 2;</code>
@@ -38,7 +48,7 @@ public interface TypeTimestampOrBuilder extends
   io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Layout getLayout();
   /**
    * <pre>
-   * Only used if the format is TimeLayout.
+   * Only used if the codec is `TimeLayout`.
    * </pre>
    *
    * <code>.json.TypeTimestamp.Layout layout = 2;</code>
