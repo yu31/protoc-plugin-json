@@ -40,10 +40,6 @@ for file in tests/proto/cases/*/*; do
 #  protoc -I=. -I=./xgo --go_opt=paths=source_relative --"${PLUGIN}"_opt=paths=source_relative --go_out=. --"${PLUGIN}"_out=. "${file}"
 done
 
-for file in tests/proto/example/*;do
-  protoc -I=. --go_out=./ --"${PLUGIN}"_out=./  "${file}"
-done
-
 for file in tests/proto/benchmark/*;do
   protoc -I=. --go_out=./ --"${PLUGIN}"_out=./  "${file}"
 done

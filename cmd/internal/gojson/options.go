@@ -33,10 +33,6 @@ func loadFieldOptions(field *protogen.Field) *pbjson.FieldOptions {
 	if options == nil {
 		options = &pbjson.FieldOptions{}
 	}
-	//// Ignore field if json is "-"
-	//if options.Json != nil && *options.Json == "-" {
-	//	options.Ignore = true
-	//}
 	return options
 }
 
@@ -46,10 +42,6 @@ func loadOneOfOptions(field *protogen.Field) *pbjson.OneofOptions {
 	if options == nil {
 		options = &pbjson.OneofOptions{}
 	}
-	//// Ignore field if json is "-"
-	//if options.Json != nil && *options.Json == "-" {
-	//	options.Ignore = true
-	//}
 	return options
 }
 
