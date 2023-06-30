@@ -10,7 +10,6 @@ public interface OneofOptionsOrBuilder extends
   /**
    * <pre>
    * The key name in JSON content. Default is the field's name in proto file.
-   * Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
    * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
@@ -21,7 +20,6 @@ public interface OneofOptionsOrBuilder extends
   /**
    * <pre>
    * The key name in JSON content. Default is the field's name in proto file.
-   * Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
    * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
@@ -32,7 +30,6 @@ public interface OneofOptionsOrBuilder extends
   /**
    * <pre>
    * The key name in JSON content. Default is the field's name in proto file.
-   * Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
    * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
@@ -44,7 +41,7 @@ public interface OneofOptionsOrBuilder extends
 
   /**
    * <pre>
-   * Same as `json: "-"`, The field and all fields in the oneof parts will be ignored if true.
+   * The field and all fields in the oneof parts will be ignored if true.
    * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *

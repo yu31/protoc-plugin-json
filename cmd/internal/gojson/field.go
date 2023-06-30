@@ -50,13 +50,11 @@ func loadFields(msg *protogen.Message) (fields []*Field, bufLen int, variables [
 			if oneOfOptions.Ignore {
 				continue
 			}
-			variables = append(variables, genVariableOneOfIsFill(field.Oneof.GoName))
-			jsonKey = getJSONKeyForOneOf(field, oneOfOptions)
 
 			parts := make([]*Field, 0, len(field.Oneof.Fields))
 			for _, oneField := range field.Oneof.Fields {
 				oneOptions := loadFieldOptions(oneField)
-				if oneOfOptions.Ignore {
+				if oneOptions.Ignore {
 					continue
 				}
 				oneKey := getJSONKeyForField(oneField, oneOptions)
@@ -69,6 +67,15 @@ func loadFields(msg *protogen.Message) (fields []*Field, bufLen int, variables [
 				// Sum key length, colon separator(`:`) and comma separator(`,`).
 				bufLen += len(oneKey) + 2
 			}
+
+			if len(parts) == 0 {
+				// Empty parts means no valid field in oneof parts.
+				continue
+			}
+
+			jsonKey = getJSONKeyForOneOf(field, oneOfOptions)
+			variables = append(variables, genVariableOneOfIsFill(field.Oneof.GoName))
+
 			oneOf = &OneOf{
 				Options: oneOfOptions,
 				Parts:   parts,

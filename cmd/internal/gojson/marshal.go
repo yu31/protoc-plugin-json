@@ -164,8 +164,8 @@ func (p *Plugin) marshalGetNotEmptyCond(field *protogen.Field) (cond string) {
 		protoreflect.Uint32Kind, protoreflect.Fixed32Kind,
 		protoreflect.Uint64Kind, protoreflect.Fixed64Kind:
 		cond = receiver + " != 0 "
-	//case protoreflect.BoolKind:
-	//	cond = receiver
+	case protoreflect.BoolKind:
+		cond = receiver
 	case protoreflect.StringKind:
 		cond = receiver + ` != "" `
 	case protoreflect.BytesKind:

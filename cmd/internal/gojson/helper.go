@@ -54,7 +54,7 @@ func fieldGoType(protoGen *protogen.GeneratedFile, field *protogen.Field) (goTyp
 
 func getJSONKeyForField(field *protogen.Field, options *pbjson.FieldOptions) string {
 	jsonKey := options.Json
-	if (options.Ignore) || (jsonKey != nil && *jsonKey == "-") {
+	if options.Ignore {
 		panic("the field should be ignore.")
 	}
 	if jsonKey != nil {
@@ -65,7 +65,7 @@ func getJSONKeyForField(field *protogen.Field, options *pbjson.FieldOptions) str
 
 func getJSONKeyForOneOf(field *protogen.Field, options *pbjson.OneofOptions) string {
 	jsonKey := options.Json
-	if (options.Ignore) || (jsonKey != nil && *jsonKey == "-") {
+	if options.Ignore {
 		panic("the oneof field should be ignore.")
 	}
 	if jsonKey != nil {

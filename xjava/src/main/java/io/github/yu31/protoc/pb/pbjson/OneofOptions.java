@@ -109,7 +109,6 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * The key name in JSON content. Default is the field's name in proto file.
-   * Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
    * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
@@ -123,7 +122,6 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * The key name in JSON content. Default is the field's name in proto file.
-   * Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
    * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
@@ -146,7 +144,6 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * The key name in JSON content. Default is the field's name in proto file.
-   * Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
    * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
@@ -172,7 +169,7 @@ private static final long serialVersionUID = 0L;
   private boolean ignore_;
   /**
    * <pre>
-   * Same as `json: "-"`, The field and all fields in the oneof parts will be ignored if true.
+   * The field and all fields in the oneof parts will be ignored if true.
    * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
@@ -590,7 +587,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
@@ -603,7 +599,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
@@ -625,7 +620,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
@@ -648,7 +642,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
@@ -669,7 +662,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
@@ -685,7 +677,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
@@ -708,7 +699,7 @@ private static final long serialVersionUID = 0L;
     private boolean ignore_ ;
     /**
      * <pre>
-     * Same as `json: "-"`, The field and all fields in the oneof parts will be ignored if true.
+     * The field and all fields in the oneof parts will be ignored if true.
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
@@ -721,7 +712,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Same as `json: "-"`, The field and all fields in the oneof parts will be ignored if true.
+     * The field and all fields in the oneof parts will be ignored if true.
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
@@ -737,7 +728,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Same as `json: "-"`, The field and all fields in the oneof parts will be ignored if true.
+     * The field and all fields in the oneof parts will be ignored if true.
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *

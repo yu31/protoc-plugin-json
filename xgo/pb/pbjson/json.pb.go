@@ -1057,10 +1057,9 @@ type OneofOptions struct {
 	unknownFields protoimpl.UnknownFields
 
 	// The key name in JSON content. Default is the field's name in proto file.
-	// Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
 	// It effect the MarshalJSON and UnmarshalJSON.
 	Json *string `protobuf:"bytes,1,opt,name=json,proto3,oneof" json:"json,omitempty"`
-	// Same as `json: "-"`, The field and all fields in the oneof parts will be ignored if true.
+	// The field and all fields in the oneof parts will be ignored if true.
 	// It effect the MarshalJSON and UnmarshalJSON.
 	Ignore bool `protobuf:"varint,2,opt,name=ignore,proto3" json:"ignore,omitempty"`
 	// Same as the go struct tag `json:"xxx,omitempty"`.
@@ -1138,10 +1137,9 @@ type FieldOptions struct {
 	unknownFields protoimpl.UnknownFields
 
 	// The key name in JSON content. Default is the field's name in proto file.
-	// Same as `ignore: true`, the field will be ignored if set its value to `json: "-"`
 	// It effect the MarshalJSON and UnmarshalJSON.
 	Json *string `protobuf:"bytes,1,opt,name=json,proto3,oneof" json:"json,omitempty"`
-	// Same as `json: "-"`, The field will be ignored if true.
+	// The field will be ignored if true.
 	// It effect the MarshalJSON and UnmarshalJSON.
 	Ignore bool `protobuf:"varint,2,opt,name=ignore,proto3" json:"ignore,omitempty"`
 	// Same as the go struct tag `json:"xxx,omitempty"`.

@@ -41,11 +41,10 @@ message MessageOptions {
 
 message OneofOptions {
   // The key name in JSON content. Default is the field's name in proto file.
-  // Same as `ignore: true`, the field will be ignored if set its to `json: "-"`
   // It effect the MarshalJSON and UnmarshalJSON.
   optional string json = 1;
 
-  // Same as `json: "-"`, The field and all fields in the oneof parts will be ignored if true.
+  // The field and all fields in the oneof parts will be ignored if true.
   // It effect the MarshalJSON and UnmarshalJSON.
   bool ignore = 2;
 
@@ -61,11 +60,10 @@ message OneofOptions {
 
 message FieldOptions {
   // The key name in JSON content. Default is the field's name in proto file.
-  // Same as `ignore: true`, the field will be ignored if set its value to `json: "-"`
   // It effect the MarshalJSON and UnmarshalJSON.
   optional string json = 1;
 
-  // Same as `json: "-"`, The field will be ignored if true.
+  // The field will be ignored if true.
   // It effect the MarshalJSON and UnmarshalJSON.
   bool ignore = 2;
 
