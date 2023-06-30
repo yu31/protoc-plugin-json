@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package map;
+
+option go_package = "xgo/tests/pb/pbinvalid";
+
+//import "google/protobuf/any.proto";
+//import "google/protobuf/duration.proto";
+//import "google/protobuf/timestamp.proto";
+//
+//import "tests/proto/module/external.proto";
+
+import "proto/json.proto";
+
+message MapKey07 {
+  map<int32, int32> field07 = 7 [ (json.field) = { reference: { map: { key: { uint32: { } }; }; }; } ];
+}

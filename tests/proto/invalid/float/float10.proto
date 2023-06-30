@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package float;
+
+option go_package = "xgo/tests/pb/pbinvalid";
+
+//import "google/protobuf/any.proto";
+//import "google/protobuf/duration.proto";
+//import "google/protobuf/timestamp.proto";
+//
+//import "tests/proto/module/external.proto";
+
+import "proto/json.proto";
+
+message Float10 {
+  float field10 = 10 [ (json.field) = { reference: { plain: { value: { fixed64: { } }; }; }; } ];
+}

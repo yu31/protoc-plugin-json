@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package repeated;
+
+option go_package = "xgo/tests/pb/pbinvalid";
+
+//import "google/protobuf/any.proto";
+//import "google/protobuf/duration.proto";
+//import "google/protobuf/timestamp.proto";
+//
+//import "tests/proto/module/external.proto";
+
+import "proto/json.proto";
+
+message Repeated09 {
+  repeated int32 field09 = 9 [ (json.field) = { reference: { repeated: { elem: { fixed32: { } }; }; }; } ];
+}

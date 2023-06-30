@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package sint32;
+
+option go_package = "xgo/tests/pb/pbinvalid";
+
+//import "google/protobuf/any.proto";
+//import "google/protobuf/duration.proto";
+//import "google/protobuf/timestamp.proto";
+//
+//import "tests/proto/module/external.proto";
+
+import "proto/json.proto";
+
+message SInt3207 {
+  sint32 field07 = 7 [ (json.field) = { reference: { plain: { value: { uint32: { } }; }; }; } ];
+}

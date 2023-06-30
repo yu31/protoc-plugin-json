@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package duration;
+
+option go_package = "xgo/tests/pb/pbinvalid";
+
+//import "google/protobuf/any.proto";
+import "google/protobuf/duration.proto";
+//import "google/protobuf/timestamp.proto";
+//
+//import "tests/proto/module/external.proto";
+
+import "proto/json.proto";
+
+message Duration08 {
+  google.protobuf.Duration field08 = 8 [ (json.field) = { reference: { plain: { value: { uint64: { } }; }; }; } ];
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package sfixed32;
+
+option go_package = "xgo/tests/pb/pbinvalid";
+
+//import "google/protobuf/any.proto";
+//import "google/protobuf/duration.proto";
+//import "google/protobuf/timestamp.proto";
+//
+//import "tests/proto/module/external.proto";
+
+import "proto/json.proto";
+
+message SFixed3220 {
+  sfixed32 field20 = 20 [ (json.field) = { reference: { plain: { value: { message: { } }; }; }; } ];
+}

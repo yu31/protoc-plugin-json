@@ -6,7 +6,7 @@ cd "${CURRENT_PATH}"/.. || exit 1
 
 export PATH="./build/bin:$PATH"
 
-PLUGIN="godefault"
+PLUGIN="gojson"
 BASE_DIR="tests/proto/invalid"
 
 KIND="$1"
@@ -24,7 +24,7 @@ function runCase() {
     echo "${ret}"
   fi
 
-  if echo "${ret}" |grep "ERROR - godefault" > /dev/null; then
+  if echo "${ret}" |grep "ERROR - gojson" > /dev/null; then
     echo "--- PASS: ${file}"
   else
     echo "    Expected error by godefault, but it passing or other error occurs"

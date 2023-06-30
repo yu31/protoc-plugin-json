@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package fixed32;
+
+option go_package = "xgo/tests/pb/pbinvalid";
+
+//import "google/protobuf/any.proto";
+//import "google/protobuf/duration.proto";
+//import "google/protobuf/timestamp.proto";
+//
+//import "tests/proto/module/external.proto";
+
+import "proto/json.proto";
+
+message Fixed3219 {
+  fixed32 field19 = 19 [ (json.field) = { reference: { plain: { value: { timestamp: { } }; }; }; } ];
+}
