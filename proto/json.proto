@@ -108,26 +108,30 @@ message MapOptions {
 
 message TypeCodec {
   oneof Kind {
-    TypeInt32    int32    = 11;
-    TypeInt64    int64    = 12;
-    TypeSInt32   sint32   = 13;
-    TypeSInt64   sint64   = 14;
-    TypeSFixed32 sfixed32 = 15;
-    TypeSFixed64 sfixed64 = 16;
-    TypeUint32   uint32   = 17;
-    TypeUint64   uint64   = 18;
-    TypeFixed32  fixed32  = 19;
-    TypeFixed64  fixed64  = 20;
+    TypeInt32    int32    = 1;
+    TypeInt64    int64    = 2;
+    TypeSInt32   sint32   = 3;
+    TypeSInt64   sint64   = 4;
+    TypeSFixed32 sfixed32 = 5;
+    TypeSFixed64 sfixed64 = 6;
+    TypeUint32   uint32   = 7;
+    TypeUint64   uint64   = 8;
+    TypeFixed32  fixed32  = 9;
+    TypeFixed64  fixed64  = 10;
 
-    TypeFloat  float  = 21;
-    TypeDouble double = 22;
+    TypeFloat  float  = 11;
+    TypeDouble double = 12;
 
-    TypeBool bool = 23;
+    TypeBool bool = 13;
 
-    TypeEnum      enum      = 24;
-    TypeAny       any       = 25;
-    TypeDuration  duration  = 26;
-    TypeTimestamp timestamp = 27;
+    TypeString  string  = 14; // Reserved.
+    TypeBytes   bytes   = 15; // Reserved.
+    TypeMessage message = 16; // Reserved.
+
+    TypeEnum      enum      = 21;
+    TypeAny       any       = 22;
+    TypeDuration  duration  = 23;
+    TypeTimestamp timestamp = 24;
   }
 }
 
@@ -373,6 +377,19 @@ message TypeBool {
   // Codec specifies encoding format for the field type of bool.
   // The default is `Bool` in plain value, repeated elements and map value.
   Codec codec = 1;
+}
+
+// TypeString declares the codec for field type string.
+// Notice: Reserve
+message TypeString {
+}
+// TypeBytes declares the codec for field type bytes.
+// Notice: Reserve
+message TypeBytes {
+}
+// TypeMessage declares the codec for field type message.
+// Notice: Reserve
+message TypeMessage {
 }
 
 // TypeInt32 declares the codec for field type enum.

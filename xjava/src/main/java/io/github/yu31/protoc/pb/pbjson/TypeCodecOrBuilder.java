@@ -8,257 +8,338 @@ public interface TypeCodecOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.json.TypeInt32 int32 = 11;</code>
+   * <code>.json.TypeInt32 int32 = 1;</code>
    * @return Whether the int32 field is set.
    */
   boolean hasInt32();
   /**
-   * <code>.json.TypeInt32 int32 = 11;</code>
+   * <code>.json.TypeInt32 int32 = 1;</code>
    * @return The int32.
    */
   io.github.yu31.protoc.pb.pbjson.TypeInt32 getInt32();
   /**
-   * <code>.json.TypeInt32 int32 = 11;</code>
+   * <code>.json.TypeInt32 int32 = 1;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeInt32OrBuilder getInt32OrBuilder();
 
   /**
-   * <code>.json.TypeInt64 int64 = 12;</code>
+   * <code>.json.TypeInt64 int64 = 2;</code>
    * @return Whether the int64 field is set.
    */
   boolean hasInt64();
   /**
-   * <code>.json.TypeInt64 int64 = 12;</code>
+   * <code>.json.TypeInt64 int64 = 2;</code>
    * @return The int64.
    */
   io.github.yu31.protoc.pb.pbjson.TypeInt64 getInt64();
   /**
-   * <code>.json.TypeInt64 int64 = 12;</code>
+   * <code>.json.TypeInt64 int64 = 2;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeInt64OrBuilder getInt64OrBuilder();
 
   /**
-   * <code>.json.TypeSInt32 sint32 = 13;</code>
+   * <code>.json.TypeSInt32 sint32 = 3;</code>
    * @return Whether the sint32 field is set.
    */
   boolean hasSint32();
   /**
-   * <code>.json.TypeSInt32 sint32 = 13;</code>
+   * <code>.json.TypeSInt32 sint32 = 3;</code>
    * @return The sint32.
    */
   io.github.yu31.protoc.pb.pbjson.TypeSInt32 getSint32();
   /**
-   * <code>.json.TypeSInt32 sint32 = 13;</code>
+   * <code>.json.TypeSInt32 sint32 = 3;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeSInt32OrBuilder getSint32OrBuilder();
 
   /**
-   * <code>.json.TypeSInt64 sint64 = 14;</code>
+   * <code>.json.TypeSInt64 sint64 = 4;</code>
    * @return Whether the sint64 field is set.
    */
   boolean hasSint64();
   /**
-   * <code>.json.TypeSInt64 sint64 = 14;</code>
+   * <code>.json.TypeSInt64 sint64 = 4;</code>
    * @return The sint64.
    */
   io.github.yu31.protoc.pb.pbjson.TypeSInt64 getSint64();
   /**
-   * <code>.json.TypeSInt64 sint64 = 14;</code>
+   * <code>.json.TypeSInt64 sint64 = 4;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeSInt64OrBuilder getSint64OrBuilder();
 
   /**
-   * <code>.json.TypeSFixed32 sfixed32 = 15;</code>
+   * <code>.json.TypeSFixed32 sfixed32 = 5;</code>
    * @return Whether the sfixed32 field is set.
    */
   boolean hasSfixed32();
   /**
-   * <code>.json.TypeSFixed32 sfixed32 = 15;</code>
+   * <code>.json.TypeSFixed32 sfixed32 = 5;</code>
    * @return The sfixed32.
    */
   io.github.yu31.protoc.pb.pbjson.TypeSFixed32 getSfixed32();
   /**
-   * <code>.json.TypeSFixed32 sfixed32 = 15;</code>
+   * <code>.json.TypeSFixed32 sfixed32 = 5;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeSFixed32OrBuilder getSfixed32OrBuilder();
 
   /**
-   * <code>.json.TypeSFixed64 sfixed64 = 16;</code>
+   * <code>.json.TypeSFixed64 sfixed64 = 6;</code>
    * @return Whether the sfixed64 field is set.
    */
   boolean hasSfixed64();
   /**
-   * <code>.json.TypeSFixed64 sfixed64 = 16;</code>
+   * <code>.json.TypeSFixed64 sfixed64 = 6;</code>
    * @return The sfixed64.
    */
   io.github.yu31.protoc.pb.pbjson.TypeSFixed64 getSfixed64();
   /**
-   * <code>.json.TypeSFixed64 sfixed64 = 16;</code>
+   * <code>.json.TypeSFixed64 sfixed64 = 6;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeSFixed64OrBuilder getSfixed64OrBuilder();
 
   /**
-   * <code>.json.TypeUint32 uint32 = 17;</code>
+   * <code>.json.TypeUint32 uint32 = 7;</code>
    * @return Whether the uint32 field is set.
    */
   boolean hasUint32();
   /**
-   * <code>.json.TypeUint32 uint32 = 17;</code>
+   * <code>.json.TypeUint32 uint32 = 7;</code>
    * @return The uint32.
    */
   io.github.yu31.protoc.pb.pbjson.TypeUint32 getUint32();
   /**
-   * <code>.json.TypeUint32 uint32 = 17;</code>
+   * <code>.json.TypeUint32 uint32 = 7;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeUint32OrBuilder getUint32OrBuilder();
 
   /**
-   * <code>.json.TypeUint64 uint64 = 18;</code>
+   * <code>.json.TypeUint64 uint64 = 8;</code>
    * @return Whether the uint64 field is set.
    */
   boolean hasUint64();
   /**
-   * <code>.json.TypeUint64 uint64 = 18;</code>
+   * <code>.json.TypeUint64 uint64 = 8;</code>
    * @return The uint64.
    */
   io.github.yu31.protoc.pb.pbjson.TypeUint64 getUint64();
   /**
-   * <code>.json.TypeUint64 uint64 = 18;</code>
+   * <code>.json.TypeUint64 uint64 = 8;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeUint64OrBuilder getUint64OrBuilder();
 
   /**
-   * <code>.json.TypeFixed32 fixed32 = 19;</code>
+   * <code>.json.TypeFixed32 fixed32 = 9;</code>
    * @return Whether the fixed32 field is set.
    */
   boolean hasFixed32();
   /**
-   * <code>.json.TypeFixed32 fixed32 = 19;</code>
+   * <code>.json.TypeFixed32 fixed32 = 9;</code>
    * @return The fixed32.
    */
   io.github.yu31.protoc.pb.pbjson.TypeFixed32 getFixed32();
   /**
-   * <code>.json.TypeFixed32 fixed32 = 19;</code>
+   * <code>.json.TypeFixed32 fixed32 = 9;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeFixed32OrBuilder getFixed32OrBuilder();
 
   /**
-   * <code>.json.TypeFixed64 fixed64 = 20;</code>
+   * <code>.json.TypeFixed64 fixed64 = 10;</code>
    * @return Whether the fixed64 field is set.
    */
   boolean hasFixed64();
   /**
-   * <code>.json.TypeFixed64 fixed64 = 20;</code>
+   * <code>.json.TypeFixed64 fixed64 = 10;</code>
    * @return The fixed64.
    */
   io.github.yu31.protoc.pb.pbjson.TypeFixed64 getFixed64();
   /**
-   * <code>.json.TypeFixed64 fixed64 = 20;</code>
+   * <code>.json.TypeFixed64 fixed64 = 10;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeFixed64OrBuilder getFixed64OrBuilder();
 
   /**
-   * <code>.json.TypeFloat float = 21;</code>
+   * <code>.json.TypeFloat float = 11;</code>
    * @return Whether the float field is set.
    */
   boolean hasFloat();
   /**
-   * <code>.json.TypeFloat float = 21;</code>
+   * <code>.json.TypeFloat float = 11;</code>
    * @return The float.
    */
   io.github.yu31.protoc.pb.pbjson.TypeFloat getFloat();
   /**
-   * <code>.json.TypeFloat float = 21;</code>
+   * <code>.json.TypeFloat float = 11;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeFloatOrBuilder getFloatOrBuilder();
 
   /**
-   * <code>.json.TypeDouble double = 22;</code>
+   * <code>.json.TypeDouble double = 12;</code>
    * @return Whether the double field is set.
    */
   boolean hasDouble();
   /**
-   * <code>.json.TypeDouble double = 22;</code>
+   * <code>.json.TypeDouble double = 12;</code>
    * @return The double.
    */
   io.github.yu31.protoc.pb.pbjson.TypeDouble getDouble();
   /**
-   * <code>.json.TypeDouble double = 22;</code>
+   * <code>.json.TypeDouble double = 12;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeDoubleOrBuilder getDoubleOrBuilder();
 
   /**
-   * <code>.json.TypeBool bool = 23;</code>
+   * <code>.json.TypeBool bool = 13;</code>
    * @return Whether the bool field is set.
    */
   boolean hasBool();
   /**
-   * <code>.json.TypeBool bool = 23;</code>
+   * <code>.json.TypeBool bool = 13;</code>
    * @return The bool.
    */
   io.github.yu31.protoc.pb.pbjson.TypeBool getBool();
   /**
-   * <code>.json.TypeBool bool = 23;</code>
+   * <code>.json.TypeBool bool = 13;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeBoolOrBuilder getBoolOrBuilder();
 
   /**
-   * <code>.json.TypeEnum enum = 24;</code>
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
+   * <code>.json.TypeString string = 14;</code>
+   * @return Whether the string field is set.
+   */
+  boolean hasString();
+  /**
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
+   * <code>.json.TypeString string = 14;</code>
+   * @return The string.
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeString getString();
+  /**
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
+   * <code>.json.TypeString string = 14;</code>
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeStringOrBuilder getStringOrBuilder();
+
+  /**
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
+   * <code>.json.TypeBytes bytes = 15;</code>
+   * @return Whether the bytes field is set.
+   */
+  boolean hasBytes();
+  /**
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
+   * <code>.json.TypeBytes bytes = 15;</code>
+   * @return The bytes.
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeBytes getBytes();
+  /**
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
+   * <code>.json.TypeBytes bytes = 15;</code>
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeBytesOrBuilder getBytesOrBuilder();
+
+  /**
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
+   * <code>.json.TypeMessage message = 16;</code>
+   * @return Whether the message field is set.
+   */
+  boolean hasMessage();
+  /**
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
+   * <code>.json.TypeMessage message = 16;</code>
+   * @return The message.
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeMessage getMessage();
+  /**
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
+   * <code>.json.TypeMessage message = 16;</code>
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeMessageOrBuilder getMessageOrBuilder();
+
+  /**
+   * <code>.json.TypeEnum enum = 21;</code>
    * @return Whether the enum field is set.
    */
   boolean hasEnum();
   /**
-   * <code>.json.TypeEnum enum = 24;</code>
+   * <code>.json.TypeEnum enum = 21;</code>
    * @return The enum.
    */
   io.github.yu31.protoc.pb.pbjson.TypeEnum getEnum();
   /**
-   * <code>.json.TypeEnum enum = 24;</code>
+   * <code>.json.TypeEnum enum = 21;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder getEnumOrBuilder();
 
   /**
-   * <code>.json.TypeAny any = 25;</code>
+   * <code>.json.TypeAny any = 22;</code>
    * @return Whether the any field is set.
    */
   boolean hasAny();
   /**
-   * <code>.json.TypeAny any = 25;</code>
+   * <code>.json.TypeAny any = 22;</code>
    * @return The any.
    */
   io.github.yu31.protoc.pb.pbjson.TypeAny getAny();
   /**
-   * <code>.json.TypeAny any = 25;</code>
+   * <code>.json.TypeAny any = 22;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeAnyOrBuilder getAnyOrBuilder();
 
   /**
-   * <code>.json.TypeDuration duration = 26;</code>
+   * <code>.json.TypeDuration duration = 23;</code>
    * @return Whether the duration field is set.
    */
   boolean hasDuration();
   /**
-   * <code>.json.TypeDuration duration = 26;</code>
+   * <code>.json.TypeDuration duration = 23;</code>
    * @return The duration.
    */
   io.github.yu31.protoc.pb.pbjson.TypeDuration getDuration();
   /**
-   * <code>.json.TypeDuration duration = 26;</code>
+   * <code>.json.TypeDuration duration = 23;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeDurationOrBuilder getDurationOrBuilder();
 
   /**
-   * <code>.json.TypeTimestamp timestamp = 27;</code>
+   * <code>.json.TypeTimestamp timestamp = 24;</code>
    * @return Whether the timestamp field is set.
    */
   boolean hasTimestamp();
   /**
-   * <code>.json.TypeTimestamp timestamp = 27;</code>
+   * <code>.json.TypeTimestamp timestamp = 24;</code>
    * @return The timestamp.
    */
   io.github.yu31.protoc.pb.pbjson.TypeTimestamp getTimestamp();
   /**
-   * <code>.json.TypeTimestamp timestamp = 27;</code>
+   * <code>.json.TypeTimestamp timestamp = 24;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder getTimestampOrBuilder();
 

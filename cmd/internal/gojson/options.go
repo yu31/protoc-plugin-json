@@ -291,6 +291,52 @@ func loadTypeCodecBool(typeCodec *pbjson.TypeCodec) *pbjson.TypeBool {
 	}
 }
 
+//func loadTypeCodecString(typeCodec *pbjson.TypeCodec) *pbjson.TypeString {
+//	if typeCodec == nil || typeCodec.Kind == nil {
+//		return &pbjson.TypeString{}
+//	}
+//	switch ot := typeCodec.Kind.(type) {
+//	case *pbjson.TypeCodec_String_:
+//		return ot.String_
+//	default:
+//		err := pkerror.New(
+//			"type string only supports kind of TypeCodec <string> and you provided: <%s>",
+//			getTagName(ot),
+//		)
+//		panic(err)
+//	}
+//}
+//func loadTypeCodecBytes(typeCodec *pbjson.TypeCodec) *pbjson.TypeBytes {
+//	if typeCodec == nil || typeCodec.Kind == nil {
+//		return &pbjson.TypeBytes{}
+//	}
+//	switch ot := typeCodec.Kind.(type) {
+//	case *pbjson.TypeCodec_Bytes:
+//		return ot.Bytes
+//	default:
+//		err := pkerror.New(
+//			"type bytes only supports kind of TypeCodec <bytes> and you provided: <%s>",
+//			getTagName(ot),
+//		)
+//		panic(err)
+//	}
+//}
+//func loadTypeCodecMessage(typeCodec *pbjson.TypeCodec) *pbjson.TypeMessage {
+//	if typeCodec == nil || typeCodec.Kind == nil {
+//		return &pbjson.TypeMessage{}
+//	}
+//	switch ot := typeCodec.Kind.(type) {
+//	case *pbjson.TypeCodec_Message:
+//		return ot.Message
+//	default:
+//		err := pkerror.New(
+//			"type message only supports kind of TypeCodec <message> and you provided: <%s>",
+//			getTagName(ot),
+//		)
+//		panic(err)
+//	}
+//}
+
 func loadTypeCodecEnum(typeCodec *pbjson.TypeCodec) *pbjson.TypeEnum {
 	if typeCodec == nil || typeCodec.Kind == nil {
 		return &pbjson.TypeEnum{}
