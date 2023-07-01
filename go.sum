@@ -22,8 +22,8 @@ github.com/stretchr/testify v1.7.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/
 github.com/stretchr/testify v1.8.0/go.mod h1:yNjHg4UonilssWZ8iaSj1OCr/vHnekPRkoO+kdMU+MU=
 github.com/stretchr/testify v1.8.3 h1:RP3t2pwF7cMEbC1dqtB6poj3niw/9gnV4Cjg5oW5gtY=
 github.com/stretchr/testify v1.8.3/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
-github.com/yu31/protoc-kit-go v0.0.0-20230528160655-28d972810a87 h1:Du4qLdgLoM7HLEw0UYZ7g4CLVC1gx5GAdW+dpLI+amU=
-github.com/yu31/protoc-kit-go v0.0.0-20230528160655-28d972810a87/go.mod h1:0qRWPFKjoxgOXi5SWhlSMnK90hexNdu5OjuGu9KTbNk=
+github.com/yu31/protoc-kit-go v0.0.0-20230701152537-70155099b8ab h1:axFslE2DPqCwiPjJvRgZOQXLn/5GCDYy4p47cfM2h2k=
+github.com/yu31/protoc-kit-go v0.0.0-20230701152537-70155099b8ab/go.mod h1:0qRWPFKjoxgOXi5SWhlSMnK90hexNdu5OjuGu9KTbNk=
 golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
 golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 h1:go1bK/D/BFZV2I8cIQd1NKEZ+0owSTG1fDTci4IqFcE=
 golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=

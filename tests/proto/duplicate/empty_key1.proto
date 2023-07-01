@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package empty_key;
+
+option go_package = "xgo/tests/pb/pbduplicate";
+
+import "proto/json.proto";
+
+message EmptyKey1 {
+  string f_string1 = 1 [ (json.field) = { json: "" } ];
+}

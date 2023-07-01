@@ -24,10 +24,10 @@ function runCase() {
     echo "${ret}"
   fi
 
-  if echo "${ret}" |grep "ERROR - gojson" > /dev/null; then
+  if echo "${ret}" |grep '\[ERROR\] - \[plugin: gojson\]' > /dev/null; then
     echo "--- PASS: ${file}"
   else
-    echo "    Expected error by godefault, but it passing or other error occurs"
+    echo "    Expected error by gojson, but it passing or other error occurs"
     echo "--- FAIL: ${file}"
     exit 1
   fi
@@ -37,6 +37,10 @@ function runCase() {
 for file in ${BASE_DIR}/${KIND}/*; do
   runCase "${file}"
 done
+
+echo "--------------------------------------------"
+echo "------ ALL test cases are successful ------"
+echo "--------------------------------------------"
 
 # Delete generated files.
 /bin/rm -fr ./xgo/tests/pb/pbinvalid/*;

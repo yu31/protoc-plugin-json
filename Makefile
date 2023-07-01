@@ -97,6 +97,15 @@ test-error-go: compile
 test-error:  ## Run test cases for invalid parameters in tags.
 test-error: test-error-go
 
+.PHONY: test-duplicate-go
+test-duplicate-go:   ## Run test cases for duplicate json key for golang.
+test-duplicate-go: compile
+	@[[ ${VERBOSE} = "yes" ]] && bash -x scripts/test_duplicate_go.sh "${CASE}" || bash scripts/test_duplicate_go.sh "${CASE}"
+
+.PHONY: test-duplicate
+test-duplicate:  ## Run test cases for duplicate key in options.
+test-duplicate: test-duplicate-go
+
 # publishing java jar to central repository
 .PHONY: java-release
 java-release:

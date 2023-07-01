@@ -81,7 +81,7 @@ func (p *Plugin) generateForMessage(msg *protogen.Message) {
 
 	fields, bufLen, variables := loadFields(msg)
 
-	p.checkJSONKey(fields)
+	p.checkDuplicateKey(fields)
 
 	p.generateCodeMarshal(fields, bufLen)
 	p.generateCodeUnmarshal(fields, variables)

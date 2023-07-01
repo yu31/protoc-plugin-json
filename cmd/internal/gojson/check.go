@@ -3,33 +3,85 @@ package gojson
 import (
 	"fmt"
 	"os"
+	"strings"
 
-	"github.com/yu31/protoc-kit-go/utils/pkfield"
 	"google.golang.org/protobuf/compiler/protogen"
 )
 
-func (p *Plugin) checkJSONKey(fields []*Field) {
+func (p *Plugin) checkDuplicateKey(fields []*Field) {
 	msg := p.message
 
-	cacheFields := make(map[string]*protogen.Field)
+	cacheFields := make(map[string]*Field)
 
-	dupOneOfs := make([]map[string][]string, 0)
-	emptyOneOfs := make([][]string, 0)
+	// [oneOfName]: [ [jsonKey]: [partLists] ]
+	dupOneOf := make(map[string]map[string][]string)
+	// [oneOfName]: [partLists]
+	emptyOneOf := make(map[string][]string)
 
+	// [fieldLists]
 	emptyFields := make([]string, 0)
+	// [jsonKey]: [fieldLists]
 	dupFields := make(map[string][]string)
 
 	checkFieldDup := func(field *Field) {
 		jsonKey := field.JSONKey
+
+		var fieldName string
+		if field.OneOf != nil {
+			fieldName = string(field.Field.Oneof.Desc.Name())
+		} else {
+			fieldName = string(field.Field.Desc.Name())
+		}
+
 		if jsonKey == "" {
-			emptyFields = append(emptyFields, string(field.Field.Desc.Name()))
+			emptyFields = append(emptyFields, fieldName)
 			return
 		}
-		if _, ok := cacheFields[jsonKey]; ok {
-			dupFields[jsonKey] = append(dupFields[jsonKey], string(field.Field.Desc.Name()))
+
+		if x, ok := cacheFields[jsonKey]; ok {
+			if len(dupFields[jsonKey]) == 0 {
+				var firstField string
+				if x.OneOf != nil {
+					firstField = string(x.Field.Oneof.Desc.Name())
+				} else {
+					firstField = string(x.Field.Desc.Name())
+				}
+				dupFields[jsonKey] = append(dupFields[jsonKey], firstField)
+			}
+			dupFields[jsonKey] = append(dupFields[jsonKey], fieldName)
 			return
 		}
-		cacheFields[jsonKey] = field.Field
+		cacheFields[jsonKey] = field
+	}
+
+	checkOneOfDup := func(field *Field) {
+		cacheOneOf := make(map[string]*protogen.Field)
+		dupParts := make(map[string][]string)
+		emptyParts := make([]string, 0)
+
+		for _, oneField := range field.OneOf.Parts {
+			jsonKey := oneField.JSONKey
+			if jsonKey == "" {
+				emptyParts = append(emptyParts, string(oneField.Field.Desc.Name()))
+			} else {
+				if x, ok := cacheOneOf[jsonKey]; ok {
+					if len(dupParts[jsonKey]) == 0 {
+						dupParts[jsonKey] = append(dupParts[jsonKey], string(x.Desc.Name()))
+					}
+					dupParts[jsonKey] = append(dupParts[jsonKey], string(oneField.Field.Desc.Name()))
+				} else {
+					cacheOneOf[jsonKey] = oneField.Field
+				}
+			}
+		}
+
+		oneOfName := string(field.Field.Oneof.Desc.Name())
+		if len(dupParts) != 0 {
+			dupOneOf[oneOfName] = dupParts
+		}
+		if len(emptyParts) != 0 {
+			emptyOneOf[oneOfName] = emptyParts
+		}
 	}
 
 LOOP:
@@ -39,89 +91,49 @@ LOOP:
 			checkFieldDup(field)
 			continue LOOP
 		}
-
-		if isOneOf := pkfield.FieldIsOneOf(field.Field); !isOneOf {
-			checkFieldDup(field)
-			continue
-		}
 		if field.OneOf.Options.Hide {
 			for _, oneField := range field.OneOf.Parts {
 				checkFieldDup(oneField)
 			}
 			continue LOOP
 		}
+
 		// oneOf key not hide in json. check it.
 		checkFieldDup(field)
 
 		// Check the fields in oneof part.
-		cacheOneOf := make(map[string]*protogen.Field)
-		dupOneOf := make(map[string][]string)
-		emptyOneOf := make([]string, 0)
-
-		for _, oneField := range field.OneOf.Parts {
-			jsonKey := oneField.JSONKey
-			if jsonKey == "" {
-				emptyOneOf = append(emptyOneOf, string(oneField.Field.Desc.Name()))
-			} else {
-				if _, ok := cacheOneOf[jsonKey]; ok {
-					dupOneOf[jsonKey] = append(dupOneOf[jsonKey], string(oneField.Field.Desc.Name()))
-					continue
-				}
-				cacheOneOf[jsonKey] = oneField.Field
-			}
-		}
-
-		for jsonKey := range dupOneOf {
-			if x, ok := cacheOneOf[jsonKey]; ok {
-				dupOneOf[jsonKey] = append(dupOneOf[jsonKey], string(x.Desc.Name()))
-			}
-		}
-		if len(dupOneOf) != 0 {
-			dupOneOfs = append(dupOneOfs, dupOneOf)
-		}
-		if len(emptyOneOf) != 0 {
-			emptyOneOfs = append(emptyOneOfs, emptyOneOf)
-		}
+		checkOneOfDup(field)
 	}
 
-	if len(dupFields) == 0 &&
-		len(dupOneOfs) == 0 &&
-		len(emptyFields) == 0 &&
-		len(emptyOneOfs) == 0 {
+	if len(dupFields) == 0 && len(dupOneOf) == 0 &&
+		len(emptyFields) == 0 && len(emptyOneOf) == 0 {
 		return
 	}
 
+	filePath := p.file.Desc.Path()
+	msgName := string(msg.Desc.FullName())
+	if index := strings.Index(msgName, "."); index > 0 {
+		msgName = msgName[index+1:]
+	}
+	id := fmt.Sprintf("[ERROR] - [plugin: gojson] - [ file: %s | message: %s ]", filePath, msgName)
+
 	if len(emptyFields) != 0 {
-		println(fmt.Sprintf(
-			"gojson: <file(%s) message(%s)>: (general) the json key is empty in fields %v",
-			string(p.file.GoImportPath), msg.GoIdent.GoName, emptyFields,
-		))
+		println(fmt.Sprintf("%s - The json key is empty in fields %v", id, emptyFields))
 	}
 
-	for jsonKey, value := range dupFields {
-		if x, ok := cacheFields[jsonKey]; ok {
-			value = append(value, string(x.Desc.Name()))
-		}
-		println(fmt.Sprintf(
-			"gojson: <file(%s) message(%s)>: (general) Found duplicate json key [%s] both in fields %v",
-			string(p.file.GoImportPath), msg.GoIdent.GoName, jsonKey, value,
-		))
+	for jsonKey, _fields := range dupFields {
+		println(fmt.Sprintf("%s - The json key [%s] are duplicated both in fields %v", id, jsonKey, _fields))
 	}
 
-	for _, emptyOneOf := range emptyOneOfs {
-		println(fmt.Sprintf(
-			"gojson: <file(%s) message(%s)>: (oneof) the json key is empty in fields %v",
-			string(p.file.GoImportPath), msg.GoIdent.GoName, emptyOneOf,
-		))
+	for oneOfName, parts := range emptyOneOf {
+		println(fmt.Sprintf("%s - The json key taht in oneof field [%s] is empty of parts %v", id, oneOfName, parts))
 	}
 
-	for _, dupOneOf := range dupOneOfs {
-		for jsonKey, value := range dupOneOf {
-			println(fmt.Sprintf(
-				"gojson: <file(%s) message(%s)>: (oneof) Found duplicate json key [%s] both in fields %v",
-				string(p.file.GoImportPath), msg.GoIdent.GoName, jsonKey, value,
-			))
+	for oneOfName, dupParts := range dupOneOf {
+		for jsonKey, parts := range dupParts {
+			println(fmt.Sprintf("%s - The json key [%s] that in oneof field [%s] are duplicated both in parts %v", id, jsonKey, oneOfName, parts))
 		}
 	}
+
 	os.Exit(1)
 }
