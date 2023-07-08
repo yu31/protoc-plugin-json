@@ -3,7 +3,7 @@
 // 		protoc-gen-gojson 0.0.1
 // source: tests/proto/cases/references/wkt_oneof.proto
 
-package pbreferences
+package pbref
 
 import (
 	errors "errors"
@@ -266,7 +266,7 @@ func (x *WKTOneOf1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message WKTOneOf1 in file tests/proto/cases/references/wkt_oneof.proto
 func (x *WKTOneOf1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbreferences.(*WKTOneOf1) is nil")
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbref.(*WKTOneOf1) is nil")
 	}
 	var (
 		oneOfIsFill_OneEnum1      bool

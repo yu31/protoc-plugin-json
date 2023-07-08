@@ -10,30 +10,31 @@ import (
 	"github.com/golang/protobuf/ptypes/timestamp"
 	"github.com/stretchr/testify/require"
 
-	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbreferences"
+	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbref"
+
 	"github.com/yu31/protoc-plugin-json/xgo/tests/utils"
 )
 
 // timestamp: 1686416585 -> 2023-06-11 01:03:05
-var seedWKTMap1 = &pbreferences.WKTMap1{
-	FEnumNumber1: map[string]pbreferences.Enum1{
+var seedWKTMap1 = &pbref.WKTMap1{
+	FEnumNumber1: map[string]pbref.Enum1{
 		"ke11": 0, "ke12": 2, "ke13": 6,
 	},
-	FEnumNumberString1: map[string]pbreferences.Enum1{
+	FEnumNumberString1: map[string]pbref.Enum1{
 		"ke11": 0, "ke12": 2, "ke13": 6,
 	},
-	FEnumString1: map[string]pbreferences.Enum1{
+	FEnumString1: map[string]pbref.Enum1{
 		"ke21": 3, "ke22": 5, "ke23": 7,
 	},
 	FAnyNative1: map[string]*any.Any{
-		"ka11": utils.MustNewAny(&pbreferences.Message1{FString1: "s111", FString2: "s112", FString3: "s113"}),
-		"ka12": utils.MustNewAny(&pbreferences.Message1{FString1: "s121", FString2: "s122", FString3: "s123"}),
-		"ka13": utils.MustNewAny(&pbreferences.Message1{FString1: "s131", FString2: "s132", FString3: "s133"}),
+		"ka11": utils.MustNewAny(&pbref.Message1{FString1: "s111", FString2: "s112", FString3: "s113"}),
+		"ka12": utils.MustNewAny(&pbref.Message1{FString1: "s121", FString2: "s122", FString3: "s123"}),
+		"ka13": utils.MustNewAny(&pbref.Message1{FString1: "s131", FString2: "s132", FString3: "s133"}),
 	},
 	FAnyProto1: map[string]*any.Any{
-		"ka21": utils.MustNewAny(&pbreferences.Message1{FString1: "s311", FString2: "s312", FString3: "s313"}),
-		"ka22": utils.MustNewAny(&pbreferences.Message1{FString1: "s321", FString2: "s322", FString3: "s323"}),
-		"ka23": utils.MustNewAny(&pbreferences.Message1{FString1: "s331", FString2: "s332", FString3: "s333"}),
+		"ka21": utils.MustNewAny(&pbref.Message1{FString1: "s311", FString2: "s312", FString3: "s313"}),
+		"ka22": utils.MustNewAny(&pbref.Message1{FString1: "s321", FString2: "s322", FString3: "s323"}),
+		"ka23": utils.MustNewAny(&pbref.Message1{FString1: "s331", FString2: "s332", FString3: "s333"}),
 	},
 	FDurationNative1: map[string]*duration.Duration{
 		"kd11": {Seconds: 111, Nanos: 0}, "kd12": {Seconds: 112, Nanos: 0}, "kd13": {Seconds: 113, Nanos: 0},
@@ -115,7 +116,7 @@ func Test_Reference_WKT_Map1_General(t *testing.T) {
 
 	fmt.Println(string(bb))
 
-	dataNew := &pbreferences.WKTMap1{}
+	dataNew := &pbref.WKTMap1{}
 	err = dataNew.UnmarshalJSON(bb)
 	require.Nil(t, err)
 

@@ -3,7 +3,7 @@
 // 		protoc-gen-gojson 0.0.1
 // source: tests/proto/cases/references/private.proto
 
-package pbreferences
+package pbref
 
 import (
 	errors "errors"
@@ -38,7 +38,7 @@ func (x *Message1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Message1 in file tests/proto/cases/references/private.proto
 func (x *Message1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbreferences.(*Message1) is nil")
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbref.(*Message1) is nil")
 	}
 	var (
 		err     error
@@ -123,7 +123,7 @@ func (x *Message1_Embed1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Embed1 in file tests/proto/cases/references/private.proto
 func (x *Message1_Embed1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbreferences.(*Message1_Embed1) is nil")
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbref.(*Message1_Embed1) is nil")
 	}
 	var (
 		err     error
@@ -208,7 +208,7 @@ func (x *Message1_Embed1_Embed2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Embed2 in file tests/proto/cases/references/private.proto
 func (x *Message1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbreferences.(*Message1_Embed1_Embed2) is nil")
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbref.(*Message1_Embed1_Embed2) is nil")
 	}
 	var (
 		err     error

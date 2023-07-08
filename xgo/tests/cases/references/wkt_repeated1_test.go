@@ -10,24 +10,25 @@ import (
 	"google.golang.org/protobuf/types/known/durationpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbreferences"
+	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbref"
+
 	"github.com/yu31/protoc-plugin-json/xgo/tests/utils"
 )
 
 // timestamp: 1686416585 -> 2023-06-11 01:03:05
-var seedWKTRepeated1 = &pbreferences.WKTRepeated1{
-	FEnumNumber1:       []pbreferences.Enum1{0, 2, 6},
-	FEnumNumberString1: []pbreferences.Enum1{0, 2, 6},
-	FEnumString1:       []pbreferences.Enum1{3, 5, 7},
+var seedWKTRepeated1 = &pbref.WKTRepeated1{
+	FEnumNumber1:       []pbref.Enum1{0, 2, 6},
+	FEnumNumberString1: []pbref.Enum1{0, 2, 6},
+	FEnumString1:       []pbref.Enum1{3, 5, 7},
 	FAnyNative1: []*any.Any{
-		utils.MustNewAny(&pbreferences.Message1{FString1: "s111", FString2: "s112", FString3: "s113"}),
-		utils.MustNewAny(&pbreferences.Message1{FString1: "s121", FString2: "s122", FString3: "s123"}),
-		utils.MustNewAny(&pbreferences.Message1{FString1: "s131", FString2: "s132", FString3: "s133"}),
+		utils.MustNewAny(&pbref.Message1{FString1: "s111", FString2: "s112", FString3: "s113"}),
+		utils.MustNewAny(&pbref.Message1{FString1: "s121", FString2: "s122", FString3: "s123"}),
+		utils.MustNewAny(&pbref.Message1{FString1: "s131", FString2: "s132", FString3: "s133"}),
 	},
 	FAnyProto1: []*any.Any{
-		utils.MustNewAny(&pbreferences.Message1{FString1: "s311", FString2: "s312", FString3: "s313"}),
-		utils.MustNewAny(&pbreferences.Message1{FString1: "s321", FString2: "s322", FString3: "s323"}),
-		utils.MustNewAny(&pbreferences.Message1{FString1: "s331", FString2: "s332", FString3: "s333"}),
+		utils.MustNewAny(&pbref.Message1{FString1: "s311", FString2: "s312", FString3: "s313"}),
+		utils.MustNewAny(&pbref.Message1{FString1: "s321", FString2: "s322", FString3: "s323"}),
+		utils.MustNewAny(&pbref.Message1{FString1: "s331", FString2: "s332", FString3: "s333"}),
 	},
 	FDurationNative1: []*durationpb.Duration{
 		{Seconds: 111, Nanos: 0}, {Seconds: 112, Nanos: 0}, {Seconds: 113, Nanos: 0},
@@ -109,7 +110,7 @@ func Test_Reference_WKT_Repeated1_General(t *testing.T) {
 
 	fmt.Println(string(bb))
 
-	dataNew := &pbreferences.WKTRepeated1{}
+	dataNew := &pbref.WKTRepeated1{}
 	err = dataNew.UnmarshalJSON(bb)
 	require.Nil(t, err)
 

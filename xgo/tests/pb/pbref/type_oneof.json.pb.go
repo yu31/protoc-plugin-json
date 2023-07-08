@@ -3,7 +3,7 @@
 // 		protoc-gen-gojson 0.0.1
 // source: tests/proto/cases/references/type_oneof.proto
 
-package pbreferences
+package pbref
 
 import (
 	errors "errors"
@@ -217,7 +217,7 @@ func (x *TypeOneOf1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message TypeOneOf1 in file tests/proto/cases/references/type_oneof.proto
 func (x *TypeOneOf1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbreferences.(*TypeOneOf1) is nil")
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbref.(*TypeOneOf1) is nil")
 	}
 	var (
 		oneOfIsFill_OneInt32    bool

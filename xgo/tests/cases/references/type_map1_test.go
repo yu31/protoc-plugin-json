@@ -7,10 +7,10 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbreferences"
+	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbref"
 )
 
-var seedTypeMap1 = &pbreferences.TypeMap1{
+var seedTypeMap1 = &pbref.TypeMap1{
 	FInt32A:    map[int32]int32{1111: 2111, 1112: 2112, 1113: 2113},
 	FInt32B:    map[int32]int32{1121: 2121, 1122: 2122, 1123: 2123},
 	FInt64A:    map[int64]int64{1211: 2211, 1212: 2212, 1213: 2213},
@@ -43,7 +43,7 @@ func Test_Reference_Type_Map1_General(t *testing.T) {
 
 	fmt.Println(string(bb))
 
-	dataNew := &pbreferences.TypeMap1{}
+	dataNew := &pbref.TypeMap1{}
 	err = dataNew.UnmarshalJSON(bb)
 	require.Nil(t, err)
 

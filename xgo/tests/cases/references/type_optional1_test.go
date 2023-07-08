@@ -7,11 +7,12 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbreferences"
+	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbref"
+
 	"github.com/yu31/protoc-plugin-json/xgo/tests/utils"
 )
 
-var seedTypeOptional1 = &pbreferences.TypeOptional1{
+var seedTypeOptional1 = &pbref.TypeOptional1{
 	FInt32A:    utils.PointerInt32(1111),
 	FInt32B:    utils.PointerInt32(1112),
 	FInt64A:    utils.PointerInt64(1211),
@@ -46,7 +47,7 @@ func Test_Reference_Type_Optional1_General(t *testing.T) {
 
 	fmt.Println(string(bb))
 
-	dataNew := &pbreferences.TypeOptional1{}
+	dataNew := &pbref.TypeOptional1{}
 	err = dataNew.UnmarshalJSON(bb)
 	require.Nil(t, err)
 

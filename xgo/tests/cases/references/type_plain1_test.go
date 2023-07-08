@@ -7,10 +7,10 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbreferences"
+	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbref"
 )
 
-var seedTypePlain1 = &pbreferences.TypePlain1{
+var seedTypePlain1 = &pbref.TypePlain1{
 	FInt32A:    1111,
 	FInt32B:    1112,
 	FInt64A:    1211,
@@ -45,7 +45,7 @@ func Test_Reference_Type_Plain1_General(t *testing.T) {
 
 	fmt.Println(string(bb))
 
-	dataNew := &pbreferences.TypePlain1{}
+	dataNew := &pbref.TypePlain1{}
 	err = dataNew.UnmarshalJSON(bb)
 	require.Nil(t, err)
 

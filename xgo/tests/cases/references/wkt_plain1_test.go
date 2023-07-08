@@ -9,17 +9,18 @@ import (
 	"google.golang.org/protobuf/types/known/durationpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbreferences"
+	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbref"
+
 	"github.com/yu31/protoc-plugin-json/xgo/tests/utils"
 )
 
 // timestamp: 1686416585 -> 2023-06-11 01:03:05
-var seedWKTPlain1 = &pbreferences.WKTPlain1{
+var seedWKTPlain1 = &pbref.WKTPlain1{
 	FEnumNumber1:                2,
 	FEnumNumberString1:          7,
 	FEnumString1:                5,
-	FAnyNative1:                 utils.MustNewAny(&pbreferences.Message1{FString1: "s101", FString2: "s102", FString3: "s103"}),
-	FAnyProto1:                  utils.MustNewAny(&pbreferences.Message1{FString1: "s301", FString2: "s302", FString3: "s303"}),
+	FAnyNative1:                 utils.MustNewAny(&pbref.Message1{FString1: "s101", FString2: "s102", FString3: "s103"}),
+	FAnyProto1:                  utils.MustNewAny(&pbref.Message1{FString1: "s301", FString2: "s302", FString3: "s303"}),
 	FDurationNative1:            &durationpb.Duration{Seconds: 111, Nanos: 0},
 	FDurationString1:            &durationpb.Duration{Seconds: 112, Nanos: 0},
 	FDurationNanosecond1:        &durationpb.Duration{Seconds: 113, Nanos: 0},
@@ -52,7 +53,7 @@ func Test_Reference_WKT_Plain1_General(t *testing.T) {
 
 	fmt.Println(string(bb))
 
-	dataNew := &pbreferences.WKTPlain1{}
+	dataNew := &pbref.WKTPlain1{}
 	err = dataNew.UnmarshalJSON(bb)
 	require.Nil(t, err)
 

@@ -3,7 +3,7 @@
 // 		protoc-gen-gojson 0.0.1
 // source: tests/proto/cases/references/type_map.proto
 
-package pbreferences
+package pbref
 
 import (
 	errors "errors"
@@ -296,7 +296,7 @@ func (x *TypeMap1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message TypeMap1 in file tests/proto/cases/references/type_map.proto
 func (x *TypeMap1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbreferences.(*TypeMap1) is nil")
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbref.(*TypeMap1) is nil")
 	}
 	var (
 		err     error
@@ -1315,7 +1315,7 @@ func (x *TypeMap2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message TypeMap2 in file tests/proto/cases/references/type_map.proto
 func (x *TypeMap2) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbreferences.(*TypeMap2) is nil")
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbref.(*TypeMap2) is nil")
 	}
 	var (
 		err     error

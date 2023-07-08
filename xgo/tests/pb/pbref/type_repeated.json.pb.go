@@ -3,7 +3,7 @@
 // 		protoc-gen-gojson 0.0.1
 // source: tests/proto/cases/references/type_repeated.proto
 
-package pbreferences
+package pbref
 
 import (
 	errors "errors"
@@ -292,7 +292,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message TypeRepeated1 in file tests/proto/cases/references/type_repeated.proto
 func (x *TypeRepeated1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbreferences.(*TypeRepeated1) is nil")
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbref.(*TypeRepeated1) is nil")
 	}
 	var (
 		err     error

@@ -9,96 +9,97 @@ import (
 	"google.golang.org/protobuf/types/known/durationpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbreferences"
+	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbref"
+
 	"github.com/yu31/protoc-plugin-json/xgo/tests/utils"
 )
 
 // timestamp: 1686416585 -> 2023-06-11 01:03:05
-var seedWKTOneOf1 = &pbreferences.WKTOneOf1{
-	OneEnum1: &pbreferences.WKTOneOf1_FEnumNumber1{FEnumNumber1: 2},
-	OneEnum2: &pbreferences.WKTOneOf1_FEnumNumberString1{FEnumNumberString1: 2},
-	OneAny1: &pbreferences.WKTOneOf1_FAnyNative1{
-		FAnyNative1: utils.MustNewAny(&pbreferences.Message1{FString1: "s101", FString2: "s102", FString3: "s103"}),
+var seedWKTOneOf1 = &pbref.WKTOneOf1{
+	OneEnum1: &pbref.WKTOneOf1_FEnumNumber1{FEnumNumber1: 2},
+	OneEnum2: &pbref.WKTOneOf1_FEnumNumberString1{FEnumNumberString1: 2},
+	OneAny1: &pbref.WKTOneOf1_FAnyNative1{
+		FAnyNative1: utils.MustNewAny(&pbref.Message1{FString1: "s101", FString2: "s102", FString3: "s103"}),
 	},
-	OneDuration1: &pbreferences.WKTOneOf1_FDurationNative1{
+	OneDuration1: &pbref.WKTOneOf1_FDurationNative1{
 		FDurationNative1: &durationpb.Duration{Seconds: 111, Nanos: 0},
 	},
-	OneDuration2: &pbreferences.WKTOneOf1_FDurationNanosecond1{
+	OneDuration2: &pbref.WKTOneOf1_FDurationNanosecond1{
 		FDurationNanosecond1: &durationpb.Duration{Seconds: 113, Nanos: 0},
 	},
-	OneDuration3: &pbreferences.WKTOneOf1_FDurationMillisecond1{
+	OneDuration3: &pbref.WKTOneOf1_FDurationMillisecond1{
 		FDurationMillisecond1: &durationpb.Duration{Seconds: 115, Nanos: 0},
 	},
-	OneDuration4: &pbreferences.WKTOneOf1_FDurationMinute1{
+	OneDuration4: &pbref.WKTOneOf1_FDurationMinute1{
 		FDurationMinute1: &durationpb.Duration{Seconds: 117, Nanos: 0},
 	},
-	OneDuration5: &pbreferences.WKTOneOf1_FDurationNanosecondString1{
+	OneDuration5: &pbref.WKTOneOf1_FDurationNanosecondString1{
 		FDurationNanosecondString1: &durationpb.Duration{Seconds: 113, Nanos: 0},
 	},
-	OneDuration6: &pbreferences.WKTOneOf1_FDurationMillisecondString1{
+	OneDuration6: &pbref.WKTOneOf1_FDurationMillisecondString1{
 		FDurationMillisecondString1: &durationpb.Duration{Seconds: 115, Nanos: 0},
 	},
-	OneDuration7: &pbreferences.WKTOneOf1_FDurationMinuteString1{
+	OneDuration7: &pbref.WKTOneOf1_FDurationMinuteString1{
 		FDurationMinuteString1: &durationpb.Duration{Seconds: 117, Nanos: 0},
 	},
-	OneTimestamp1: &pbreferences.WKTOneOf1_FTimestampNative1{
+	OneTimestamp1: &pbref.WKTOneOf1_FTimestampNative1{
 		FTimestampNative1: &timestamppb.Timestamp{Seconds: 1686416585, Nanos: 0},
 	},
-	OneTimestamp2: &pbreferences.WKTOneOf1_FTimestampUnixNano1{
+	OneTimestamp2: &pbref.WKTOneOf1_FTimestampUnixNano1{
 		FTimestampUnixNano1: &timestamppb.Timestamp{Seconds: 1686416585, Nanos: 0},
 	},
-	OneTimestamp3: &pbreferences.WKTOneOf1_FTimestampUnixMilli1{
+	OneTimestamp3: &pbref.WKTOneOf1_FTimestampUnixMilli1{
 		FTimestampUnixMilli1: &timestamppb.Timestamp{Seconds: 1686416585, Nanos: 0},
 	},
-	OneTimestamp4: &pbreferences.WKTOneOf1_FTimestampUnixNanoString1{
+	OneTimestamp4: &pbref.WKTOneOf1_FTimestampUnixNanoString1{
 		FTimestampUnixNanoString1: &timestamppb.Timestamp{Seconds: 1686416585, Nanos: 0},
 	},
-	OneTimestamp5: &pbreferences.WKTOneOf1_FTimestampUnixMilliString1{
+	OneTimestamp5: &pbref.WKTOneOf1_FTimestampUnixMilliString1{
 		FTimestampUnixMilliString1: &timestamppb.Timestamp{Seconds: 1686416585, Nanos: 0},
 	},
 }
 
 // timestamp: 1686416585 -> 2023-06-11 01:03:05
-var seedWKTOneOf2 = &pbreferences.WKTOneOf1{
-	OneEnum1: &pbreferences.WKTOneOf1_FEnumString1{FEnumString1: 5},
-	OneEnum2: &pbreferences.WKTOneOf1_FEnumNumberString2{FEnumNumberString2: 5},
-	OneAny1: &pbreferences.WKTOneOf1_FAnyProto1{
-		FAnyProto1: utils.MustNewAny(&pbreferences.Message1{FString1: "s301", FString2: "s302", FString3: "s303"}),
+var seedWKTOneOf2 = &pbref.WKTOneOf1{
+	OneEnum1: &pbref.WKTOneOf1_FEnumString1{FEnumString1: 5},
+	OneEnum2: &pbref.WKTOneOf1_FEnumNumberString2{FEnumNumberString2: 5},
+	OneAny1: &pbref.WKTOneOf1_FAnyProto1{
+		FAnyProto1: utils.MustNewAny(&pbref.Message1{FString1: "s301", FString2: "s302", FString3: "s303"}),
 	},
-	OneDuration1: &pbreferences.WKTOneOf1_FDurationString1{
+	OneDuration1: &pbref.WKTOneOf1_FDurationString1{
 		FDurationString1: &durationpb.Duration{Seconds: 112, Nanos: 0},
 	},
-	OneDuration2: &pbreferences.WKTOneOf1_FDurationMicrosecond1{
+	OneDuration2: &pbref.WKTOneOf1_FDurationMicrosecond1{
 		FDurationMicrosecond1: &durationpb.Duration{Seconds: 114, Nanos: 0},
 	},
-	OneDuration3: &pbreferences.WKTOneOf1_FDurationSecond1{
+	OneDuration3: &pbref.WKTOneOf1_FDurationSecond1{
 		FDurationSecond1: &durationpb.Duration{Seconds: 116, Nanos: 0},
 	},
-	OneDuration4: &pbreferences.WKTOneOf1_FDurationHour1{
+	OneDuration4: &pbref.WKTOneOf1_FDurationHour1{
 		FDurationHour1: &durationpb.Duration{Seconds: 7200, Nanos: 0},
 	},
-	OneDuration5: &pbreferences.WKTOneOf1_FDurationMicrosecondString1{
+	OneDuration5: &pbref.WKTOneOf1_FDurationMicrosecondString1{
 		FDurationMicrosecondString1: &durationpb.Duration{Seconds: 114, Nanos: 0},
 	},
-	OneDuration6: &pbreferences.WKTOneOf1_FDurationSecondString1{
+	OneDuration6: &pbref.WKTOneOf1_FDurationSecondString1{
 		FDurationSecondString1: &durationpb.Duration{Seconds: 116, Nanos: 0},
 	},
-	OneDuration7: &pbreferences.WKTOneOf1_FDurationHourString1{
+	OneDuration7: &pbref.WKTOneOf1_FDurationHourString1{
 		FDurationHourString1: &durationpb.Duration{Seconds: 7200, Nanos: 0},
 	},
-	OneTimestamp1: &pbreferences.WKTOneOf1_FTimestampTimeLayout1{
+	OneTimestamp1: &pbref.WKTOneOf1_FTimestampTimeLayout1{
 		FTimestampTimeLayout1: &timestamppb.Timestamp{Seconds: 1686416585, Nanos: 0},
 	},
-	OneTimestamp2: &pbreferences.WKTOneOf1_FTimestampUnixMicro1{
+	OneTimestamp2: &pbref.WKTOneOf1_FTimestampUnixMicro1{
 		FTimestampUnixMicro1: &timestamppb.Timestamp{Seconds: 1686416585, Nanos: 0},
 	},
-	OneTimestamp3: &pbreferences.WKTOneOf1_FTimestampUnixSec1{
+	OneTimestamp3: &pbref.WKTOneOf1_FTimestampUnixSec1{
 		FTimestampUnixSec1: &timestamppb.Timestamp{Seconds: 1686416585, Nanos: 0},
 	},
-	OneTimestamp4: &pbreferences.WKTOneOf1_FTimestampUnixMicroString1{
+	OneTimestamp4: &pbref.WKTOneOf1_FTimestampUnixMicroString1{
 		FTimestampUnixMicroString1: &timestamppb.Timestamp{Seconds: 1686416585, Nanos: 0},
 	},
-	OneTimestamp5: &pbreferences.WKTOneOf1_FTimestampUnixSecString1{
+	OneTimestamp5: &pbref.WKTOneOf1_FTimestampUnixSecString1{
 		FTimestampUnixSecString1: &timestamppb.Timestamp{Seconds: 1686416585, Nanos: 0},
 	},
 }
@@ -109,7 +110,7 @@ func Test_Reference_WKT_OneOf1_General1(t *testing.T) {
 
 	fmt.Println(string(bb))
 
-	dataNew := &pbreferences.WKTOneOf1{}
+	dataNew := &pbref.WKTOneOf1{}
 	err = dataNew.UnmarshalJSON(bb)
 	require.Nil(t, err)
 
@@ -122,7 +123,7 @@ func Test_Reference_WKT_OneOf1_General2(t *testing.T) {
 
 	fmt.Println(string(bb))
 
-	dataNew := &pbreferences.WKTOneOf1{}
+	dataNew := &pbref.WKTOneOf1{}
 	err = dataNew.UnmarshalJSON(bb)
 	require.Nil(t, err)
 

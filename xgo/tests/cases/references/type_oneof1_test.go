@@ -7,38 +7,38 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbreferences"
+	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbref"
 )
 
-var seedTypeOneOf1 = &pbreferences.TypeOneOf1{
-	OneInt32:    &pbreferences.TypeOneOf1_FInt32A{FInt32A: 1111},
-	OneInt64:    &pbreferences.TypeOneOf1_FInt64A{FInt64A: 1211},
-	OneUint32:   &pbreferences.TypeOneOf1_FUint32A{FUint32A: 1311},
-	OneUint64:   &pbreferences.TypeOneOf1_FUint64A{FUint64A: 1411},
-	OneSInt32:   &pbreferences.TypeOneOf1_FSint32A{FSint32A: 1511},
-	OneSInt64:   &pbreferences.TypeOneOf1_FSint64A{FSint64A: 1611},
-	OneSFixed32: &pbreferences.TypeOneOf1_FSfixed32A{FSfixed32A: 1711},
-	OneSFixed64: &pbreferences.TypeOneOf1_FSfixed64A{FSfixed64A: 1811},
-	OneFixed32:  &pbreferences.TypeOneOf1_FFixed32A{FFixed32A: 1911},
-	OneFixed64:  &pbreferences.TypeOneOf1_FFixed64A{FFixed64A: 2011},
-	OneFloat:    &pbreferences.TypeOneOf1_FFloat1{FFloat1: 2111.111},
-	OneDouble:   &pbreferences.TypeOneOf1_FDouble1{FDouble1: 2211.111},
-	OneBool:     &pbreferences.TypeOneOf1_FBool1{FBool1: true},
+var seedTypeOneOf1 = &pbref.TypeOneOf1{
+	OneInt32:    &pbref.TypeOneOf1_FInt32A{FInt32A: 1111},
+	OneInt64:    &pbref.TypeOneOf1_FInt64A{FInt64A: 1211},
+	OneUint32:   &pbref.TypeOneOf1_FUint32A{FUint32A: 1311},
+	OneUint64:   &pbref.TypeOneOf1_FUint64A{FUint64A: 1411},
+	OneSInt32:   &pbref.TypeOneOf1_FSint32A{FSint32A: 1511},
+	OneSInt64:   &pbref.TypeOneOf1_FSint64A{FSint64A: 1611},
+	OneSFixed32: &pbref.TypeOneOf1_FSfixed32A{FSfixed32A: 1711},
+	OneSFixed64: &pbref.TypeOneOf1_FSfixed64A{FSfixed64A: 1811},
+	OneFixed32:  &pbref.TypeOneOf1_FFixed32A{FFixed32A: 1911},
+	OneFixed64:  &pbref.TypeOneOf1_FFixed64A{FFixed64A: 2011},
+	OneFloat:    &pbref.TypeOneOf1_FFloat1{FFloat1: 2111.111},
+	OneDouble:   &pbref.TypeOneOf1_FDouble1{FDouble1: 2211.111},
+	OneBool:     &pbref.TypeOneOf1_FBool1{FBool1: true},
 }
-var seedTypeOneOf2 = &pbreferences.TypeOneOf1{
-	OneInt32:    &pbreferences.TypeOneOf1_FInt32B{FInt32B: 1112},
-	OneInt64:    &pbreferences.TypeOneOf1_FInt64B{FInt64B: 1212},
-	OneUint32:   &pbreferences.TypeOneOf1_FUint32B{FUint32B: 1312},
-	OneUint64:   &pbreferences.TypeOneOf1_FUint64B{FUint64B: 1412},
-	OneSInt32:   &pbreferences.TypeOneOf1_FSint32B{FSint32B: 1512},
-	OneSInt64:   &pbreferences.TypeOneOf1_FSint64B{FSint64B: 1612},
-	OneSFixed32: &pbreferences.TypeOneOf1_FSfixed32B{FSfixed32B: 1712},
-	OneSFixed64: &pbreferences.TypeOneOf1_FSfixed64B{FSfixed64B: 1812},
-	OneFixed32:  &pbreferences.TypeOneOf1_FFixed32B{FFixed32B: 1912},
-	OneFixed64:  &pbreferences.TypeOneOf1_FFixed64B{FFixed64B: 2012},
-	OneFloat:    &pbreferences.TypeOneOf1_FFloat2{FFloat2: 2112.111},
-	OneDouble:   &pbreferences.TypeOneOf1_FDouble2{FDouble2: 2212.111},
-	OneBool:     &pbreferences.TypeOneOf1_FBool2{FBool2: false},
+var seedTypeOneOf2 = &pbref.TypeOneOf1{
+	OneInt32:    &pbref.TypeOneOf1_FInt32B{FInt32B: 1112},
+	OneInt64:    &pbref.TypeOneOf1_FInt64B{FInt64B: 1212},
+	OneUint32:   &pbref.TypeOneOf1_FUint32B{FUint32B: 1312},
+	OneUint64:   &pbref.TypeOneOf1_FUint64B{FUint64B: 1412},
+	OneSInt32:   &pbref.TypeOneOf1_FSint32B{FSint32B: 1512},
+	OneSInt64:   &pbref.TypeOneOf1_FSint64B{FSint64B: 1612},
+	OneSFixed32: &pbref.TypeOneOf1_FSfixed32B{FSfixed32B: 1712},
+	OneSFixed64: &pbref.TypeOneOf1_FSfixed64B{FSfixed64B: 1812},
+	OneFixed32:  &pbref.TypeOneOf1_FFixed32B{FFixed32B: 1912},
+	OneFixed64:  &pbref.TypeOneOf1_FFixed64B{FFixed64B: 2012},
+	OneFloat:    &pbref.TypeOneOf1_FFloat2{FFloat2: 2112.111},
+	OneDouble:   &pbref.TypeOneOf1_FDouble2{FDouble2: 2212.111},
+	OneBool:     &pbref.TypeOneOf1_FBool2{FBool2: false},
 }
 
 func Test_Reference_Type_OneOf1_General1(t *testing.T) {
@@ -47,7 +47,7 @@ func Test_Reference_Type_OneOf1_General1(t *testing.T) {
 
 	fmt.Println(string(bb))
 
-	dataNew := &pbreferences.TypeOneOf1{}
+	dataNew := &pbref.TypeOneOf1{}
 	err = dataNew.UnmarshalJSON(bb)
 	require.Nil(t, err)
 
@@ -60,7 +60,7 @@ func Test_Reference_Type_OneOf1_General2(t *testing.T) {
 
 	fmt.Println(string(bb))
 
-	dataNew := &pbreferences.TypeOneOf1{}
+	dataNew := &pbref.TypeOneOf1{}
 	err = dataNew.UnmarshalJSON(bb)
 	require.Nil(t, err)
 

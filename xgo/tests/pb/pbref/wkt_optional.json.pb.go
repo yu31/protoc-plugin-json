@@ -3,7 +3,7 @@
 // 		protoc-gen-gojson 0.0.1
 // source: tests/proto/cases/references/wkt_optional.proto
 
-package pbreferences
+package pbref
 
 import (
 	errors "errors"
@@ -113,7 +113,7 @@ func (x *WKTOptional1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message WKTOptional1 in file tests/proto/cases/references/wkt_optional.proto
 func (x *WKTOptional1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbreferences.(*WKTOptional1) is nil")
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbref.(*WKTOptional1) is nil")
 	}
 	var (
 		err     error
