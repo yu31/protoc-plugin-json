@@ -302,7 +302,7 @@ func (x *TypeRepeated1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -1130,6 +1130,149 @@ LOOP_SCAN:
 			}
 			// truncate the slice to consistent with standard library json.
 			x.FBool2 = x.FBool2[:i]
+		default:
+			if err = decoder.DiscardValue(jsonKey); err != nil {
+				return err
+			}
+		} // end switch
+	}
+	return nil
+}
+
+// MarshalJSON implements interface json.Marshaler for proto message TypeRepeated2 in file tests/proto/cases/references/type_repeated.proto
+func (x *TypeRepeated2) MarshalJSON() ([]byte, error) {
+	if x == nil {
+		return []byte("null"), nil
+	}
+	var err error
+	encoder := jsonencoder.New(48)
+
+	// Add begin JSON identifier
+	encoder.AppendObjectBegin()
+
+	encoder.AppendObjectKey("f_string1")
+	if x.FString1 != nil {
+		encoder.AppendArrayBegin()
+		for _, ri := range x.FString1 {
+			encoder.AppendLiteralString(ri)
+		}
+		encoder.AppendArrayEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+	encoder.AppendObjectKey("f_bytes1")
+	if x.FBytes1 != nil {
+		encoder.AppendArrayBegin()
+		for _, ri := range x.FBytes1 {
+			encoder.AppendLiteralBytes(ri)
+		}
+		encoder.AppendArrayEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+
+	// Add end JSON identifier
+	encoder.AppendObjectEnd()
+	return encoder.Bytes(), err
+}
+
+// UnmarshalJSON implements json.Unmarshaler for proto message TypeRepeated2 in file tests/proto/cases/references/type_repeated.proto
+func (x *TypeRepeated2) UnmarshalJSON(b []byte) error {
+	if x == nil {
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbref.(*TypeRepeated2) is nil")
+	}
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
+		return err
+	}
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
+		return err
+	}
+	if isNULL {
+		return nil
+	}
+LOOP_SCAN:
+	for { // Loop to scan object.
+		var (
+			jsonKey string
+			isEnd   bool
+		)
+		if isEnd, err = decoder.BeforeScanNext(); err != nil {
+			return err
+		}
+		if isEnd {
+			break LOOP_SCAN
+		}
+		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+			return err
+		}
+		switch jsonKey { // match the jsonKey
+		case "f_string1":
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FString1 = nil
+				continue LOOP_SCAN
+			}
+			if x.FString1 == nil {
+				x.FString1 = make([]string, 0)
+			}
+			i := 0
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var vv string
+				if i >= len(x.FString1) {
+					x.FString1 = append(x.FString1, vv)
+				}
+				if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+					return err
+				}
+				x.FString1[i] = vv
+				i++
+			}
+			// truncate the slice to consistent with standard library json.
+			x.FString1 = x.FString1[:i]
+		case "f_bytes1":
+			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FBytes1 = nil
+				continue LOOP_SCAN
+			}
+			if x.FBytes1 == nil {
+				x.FBytes1 = make([][]byte, 0)
+			}
+			i := 0
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var vv []byte
+				if i >= len(x.FBytes1) {
+					x.FBytes1 = append(x.FBytes1, vv)
+				}
+				if vv, err = decoder.ReadLiteralBytes(jsonKey); err != nil {
+					return err
+				}
+				x.FBytes1[i] = vv
+				i++
+			}
+			// truncate the slice to consistent with standard library json.
+			x.FBytes1 = x.FBytes1[:i]
 		default:
 			if err = decoder.DiscardValue(jsonKey); err != nil {
 				return err

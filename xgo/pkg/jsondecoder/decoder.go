@@ -1,6 +1,9 @@
 package jsondecoder
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 // PhasePanicMsg is used as a panic message when we end up with something that
 // shouldn't happen. It can indicate a bug in the JSON decoder, or that
@@ -25,7 +28,6 @@ func New(data []byte) (*Decoder, error) {
 			endTop:     false,
 			parseState: nil,
 			err:        nil,
-			bytes:      0,
 		},
 	}
 	return d, nil
@@ -48,7 +50,7 @@ func (dec *Decoder) readItem() ([]byte, error) {
 			return nil, err
 		}
 	default:
-		// FIXME: return error instead of panic ?
+		// TODO: return error instead of panic ?
 		panic(fmt.Sprintf("%s, opCode: %d", PhasePanicMsg, dec.opCode))
 	}
 	end := dec.offset - 1 // end index.
@@ -62,7 +64,6 @@ func (dec *Decoder) scanWhile(op OpCode) (err error) {
 	var ok bool
 	s, data, i := &dec.scan, dec.data, dec.offset
 	for i < len(data) {
-		s.bytes++
 		newOp := s.step(s, data[i])
 		i++
 		if newOp != op {
@@ -88,7 +89,6 @@ func (dec *Decoder) skip() (err error) {
 	s, data, i := &dec.scan, dec.data, dec.offset
 	depth := len(s.parseState)
 	for {
-		s.bytes++
 		op := s.step(s, data[i])
 		i++
 		if len(s.parseState) < depth {
@@ -108,7 +108,6 @@ func (dec *Decoder) skip() (err error) {
 // notice: used to after read object or array if them not NULL.
 func (dec *Decoder) scanNext() (err error) {
 	if dec.offset < len(dec.data) {
-		dec.scan.bytes++
 		dec.opCode = dec.scan.step(&dec.scan, dec.data[dec.offset])
 		dec.offset++
 	} else {
@@ -122,7 +121,7 @@ func (dec *Decoder) scanNext() (err error) {
 	return nil
 }
 
-// Check if the object or the array or the map is NULL before reading.
+// beforeReadObject check if the object or the array or the map is NULL before reading.
 func (dec *Decoder) beforeReadObject() (isNULL bool, err error) {
 	// Advance scanner to the next token.
 	// The next toke is literal beginning(`null`) or object beginning character(`{`) or array beginning character(`[`).
@@ -138,11 +137,7 @@ func (dec *Decoder) beforeReadObject() (isNULL bool, err error) {
 			return
 		}
 		if item[0] != 'n' {
-			// TODO: Optimize the error output.
-			err = &SyntaxError{
-				reason: fmt.Sprintf("unexpected of JSON input <%s>, expecting literanl null", string(item)),
-				Offset: dec.offset,
-			}
+			err = errors.New("unexpected begin of JSON input for object or array")
 			return false, err
 		}
 		return true, nil
@@ -150,7 +145,7 @@ func (dec *Decoder) beforeReadObject() (isNULL bool, err error) {
 		// The token is object beginning character(`{`) or array beginning character(`[`).
 		// And it represents the object or array is not NULL.
 	default:
-		// FIXME: use error instead of panics ?
+		// TODO: use error instead of panics ?
 		panic(fmt.Sprintf("%s, opCode: %d", PhasePanicMsg, dec.opCode))
 	}
 
@@ -159,7 +154,7 @@ func (dec *Decoder) beforeReadObject() (isNULL bool, err error) {
 	return false, nil
 }
 
-// Check if it has more items in the object or array before reading.
+// beforeReadNext check if it has more items in the object or array before reading.
 func (dec *Decoder) beforeReadNext() (isEnd bool, err error) {
 	/*
 		The following cases will be matched:
@@ -211,7 +206,7 @@ func (dec *Decoder) beforeReadNext() (isEnd bool, err error) {
 	//case scanLiteralBegin, scanObjectBegin, scanObjectValue, scanArrayElem, scanArrayBegin:
 	case scanLiteralBegin, scanObjectBegin:
 	default:
-		// FIXME: return error instead of panic ?
+		// TODO: return error instead of panic ?
 		panic(fmt.Sprintf("%s, opCode: %d", PhasePanicMsg, dec.opCode))
 	}
 
@@ -220,7 +215,7 @@ func (dec *Decoder) beforeReadNext() (isEnd bool, err error) {
 	return false, nil
 }
 
-// Read the key in an object.
+// readObjectKey read the key in an object.
 func (dec *Decoder) readObjectKey() (key []byte, err error) {
 	// Assert the current token.
 	if dec.opCode != scanLiteralBegin {
@@ -253,7 +248,7 @@ func (dec *Decoder) readObjectKey() (key []byte, err error) {
 	return key, err
 }
 
-// Read the next item as object value or array element.
+// readLiteralValue read the next item as object value or array element.
 func (dec *Decoder) readLiteralValue() (value []byte, err error) {
 	if dec.opCode == scanObjectKey {
 		// The opCode is scanObjectKey represents the last operation is readObjectKey.
@@ -278,6 +273,7 @@ func (dec *Decoder) readLiteralValue() (value []byte, err error) {
 	return value, nil
 }
 
+// nextLiteralIsNULL check whether the next literal is null.
 func (dec *Decoder) nextLiteralIsNULL() (isNULL bool, err error) {
 	if dec.opCode == scanObjectKey {
 		// The opCode is scanObjectKey represents the last operation is readObjectKey.

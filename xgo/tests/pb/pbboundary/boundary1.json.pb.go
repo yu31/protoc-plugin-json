@@ -48,7 +48,7 @@ func (x *Message1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -137,7 +137,7 @@ func (x *Repeated1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -240,7 +240,7 @@ func (x *Map1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -358,7 +358,7 @@ func (x *Complex1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -546,7 +546,7 @@ func (x *Complex2) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -758,7 +758,7 @@ func (x *Complex2_Level1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -888,7 +888,7 @@ func (x *Complex2_Level2) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -1027,7 +1027,7 @@ func (x *Complex2_Level3) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
 	if isNULL {

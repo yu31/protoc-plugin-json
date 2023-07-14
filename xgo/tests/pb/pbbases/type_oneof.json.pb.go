@@ -53,7 +53,7 @@ func (x *MessageOneOf1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -138,7 +138,7 @@ func (x *MessageOneOf1_Embed1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -223,7 +223,7 @@ func (x *MessageOneOf1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -660,7 +660,7 @@ func (x *TypeOneOf1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -1913,7 +1913,7 @@ func (x *TypeOneOfHide1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
 	if isNULL {

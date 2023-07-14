@@ -94,7 +94,7 @@ func (x *TypePlain1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -272,6 +272,83 @@ LOOP_SCAN:
 				return err
 			}
 			x.FBool2 = vv
+		default:
+			if err = decoder.DiscardValue(jsonKey); err != nil {
+				return err
+			}
+		} // end switch
+	}
+	return nil
+}
+
+// MarshalJSON implements interface json.Marshaler for proto message TypePlain2 in file tests/proto/cases/references/type_plain.proto
+func (x *TypePlain2) MarshalJSON() ([]byte, error) {
+	if x == nil {
+		return []byte("null"), nil
+	}
+	var err error
+	encoder := jsonencoder.New(48)
+
+	// Add begin JSON identifier
+	encoder.AppendObjectBegin()
+
+	encoder.AppendObjectKey("f_string1")
+	encoder.AppendLiteralString(x.FString1)
+	encoder.AppendObjectKey("f_bytes1")
+	encoder.AppendLiteralBytes(x.FBytes1)
+
+	// Add end JSON identifier
+	encoder.AppendObjectEnd()
+	return encoder.Bytes(), err
+}
+
+// UnmarshalJSON implements json.Unmarshaler for proto message TypePlain2 in file tests/proto/cases/references/type_plain.proto
+func (x *TypePlain2) UnmarshalJSON(b []byte) error {
+	if x == nil {
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbref.(*TypePlain2) is nil")
+	}
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
+		return err
+	}
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
+		return err
+	}
+	if isNULL {
+		return nil
+	}
+LOOP_SCAN:
+	for { // Loop to scan object.
+		var (
+			jsonKey string
+			isEnd   bool
+		)
+		if isEnd, err = decoder.BeforeScanNext(); err != nil {
+			return err
+		}
+		if isEnd {
+			break LOOP_SCAN
+		}
+		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+			return err
+		}
+		switch jsonKey { // match the jsonKey
+		case "f_string1":
+			var vv string
+			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+				return err
+			}
+			x.FString1 = vv
+		case "f_bytes1":
+			var vv []byte
+			if vv, err = decoder.ReadLiteralBytes(jsonKey); err != nil {
+				return err
+			}
+			x.FBytes1 = vv
 		default:
 			if err = decoder.DiscardValue(jsonKey); err != nil {
 				return err

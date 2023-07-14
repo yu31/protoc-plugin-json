@@ -500,6 +500,62 @@ func (x *TypeMap2) GetFBool2() map[bool]bool {
 	return nil
 }
 
+// Only used to test type error.
+type TypeMap3 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FString1 map[string]string `protobuf:"bytes,1,rep,name=f_string1,json=fString1,proto3" json:"f_string1,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	FBytes1  map[string][]byte `protobuf:"bytes,2,rep,name=f_bytes1,json=fBytes1,proto3" json:"f_bytes1,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+}
+
+func (x *TypeMap3) Reset() {
+	*x = TypeMap3{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tests_proto_cases_references_type_map_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TypeMap3) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TypeMap3) ProtoMessage() {}
+
+func (x *TypeMap3) ProtoReflect() protoreflect.Message {
+	mi := &file_tests_proto_cases_references_type_map_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TypeMap3.ProtoReflect.Descriptor instead.
+func (*TypeMap3) Descriptor() ([]byte, []int) {
+	return file_tests_proto_cases_references_type_map_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *TypeMap3) GetFString1() map[string]string {
+	if x != nil {
+		return x.FString1
+	}
+	return nil
+}
+
+func (x *TypeMap3) GetFBytes1() map[string][]byte {
+	if x != nil {
+		return x.FBytes1
+	}
+	return nil
+}
+
 var File_tests_proto_cases_references_type_map_proto protoreflect.FileDescriptor
 
 var file_tests_proto_cases_references_type_map_proto_rawDesc = []byte{
@@ -964,9 +1020,26 @@ var file_tests_proto_cases_references_type_map_proto_rawDesc = []byte{
 	0x46, 0x42, 0x6f, 0x6f, 0x6c, 0x32, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b,
 	0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a,
 	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05, 0x76, 0x61,
-	0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x42, 0x14, 0x5a, 0x12, 0x78, 0x67, 0x6f, 0x2f, 0x74,
-	0x65, 0x73, 0x74, 0x73, 0x2f, 0x70, 0x62, 0x2f, 0x70, 0x62, 0x72, 0x65, 0x66, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0x8a, 0x02, 0x0a, 0x08, 0x54, 0x79, 0x70, 0x65,
+	0x4d, 0x61, 0x70, 0x33, 0x12, 0x43, 0x0a, 0x09, 0x66, 0x5f, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67,
+	0x31, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x6d,
+	0x61, 0x70, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x4d, 0x61, 0x70, 0x33, 0x2e, 0x46, 0x53, 0x74, 0x72,
+	0x69, 0x6e, 0x67, 0x31, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x42, 0x04, 0x8a, 0xa2, 0x1f, 0x00, 0x52,
+	0x08, 0x66, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31, 0x12, 0x40, 0x0a, 0x08, 0x66, 0x5f, 0x62,
+	0x79, 0x74, 0x65, 0x73, 0x31, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x74, 0x79,
+	0x70, 0x65, 0x5f, 0x6d, 0x61, 0x70, 0x2e, 0x54, 0x79, 0x70, 0x65, 0x4d, 0x61, 0x70, 0x33, 0x2e,
+	0x46, 0x42, 0x79, 0x74, 0x65, 0x73, 0x31, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x42, 0x04, 0x8a, 0xa2,
+	0x1f, 0x00, 0x52, 0x07, 0x66, 0x42, 0x79, 0x74, 0x65, 0x73, 0x31, 0x1a, 0x3b, 0x0a, 0x0d, 0x46,
+	0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03,
+	0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14,
+	0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76,
+	0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x1a, 0x3a, 0x0a, 0x0c, 0x46, 0x42, 0x79, 0x74,
+	0x65, 0x73, 0x31, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61,
+	0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65,
+	0x3a, 0x02, 0x38, 0x01, 0x42, 0x14, 0x5a, 0x12, 0x78, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74,
+	0x73, 0x2f, 0x70, 0x62, 0x2f, 0x70, 0x62, 0x72, 0x65, 0x66, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -981,117 +1054,122 @@ func file_tests_proto_cases_references_type_map_proto_rawDescGZIP() []byte {
 	return file_tests_proto_cases_references_type_map_proto_rawDescData
 }
 
-var file_tests_proto_cases_references_type_map_proto_msgTypes = make([]protoimpl.MessageInfo, 52)
+var file_tests_proto_cases_references_type_map_proto_msgTypes = make([]protoimpl.MessageInfo, 55)
 var file_tests_proto_cases_references_type_map_proto_goTypes = []interface{}{
 	(*TypeMap1)(nil), // 0: type_map.TypeMap1
 	(*TypeMap2)(nil), // 1: type_map.TypeMap2
-	nil,              // 2: type_map.TypeMap1.FInt32aEntry
-	nil,              // 3: type_map.TypeMap1.FInt32bEntry
-	nil,              // 4: type_map.TypeMap1.FInt64aEntry
-	nil,              // 5: type_map.TypeMap1.FInt64bEntry
-	nil,              // 6: type_map.TypeMap1.FUint32aEntry
-	nil,              // 7: type_map.TypeMap1.FUint32bEntry
-	nil,              // 8: type_map.TypeMap1.FUint64aEntry
-	nil,              // 9: type_map.TypeMap1.FUint64bEntry
-	nil,              // 10: type_map.TypeMap1.FSint32aEntry
-	nil,              // 11: type_map.TypeMap1.FSint32bEntry
-	nil,              // 12: type_map.TypeMap1.FSint64aEntry
-	nil,              // 13: type_map.TypeMap1.FSint64bEntry
-	nil,              // 14: type_map.TypeMap1.FSfixed32aEntry
-	nil,              // 15: type_map.TypeMap1.FSfixed32bEntry
-	nil,              // 16: type_map.TypeMap1.FSfixed64aEntry
-	nil,              // 17: type_map.TypeMap1.FSfixed64bEntry
-	nil,              // 18: type_map.TypeMap1.FFixed32aEntry
-	nil,              // 19: type_map.TypeMap1.FFixed32bEntry
-	nil,              // 20: type_map.TypeMap1.FFixed64aEntry
-	nil,              // 21: type_map.TypeMap1.FFixed64bEntry
-	nil,              // 22: type_map.TypeMap1.FFloat1Entry
-	nil,              // 23: type_map.TypeMap1.FFloat2Entry
-	nil,              // 24: type_map.TypeMap1.FDouble1Entry
-	nil,              // 25: type_map.TypeMap1.FDouble2Entry
-	nil,              // 26: type_map.TypeMap2.FInt32aEntry
-	nil,              // 27: type_map.TypeMap2.FInt32bEntry
-	nil,              // 28: type_map.TypeMap2.FInt64aEntry
-	nil,              // 29: type_map.TypeMap2.FInt64bEntry
-	nil,              // 30: type_map.TypeMap2.FUint32aEntry
-	nil,              // 31: type_map.TypeMap2.FUint32bEntry
-	nil,              // 32: type_map.TypeMap2.FUint64aEntry
-	nil,              // 33: type_map.TypeMap2.FUint64bEntry
-	nil,              // 34: type_map.TypeMap2.FSint32aEntry
-	nil,              // 35: type_map.TypeMap2.FSint32bEntry
-	nil,              // 36: type_map.TypeMap2.FSint64aEntry
-	nil,              // 37: type_map.TypeMap2.FSint64bEntry
-	nil,              // 38: type_map.TypeMap2.FSfixed32aEntry
-	nil,              // 39: type_map.TypeMap2.FSfixed32bEntry
-	nil,              // 40: type_map.TypeMap2.FSfixed64aEntry
-	nil,              // 41: type_map.TypeMap2.FSfixed64bEntry
-	nil,              // 42: type_map.TypeMap2.FFixed32aEntry
-	nil,              // 43: type_map.TypeMap2.FFixed32bEntry
-	nil,              // 44: type_map.TypeMap2.FFixed64aEntry
-	nil,              // 45: type_map.TypeMap2.FFixed64bEntry
-	nil,              // 46: type_map.TypeMap2.FFloat1Entry
-	nil,              // 47: type_map.TypeMap2.FFloat2Entry
-	nil,              // 48: type_map.TypeMap2.FDouble1Entry
-	nil,              // 49: type_map.TypeMap2.FDouble2Entry
-	nil,              // 50: type_map.TypeMap2.FBool1Entry
-	nil,              // 51: type_map.TypeMap2.FBool2Entry
+	(*TypeMap3)(nil), // 2: type_map.TypeMap3
+	nil,              // 3: type_map.TypeMap1.FInt32aEntry
+	nil,              // 4: type_map.TypeMap1.FInt32bEntry
+	nil,              // 5: type_map.TypeMap1.FInt64aEntry
+	nil,              // 6: type_map.TypeMap1.FInt64bEntry
+	nil,              // 7: type_map.TypeMap1.FUint32aEntry
+	nil,              // 8: type_map.TypeMap1.FUint32bEntry
+	nil,              // 9: type_map.TypeMap1.FUint64aEntry
+	nil,              // 10: type_map.TypeMap1.FUint64bEntry
+	nil,              // 11: type_map.TypeMap1.FSint32aEntry
+	nil,              // 12: type_map.TypeMap1.FSint32bEntry
+	nil,              // 13: type_map.TypeMap1.FSint64aEntry
+	nil,              // 14: type_map.TypeMap1.FSint64bEntry
+	nil,              // 15: type_map.TypeMap1.FSfixed32aEntry
+	nil,              // 16: type_map.TypeMap1.FSfixed32bEntry
+	nil,              // 17: type_map.TypeMap1.FSfixed64aEntry
+	nil,              // 18: type_map.TypeMap1.FSfixed64bEntry
+	nil,              // 19: type_map.TypeMap1.FFixed32aEntry
+	nil,              // 20: type_map.TypeMap1.FFixed32bEntry
+	nil,              // 21: type_map.TypeMap1.FFixed64aEntry
+	nil,              // 22: type_map.TypeMap1.FFixed64bEntry
+	nil,              // 23: type_map.TypeMap1.FFloat1Entry
+	nil,              // 24: type_map.TypeMap1.FFloat2Entry
+	nil,              // 25: type_map.TypeMap1.FDouble1Entry
+	nil,              // 26: type_map.TypeMap1.FDouble2Entry
+	nil,              // 27: type_map.TypeMap2.FInt32aEntry
+	nil,              // 28: type_map.TypeMap2.FInt32bEntry
+	nil,              // 29: type_map.TypeMap2.FInt64aEntry
+	nil,              // 30: type_map.TypeMap2.FInt64bEntry
+	nil,              // 31: type_map.TypeMap2.FUint32aEntry
+	nil,              // 32: type_map.TypeMap2.FUint32bEntry
+	nil,              // 33: type_map.TypeMap2.FUint64aEntry
+	nil,              // 34: type_map.TypeMap2.FUint64bEntry
+	nil,              // 35: type_map.TypeMap2.FSint32aEntry
+	nil,              // 36: type_map.TypeMap2.FSint32bEntry
+	nil,              // 37: type_map.TypeMap2.FSint64aEntry
+	nil,              // 38: type_map.TypeMap2.FSint64bEntry
+	nil,              // 39: type_map.TypeMap2.FSfixed32aEntry
+	nil,              // 40: type_map.TypeMap2.FSfixed32bEntry
+	nil,              // 41: type_map.TypeMap2.FSfixed64aEntry
+	nil,              // 42: type_map.TypeMap2.FSfixed64bEntry
+	nil,              // 43: type_map.TypeMap2.FFixed32aEntry
+	nil,              // 44: type_map.TypeMap2.FFixed32bEntry
+	nil,              // 45: type_map.TypeMap2.FFixed64aEntry
+	nil,              // 46: type_map.TypeMap2.FFixed64bEntry
+	nil,              // 47: type_map.TypeMap2.FFloat1Entry
+	nil,              // 48: type_map.TypeMap2.FFloat2Entry
+	nil,              // 49: type_map.TypeMap2.FDouble1Entry
+	nil,              // 50: type_map.TypeMap2.FDouble2Entry
+	nil,              // 51: type_map.TypeMap2.FBool1Entry
+	nil,              // 52: type_map.TypeMap2.FBool2Entry
+	nil,              // 53: type_map.TypeMap3.FString1Entry
+	nil,              // 54: type_map.TypeMap3.FBytes1Entry
 }
 var file_tests_proto_cases_references_type_map_proto_depIdxs = []int32{
-	2,  // 0: type_map.TypeMap1.f_int32a:type_name -> type_map.TypeMap1.FInt32aEntry
-	3,  // 1: type_map.TypeMap1.f_int32b:type_name -> type_map.TypeMap1.FInt32bEntry
-	4,  // 2: type_map.TypeMap1.f_int64a:type_name -> type_map.TypeMap1.FInt64aEntry
-	5,  // 3: type_map.TypeMap1.f_int64b:type_name -> type_map.TypeMap1.FInt64bEntry
-	6,  // 4: type_map.TypeMap1.f_uint32a:type_name -> type_map.TypeMap1.FUint32aEntry
-	7,  // 5: type_map.TypeMap1.f_uint32b:type_name -> type_map.TypeMap1.FUint32bEntry
-	8,  // 6: type_map.TypeMap1.f_uint64a:type_name -> type_map.TypeMap1.FUint64aEntry
-	9,  // 7: type_map.TypeMap1.f_uint64b:type_name -> type_map.TypeMap1.FUint64bEntry
-	10, // 8: type_map.TypeMap1.f_sint32a:type_name -> type_map.TypeMap1.FSint32aEntry
-	11, // 9: type_map.TypeMap1.f_sint32b:type_name -> type_map.TypeMap1.FSint32bEntry
-	12, // 10: type_map.TypeMap1.f_sint64a:type_name -> type_map.TypeMap1.FSint64aEntry
-	13, // 11: type_map.TypeMap1.f_sint64b:type_name -> type_map.TypeMap1.FSint64bEntry
-	14, // 12: type_map.TypeMap1.f_sfixed32a:type_name -> type_map.TypeMap1.FSfixed32aEntry
-	15, // 13: type_map.TypeMap1.f_sfixed32b:type_name -> type_map.TypeMap1.FSfixed32bEntry
-	16, // 14: type_map.TypeMap1.f_sfixed64a:type_name -> type_map.TypeMap1.FSfixed64aEntry
-	17, // 15: type_map.TypeMap1.f_sfixed64b:type_name -> type_map.TypeMap1.FSfixed64bEntry
-	18, // 16: type_map.TypeMap1.f_fixed32a:type_name -> type_map.TypeMap1.FFixed32aEntry
-	19, // 17: type_map.TypeMap1.f_fixed32b:type_name -> type_map.TypeMap1.FFixed32bEntry
-	20, // 18: type_map.TypeMap1.f_fixed64a:type_name -> type_map.TypeMap1.FFixed64aEntry
-	21, // 19: type_map.TypeMap1.f_fixed64b:type_name -> type_map.TypeMap1.FFixed64bEntry
-	22, // 20: type_map.TypeMap1.f_float1:type_name -> type_map.TypeMap1.FFloat1Entry
-	23, // 21: type_map.TypeMap1.f_float2:type_name -> type_map.TypeMap1.FFloat2Entry
-	24, // 22: type_map.TypeMap1.f_double1:type_name -> type_map.TypeMap1.FDouble1Entry
-	25, // 23: type_map.TypeMap1.f_double2:type_name -> type_map.TypeMap1.FDouble2Entry
-	26, // 24: type_map.TypeMap2.f_int32a:type_name -> type_map.TypeMap2.FInt32aEntry
-	27, // 25: type_map.TypeMap2.f_int32b:type_name -> type_map.TypeMap2.FInt32bEntry
-	28, // 26: type_map.TypeMap2.f_int64a:type_name -> type_map.TypeMap2.FInt64aEntry
-	29, // 27: type_map.TypeMap2.f_int64b:type_name -> type_map.TypeMap2.FInt64bEntry
-	30, // 28: type_map.TypeMap2.f_uint32a:type_name -> type_map.TypeMap2.FUint32aEntry
-	31, // 29: type_map.TypeMap2.f_uint32b:type_name -> type_map.TypeMap2.FUint32bEntry
-	32, // 30: type_map.TypeMap2.f_uint64a:type_name -> type_map.TypeMap2.FUint64aEntry
-	33, // 31: type_map.TypeMap2.f_uint64b:type_name -> type_map.TypeMap2.FUint64bEntry
-	34, // 32: type_map.TypeMap2.f_sint32a:type_name -> type_map.TypeMap2.FSint32aEntry
-	35, // 33: type_map.TypeMap2.f_sint32b:type_name -> type_map.TypeMap2.FSint32bEntry
-	36, // 34: type_map.TypeMap2.f_sint64a:type_name -> type_map.TypeMap2.FSint64aEntry
-	37, // 35: type_map.TypeMap2.f_sint64b:type_name -> type_map.TypeMap2.FSint64bEntry
-	38, // 36: type_map.TypeMap2.f_sfixed32a:type_name -> type_map.TypeMap2.FSfixed32aEntry
-	39, // 37: type_map.TypeMap2.f_sfixed32b:type_name -> type_map.TypeMap2.FSfixed32bEntry
-	40, // 38: type_map.TypeMap2.f_sfixed64a:type_name -> type_map.TypeMap2.FSfixed64aEntry
-	41, // 39: type_map.TypeMap2.f_sfixed64b:type_name -> type_map.TypeMap2.FSfixed64bEntry
-	42, // 40: type_map.TypeMap2.f_fixed32a:type_name -> type_map.TypeMap2.FFixed32aEntry
-	43, // 41: type_map.TypeMap2.f_fixed32b:type_name -> type_map.TypeMap2.FFixed32bEntry
-	44, // 42: type_map.TypeMap2.f_fixed64a:type_name -> type_map.TypeMap2.FFixed64aEntry
-	45, // 43: type_map.TypeMap2.f_fixed64b:type_name -> type_map.TypeMap2.FFixed64bEntry
-	46, // 44: type_map.TypeMap2.f_float1:type_name -> type_map.TypeMap2.FFloat1Entry
-	47, // 45: type_map.TypeMap2.f_float2:type_name -> type_map.TypeMap2.FFloat2Entry
-	48, // 46: type_map.TypeMap2.f_double1:type_name -> type_map.TypeMap2.FDouble1Entry
-	49, // 47: type_map.TypeMap2.f_double2:type_name -> type_map.TypeMap2.FDouble2Entry
-	50, // 48: type_map.TypeMap2.f_bool1:type_name -> type_map.TypeMap2.FBool1Entry
-	51, // 49: type_map.TypeMap2.f_bool2:type_name -> type_map.TypeMap2.FBool2Entry
-	50, // [50:50] is the sub-list for method output_type
-	50, // [50:50] is the sub-list for method input_type
-	50, // [50:50] is the sub-list for extension type_name
-	50, // [50:50] is the sub-list for extension extendee
-	0,  // [0:50] is the sub-list for field type_name
+	3,  // 0: type_map.TypeMap1.f_int32a:type_name -> type_map.TypeMap1.FInt32aEntry
+	4,  // 1: type_map.TypeMap1.f_int32b:type_name -> type_map.TypeMap1.FInt32bEntry
+	5,  // 2: type_map.TypeMap1.f_int64a:type_name -> type_map.TypeMap1.FInt64aEntry
+	6,  // 3: type_map.TypeMap1.f_int64b:type_name -> type_map.TypeMap1.FInt64bEntry
+	7,  // 4: type_map.TypeMap1.f_uint32a:type_name -> type_map.TypeMap1.FUint32aEntry
+	8,  // 5: type_map.TypeMap1.f_uint32b:type_name -> type_map.TypeMap1.FUint32bEntry
+	9,  // 6: type_map.TypeMap1.f_uint64a:type_name -> type_map.TypeMap1.FUint64aEntry
+	10, // 7: type_map.TypeMap1.f_uint64b:type_name -> type_map.TypeMap1.FUint64bEntry
+	11, // 8: type_map.TypeMap1.f_sint32a:type_name -> type_map.TypeMap1.FSint32aEntry
+	12, // 9: type_map.TypeMap1.f_sint32b:type_name -> type_map.TypeMap1.FSint32bEntry
+	13, // 10: type_map.TypeMap1.f_sint64a:type_name -> type_map.TypeMap1.FSint64aEntry
+	14, // 11: type_map.TypeMap1.f_sint64b:type_name -> type_map.TypeMap1.FSint64bEntry
+	15, // 12: type_map.TypeMap1.f_sfixed32a:type_name -> type_map.TypeMap1.FSfixed32aEntry
+	16, // 13: type_map.TypeMap1.f_sfixed32b:type_name -> type_map.TypeMap1.FSfixed32bEntry
+	17, // 14: type_map.TypeMap1.f_sfixed64a:type_name -> type_map.TypeMap1.FSfixed64aEntry
+	18, // 15: type_map.TypeMap1.f_sfixed64b:type_name -> type_map.TypeMap1.FSfixed64bEntry
+	19, // 16: type_map.TypeMap1.f_fixed32a:type_name -> type_map.TypeMap1.FFixed32aEntry
+	20, // 17: type_map.TypeMap1.f_fixed32b:type_name -> type_map.TypeMap1.FFixed32bEntry
+	21, // 18: type_map.TypeMap1.f_fixed64a:type_name -> type_map.TypeMap1.FFixed64aEntry
+	22, // 19: type_map.TypeMap1.f_fixed64b:type_name -> type_map.TypeMap1.FFixed64bEntry
+	23, // 20: type_map.TypeMap1.f_float1:type_name -> type_map.TypeMap1.FFloat1Entry
+	24, // 21: type_map.TypeMap1.f_float2:type_name -> type_map.TypeMap1.FFloat2Entry
+	25, // 22: type_map.TypeMap1.f_double1:type_name -> type_map.TypeMap1.FDouble1Entry
+	26, // 23: type_map.TypeMap1.f_double2:type_name -> type_map.TypeMap1.FDouble2Entry
+	27, // 24: type_map.TypeMap2.f_int32a:type_name -> type_map.TypeMap2.FInt32aEntry
+	28, // 25: type_map.TypeMap2.f_int32b:type_name -> type_map.TypeMap2.FInt32bEntry
+	29, // 26: type_map.TypeMap2.f_int64a:type_name -> type_map.TypeMap2.FInt64aEntry
+	30, // 27: type_map.TypeMap2.f_int64b:type_name -> type_map.TypeMap2.FInt64bEntry
+	31, // 28: type_map.TypeMap2.f_uint32a:type_name -> type_map.TypeMap2.FUint32aEntry
+	32, // 29: type_map.TypeMap2.f_uint32b:type_name -> type_map.TypeMap2.FUint32bEntry
+	33, // 30: type_map.TypeMap2.f_uint64a:type_name -> type_map.TypeMap2.FUint64aEntry
+	34, // 31: type_map.TypeMap2.f_uint64b:type_name -> type_map.TypeMap2.FUint64bEntry
+	35, // 32: type_map.TypeMap2.f_sint32a:type_name -> type_map.TypeMap2.FSint32aEntry
+	36, // 33: type_map.TypeMap2.f_sint32b:type_name -> type_map.TypeMap2.FSint32bEntry
+	37, // 34: type_map.TypeMap2.f_sint64a:type_name -> type_map.TypeMap2.FSint64aEntry
+	38, // 35: type_map.TypeMap2.f_sint64b:type_name -> type_map.TypeMap2.FSint64bEntry
+	39, // 36: type_map.TypeMap2.f_sfixed32a:type_name -> type_map.TypeMap2.FSfixed32aEntry
+	40, // 37: type_map.TypeMap2.f_sfixed32b:type_name -> type_map.TypeMap2.FSfixed32bEntry
+	41, // 38: type_map.TypeMap2.f_sfixed64a:type_name -> type_map.TypeMap2.FSfixed64aEntry
+	42, // 39: type_map.TypeMap2.f_sfixed64b:type_name -> type_map.TypeMap2.FSfixed64bEntry
+	43, // 40: type_map.TypeMap2.f_fixed32a:type_name -> type_map.TypeMap2.FFixed32aEntry
+	44, // 41: type_map.TypeMap2.f_fixed32b:type_name -> type_map.TypeMap2.FFixed32bEntry
+	45, // 42: type_map.TypeMap2.f_fixed64a:type_name -> type_map.TypeMap2.FFixed64aEntry
+	46, // 43: type_map.TypeMap2.f_fixed64b:type_name -> type_map.TypeMap2.FFixed64bEntry
+	47, // 44: type_map.TypeMap2.f_float1:type_name -> type_map.TypeMap2.FFloat1Entry
+	48, // 45: type_map.TypeMap2.f_float2:type_name -> type_map.TypeMap2.FFloat2Entry
+	49, // 46: type_map.TypeMap2.f_double1:type_name -> type_map.TypeMap2.FDouble1Entry
+	50, // 47: type_map.TypeMap2.f_double2:type_name -> type_map.TypeMap2.FDouble2Entry
+	51, // 48: type_map.TypeMap2.f_bool1:type_name -> type_map.TypeMap2.FBool1Entry
+	52, // 49: type_map.TypeMap2.f_bool2:type_name -> type_map.TypeMap2.FBool2Entry
+	53, // 50: type_map.TypeMap3.f_string1:type_name -> type_map.TypeMap3.FString1Entry
+	54, // 51: type_map.TypeMap3.f_bytes1:type_name -> type_map.TypeMap3.FBytes1Entry
+	52, // [52:52] is the sub-list for method output_type
+	52, // [52:52] is the sub-list for method input_type
+	52, // [52:52] is the sub-list for extension type_name
+	52, // [52:52] is the sub-list for extension extendee
+	0,  // [0:52] is the sub-list for field type_name
 }
 
 func init() { file_tests_proto_cases_references_type_map_proto_init() }
@@ -1124,6 +1202,18 @@ func file_tests_proto_cases_references_type_map_proto_init() {
 				return nil
 			}
 		}
+		file_tests_proto_cases_references_type_map_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TypeMap3); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1131,7 +1221,7 @@ func file_tests_proto_cases_references_type_map_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_tests_proto_cases_references_type_map_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   52,
+			NumMessages:   55,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

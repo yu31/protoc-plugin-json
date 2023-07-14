@@ -47,7 +47,7 @@ func (p *Plugin) unmarshalLoopScan(fields []*Field) {
 	p.g.P("if decoder, err = ", importpkg.PJDecoder.Ident("New"), "(b); err != nil {")
 	p.g.P("    return err")
 	p.g.P("}")
-	p.g.P("if isNULL, err = decoder.BeforeReadJSON(); err != nil {")
+	p.g.P("if isNULL, err = decoder.BeforeScanJSON(); err != nil {")
 	p.g.P("    return err")
 	p.g.P("}")
 	p.g.P("if isNULL {")

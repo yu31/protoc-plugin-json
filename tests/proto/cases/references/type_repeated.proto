@@ -106,3 +106,10 @@ message TypeRepeated1 {
     reference: { repeated: { elem: { bool: { codec: String } } } }
   } ];
 }
+
+// Only used to test type error.
+message TypeRepeated2 {
+  repeated string f_string1 = 1 [ (json.field) = { } ];
+
+  repeated bytes f_bytes1  = 2 [ (json.field) = { } ];
+}

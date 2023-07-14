@@ -106,3 +106,10 @@ message TypeOptional1 {
     reference: { plain: { value: { bool: { codec: String } } } }
   } ];
 }
+
+// Only used to test type error.
+message TypeOptional2 {
+  optional string f_string1 = 1 [ (json.field) = { } ];
+
+  optional bytes f_bytes1  = 2 [ (json.field) = { } ];
+}

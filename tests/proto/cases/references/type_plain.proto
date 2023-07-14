@@ -106,3 +106,10 @@ message TypePlain1 {
     reference: { plain: { value: { bool: { codec: String } } } }
   } ];
 }
+
+// Only used to test type error.
+message TypePlain2 {
+  string f_string1 = 1 [ (json.field) = { } ];
+
+  bytes f_bytes1  = 2 [ (json.field) = { } ];
+}

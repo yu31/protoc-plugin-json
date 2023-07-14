@@ -1,17 +1,17 @@
 package jsondecoder
 
-import "fmt"
-
 func (dec *Decoder) ReadPointerString(jsonKey string) (vv *string, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	if value[0] == 'n' { // 'n' means null
 		return nil, nil
 	}
 	var v1 string
-	if v1, err = dec.convertToString(jsonKey, value); err != nil {
+	if v1, err = dec.convertToString(value); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	vv = &v1
@@ -20,6 +20,7 @@ func (dec *Decoder) ReadPointerString(jsonKey string) (vv *string, err error) {
 func (dec *Decoder) ReadPointerBool(jsonKey string, unquote bool) (vv *bool, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	if value[0] == 'n' { // 'n' means null
@@ -27,7 +28,8 @@ func (dec *Decoder) ReadPointerBool(jsonKey string, unquote bool) (vv *bool, err
 	}
 
 	var v1 bool
-	if v1, err = dec.convertToBool(jsonKey, value, unquote); err != nil {
+	if v1, err = dec.convertToBool(unquote, value); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	vv = &v1
@@ -36,13 +38,15 @@ func (dec *Decoder) ReadPointerBool(jsonKey string, unquote bool) (vv *bool, err
 func (dec *Decoder) ReadPointerInt32(jsonKey string, unquote bool) (vv *int32, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	if value[0] == 'n' { // 'n' means null
 		return nil, nil
 	}
 	var v1 int32
-	if v1, err = dec.convertToInt32(jsonKey, value, unquote); err != nil {
+	if v1, err = dec.convertToInt32(unquote, value); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	vv = &v1
@@ -51,13 +55,15 @@ func (dec *Decoder) ReadPointerInt32(jsonKey string, unquote bool) (vv *int32, e
 func (dec *Decoder) ReadPointerInt64(jsonKey string, unquote bool) (vv *int64, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	if value[0] == 'n' { // 'n' means null
 		return nil, nil
 	}
 	var v1 int64
-	if v1, err = dec.convertToInt64(jsonKey, value, unquote); err != nil {
+	if v1, err = dec.convertToInt64(unquote, value); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	vv = &v1
@@ -66,13 +72,15 @@ func (dec *Decoder) ReadPointerInt64(jsonKey string, unquote bool) (vv *int64, e
 func (dec *Decoder) ReadPointerUint32(jsonKey string, unquote bool) (vv *uint32, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	if value[0] == 'n' { // 'n' means null
 		return nil, nil
 	}
 	var v1 uint32
-	if v1, err = dec.convertToUint32(jsonKey, value, unquote); err != nil {
+	if v1, err = dec.convertToUint32(unquote, value); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	vv = &v1
@@ -81,13 +89,15 @@ func (dec *Decoder) ReadPointerUint32(jsonKey string, unquote bool) (vv *uint32,
 func (dec *Decoder) ReadPointerUint64(jsonKey string, unquote bool) (vv *uint64, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	if value[0] == 'n' { // 'n' means null
 		return nil, nil
 	}
 	var v1 uint64
-	if v1, err = dec.convertToUint64(jsonKey, value, unquote); err != nil {
+	if v1, err = dec.convertToUint64(unquote, value); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	vv = &v1
@@ -97,13 +107,15 @@ func (dec *Decoder) ReadPointerUint64(jsonKey string, unquote bool) (vv *uint64,
 func (dec *Decoder) ReadPointerFloat32(jsonKey string, unquote bool) (vv *float32, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	if value[0] == 'n' { // 'n' means null
 		return nil, nil
 	}
 	var v1 float32
-	if v1, err = dec.convertToFloat32(jsonKey, value, unquote); err != nil {
+	if v1, err = dec.convertToFloat32(unquote, value); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	vv = &v1
@@ -112,31 +124,15 @@ func (dec *Decoder) ReadPointerFloat32(jsonKey string, unquote bool) (vv *float3
 func (dec *Decoder) ReadPointerFloat64(jsonKey string, unquote bool) (vv *float64, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	if value[0] == 'n' { // 'n' means null
 		return nil, nil
 	}
 	var v1 float64
-	if v1, err = dec.convertToFloat64(jsonKey, value, unquote); err != nil {
-		return
-	}
-	vv = &v1
-	return
-}
-
-func (dec *Decoder) ReadPointerEnumString(jsonKey string, em map[string]int32) (vv *int32, err error) {
-	var value []byte
-	if value, err = dec.readLiteralValue(); err != nil {
-		return
-	}
-	if value[0] == 'n' { // 'n' means null
-		return nil, nil
-	}
-
-	var v1 int32
-	if v1, err = parseEnumString(value, em); err != nil {
-		err = fmt.Errorf("json: cannot unmarshal %s as string into field %s of type Enum", string(value), jsonKey)
+	if v1, err = dec.convertToFloat64(unquote, value); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	vv = &v1
@@ -145,13 +141,34 @@ func (dec *Decoder) ReadPointerEnumString(jsonKey string, em map[string]int32) (
 func (dec *Decoder) ReadPointerEnumNumber(jsonKey string, unquote bool) (vv *int32, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	if value[0] == 'n' { // 'n' means null
 		return nil, nil
 	}
 	var v1 int32
-	if v1, err = dec.convertToEnum(jsonKey, value, unquote); err != nil {
+	if v1, err = dec.convertToEnum(unquote, value); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
+		return
+	}
+
+	vv = &v1
+	return
+}
+func (dec *Decoder) ReadPointerEnumString(jsonKey string, em map[string]int32) (vv *int32, err error) {
+	var value []byte
+	if value, err = dec.readLiteralValue(); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
+		return
+	}
+	if value[0] == 'n' { // 'n' means null
+		return nil, nil
+	}
+
+	var v1 int32
+	if v1, err = parseEnumString(value, em); err != nil {
+		err = errorWrap(jsonKey, dec.offset, err)
 		return
 	}
 	vv = &v1

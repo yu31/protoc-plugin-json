@@ -1,6 +1,10 @@
 package jsondecoder
 
-import "strconv"
+import (
+	"errors"
+	"fmt"
+	"strconv"
+)
 
 type OpCode int8
 
@@ -74,10 +78,6 @@ type scanner struct {
 
 	// Error that happened, if any.
 	err error
-
-	// total bytes consumed, updated by decoder.Decode (and deliberately
-	// not set to zero by scan.reset)
-	bytes int
 }
 
 // eof tells the scanner that the end of input has been reached.
@@ -94,7 +94,7 @@ func (s *scanner) eof() OpCode {
 		return scanEnd
 	}
 	if s.err == nil {
-		s.err = &SyntaxError{reason: "unexpected end of JSON input", Offset: s.bytes}
+		s.err = errors.New("unexpected end of JSON input")
 	}
 	return scanError
 }
@@ -538,10 +538,7 @@ func stateError(s *scanner, c byte) OpCode {
 // error records an error and switches to the error state.
 func (s *scanner) error(c byte, context string) OpCode {
 	s.step = stateError
-	s.err = &SyntaxError{
-		reason: "invalid character " + quoteChar(c) + " " + context,
-		Offset: s.bytes,
-	}
+	s.err = fmt.Errorf("invalid character %s %s", quoteChar(c), context)
 	return scanError
 }
 

@@ -160,3 +160,23 @@ message TypeOneOf1 {
     } ];
   }
 }
+
+// Only used to test type error.
+message TypeOneOf2 {
+  oneof OneType1 {
+    option (json.oneof) = { json: "one_type1", hide: false };
+
+    string f_string1 = 1 [ (json.field) = { } ];
+
+    bytes f_bytes1  = 2 [ (json.field) = { } ];
+  }
+
+
+  oneof OneType2 {
+    option (json.oneof) = { json: "one_type2", hide: true };
+
+    string f_string2 = 3 [ (json.field) = { } ];
+
+    bytes f_bytes2  = 4 [ (json.field) = { } ];
+  }
+}

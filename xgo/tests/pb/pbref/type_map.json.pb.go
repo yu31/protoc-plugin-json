@@ -306,7 +306,7 @@ func (x *TypeMap1) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -1325,7 +1325,7 @@ func (x *TypeMap2) UnmarshalJSON(b []byte) error {
 	if decoder, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeReadJSON(); err != nil {
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
 		return err
 	}
 	if isNULL {
@@ -2074,6 +2074,145 @@ LOOP_SCAN:
 					return err
 				}
 				x.FBool2[mk] = vv
+			}
+		default:
+			if err = decoder.DiscardValue(jsonKey); err != nil {
+				return err
+			}
+		} // end switch
+	}
+	return nil
+}
+
+// MarshalJSON implements interface json.Marshaler for proto message TypeMap3 in file tests/proto/cases/references/type_map.proto
+func (x *TypeMap3) MarshalJSON() ([]byte, error) {
+	if x == nil {
+		return []byte("null"), nil
+	}
+	var err error
+	encoder := jsonencoder.New(48)
+
+	// Add begin JSON identifier
+	encoder.AppendObjectBegin()
+
+	encoder.AppendObjectKey("f_string1")
+	if x.FString1 != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.FString1 {
+			encoder.AppendMapKeyString(mk)
+			encoder.AppendLiteralString(mv)
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+	encoder.AppendObjectKey("f_bytes1")
+	if x.FBytes1 != nil {
+		encoder.AppendObjectBegin()
+		for mk, mv := range x.FBytes1 {
+			encoder.AppendMapKeyString(mk)
+			encoder.AppendLiteralBytes(mv)
+		}
+		encoder.AppendObjectEnd()
+	} else {
+		encoder.AppendLiteralNULL()
+	}
+
+	// Add end JSON identifier
+	encoder.AppendObjectEnd()
+	return encoder.Bytes(), err
+}
+
+// UnmarshalJSON implements json.Unmarshaler for proto message TypeMap3 in file tests/proto/cases/references/type_map.proto
+func (x *TypeMap3) UnmarshalJSON(b []byte) error {
+	if x == nil {
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbref.(*TypeMap3) is nil")
+	}
+	var (
+		err     error
+		isNULL  bool
+		decoder *jsondecoder.Decoder
+	)
+	if decoder, err = jsondecoder.New(b); err != nil {
+		return err
+	}
+	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
+		return err
+	}
+	if isNULL {
+		return nil
+	}
+LOOP_SCAN:
+	for { // Loop to scan object.
+		var (
+			jsonKey string
+			isEnd   bool
+		)
+		if isEnd, err = decoder.BeforeScanNext(); err != nil {
+			return err
+		}
+		if isEnd {
+			break LOOP_SCAN
+		}
+		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+			return err
+		}
+		switch jsonKey { // match the jsonKey
+		case "f_string1":
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FString1 = nil
+				continue LOOP_SCAN
+			}
+			if x.FString1 == nil {
+				x.FString1 = make(map[string]string)
+			}
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var mk string
+				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
+					return err
+				}
+				var vv string
+				if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+					return err
+				}
+				x.FString1[mk] = vv
+			}
+		case "f_bytes1":
+			if isNULL, err = decoder.BeforeReadMap(jsonKey); err != nil {
+				return err
+			}
+			if isNULL {
+				x.FBytes1 = nil
+				continue LOOP_SCAN
+			}
+			if x.FBytes1 == nil {
+				x.FBytes1 = make(map[string][]byte)
+			}
+			for {
+				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
+					return err
+				}
+				if isEnd {
+					break
+				}
+				var mk string
+				if mk, err = decoder.ReadMapKeyString(jsonKey); err != nil {
+					return err
+				}
+				var vv []byte
+				if vv, err = decoder.ReadLiteralBytes(jsonKey); err != nil {
+					return err
+				}
+				x.FBytes1[mk] = vv
 			}
 		default:
 			if err = decoder.DiscardValue(jsonKey); err != nil {

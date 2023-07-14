@@ -193,3 +193,10 @@ message TypeMap2 {
     reference: { map: { key:{ bool: { codec: String } }, value: { bool: { codec: String } } } }
   } ];
 }
+
+// Only used to test type error.
+message TypeMap3 {
+  map<string, string> f_string1 = 1 [ (json.field) = { } ];
+
+  map<string, bytes> f_bytes1  = 2 [ (json.field) = { } ];
+}

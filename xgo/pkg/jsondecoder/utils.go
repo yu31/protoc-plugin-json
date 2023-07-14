@@ -2,24 +2,15 @@ package jsondecoder
 
 import (
 	"bytes"
-	"fmt"
+	"errors"
 	"strconv"
 	"unsafe"
 )
 
-func bytesToString(b []byte) (string, error) {
-	v, ok := unquoteJSONBytes(b)
-	if !ok {
-		return "", fmt.Errorf("bytesToString: parsing %s: invalid syntax", strconv.Quote(string(b)))
-	}
-	s := string(v)
-	return s, nil
-}
-
 func bytesToStringUnsafe(b []byte) (string, error) {
 	v, ok := unquoteJSONBytes(b)
 	if !ok {
-		return "", fmt.Errorf("bytesToString: parsing %s: invalid syntax", strconv.Quote(string(b)))
+		return "", errors.New("invalid string format")
 	}
 	s := *(*string)(unsafe.Pointer(&v))
 	return s, nil

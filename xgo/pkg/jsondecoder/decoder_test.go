@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func Test_Object_IsNULL(t *testing.T) {
+func Test_Decoder_Object_IsNULL(t *testing.T) {
 	t.Run("case1", func(t *testing.T) {
 		bb := []byte(`null`)
 		decoder, err := New(bb)
@@ -26,7 +26,7 @@ func Test_Object_IsNULL(t *testing.T) {
 		require.True(t, isNULL)
 	})
 }
-func Test_Object_IsEmpty(t *testing.T) {
+func Test_Decoder_Object_IsEmpty(t *testing.T) {
 	t.Run("case1", func(t *testing.T) {
 		bb := []byte(`{}`)
 		decoder, err := New(bb)
@@ -55,7 +55,7 @@ func Test_Object_IsEmpty(t *testing.T) {
 	})
 }
 
-func Test_Object_Read1(t *testing.T) {
+func Test_Decoder_Object_Read1(t *testing.T) {
 	bb := []byte(
 		`
 {
@@ -956,7 +956,7 @@ func Test_Object_Read1(t *testing.T) {
 }
 
 // Test only contains an empty array.
-func Test_Object_Read2(t *testing.T) {
+func Test_Decoder_Object_Read2(t *testing.T) {
 	bb := []byte(`       {    "r_string1"    : [      ]    }   `)
 
 	decoder, err := New(bb)
