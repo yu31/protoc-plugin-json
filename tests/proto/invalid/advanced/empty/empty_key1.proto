@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package empty_key;
 
-option go_package = "xgo/tests/pb/pbduplicate";
+option go_package = "xgo/tests/pb/pbinvalid";
 
 import "proto/json.proto";
 
