@@ -37,13 +37,13 @@ message TypeOneOf1 {
   double f_double = 12 [ (json.field) = { json: "t_oneof_key1" } ];
 
   oneof OneType13 {
-    option (json.oneof) = { json: "t_one13"; hide: true };
+    option (json.oneof) = { json: "t_one13"; inline: true };
 
     bool f_bool1 = 21 [ (json.field) = { json: "t_json_key2" } ];
   }
 
   oneof OneType14 {
-    option (json.oneof) = { json: "t_one14"; hide: true };
+    option (json.oneof) = { json: "t_one14"; inline: true };
 
     string f_string1 = 22 [ (json.field) = { json: "t_json_key2" } ];
   }
@@ -54,13 +54,13 @@ message TypeOneOf1 {
   external.Enum1 f_enum1 = 31 [ (json.field) = { json: "t_json_key3" } ];
 
   oneof OneType17 {
-    option (json.oneof) = { json: "t_one17"; hide: true };
+    option (json.oneof) = { json: "t_one17"; inline: true };
 
     external.Message1 f_message1 = 32 [ (json.field) = { json: "t_json_key3" } ];
   }
 
   oneof OneType18 {
-    option (json.oneof) = { json: "t_one18"; hide: true };
+    option (json.oneof) = { json: "t_one18"; inline: true };
 
     google.protobuf.Any f_any1 = 41 [ (json.field) = { json: "t_json_key3" } ];
   }

@@ -16,7 +16,7 @@ import "proto/json.proto";
 
 message TypeOneOf1 {
   oneof OneInt32 {
-    option (json.oneof) = { json: "one_int32", hide: true };
+    option (json.oneof) = { json: "one_int32", inline: true };
 
     int32 f_int32a = 1 [ (json.field) = {
       reference: { plain: { value: { int32: { codec: Number } } } }
@@ -27,7 +27,7 @@ message TypeOneOf1 {
   }
 
   oneof OneInt64 {
-    option (json.oneof) = { json: "one_int64", hide: false };
+    option (json.oneof) = { json: "one_int64", inline: false };
 
     int64 f_int64a = 3 [ (json.field) = {
       reference: { plain: { value: { int64: { codec: Number } } } }
@@ -38,7 +38,7 @@ message TypeOneOf1 {
   }
 
   oneof OneUint32 {
-    option (json.oneof) = { json: "one_uint32", hide: true };
+    option (json.oneof) = { json: "one_uint32", inline: true };
 
     uint32 f_uint32a = 5 [ (json.field) = {
       reference: { plain: { value: { uint32: { codec: Number } } } }
@@ -50,7 +50,7 @@ message TypeOneOf1 {
   }
 
   oneof OneUint64 {
-    option (json.oneof) = { json: "one_uint64", hide: false };
+    option (json.oneof) = { json: "one_uint64", inline: false };
     uint64 f_uint64a = 7 [ (json.field) = {
       reference: { plain: { value: { uint64: { codec: Number } } } }
     } ];
@@ -60,7 +60,7 @@ message TypeOneOf1 {
   }
 
   oneof OneSInt32 {
-    option (json.oneof) = { json: "one_sint32", hide: true };
+    option (json.oneof) = { json: "one_sint32", inline: true };
 
     sint32 f_sint32a = 9 [ (json.field) = {
       reference: { plain: { value: { sint32: { codec: Number } } } }
@@ -71,7 +71,7 @@ message TypeOneOf1 {
   }
 
   oneof OneSInt64 {
-    option (json.oneof) = { json: "one_sint64", hide: false };
+    option (json.oneof) = { json: "one_sint64", inline: false };
 
     sint64 f_sint64a = 11 [ (json.field) = {
       reference: { plain: { value: { sint64: { codec: Number } } } }
@@ -83,7 +83,7 @@ message TypeOneOf1 {
   }
 
   oneof OneSFixed32 {
-    option (json.oneof) = { json: "one_sfixed32", hide: true };
+    option (json.oneof) = { json: "one_sfixed32", inline: true };
 
     sfixed32 f_sfixed32a = 13 [ (json.field) = {
       reference: { plain: { value: { sfixed32: { codec: Number } } } }
@@ -94,7 +94,7 @@ message TypeOneOf1 {
   }
 
   oneof OneSFixed64 {
-    option (json.oneof) = { json: "one_sfixed64", hide: false };
+    option (json.oneof) = { json: "one_sfixed64", inline: false };
 
     sfixed64 f_sfixed64a = 15 [ (json.field) = {
       reference: { plain: { value: { sfixed64: { codec: Number } } } }
@@ -105,7 +105,7 @@ message TypeOneOf1 {
   }
 
   oneof OneFixed32 {
-    option (json.oneof) = { json: "one_fixed32", hide: true };
+    option (json.oneof) = { json: "one_fixed32", inline: true };
 
     fixed32 f_fixed32a = 17 [ (json.field) = {
       reference: { plain: { value: { fixed32: { codec: Number } } } }
@@ -116,7 +116,7 @@ message TypeOneOf1 {
   }
 
   oneof OneFixed64 {
-    option (json.oneof) = { json: "one_fixed64", hide: false };
+    option (json.oneof) = { json: "one_fixed64", inline: false };
 
     fixed64 f_fixed64a = 19 [ (json.field) = {
       reference: { plain: { value: { fixed64: { codec: Number } } } }
@@ -128,7 +128,7 @@ message TypeOneOf1 {
 
 
   oneof OneFloat {
-    option (json.oneof) = { json: "one_float", hide: true };
+    option (json.oneof) = { json: "one_float", inline: true };
 
     float f_float1 = 21 [ (json.field) = {
       reference: { plain: { value: { float: { codec: Number } } } }
@@ -139,7 +139,7 @@ message TypeOneOf1 {
   }
 
   oneof OneDouble {
-    option (json.oneof) = { json: "one_double", hide: false };
+    option (json.oneof) = { json: "one_double", inline: false };
 
     double f_double1 = 23 [ (json.field) = {
       reference: { plain: { value: { double: { codec: Number } } } }
@@ -150,7 +150,7 @@ message TypeOneOf1 {
   }
 
   oneof OneBool {
-    option (json.oneof) = { json: "one_bool", hide: true };
+    option (json.oneof) = { json: "one_bool", inline: true };
 
     bool f_bool1 = 25 [ (json.field) = {
       reference: { plain: { value: { bool: { codec: Bool } } } }
@@ -164,7 +164,7 @@ message TypeOneOf1 {
 // Only used to test type error.
 message TypeOneOf2 {
   oneof OneType1 {
-    option (json.oneof) = { json: "one_type1", hide: false };
+    option (json.oneof) = { json: "one_type1", inline: false };
 
     string f_string1 = 1 [ (json.field) = { } ];
 
@@ -173,7 +173,7 @@ message TypeOneOf2 {
 
 
   oneof OneType2 {
-    option (json.oneof) = { json: "one_type2", hide: true };
+    option (json.oneof) = { json: "one_type2", inline: true };
 
     string f_string2 = 3 [ (json.field) = { } ];
 

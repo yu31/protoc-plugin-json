@@ -1820,8 +1820,8 @@ LOOP_SCAN:
 	return nil
 }
 
-// MarshalJSON implements interface json.Marshaler for proto message TypeOneOfHide1 in file tests/proto/cases/bases/type_oneof.proto
-func (x *TypeOneOfHide1) MarshalJSON() ([]byte, error) {
+// MarshalJSON implements interface json.Marshaler for proto message TypeOneOfInline1 in file tests/proto/cases/bases/type_oneof.proto
+func (x *TypeOneOfInline1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
@@ -1832,22 +1832,22 @@ func (x *TypeOneOfHide1) MarshalJSON() ([]byte, error) {
 	encoder.AppendObjectBegin()
 
 	switch ov := x.OneType01.(type) {
-	case *TypeOneOfHide1_FString1:
+	case *TypeOneOfInline1_FString1:
 		encoder.AppendObjectKey("f_string1")
 		encoder.AppendLiteralString(ov.FString1)
-	case *TypeOneOfHide1_FString2:
+	case *TypeOneOfInline1_FString2:
 		encoder.AppendObjectKey("f_string2")
 		encoder.AppendLiteralString(ov.FString2)
 	default:
 		_ = ov // to avoids unused panics
 	}
 	switch ov := x.OneType02.(type) {
-	case *TypeOneOfHide1_FMessage1:
+	case *TypeOneOfInline1_FMessage1:
 		encoder.AppendObjectKey("f_message1")
 		if err = encoder.AppendLiteralInterface(ov.FMessage1); err != nil {
 			return nil, err
 		}
-	case *TypeOneOfHide1_FMessage2:
+	case *TypeOneOfInline1_FMessage2:
 		encoder.AppendObjectKey("f_message2")
 		if err = encoder.AppendLiteralInterface(ov.FMessage2); err != nil {
 			return nil, err
@@ -1856,17 +1856,17 @@ func (x *TypeOneOfHide1) MarshalJSON() ([]byte, error) {
 		_ = ov // to avoids unused panics
 	}
 	switch ov := x.OneType03.(type) {
-	case *TypeOneOfHide1_FEnum1:
+	case *TypeOneOfInline1_FEnum1:
 		encoder.AppendObjectKey("f_enum1")
 		encoder.AppendLiteralInt32(int32(ov.FEnum1.Number()), false)
-	case *TypeOneOfHide1_FEnum2:
+	case *TypeOneOfInline1_FEnum2:
 		encoder.AppendObjectKey("f_enum2")
 		encoder.AppendLiteralInt32(int32(ov.FEnum2.Number()), false)
 	default:
 		_ = ov // to avoids unused panics
 	}
 	switch ov := x.OneType04.(type) {
-	case *TypeOneOfHide1_FDuration1:
+	case *TypeOneOfInline1_FDuration1:
 		encoder.AppendObjectKey("OneType04")
 		encoder.AppendObjectBegin()
 		encoder.AppendObjectKey("f_duration1")
@@ -1874,7 +1874,7 @@ func (x *TypeOneOfHide1) MarshalJSON() ([]byte, error) {
 			return nil, err
 		}
 		encoder.AppendObjectEnd()
-	case *TypeOneOfHide1_FDuration2:
+	case *TypeOneOfInline1_FDuration2:
 		encoder.AppendObjectKey("OneType04")
 		encoder.AppendObjectBegin()
 		encoder.AppendObjectKey("f_duration2")
@@ -1894,10 +1894,10 @@ func (x *TypeOneOfHide1) MarshalJSON() ([]byte, error) {
 	return encoder.Bytes(), err
 }
 
-// UnmarshalJSON implements json.Unmarshaler for proto message TypeOneOfHide1 in file tests/proto/cases/bases/type_oneof.proto
-func (x *TypeOneOfHide1) UnmarshalJSON(b []byte) error {
+// UnmarshalJSON implements json.Unmarshaler for proto message TypeOneOfInline1 in file tests/proto/cases/bases/type_oneof.proto
+func (x *TypeOneOfInline1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbases.(*TypeOneOfHide1) is nil")
+		return errors.New("json: Unmarshal: xgo/tests/pb/pbbases.(*TypeOneOfInline1) is nil")
 	}
 	var (
 		oneOfIsFill_OneType01 bool
@@ -1942,9 +1942,9 @@ LOOP_SCAN:
 			oneOfIsFill_OneType01 = true
 
 			var ok bool
-			var ot *TypeOneOfHide1_FString1
-			if ot, ok = x.OneType01.(*TypeOneOfHide1_FString1); !ok {
-				ot = new(TypeOneOfHide1_FString1)
+			var ot *TypeOneOfInline1_FString1
+			if ot, ok = x.OneType01.(*TypeOneOfInline1_FString1); !ok {
+				ot = new(TypeOneOfInline1_FString1)
 			}
 			var vv string
 			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
@@ -1959,9 +1959,9 @@ LOOP_SCAN:
 			oneOfIsFill_OneType01 = true
 
 			var ok bool
-			var ot *TypeOneOfHide1_FString2
-			if ot, ok = x.OneType01.(*TypeOneOfHide1_FString2); !ok {
-				ot = new(TypeOneOfHide1_FString2)
+			var ot *TypeOneOfInline1_FString2
+			if ot, ok = x.OneType01.(*TypeOneOfInline1_FString2); !ok {
+				ot = new(TypeOneOfInline1_FString2)
 			}
 			var vv string
 			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
@@ -1976,9 +1976,9 @@ LOOP_SCAN:
 			oneOfIsFill_OneType02 = true
 
 			var ok bool
-			var ot *TypeOneOfHide1_FMessage1
-			if ot, ok = x.OneType02.(*TypeOneOfHide1_FMessage1); !ok {
-				ot = new(TypeOneOfHide1_FMessage1)
+			var ot *TypeOneOfInline1_FMessage1
+			if ot, ok = x.OneType02.(*TypeOneOfInline1_FMessage1); !ok {
+				ot = new(TypeOneOfInline1_FMessage1)
 			}
 			var vv *MessageOneOf1
 			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
@@ -2003,9 +2003,9 @@ LOOP_SCAN:
 			oneOfIsFill_OneType02 = true
 
 			var ok bool
-			var ot *TypeOneOfHide1_FMessage2
-			if ot, ok = x.OneType02.(*TypeOneOfHide1_FMessage2); !ok {
-				ot = new(TypeOneOfHide1_FMessage2)
+			var ot *TypeOneOfInline1_FMessage2
+			if ot, ok = x.OneType02.(*TypeOneOfInline1_FMessage2); !ok {
+				ot = new(TypeOneOfInline1_FMessage2)
 			}
 			var vv *MessageOneOf1
 			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
@@ -2030,9 +2030,9 @@ LOOP_SCAN:
 			oneOfIsFill_OneType03 = true
 
 			var ok bool
-			var ot *TypeOneOfHide1_FEnum1
-			if ot, ok = x.OneType03.(*TypeOneOfHide1_FEnum1); !ok {
-				ot = new(TypeOneOfHide1_FEnum1)
+			var ot *TypeOneOfInline1_FEnum1
+			if ot, ok = x.OneType03.(*TypeOneOfInline1_FEnum1); !ok {
+				ot = new(TypeOneOfInline1_FEnum1)
 			}
 			var vv EnumOneOf1
 			var v1 int32
@@ -2049,9 +2049,9 @@ LOOP_SCAN:
 			oneOfIsFill_OneType03 = true
 
 			var ok bool
-			var ot *TypeOneOfHide1_FEnum2
-			if ot, ok = x.OneType03.(*TypeOneOfHide1_FEnum2); !ok {
-				ot = new(TypeOneOfHide1_FEnum2)
+			var ot *TypeOneOfInline1_FEnum2
+			if ot, ok = x.OneType03.(*TypeOneOfInline1_FEnum2); !ok {
+				ot = new(TypeOneOfInline1_FEnum2)
 			}
 			var vv EnumOneOf1
 			var v1 int32
@@ -2088,9 +2088,9 @@ LOOP_SCAN:
 					oneOfIsFill_OneType04 = true
 
 					var ok bool
-					var ot *TypeOneOfHide1_FDuration1
-					if ot, ok = x.OneType04.(*TypeOneOfHide1_FDuration1); !ok {
-						ot = new(TypeOneOfHide1_FDuration1)
+					var ot *TypeOneOfInline1_FDuration1
+					if ot, ok = x.OneType04.(*TypeOneOfInline1_FDuration1); !ok {
+						ot = new(TypeOneOfInline1_FDuration1)
 					}
 					var vv *durationpb.Duration
 					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
@@ -2115,9 +2115,9 @@ LOOP_SCAN:
 					oneOfIsFill_OneType04 = true
 
 					var ok bool
-					var ot *TypeOneOfHide1_FDuration2
-					if ot, ok = x.OneType04.(*TypeOneOfHide1_FDuration2); !ok {
-						ot = new(TypeOneOfHide1_FDuration2)
+					var ot *TypeOneOfInline1_FDuration2
+					if ot, ok = x.OneType04.(*TypeOneOfInline1_FDuration2); !ok {
+						ot = new(TypeOneOfInline1_FDuration2)
 					}
 					var vv *durationpb.Duration
 					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {

@@ -14,36 +14,36 @@ import (
 	"github.com/yu31/protoc-plugin-json/xgo/tests/utils"
 )
 
-func Test_HideOneOf1(t *testing.T) {
-	seed1 := &pboptions.HideOneOf1{
-		OneType1:  &pboptions.HideOneOf1_FInt32{FInt32: 111},
-		OneType2:  &pboptions.HideOneOf1_FInt64{FInt64: 121},
-		OneType3:  &pboptions.HideOneOf1_FUint32{FUint32: 131},
-		OneType4:  &pboptions.HideOneOf1_FUint64{FUint64: 141},
-		OneType5:  &pboptions.HideOneOf1_FSint32{FSint32: 151},
-		OneType6:  &pboptions.HideOneOf1_FSint64{FSint64: 161},
-		OneType7:  &pboptions.HideOneOf1_FSfixed32{FSfixed32: 171},
-		OneType8:  &pboptions.HideOneOf1_FSfixed64{FSfixed64: 181},
-		OneType9:  &pboptions.HideOneOf1_FFixed32{FFixed32: 191},
-		OneType10: &pboptions.HideOneOf1_FFixed64{FFixed64: 201},
-		OneType11: &pboptions.HideOneOf1_FFloat{FFloat: 211.111},
-		OneType12: &pboptions.HideOneOf1_FDouble{FDouble: 221.111},
-		OneType13: &pboptions.HideOneOf1_FBool1{FBool1: true},
-		OneType14: &pboptions.HideOneOf1_FString1{FString1: "ss101"},
-		OneType15: &pboptions.HideOneOf1_FBytes1{FBytes1: []byte("bb101")},
-		OneType16: &pboptions.HideOneOf1_FEnum1{FEnum1: 1},
-		OneType17: &pboptions.HideOneOf1_FMessage1{FMessage1: &pbexternal.Message1{
+func Test_InlineOneOf1(t *testing.T) {
+	seed1 := &pboptions.InlineOneOf1{
+		OneType1:  &pboptions.InlineOneOf1_FInt32{FInt32: 111},
+		OneType2:  &pboptions.InlineOneOf1_FInt64{FInt64: 121},
+		OneType3:  &pboptions.InlineOneOf1_FUint32{FUint32: 131},
+		OneType4:  &pboptions.InlineOneOf1_FUint64{FUint64: 141},
+		OneType5:  &pboptions.InlineOneOf1_FSint32{FSint32: 151},
+		OneType6:  &pboptions.InlineOneOf1_FSint64{FSint64: 161},
+		OneType7:  &pboptions.InlineOneOf1_FSfixed32{FSfixed32: 171},
+		OneType8:  &pboptions.InlineOneOf1_FSfixed64{FSfixed64: 181},
+		OneType9:  &pboptions.InlineOneOf1_FFixed32{FFixed32: 191},
+		OneType10: &pboptions.InlineOneOf1_FFixed64{FFixed64: 201},
+		OneType11: &pboptions.InlineOneOf1_FFloat{FFloat: 211.111},
+		OneType12: &pboptions.InlineOneOf1_FDouble{FDouble: 221.111},
+		OneType13: &pboptions.InlineOneOf1_FBool1{FBool1: true},
+		OneType14: &pboptions.InlineOneOf1_FString1{FString1: "ss101"},
+		OneType15: &pboptions.InlineOneOf1_FBytes1{FBytes1: []byte("bb101")},
+		OneType16: &pboptions.InlineOneOf1_FEnum1{FEnum1: 1},
+		OneType17: &pboptions.InlineOneOf1_FMessage1{FMessage1: &pbexternal.Message1{
 			FString1: "ms101",
 			FString2: "ms102",
 			FString3: "ms103",
 		}},
-		OneType18: &pboptions.HideOneOf1_FAny1{
+		OneType18: &pboptions.InlineOneOf1_FAny1{
 			FAny1: utils.MustNewAny(&pbexternal.Message1{FString1: "s101", FString2: "s102", FString3: "s103"}),
 		},
-		OneType19: &pboptions.HideOneOf1_FDuration1{
+		OneType19: &pboptions.InlineOneOf1_FDuration1{
 			FDuration1: &durationpb.Duration{Seconds: 3600, Nanos: 0},
 		},
-		OneType20: &pboptions.HideOneOf1_FTimestamp1{
+		OneType20: &pboptions.InlineOneOf1_FTimestamp1{
 			FTimestamp1: &timestamppb.Timestamp{Seconds: 1686416585, Nanos: 0},
 		},
 	}
@@ -60,7 +60,7 @@ func Test_HideOneOf1(t *testing.T) {
 	})
 
 	t.Run("Unmarshal", func(t *testing.T) {
-		dataNew := &pboptions.HideOneOf1{}
+		dataNew := &pboptions.InlineOneOf1{}
 		err = dataNew.UnmarshalJSON(bb)
 		require.Nil(t, err)
 	})

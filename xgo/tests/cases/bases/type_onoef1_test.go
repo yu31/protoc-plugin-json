@@ -16,7 +16,7 @@ import (
 )
 
 type CopyOneOf1 pbbases.TypeOneOf1
-type CopyOneOfHide1 pbbases.TypeOneOfHide1
+type CopyOneOfInline1 pbbases.TypeOneOfInline1
 
 func Test_TypeOneOf1_Assert_Type(t *testing.T) {
 	data := &pbbases.TypeOneOf1{}
@@ -136,15 +136,15 @@ func Test_TypeOneOf1_General2(t *testing.T) {
 	})
 }
 
-func Test_TypeOneOfHide1(t *testing.T) {
-	data1 := &pbbases.TypeOneOfHide1{
-		OneType01: &pbbases.TypeOneOfHide1_FString1{FString1: "s1"},
-		OneType02: &pbbases.TypeOneOfHide1_FMessage2{FMessage2: &pbbases.MessageOneOf1{FString1: "1201", FString2: "1202", FString3: "1203"}},
-		OneType03: &pbbases.TypeOneOfHide1_FEnum2{FEnum2: 2},
-		OneType04: &pbbases.TypeOneOfHide1_FDuration2{FDuration2: &durationpb.Duration{Seconds: 0, Nanos: 0}},
+func Test_TypeOneOfInline1(t *testing.T) {
+	data1 := &pbbases.TypeOneOfInline1{
+		OneType01: &pbbases.TypeOneOfInline1_FString1{FString1: "s1"},
+		OneType02: &pbbases.TypeOneOfInline1_FMessage2{FMessage2: &pbbases.MessageOneOf1{FString1: "1201", FString2: "1202", FString3: "1203"}},
+		OneType03: &pbbases.TypeOneOfInline1_FEnum2{FEnum2: 2},
+		OneType04: &pbbases.TypeOneOfInline1_FDuration2{FDuration2: &durationpb.Duration{Seconds: 0, Nanos: 0}},
 	}
-	data2 := &CopyOneOfHide1{
-		OneType01: &pbbases.TypeOneOfHide1_FString1{FString1: "s1"},
+	data2 := &CopyOneOfInline1{
+		OneType01: &pbbases.TypeOneOfInline1_FString1{FString1: "s1"},
 	}
 
 	var (

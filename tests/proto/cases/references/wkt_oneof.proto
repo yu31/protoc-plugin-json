@@ -18,7 +18,7 @@ message WKTOneOf1 {
   // Cases for Enum
   //
   oneof OneEnum1 {
-    option (json.oneof) = { json: "one_enum1", hide: false };
+    option (json.oneof) = { json: "one_enum1", inline: false };
 
     private.Enum1 f_enum_number1 = 1 [ (json.field) = {
       reference: { plain: { value: { enum: { codec: Number } } } }
@@ -28,7 +28,7 @@ message WKTOneOf1 {
     } ];
   }
   oneof OneEnum2 {
-    option (json.oneof) = { json: "one_enum2", hide: true };
+    option (json.oneof) = { json: "one_enum2", inline: true };
 
     private.Enum1 f_enum_number_string1 = 3 [ (json.field) = {
       reference: { plain: { value: { enum: { codec: NumberString } } } }
@@ -41,7 +41,7 @@ message WKTOneOf1 {
   // Cases for google.protobuf.Any
   //
   oneof OneAny1 {
-    option (json.oneof) = { json: "one_any1", hide: true };
+    option (json.oneof) = { json: "one_any1", inline: true };
 
     google.protobuf.Any f_any_native1 = 5 [ (json.field) = {
       reference: { plain: { value: { any: { codec: Object } } } }
@@ -54,7 +54,7 @@ message WKTOneOf1 {
   // Cases for google.protobuf.Duration
   //
   oneof OneDuration1 {
-    option (json.oneof) = { json: "one_duration1", hide: false };
+    option (json.oneof) = { json: "one_duration1", inline: false };
 
     google.protobuf.Duration f_duration_native1 = 11 [ (json.field) = {
       reference: { plain: { value: { duration: { codec: Object } } } }
@@ -64,7 +64,7 @@ message WKTOneOf1 {
     } ];
   }
   oneof OneDuration2 {
-    option (json.oneof) = { json: "one_duration2", hide: true };
+    option (json.oneof) = { json: "one_duration2", inline: true };
 
     google.protobuf.Duration f_duration_nanosecond1 = 13 [ (json.field) = {
       reference: { plain: { value: { duration: { codec: Nanosecond } } } }
@@ -74,7 +74,7 @@ message WKTOneOf1 {
     } ];
   }
   oneof OneDuration3 {
-    option (json.oneof) = { json: "one_duration3", hide: false };
+    option (json.oneof) = { json: "one_duration3", inline: false };
 
     google.protobuf.Duration f_duration_millisecond1 = 15 [ (json.field) = {
       reference: { plain: { value: { duration: { codec: Millisecond } } } }
@@ -84,7 +84,7 @@ message WKTOneOf1 {
     } ];
   }
   oneof OneDuration4 {
-    option (json.oneof) = { json: "one_duration4", hide: true };
+    option (json.oneof) = { json: "one_duration4", inline: true };
 
     google.protobuf.Duration f_duration_minute1 = 17 [ (json.field) = {
       reference: { plain: { value: { duration: { codec: Minute } } } }
@@ -94,7 +94,7 @@ message WKTOneOf1 {
     } ];
   }
   oneof OneDuration5 {
-    option (json.oneof) = { json: "one_duration5", hide: false };
+    option (json.oneof) = { json: "one_duration5", inline: false };
 
     google.protobuf.Duration f_duration_nanosecond_string1 = 19 [ (json.field) = {
       reference: { plain: { value: { duration: { codec: NanosecondString } } } }
@@ -104,7 +104,7 @@ message WKTOneOf1 {
     } ];
   }
   oneof OneDuration6 {
-    option (json.oneof) = { json: "one_duration6", hide: true };
+    option (json.oneof) = { json: "one_duration6", inline: true };
 
     google.protobuf.Duration f_duration_millisecond_string1 = 21 [ (json.field) = {
       reference: { plain: { value: { duration: { codec: MillisecondString } } } }
@@ -114,7 +114,7 @@ message WKTOneOf1 {
     } ];
   }
   oneof OneDuration7 {
-    option (json.oneof) = { json: "one_duration7", hide: false };
+    option (json.oneof) = { json: "one_duration7", inline: false };
 
     google.protobuf.Duration f_duration_minute_string1 = 23 [ (json.field) = {
       reference: { plain: { value: { duration: { codec: MinuteString } } } }
@@ -127,7 +127,7 @@ message WKTOneOf1 {
   // Cases for google.protobuf.Timestamp
   //
   oneof OneTimestamp1 {
-    option (json.oneof) = { json: "one_timestamp1", hide: false };
+    option (json.oneof) = { json: "one_timestamp1", inline: false };
 
     google.protobuf.Timestamp f_timestamp_native1 = 31 [ (json.field) = {
       reference: { plain: { value: { timestamp: { codec: Object } } } }
@@ -137,7 +137,7 @@ message WKTOneOf1 {
     } ];
   }
   oneof OneTimestamp2 {
-    option (json.oneof) = { json: "one_timestamp2", hide: true };
+    option (json.oneof) = { json: "one_timestamp2", inline: true };
 
     google.protobuf.Timestamp f_timestamp_unix_nano1 = 33 [ (json.field) = {
       reference: { plain: { value: { timestamp: { codec: UnixNano } } } }
@@ -147,7 +147,7 @@ message WKTOneOf1 {
     } ];
   }
   oneof OneTimestamp3 {
-    option (json.oneof) = { json: "one_timestamp3", hide: false };
+    option (json.oneof) = { json: "one_timestamp3", inline: false };
 
     google.protobuf.Timestamp f_timestamp_unix_milli1 = 35 [ (json.field) = {
       reference: { plain: { value: { timestamp: { codec: UnixMilli } } } }
@@ -157,7 +157,7 @@ message WKTOneOf1 {
     } ];
   }
   oneof OneTimestamp4 {
-    option (json.oneof) = { json: "one_timestamp4", hide: true };
+    option (json.oneof) = { json: "one_timestamp4", inline: true };
 
     google.protobuf.Timestamp f_timestamp_unix_nano_string1 = 37 [ (json.field) = {
       reference: { plain: { value: { timestamp: { codec: UnixNanoString } } } }
@@ -167,7 +167,7 @@ message WKTOneOf1 {
     } ];
   }
   oneof OneTimestamp5 {
-    option (json.oneof) = { json: "one_timestamp5", hide: false };
+    option (json.oneof) = { json: "one_timestamp5", inline: false };
 
     google.protobuf.Timestamp f_timestamp_unix_milli_string1 = 39 [ (json.field) = {
       reference: { plain: { value: { timestamp: { codec: UnixMilliString } } } }

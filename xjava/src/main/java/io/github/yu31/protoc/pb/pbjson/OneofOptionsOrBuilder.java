@@ -63,13 +63,15 @@ public interface OneofOptionsOrBuilder extends
 
   /**
    * <pre>
-   * hide indicates whether hide the `oneof` key in JSON content.
-   * If the oneof field is hided, the empty value will be omitted in JSON content.
+   * Inline indicates whether expand the all oneof fields directly in the current structure.
+   * If the `inline` is true for a oneof field:
+   *     - The empty value will be omitted in JSON content.
+   *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
    * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
-   * <code>bool hide = 4;</code>
-   * @return The hide.
+   * <code>bool inline = 4;</code>
+   * @return The inline.
    */
-  boolean getHide();
+  boolean getInline();
 }

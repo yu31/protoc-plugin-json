@@ -97,7 +97,7 @@ func (p *Plugin) unmarshalLoopRead(fields []*Field) {
 
 func (p *Plugin) unmarshalForField(field *Field) {
 	if pkfield.FieldIsOneOf(field.Field) {
-		if options := field.OneOf.Options; options.Hide {
+		if options := field.OneOf.Options; options.Inline {
 			p.unmarshalOneOfField(field)
 			return
 		}

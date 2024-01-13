@@ -91,14 +91,14 @@ LOOP:
 			checkFieldDup(field)
 			continue LOOP
 		}
-		if field.OneOf.Options.Hide {
+		if field.OneOf.Options.Inline {
 			for _, oneField := range field.OneOf.Parts {
 				checkFieldDup(oneField)
 			}
 			continue LOOP
 		}
 
-		// oneOf key not hide in json. check it.
+		// oneOf key not inline in json. check it.
 		checkFieldDup(field)
 
 		// Check the fields in oneof part.

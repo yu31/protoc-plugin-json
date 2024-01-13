@@ -125,22 +125,22 @@ message TypeOneOf1 {
   }
 }
 
-// Test case for hide the `oneof` key.
-message TypeOneOfHide1 {
+// Test case for inline the `oneof` key.
+message TypeOneOfInline1 {
   oneof OneType01 {
-    option (json.oneof) = { hide: true};
+    option (json.oneof) = { inline: true};
     string f_string1 = 1 [ (json.field) = { } ];
     string f_string2 = 2 [ (json.field) = { } ];
   }
 
   oneof OneType02 {
-    option (json.oneof) = { hide: true};
+    option (json.oneof) = { inline: true};
     MessageOneOf1 f_message1 = 3 [ (json.field) = { } ];
     MessageOneOf1 f_message2 = 4 [ (json.field) = { } ];
   }
 
   oneof OneType03 {
-    option (json.oneof) = { hide: true};
+    option (json.oneof) = { inline: true};
     EnumOneOf1 f_enum1 = 5 [ (json.field) = { } ];
     EnumOneOf1 f_enum2 = 6 [ (json.field) = { } ];
   }

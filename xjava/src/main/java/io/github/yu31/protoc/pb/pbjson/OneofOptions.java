@@ -68,7 +68,7 @@ private static final long serialVersionUID = 0L;
           }
           case 32: {
 
-            hide_ = input.readBool();
+            inline_ = input.readBool();
             break;
           }
           default: {
@@ -197,21 +197,23 @@ private static final long serialVersionUID = 0L;
     return omitempty_;
   }
 
-  public static final int HIDE_FIELD_NUMBER = 4;
-  private boolean hide_;
+  public static final int INLINE_FIELD_NUMBER = 4;
+  private boolean inline_;
   /**
    * <pre>
-   * hide indicates whether hide the `oneof` key in JSON content.
-   * If the oneof field is hided, the empty value will be omitted in JSON content.
+   * Inline indicates whether expand the all oneof fields directly in the current structure.
+   * If the `inline` is true for a oneof field:
+   *     - The empty value will be omitted in JSON content.
+   *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
    * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
-   * <code>bool hide = 4;</code>
-   * @return The hide.
+   * <code>bool inline = 4;</code>
+   * @return The inline.
    */
   @java.lang.Override
-  public boolean getHide() {
-    return hide_;
+  public boolean getInline() {
+    return inline_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -237,8 +239,8 @@ private static final long serialVersionUID = 0L;
     if (omitempty_ != false) {
       output.writeBool(3, omitempty_);
     }
-    if (hide_ != false) {
-      output.writeBool(4, hide_);
+    if (inline_ != false) {
+      output.writeBool(4, inline_);
     }
     unknownFields.writeTo(output);
   }
@@ -260,9 +262,9 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(3, omitempty_);
     }
-    if (hide_ != false) {
+    if (inline_ != false) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(4, hide_);
+        .computeBoolSize(4, inline_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -288,8 +290,8 @@ private static final long serialVersionUID = 0L;
         != other.getIgnore()) return false;
     if (getOmitempty()
         != other.getOmitempty()) return false;
-    if (getHide()
-        != other.getHide()) return false;
+    if (getInline()
+        != other.getInline()) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -311,9 +313,9 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + OMITEMPTY_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getOmitempty());
-    hash = (37 * hash) + HIDE_FIELD_NUMBER;
+    hash = (37 * hash) + INLINE_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getHide());
+        getInline());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -453,7 +455,7 @@ private static final long serialVersionUID = 0L;
 
       omitempty_ = false;
 
-      hide_ = false;
+      inline_ = false;
 
       return this;
     }
@@ -489,7 +491,7 @@ private static final long serialVersionUID = 0L;
       result.json_ = json_;
       result.ignore_ = ignore_;
       result.omitempty_ = omitempty_;
-      result.hide_ = hide_;
+      result.inline_ = inline_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -550,8 +552,8 @@ private static final long serialVersionUID = 0L;
       if (other.getOmitempty() != false) {
         setOmitempty(other.getOmitempty());
       }
-      if (other.getHide() != false) {
-        setHide(other.getHide());
+      if (other.getInline() != false) {
+        setInline(other.getInline());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -788,51 +790,57 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private boolean hide_ ;
+    private boolean inline_ ;
     /**
      * <pre>
-     * hide indicates whether hide the `oneof` key in JSON content.
-     * If the oneof field is hided, the empty value will be omitted in JSON content.
+     * Inline indicates whether expand the all oneof fields directly in the current structure.
+     * If the `inline` is true for a oneof field:
+     *     - The empty value will be omitted in JSON content.
+     *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
-     * <code>bool hide = 4;</code>
-     * @return The hide.
+     * <code>bool inline = 4;</code>
+     * @return The inline.
      */
     @java.lang.Override
-    public boolean getHide() {
-      return hide_;
+    public boolean getInline() {
+      return inline_;
     }
     /**
      * <pre>
-     * hide indicates whether hide the `oneof` key in JSON content.
-     * If the oneof field is hided, the empty value will be omitted in JSON content.
+     * Inline indicates whether expand the all oneof fields directly in the current structure.
+     * If the `inline` is true for a oneof field:
+     *     - The empty value will be omitted in JSON content.
+     *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
-     * <code>bool hide = 4;</code>
-     * @param value The hide to set.
+     * <code>bool inline = 4;</code>
+     * @param value The inline to set.
      * @return This builder for chaining.
      */
-    public Builder setHide(boolean value) {
+    public Builder setInline(boolean value) {
       
-      hide_ = value;
+      inline_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * hide indicates whether hide the `oneof` key in JSON content.
-     * If the oneof field is hided, the empty value will be omitted in JSON content.
+     * Inline indicates whether expand the all oneof fields directly in the current structure.
+     * If the `inline` is true for a oneof field:
+     *     - The empty value will be omitted in JSON content.
+     *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
-     * <code>bool hide = 4;</code>
+     * <code>bool inline = 4;</code>
      * @return This builder for chaining.
      */
-    public Builder clearHide() {
+    public Builder clearInline() {
       
-      hide_ = false;
+      inline_ = false;
       onChanged();
       return this;
     }

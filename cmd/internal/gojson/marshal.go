@@ -107,7 +107,7 @@ func (p *Plugin) marshalOneOf(field *Field) {
 	for _, oneField := range field.OneOf.Parts {
 		oneType := p.g.QualifiedGoIdent(oneField.Field.GoIdent)
 		p.g.P("case *", oneType, ":")
-		if !options.Hide {
+		if !options.Inline {
 			p.marshalAppendObjectKey(jsonKey)
 			p.g.P("encoder.AppendObjectBegin()")
 			p.marshalPlain(oneField)
@@ -116,8 +116,8 @@ func (p *Plugin) marshalOneOf(field *Field) {
 			p.marshalPlain(oneField)
 		}
 	}
-	if !options.Hide && !options.Omitempty {
-		// If the oneof field are hide, It will be omitted for empty value.
+	if !options.Inline && !options.Omitempty {
+		// If the oneof field are inline, It will be omitted for empty value.
 		p.g.P("case nil:")
 		p.marshalAppendObjectKey(jsonKey)
 		p.marshalAppendNULL()
