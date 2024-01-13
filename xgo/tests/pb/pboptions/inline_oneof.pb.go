@@ -605,6 +605,303 @@ type InlineOneOf1_FTimestamp1 struct {
 
 func (*InlineOneOf1_FTimestamp1) isInlineOneOf1_OneType20() {}
 
+type InlineOneOf2Message3 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FString1 string `protobuf:"bytes,11,opt,name=f_string1,json=fString1,proto3" json:"f_string1,omitempty"`
+	// Types that are assignable to OneType01:
+	//	*InlineOneOf2Message3_FDouble
+	OneType01 isInlineOneOf2Message3_OneType01 `protobuf_oneof:"OneType01"`
+}
+
+func (x *InlineOneOf2Message3) Reset() {
+	*x = InlineOneOf2Message3{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tests_proto_cases_options_inline_oneof_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *InlineOneOf2Message3) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InlineOneOf2Message3) ProtoMessage() {}
+
+func (x *InlineOneOf2Message3) ProtoReflect() protoreflect.Message {
+	mi := &file_tests_proto_cases_options_inline_oneof_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InlineOneOf2Message3.ProtoReflect.Descriptor instead.
+func (*InlineOneOf2Message3) Descriptor() ([]byte, []int) {
+	return file_tests_proto_cases_options_inline_oneof_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *InlineOneOf2Message3) GetFString1() string {
+	if x != nil {
+		return x.FString1
+	}
+	return ""
+}
+
+func (m *InlineOneOf2Message3) GetOneType01() isInlineOneOf2Message3_OneType01 {
+	if m != nil {
+		return m.OneType01
+	}
+	return nil
+}
+
+func (x *InlineOneOf2Message3) GetFDouble() float64 {
+	if x, ok := x.GetOneType01().(*InlineOneOf2Message3_FDouble); ok {
+		return x.FDouble
+	}
+	return 0
+}
+
+type isInlineOneOf2Message3_OneType01 interface {
+	isInlineOneOf2Message3_OneType01()
+}
+
+type InlineOneOf2Message3_FDouble struct {
+	FDouble float64 `protobuf:"fixed64,21,opt,name=f_double,json=fDouble,proto3,oneof"`
+}
+
+func (*InlineOneOf2Message3_FDouble) isInlineOneOf2Message3_OneType01() {}
+
+type InlineOneOf2Message2 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FString1 string `protobuf:"bytes,11,opt,name=f_string1,json=fString1,proto3" json:"f_string1,omitempty"`
+	// Types that are assignable to OneType01:
+	//	*InlineOneOf2Message2_FMessage1
+	OneType01 isInlineOneOf2Message2_OneType01 `protobuf_oneof:"OneType01"`
+}
+
+func (x *InlineOneOf2Message2) Reset() {
+	*x = InlineOneOf2Message2{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tests_proto_cases_options_inline_oneof_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *InlineOneOf2Message2) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InlineOneOf2Message2) ProtoMessage() {}
+
+func (x *InlineOneOf2Message2) ProtoReflect() protoreflect.Message {
+	mi := &file_tests_proto_cases_options_inline_oneof_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InlineOneOf2Message2.ProtoReflect.Descriptor instead.
+func (*InlineOneOf2Message2) Descriptor() ([]byte, []int) {
+	return file_tests_proto_cases_options_inline_oneof_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *InlineOneOf2Message2) GetFString1() string {
+	if x != nil {
+		return x.FString1
+	}
+	return ""
+}
+
+func (m *InlineOneOf2Message2) GetOneType01() isInlineOneOf2Message2_OneType01 {
+	if m != nil {
+		return m.OneType01
+	}
+	return nil
+}
+
+func (x *InlineOneOf2Message2) GetFMessage1() *InlineOneOf2Message3 {
+	if x, ok := x.GetOneType01().(*InlineOneOf2Message2_FMessage1); ok {
+		return x.FMessage1
+	}
+	return nil
+}
+
+type isInlineOneOf2Message2_OneType01 interface {
+	isInlineOneOf2Message2_OneType01()
+}
+
+type InlineOneOf2Message2_FMessage1 struct {
+	FMessage1 *InlineOneOf2Message3 `protobuf:"bytes,21,opt,name=f_message1,json=fMessage1,proto3,oneof"`
+}
+
+func (*InlineOneOf2Message2_FMessage1) isInlineOneOf2Message2_OneType01() {}
+
+type InlineOneOf2Message1 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FString1 string `protobuf:"bytes,11,opt,name=f_string1,json=fString1,proto3" json:"f_string1,omitempty"`
+	// Types that are assignable to OneType01:
+	//	*InlineOneOf2Message1_FMessage1
+	OneType01 isInlineOneOf2Message1_OneType01 `protobuf_oneof:"OneType01"`
+}
+
+func (x *InlineOneOf2Message1) Reset() {
+	*x = InlineOneOf2Message1{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tests_proto_cases_options_inline_oneof_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *InlineOneOf2Message1) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InlineOneOf2Message1) ProtoMessage() {}
+
+func (x *InlineOneOf2Message1) ProtoReflect() protoreflect.Message {
+	mi := &file_tests_proto_cases_options_inline_oneof_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InlineOneOf2Message1.ProtoReflect.Descriptor instead.
+func (*InlineOneOf2Message1) Descriptor() ([]byte, []int) {
+	return file_tests_proto_cases_options_inline_oneof_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *InlineOneOf2Message1) GetFString1() string {
+	if x != nil {
+		return x.FString1
+	}
+	return ""
+}
+
+func (m *InlineOneOf2Message1) GetOneType01() isInlineOneOf2Message1_OneType01 {
+	if m != nil {
+		return m.OneType01
+	}
+	return nil
+}
+
+func (x *InlineOneOf2Message1) GetFMessage1() *InlineOneOf2Message2 {
+	if x, ok := x.GetOneType01().(*InlineOneOf2Message1_FMessage1); ok {
+		return x.FMessage1
+	}
+	return nil
+}
+
+type isInlineOneOf2Message1_OneType01 interface {
+	isInlineOneOf2Message1_OneType01()
+}
+
+type InlineOneOf2Message1_FMessage1 struct {
+	FMessage1 *InlineOneOf2Message2 `protobuf:"bytes,21,opt,name=f_message1,json=fMessage1,proto3,oneof"`
+}
+
+func (*InlineOneOf2Message1_FMessage1) isInlineOneOf2Message1_OneType01() {}
+
+// Test cases for oneof multiplayer nesting
+type InlineOneOf2 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FString1 string `protobuf:"bytes,11,opt,name=f_string1,json=fString1,proto3" json:"f_string1,omitempty"`
+	// Types that are assignable to OneType01:
+	//	*InlineOneOf2_FMessage1
+	OneType01 isInlineOneOf2_OneType01 `protobuf_oneof:"OneType01"`
+}
+
+func (x *InlineOneOf2) Reset() {
+	*x = InlineOneOf2{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tests_proto_cases_options_inline_oneof_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *InlineOneOf2) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InlineOneOf2) ProtoMessage() {}
+
+func (x *InlineOneOf2) ProtoReflect() protoreflect.Message {
+	mi := &file_tests_proto_cases_options_inline_oneof_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InlineOneOf2.ProtoReflect.Descriptor instead.
+func (*InlineOneOf2) Descriptor() ([]byte, []int) {
+	return file_tests_proto_cases_options_inline_oneof_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *InlineOneOf2) GetFString1() string {
+	if x != nil {
+		return x.FString1
+	}
+	return ""
+}
+
+func (m *InlineOneOf2) GetOneType01() isInlineOneOf2_OneType01 {
+	if m != nil {
+		return m.OneType01
+	}
+	return nil
+}
+
+func (x *InlineOneOf2) GetFMessage1() *InlineOneOf2Message1 {
+	if x, ok := x.GetOneType01().(*InlineOneOf2_FMessage1); ok {
+		return x.FMessage1
+	}
+	return nil
+}
+
+type isInlineOneOf2_OneType01 interface {
+	isInlineOneOf2_OneType01()
+}
+
+type InlineOneOf2_FMessage1 struct {
+	FMessage1 *InlineOneOf2Message1 `protobuf:"bytes,21,opt,name=f_message1,json=fMessage1,proto3,oneof"`
+}
+
+func (*InlineOneOf2_FMessage1) isInlineOneOf2_OneType01() {}
+
 var File_tests_proto_cases_options_inline_oneof_proto protoreflect.FileDescriptor
 
 var file_tests_proto_cases_options_inline_oneof_proto_rawDesc = []byte{
@@ -723,9 +1020,53 @@ var file_tests_proto_cases_options_inline_oneof_proto_rawDesc = []byte{
 	0x54, 0x79, 0x70, 0x65, 0x31, 0x39, 0x12, 0x0f, 0x92, 0xa2, 0x1f, 0x0b, 0x0a, 0x07, 0x74, 0x5f,
 	0x6f, 0x6e, 0x65, 0x31, 0x39, 0x20, 0x01, 0x42, 0x1c, 0x0a, 0x09, 0x4f, 0x6e, 0x65, 0x54, 0x79,
 	0x70, 0x65, 0x32, 0x30, 0x12, 0x0f, 0x92, 0xa2, 0x1f, 0x0b, 0x0a, 0x07, 0x74, 0x5f, 0x6f, 0x6e,
-	0x65, 0x32, 0x30, 0x20, 0x01, 0x42, 0x18, 0x5a, 0x16, 0x78, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73,
-	0x74, 0x73, 0x2f, 0x70, 0x62, 0x2f, 0x70, 0x62, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x32, 0x30, 0x20, 0x01, 0x22, 0x8f, 0x01, 0x0a, 0x14, 0x49, 0x6e, 0x6c, 0x69, 0x6e, 0x65,
+	0x4f, 0x6e, 0x65, 0x4f, 0x66, 0x32, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x33, 0x12, 0x2c,
+	0x0a, 0x09, 0x66, 0x5f, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31, 0x18, 0x0b, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x0f, 0x8a, 0xa2, 0x1f, 0x0b, 0x0a, 0x09, 0x74, 0x5f, 0x73, 0x74, 0x72, 0x69, 0x6e,
+	0x67, 0x33, 0x52, 0x08, 0x66, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31, 0x12, 0x2b, 0x0a, 0x08,
+	0x66, 0x5f, 0x64, 0x6f, 0x75, 0x62, 0x6c, 0x65, 0x18, 0x15, 0x20, 0x01, 0x28, 0x01, 0x42, 0x0e,
+	0x8a, 0xa2, 0x1f, 0x0a, 0x0a, 0x08, 0x74, 0x5f, 0x64, 0x6f, 0x75, 0x62, 0x6c, 0x65, 0x48, 0x00,
+	0x52, 0x07, 0x66, 0x44, 0x6f, 0x75, 0x62, 0x6c, 0x65, 0x42, 0x1c, 0x0a, 0x09, 0x4f, 0x6e, 0x65,
+	0x54, 0x79, 0x70, 0x65, 0x30, 0x31, 0x12, 0x0f, 0x92, 0xa2, 0x1f, 0x0b, 0x0a, 0x07, 0x74, 0x5f,
+	0x6f, 0x6e, 0x65, 0x30, 0x31, 0x20, 0x01, 0x22, 0xb9, 0x01, 0x0a, 0x14, 0x49, 0x6e, 0x6c, 0x69,
+	0x6e, 0x65, 0x4f, 0x6e, 0x65, 0x4f, 0x66, 0x32, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x32,
+	0x12, 0x2c, 0x0a, 0x09, 0x66, 0x5f, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31, 0x18, 0x0b, 0x20,
+	0x01, 0x28, 0x09, 0x42, 0x0f, 0x8a, 0xa2, 0x1f, 0x0b, 0x0a, 0x09, 0x74, 0x5f, 0x73, 0x74, 0x72,
+	0x69, 0x6e, 0x67, 0x32, 0x52, 0x08, 0x66, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31, 0x12, 0x55,
+	0x0a, 0x0a, 0x66, 0x5f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x31, 0x18, 0x15, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x22, 0x2e, 0x69, 0x6e, 0x6c, 0x69, 0x6e, 0x65, 0x5f, 0x6f, 0x6e, 0x65, 0x6f,
+	0x66, 0x2e, 0x49, 0x6e, 0x6c, 0x69, 0x6e, 0x65, 0x4f, 0x6e, 0x65, 0x4f, 0x66, 0x32, 0x4d, 0x65,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x33, 0x42, 0x10, 0x8a, 0xa2, 0x1f, 0x0c, 0x0a, 0x0a, 0x74, 0x5f,
+	0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x32, 0x48, 0x00, 0x52, 0x09, 0x66, 0x4d, 0x65, 0x73,
+	0x73, 0x61, 0x67, 0x65, 0x31, 0x42, 0x1c, 0x0a, 0x09, 0x4f, 0x6e, 0x65, 0x54, 0x79, 0x70, 0x65,
+	0x30, 0x31, 0x12, 0x0f, 0x92, 0xa2, 0x1f, 0x0b, 0x0a, 0x07, 0x74, 0x5f, 0x6f, 0x6e, 0x65, 0x30,
+	0x31, 0x20, 0x01, 0x22, 0xb9, 0x01, 0x0a, 0x14, 0x49, 0x6e, 0x6c, 0x69, 0x6e, 0x65, 0x4f, 0x6e,
+	0x65, 0x4f, 0x66, 0x32, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x31, 0x12, 0x2c, 0x0a, 0x09,
+	0x66, 0x5f, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x42,
+	0x0f, 0x8a, 0xa2, 0x1f, 0x0b, 0x0a, 0x09, 0x74, 0x5f, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31,
+	0x52, 0x08, 0x66, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31, 0x12, 0x55, 0x0a, 0x0a, 0x66, 0x5f,
+	0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x31, 0x18, 0x15, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x22,
+	0x2e, 0x69, 0x6e, 0x6c, 0x69, 0x6e, 0x65, 0x5f, 0x6f, 0x6e, 0x65, 0x6f, 0x66, 0x2e, 0x49, 0x6e,
+	0x6c, 0x69, 0x6e, 0x65, 0x4f, 0x6e, 0x65, 0x4f, 0x66, 0x32, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
+	0x65, 0x32, 0x42, 0x10, 0x8a, 0xa2, 0x1f, 0x0c, 0x0a, 0x0a, 0x74, 0x5f, 0x6d, 0x65, 0x73, 0x73,
+	0x61, 0x67, 0x65, 0x31, 0x48, 0x00, 0x52, 0x09, 0x66, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
+	0x31, 0x42, 0x1c, 0x0a, 0x09, 0x4f, 0x6e, 0x65, 0x54, 0x79, 0x70, 0x65, 0x30, 0x31, 0x12, 0x0f,
+	0x92, 0xa2, 0x1f, 0x0b, 0x0a, 0x07, 0x74, 0x5f, 0x6f, 0x6e, 0x65, 0x30, 0x31, 0x20, 0x01, 0x22,
+	0xb1, 0x01, 0x0a, 0x0c, 0x49, 0x6e, 0x6c, 0x69, 0x6e, 0x65, 0x4f, 0x6e, 0x65, 0x4f, 0x66, 0x32,
+	0x12, 0x2c, 0x0a, 0x09, 0x66, 0x5f, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31, 0x18, 0x0b, 0x20,
+	0x01, 0x28, 0x09, 0x42, 0x0f, 0x8a, 0xa2, 0x1f, 0x0b, 0x0a, 0x09, 0x74, 0x5f, 0x73, 0x74, 0x72,
+	0x69, 0x6e, 0x67, 0x30, 0x52, 0x08, 0x66, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x31, 0x12, 0x55,
+	0x0a, 0x0a, 0x66, 0x5f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x31, 0x18, 0x15, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x22, 0x2e, 0x69, 0x6e, 0x6c, 0x69, 0x6e, 0x65, 0x5f, 0x6f, 0x6e, 0x65, 0x6f,
+	0x66, 0x2e, 0x49, 0x6e, 0x6c, 0x69, 0x6e, 0x65, 0x4f, 0x6e, 0x65, 0x4f, 0x66, 0x32, 0x4d, 0x65,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x31, 0x42, 0x10, 0x8a, 0xa2, 0x1f, 0x0c, 0x0a, 0x0a, 0x74, 0x5f,
+	0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x30, 0x48, 0x00, 0x52, 0x09, 0x66, 0x4d, 0x65, 0x73,
+	0x73, 0x61, 0x67, 0x65, 0x31, 0x42, 0x1c, 0x0a, 0x09, 0x4f, 0x6e, 0x65, 0x54, 0x79, 0x70, 0x65,
+	0x30, 0x31, 0x12, 0x0f, 0x92, 0xa2, 0x1f, 0x0b, 0x0a, 0x07, 0x74, 0x5f, 0x6f, 0x6e, 0x65, 0x30,
+	0x31, 0x20, 0x01, 0x42, 0x18, 0x5a, 0x16, 0x78, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x73,
+	0x2f, 0x70, 0x62, 0x2f, 0x70, 0x62, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -740,26 +1081,33 @@ func file_tests_proto_cases_options_inline_oneof_proto_rawDescGZIP() []byte {
 	return file_tests_proto_cases_options_inline_oneof_proto_rawDescData
 }
 
-var file_tests_proto_cases_options_inline_oneof_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_tests_proto_cases_options_inline_oneof_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_tests_proto_cases_options_inline_oneof_proto_goTypes = []interface{}{
 	(*InlineOneOf1)(nil),          // 0: inline_oneof.InlineOneOf1
-	(pbexternal.Enum1)(0),         // 1: external.Enum1
-	(*pbexternal.Message1)(nil),   // 2: external.Message1
-	(*anypb.Any)(nil),             // 3: google.protobuf.Any
-	(*durationpb.Duration)(nil),   // 4: google.protobuf.Duration
-	(*timestamppb.Timestamp)(nil), // 5: google.protobuf.Timestamp
+	(*InlineOneOf2Message3)(nil),  // 1: inline_oneof.InlineOneOf2Message3
+	(*InlineOneOf2Message2)(nil),  // 2: inline_oneof.InlineOneOf2Message2
+	(*InlineOneOf2Message1)(nil),  // 3: inline_oneof.InlineOneOf2Message1
+	(*InlineOneOf2)(nil),          // 4: inline_oneof.InlineOneOf2
+	(pbexternal.Enum1)(0),         // 5: external.Enum1
+	(*pbexternal.Message1)(nil),   // 6: external.Message1
+	(*anypb.Any)(nil),             // 7: google.protobuf.Any
+	(*durationpb.Duration)(nil),   // 8: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil), // 9: google.protobuf.Timestamp
 }
 var file_tests_proto_cases_options_inline_oneof_proto_depIdxs = []int32{
-	1, // 0: inline_oneof.InlineOneOf1.f_enum1:type_name -> external.Enum1
-	2, // 1: inline_oneof.InlineOneOf1.f_message1:type_name -> external.Message1
-	3, // 2: inline_oneof.InlineOneOf1.f_any1:type_name -> google.protobuf.Any
-	4, // 3: inline_oneof.InlineOneOf1.f_duration1:type_name -> google.protobuf.Duration
-	5, // 4: inline_oneof.InlineOneOf1.f_timestamp1:type_name -> google.protobuf.Timestamp
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	5, // 0: inline_oneof.InlineOneOf1.f_enum1:type_name -> external.Enum1
+	6, // 1: inline_oneof.InlineOneOf1.f_message1:type_name -> external.Message1
+	7, // 2: inline_oneof.InlineOneOf1.f_any1:type_name -> google.protobuf.Any
+	8, // 3: inline_oneof.InlineOneOf1.f_duration1:type_name -> google.protobuf.Duration
+	9, // 4: inline_oneof.InlineOneOf1.f_timestamp1:type_name -> google.protobuf.Timestamp
+	1, // 5: inline_oneof.InlineOneOf2Message2.f_message1:type_name -> inline_oneof.InlineOneOf2Message3
+	2, // 6: inline_oneof.InlineOneOf2Message1.f_message1:type_name -> inline_oneof.InlineOneOf2Message2
+	3, // 7: inline_oneof.InlineOneOf2.f_message1:type_name -> inline_oneof.InlineOneOf2Message1
+	8, // [8:8] is the sub-list for method output_type
+	8, // [8:8] is the sub-list for method input_type
+	8, // [8:8] is the sub-list for extension type_name
+	8, // [8:8] is the sub-list for extension extendee
+	0, // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_tests_proto_cases_options_inline_oneof_proto_init() }
@@ -770,6 +1118,54 @@ func file_tests_proto_cases_options_inline_oneof_proto_init() {
 	if !protoimpl.UnsafeEnabled {
 		file_tests_proto_cases_options_inline_oneof_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*InlineOneOf1); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_tests_proto_cases_options_inline_oneof_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InlineOneOf2Message3); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_tests_proto_cases_options_inline_oneof_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InlineOneOf2Message2); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_tests_proto_cases_options_inline_oneof_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InlineOneOf2Message1); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_tests_proto_cases_options_inline_oneof_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InlineOneOf2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -803,13 +1199,25 @@ func file_tests_proto_cases_options_inline_oneof_proto_init() {
 		(*InlineOneOf1_FDuration1)(nil),
 		(*InlineOneOf1_FTimestamp1)(nil),
 	}
+	file_tests_proto_cases_options_inline_oneof_proto_msgTypes[1].OneofWrappers = []interface{}{
+		(*InlineOneOf2Message3_FDouble)(nil),
+	}
+	file_tests_proto_cases_options_inline_oneof_proto_msgTypes[2].OneofWrappers = []interface{}{
+		(*InlineOneOf2Message2_FMessage1)(nil),
+	}
+	file_tests_proto_cases_options_inline_oneof_proto_msgTypes[3].OneofWrappers = []interface{}{
+		(*InlineOneOf2Message1_FMessage1)(nil),
+	}
+	file_tests_proto_cases_options_inline_oneof_proto_msgTypes[4].OneofWrappers = []interface{}{
+		(*InlineOneOf2_FMessage1)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_tests_proto_cases_options_inline_oneof_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
