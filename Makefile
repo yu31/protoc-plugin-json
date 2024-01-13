@@ -1,8 +1,6 @@
 # Copyright (C) 2021 Yu.
 
 VERBOSE = no
-CASE = ""
-DIR = ""
 BENCH = "Benchmark"
 BENCH_TIME = "1s"
 
@@ -72,12 +70,12 @@ generate-test: compile
 .PHONY: test
 test: ## Run the test cases that in ./xgo/tests/cases
 test: generate-test tidy format vet
-	@[[ ${VERBOSE} = "yes" ]] && bash -x scripts/run_test_go.sh "${CASE}" "${DIR}" || bash scripts/run_test_go.sh "${CASE}" "${DIR}"
+	@[[ ${VERBOSE} = "yes" ]] && bash -x scripts/run_test_go.sh || bash scripts/run_test_go.sh
 	@#[[ ${VERBOSE} = "yes" ]] && set -x; go test -v -test.count=1 -failfast -test.run="${CASE}" ./xgo/tests/cases/...;
 
 .PHONY: test-only
 test-only:  ## Run test cases without generated codes.
-	@[[ ${VERBOSE} = "yes" ]] && bash -x scripts/run_test_go.sh "${CASE}" "${DIR}" || bash scripts/run_test_go.sh "${CASE}" "${DIR}"
+	@[[ ${VERBOSE} = "yes" ]] && bash -x scripts/run_test_go.sh || bash scripts/run_test_go.sh
 #	@[[ ${VERBOSE} = "yes" ]] && set -x; go test -v -test.count=1 -failfast -test.run="${CASE}" ./xgo/tests/cases/...;
 
 .PHONY: bench
