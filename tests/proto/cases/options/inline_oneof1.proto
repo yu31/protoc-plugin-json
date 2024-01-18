@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package inline_oneof;
+package inline_oneof1;
 
 option go_package = "xgo/tests/pb/pboptions";
 
@@ -132,47 +132,5 @@ message InlineOneOf1 {
     option (json.oneof) = { json: "t_one20"; inline: true };
 
     google.protobuf.Timestamp f_timestamp1 = 43 [ (json.field) = { json: "t_timestamp1"; } ];
-  }
-}
-
-
-message InlineOneOf2Message3 {
-  string f_string1 = 11 [ (json.field) = { json: "t_string3"; } ];
-
-  oneof OneType01 {
-    option (json.oneof) = { json: "t_one01"; inline: true };
-
-    double f_double = 21 [ (json.field) = { json: "t_double"; } ];
-  }
-}
-
-message InlineOneOf2Message2 {
-  string f_string1 = 11 [ (json.field) = { json: "t_string2"; } ];
-
-  oneof OneType01 {
-    option (json.oneof) = { json: "t_one01"; inline: true };
-
-    InlineOneOf2Message3 f_message1 = 21 [ (json.field) = { json: "t_message2"; } ];
-  }
-}
-
-message InlineOneOf2Message1 {
-  string f_string1 = 11 [ (json.field) = { json: "t_string1"; } ];
-
-  oneof OneType01 {
-    option (json.oneof) = { json: "t_one01"; inline: true };
-
-    InlineOneOf2Message2 f_message1 = 21 [ (json.field) = { json: "t_message1"; } ];
-  }
-}
-
-// Test cases for oneof multiplayer nesting
-message InlineOneOf2 {
-  string f_string1 = 11 [ (json.field) = { json: "t_string0"; } ];
-
-  oneof OneType01 {
-    option (json.oneof) = { json: "t_one01"; inline: true };
-
-    InlineOneOf2Message1 f_message1 = 21 [ (json.field) = { json: "t_message0"; } ];
   }
 }
