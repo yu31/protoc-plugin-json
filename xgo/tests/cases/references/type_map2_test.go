@@ -42,8 +42,6 @@ func Test_Reference_Type_Map2_General(t *testing.T) {
 	bb, err := seedTypeMap2.MarshalJSON()
 	require.Nil(t, err)
 
-	fmt.Println(string(bb))
-
 	dataNew := &pbref.TypeMap2{}
 	err = dataNew.UnmarshalJSON(bb)
 	require.Nil(t, err, fmt.Sprintf("%v", err))

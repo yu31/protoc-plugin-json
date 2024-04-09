@@ -2,7 +2,6 @@ package options
 
 import (
 	"encoding/json"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -46,7 +45,6 @@ func Test_DisallowUnknownFields(t *testing.T) {
 		data2 := pboptions.DisallowUnknownMessage1{}
 		err = data2.UnmarshalJSON(b2)
 		require.NotNil(t, err)
-		fmt.Println("Test_DisallowUnknownFields:", err.Error())
 	})
 
 	t.Run("DisallowUnknownMessage2", func(t *testing.T) {

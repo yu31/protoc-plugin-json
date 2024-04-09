@@ -1,176 +1,113 @@
 package jsondecoder
 
-func (dec *Decoder) ReadPointerString(jsonKey string) (vv *string, err error) {
-	var value []byte
-	if value, err = dec.readLiteralValue(); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
-		return
-	}
-	if value[0] == 'n' { // 'n' means null
-		return nil, nil
-	}
-	var v1 string
-	if v1, err = dec.convertToString(value); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
-		return
-	}
-	vv = &v1
-	return
-}
-func (dec *Decoder) ReadPointerBool(jsonKey string, unquote bool) (vv *bool, err error) {
-	var value []byte
-	if value, err = dec.readLiteralValue(); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
-		return
-	}
-	if value[0] == 'n' { // 'n' means null
-		return nil, nil
-	}
+import (
+	"google.golang.org/protobuf/reflect/protoreflect"
+)
 
-	var v1 bool
-	if v1, err = dec.convertToBool(unquote, value); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
+// ReadPtrI32 read the next items from JSON contents as value of int32.
+func ReadPtrI32(dec *Decoder, unquote bool) (vv *int32, err error) {
+	if vv, err = dec.readPtrI32(unquote); err != nil {
+		err = errorWrap(dec, err)
 		return
 	}
-	vv = &v1
-	return
-}
-func (dec *Decoder) ReadPointerInt32(jsonKey string, unquote bool) (vv *int32, err error) {
-	var value []byte
-	if value, err = dec.readLiteralValue(); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
-		return
-	}
-	if value[0] == 'n' { // 'n' means null
-		return nil, nil
-	}
-	var v1 int32
-	if v1, err = dec.convertToInt32(unquote, value); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
-		return
-	}
-	vv = &v1
-	return
-}
-func (dec *Decoder) ReadPointerInt64(jsonKey string, unquote bool) (vv *int64, err error) {
-	var value []byte
-	if value, err = dec.readLiteralValue(); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
-		return
-	}
-	if value[0] == 'n' { // 'n' means null
-		return nil, nil
-	}
-	var v1 int64
-	if v1, err = dec.convertToInt64(unquote, value); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
-		return
-	}
-	vv = &v1
-	return
-}
-func (dec *Decoder) ReadPointerUint32(jsonKey string, unquote bool) (vv *uint32, err error) {
-	var value []byte
-	if value, err = dec.readLiteralValue(); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
-		return
-	}
-	if value[0] == 'n' { // 'n' means null
-		return nil, nil
-	}
-	var v1 uint32
-	if v1, err = dec.convertToUint32(unquote, value); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
-		return
-	}
-	vv = &v1
-	return
-}
-func (dec *Decoder) ReadPointerUint64(jsonKey string, unquote bool) (vv *uint64, err error) {
-	var value []byte
-	if value, err = dec.readLiteralValue(); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
-		return
-	}
-	if value[0] == 'n' { // 'n' means null
-		return nil, nil
-	}
-	var v1 uint64
-	if v1, err = dec.convertToUint64(unquote, value); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
-		return
-	}
-	vv = &v1
-	return
+	return vv, nil
 }
 
-func (dec *Decoder) ReadPointerFloat32(jsonKey string, unquote bool) (vv *float32, err error) {
-	var value []byte
-	if value, err = dec.readLiteralValue(); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
+// ReadPtrI64 read the next items from JSON contents as value of int64.
+func ReadPtrI64(dec *Decoder, unquote bool) (vv *int64, err error) {
+	if vv, err = dec.readPtrI64(unquote); err != nil {
+		err = errorWrap(dec, err)
 		return
 	}
-	if value[0] == 'n' { // 'n' means null
-		return nil, nil
-	}
-	var v1 float32
-	if v1, err = dec.convertToFloat32(unquote, value); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
-		return
-	}
-	vv = &v1
-	return
+	return vv, nil
 }
-func (dec *Decoder) ReadPointerFloat64(jsonKey string, unquote bool) (vv *float64, err error) {
-	var value []byte
-	if value, err = dec.readLiteralValue(); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
-		return
-	}
-	if value[0] == 'n' { // 'n' means null
-		return nil, nil
-	}
-	var v1 float64
-	if v1, err = dec.convertToFloat64(unquote, value); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
-		return
-	}
-	vv = &v1
-	return
-}
-func (dec *Decoder) ReadPointerEnumNumber(jsonKey string, unquote bool) (vv *int32, err error) {
-	var value []byte
-	if value, err = dec.readLiteralValue(); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
-		return
-	}
-	if value[0] == 'n' { // 'n' means null
-		return nil, nil
-	}
-	var v1 int32
-	if v1, err = dec.convertToEnum(unquote, value); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
-		return
-	}
 
-	vv = &v1
-	return
+// ReadPtrU32 read the next items from JSON contents as value of uint32.
+func ReadPtrU32(dec *Decoder, unquote bool) (vv *uint32, err error) {
+	if vv, err = dec.readPtrU32(unquote); err != nil {
+		err = errorWrap(dec, err)
+		return
+	}
+	return vv, nil
 }
-func (dec *Decoder) ReadPointerEnumString(jsonKey string, em map[string]int32) (vv *int32, err error) {
-	var value []byte
-	if value, err = dec.readLiteralValue(); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
-		return
-	}
-	if value[0] == 'n' { // 'n' means null
-		return nil, nil
-	}
 
-	var v1 int32
-	if v1, err = parseEnumString(value, em); err != nil {
-		err = errorWrap(jsonKey, dec.offset, err)
+// ReadPtrU64 read the next items from JSON contents as value of uint64.
+func ReadPtrU64(dec *Decoder, unquote bool) (vv *uint64, err error) {
+	if vv, err = dec.readPtrU64(unquote); err != nil {
+		err = errorWrap(dec, err)
 		return
 	}
-	vv = &v1
-	return
+	return vv, nil
+}
+
+// ReadPtrF32 read the next items from JSON contents as value of float32.
+func ReadPtrF32(dec *Decoder, unquote bool) (vv *float32, err error) {
+	if vv, err = dec.readPtrF32(unquote); err != nil {
+		err = errorWrap(dec, err)
+		return
+	}
+	return vv, nil
+}
+
+// ReadPtrF64 read the next items from JSON contents as value of uint64.
+func ReadPtrF64(dec *Decoder, unquote bool) (vv *float64, err error) {
+	if vv, err = dec.readPtrF64(unquote); err != nil {
+		err = errorWrap(dec, err)
+		return
+	}
+	return vv, nil
+}
+
+// ReadPtrBool read the next items from JSON contents as value of bool.
+func ReadPtrBool(dec *Decoder, unquote bool) (vv *bool, err error) {
+	if vv, err = dec.readPtrBool(unquote); err != nil {
+		err = errorWrap(dec, err)
+		return
+	}
+	return vv, nil
+}
+
+// ReadPtrStr read the next items from JSON contents as value of string.
+func ReadPtrStr(dec *Decoder) (vv *string, err error) {
+	if vv, err = dec.readPtrStr(); err != nil {
+		err = errorWrap(dec, err)
+		return
+	}
+	return vv, nil
+}
+
+// ReadPtrEnumNum read the next items from JSON contents as value of enum with codec number.
+// FIXME: optimized the codes.
+func ReadPtrEnumNum[T protoreflect.Enum](dec *Decoder, val *T, unquote bool) (vv *T, err error) {
+	_ = val // Only used to confirm generic type.
+	var v2 *int32
+	if v2, err = dec.readPtrEnumNum(unquote); err != nil {
+		err = errorWrap(dec, err)
+		return
+	}
+	if v2 == nil {
+		return nil, err
+	}
+	var tt T
+	tt = tt.Type().New(protoreflect.EnumNumber(*v2)).(T)
+	vv = &tt
+	return vv, nil
+}
+
+// ReadPtrEnumStr read the next items from JSON contents as value of enum with codec string.
+// FIXME: optimized the codes.
+func ReadPtrEnumStr[T protoreflect.Enum](dec *Decoder, val *T, em map[string]int32) (vv *T, err error) {
+	_ = val // Only used to confirm generic type.
+	var v2 *int32
+	if v2, err = dec.readPtrEnumStr(em); err != nil {
+		err = errorWrap(dec, err)
+		return
+	}
+	if v2 == nil {
+		return nil, err
+	}
+	var tt T
+	tt = tt.Type().New(protoreflect.EnumNumber(*v2)).(T)
+	vv = &tt
+	return vv, nil
 }

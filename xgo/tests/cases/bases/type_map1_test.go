@@ -2,7 +2,6 @@ package bases
 
 import (
 	"encoding/json"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -152,14 +151,6 @@ func Test_TypeMap1_Compatible(t *testing.T) {
 	// proto
 	b3, err = utils.PMarshal.Marshal(seedMap1)
 	require.Nil(t, err)
-
-	fmt.Println("=========================================== PLUGIN =============================================")
-	fmt.Println(string(b1))
-	fmt.Println("=========================================== STANDARD ===========================================")
-	fmt.Println(string(b2))
-	fmt.Println("=========================================== PROTO ==============================================")
-	fmt.Println(string(b3))
-	fmt.Println("================================================================================================")
 }
 
 // Test cases the field is empty.

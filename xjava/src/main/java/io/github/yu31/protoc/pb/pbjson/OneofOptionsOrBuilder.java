@@ -63,14 +63,27 @@ public interface OneofOptionsOrBuilder extends
 
   /**
    * <pre>
-   * Inline indicates whether expand the all oneof fields directly in the current structure.
+   * Inline indicates whether directly expand all fields of oneof in the current scope.
    * If the `inline` is true for a oneof field:
-   *     - The empty value will be omitted in JSON content.
+   *     - The null value will be omitted in JSON content.
    *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
    * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
-   * <code>bool inline = 4;</code>
+   * <code>optional bool inline = 4;</code>
+   * @return Whether the inline field is set.
+   */
+  boolean hasInline();
+  /**
+   * <pre>
+   * Inline indicates whether directly expand all fields of oneof in the current scope.
+   * If the `inline` is true for a oneof field:
+   *     - The null value will be omitted in JSON content.
+   *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
+   * It effect the MarshalJSON and UnmarshalJSON.
+   * </pre>
+   *
+   * <code>optional bool inline = 4;</code>
    * @return The inline.
    */
   boolean getInline();

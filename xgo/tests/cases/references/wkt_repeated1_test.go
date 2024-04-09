@@ -2,7 +2,6 @@ package references
 
 import (
 	"encoding/json"
-	"fmt"
 	"testing"
 
 	"github.com/golang/protobuf/ptypes/any"
@@ -107,8 +106,6 @@ var seedWKTRepeated1 = &pbref.WKTRepeated1{
 func Test_Reference_WKT_Repeated1_General(t *testing.T) {
 	bb, err := seedWKTRepeated1.MarshalJSON()
 	require.Nil(t, err)
-
-	fmt.Println(string(bb))
 
 	dataNew := &pbref.WKTRepeated1{}
 	err = dataNew.UnmarshalJSON(bb)

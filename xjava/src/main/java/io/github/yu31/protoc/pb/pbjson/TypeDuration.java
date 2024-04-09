@@ -118,9 +118,9 @@ private static final long serialVersionUID = 0L;
      * e.g: "1m1s".
      * </pre>
      *
-     * <code>String = 2;</code>
+     * <code>TimeString = 2;</code>
      */
-    String(2),
+    TimeString(2),
     /**
      * <pre>
      * String represents covert the google.protobuf.Duration as nanoseconds of type int64 when encoding and decoding.
@@ -242,9 +242,9 @@ private static final long serialVersionUID = 0L;
      * e.g: "1m1s".
      * </pre>
      *
-     * <code>String = 2;</code>
+     * <code>TimeString = 2;</code>
      */
-    public static final int String_VALUE = 2;
+    public static final int TimeString_VALUE = 2;
     /**
      * <pre>
      * String represents covert the google.protobuf.Duration as nanoseconds of type int64 when encoding and decoding.
@@ -369,7 +369,7 @@ private static final long serialVersionUID = 0L;
       switch (value) {
         case 0: return Unset;
         case 1: return Object;
-        case 2: return String;
+        case 2: return TimeString;
         case 3: return Nanosecond;
         case 4: return NanosecondString;
         case 5: return Microsecond;

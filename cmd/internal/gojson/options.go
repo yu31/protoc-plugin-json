@@ -33,6 +33,10 @@ func loadFieldOptions(field *protogen.Field) *pbjson.FieldOptions {
 	if options == nil {
 		options = &pbjson.FieldOptions{}
 	}
+	if options.Inline == nil { // default to false.
+		v := false
+		options.Inline = &v
+	}
 	return options
 }
 
@@ -41,6 +45,10 @@ func loadOneOfOptions(field *protogen.Field) *pbjson.OneofOptions {
 	options := i.(*pbjson.OneofOptions)
 	if options == nil {
 		options = &pbjson.OneofOptions{}
+	}
+	if options.Inline == nil { // default to false.
+		v := false
+		options.Inline = &v
 	}
 	return options
 }
@@ -387,7 +395,7 @@ func loadTypeCodecDuration(typeCodec *pbjson.TypeCodec) *pbjson.TypeDuration {
 }
 func loadTypeCodecTimestamp(typeCodec *pbjson.TypeCodec) *pbjson.TypeTimestamp {
 	if typeCodec == nil || typeCodec.Kind == nil {
-		return &pbjson.TypeTimestamp{}
+		return &pbjson.TypeTimestamp{Layout: &pbjson.TypeTimestamp_Layout{}}
 	}
 
 	switch ot := typeCodec.Kind.(type) {

@@ -1,7 +1,6 @@
 package options
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -41,7 +40,6 @@ func Test_InlineOneOf2(t *testing.T) {
 	t.Run("Marshal", func(t *testing.T) {
 		bb, err = data1.MarshalJSON()
 		require.Nil(t, err)
-		fmt.Println(string(bb))
 	})
 
 	t.Run("Unmarshal", func(t *testing.T) {

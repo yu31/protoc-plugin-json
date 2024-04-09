@@ -2,7 +2,6 @@ package references
 
 import (
 	"encoding/json"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -50,8 +49,6 @@ var seedWKTPlain1 = &pbref.WKTPlain1{
 func Test_Reference_WKT_Plain1_General(t *testing.T) {
 	bb, err := seedWKTPlain1.MarshalJSON()
 	require.Nil(t, err)
-
-	fmt.Println(string(bb))
 
 	dataNew := &pbref.WKTPlain1{}
 	err = dataNew.UnmarshalJSON(bb)

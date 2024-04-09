@@ -10,10 +10,10 @@ import (
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
-	pbexternal "github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal"
-	anypb "google.golang.org/protobuf/types/known/anypb"
-	durationpb "google.golang.org/protobuf/types/known/durationpb"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	_ "github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal"
+	_ "google.golang.org/protobuf/types/known/anypb"
+	_ "google.golang.org/protobuf/types/known/durationpb"
+	_ "google.golang.org/protobuf/types/known/timestamppb"
 )
 
 // MarshalJSON implements interface json.Marshaler for proto message TypePlain1 in file tests/proto/cases/options/type_plain.proto
@@ -21,104 +21,41 @@ func (x *TypePlain1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	var err error
-	encoder := jsonencoder.New(424)
+	enc := jsonencoder.New(424)
+	enc.AppendObjectBegin() // Add begin JSON identifier
 
-	// Add begin JSON identifier
-	encoder.AppendObjectBegin()
-
-	if x.FInt32 != 0 {
-		encoder.AppendObjectKey("t_int32")
-		encoder.AppendLiteralInt32(x.FInt32, false)
+	jsonencoder.AppendValI32(enc, "t_int32", x.FInt32, true, false)
+	jsonencoder.AppendValI64(enc, "t_int64", x.FInt64, true, false)
+	jsonencoder.AppendValU32(enc, "t_uint32", x.FUint32, true, false)
+	jsonencoder.AppendValU64(enc, "t_uint64", x.FUint64, true, false)
+	jsonencoder.AppendValI32(enc, "t_sint32", x.FSint32, true, false)
+	jsonencoder.AppendValI64(enc, "t_sint64", x.FSint64, true, false)
+	jsonencoder.AppendValI32(enc, "t_sfixed32", x.FSfixed32, true, false)
+	jsonencoder.AppendValI64(enc, "t_sfixed64", x.FSfixed64, true, false)
+	jsonencoder.AppendValU32(enc, "t_fixed32", x.FFixed32, true, false)
+	jsonencoder.AppendValU64(enc, "t_fixed64", x.FFixed64, true, false)
+	jsonencoder.AppendValF32(enc, "t_float", x.FFloat, true, false)
+	jsonencoder.AppendValF64(enc, "t_double", x.FDouble, true, false)
+	jsonencoder.AppendValBool(enc, "t_bool1", x.FBool1, true, false)
+	jsonencoder.AppendValStr(enc, "t_string1", x.FString1, true)
+	if err := jsonencoder.AppendValBytes(enc, "t_bytes1", x.FBytes1, true); err != nil {
+		return nil, err
 	}
-	if x.FInt64 != 0 {
-		encoder.AppendObjectKey("t_int64")
-		encoder.AppendLiteralInt64(x.FInt64, false)
+	jsonencoder.AppendValEnumNum(enc, "t_enum1", x.FEnum1, true, false)
+	if err := jsonencoder.AppendValMessage(enc, "t_message1", x.FMessage1, true); err != nil {
+		return nil, err
 	}
-	if x.FUint32 != 0 {
-		encoder.AppendObjectKey("t_uint32")
-		encoder.AppendLiteralUint32(x.FUint32, false)
+	if err := jsonencoder.AppendValWKTAnyObject(enc, "t_any1", x.FAny1, true); err != nil {
+		return nil, err
 	}
-	if x.FUint64 != 0 {
-		encoder.AppendObjectKey("t_uint64")
-		encoder.AppendLiteralUint64(x.FUint64, false)
+	if err := jsonencoder.AppendValWKTDurObject(enc, "t_duration1", x.FDuration1, true); err != nil {
+		return nil, err
 	}
-	if x.FSint32 != 0 {
-		encoder.AppendObjectKey("t_sint32")
-		encoder.AppendLiteralInt32(x.FSint32, false)
+	if err := jsonencoder.AppendValWKTTsObject(enc, "t_timestamp1", x.FTimestamp1, true); err != nil {
+		return nil, err
 	}
-	if x.FSint64 != 0 {
-		encoder.AppendObjectKey("t_sint64")
-		encoder.AppendLiteralInt64(x.FSint64, false)
-	}
-	if x.FSfixed32 != 0 {
-		encoder.AppendObjectKey("t_sfixed32")
-		encoder.AppendLiteralInt32(x.FSfixed32, false)
-	}
-	if x.FSfixed64 != 0 {
-		encoder.AppendObjectKey("t_sfixed64")
-		encoder.AppendLiteralInt64(x.FSfixed64, false)
-	}
-	if x.FFixed32 != 0 {
-		encoder.AppendObjectKey("t_fixed32")
-		encoder.AppendLiteralUint32(x.FFixed32, false)
-	}
-	if x.FFixed64 != 0 {
-		encoder.AppendObjectKey("t_fixed64")
-		encoder.AppendLiteralUint64(x.FFixed64, false)
-	}
-	if x.FFloat != 0 {
-		encoder.AppendObjectKey("t_float")
-		encoder.AppendLiteralFloat32(x.FFloat, false)
-	}
-	if x.FDouble != 0 {
-		encoder.AppendObjectKey("t_double")
-		encoder.AppendLiteralFloat64(x.FDouble, false)
-	}
-	if x.FBool1 {
-		encoder.AppendObjectKey("t_bool1")
-		encoder.AppendLiteralBool(x.FBool1, false)
-	}
-	if x.FString1 != "" {
-		encoder.AppendObjectKey("t_string1")
-		encoder.AppendLiteralString(x.FString1)
-	}
-	if len(x.FBytes1) != 0 {
-		encoder.AppendObjectKey("t_bytes1")
-		encoder.AppendLiteralBytes(x.FBytes1)
-	}
-	if x.FEnum1 != 0 {
-		encoder.AppendObjectKey("t_enum1")
-		encoder.AppendLiteralInt32(int32(x.FEnum1.Number()), false)
-	}
-	if x.FMessage1 != nil {
-		encoder.AppendObjectKey("t_message1")
-		if err = encoder.AppendLiteralInterface(x.FMessage1); err != nil {
-			return nil, err
-		}
-	}
-	if x.FAny1 != nil {
-		encoder.AppendObjectKey("t_any1")
-		if err = encoder.AppendLiteralInterface(x.FAny1); err != nil {
-			return nil, err
-		}
-	}
-	if x.FDuration1 != nil {
-		encoder.AppendObjectKey("t_duration1")
-		if err = encoder.AppendLiteralInterface(x.FDuration1); err != nil {
-			return nil, err
-		}
-	}
-	if x.FTimestamp1 != nil {
-		encoder.AppendObjectKey("t_timestamp1")
-		if err = encoder.AppendLiteralInterface(x.FTimestamp1); err != nil {
-			return nil, err
-		}
-	}
-
-	// Add end JSON identifier
-	encoder.AppendObjectEnd()
-	return encoder.Bytes(), err
+	enc.AppendObjectEnd() // Add end JSON identifier
+	return enc.Bytes(), nil
 }
 
 // UnmarshalJSON implements json.Unmarshaler for proto message TypePlain1 in file tests/proto/cases/options/type_plain.proto
@@ -127,199 +64,116 @@ func (x *TypePlain1) UnmarshalJSON(b []byte) error {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pboptions.(*TypePlain1) is nil")
 	}
 	var (
-		err     error
-		isNULL  bool
-		decoder *jsondecoder.Decoder
+		err    error
+		isNULL bool
+		dec    *jsondecoder.Decoder
 	)
-	if decoder, err = jsondecoder.New(b); err != nil {
+	if dec, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
+	if isNULL, err = dec.BeforeScanJSON(); err != nil || isNULL {
 		return err
-	}
-	if isNULL {
-		return nil
 	}
 LOOP_SCAN:
-	for { // Loop to scan object.
+	for { // Loop to read the JSON objects
 		var (
 			jsonKey string
 			isEnd   bool
 		)
-		if isEnd, err = decoder.BeforeScanNext(); err != nil {
+
+		if isEnd, err = dec.BeforeScanNext(); err != nil {
 			return err
 		}
 		if isEnd {
 			break LOOP_SCAN
 		}
-		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+
+		if jsonKey, err = dec.ReadJSONKey(); err != nil {
 			return err
 		}
 		switch jsonKey { // match the jsonKey
 		case "t_int32":
-			var vv int32
-			if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
+			if x.FInt32, err = jsondecoder.ReadValI32(dec, false); err != nil {
 				return err
 			}
-			x.FInt32 = vv
 		case "t_int64":
-			var vv int64
-			if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
+			if x.FInt64, err = jsondecoder.ReadValI64(dec, false); err != nil {
 				return err
 			}
-			x.FInt64 = vv
 		case "t_uint32":
-			var vv uint32
-			if vv, err = decoder.ReadLiteralUint32(jsonKey, false); err != nil {
+			if x.FUint32, err = jsondecoder.ReadValU32(dec, false); err != nil {
 				return err
 			}
-			x.FUint32 = vv
 		case "t_uint64":
-			var vv uint64
-			if vv, err = decoder.ReadLiteralUint64(jsonKey, false); err != nil {
+			if x.FUint64, err = jsondecoder.ReadValU64(dec, false); err != nil {
 				return err
 			}
-			x.FUint64 = vv
 		case "t_sint32":
-			var vv int32
-			if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
+			if x.FSint32, err = jsondecoder.ReadValI32(dec, false); err != nil {
 				return err
 			}
-			x.FSint32 = vv
 		case "t_sint64":
-			var vv int64
-			if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
+			if x.FSint64, err = jsondecoder.ReadValI64(dec, false); err != nil {
 				return err
 			}
-			x.FSint64 = vv
 		case "t_sfixed32":
-			var vv int32
-			if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
+			if x.FSfixed32, err = jsondecoder.ReadValI32(dec, false); err != nil {
 				return err
 			}
-			x.FSfixed32 = vv
 		case "t_sfixed64":
-			var vv int64
-			if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
+			if x.FSfixed64, err = jsondecoder.ReadValI64(dec, false); err != nil {
 				return err
 			}
-			x.FSfixed64 = vv
 		case "t_fixed32":
-			var vv uint32
-			if vv, err = decoder.ReadLiteralUint32(jsonKey, false); err != nil {
+			if x.FFixed32, err = jsondecoder.ReadValU32(dec, false); err != nil {
 				return err
 			}
-			x.FFixed32 = vv
 		case "t_fixed64":
-			var vv uint64
-			if vv, err = decoder.ReadLiteralUint64(jsonKey, false); err != nil {
+			if x.FFixed64, err = jsondecoder.ReadValU64(dec, false); err != nil {
 				return err
 			}
-			x.FFixed64 = vv
 		case "t_float":
-			var vv float32
-			if vv, err = decoder.ReadLiteralFloat32(jsonKey, false); err != nil {
+			if x.FFloat, err = jsondecoder.ReadValF32(dec, false); err != nil {
 				return err
 			}
-			x.FFloat = vv
 		case "t_double":
-			var vv float64
-			if vv, err = decoder.ReadLiteralFloat64(jsonKey, false); err != nil {
+			if x.FDouble, err = jsondecoder.ReadValF64(dec, false); err != nil {
 				return err
 			}
-			x.FDouble = vv
 		case "t_bool1":
-			var vv bool
-			if vv, err = decoder.ReadLiteralBool(jsonKey, false); err != nil {
+			if x.FBool1, err = jsondecoder.ReadValBool(dec, false); err != nil {
 				return err
 			}
-			x.FBool1 = vv
 		case "t_string1":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString1, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString1 = vv
 		case "t_bytes1":
-			var vv []byte
-			if vv, err = decoder.ReadLiteralBytes(jsonKey); err != nil {
+			if x.FBytes1, err = jsondecoder.ReadValBytes(dec); err != nil {
 				return err
 			}
-			x.FBytes1 = vv
 		case "t_enum1":
-			var vv pbexternal.Enum1
-			var v1 int32
-			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
+			if x.FEnum1, err = jsondecoder.ReadValEnumNum(dec, x.FEnum1, false); err != nil {
 				return err
 			}
-			vv = pbexternal.Enum1(v1)
-			x.FEnum1 = vv
 		case "t_message1":
-			var vv *pbexternal.Message1
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+			if x.FMessage1, err = jsondecoder.ReadValMessage(dec, x.FMessage1); err != nil {
 				return err
 			}
-			if !isNULL {
-				if x.FMessage1 != nil {
-					vv = x.FMessage1
-				} else {
-					vv = new(pbexternal.Message1)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FMessage1 = vv
 		case "t_any1":
-			var vv *anypb.Any
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+			if x.FAny1, err = jsondecoder.ReadValWKTAnyObject(dec, x.FAny1); err != nil {
 				return err
 			}
-			if !isNULL {
-				if x.FAny1 != nil {
-					vv = x.FAny1
-				} else {
-					vv = new(anypb.Any)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FAny1 = vv
 		case "t_duration1":
-			var vv *durationpb.Duration
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+			if x.FDuration1, err = jsondecoder.ReadValWKTDurObject(dec, x.FDuration1); err != nil {
 				return err
 			}
-			if !isNULL {
-				if x.FDuration1 != nil {
-					vv = x.FDuration1
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FDuration1 = vv
 		case "t_timestamp1":
-			var vv *timestamppb.Timestamp
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+			if x.FTimestamp1, err = jsondecoder.ReadValWKTTsObject(dec, x.FTimestamp1); err != nil {
 				return err
 			}
-			if !isNULL {
-				if x.FTimestamp1 != nil {
-					vv = x.FTimestamp1
-				} else {
-					vv = new(timestamppb.Timestamp)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			x.FTimestamp1 = vv
 		default:
-			if err = decoder.DiscardValue(jsonKey); err != nil {
+			if err = dec.DiscardValue(); err != nil {
 				return err
 			}
 		} // end switch

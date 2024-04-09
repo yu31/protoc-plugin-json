@@ -2,7 +2,6 @@ package references
 
 import (
 	"encoding/json"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -44,8 +43,6 @@ var seedTypeOptional1 = &pbref.TypeOptional1{
 func Test_Reference_Type_Optional1_General(t *testing.T) {
 	bb, err := seedTypeOptional1.MarshalJSON()
 	require.Nil(t, err)
-
-	fmt.Println(string(bb))
 
 	dataNew := &pbref.TypeOptional1{}
 	err = dataNew.UnmarshalJSON(bb)

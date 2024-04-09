@@ -42,7 +42,7 @@ message WKTPlain1 {
     reference: { plain: { value: { duration: { codec: Object } } } }
   } ];
   google.protobuf.Duration f_duration_string1 = 12 [ (json.field) = {
-    reference: { plain: { value: { duration: { codec: String } } } }
+    reference: { plain: { value: { duration: { codec: TimeString } } } }
   } ];
 
   google.protobuf.Duration f_duration_nanosecond1 = 13 [ (json.field) = {

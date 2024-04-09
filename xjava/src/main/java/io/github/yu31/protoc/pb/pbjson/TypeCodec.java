@@ -259,22 +259,8 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 130: {
-            io.github.yu31.protoc.pb.pbjson.TypeMessage.Builder subBuilder = null;
-            if (kindCase_ == 16) {
-              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_).toBuilder();
-            }
-            kind_ =
-                input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeMessage.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_);
-              kind_ = subBuilder.buildPartial();
-            }
-            kindCase_ = 16;
-            break;
-          }
-          case 170: {
             io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder subBuilder = null;
-            if (kindCase_ == 21) {
+            if (kindCase_ == 16) {
               subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_).toBuilder();
             }
             kind_ =
@@ -283,12 +269,26 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_);
               kind_ = subBuilder.buildPartial();
             }
-            kindCase_ = 21;
+            kindCase_ = 16;
             break;
           }
-          case 178: {
+          case 138: {
+            io.github.yu31.protoc.pb.pbjson.TypeMessage.Builder subBuilder = null;
+            if (kindCase_ == 17) {
+              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_).toBuilder();
+            }
+            kind_ =
+                input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeMessage.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_);
+              kind_ = subBuilder.buildPartial();
+            }
+            kindCase_ = 17;
+            break;
+          }
+          case 170: {
             io.github.yu31.protoc.pb.pbjson.TypeAny.Builder subBuilder = null;
-            if (kindCase_ == 22) {
+            if (kindCase_ == 21) {
               subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeAny) kind_).toBuilder();
             }
             kind_ =
@@ -297,12 +297,12 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeAny) kind_);
               kind_ = subBuilder.buildPartial();
             }
-            kindCase_ = 22;
+            kindCase_ = 21;
             break;
           }
-          case 186: {
+          case 178: {
             io.github.yu31.protoc.pb.pbjson.TypeDuration.Builder subBuilder = null;
-            if (kindCase_ == 23) {
+            if (kindCase_ == 22) {
               subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeDuration) kind_).toBuilder();
             }
             kind_ =
@@ -311,12 +311,12 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeDuration) kind_);
               kind_ = subBuilder.buildPartial();
             }
-            kindCase_ = 23;
+            kindCase_ = 22;
             break;
           }
-          case 194: {
+          case 186: {
             io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Builder subBuilder = null;
-            if (kindCase_ == 24) {
+            if (kindCase_ == 23) {
               subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeTimestamp) kind_).toBuilder();
             }
             kind_ =
@@ -325,7 +325,7 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeTimestamp) kind_);
               kind_ = subBuilder.buildPartial();
             }
-            kindCase_ = 24;
+            kindCase_ = 23;
             break;
           }
           default: {
@@ -380,11 +380,11 @@ private static final long serialVersionUID = 0L;
     BOOL(13),
     STRING(14),
     BYTES(15),
-    MESSAGE(16),
-    ENUM(21),
-    ANY(22),
-    DURATION(23),
-    TIMESTAMP(24),
+    ENUM(16),
+    MESSAGE(17),
+    ANY(21),
+    DURATION(22),
+    TIMESTAMP(23),
     KIND_NOT_SET(0);
     private final int value;
     private KindCase(int value) {
@@ -417,11 +417,11 @@ private static final long serialVersionUID = 0L;
         case 13: return BOOL;
         case 14: return STRING;
         case 15: return BYTES;
-        case 16: return MESSAGE;
-        case 21: return ENUM;
-        case 22: return ANY;
-        case 23: return DURATION;
-        case 24: return TIMESTAMP;
+        case 16: return ENUM;
+        case 17: return MESSAGE;
+        case 21: return ANY;
+        case 22: return DURATION;
+        case 23: return TIMESTAMP;
         case 0: return KIND_NOT_SET;
         default: return null;
       }
@@ -926,168 +926,156 @@ private static final long serialVersionUID = 0L;
     return io.github.yu31.protoc.pb.pbjson.TypeBytes.getDefaultInstance();
   }
 
-  public static final int MESSAGE_FIELD_NUMBER = 16;
+  public static final int ENUM_FIELD_NUMBER = 16;
   /**
-   * <pre>
-   * Reserved.
-   * </pre>
-   *
-   * <code>.json.TypeMessage message = 16;</code>
-   * @return Whether the message field is set.
-   */
-  @java.lang.Override
-  public boolean hasMessage() {
-    return kindCase_ == 16;
-  }
-  /**
-   * <pre>
-   * Reserved.
-   * </pre>
-   *
-   * <code>.json.TypeMessage message = 16;</code>
-   * @return The message.
-   */
-  @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeMessage getMessage() {
-    if (kindCase_ == 16) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_;
-    }
-    return io.github.yu31.protoc.pb.pbjson.TypeMessage.getDefaultInstance();
-  }
-  /**
-   * <pre>
-   * Reserved.
-   * </pre>
-   *
-   * <code>.json.TypeMessage message = 16;</code>
-   */
-  @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeMessageOrBuilder getMessageOrBuilder() {
-    if (kindCase_ == 16) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_;
-    }
-    return io.github.yu31.protoc.pb.pbjson.TypeMessage.getDefaultInstance();
-  }
-
-  public static final int ENUM_FIELD_NUMBER = 21;
-  /**
-   * <code>.json.TypeEnum enum = 21;</code>
+   * <code>.json.TypeEnum enum = 16;</code>
    * @return Whether the enum field is set.
    */
   @java.lang.Override
   public boolean hasEnum() {
-    return kindCase_ == 21;
+    return kindCase_ == 16;
   }
   /**
-   * <code>.json.TypeEnum enum = 21;</code>
+   * <code>.json.TypeEnum enum = 16;</code>
    * @return The enum.
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeEnum getEnum() {
-    if (kindCase_ == 21) {
+    if (kindCase_ == 16) {
        return (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
   }
   /**
-   * <code>.json.TypeEnum enum = 21;</code>
+   * <code>.json.TypeEnum enum = 16;</code>
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder getEnumOrBuilder() {
-    if (kindCase_ == 21) {
+    if (kindCase_ == 16) {
        return (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
   }
 
-  public static final int ANY_FIELD_NUMBER = 22;
+  public static final int MESSAGE_FIELD_NUMBER = 17;
   /**
-   * <code>.json.TypeAny any = 22;</code>
+   * <code>.json.TypeMessage message = 17;</code>
+   * @return Whether the message field is set.
+   */
+  @java.lang.Override
+  public boolean hasMessage() {
+    return kindCase_ == 17;
+  }
+  /**
+   * <code>.json.TypeMessage message = 17;</code>
+   * @return The message.
+   */
+  @java.lang.Override
+  public io.github.yu31.protoc.pb.pbjson.TypeMessage getMessage() {
+    if (kindCase_ == 17) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_;
+    }
+    return io.github.yu31.protoc.pb.pbjson.TypeMessage.getDefaultInstance();
+  }
+  /**
+   * <code>.json.TypeMessage message = 17;</code>
+   */
+  @java.lang.Override
+  public io.github.yu31.protoc.pb.pbjson.TypeMessageOrBuilder getMessageOrBuilder() {
+    if (kindCase_ == 17) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_;
+    }
+    return io.github.yu31.protoc.pb.pbjson.TypeMessage.getDefaultInstance();
+  }
+
+  public static final int ANY_FIELD_NUMBER = 21;
+  /**
+   * <code>.json.TypeAny any = 21;</code>
    * @return Whether the any field is set.
    */
   @java.lang.Override
   public boolean hasAny() {
-    return kindCase_ == 22;
+    return kindCase_ == 21;
   }
   /**
-   * <code>.json.TypeAny any = 22;</code>
+   * <code>.json.TypeAny any = 21;</code>
    * @return The any.
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeAny getAny() {
-    if (kindCase_ == 22) {
+    if (kindCase_ == 21) {
        return (io.github.yu31.protoc.pb.pbjson.TypeAny) kind_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
   }
   /**
-   * <code>.json.TypeAny any = 22;</code>
+   * <code>.json.TypeAny any = 21;</code>
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeAnyOrBuilder getAnyOrBuilder() {
-    if (kindCase_ == 22) {
+    if (kindCase_ == 21) {
        return (io.github.yu31.protoc.pb.pbjson.TypeAny) kind_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
   }
 
-  public static final int DURATION_FIELD_NUMBER = 23;
+  public static final int DURATION_FIELD_NUMBER = 22;
   /**
-   * <code>.json.TypeDuration duration = 23;</code>
+   * <code>.json.TypeDuration duration = 22;</code>
    * @return Whether the duration field is set.
    */
   @java.lang.Override
   public boolean hasDuration() {
-    return kindCase_ == 23;
+    return kindCase_ == 22;
   }
   /**
-   * <code>.json.TypeDuration duration = 23;</code>
+   * <code>.json.TypeDuration duration = 22;</code>
    * @return The duration.
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeDuration getDuration() {
-    if (kindCase_ == 23) {
+    if (kindCase_ == 22) {
        return (io.github.yu31.protoc.pb.pbjson.TypeDuration) kind_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
   }
   /**
-   * <code>.json.TypeDuration duration = 23;</code>
+   * <code>.json.TypeDuration duration = 22;</code>
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeDurationOrBuilder getDurationOrBuilder() {
-    if (kindCase_ == 23) {
+    if (kindCase_ == 22) {
        return (io.github.yu31.protoc.pb.pbjson.TypeDuration) kind_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
   }
 
-  public static final int TIMESTAMP_FIELD_NUMBER = 24;
+  public static final int TIMESTAMP_FIELD_NUMBER = 23;
   /**
-   * <code>.json.TypeTimestamp timestamp = 24;</code>
+   * <code>.json.TypeTimestamp timestamp = 23;</code>
    * @return Whether the timestamp field is set.
    */
   @java.lang.Override
   public boolean hasTimestamp() {
-    return kindCase_ == 24;
+    return kindCase_ == 23;
   }
   /**
-   * <code>.json.TypeTimestamp timestamp = 24;</code>
+   * <code>.json.TypeTimestamp timestamp = 23;</code>
    * @return The timestamp.
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeTimestamp getTimestamp() {
-    if (kindCase_ == 24) {
+    if (kindCase_ == 23) {
        return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) kind_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
   }
   /**
-   * <code>.json.TypeTimestamp timestamp = 24;</code>
+   * <code>.json.TypeTimestamp timestamp = 23;</code>
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder getTimestampOrBuilder() {
-    if (kindCase_ == 24) {
+    if (kindCase_ == 23) {
        return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) kind_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
@@ -1153,19 +1141,19 @@ private static final long serialVersionUID = 0L;
       output.writeMessage(15, (io.github.yu31.protoc.pb.pbjson.TypeBytes) kind_);
     }
     if (kindCase_ == 16) {
-      output.writeMessage(16, (io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_);
+      output.writeMessage(16, (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_);
+    }
+    if (kindCase_ == 17) {
+      output.writeMessage(17, (io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_);
     }
     if (kindCase_ == 21) {
-      output.writeMessage(21, (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_);
+      output.writeMessage(21, (io.github.yu31.protoc.pb.pbjson.TypeAny) kind_);
     }
     if (kindCase_ == 22) {
-      output.writeMessage(22, (io.github.yu31.protoc.pb.pbjson.TypeAny) kind_);
+      output.writeMessage(22, (io.github.yu31.protoc.pb.pbjson.TypeDuration) kind_);
     }
     if (kindCase_ == 23) {
-      output.writeMessage(23, (io.github.yu31.protoc.pb.pbjson.TypeDuration) kind_);
-    }
-    if (kindCase_ == 24) {
-      output.writeMessage(24, (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) kind_);
+      output.writeMessage(23, (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) kind_);
     }
     unknownFields.writeTo(output);
   }
@@ -1238,23 +1226,23 @@ private static final long serialVersionUID = 0L;
     }
     if (kindCase_ == 16) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(16, (io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_);
+        .computeMessageSize(16, (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_);
+    }
+    if (kindCase_ == 17) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(17, (io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_);
     }
     if (kindCase_ == 21) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(21, (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_);
+        .computeMessageSize(21, (io.github.yu31.protoc.pb.pbjson.TypeAny) kind_);
     }
     if (kindCase_ == 22) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(22, (io.github.yu31.protoc.pb.pbjson.TypeAny) kind_);
+        .computeMessageSize(22, (io.github.yu31.protoc.pb.pbjson.TypeDuration) kind_);
     }
     if (kindCase_ == 23) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(23, (io.github.yu31.protoc.pb.pbjson.TypeDuration) kind_);
-    }
-    if (kindCase_ == 24) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(24, (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) kind_);
+        .computeMessageSize(23, (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) kind_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -1334,22 +1322,22 @@ private static final long serialVersionUID = 0L;
             .equals(other.getBytes())) return false;
         break;
       case 16:
+        if (!getEnum()
+            .equals(other.getEnum())) return false;
+        break;
+      case 17:
         if (!getMessage()
             .equals(other.getMessage())) return false;
         break;
       case 21:
-        if (!getEnum()
-            .equals(other.getEnum())) return false;
-        break;
-      case 22:
         if (!getAny()
             .equals(other.getAny())) return false;
         break;
-      case 23:
+      case 22:
         if (!getDuration()
             .equals(other.getDuration())) return false;
         break;
-      case 24:
+      case 23:
         if (!getTimestamp()
             .equals(other.getTimestamp())) return false;
         break;
@@ -1429,22 +1417,22 @@ private static final long serialVersionUID = 0L;
         hash = (53 * hash) + getBytes().hashCode();
         break;
       case 16:
+        hash = (37 * hash) + ENUM_FIELD_NUMBER;
+        hash = (53 * hash) + getEnum().hashCode();
+        break;
+      case 17:
         hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
         hash = (53 * hash) + getMessage().hashCode();
         break;
       case 21:
-        hash = (37 * hash) + ENUM_FIELD_NUMBER;
-        hash = (53 * hash) + getEnum().hashCode();
-        break;
-      case 22:
         hash = (37 * hash) + ANY_FIELD_NUMBER;
         hash = (53 * hash) + getAny().hashCode();
         break;
-      case 23:
+      case 22:
         hash = (37 * hash) + DURATION_FIELD_NUMBER;
         hash = (53 * hash) + getDuration().hashCode();
         break;
-      case 24:
+      case 23:
         hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
         hash = (53 * hash) + getTimestamp().hashCode();
         break;
@@ -1718,6 +1706,13 @@ private static final long serialVersionUID = 0L;
         }
       }
       if (kindCase_ == 16) {
+        if (enumBuilder_ == null) {
+          result.kind_ = kind_;
+        } else {
+          result.kind_ = enumBuilder_.build();
+        }
+      }
+      if (kindCase_ == 17) {
         if (messageBuilder_ == null) {
           result.kind_ = kind_;
         } else {
@@ -1725,27 +1720,20 @@ private static final long serialVersionUID = 0L;
         }
       }
       if (kindCase_ == 21) {
-        if (enumBuilder_ == null) {
-          result.kind_ = kind_;
-        } else {
-          result.kind_ = enumBuilder_.build();
-        }
-      }
-      if (kindCase_ == 22) {
         if (anyBuilder_ == null) {
           result.kind_ = kind_;
         } else {
           result.kind_ = anyBuilder_.build();
         }
       }
-      if (kindCase_ == 23) {
+      if (kindCase_ == 22) {
         if (durationBuilder_ == null) {
           result.kind_ = kind_;
         } else {
           result.kind_ = durationBuilder_.build();
         }
       }
-      if (kindCase_ == 24) {
+      if (kindCase_ == 23) {
         if (timestampBuilder_ == null) {
           result.kind_ = kind_;
         } else {
@@ -1862,12 +1850,12 @@ private static final long serialVersionUID = 0L;
           mergeBytes(other.getBytes());
           break;
         }
-        case MESSAGE: {
-          mergeMessage(other.getMessage());
-          break;
-        }
         case ENUM: {
           mergeEnum(other.getEnum());
+          break;
+        }
+        case MESSAGE: {
+          mergeMessage(other.getMessage());
           break;
         }
         case ANY: {
@@ -4118,212 +4106,35 @@ private static final long serialVersionUID = 0L;
     }
 
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeMessage, io.github.yu31.protoc.pb.pbjson.TypeMessage.Builder, io.github.yu31.protoc.pb.pbjson.TypeMessageOrBuilder> messageBuilder_;
-    /**
-     * <pre>
-     * Reserved.
-     * </pre>
-     *
-     * <code>.json.TypeMessage message = 16;</code>
-     * @return Whether the message field is set.
-     */
-    @java.lang.Override
-    public boolean hasMessage() {
-      return kindCase_ == 16;
-    }
-    /**
-     * <pre>
-     * Reserved.
-     * </pre>
-     *
-     * <code>.json.TypeMessage message = 16;</code>
-     * @return The message.
-     */
-    @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeMessage getMessage() {
-      if (messageBuilder_ == null) {
-        if (kindCase_ == 16) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_;
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeMessage.getDefaultInstance();
-      } else {
-        if (kindCase_ == 16) {
-          return messageBuilder_.getMessage();
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeMessage.getDefaultInstance();
-      }
-    }
-    /**
-     * <pre>
-     * Reserved.
-     * </pre>
-     *
-     * <code>.json.TypeMessage message = 16;</code>
-     */
-    public Builder setMessage(io.github.yu31.protoc.pb.pbjson.TypeMessage value) {
-      if (messageBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        kind_ = value;
-        onChanged();
-      } else {
-        messageBuilder_.setMessage(value);
-      }
-      kindCase_ = 16;
-      return this;
-    }
-    /**
-     * <pre>
-     * Reserved.
-     * </pre>
-     *
-     * <code>.json.TypeMessage message = 16;</code>
-     */
-    public Builder setMessage(
-        io.github.yu31.protoc.pb.pbjson.TypeMessage.Builder builderForValue) {
-      if (messageBuilder_ == null) {
-        kind_ = builderForValue.build();
-        onChanged();
-      } else {
-        messageBuilder_.setMessage(builderForValue.build());
-      }
-      kindCase_ = 16;
-      return this;
-    }
-    /**
-     * <pre>
-     * Reserved.
-     * </pre>
-     *
-     * <code>.json.TypeMessage message = 16;</code>
-     */
-    public Builder mergeMessage(io.github.yu31.protoc.pb.pbjson.TypeMessage value) {
-      if (messageBuilder_ == null) {
-        if (kindCase_ == 16 &&
-            kind_ != io.github.yu31.protoc.pb.pbjson.TypeMessage.getDefaultInstance()) {
-          kind_ = io.github.yu31.protoc.pb.pbjson.TypeMessage.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_)
-              .mergeFrom(value).buildPartial();
-        } else {
-          kind_ = value;
-        }
-        onChanged();
-      } else {
-        if (kindCase_ == 16) {
-          messageBuilder_.mergeFrom(value);
-        }
-        messageBuilder_.setMessage(value);
-      }
-      kindCase_ = 16;
-      return this;
-    }
-    /**
-     * <pre>
-     * Reserved.
-     * </pre>
-     *
-     * <code>.json.TypeMessage message = 16;</code>
-     */
-    public Builder clearMessage() {
-      if (messageBuilder_ == null) {
-        if (kindCase_ == 16) {
-          kindCase_ = 0;
-          kind_ = null;
-          onChanged();
-        }
-      } else {
-        if (kindCase_ == 16) {
-          kindCase_ = 0;
-          kind_ = null;
-        }
-        messageBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Reserved.
-     * </pre>
-     *
-     * <code>.json.TypeMessage message = 16;</code>
-     */
-    public io.github.yu31.protoc.pb.pbjson.TypeMessage.Builder getMessageBuilder() {
-      return getMessageFieldBuilder().getBuilder();
-    }
-    /**
-     * <pre>
-     * Reserved.
-     * </pre>
-     *
-     * <code>.json.TypeMessage message = 16;</code>
-     */
-    @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeMessageOrBuilder getMessageOrBuilder() {
-      if ((kindCase_ == 16) && (messageBuilder_ != null)) {
-        return messageBuilder_.getMessageOrBuilder();
-      } else {
-        if (kindCase_ == 16) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_;
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeMessage.getDefaultInstance();
-      }
-    }
-    /**
-     * <pre>
-     * Reserved.
-     * </pre>
-     *
-     * <code>.json.TypeMessage message = 16;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeMessage, io.github.yu31.protoc.pb.pbjson.TypeMessage.Builder, io.github.yu31.protoc.pb.pbjson.TypeMessageOrBuilder> 
-        getMessageFieldBuilder() {
-      if (messageBuilder_ == null) {
-        if (!(kindCase_ == 16)) {
-          kind_ = io.github.yu31.protoc.pb.pbjson.TypeMessage.getDefaultInstance();
-        }
-        messageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.github.yu31.protoc.pb.pbjson.TypeMessage, io.github.yu31.protoc.pb.pbjson.TypeMessage.Builder, io.github.yu31.protoc.pb.pbjson.TypeMessageOrBuilder>(
-                (io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_,
-                getParentForChildren(),
-                isClean());
-        kind_ = null;
-      }
-      kindCase_ = 16;
-      onChanged();;
-      return messageBuilder_;
-    }
-
-    private com.google.protobuf.SingleFieldBuilderV3<
         io.github.yu31.protoc.pb.pbjson.TypeEnum, io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder, io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder> enumBuilder_;
     /**
-     * <code>.json.TypeEnum enum = 21;</code>
+     * <code>.json.TypeEnum enum = 16;</code>
      * @return Whether the enum field is set.
      */
     @java.lang.Override
     public boolean hasEnum() {
-      return kindCase_ == 21;
+      return kindCase_ == 16;
     }
     /**
-     * <code>.json.TypeEnum enum = 21;</code>
+     * <code>.json.TypeEnum enum = 16;</code>
      * @return The enum.
      */
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeEnum getEnum() {
       if (enumBuilder_ == null) {
-        if (kindCase_ == 21) {
+        if (kindCase_ == 16) {
           return (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
       } else {
-        if (kindCase_ == 21) {
+        if (kindCase_ == 16) {
           return enumBuilder_.getMessage();
         }
         return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
       }
     }
     /**
-     * <code>.json.TypeEnum enum = 21;</code>
+     * <code>.json.TypeEnum enum = 16;</code>
      */
     public Builder setEnum(io.github.yu31.protoc.pb.pbjson.TypeEnum value) {
       if (enumBuilder_ == null) {
@@ -4335,11 +4146,11 @@ private static final long serialVersionUID = 0L;
       } else {
         enumBuilder_.setMessage(value);
       }
-      kindCase_ = 21;
+      kindCase_ = 16;
       return this;
     }
     /**
-     * <code>.json.TypeEnum enum = 21;</code>
+     * <code>.json.TypeEnum enum = 16;</code>
      */
     public Builder setEnum(
         io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder builderForValue) {
@@ -4349,15 +4160,15 @@ private static final long serialVersionUID = 0L;
       } else {
         enumBuilder_.setMessage(builderForValue.build());
       }
-      kindCase_ = 21;
+      kindCase_ = 16;
       return this;
     }
     /**
-     * <code>.json.TypeEnum enum = 21;</code>
+     * <code>.json.TypeEnum enum = 16;</code>
      */
     public Builder mergeEnum(io.github.yu31.protoc.pb.pbjson.TypeEnum value) {
       if (enumBuilder_ == null) {
-        if (kindCase_ == 21 &&
+        if (kindCase_ == 16 &&
             kind_ != io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance()) {
           kind_ = io.github.yu31.protoc.pb.pbjson.TypeEnum.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_)
               .mergeFrom(value).buildPartial();
@@ -4366,26 +4177,26 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       } else {
-        if (kindCase_ == 21) {
+        if (kindCase_ == 16) {
           enumBuilder_.mergeFrom(value);
         }
         enumBuilder_.setMessage(value);
       }
-      kindCase_ = 21;
+      kindCase_ = 16;
       return this;
     }
     /**
-     * <code>.json.TypeEnum enum = 21;</code>
+     * <code>.json.TypeEnum enum = 16;</code>
      */
     public Builder clearEnum() {
       if (enumBuilder_ == null) {
-        if (kindCase_ == 21) {
+        if (kindCase_ == 16) {
           kindCase_ = 0;
           kind_ = null;
           onChanged();
         }
       } else {
-        if (kindCase_ == 21) {
+        if (kindCase_ == 16) {
           kindCase_ = 0;
           kind_ = null;
         }
@@ -4394,33 +4205,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.json.TypeEnum enum = 21;</code>
+     * <code>.json.TypeEnum enum = 16;</code>
      */
     public io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder getEnumBuilder() {
       return getEnumFieldBuilder().getBuilder();
     }
     /**
-     * <code>.json.TypeEnum enum = 21;</code>
+     * <code>.json.TypeEnum enum = 16;</code>
      */
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder getEnumOrBuilder() {
-      if ((kindCase_ == 21) && (enumBuilder_ != null)) {
+      if ((kindCase_ == 16) && (enumBuilder_ != null)) {
         return enumBuilder_.getMessageOrBuilder();
       } else {
-        if (kindCase_ == 21) {
+        if (kindCase_ == 16) {
           return (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
       }
     }
     /**
-     * <code>.json.TypeEnum enum = 21;</code>
+     * <code>.json.TypeEnum enum = 16;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         io.github.yu31.protoc.pb.pbjson.TypeEnum, io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder, io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder> 
         getEnumFieldBuilder() {
       if (enumBuilder_ == null) {
-        if (!(kindCase_ == 21)) {
+        if (!(kindCase_ == 16)) {
           kind_ = io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
         }
         enumBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -4430,41 +4241,182 @@ private static final long serialVersionUID = 0L;
                 isClean());
         kind_ = null;
       }
-      kindCase_ = 21;
+      kindCase_ = 16;
       onChanged();;
       return enumBuilder_;
     }
 
     private com.google.protobuf.SingleFieldBuilderV3<
+        io.github.yu31.protoc.pb.pbjson.TypeMessage, io.github.yu31.protoc.pb.pbjson.TypeMessage.Builder, io.github.yu31.protoc.pb.pbjson.TypeMessageOrBuilder> messageBuilder_;
+    /**
+     * <code>.json.TypeMessage message = 17;</code>
+     * @return Whether the message field is set.
+     */
+    @java.lang.Override
+    public boolean hasMessage() {
+      return kindCase_ == 17;
+    }
+    /**
+     * <code>.json.TypeMessage message = 17;</code>
+     * @return The message.
+     */
+    @java.lang.Override
+    public io.github.yu31.protoc.pb.pbjson.TypeMessage getMessage() {
+      if (messageBuilder_ == null) {
+        if (kindCase_ == 17) {
+          return (io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_;
+        }
+        return io.github.yu31.protoc.pb.pbjson.TypeMessage.getDefaultInstance();
+      } else {
+        if (kindCase_ == 17) {
+          return messageBuilder_.getMessage();
+        }
+        return io.github.yu31.protoc.pb.pbjson.TypeMessage.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.json.TypeMessage message = 17;</code>
+     */
+    public Builder setMessage(io.github.yu31.protoc.pb.pbjson.TypeMessage value) {
+      if (messageBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        kind_ = value;
+        onChanged();
+      } else {
+        messageBuilder_.setMessage(value);
+      }
+      kindCase_ = 17;
+      return this;
+    }
+    /**
+     * <code>.json.TypeMessage message = 17;</code>
+     */
+    public Builder setMessage(
+        io.github.yu31.protoc.pb.pbjson.TypeMessage.Builder builderForValue) {
+      if (messageBuilder_ == null) {
+        kind_ = builderForValue.build();
+        onChanged();
+      } else {
+        messageBuilder_.setMessage(builderForValue.build());
+      }
+      kindCase_ = 17;
+      return this;
+    }
+    /**
+     * <code>.json.TypeMessage message = 17;</code>
+     */
+    public Builder mergeMessage(io.github.yu31.protoc.pb.pbjson.TypeMessage value) {
+      if (messageBuilder_ == null) {
+        if (kindCase_ == 17 &&
+            kind_ != io.github.yu31.protoc.pb.pbjson.TypeMessage.getDefaultInstance()) {
+          kind_ = io.github.yu31.protoc.pb.pbjson.TypeMessage.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          kind_ = value;
+        }
+        onChanged();
+      } else {
+        if (kindCase_ == 17) {
+          messageBuilder_.mergeFrom(value);
+        }
+        messageBuilder_.setMessage(value);
+      }
+      kindCase_ = 17;
+      return this;
+    }
+    /**
+     * <code>.json.TypeMessage message = 17;</code>
+     */
+    public Builder clearMessage() {
+      if (messageBuilder_ == null) {
+        if (kindCase_ == 17) {
+          kindCase_ = 0;
+          kind_ = null;
+          onChanged();
+        }
+      } else {
+        if (kindCase_ == 17) {
+          kindCase_ = 0;
+          kind_ = null;
+        }
+        messageBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.json.TypeMessage message = 17;</code>
+     */
+    public io.github.yu31.protoc.pb.pbjson.TypeMessage.Builder getMessageBuilder() {
+      return getMessageFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.json.TypeMessage message = 17;</code>
+     */
+    @java.lang.Override
+    public io.github.yu31.protoc.pb.pbjson.TypeMessageOrBuilder getMessageOrBuilder() {
+      if ((kindCase_ == 17) && (messageBuilder_ != null)) {
+        return messageBuilder_.getMessageOrBuilder();
+      } else {
+        if (kindCase_ == 17) {
+          return (io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_;
+        }
+        return io.github.yu31.protoc.pb.pbjson.TypeMessage.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.json.TypeMessage message = 17;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.github.yu31.protoc.pb.pbjson.TypeMessage, io.github.yu31.protoc.pb.pbjson.TypeMessage.Builder, io.github.yu31.protoc.pb.pbjson.TypeMessageOrBuilder> 
+        getMessageFieldBuilder() {
+      if (messageBuilder_ == null) {
+        if (!(kindCase_ == 17)) {
+          kind_ = io.github.yu31.protoc.pb.pbjson.TypeMessage.getDefaultInstance();
+        }
+        messageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            io.github.yu31.protoc.pb.pbjson.TypeMessage, io.github.yu31.protoc.pb.pbjson.TypeMessage.Builder, io.github.yu31.protoc.pb.pbjson.TypeMessageOrBuilder>(
+                (io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_,
+                getParentForChildren(),
+                isClean());
+        kind_ = null;
+      }
+      kindCase_ = 17;
+      onChanged();;
+      return messageBuilder_;
+    }
+
+    private com.google.protobuf.SingleFieldBuilderV3<
         io.github.yu31.protoc.pb.pbjson.TypeAny, io.github.yu31.protoc.pb.pbjson.TypeAny.Builder, io.github.yu31.protoc.pb.pbjson.TypeAnyOrBuilder> anyBuilder_;
     /**
-     * <code>.json.TypeAny any = 22;</code>
+     * <code>.json.TypeAny any = 21;</code>
      * @return Whether the any field is set.
      */
     @java.lang.Override
     public boolean hasAny() {
-      return kindCase_ == 22;
+      return kindCase_ == 21;
     }
     /**
-     * <code>.json.TypeAny any = 22;</code>
+     * <code>.json.TypeAny any = 21;</code>
      * @return The any.
      */
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeAny getAny() {
       if (anyBuilder_ == null) {
-        if (kindCase_ == 22) {
+        if (kindCase_ == 21) {
           return (io.github.yu31.protoc.pb.pbjson.TypeAny) kind_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
       } else {
-        if (kindCase_ == 22) {
+        if (kindCase_ == 21) {
           return anyBuilder_.getMessage();
         }
         return io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
       }
     }
     /**
-     * <code>.json.TypeAny any = 22;</code>
+     * <code>.json.TypeAny any = 21;</code>
      */
     public Builder setAny(io.github.yu31.protoc.pb.pbjson.TypeAny value) {
       if (anyBuilder_ == null) {
@@ -4476,11 +4428,11 @@ private static final long serialVersionUID = 0L;
       } else {
         anyBuilder_.setMessage(value);
       }
-      kindCase_ = 22;
+      kindCase_ = 21;
       return this;
     }
     /**
-     * <code>.json.TypeAny any = 22;</code>
+     * <code>.json.TypeAny any = 21;</code>
      */
     public Builder setAny(
         io.github.yu31.protoc.pb.pbjson.TypeAny.Builder builderForValue) {
@@ -4490,15 +4442,15 @@ private static final long serialVersionUID = 0L;
       } else {
         anyBuilder_.setMessage(builderForValue.build());
       }
-      kindCase_ = 22;
+      kindCase_ = 21;
       return this;
     }
     /**
-     * <code>.json.TypeAny any = 22;</code>
+     * <code>.json.TypeAny any = 21;</code>
      */
     public Builder mergeAny(io.github.yu31.protoc.pb.pbjson.TypeAny value) {
       if (anyBuilder_ == null) {
-        if (kindCase_ == 22 &&
+        if (kindCase_ == 21 &&
             kind_ != io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance()) {
           kind_ = io.github.yu31.protoc.pb.pbjson.TypeAny.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeAny) kind_)
               .mergeFrom(value).buildPartial();
@@ -4507,26 +4459,26 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       } else {
-        if (kindCase_ == 22) {
+        if (kindCase_ == 21) {
           anyBuilder_.mergeFrom(value);
         }
         anyBuilder_.setMessage(value);
       }
-      kindCase_ = 22;
+      kindCase_ = 21;
       return this;
     }
     /**
-     * <code>.json.TypeAny any = 22;</code>
+     * <code>.json.TypeAny any = 21;</code>
      */
     public Builder clearAny() {
       if (anyBuilder_ == null) {
-        if (kindCase_ == 22) {
+        if (kindCase_ == 21) {
           kindCase_ = 0;
           kind_ = null;
           onChanged();
         }
       } else {
-        if (kindCase_ == 22) {
+        if (kindCase_ == 21) {
           kindCase_ = 0;
           kind_ = null;
         }
@@ -4535,33 +4487,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.json.TypeAny any = 22;</code>
+     * <code>.json.TypeAny any = 21;</code>
      */
     public io.github.yu31.protoc.pb.pbjson.TypeAny.Builder getAnyBuilder() {
       return getAnyFieldBuilder().getBuilder();
     }
     /**
-     * <code>.json.TypeAny any = 22;</code>
+     * <code>.json.TypeAny any = 21;</code>
      */
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeAnyOrBuilder getAnyOrBuilder() {
-      if ((kindCase_ == 22) && (anyBuilder_ != null)) {
+      if ((kindCase_ == 21) && (anyBuilder_ != null)) {
         return anyBuilder_.getMessageOrBuilder();
       } else {
-        if (kindCase_ == 22) {
+        if (kindCase_ == 21) {
           return (io.github.yu31.protoc.pb.pbjson.TypeAny) kind_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
       }
     }
     /**
-     * <code>.json.TypeAny any = 22;</code>
+     * <code>.json.TypeAny any = 21;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         io.github.yu31.protoc.pb.pbjson.TypeAny, io.github.yu31.protoc.pb.pbjson.TypeAny.Builder, io.github.yu31.protoc.pb.pbjson.TypeAnyOrBuilder> 
         getAnyFieldBuilder() {
       if (anyBuilder_ == null) {
-        if (!(kindCase_ == 22)) {
+        if (!(kindCase_ == 21)) {
           kind_ = io.github.yu31.protoc.pb.pbjson.TypeAny.getDefaultInstance();
         }
         anyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -4571,7 +4523,7 @@ private static final long serialVersionUID = 0L;
                 isClean());
         kind_ = null;
       }
-      kindCase_ = 22;
+      kindCase_ = 21;
       onChanged();;
       return anyBuilder_;
     }
@@ -4579,33 +4531,33 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         io.github.yu31.protoc.pb.pbjson.TypeDuration, io.github.yu31.protoc.pb.pbjson.TypeDuration.Builder, io.github.yu31.protoc.pb.pbjson.TypeDurationOrBuilder> durationBuilder_;
     /**
-     * <code>.json.TypeDuration duration = 23;</code>
+     * <code>.json.TypeDuration duration = 22;</code>
      * @return Whether the duration field is set.
      */
     @java.lang.Override
     public boolean hasDuration() {
-      return kindCase_ == 23;
+      return kindCase_ == 22;
     }
     /**
-     * <code>.json.TypeDuration duration = 23;</code>
+     * <code>.json.TypeDuration duration = 22;</code>
      * @return The duration.
      */
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeDuration getDuration() {
       if (durationBuilder_ == null) {
-        if (kindCase_ == 23) {
+        if (kindCase_ == 22) {
           return (io.github.yu31.protoc.pb.pbjson.TypeDuration) kind_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
       } else {
-        if (kindCase_ == 23) {
+        if (kindCase_ == 22) {
           return durationBuilder_.getMessage();
         }
         return io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
       }
     }
     /**
-     * <code>.json.TypeDuration duration = 23;</code>
+     * <code>.json.TypeDuration duration = 22;</code>
      */
     public Builder setDuration(io.github.yu31.protoc.pb.pbjson.TypeDuration value) {
       if (durationBuilder_ == null) {
@@ -4617,11 +4569,11 @@ private static final long serialVersionUID = 0L;
       } else {
         durationBuilder_.setMessage(value);
       }
-      kindCase_ = 23;
+      kindCase_ = 22;
       return this;
     }
     /**
-     * <code>.json.TypeDuration duration = 23;</code>
+     * <code>.json.TypeDuration duration = 22;</code>
      */
     public Builder setDuration(
         io.github.yu31.protoc.pb.pbjson.TypeDuration.Builder builderForValue) {
@@ -4631,15 +4583,15 @@ private static final long serialVersionUID = 0L;
       } else {
         durationBuilder_.setMessage(builderForValue.build());
       }
-      kindCase_ = 23;
+      kindCase_ = 22;
       return this;
     }
     /**
-     * <code>.json.TypeDuration duration = 23;</code>
+     * <code>.json.TypeDuration duration = 22;</code>
      */
     public Builder mergeDuration(io.github.yu31.protoc.pb.pbjson.TypeDuration value) {
       if (durationBuilder_ == null) {
-        if (kindCase_ == 23 &&
+        if (kindCase_ == 22 &&
             kind_ != io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance()) {
           kind_ = io.github.yu31.protoc.pb.pbjson.TypeDuration.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeDuration) kind_)
               .mergeFrom(value).buildPartial();
@@ -4648,26 +4600,26 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       } else {
-        if (kindCase_ == 23) {
+        if (kindCase_ == 22) {
           durationBuilder_.mergeFrom(value);
         }
         durationBuilder_.setMessage(value);
       }
-      kindCase_ = 23;
+      kindCase_ = 22;
       return this;
     }
     /**
-     * <code>.json.TypeDuration duration = 23;</code>
+     * <code>.json.TypeDuration duration = 22;</code>
      */
     public Builder clearDuration() {
       if (durationBuilder_ == null) {
-        if (kindCase_ == 23) {
+        if (kindCase_ == 22) {
           kindCase_ = 0;
           kind_ = null;
           onChanged();
         }
       } else {
-        if (kindCase_ == 23) {
+        if (kindCase_ == 22) {
           kindCase_ = 0;
           kind_ = null;
         }
@@ -4676,33 +4628,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.json.TypeDuration duration = 23;</code>
+     * <code>.json.TypeDuration duration = 22;</code>
      */
     public io.github.yu31.protoc.pb.pbjson.TypeDuration.Builder getDurationBuilder() {
       return getDurationFieldBuilder().getBuilder();
     }
     /**
-     * <code>.json.TypeDuration duration = 23;</code>
+     * <code>.json.TypeDuration duration = 22;</code>
      */
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeDurationOrBuilder getDurationOrBuilder() {
-      if ((kindCase_ == 23) && (durationBuilder_ != null)) {
+      if ((kindCase_ == 22) && (durationBuilder_ != null)) {
         return durationBuilder_.getMessageOrBuilder();
       } else {
-        if (kindCase_ == 23) {
+        if (kindCase_ == 22) {
           return (io.github.yu31.protoc.pb.pbjson.TypeDuration) kind_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
       }
     }
     /**
-     * <code>.json.TypeDuration duration = 23;</code>
+     * <code>.json.TypeDuration duration = 22;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         io.github.yu31.protoc.pb.pbjson.TypeDuration, io.github.yu31.protoc.pb.pbjson.TypeDuration.Builder, io.github.yu31.protoc.pb.pbjson.TypeDurationOrBuilder> 
         getDurationFieldBuilder() {
       if (durationBuilder_ == null) {
-        if (!(kindCase_ == 23)) {
+        if (!(kindCase_ == 22)) {
           kind_ = io.github.yu31.protoc.pb.pbjson.TypeDuration.getDefaultInstance();
         }
         durationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -4712,7 +4664,7 @@ private static final long serialVersionUID = 0L;
                 isClean());
         kind_ = null;
       }
-      kindCase_ = 23;
+      kindCase_ = 22;
       onChanged();;
       return durationBuilder_;
     }
@@ -4720,33 +4672,33 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         io.github.yu31.protoc.pb.pbjson.TypeTimestamp, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Builder, io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder> timestampBuilder_;
     /**
-     * <code>.json.TypeTimestamp timestamp = 24;</code>
+     * <code>.json.TypeTimestamp timestamp = 23;</code>
      * @return Whether the timestamp field is set.
      */
     @java.lang.Override
     public boolean hasTimestamp() {
-      return kindCase_ == 24;
+      return kindCase_ == 23;
     }
     /**
-     * <code>.json.TypeTimestamp timestamp = 24;</code>
+     * <code>.json.TypeTimestamp timestamp = 23;</code>
      * @return The timestamp.
      */
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeTimestamp getTimestamp() {
       if (timestampBuilder_ == null) {
-        if (kindCase_ == 24) {
+        if (kindCase_ == 23) {
           return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) kind_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
       } else {
-        if (kindCase_ == 24) {
+        if (kindCase_ == 23) {
           return timestampBuilder_.getMessage();
         }
         return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
       }
     }
     /**
-     * <code>.json.TypeTimestamp timestamp = 24;</code>
+     * <code>.json.TypeTimestamp timestamp = 23;</code>
      */
     public Builder setTimestamp(io.github.yu31.protoc.pb.pbjson.TypeTimestamp value) {
       if (timestampBuilder_ == null) {
@@ -4758,11 +4710,11 @@ private static final long serialVersionUID = 0L;
       } else {
         timestampBuilder_.setMessage(value);
       }
-      kindCase_ = 24;
+      kindCase_ = 23;
       return this;
     }
     /**
-     * <code>.json.TypeTimestamp timestamp = 24;</code>
+     * <code>.json.TypeTimestamp timestamp = 23;</code>
      */
     public Builder setTimestamp(
         io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Builder builderForValue) {
@@ -4772,15 +4724,15 @@ private static final long serialVersionUID = 0L;
       } else {
         timestampBuilder_.setMessage(builderForValue.build());
       }
-      kindCase_ = 24;
+      kindCase_ = 23;
       return this;
     }
     /**
-     * <code>.json.TypeTimestamp timestamp = 24;</code>
+     * <code>.json.TypeTimestamp timestamp = 23;</code>
      */
     public Builder mergeTimestamp(io.github.yu31.protoc.pb.pbjson.TypeTimestamp value) {
       if (timestampBuilder_ == null) {
-        if (kindCase_ == 24 &&
+        if (kindCase_ == 23 &&
             kind_ != io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance()) {
           kind_ = io.github.yu31.protoc.pb.pbjson.TypeTimestamp.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeTimestamp) kind_)
               .mergeFrom(value).buildPartial();
@@ -4789,26 +4741,26 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       } else {
-        if (kindCase_ == 24) {
+        if (kindCase_ == 23) {
           timestampBuilder_.mergeFrom(value);
         }
         timestampBuilder_.setMessage(value);
       }
-      kindCase_ = 24;
+      kindCase_ = 23;
       return this;
     }
     /**
-     * <code>.json.TypeTimestamp timestamp = 24;</code>
+     * <code>.json.TypeTimestamp timestamp = 23;</code>
      */
     public Builder clearTimestamp() {
       if (timestampBuilder_ == null) {
-        if (kindCase_ == 24) {
+        if (kindCase_ == 23) {
           kindCase_ = 0;
           kind_ = null;
           onChanged();
         }
       } else {
-        if (kindCase_ == 24) {
+        if (kindCase_ == 23) {
           kindCase_ = 0;
           kind_ = null;
         }
@@ -4817,33 +4769,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.json.TypeTimestamp timestamp = 24;</code>
+     * <code>.json.TypeTimestamp timestamp = 23;</code>
      */
     public io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Builder getTimestampBuilder() {
       return getTimestampFieldBuilder().getBuilder();
     }
     /**
-     * <code>.json.TypeTimestamp timestamp = 24;</code>
+     * <code>.json.TypeTimestamp timestamp = 23;</code>
      */
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder getTimestampOrBuilder() {
-      if ((kindCase_ == 24) && (timestampBuilder_ != null)) {
+      if ((kindCase_ == 23) && (timestampBuilder_ != null)) {
         return timestampBuilder_.getMessageOrBuilder();
       } else {
-        if (kindCase_ == 24) {
+        if (kindCase_ == 23) {
           return (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) kind_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
       }
     }
     /**
-     * <code>.json.TypeTimestamp timestamp = 24;</code>
+     * <code>.json.TypeTimestamp timestamp = 23;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         io.github.yu31.protoc.pb.pbjson.TypeTimestamp, io.github.yu31.protoc.pb.pbjson.TypeTimestamp.Builder, io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder> 
         getTimestampFieldBuilder() {
       if (timestampBuilder_ == null) {
-        if (!(kindCase_ == 24)) {
+        if (!(kindCase_ == 23)) {
           kind_ = io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
         }
         timestampBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -4853,7 +4805,7 @@ private static final long serialVersionUID = 0L;
                 isClean());
         kind_ = null;
       }
-      kindCase_ = 24;
+      kindCase_ = 23;
       onChanged();;
       return timestampBuilder_;
     }

@@ -2,7 +2,6 @@ package references
 
 import (
 	"encoding/json"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -40,8 +39,6 @@ var seedTypeMap1 = &pbref.TypeMap1{
 func Test_Reference_Type_Map1_General(t *testing.T) {
 	bb, err := seedTypeMap1.MarshalJSON()
 	require.Nil(t, err)
-
-	fmt.Println(string(bb))
 
 	dataNew := &pbref.TypeMap1{}
 	err = dataNew.UnmarshalJSON(bb)

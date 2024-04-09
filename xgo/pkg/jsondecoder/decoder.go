@@ -16,6 +16,10 @@ type Decoder struct {
 
 	scan   scanner
 	opCode OpCode // last read result
+
+	// reports the current jsonKey.
+	// And the jsonKey is unsafe when the lifecycle of Decoder end.
+	jsonKey string
 }
 
 func New(data []byte) (*Decoder, error) {
@@ -31,31 +35,6 @@ func New(data []byte) (*Decoder, error) {
 		},
 	}
 	return d, nil
-}
-
-// ReadItem read current valid value.
-func (dec *Decoder) readItem() ([]byte, error) {
-	var err error
-	start := dec.offset - 1 // start index.
-	switch dec.opCode {
-	case scanLiteralBegin:
-		if err = dec.scanWhile(scanContinue); err != nil {
-			return nil, err
-		}
-	case scanArrayBegin, scanObjectBegin:
-		if err = dec.skip(); err != nil {
-			return nil, err
-		}
-		if err = dec.scanNext(); err != nil {
-			return nil, err
-		}
-	default:
-		// TODO: return error instead of panic ?
-		panic(fmt.Sprintf("%s, opCode: %d", PhasePanicMsg, dec.opCode))
-	}
-	end := dec.offset - 1 // end index.
-	bb := dec.data[start:end]
-	return bb, nil
 }
 
 // scanWhile processes bytes in d.data[d.offset:] until it
@@ -119,6 +98,31 @@ func (dec *Decoder) scanNext() (err error) {
 		return
 	}
 	return nil
+}
+
+// ReadItem read current valid value.
+func (dec *Decoder) readItem() ([]byte, error) {
+	var err error
+	start := dec.offset - 1 // start index.
+	switch dec.opCode {
+	case scanLiteralBegin:
+		if err = dec.scanWhile(scanContinue); err != nil {
+			return nil, err
+		}
+	case scanArrayBegin, scanObjectBegin:
+		if err = dec.skip(); err != nil {
+			return nil, err
+		}
+		if err = dec.scanNext(); err != nil {
+			return nil, err
+		}
+	default:
+		// TODO: return error instead of panic ?
+		panic(fmt.Sprintf("%s, opCode: %d", PhasePanicMsg, dec.opCode))
+	}
+	end := dec.offset - 1 // end index.
+	bb := dec.data[start:end]
+	return bb, nil
 }
 
 // beforeReadObject check if the object or the array or the map is NULL before reading.

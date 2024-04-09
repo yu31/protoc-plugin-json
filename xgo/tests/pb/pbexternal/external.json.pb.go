@@ -49,22 +49,14 @@ func (x *Message1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	var err error
-	encoder := jsonencoder.New(72)
+	enc := jsonencoder.New(72)
+	enc.AppendObjectBegin() // Add begin JSON identifier
 
-	// Add begin JSON identifier
-	encoder.AppendObjectBegin()
-
-	encoder.AppendObjectKey("f_string1")
-	encoder.AppendLiteralString(x.FString1)
-	encoder.AppendObjectKey("f_string2")
-	encoder.AppendLiteralString(x.FString2)
-	encoder.AppendObjectKey("f_string3")
-	encoder.AppendLiteralString(x.FString3)
-
-	// Add end JSON identifier
-	encoder.AppendObjectEnd()
-	return encoder.Bytes(), err
+	jsonencoder.AppendValStr(enc, "f_string1", x.FString1, false)
+	jsonencoder.AppendValStr(enc, "f_string2", x.FString2, false)
+	jsonencoder.AppendValStr(enc, "f_string3", x.FString3, false)
+	enc.AppendObjectEnd() // Add end JSON identifier
+	return enc.Bytes(), nil
 }
 
 // UnmarshalJSON implements json.Unmarshaler for proto message Message1 in file tests/proto/module/external.proto
@@ -73,55 +65,48 @@ func (x *Message1) UnmarshalJSON(b []byte) error {
 		return errors.New("json: Unmarshal: github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal.(*Message1) is nil")
 	}
 	var (
-		err     error
-		isNULL  bool
-		decoder *jsondecoder.Decoder
+		err    error
+		isNULL bool
+		dec    *jsondecoder.Decoder
 	)
-	if decoder, err = jsondecoder.New(b); err != nil {
+	if dec, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
+	if isNULL, err = dec.BeforeScanJSON(); err != nil || isNULL {
 		return err
-	}
-	if isNULL {
-		return nil
 	}
 LOOP_SCAN:
-	for { // Loop to scan object.
+	for { // Loop to read the JSON objects
 		var (
 			jsonKey string
 			isEnd   bool
 		)
-		if isEnd, err = decoder.BeforeScanNext(); err != nil {
+
+		if isEnd, err = dec.BeforeScanNext(); err != nil {
 			return err
 		}
 		if isEnd {
 			break LOOP_SCAN
 		}
-		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+
+		if jsonKey, err = dec.ReadJSONKey(); err != nil {
 			return err
 		}
 		switch jsonKey { // match the jsonKey
 		case "f_string1":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString1, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString1 = vv
 		case "f_string2":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString2, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString2 = vv
 		case "f_string3":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString3, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString3 = vv
 		default:
-			if err = decoder.DiscardValue(jsonKey); err != nil {
+			if err = dec.DiscardValue(); err != nil {
 				return err
 			}
 		} // end switch
@@ -134,22 +119,14 @@ func (x *Message1_Embed1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	var err error
-	encoder := jsonencoder.New(72)
+	enc := jsonencoder.New(72)
+	enc.AppendObjectBegin() // Add begin JSON identifier
 
-	// Add begin JSON identifier
-	encoder.AppendObjectBegin()
-
-	encoder.AppendObjectKey("f_string1")
-	encoder.AppendLiteralString(x.FString1)
-	encoder.AppendObjectKey("f_string2")
-	encoder.AppendLiteralString(x.FString2)
-	encoder.AppendObjectKey("f_string3")
-	encoder.AppendLiteralString(x.FString3)
-
-	// Add end JSON identifier
-	encoder.AppendObjectEnd()
-	return encoder.Bytes(), err
+	jsonencoder.AppendValStr(enc, "f_string1", x.FString1, false)
+	jsonencoder.AppendValStr(enc, "f_string2", x.FString2, false)
+	jsonencoder.AppendValStr(enc, "f_string3", x.FString3, false)
+	enc.AppendObjectEnd() // Add end JSON identifier
+	return enc.Bytes(), nil
 }
 
 // UnmarshalJSON implements json.Unmarshaler for proto message Embed1 in file tests/proto/module/external.proto
@@ -158,55 +135,48 @@ func (x *Message1_Embed1) UnmarshalJSON(b []byte) error {
 		return errors.New("json: Unmarshal: github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal.(*Message1_Embed1) is nil")
 	}
 	var (
-		err     error
-		isNULL  bool
-		decoder *jsondecoder.Decoder
+		err    error
+		isNULL bool
+		dec    *jsondecoder.Decoder
 	)
-	if decoder, err = jsondecoder.New(b); err != nil {
+	if dec, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
+	if isNULL, err = dec.BeforeScanJSON(); err != nil || isNULL {
 		return err
-	}
-	if isNULL {
-		return nil
 	}
 LOOP_SCAN:
-	for { // Loop to scan object.
+	for { // Loop to read the JSON objects
 		var (
 			jsonKey string
 			isEnd   bool
 		)
-		if isEnd, err = decoder.BeforeScanNext(); err != nil {
+
+		if isEnd, err = dec.BeforeScanNext(); err != nil {
 			return err
 		}
 		if isEnd {
 			break LOOP_SCAN
 		}
-		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+
+		if jsonKey, err = dec.ReadJSONKey(); err != nil {
 			return err
 		}
 		switch jsonKey { // match the jsonKey
 		case "f_string1":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString1, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString1 = vv
 		case "f_string2":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString2, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString2 = vv
 		case "f_string3":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString3, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString3 = vv
 		default:
-			if err = decoder.DiscardValue(jsonKey); err != nil {
+			if err = dec.DiscardValue(); err != nil {
 				return err
 			}
 		} // end switch
@@ -219,22 +189,14 @@ func (x *Message1_Embed1_Embed2) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	var err error
-	encoder := jsonencoder.New(72)
+	enc := jsonencoder.New(72)
+	enc.AppendObjectBegin() // Add begin JSON identifier
 
-	// Add begin JSON identifier
-	encoder.AppendObjectBegin()
-
-	encoder.AppendObjectKey("f_string1")
-	encoder.AppendLiteralString(x.FString1)
-	encoder.AppendObjectKey("f_string2")
-	encoder.AppendLiteralString(x.FString2)
-	encoder.AppendObjectKey("f_string3")
-	encoder.AppendLiteralString(x.FString3)
-
-	// Add end JSON identifier
-	encoder.AppendObjectEnd()
-	return encoder.Bytes(), err
+	jsonencoder.AppendValStr(enc, "f_string1", x.FString1, false)
+	jsonencoder.AppendValStr(enc, "f_string2", x.FString2, false)
+	jsonencoder.AppendValStr(enc, "f_string3", x.FString3, false)
+	enc.AppendObjectEnd() // Add end JSON identifier
+	return enc.Bytes(), nil
 }
 
 // UnmarshalJSON implements json.Unmarshaler for proto message Embed2 in file tests/proto/module/external.proto
@@ -243,55 +205,48 @@ func (x *Message1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 		return errors.New("json: Unmarshal: github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal.(*Message1_Embed1_Embed2) is nil")
 	}
 	var (
-		err     error
-		isNULL  bool
-		decoder *jsondecoder.Decoder
+		err    error
+		isNULL bool
+		dec    *jsondecoder.Decoder
 	)
-	if decoder, err = jsondecoder.New(b); err != nil {
+	if dec, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
+	if isNULL, err = dec.BeforeScanJSON(); err != nil || isNULL {
 		return err
-	}
-	if isNULL {
-		return nil
 	}
 LOOP_SCAN:
-	for { // Loop to scan object.
+	for { // Loop to read the JSON objects
 		var (
 			jsonKey string
 			isEnd   bool
 		)
-		if isEnd, err = decoder.BeforeScanNext(); err != nil {
+
+		if isEnd, err = dec.BeforeScanNext(); err != nil {
 			return err
 		}
 		if isEnd {
 			break LOOP_SCAN
 		}
-		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+
+		if jsonKey, err = dec.ReadJSONKey(); err != nil {
 			return err
 		}
 		switch jsonKey { // match the jsonKey
 		case "f_string1":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString1, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString1 = vv
 		case "f_string2":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString2, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString2 = vv
 		case "f_string3":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString3, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString3 = vv
 		default:
-			if err = decoder.DiscardValue(jsonKey); err != nil {
+			if err = dec.DiscardValue(); err != nil {
 				return err
 			}
 		} // end switch

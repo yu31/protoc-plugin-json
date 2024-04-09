@@ -7,14 +7,13 @@ package pbbases
 
 import (
 	errors "errors"
-	fmt "fmt"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
-	pbexternal "github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal"
-	anypb "google.golang.org/protobuf/types/known/anypb"
-	durationpb "google.golang.org/protobuf/types/known/durationpb"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	_ "github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal"
+	_ "google.golang.org/protobuf/types/known/anypb"
+	_ "google.golang.org/protobuf/types/known/durationpb"
+	_ "google.golang.org/protobuf/types/known/timestamppb"
 )
 
 // MarshalJSON implements interface json.Marshaler for proto message MessageOneOf1 in file tests/proto/cases/bases/type_oneof.proto
@@ -22,22 +21,14 @@ func (x *MessageOneOf1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	var err error
-	encoder := jsonencoder.New(72)
+	enc := jsonencoder.New(72)
+	enc.AppendObjectBegin() // Add begin JSON identifier
 
-	// Add begin JSON identifier
-	encoder.AppendObjectBegin()
-
-	encoder.AppendObjectKey("f_string1")
-	encoder.AppendLiteralString(x.FString1)
-	encoder.AppendObjectKey("f_string2")
-	encoder.AppendLiteralString(x.FString2)
-	encoder.AppendObjectKey("f_string3")
-	encoder.AppendLiteralString(x.FString3)
-
-	// Add end JSON identifier
-	encoder.AppendObjectEnd()
-	return encoder.Bytes(), err
+	jsonencoder.AppendValStr(enc, "f_string1", x.FString1, false)
+	jsonencoder.AppendValStr(enc, "f_string2", x.FString2, false)
+	jsonencoder.AppendValStr(enc, "f_string3", x.FString3, false)
+	enc.AppendObjectEnd() // Add end JSON identifier
+	return enc.Bytes(), nil
 }
 
 // UnmarshalJSON implements json.Unmarshaler for proto message MessageOneOf1 in file tests/proto/cases/bases/type_oneof.proto
@@ -46,55 +37,48 @@ func (x *MessageOneOf1) UnmarshalJSON(b []byte) error {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbbases.(*MessageOneOf1) is nil")
 	}
 	var (
-		err     error
-		isNULL  bool
-		decoder *jsondecoder.Decoder
+		err    error
+		isNULL bool
+		dec    *jsondecoder.Decoder
 	)
-	if decoder, err = jsondecoder.New(b); err != nil {
+	if dec, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
+	if isNULL, err = dec.BeforeScanJSON(); err != nil || isNULL {
 		return err
-	}
-	if isNULL {
-		return nil
 	}
 LOOP_SCAN:
-	for { // Loop to scan object.
+	for { // Loop to read the JSON objects
 		var (
 			jsonKey string
 			isEnd   bool
 		)
-		if isEnd, err = decoder.BeforeScanNext(); err != nil {
+
+		if isEnd, err = dec.BeforeScanNext(); err != nil {
 			return err
 		}
 		if isEnd {
 			break LOOP_SCAN
 		}
-		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+
+		if jsonKey, err = dec.ReadJSONKey(); err != nil {
 			return err
 		}
 		switch jsonKey { // match the jsonKey
 		case "f_string1":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString1, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString1 = vv
 		case "f_string2":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString2, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString2 = vv
 		case "f_string3":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString3, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString3 = vv
 		default:
-			if err = decoder.DiscardValue(jsonKey); err != nil {
+			if err = dec.DiscardValue(); err != nil {
 				return err
 			}
 		} // end switch
@@ -107,22 +91,14 @@ func (x *MessageOneOf1_Embed1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	var err error
-	encoder := jsonencoder.New(72)
+	enc := jsonencoder.New(72)
+	enc.AppendObjectBegin() // Add begin JSON identifier
 
-	// Add begin JSON identifier
-	encoder.AppendObjectBegin()
-
-	encoder.AppendObjectKey("f_string1")
-	encoder.AppendLiteralString(x.FString1)
-	encoder.AppendObjectKey("f_string2")
-	encoder.AppendLiteralString(x.FString2)
-	encoder.AppendObjectKey("f_string3")
-	encoder.AppendLiteralString(x.FString3)
-
-	// Add end JSON identifier
-	encoder.AppendObjectEnd()
-	return encoder.Bytes(), err
+	jsonencoder.AppendValStr(enc, "f_string1", x.FString1, false)
+	jsonencoder.AppendValStr(enc, "f_string2", x.FString2, false)
+	jsonencoder.AppendValStr(enc, "f_string3", x.FString3, false)
+	enc.AppendObjectEnd() // Add end JSON identifier
+	return enc.Bytes(), nil
 }
 
 // UnmarshalJSON implements json.Unmarshaler for proto message Embed1 in file tests/proto/cases/bases/type_oneof.proto
@@ -131,55 +107,48 @@ func (x *MessageOneOf1_Embed1) UnmarshalJSON(b []byte) error {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbbases.(*MessageOneOf1_Embed1) is nil")
 	}
 	var (
-		err     error
-		isNULL  bool
-		decoder *jsondecoder.Decoder
+		err    error
+		isNULL bool
+		dec    *jsondecoder.Decoder
 	)
-	if decoder, err = jsondecoder.New(b); err != nil {
+	if dec, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
+	if isNULL, err = dec.BeforeScanJSON(); err != nil || isNULL {
 		return err
-	}
-	if isNULL {
-		return nil
 	}
 LOOP_SCAN:
-	for { // Loop to scan object.
+	for { // Loop to read the JSON objects
 		var (
 			jsonKey string
 			isEnd   bool
 		)
-		if isEnd, err = decoder.BeforeScanNext(); err != nil {
+
+		if isEnd, err = dec.BeforeScanNext(); err != nil {
 			return err
 		}
 		if isEnd {
 			break LOOP_SCAN
 		}
-		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+
+		if jsonKey, err = dec.ReadJSONKey(); err != nil {
 			return err
 		}
 		switch jsonKey { // match the jsonKey
 		case "f_string1":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString1, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString1 = vv
 		case "f_string2":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString2, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString2 = vv
 		case "f_string3":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString3, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString3 = vv
 		default:
-			if err = decoder.DiscardValue(jsonKey); err != nil {
+			if err = dec.DiscardValue(); err != nil {
 				return err
 			}
 		} // end switch
@@ -192,22 +161,14 @@ func (x *MessageOneOf1_Embed1_Embed2) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	var err error
-	encoder := jsonencoder.New(72)
+	enc := jsonencoder.New(72)
+	enc.AppendObjectBegin() // Add begin JSON identifier
 
-	// Add begin JSON identifier
-	encoder.AppendObjectBegin()
-
-	encoder.AppendObjectKey("f_string1")
-	encoder.AppendLiteralString(x.FString1)
-	encoder.AppendObjectKey("f_string2")
-	encoder.AppendLiteralString(x.FString2)
-	encoder.AppendObjectKey("f_string3")
-	encoder.AppendLiteralString(x.FString3)
-
-	// Add end JSON identifier
-	encoder.AppendObjectEnd()
-	return encoder.Bytes(), err
+	jsonencoder.AppendValStr(enc, "f_string1", x.FString1, false)
+	jsonencoder.AppendValStr(enc, "f_string2", x.FString2, false)
+	jsonencoder.AppendValStr(enc, "f_string3", x.FString3, false)
+	enc.AppendObjectEnd() // Add end JSON identifier
+	return enc.Bytes(), nil
 }
 
 // UnmarshalJSON implements json.Unmarshaler for proto message Embed2 in file tests/proto/cases/bases/type_oneof.proto
@@ -216,55 +177,48 @@ func (x *MessageOneOf1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbbases.(*MessageOneOf1_Embed1_Embed2) is nil")
 	}
 	var (
-		err     error
-		isNULL  bool
-		decoder *jsondecoder.Decoder
+		err    error
+		isNULL bool
+		dec    *jsondecoder.Decoder
 	)
-	if decoder, err = jsondecoder.New(b); err != nil {
+	if dec, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
+	if isNULL, err = dec.BeforeScanJSON(); err != nil || isNULL {
 		return err
-	}
-	if isNULL {
-		return nil
 	}
 LOOP_SCAN:
-	for { // Loop to scan object.
+	for { // Loop to read the JSON objects
 		var (
 			jsonKey string
 			isEnd   bool
 		)
-		if isEnd, err = decoder.BeforeScanNext(); err != nil {
+
+		if isEnd, err = dec.BeforeScanNext(); err != nil {
 			return err
 		}
 		if isEnd {
 			break LOOP_SCAN
 		}
-		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+
+		if jsonKey, err = dec.ReadJSONKey(); err != nil {
 			return err
 		}
 		switch jsonKey { // match the jsonKey
 		case "f_string1":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString1, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString1 = vv
 		case "f_string2":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString2, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString2 = vv
 		case "f_string3":
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if x.FString3, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			x.FString3 = vv
 		default:
-			if err = decoder.DiscardValue(jsonKey); err != nil {
+			if err = dec.DiscardValue(); err != nil {
 				return err
 			}
 		} // end switch
@@ -277,359 +231,234 @@ func (x *TypeOneOf1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	var err error
-	encoder := jsonencoder.New(1096)
+	enc := jsonencoder.New(1096)
+	enc.AppendObjectBegin() // Add begin JSON identifier
 
-	// Add begin JSON identifier
-	encoder.AppendObjectBegin()
-
-	switch ov := x.OneType01.(type) {
-	case *TypeOneOf1_FString1:
-		encoder.AppendObjectKey("OneType01")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_string1")
-		encoder.AppendLiteralString(ov.FString1)
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FString2:
-		encoder.AppendObjectKey("OneType01")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_string2")
-		encoder.AppendLiteralString(ov.FString2)
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("OneType01")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+	enc.AppendObjectKey("OneType01")
+	if x.OneType01 != nil {
+		enc.AppendObjectBegin()
+		switch o1_1 := x.OneType01.(type) {
+		case *TypeOneOf1_FString1:
+			jsonencoder.AppendValStr(enc, "f_string1", o1_1.FString1, false)
+		case *TypeOneOf1_FString2:
+			jsonencoder.AppendValStr(enc, "f_string2", o1_1.FString2, false)
+		}
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-	switch ov := x.One_Type02.(type) {
-	case *TypeOneOf1_FInt32:
-		encoder.AppendObjectKey("One_Type02")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_int32")
-		encoder.AppendLiteralInt32(ov.FInt32, false)
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FInt64:
-		encoder.AppendObjectKey("One_Type02")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_int64")
-		encoder.AppendLiteralInt64(ov.FInt64, false)
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("One_Type02")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+	enc.AppendObjectKey("One_Type02")
+	if x.One_Type02 != nil {
+		enc.AppendObjectBegin()
+		switch o1_4 := x.One_Type02.(type) {
+		case *TypeOneOf1_FInt32:
+			jsonencoder.AppendValI32(enc, "f_int32", o1_4.FInt32, false, false)
+		case *TypeOneOf1_FInt64:
+			jsonencoder.AppendValI64(enc, "f_int64", o1_4.FInt64, false, false)
+		}
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-	switch ov := x.OneType03.(type) {
-	case *TypeOneOf1_FUint32:
-		encoder.AppendObjectKey("One_type03")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_uint32")
-		encoder.AppendLiteralUint32(ov.FUint32, false)
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FUint64:
-		encoder.AppendObjectKey("One_type03")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_uint64")
-		encoder.AppendLiteralUint64(ov.FUint64, false)
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("One_type03")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+	enc.AppendObjectKey("One_type03")
+	if x.OneType03 != nil {
+		enc.AppendObjectBegin()
+		switch o1_7 := x.OneType03.(type) {
+		case *TypeOneOf1_FUint32:
+			jsonencoder.AppendValU32(enc, "f_uint32", o1_7.FUint32, false, false)
+		case *TypeOneOf1_FUint64:
+			jsonencoder.AppendValU64(enc, "f_uint64", o1_7.FUint64, false, false)
+		}
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-	switch ov := x.One_Type04.(type) {
-	case *TypeOneOf1_FSint32:
-		encoder.AppendObjectKey("one_Type04")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_sint32")
-		encoder.AppendLiteralInt32(ov.FSint32, false)
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FSint64:
-		encoder.AppendObjectKey("one_Type04")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_sint64")
-		encoder.AppendLiteralInt64(ov.FSint64, false)
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("one_Type04")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+	enc.AppendObjectKey("one_Type04")
+	if x.One_Type04 != nil {
+		enc.AppendObjectBegin()
+		switch o1_10 := x.One_Type04.(type) {
+		case *TypeOneOf1_FSint32:
+			jsonencoder.AppendValI32(enc, "f_sint32", o1_10.FSint32, false, false)
+		case *TypeOneOf1_FSint64:
+			jsonencoder.AppendValI64(enc, "f_sint64", o1_10.FSint64, false, false)
+		}
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-	switch ov := x.OneType05.(type) {
-	case *TypeOneOf1_FSfixed32:
-		encoder.AppendObjectKey("one_type05")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_sfixed32")
-		encoder.AppendLiteralInt32(ov.FSfixed32, false)
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FSfixed64:
-		encoder.AppendObjectKey("one_type05")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_sfixed64")
-		encoder.AppendLiteralInt64(ov.FSfixed64, false)
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("one_type05")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+	enc.AppendObjectKey("one_type05")
+	if x.OneType05 != nil {
+		enc.AppendObjectBegin()
+		switch o1_13 := x.OneType05.(type) {
+		case *TypeOneOf1_FSfixed32:
+			jsonencoder.AppendValI32(enc, "f_sfixed32", o1_13.FSfixed32, false, false)
+		case *TypeOneOf1_FSfixed64:
+			jsonencoder.AppendValI64(enc, "f_sfixed64", o1_13.FSfixed64, false, false)
+		}
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-	switch ov := x.OneType06.(type) {
-	case *TypeOneOf1_FFixed32:
-		encoder.AppendObjectKey("oneType06")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_fixed32")
-		encoder.AppendLiteralUint32(ov.FFixed32, false)
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FFixed64:
-		encoder.AppendObjectKey("oneType06")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_fixed64")
-		encoder.AppendLiteralUint64(ov.FFixed64, false)
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("oneType06")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+	enc.AppendObjectKey("oneType06")
+	if x.OneType06 != nil {
+		enc.AppendObjectBegin()
+		switch o1_16 := x.OneType06.(type) {
+		case *TypeOneOf1_FFixed32:
+			jsonencoder.AppendValU32(enc, "f_fixed32", o1_16.FFixed32, false, false)
+		case *TypeOneOf1_FFixed64:
+			jsonencoder.AppendValU64(enc, "f_fixed64", o1_16.FFixed64, false, false)
+		}
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-	switch ov := x.Onetype07.(type) {
-	case *TypeOneOf1_FFloat:
-		encoder.AppendObjectKey("Onetype07")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_float")
-		encoder.AppendLiteralFloat32(ov.FFloat, false)
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FDouble:
-		encoder.AppendObjectKey("Onetype07")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_double")
-		encoder.AppendLiteralFloat64(ov.FDouble, false)
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("Onetype07")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+	enc.AppendObjectKey("Onetype07")
+	if x.Onetype07 != nil {
+		enc.AppendObjectBegin()
+		switch o1_19 := x.Onetype07.(type) {
+		case *TypeOneOf1_FFloat:
+			jsonencoder.AppendValF32(enc, "f_float", o1_19.FFloat, false, false)
+		case *TypeOneOf1_FDouble:
+			jsonencoder.AppendValF64(enc, "f_double", o1_19.FDouble, false, false)
+		}
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-	switch ov := x.Onetype08.(type) {
-	case *TypeOneOf1_FBool1:
-		encoder.AppendObjectKey("onetype08")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_bool1")
-		encoder.AppendLiteralBool(ov.FBool1, false)
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FBytes1:
-		encoder.AppendObjectKey("onetype08")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_bytes1")
-		encoder.AppendLiteralBytes(ov.FBytes1)
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("onetype08")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+	enc.AppendObjectKey("onetype08")
+	if x.Onetype08 != nil {
+		enc.AppendObjectBegin()
+		switch o1_22 := x.Onetype08.(type) {
+		case *TypeOneOf1_FBool1:
+			jsonencoder.AppendValBool(enc, "f_bool1", o1_22.FBool1, false, false)
+		case *TypeOneOf1_FBytes1:
+			if err := jsonencoder.AppendValBytes(enc, "f_bytes1", o1_22.FBytes1, false); err != nil {
+				return nil, err
+			}
+		}
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-	switch ov := x.OneType09.(type) {
-	case *TypeOneOf1_FEnum1:
-		encoder.AppendObjectKey("OneType09")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_enum1")
-		encoder.AppendLiteralInt32(int32(ov.FEnum1.Number()), false)
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FEnum2:
-		encoder.AppendObjectKey("OneType09")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_enum2")
-		encoder.AppendLiteralInt32(int32(ov.FEnum2.Number()), false)
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FEnum3:
-		encoder.AppendObjectKey("OneType09")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_enum3")
-		encoder.AppendLiteralInt32(int32(ov.FEnum3.Number()), false)
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FEnum4:
-		encoder.AppendObjectKey("OneType09")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_enum4")
-		encoder.AppendLiteralInt32(int32(ov.FEnum4.Number()), false)
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FEnum5:
-		encoder.AppendObjectKey("OneType09")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_enum5")
-		encoder.AppendLiteralInt32(int32(ov.FEnum5.Number()), false)
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FEnum6:
-		encoder.AppendObjectKey("OneType09")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_enum6")
-		encoder.AppendLiteralInt32(int32(ov.FEnum6.Number()), false)
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("OneType09")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+	enc.AppendObjectKey("OneType09")
+	if x.OneType09 != nil {
+		enc.AppendObjectBegin()
+		switch o1_25 := x.OneType09.(type) {
+		case *TypeOneOf1_FEnum1:
+			jsonencoder.AppendValEnumNum(enc, "f_enum1", o1_25.FEnum1, false, false)
+		case *TypeOneOf1_FEnum2:
+			jsonencoder.AppendValEnumNum(enc, "f_enum2", o1_25.FEnum2, false, false)
+		case *TypeOneOf1_FEnum3:
+			jsonencoder.AppendValEnumNum(enc, "f_enum3", o1_25.FEnum3, false, false)
+		case *TypeOneOf1_FEnum4:
+			jsonencoder.AppendValEnumNum(enc, "f_enum4", o1_25.FEnum4, false, false)
+		case *TypeOneOf1_FEnum5:
+			jsonencoder.AppendValEnumNum(enc, "f_enum5", o1_25.FEnum5, false, false)
+		case *TypeOneOf1_FEnum6:
+			jsonencoder.AppendValEnumNum(enc, "f_enum6", o1_25.FEnum6, false, false)
+		}
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-	switch ov := x.OneType10.(type) {
-	case *TypeOneOf1_FDuration1:
-		encoder.AppendObjectKey("OneType10")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_duration1")
-		if err = encoder.AppendLiteralInterface(ov.FDuration1); err != nil {
-			return nil, err
+	enc.AppendObjectKey("OneType10")
+	if x.OneType10 != nil {
+		enc.AppendObjectBegin()
+		switch o1_32 := x.OneType10.(type) {
+		case *TypeOneOf1_FDuration1:
+			if err := jsonencoder.AppendValWKTDurObject(enc, "f_duration1", o1_32.FDuration1, false); err != nil {
+				return nil, err
+			}
+		case *TypeOneOf1_FDuration2:
+			if err := jsonencoder.AppendValWKTDurObject(enc, "f_duration2", o1_32.FDuration2, false); err != nil {
+				return nil, err
+			}
 		}
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FDuration2:
-		encoder.AppendObjectKey("OneType10")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_duration2")
-		if err = encoder.AppendLiteralInterface(ov.FDuration2); err != nil {
-			return nil, err
-		}
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("OneType10")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-	switch ov := x.OneType11.(type) {
-	case *TypeOneOf1_FTimestamp1:
-		encoder.AppendObjectKey("OneType11")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_timestamp1")
-		if err = encoder.AppendLiteralInterface(ov.FTimestamp1); err != nil {
-			return nil, err
+	enc.AppendObjectKey("OneType11")
+	if x.OneType11 != nil {
+		enc.AppendObjectBegin()
+		switch o1_35 := x.OneType11.(type) {
+		case *TypeOneOf1_FTimestamp1:
+			if err := jsonencoder.AppendValWKTTsObject(enc, "f_timestamp1", o1_35.FTimestamp1, false); err != nil {
+				return nil, err
+			}
+		case *TypeOneOf1_FTimestamp2:
+			if err := jsonencoder.AppendValWKTTsObject(enc, "f_timestamp2", o1_35.FTimestamp2, false); err != nil {
+				return nil, err
+			}
 		}
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FTimestamp2:
-		encoder.AppendObjectKey("OneType11")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_timestamp2")
-		if err = encoder.AppendLiteralInterface(ov.FTimestamp2); err != nil {
-			return nil, err
-		}
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("OneType11")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-	switch ov := x.OneType12.(type) {
-	case *TypeOneOf1_FAny1:
-		encoder.AppendObjectKey("OneType12")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_any1")
-		if err = encoder.AppendLiteralInterface(ov.FAny1); err != nil {
-			return nil, err
+	enc.AppendObjectKey("OneType12")
+	if x.OneType12 != nil {
+		enc.AppendObjectBegin()
+		switch o1_38 := x.OneType12.(type) {
+		case *TypeOneOf1_FAny1:
+			if err := jsonencoder.AppendValWKTAnyObject(enc, "f_any1", o1_38.FAny1, false); err != nil {
+				return nil, err
+			}
+		case *TypeOneOf1_FAny2:
+			if err := jsonencoder.AppendValWKTAnyObject(enc, "f_any2", o1_38.FAny2, false); err != nil {
+				return nil, err
+			}
 		}
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FAny2:
-		encoder.AppendObjectKey("OneType12")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_any2")
-		if err = encoder.AppendLiteralInterface(ov.FAny2); err != nil {
-			return nil, err
-		}
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("OneType12")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-	switch ov := x.OneType13.(type) {
-	case *TypeOneOf1_FMessage1:
-		encoder.AppendObjectKey("OneType13")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_message1")
-		if err = encoder.AppendLiteralInterface(ov.FMessage1); err != nil {
-			return nil, err
+	enc.AppendObjectKey("OneType13")
+	if x.OneType13 != nil {
+		enc.AppendObjectBegin()
+		switch o1_41 := x.OneType13.(type) {
+		case *TypeOneOf1_FMessage1:
+			if err := jsonencoder.AppendValMessage(enc, "f_message1", o1_41.FMessage1, false); err != nil {
+				return nil, err
+			}
+		case *TypeOneOf1_FMessage2:
+			if err := jsonencoder.AppendValMessage(enc, "f_message2", o1_41.FMessage2, false); err != nil {
+				return nil, err
+			}
+		case *TypeOneOf1_FMessage3:
+			if err := jsonencoder.AppendValMessage(enc, "f_message3", o1_41.FMessage3, false); err != nil {
+				return nil, err
+			}
+		case *TypeOneOf1_FMessage4:
+			if err := jsonencoder.AppendValMessage(enc, "f_message4", o1_41.FMessage4, false); err != nil {
+				return nil, err
+			}
+		case *TypeOneOf1_FMessage5:
+			if err := jsonencoder.AppendValMessage(enc, "f_message5", o1_41.FMessage5, false); err != nil {
+				return nil, err
+			}
+		case *TypeOneOf1_FMessage6:
+			if err := jsonencoder.AppendValMessage(enc, "f_message6", o1_41.FMessage6, false); err != nil {
+				return nil, err
+			}
+		case *TypeOneOf1_FMessage7:
+			if err := jsonencoder.AppendValMessage(enc, "f_message7", o1_41.FMessage7, false); err != nil {
+				return nil, err
+			}
+		case *TypeOneOf1_FMessage8:
+			if err := jsonencoder.AppendValMessage(enc, "f_message8", o1_41.FMessage8, false); err != nil {
+				return nil, err
+			}
+		case *TypeOneOf1_FMessage9:
+			if err := jsonencoder.AppendValMessage(enc, "f_message9", o1_41.FMessage9, false); err != nil {
+				return nil, err
+			}
 		}
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FMessage2:
-		encoder.AppendObjectKey("OneType13")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_message2")
-		if err = encoder.AppendLiteralInterface(ov.FMessage2); err != nil {
-			return nil, err
-		}
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FMessage3:
-		encoder.AppendObjectKey("OneType13")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_message3")
-		if err = encoder.AppendLiteralInterface(ov.FMessage3); err != nil {
-			return nil, err
-		}
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FMessage4:
-		encoder.AppendObjectKey("OneType13")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_message4")
-		if err = encoder.AppendLiteralInterface(ov.FMessage4); err != nil {
-			return nil, err
-		}
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FMessage5:
-		encoder.AppendObjectKey("OneType13")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_message5")
-		if err = encoder.AppendLiteralInterface(ov.FMessage5); err != nil {
-			return nil, err
-		}
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FMessage6:
-		encoder.AppendObjectKey("OneType13")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_message6")
-		if err = encoder.AppendLiteralInterface(ov.FMessage6); err != nil {
-			return nil, err
-		}
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FMessage7:
-		encoder.AppendObjectKey("OneType13")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_message7")
-		if err = encoder.AppendLiteralInterface(ov.FMessage7); err != nil {
-			return nil, err
-		}
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FMessage8:
-		encoder.AppendObjectKey("OneType13")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_message8")
-		if err = encoder.AppendLiteralInterface(ov.FMessage8); err != nil {
-			return nil, err
-		}
-		encoder.AppendObjectEnd()
-	case *TypeOneOf1_FMessage9:
-		encoder.AppendObjectKey("OneType13")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_message9")
-		if err = encoder.AppendLiteralInterface(ov.FMessage9); err != nil {
-			return nil, err
-		}
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("OneType13")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-
-	// Add end JSON identifier
-	encoder.AppendObjectEnd()
-	return encoder.Bytes(), err
+	enc.AppendObjectEnd() // Add end JSON identifier
+	return enc.Bytes(), nil
 }
 
 // UnmarshalJSON implements json.Unmarshaler for proto message TypeOneOf1 in file tests/proto/cases/bases/type_oneof.proto
@@ -638,1181 +467,872 @@ func (x *TypeOneOf1) UnmarshalJSON(b []byte) error {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbbases.(*TypeOneOf1) is nil")
 	}
 	var (
-		oneOfIsFill_OneType01  bool
-		oneOfIsFill_One_Type02 bool
-		oneOfIsFill_OneType03  bool
-		oneOfIsFill_One_Type04 bool
-		oneOfIsFill_OneType05  bool
-		oneOfIsFill_OneType06  bool
-		oneOfIsFill_Onetype07  bool
-		oneOfIsFill_Onetype08  bool
-		oneOfIsFill_OneType09  bool
-		oneOfIsFill_OneType10  bool
-		oneOfIsFill_OneType11  bool
-		oneOfIsFill_OneType12  bool
-		oneOfIsFill_OneType13  bool
+		err    error
+		isNULL bool
+		dec    *jsondecoder.Decoder
 	)
+	if dec, err = jsondecoder.New(b); err != nil {
+		return err
+	}
+	if isNULL, err = dec.BeforeScanJSON(); err != nil || isNULL {
+		return err
+	}
+	// declares variables to report whether the oneof field is loaded.
 	var (
-		err     error
-		isNULL  bool
-		decoder *jsondecoder.Decoder
+		isLoad_o1_1  bool
+		isLoad_o1_4  bool
+		isLoad_o1_7  bool
+		isLoad_o1_10 bool
+		isLoad_o1_13 bool
+		isLoad_o1_16 bool
+		isLoad_o1_19 bool
+		isLoad_o1_22 bool
+		isLoad_o1_25 bool
+		isLoad_o1_32 bool
+		isLoad_o1_35 bool
+		isLoad_o1_38 bool
+		isLoad_o1_41 bool
 	)
-	if decoder, err = jsondecoder.New(b); err != nil {
-		return err
-	}
-	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
-		return err
-	}
-	if isNULL {
-		return nil
-	}
+
 LOOP_SCAN:
-	for { // Loop to scan object.
+	for { // Loop to read the JSON objects
 		var (
 			jsonKey string
 			isEnd   bool
 		)
-		if isEnd, err = decoder.BeforeScanNext(); err != nil {
+
+		if isEnd, err = dec.BeforeScanNext(); err != nil {
 			return err
 		}
 		if isEnd {
 			break LOOP_SCAN
 		}
-		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+
+		if jsonKey, err = dec.ReadJSONKey(); err != nil {
 			return err
 		}
 		switch jsonKey { // match the jsonKey
 		case "OneType01":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneType01 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_string1":
-					if oneOfIsFill_OneType01 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType01 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FString1
-					if ot, ok = x.OneType01.(*TypeOneOf1_FString1); !ok {
-						ot = new(TypeOneOf1_FString1)
-					}
-					var vv string
-					if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					ot.FString1 = vv
-					x.OneType01 = ot
-				case "f_string2":
-					if oneOfIsFill_OneType01 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+					if isEnd {
+						break
 					}
-					oneOfIsFill_OneType01 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FString2
-					if ot, ok = x.OneType01.(*TypeOneOf1_FString2); !ok {
-						ot = new(TypeOneOf1_FString2)
-					}
-					var vv string
-					if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+					var oneOfKey1_1 string
+					if oneOfKey1_1, err = dec.ReadObjectKey(); err != nil {
 						return err
 					}
-					ot.FString2 = vv
-					x.OneType01 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
+					switch oneOfKey1_1 { // match the oneof key
+					case "f_string1":
+						if isLoad_o1_1 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_1 = true
+						o1_1, ok := x.OneType01.(*TypeOneOf1_FString1)
+						if !ok {
+							o1_1 = new(TypeOneOf1_FString1)
+							x.OneType01 = o1_1
+						}
+						if o1_1.FString1, err = jsondecoder.ReadValStr(dec); err != nil {
+							return err
+						}
+					case "f_string2":
+						if isLoad_o1_1 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_1 = true
+						o1_1, ok := x.OneType01.(*TypeOneOf1_FString2)
+						if !ok {
+							o1_1 = new(TypeOneOf1_FString2)
+							x.OneType01 = o1_1
+						}
+						if o1_1.FString2, err = jsondecoder.ReadValStr(dec); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
+							return err
+						}
 					}
-				} // end switch
+				}
 			}
 		case "One_Type02":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.One_Type02 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_int32":
-					if oneOfIsFill_One_Type02 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_One_Type02 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FInt32
-					if ot, ok = x.One_Type02.(*TypeOneOf1_FInt32); !ok {
-						ot = new(TypeOneOf1_FInt32)
-					}
-					var vv int32
-					if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					ot.FInt32 = vv
-					x.One_Type02 = ot
-				case "f_int64":
-					if oneOfIsFill_One_Type02 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+					if isEnd {
+						break
 					}
-					oneOfIsFill_One_Type02 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FInt64
-					if ot, ok = x.One_Type02.(*TypeOneOf1_FInt64); !ok {
-						ot = new(TypeOneOf1_FInt64)
-					}
-					var vv int64
-					if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
+					var oneOfKey1_4 string
+					if oneOfKey1_4, err = dec.ReadObjectKey(); err != nil {
 						return err
 					}
-					ot.FInt64 = vv
-					x.One_Type02 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
+					switch oneOfKey1_4 { // match the oneof key
+					case "f_int32":
+						if isLoad_o1_4 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_4 = true
+						o1_4, ok := x.One_Type02.(*TypeOneOf1_FInt32)
+						if !ok {
+							o1_4 = new(TypeOneOf1_FInt32)
+							x.One_Type02 = o1_4
+						}
+						if o1_4.FInt32, err = jsondecoder.ReadValI32(dec, false); err != nil {
+							return err
+						}
+					case "f_int64":
+						if isLoad_o1_4 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_4 = true
+						o1_4, ok := x.One_Type02.(*TypeOneOf1_FInt64)
+						if !ok {
+							o1_4 = new(TypeOneOf1_FInt64)
+							x.One_Type02 = o1_4
+						}
+						if o1_4.FInt64, err = jsondecoder.ReadValI64(dec, false); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
+							return err
+						}
 					}
-				} // end switch
+				}
 			}
 		case "One_type03":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneType03 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_uint32":
-					if oneOfIsFill_OneType03 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType03 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FUint32
-					if ot, ok = x.OneType03.(*TypeOneOf1_FUint32); !ok {
-						ot = new(TypeOneOf1_FUint32)
-					}
-					var vv uint32
-					if vv, err = decoder.ReadLiteralUint32(jsonKey, false); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					ot.FUint32 = vv
-					x.OneType03 = ot
-				case "f_uint64":
-					if oneOfIsFill_OneType03 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+					if isEnd {
+						break
 					}
-					oneOfIsFill_OneType03 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FUint64
-					if ot, ok = x.OneType03.(*TypeOneOf1_FUint64); !ok {
-						ot = new(TypeOneOf1_FUint64)
-					}
-					var vv uint64
-					if vv, err = decoder.ReadLiteralUint64(jsonKey, false); err != nil {
+					var oneOfKey1_7 string
+					if oneOfKey1_7, err = dec.ReadObjectKey(); err != nil {
 						return err
 					}
-					ot.FUint64 = vv
-					x.OneType03 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
+					switch oneOfKey1_7 { // match the oneof key
+					case "f_uint32":
+						if isLoad_o1_7 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_7 = true
+						o1_7, ok := x.OneType03.(*TypeOneOf1_FUint32)
+						if !ok {
+							o1_7 = new(TypeOneOf1_FUint32)
+							x.OneType03 = o1_7
+						}
+						if o1_7.FUint32, err = jsondecoder.ReadValU32(dec, false); err != nil {
+							return err
+						}
+					case "f_uint64":
+						if isLoad_o1_7 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_7 = true
+						o1_7, ok := x.OneType03.(*TypeOneOf1_FUint64)
+						if !ok {
+							o1_7 = new(TypeOneOf1_FUint64)
+							x.OneType03 = o1_7
+						}
+						if o1_7.FUint64, err = jsondecoder.ReadValU64(dec, false); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
+							return err
+						}
 					}
-				} // end switch
+				}
 			}
 		case "one_Type04":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.One_Type04 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_sint32":
-					if oneOfIsFill_One_Type04 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_One_Type04 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FSint32
-					if ot, ok = x.One_Type04.(*TypeOneOf1_FSint32); !ok {
-						ot = new(TypeOneOf1_FSint32)
-					}
-					var vv int32
-					if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					ot.FSint32 = vv
-					x.One_Type04 = ot
-				case "f_sint64":
-					if oneOfIsFill_One_Type04 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+					if isEnd {
+						break
 					}
-					oneOfIsFill_One_Type04 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FSint64
-					if ot, ok = x.One_Type04.(*TypeOneOf1_FSint64); !ok {
-						ot = new(TypeOneOf1_FSint64)
-					}
-					var vv int64
-					if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
+					var oneOfKey1_10 string
+					if oneOfKey1_10, err = dec.ReadObjectKey(); err != nil {
 						return err
 					}
-					ot.FSint64 = vv
-					x.One_Type04 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
+					switch oneOfKey1_10 { // match the oneof key
+					case "f_sint32":
+						if isLoad_o1_10 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_10 = true
+						o1_10, ok := x.One_Type04.(*TypeOneOf1_FSint32)
+						if !ok {
+							o1_10 = new(TypeOneOf1_FSint32)
+							x.One_Type04 = o1_10
+						}
+						if o1_10.FSint32, err = jsondecoder.ReadValI32(dec, false); err != nil {
+							return err
+						}
+					case "f_sint64":
+						if isLoad_o1_10 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_10 = true
+						o1_10, ok := x.One_Type04.(*TypeOneOf1_FSint64)
+						if !ok {
+							o1_10 = new(TypeOneOf1_FSint64)
+							x.One_Type04 = o1_10
+						}
+						if o1_10.FSint64, err = jsondecoder.ReadValI64(dec, false); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
+							return err
+						}
 					}
-				} // end switch
+				}
 			}
 		case "one_type05":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneType05 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_sfixed32":
-					if oneOfIsFill_OneType05 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType05 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FSfixed32
-					if ot, ok = x.OneType05.(*TypeOneOf1_FSfixed32); !ok {
-						ot = new(TypeOneOf1_FSfixed32)
-					}
-					var vv int32
-					if vv, err = decoder.ReadLiteralInt32(jsonKey, false); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					ot.FSfixed32 = vv
-					x.OneType05 = ot
-				case "f_sfixed64":
-					if oneOfIsFill_OneType05 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+					if isEnd {
+						break
 					}
-					oneOfIsFill_OneType05 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FSfixed64
-					if ot, ok = x.OneType05.(*TypeOneOf1_FSfixed64); !ok {
-						ot = new(TypeOneOf1_FSfixed64)
-					}
-					var vv int64
-					if vv, err = decoder.ReadLiteralInt64(jsonKey, false); err != nil {
+					var oneOfKey1_13 string
+					if oneOfKey1_13, err = dec.ReadObjectKey(); err != nil {
 						return err
 					}
-					ot.FSfixed64 = vv
-					x.OneType05 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
+					switch oneOfKey1_13 { // match the oneof key
+					case "f_sfixed32":
+						if isLoad_o1_13 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_13 = true
+						o1_13, ok := x.OneType05.(*TypeOneOf1_FSfixed32)
+						if !ok {
+							o1_13 = new(TypeOneOf1_FSfixed32)
+							x.OneType05 = o1_13
+						}
+						if o1_13.FSfixed32, err = jsondecoder.ReadValI32(dec, false); err != nil {
+							return err
+						}
+					case "f_sfixed64":
+						if isLoad_o1_13 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_13 = true
+						o1_13, ok := x.OneType05.(*TypeOneOf1_FSfixed64)
+						if !ok {
+							o1_13 = new(TypeOneOf1_FSfixed64)
+							x.OneType05 = o1_13
+						}
+						if o1_13.FSfixed64, err = jsondecoder.ReadValI64(dec, false); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
+							return err
+						}
 					}
-				} // end switch
+				}
 			}
 		case "oneType06":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneType06 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_fixed32":
-					if oneOfIsFill_OneType06 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType06 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FFixed32
-					if ot, ok = x.OneType06.(*TypeOneOf1_FFixed32); !ok {
-						ot = new(TypeOneOf1_FFixed32)
-					}
-					var vv uint32
-					if vv, err = decoder.ReadLiteralUint32(jsonKey, false); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					ot.FFixed32 = vv
-					x.OneType06 = ot
-				case "f_fixed64":
-					if oneOfIsFill_OneType06 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+					if isEnd {
+						break
 					}
-					oneOfIsFill_OneType06 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FFixed64
-					if ot, ok = x.OneType06.(*TypeOneOf1_FFixed64); !ok {
-						ot = new(TypeOneOf1_FFixed64)
-					}
-					var vv uint64
-					if vv, err = decoder.ReadLiteralUint64(jsonKey, false); err != nil {
+					var oneOfKey1_16 string
+					if oneOfKey1_16, err = dec.ReadObjectKey(); err != nil {
 						return err
 					}
-					ot.FFixed64 = vv
-					x.OneType06 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
+					switch oneOfKey1_16 { // match the oneof key
+					case "f_fixed32":
+						if isLoad_o1_16 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_16 = true
+						o1_16, ok := x.OneType06.(*TypeOneOf1_FFixed32)
+						if !ok {
+							o1_16 = new(TypeOneOf1_FFixed32)
+							x.OneType06 = o1_16
+						}
+						if o1_16.FFixed32, err = jsondecoder.ReadValU32(dec, false); err != nil {
+							return err
+						}
+					case "f_fixed64":
+						if isLoad_o1_16 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_16 = true
+						o1_16, ok := x.OneType06.(*TypeOneOf1_FFixed64)
+						if !ok {
+							o1_16 = new(TypeOneOf1_FFixed64)
+							x.OneType06 = o1_16
+						}
+						if o1_16.FFixed64, err = jsondecoder.ReadValU64(dec, false); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
+							return err
+						}
 					}
-				} // end switch
+				}
 			}
 		case "Onetype07":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.Onetype07 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_float":
-					if oneOfIsFill_Onetype07 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_Onetype07 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FFloat
-					if ot, ok = x.Onetype07.(*TypeOneOf1_FFloat); !ok {
-						ot = new(TypeOneOf1_FFloat)
-					}
-					var vv float32
-					if vv, err = decoder.ReadLiteralFloat32(jsonKey, false); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					ot.FFloat = vv
-					x.Onetype07 = ot
-				case "f_double":
-					if oneOfIsFill_Onetype07 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+					if isEnd {
+						break
 					}
-					oneOfIsFill_Onetype07 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FDouble
-					if ot, ok = x.Onetype07.(*TypeOneOf1_FDouble); !ok {
-						ot = new(TypeOneOf1_FDouble)
-					}
-					var vv float64
-					if vv, err = decoder.ReadLiteralFloat64(jsonKey, false); err != nil {
+					var oneOfKey1_19 string
+					if oneOfKey1_19, err = dec.ReadObjectKey(); err != nil {
 						return err
 					}
-					ot.FDouble = vv
-					x.Onetype07 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
+					switch oneOfKey1_19 { // match the oneof key
+					case "f_float":
+						if isLoad_o1_19 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_19 = true
+						o1_19, ok := x.Onetype07.(*TypeOneOf1_FFloat)
+						if !ok {
+							o1_19 = new(TypeOneOf1_FFloat)
+							x.Onetype07 = o1_19
+						}
+						if o1_19.FFloat, err = jsondecoder.ReadValF32(dec, false); err != nil {
+							return err
+						}
+					case "f_double":
+						if isLoad_o1_19 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_19 = true
+						o1_19, ok := x.Onetype07.(*TypeOneOf1_FDouble)
+						if !ok {
+							o1_19 = new(TypeOneOf1_FDouble)
+							x.Onetype07 = o1_19
+						}
+						if o1_19.FDouble, err = jsondecoder.ReadValF64(dec, false); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
+							return err
+						}
 					}
-				} // end switch
+				}
 			}
 		case "onetype08":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.Onetype08 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_bool1":
-					if oneOfIsFill_Onetype08 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_Onetype08 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FBool1
-					if ot, ok = x.Onetype08.(*TypeOneOf1_FBool1); !ok {
-						ot = new(TypeOneOf1_FBool1)
-					}
-					var vv bool
-					if vv, err = decoder.ReadLiteralBool(jsonKey, false); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					ot.FBool1 = vv
-					x.Onetype08 = ot
-				case "f_bytes1":
-					if oneOfIsFill_Onetype08 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+					if isEnd {
+						break
 					}
-					oneOfIsFill_Onetype08 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FBytes1
-					if ot, ok = x.Onetype08.(*TypeOneOf1_FBytes1); !ok {
-						ot = new(TypeOneOf1_FBytes1)
-					}
-					var vv []byte
-					if vv, err = decoder.ReadLiteralBytes(jsonKey); err != nil {
+					var oneOfKey1_22 string
+					if oneOfKey1_22, err = dec.ReadObjectKey(); err != nil {
 						return err
 					}
-					ot.FBytes1 = vv
-					x.Onetype08 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
+					switch oneOfKey1_22 { // match the oneof key
+					case "f_bool1":
+						if isLoad_o1_22 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_22 = true
+						o1_22, ok := x.Onetype08.(*TypeOneOf1_FBool1)
+						if !ok {
+							o1_22 = new(TypeOneOf1_FBool1)
+							x.Onetype08 = o1_22
+						}
+						if o1_22.FBool1, err = jsondecoder.ReadValBool(dec, false); err != nil {
+							return err
+						}
+					case "f_bytes1":
+						if isLoad_o1_22 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_22 = true
+						o1_22, ok := x.Onetype08.(*TypeOneOf1_FBytes1)
+						if !ok {
+							o1_22 = new(TypeOneOf1_FBytes1)
+							x.Onetype08 = o1_22
+						}
+						if o1_22.FBytes1, err = jsondecoder.ReadValBytes(dec); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
+							return err
+						}
 					}
-				} // end switch
+				}
 			}
 		case "OneType09":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneType09 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
+						return err
+					}
+					if isEnd {
+						break
+					}
+					var oneOfKey1_25 string
+					if oneOfKey1_25, err = dec.ReadObjectKey(); err != nil {
+						return err
+					}
+					switch oneOfKey1_25 { // match the oneof key
+					case "f_enum1":
+						if isLoad_o1_25 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_25 = true
+						o1_25, ok := x.OneType09.(*TypeOneOf1_FEnum1)
+						if !ok {
+							o1_25 = new(TypeOneOf1_FEnum1)
+							x.OneType09 = o1_25
+						}
+						if o1_25.FEnum1, err = jsondecoder.ReadValEnumNum(dec, o1_25.FEnum1, false); err != nil {
+							return err
+						}
+					case "f_enum2":
+						if isLoad_o1_25 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_25 = true
+						o1_25, ok := x.OneType09.(*TypeOneOf1_FEnum2)
+						if !ok {
+							o1_25 = new(TypeOneOf1_FEnum2)
+							x.OneType09 = o1_25
+						}
+						if o1_25.FEnum2, err = jsondecoder.ReadValEnumNum(dec, o1_25.FEnum2, false); err != nil {
+							return err
+						}
+					case "f_enum3":
+						if isLoad_o1_25 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_25 = true
+						o1_25, ok := x.OneType09.(*TypeOneOf1_FEnum3)
+						if !ok {
+							o1_25 = new(TypeOneOf1_FEnum3)
+							x.OneType09 = o1_25
+						}
+						if o1_25.FEnum3, err = jsondecoder.ReadValEnumNum(dec, o1_25.FEnum3, false); err != nil {
+							return err
+						}
+					case "f_enum4":
+						if isLoad_o1_25 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_25 = true
+						o1_25, ok := x.OneType09.(*TypeOneOf1_FEnum4)
+						if !ok {
+							o1_25 = new(TypeOneOf1_FEnum4)
+							x.OneType09 = o1_25
+						}
+						if o1_25.FEnum4, err = jsondecoder.ReadValEnumNum(dec, o1_25.FEnum4, false); err != nil {
+							return err
+						}
+					case "f_enum5":
+						if isLoad_o1_25 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_25 = true
+						o1_25, ok := x.OneType09.(*TypeOneOf1_FEnum5)
+						if !ok {
+							o1_25 = new(TypeOneOf1_FEnum5)
+							x.OneType09 = o1_25
+						}
+						if o1_25.FEnum5, err = jsondecoder.ReadValEnumNum(dec, o1_25.FEnum5, false); err != nil {
+							return err
+						}
+					case "f_enum6":
+						if isLoad_o1_25 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_25 = true
+						o1_25, ok := x.OneType09.(*TypeOneOf1_FEnum6)
+						if !ok {
+							o1_25 = new(TypeOneOf1_FEnum6)
+							x.OneType09 = o1_25
+						}
+						if o1_25.FEnum6, err = jsondecoder.ReadValEnumNum(dec, o1_25.FEnum6, false); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
+							return err
+						}
+					}
 				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_enum1":
-					if oneOfIsFill_OneType09 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType09 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FEnum1
-					if ot, ok = x.OneType09.(*TypeOneOf1_FEnum1); !ok {
-						ot = new(TypeOneOf1_FEnum1)
-					}
-					var vv EnumOneOf1
-					var v1 int32
-					if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
-						return err
-					}
-					vv = EnumOneOf1(v1)
-					ot.FEnum1 = vv
-					x.OneType09 = ot
-				case "f_enum2":
-					if oneOfIsFill_OneType09 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType09 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FEnum2
-					if ot, ok = x.OneType09.(*TypeOneOf1_FEnum2); !ok {
-						ot = new(TypeOneOf1_FEnum2)
-					}
-					var vv pbexternal.Enum1
-					var v1 int32
-					if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
-						return err
-					}
-					vv = pbexternal.Enum1(v1)
-					ot.FEnum2 = vv
-					x.OneType09 = ot
-				case "f_enum3":
-					if oneOfIsFill_OneType09 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType09 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FEnum3
-					if ot, ok = x.OneType09.(*TypeOneOf1_FEnum3); !ok {
-						ot = new(TypeOneOf1_FEnum3)
-					}
-					var vv pbexternal.Embed_Enum1
-					var v1 int32
-					if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
-						return err
-					}
-					vv = pbexternal.Embed_Enum1(v1)
-					ot.FEnum3 = vv
-					x.OneType09 = ot
-				case "f_enum4":
-					if oneOfIsFill_OneType09 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType09 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FEnum4
-					if ot, ok = x.OneType09.(*TypeOneOf1_FEnum4); !ok {
-						ot = new(TypeOneOf1_FEnum4)
-					}
-					var vv pbexternal.Embed_Message_Enum1
-					var v1 int32
-					if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
-						return err
-					}
-					vv = pbexternal.Embed_Message_Enum1(v1)
-					ot.FEnum4 = vv
-					x.OneType09 = ot
-				case "f_enum5":
-					if oneOfIsFill_OneType09 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType09 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FEnum5
-					if ot, ok = x.OneType09.(*TypeOneOf1_FEnum5); !ok {
-						ot = new(TypeOneOf1_FEnum5)
-					}
-					var vv EnumCommon1
-					var v1 int32
-					if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
-						return err
-					}
-					vv = EnumCommon1(v1)
-					ot.FEnum5 = vv
-					x.OneType09 = ot
-				case "f_enum6":
-					if oneOfIsFill_OneType09 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType09 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FEnum6
-					if ot, ok = x.OneType09.(*TypeOneOf1_FEnum6); !ok {
-						ot = new(TypeOneOf1_FEnum6)
-					}
-					var vv MessageCommon1_Enum1
-					var v1 int32
-					if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
-						return err
-					}
-					vv = MessageCommon1_Enum1(v1)
-					ot.FEnum6 = vv
-					x.OneType09 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
-					}
-				} // end switch
 			}
 		case "OneType10":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneType10 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_duration1":
-					if oneOfIsFill_OneType10 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType10 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FDuration1
-					if ot, ok = x.OneType10.(*TypeOneOf1_FDuration1); !ok {
-						ot = new(TypeOneOf1_FDuration1)
-					}
-					var vv *durationpb.Duration
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					if !isNULL {
-						if ot.FDuration1 != nil {
-							vv = ot.FDuration1
-						} else {
-							vv = new(durationpb.Duration)
+					if isEnd {
+						break
+					}
+					var oneOfKey1_32 string
+					if oneOfKey1_32, err = dec.ReadObjectKey(); err != nil {
+						return err
+					}
+					switch oneOfKey1_32 { // match the oneof key
+					case "f_duration1":
+						if isLoad_o1_32 {
+							return jsondecoder.ErrOneOfConflict(dec)
 						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
+						isLoad_o1_32 = true
+						o1_32, ok := x.OneType10.(*TypeOneOf1_FDuration1)
+						if !ok {
+							o1_32 = new(TypeOneOf1_FDuration1)
+							x.OneType10 = o1_32
+						}
+						if o1_32.FDuration1, err = jsondecoder.ReadValWKTDurObject(dec, o1_32.FDuration1); err != nil {
+							return err
+						}
+					case "f_duration2":
+						if isLoad_o1_32 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_32 = true
+						o1_32, ok := x.OneType10.(*TypeOneOf1_FDuration2)
+						if !ok {
+							o1_32 = new(TypeOneOf1_FDuration2)
+							x.OneType10 = o1_32
+						}
+						if o1_32.FDuration2, err = jsondecoder.ReadValWKTDurObject(dec, o1_32.FDuration2); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
 							return err
 						}
 					}
-					ot.FDuration1 = vv
-					x.OneType10 = ot
-				case "f_duration2":
-					if oneOfIsFill_OneType10 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType10 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FDuration2
-					if ot, ok = x.OneType10.(*TypeOneOf1_FDuration2); !ok {
-						ot = new(TypeOneOf1_FDuration2)
-					}
-					var vv *durationpb.Duration
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-						return err
-					}
-					if !isNULL {
-						if ot.FDuration2 != nil {
-							vv = ot.FDuration2
-						} else {
-							vv = new(durationpb.Duration)
-						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-							return err
-						}
-					}
-					ot.FDuration2 = vv
-					x.OneType10 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
-					}
-				} // end switch
+				}
 			}
 		case "OneType11":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneType11 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_timestamp1":
-					if oneOfIsFill_OneType11 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType11 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FTimestamp1
-					if ot, ok = x.OneType11.(*TypeOneOf1_FTimestamp1); !ok {
-						ot = new(TypeOneOf1_FTimestamp1)
-					}
-					var vv *timestamppb.Timestamp
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					if !isNULL {
-						if ot.FTimestamp1 != nil {
-							vv = ot.FTimestamp1
-						} else {
-							vv = new(timestamppb.Timestamp)
+					if isEnd {
+						break
+					}
+					var oneOfKey1_35 string
+					if oneOfKey1_35, err = dec.ReadObjectKey(); err != nil {
+						return err
+					}
+					switch oneOfKey1_35 { // match the oneof key
+					case "f_timestamp1":
+						if isLoad_o1_35 {
+							return jsondecoder.ErrOneOfConflict(dec)
 						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
+						isLoad_o1_35 = true
+						o1_35, ok := x.OneType11.(*TypeOneOf1_FTimestamp1)
+						if !ok {
+							o1_35 = new(TypeOneOf1_FTimestamp1)
+							x.OneType11 = o1_35
+						}
+						if o1_35.FTimestamp1, err = jsondecoder.ReadValWKTTsObject(dec, o1_35.FTimestamp1); err != nil {
+							return err
+						}
+					case "f_timestamp2":
+						if isLoad_o1_35 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_35 = true
+						o1_35, ok := x.OneType11.(*TypeOneOf1_FTimestamp2)
+						if !ok {
+							o1_35 = new(TypeOneOf1_FTimestamp2)
+							x.OneType11 = o1_35
+						}
+						if o1_35.FTimestamp2, err = jsondecoder.ReadValWKTTsObject(dec, o1_35.FTimestamp2); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
 							return err
 						}
 					}
-					ot.FTimestamp1 = vv
-					x.OneType11 = ot
-				case "f_timestamp2":
-					if oneOfIsFill_OneType11 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType11 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FTimestamp2
-					if ot, ok = x.OneType11.(*TypeOneOf1_FTimestamp2); !ok {
-						ot = new(TypeOneOf1_FTimestamp2)
-					}
-					var vv *timestamppb.Timestamp
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-						return err
-					}
-					if !isNULL {
-						if ot.FTimestamp2 != nil {
-							vv = ot.FTimestamp2
-						} else {
-							vv = new(timestamppb.Timestamp)
-						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-							return err
-						}
-					}
-					ot.FTimestamp2 = vv
-					x.OneType11 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
-					}
-				} // end switch
+				}
 			}
 		case "OneType12":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneType12 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_any1":
-					if oneOfIsFill_OneType12 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType12 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FAny1
-					if ot, ok = x.OneType12.(*TypeOneOf1_FAny1); !ok {
-						ot = new(TypeOneOf1_FAny1)
-					}
-					var vv *anypb.Any
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					if !isNULL {
-						if ot.FAny1 != nil {
-							vv = ot.FAny1
-						} else {
-							vv = new(anypb.Any)
+					if isEnd {
+						break
+					}
+					var oneOfKey1_38 string
+					if oneOfKey1_38, err = dec.ReadObjectKey(); err != nil {
+						return err
+					}
+					switch oneOfKey1_38 { // match the oneof key
+					case "f_any1":
+						if isLoad_o1_38 {
+							return jsondecoder.ErrOneOfConflict(dec)
 						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
+						isLoad_o1_38 = true
+						o1_38, ok := x.OneType12.(*TypeOneOf1_FAny1)
+						if !ok {
+							o1_38 = new(TypeOneOf1_FAny1)
+							x.OneType12 = o1_38
+						}
+						if o1_38.FAny1, err = jsondecoder.ReadValWKTAnyObject(dec, o1_38.FAny1); err != nil {
+							return err
+						}
+					case "f_any2":
+						if isLoad_o1_38 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_38 = true
+						o1_38, ok := x.OneType12.(*TypeOneOf1_FAny2)
+						if !ok {
+							o1_38 = new(TypeOneOf1_FAny2)
+							x.OneType12 = o1_38
+						}
+						if o1_38.FAny2, err = jsondecoder.ReadValWKTAnyObject(dec, o1_38.FAny2); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
 							return err
 						}
 					}
-					ot.FAny1 = vv
-					x.OneType12 = ot
-				case "f_any2":
-					if oneOfIsFill_OneType12 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType12 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FAny2
-					if ot, ok = x.OneType12.(*TypeOneOf1_FAny2); !ok {
-						ot = new(TypeOneOf1_FAny2)
-					}
-					var vv *anypb.Any
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-						return err
-					}
-					if !isNULL {
-						if ot.FAny2 != nil {
-							vv = ot.FAny2
-						} else {
-							vv = new(anypb.Any)
-						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-							return err
-						}
-					}
-					ot.FAny2 = vv
-					x.OneType12 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
-					}
-				} // end switch
+				}
 			}
 		case "OneType13":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneType13 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
+						return err
+					}
+					if isEnd {
+						break
+					}
+					var oneOfKey1_41 string
+					if oneOfKey1_41, err = dec.ReadObjectKey(); err != nil {
+						return err
+					}
+					switch oneOfKey1_41 { // match the oneof key
+					case "f_message1":
+						if isLoad_o1_41 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_41 = true
+						o1_41, ok := x.OneType13.(*TypeOneOf1_FMessage1)
+						if !ok {
+							o1_41 = new(TypeOneOf1_FMessage1)
+							x.OneType13 = o1_41
+						}
+						if o1_41.FMessage1, err = jsondecoder.ReadValMessage(dec, o1_41.FMessage1); err != nil {
+							return err
+						}
+					case "f_message2":
+						if isLoad_o1_41 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_41 = true
+						o1_41, ok := x.OneType13.(*TypeOneOf1_FMessage2)
+						if !ok {
+							o1_41 = new(TypeOneOf1_FMessage2)
+							x.OneType13 = o1_41
+						}
+						if o1_41.FMessage2, err = jsondecoder.ReadValMessage(dec, o1_41.FMessage2); err != nil {
+							return err
+						}
+					case "f_message3":
+						if isLoad_o1_41 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_41 = true
+						o1_41, ok := x.OneType13.(*TypeOneOf1_FMessage3)
+						if !ok {
+							o1_41 = new(TypeOneOf1_FMessage3)
+							x.OneType13 = o1_41
+						}
+						if o1_41.FMessage3, err = jsondecoder.ReadValMessage(dec, o1_41.FMessage3); err != nil {
+							return err
+						}
+					case "f_message4":
+						if isLoad_o1_41 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_41 = true
+						o1_41, ok := x.OneType13.(*TypeOneOf1_FMessage4)
+						if !ok {
+							o1_41 = new(TypeOneOf1_FMessage4)
+							x.OneType13 = o1_41
+						}
+						if o1_41.FMessage4, err = jsondecoder.ReadValMessage(dec, o1_41.FMessage4); err != nil {
+							return err
+						}
+					case "f_message5":
+						if isLoad_o1_41 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_41 = true
+						o1_41, ok := x.OneType13.(*TypeOneOf1_FMessage5)
+						if !ok {
+							o1_41 = new(TypeOneOf1_FMessage5)
+							x.OneType13 = o1_41
+						}
+						if o1_41.FMessage5, err = jsondecoder.ReadValMessage(dec, o1_41.FMessage5); err != nil {
+							return err
+						}
+					case "f_message6":
+						if isLoad_o1_41 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_41 = true
+						o1_41, ok := x.OneType13.(*TypeOneOf1_FMessage6)
+						if !ok {
+							o1_41 = new(TypeOneOf1_FMessage6)
+							x.OneType13 = o1_41
+						}
+						if o1_41.FMessage6, err = jsondecoder.ReadValMessage(dec, o1_41.FMessage6); err != nil {
+							return err
+						}
+					case "f_message7":
+						if isLoad_o1_41 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_41 = true
+						o1_41, ok := x.OneType13.(*TypeOneOf1_FMessage7)
+						if !ok {
+							o1_41 = new(TypeOneOf1_FMessage7)
+							x.OneType13 = o1_41
+						}
+						if o1_41.FMessage7, err = jsondecoder.ReadValMessage(dec, o1_41.FMessage7); err != nil {
+							return err
+						}
+					case "f_message8":
+						if isLoad_o1_41 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_41 = true
+						o1_41, ok := x.OneType13.(*TypeOneOf1_FMessage8)
+						if !ok {
+							o1_41 = new(TypeOneOf1_FMessage8)
+							x.OneType13 = o1_41
+						}
+						if o1_41.FMessage8, err = jsondecoder.ReadValMessage(dec, o1_41.FMessage8); err != nil {
+							return err
+						}
+					case "f_message9":
+						if isLoad_o1_41 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_41 = true
+						o1_41, ok := x.OneType13.(*TypeOneOf1_FMessage9)
+						if !ok {
+							o1_41 = new(TypeOneOf1_FMessage9)
+							x.OneType13 = o1_41
+						}
+						if o1_41.FMessage9, err = jsondecoder.ReadValMessage(dec, o1_41.FMessage9); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
+							return err
+						}
+					}
 				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_message1":
-					if oneOfIsFill_OneType13 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType13 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FMessage1
-					if ot, ok = x.OneType13.(*TypeOneOf1_FMessage1); !ok {
-						ot = new(TypeOneOf1_FMessage1)
-					}
-					var vv *MessageOneOf1
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-						return err
-					}
-					if !isNULL {
-						if ot.FMessage1 != nil {
-							vv = ot.FMessage1
-						} else {
-							vv = new(MessageOneOf1)
-						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-							return err
-						}
-					}
-					ot.FMessage1 = vv
-					x.OneType13 = ot
-				case "f_message2":
-					if oneOfIsFill_OneType13 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType13 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FMessage2
-					if ot, ok = x.OneType13.(*TypeOneOf1_FMessage2); !ok {
-						ot = new(TypeOneOf1_FMessage2)
-					}
-					var vv *MessageOneOf1_Embed1
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-						return err
-					}
-					if !isNULL {
-						if ot.FMessage2 != nil {
-							vv = ot.FMessage2
-						} else {
-							vv = new(MessageOneOf1_Embed1)
-						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-							return err
-						}
-					}
-					ot.FMessage2 = vv
-					x.OneType13 = ot
-				case "f_message3":
-					if oneOfIsFill_OneType13 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType13 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FMessage3
-					if ot, ok = x.OneType13.(*TypeOneOf1_FMessage3); !ok {
-						ot = new(TypeOneOf1_FMessage3)
-					}
-					var vv *MessageOneOf1_Embed1_Embed2
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-						return err
-					}
-					if !isNULL {
-						if ot.FMessage3 != nil {
-							vv = ot.FMessage3
-						} else {
-							vv = new(MessageOneOf1_Embed1_Embed2)
-						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-							return err
-						}
-					}
-					ot.FMessage3 = vv
-					x.OneType13 = ot
-				case "f_message4":
-					if oneOfIsFill_OneType13 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType13 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FMessage4
-					if ot, ok = x.OneType13.(*TypeOneOf1_FMessage4); !ok {
-						ot = new(TypeOneOf1_FMessage4)
-					}
-					var vv *pbexternal.Message1
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-						return err
-					}
-					if !isNULL {
-						if ot.FMessage4 != nil {
-							vv = ot.FMessage4
-						} else {
-							vv = new(pbexternal.Message1)
-						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-							return err
-						}
-					}
-					ot.FMessage4 = vv
-					x.OneType13 = ot
-				case "f_message5":
-					if oneOfIsFill_OneType13 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType13 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FMessage5
-					if ot, ok = x.OneType13.(*TypeOneOf1_FMessage5); !ok {
-						ot = new(TypeOneOf1_FMessage5)
-					}
-					var vv *pbexternal.Message1_Embed1
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-						return err
-					}
-					if !isNULL {
-						if ot.FMessage5 != nil {
-							vv = ot.FMessage5
-						} else {
-							vv = new(pbexternal.Message1_Embed1)
-						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-							return err
-						}
-					}
-					ot.FMessage5 = vv
-					x.OneType13 = ot
-				case "f_message6":
-					if oneOfIsFill_OneType13 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType13 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FMessage6
-					if ot, ok = x.OneType13.(*TypeOneOf1_FMessage6); !ok {
-						ot = new(TypeOneOf1_FMessage6)
-					}
-					var vv *pbexternal.Message1_Embed1_Embed2
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-						return err
-					}
-					if !isNULL {
-						if ot.FMessage6 != nil {
-							vv = ot.FMessage6
-						} else {
-							vv = new(pbexternal.Message1_Embed1_Embed2)
-						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-							return err
-						}
-					}
-					ot.FMessage6 = vv
-					x.OneType13 = ot
-				case "f_message7":
-					if oneOfIsFill_OneType13 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType13 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FMessage7
-					if ot, ok = x.OneType13.(*TypeOneOf1_FMessage7); !ok {
-						ot = new(TypeOneOf1_FMessage7)
-					}
-					var vv *MessageCommon1
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-						return err
-					}
-					if !isNULL {
-						if ot.FMessage7 != nil {
-							vv = ot.FMessage7
-						} else {
-							vv = new(MessageCommon1)
-						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-							return err
-						}
-					}
-					ot.FMessage7 = vv
-					x.OneType13 = ot
-				case "f_message8":
-					if oneOfIsFill_OneType13 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType13 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FMessage8
-					if ot, ok = x.OneType13.(*TypeOneOf1_FMessage8); !ok {
-						ot = new(TypeOneOf1_FMessage8)
-					}
-					var vv *MessageCommon1_Embed1
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-						return err
-					}
-					if !isNULL {
-						if ot.FMessage8 != nil {
-							vv = ot.FMessage8
-						} else {
-							vv = new(MessageCommon1_Embed1)
-						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-							return err
-						}
-					}
-					ot.FMessage8 = vv
-					x.OneType13 = ot
-				case "f_message9":
-					if oneOfIsFill_OneType13 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType13 = true
-
-					var ok bool
-					var ot *TypeOneOf1_FMessage9
-					if ot, ok = x.OneType13.(*TypeOneOf1_FMessage9); !ok {
-						ot = new(TypeOneOf1_FMessage9)
-					}
-					var vv *MessageCommon1_Embed1_Embed2
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-						return err
-					}
-					if !isNULL {
-						if ot.FMessage9 != nil {
-							vv = ot.FMessage9
-						} else {
-							vv = new(MessageCommon1_Embed1_Embed2)
-						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-							return err
-						}
-					}
-					ot.FMessage9 = vv
-					x.OneType13 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
-					}
-				} // end switch
 			}
 		default:
-			if err = decoder.DiscardValue(jsonKey); err != nil {
+			if err = dec.DiscardValue(); err != nil {
 				return err
 			}
 		} // end switch
@@ -1825,73 +1345,50 @@ func (x *TypeOneOfInline1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	var err error
-	encoder := jsonencoder.New(280)
+	enc := jsonencoder.New(280)
+	enc.AppendObjectBegin() // Add begin JSON identifier
 
-	// Add begin JSON identifier
-	encoder.AppendObjectBegin()
-
-	switch ov := x.OneType01.(type) {
+	switch o1_1 := x.OneType01.(type) {
 	case *TypeOneOfInline1_FString1:
-		encoder.AppendObjectKey("f_string1")
-		encoder.AppendLiteralString(ov.FString1)
+		jsonencoder.AppendValStr(enc, "f_string1", o1_1.FString1, false)
 	case *TypeOneOfInline1_FString2:
-		encoder.AppendObjectKey("f_string2")
-		encoder.AppendLiteralString(ov.FString2)
-	default:
-		_ = ov // to avoids unused panics
+		jsonencoder.AppendValStr(enc, "f_string2", o1_1.FString2, false)
 	}
-	switch ov := x.OneType02.(type) {
+	switch o1_4 := x.OneType02.(type) {
 	case *TypeOneOfInline1_FMessage1:
-		encoder.AppendObjectKey("f_message1")
-		if err = encoder.AppendLiteralInterface(ov.FMessage1); err != nil {
+		if err := jsonencoder.AppendValMessage(enc, "f_message1", o1_4.FMessage1, false); err != nil {
 			return nil, err
 		}
 	case *TypeOneOfInline1_FMessage2:
-		encoder.AppendObjectKey("f_message2")
-		if err = encoder.AppendLiteralInterface(ov.FMessage2); err != nil {
+		if err := jsonencoder.AppendValMessage(enc, "f_message2", o1_4.FMessage2, false); err != nil {
 			return nil, err
 		}
-	default:
-		_ = ov // to avoids unused panics
 	}
-	switch ov := x.OneType03.(type) {
+	switch o1_7 := x.OneType03.(type) {
 	case *TypeOneOfInline1_FEnum1:
-		encoder.AppendObjectKey("f_enum1")
-		encoder.AppendLiteralInt32(int32(ov.FEnum1.Number()), false)
+		jsonencoder.AppendValEnumNum(enc, "f_enum1", o1_7.FEnum1, false, false)
 	case *TypeOneOfInline1_FEnum2:
-		encoder.AppendObjectKey("f_enum2")
-		encoder.AppendLiteralInt32(int32(ov.FEnum2.Number()), false)
-	default:
-		_ = ov // to avoids unused panics
+		jsonencoder.AppendValEnumNum(enc, "f_enum2", o1_7.FEnum2, false, false)
 	}
-	switch ov := x.OneType04.(type) {
-	case *TypeOneOfInline1_FDuration1:
-		encoder.AppendObjectKey("OneType04")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_duration1")
-		if err = encoder.AppendLiteralInterface(ov.FDuration1); err != nil {
-			return nil, err
+	enc.AppendObjectKey("OneType04")
+	if x.OneType04 != nil {
+		enc.AppendObjectBegin()
+		switch o1_10 := x.OneType04.(type) {
+		case *TypeOneOfInline1_FDuration1:
+			if err := jsonencoder.AppendValWKTDurObject(enc, "f_duration1", o1_10.FDuration1, false); err != nil {
+				return nil, err
+			}
+		case *TypeOneOfInline1_FDuration2:
+			if err := jsonencoder.AppendValWKTDurObject(enc, "f_duration2", o1_10.FDuration2, false); err != nil {
+				return nil, err
+			}
 		}
-		encoder.AppendObjectEnd()
-	case *TypeOneOfInline1_FDuration2:
-		encoder.AppendObjectKey("OneType04")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_duration2")
-		if err = encoder.AppendLiteralInterface(ov.FDuration2); err != nil {
-			return nil, err
-		}
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("OneType04")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-
-	// Add end JSON identifier
-	encoder.AppendObjectEnd()
-	return encoder.Bytes(), err
+	enc.AppendObjectEnd() // Add end JSON identifier
+	return enc.Bytes(), nil
 }
 
 // UnmarshalJSON implements json.Unmarshaler for proto message TypeOneOfInline1 in file tests/proto/cases/bases/type_oneof.proto
@@ -1900,249 +1397,174 @@ func (x *TypeOneOfInline1) UnmarshalJSON(b []byte) error {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbbases.(*TypeOneOfInline1) is nil")
 	}
 	var (
-		oneOfIsFill_OneType01 bool
-		oneOfIsFill_OneType02 bool
-		oneOfIsFill_OneType03 bool
-		oneOfIsFill_OneType04 bool
+		err    error
+		isNULL bool
+		dec    *jsondecoder.Decoder
 	)
+	if dec, err = jsondecoder.New(b); err != nil {
+		return err
+	}
+	if isNULL, err = dec.BeforeScanJSON(); err != nil || isNULL {
+		return err
+	}
+	// declares variables to report whether the oneof field is loaded.
 	var (
-		err     error
-		isNULL  bool
-		decoder *jsondecoder.Decoder
+		isLoad_o1_1  bool
+		isLoad_o1_4  bool
+		isLoad_o1_7  bool
+		isLoad_o1_10 bool
 	)
-	if decoder, err = jsondecoder.New(b); err != nil {
-		return err
-	}
-	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
-		return err
-	}
-	if isNULL {
-		return nil
-	}
+
 LOOP_SCAN:
-	for { // Loop to scan object.
+	for { // Loop to read the JSON objects
 		var (
 			jsonKey string
 			isEnd   bool
 		)
-		if isEnd, err = decoder.BeforeScanNext(); err != nil {
+
+		if isEnd, err = dec.BeforeScanNext(); err != nil {
 			return err
 		}
 		if isEnd {
 			break LOOP_SCAN
 		}
-		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+
+		if jsonKey, err = dec.ReadJSONKey(); err != nil {
 			return err
 		}
 		switch jsonKey { // match the jsonKey
 		case "f_string1":
-			if oneOfIsFill_OneType01 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_1 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneType01 = true
-
-			var ok bool
-			var ot *TypeOneOfInline1_FString1
-			if ot, ok = x.OneType01.(*TypeOneOfInline1_FString1); !ok {
-				ot = new(TypeOneOfInline1_FString1)
+			isLoad_o1_1 = true
+			o1_1, ok := x.OneType01.(*TypeOneOfInline1_FString1)
+			if !ok {
+				o1_1 = new(TypeOneOfInline1_FString1)
+				x.OneType01 = o1_1
 			}
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if o1_1.FString1, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			ot.FString1 = vv
-			x.OneType01 = ot
 		case "f_string2":
-			if oneOfIsFill_OneType01 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_1 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneType01 = true
-
-			var ok bool
-			var ot *TypeOneOfInline1_FString2
-			if ot, ok = x.OneType01.(*TypeOneOfInline1_FString2); !ok {
-				ot = new(TypeOneOfInline1_FString2)
+			isLoad_o1_1 = true
+			o1_1, ok := x.OneType01.(*TypeOneOfInline1_FString2)
+			if !ok {
+				o1_1 = new(TypeOneOfInline1_FString2)
+				x.OneType01 = o1_1
 			}
-			var vv string
-			if vv, err = decoder.ReadLiteralString(jsonKey); err != nil {
+			if o1_1.FString2, err = jsondecoder.ReadValStr(dec); err != nil {
 				return err
 			}
-			ot.FString2 = vv
-			x.OneType01 = ot
 		case "f_message1":
-			if oneOfIsFill_OneType02 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_4 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneType02 = true
-
-			var ok bool
-			var ot *TypeOneOfInline1_FMessage1
-			if ot, ok = x.OneType02.(*TypeOneOfInline1_FMessage1); !ok {
-				ot = new(TypeOneOfInline1_FMessage1)
+			isLoad_o1_4 = true
+			o1_4, ok := x.OneType02.(*TypeOneOfInline1_FMessage1)
+			if !ok {
+				o1_4 = new(TypeOneOfInline1_FMessage1)
+				x.OneType02 = o1_4
 			}
-			var vv *MessageOneOf1
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+			if o1_4.FMessage1, err = jsondecoder.ReadValMessage(dec, o1_4.FMessage1); err != nil {
 				return err
 			}
-			if !isNULL {
-				if ot.FMessage1 != nil {
-					vv = ot.FMessage1
-				} else {
-					vv = new(MessageOneOf1)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			ot.FMessage1 = vv
-			x.OneType02 = ot
 		case "f_message2":
-			if oneOfIsFill_OneType02 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_4 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneType02 = true
-
-			var ok bool
-			var ot *TypeOneOfInline1_FMessage2
-			if ot, ok = x.OneType02.(*TypeOneOfInline1_FMessage2); !ok {
-				ot = new(TypeOneOfInline1_FMessage2)
+			isLoad_o1_4 = true
+			o1_4, ok := x.OneType02.(*TypeOneOfInline1_FMessage2)
+			if !ok {
+				o1_4 = new(TypeOneOfInline1_FMessage2)
+				x.OneType02 = o1_4
 			}
-			var vv *MessageOneOf1
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+			if o1_4.FMessage2, err = jsondecoder.ReadValMessage(dec, o1_4.FMessage2); err != nil {
 				return err
 			}
-			if !isNULL {
-				if ot.FMessage2 != nil {
-					vv = ot.FMessage2
-				} else {
-					vv = new(MessageOneOf1)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			ot.FMessage2 = vv
-			x.OneType02 = ot
 		case "f_enum1":
-			if oneOfIsFill_OneType03 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_7 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneType03 = true
-
-			var ok bool
-			var ot *TypeOneOfInline1_FEnum1
-			if ot, ok = x.OneType03.(*TypeOneOfInline1_FEnum1); !ok {
-				ot = new(TypeOneOfInline1_FEnum1)
+			isLoad_o1_7 = true
+			o1_7, ok := x.OneType03.(*TypeOneOfInline1_FEnum1)
+			if !ok {
+				o1_7 = new(TypeOneOfInline1_FEnum1)
+				x.OneType03 = o1_7
 			}
-			var vv EnumOneOf1
-			var v1 int32
-			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
+			if o1_7.FEnum1, err = jsondecoder.ReadValEnumNum(dec, o1_7.FEnum1, false); err != nil {
 				return err
 			}
-			vv = EnumOneOf1(v1)
-			ot.FEnum1 = vv
-			x.OneType03 = ot
 		case "f_enum2":
-			if oneOfIsFill_OneType03 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_7 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneType03 = true
-
-			var ok bool
-			var ot *TypeOneOfInline1_FEnum2
-			if ot, ok = x.OneType03.(*TypeOneOfInline1_FEnum2); !ok {
-				ot = new(TypeOneOfInline1_FEnum2)
+			isLoad_o1_7 = true
+			o1_7, ok := x.OneType03.(*TypeOneOfInline1_FEnum2)
+			if !ok {
+				o1_7 = new(TypeOneOfInline1_FEnum2)
+				x.OneType03 = o1_7
 			}
-			var vv EnumOneOf1
-			var v1 int32
-			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
+			if o1_7.FEnum2, err = jsondecoder.ReadValEnumNum(dec, o1_7.FEnum2, false); err != nil {
 				return err
 			}
-			vv = EnumOneOf1(v1)
-			ot.FEnum2 = vv
-			x.OneType03 = ot
 		case "OneType04":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneType04 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_duration1":
-					if oneOfIsFill_OneType04 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType04 = true
-
-					var ok bool
-					var ot *TypeOneOfInline1_FDuration1
-					if ot, ok = x.OneType04.(*TypeOneOfInline1_FDuration1); !ok {
-						ot = new(TypeOneOfInline1_FDuration1)
-					}
-					var vv *durationpb.Duration
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					if !isNULL {
-						if ot.FDuration1 != nil {
-							vv = ot.FDuration1
-						} else {
-							vv = new(durationpb.Duration)
+					if isEnd {
+						break
+					}
+					var oneOfKey1_10 string
+					if oneOfKey1_10, err = dec.ReadObjectKey(); err != nil {
+						return err
+					}
+					switch oneOfKey1_10 { // match the oneof key
+					case "f_duration1":
+						if isLoad_o1_10 {
+							return jsondecoder.ErrOneOfConflict(dec)
 						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
+						isLoad_o1_10 = true
+						o1_10, ok := x.OneType04.(*TypeOneOfInline1_FDuration1)
+						if !ok {
+							o1_10 = new(TypeOneOfInline1_FDuration1)
+							x.OneType04 = o1_10
+						}
+						if o1_10.FDuration1, err = jsondecoder.ReadValWKTDurObject(dec, o1_10.FDuration1); err != nil {
+							return err
+						}
+					case "f_duration2":
+						if isLoad_o1_10 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_10 = true
+						o1_10, ok := x.OneType04.(*TypeOneOfInline1_FDuration2)
+						if !ok {
+							o1_10 = new(TypeOneOfInline1_FDuration2)
+							x.OneType04 = o1_10
+						}
+						if o1_10.FDuration2, err = jsondecoder.ReadValWKTDurObject(dec, o1_10.FDuration2); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
 							return err
 						}
 					}
-					ot.FDuration1 = vv
-					x.OneType04 = ot
-				case "f_duration2":
-					if oneOfIsFill_OneType04 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneType04 = true
-
-					var ok bool
-					var ot *TypeOneOfInline1_FDuration2
-					if ot, ok = x.OneType04.(*TypeOneOfInline1_FDuration2); !ok {
-						ot = new(TypeOneOfInline1_FDuration2)
-					}
-					var vv *durationpb.Duration
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-						return err
-					}
-					if !isNULL {
-						if ot.FDuration2 != nil {
-							vv = ot.FDuration2
-						} else {
-							vv = new(durationpb.Duration)
-						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-							return err
-						}
-					}
-					ot.FDuration2 = vv
-					x.OneType04 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
-					}
-				} // end switch
+				}
 			}
 		default:
-			if err = decoder.DiscardValue(jsonKey); err != nil {
+			if err = dec.DiscardValue(); err != nil {
 				return err
 			}
 		} // end switch

@@ -42,7 +42,7 @@ message WKTRepeated1 {
     reference: { repeated: { elem: { duration: { codec: Object } } } }
   } ];
   repeated google.protobuf.Duration f_duration_string1 = 12 [ (json.field) = {
-    reference: { repeated: { elem: { duration: { codec: String } } } }
+    reference: { repeated: { elem: { duration: { codec: TimeString } } } }
   } ];
 
   repeated google.protobuf.Duration f_duration_nanosecond1 = 13 [ (json.field) = {

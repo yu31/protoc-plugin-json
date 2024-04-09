@@ -2,7 +2,6 @@ package bases
 
 import (
 	"encoding/json"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -52,7 +51,7 @@ func Test_TypeMap3_General1(t *testing.T) {
 		b1, err = seedMap3.MarshalJSON()
 		require.Nil(t, err)
 	})
-	fmt.Println(string(b1))
+
 	t.Run("unmarshal", func(t *testing.T) {
 		dataNew := &pbbases.TypeMap3{}
 		require.NotEqual(t, seedMap3, dataNew)

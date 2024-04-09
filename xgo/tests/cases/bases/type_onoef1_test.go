@@ -2,7 +2,6 @@ package bases
 
 import (
 	"encoding/json"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -93,14 +92,6 @@ func Test_TypeOneOf1_General1(t *testing.T) {
 		b3, err = utils.PMarshal.Marshal(data1)
 		require.Nil(t, err)
 	})
-
-	fmt.Println("=========================================== PLUGIN =============================================")
-	fmt.Println(string(b1))
-	fmt.Println("=========================================== STANDARD ===========================================")
-	fmt.Println(string(b2))
-	fmt.Println("=========================================== PROTO ==============================================")
-	fmt.Println(string(b3))
-	fmt.Println("================================================================================================")
 }
 func Test_TypeOneOf1_General2(t *testing.T) {
 	data1 := &pbbases.TypeOneOf1{
@@ -176,13 +167,6 @@ func Test_TypeOneOfInline1(t *testing.T) {
 		//require.Equal(t, b1, b3)
 	})
 
-	fmt.Println("=========================================== PLUGIN =============================================")
-	fmt.Println(string(b1))
-	fmt.Println("=========================================== STANDARD ===========================================")
-	fmt.Println(string(b2))
-	fmt.Println("=========================================== PROTO ==============================================")
-	fmt.Println(string(b3))
-	fmt.Println("================================================================================================")
 }
 
 func Test_TypeOneOf1_NULL(t *testing.T) {

@@ -7,13 +7,12 @@ package pbref
 
 import (
 	errors "errors"
-	fmt "fmt"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
-	anypb "google.golang.org/protobuf/types/known/anypb"
-	durationpb "google.golang.org/protobuf/types/known/durationpb"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	_ "google.golang.org/protobuf/types/known/anypb"
+	_ "google.golang.org/protobuf/types/known/durationpb"
+	_ "google.golang.org/protobuf/types/known/timestamppb"
 )
 
 // MarshalJSON implements interface json.Marshaler for proto message WKTOneOf1 in file tests/proto/cases/references/wkt_oneof.proto
@@ -21,246 +20,165 @@ func (x *WKTOneOf1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	var err error
-	encoder := jsonencoder.New(1888)
+	enc := jsonencoder.New(1888)
+	enc.AppendObjectBegin() // Add begin JSON identifier
 
-	// Add begin JSON identifier
-	encoder.AppendObjectBegin()
-
-	switch ov := x.OneEnum1.(type) {
-	case *WKTOneOf1_FEnumNumber1:
-		encoder.AppendObjectKey("one_enum1")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_enum_number1")
-		encoder.AppendLiteralInt32(int32(ov.FEnumNumber1.Number()), false)
-		encoder.AppendObjectEnd()
-	case *WKTOneOf1_FEnumString1:
-		encoder.AppendObjectKey("one_enum1")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_enum_string1")
-		encoder.AppendLiteralString(ov.FEnumString1.String())
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("one_enum1")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+	enc.AppendObjectKey("one_enum1")
+	if x.OneEnum1 != nil {
+		enc.AppendObjectBegin()
+		switch o1_1 := x.OneEnum1.(type) {
+		case *WKTOneOf1_FEnumNumber1:
+			jsonencoder.AppendValEnumNum(enc, "f_enum_number1", o1_1.FEnumNumber1, false, false)
+		case *WKTOneOf1_FEnumString1:
+			jsonencoder.AppendValEnumStr(enc, "f_enum_string1", o1_1.FEnumString1, false)
+		}
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-	switch ov := x.OneEnum2.(type) {
+	switch o1_4 := x.OneEnum2.(type) {
 	case *WKTOneOf1_FEnumNumberString1:
-		encoder.AppendObjectKey("f_enum_number_string1")
-		encoder.AppendLiteralInt32(int32(ov.FEnumNumberString1.Number()), true)
+		jsonencoder.AppendValEnumNum(enc, "f_enum_number_string1", o1_4.FEnumNumberString1, false, true)
 	case *WKTOneOf1_FEnumNumberString2:
-		encoder.AppendObjectKey("f_enum_number_string2")
-		encoder.AppendLiteralInt32(int32(ov.FEnumNumberString2.Number()), true)
-	default:
-		_ = ov // to avoids unused panics
+		jsonencoder.AppendValEnumNum(enc, "f_enum_number_string2", o1_4.FEnumNumberString2, false, true)
 	}
-	switch ov := x.OneAny1.(type) {
+	switch o1_7 := x.OneAny1.(type) {
 	case *WKTOneOf1_FAnyNative1:
-		encoder.AppendObjectKey("f_any_native1")
-		if err = encoder.AppendLiteralInterface(ov.FAnyNative1); err != nil {
+		if err := jsonencoder.AppendValWKTAnyObject(enc, "f_any_native1", o1_7.FAnyNative1, false); err != nil {
 			return nil, err
 		}
 	case *WKTOneOf1_FAnyProto1:
-		encoder.AppendObjectKey("f_any_proto1")
-		if err = encoder.AppendWKTAnyByProto(ov.FAnyProto1); err != nil {
+		if err := jsonencoder.AppendValWKTAnyProto(enc, "f_any_proto1", o1_7.FAnyProto1, false); err != nil {
 			return nil, err
 		}
-	default:
-		_ = ov // to avoids unused panics
 	}
-	switch ov := x.OneDuration1.(type) {
-	case *WKTOneOf1_FDurationNative1:
-		encoder.AppendObjectKey("one_duration1")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_duration_native1")
-		if err = encoder.AppendLiteralInterface(ov.FDurationNative1); err != nil {
-			return nil, err
+	enc.AppendObjectKey("one_duration1")
+	if x.OneDuration1 != nil {
+		enc.AppendObjectBegin()
+		switch o1_10 := x.OneDuration1.(type) {
+		case *WKTOneOf1_FDurationNative1:
+			if err := jsonencoder.AppendValWKTDurObject(enc, "f_duration_native1", o1_10.FDurationNative1, false); err != nil {
+				return nil, err
+			}
+		case *WKTOneOf1_FDurationString1:
+			jsonencoder.AppendValWKTDurTimeStr(enc, "f_duration_string1", o1_10.FDurationString1, false)
 		}
-		encoder.AppendObjectEnd()
-	case *WKTOneOf1_FDurationString1:
-		encoder.AppendObjectKey("one_duration1")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_duration_string1")
-		encoder.AppendLiteralString(ov.FDurationString1.AsDuration().String())
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("one_duration1")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-	switch ov := x.OneDuration2.(type) {
+	switch o1_13 := x.OneDuration2.(type) {
 	case *WKTOneOf1_FDurationNanosecond1:
-		encoder.AppendObjectKey("f_duration_nanosecond1")
-		encoder.AppendLiteralInt64(ov.FDurationNanosecond1.AsDuration().Nanoseconds(), false)
+		jsonencoder.AppendValWKTDurNano(enc, "f_duration_nanosecond1", o1_13.FDurationNanosecond1, false, false)
 	case *WKTOneOf1_FDurationMicrosecond1:
-		encoder.AppendObjectKey("f_duration_microsecond1")
-		encoder.AppendLiteralInt64(ov.FDurationMicrosecond1.AsDuration().Microseconds(), false)
-	default:
-		_ = ov // to avoids unused panics
+		jsonencoder.AppendValWKTDurMicro(enc, "f_duration_microsecond1", o1_13.FDurationMicrosecond1, false, false)
 	}
-	switch ov := x.OneDuration3.(type) {
-	case *WKTOneOf1_FDurationMillisecond1:
-		encoder.AppendObjectKey("one_duration3")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_duration_millisecond1")
-		encoder.AppendLiteralInt64(ov.FDurationMillisecond1.AsDuration().Milliseconds(), false)
-		encoder.AppendObjectEnd()
-	case *WKTOneOf1_FDurationSecond1:
-		encoder.AppendObjectKey("one_duration3")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_duration_second1")
-		encoder.AppendLiteralFloat64(ov.FDurationSecond1.AsDuration().Seconds(), false)
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("one_duration3")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
-	}
-	switch ov := x.OneDuration4.(type) {
-	case *WKTOneOf1_FDurationMinute1:
-		encoder.AppendObjectKey("f_duration_minute1")
-		encoder.AppendLiteralFloat64(ov.FDurationMinute1.AsDuration().Minutes(), false)
-	case *WKTOneOf1_FDurationHour1:
-		encoder.AppendObjectKey("f_duration_hour1")
-		encoder.AppendLiteralFloat64(ov.FDurationHour1.AsDuration().Hours(), false)
-	default:
-		_ = ov // to avoids unused panics
-	}
-	switch ov := x.OneDuration5.(type) {
-	case *WKTOneOf1_FDurationNanosecondString1:
-		encoder.AppendObjectKey("one_duration5")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_duration_nanosecond_string1")
-		encoder.AppendLiteralInt64(ov.FDurationNanosecondString1.AsDuration().Nanoseconds(), true)
-		encoder.AppendObjectEnd()
-	case *WKTOneOf1_FDurationMicrosecondString1:
-		encoder.AppendObjectKey("one_duration5")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_duration_microsecond_string1")
-		encoder.AppendLiteralInt64(ov.FDurationMicrosecondString1.AsDuration().Microseconds(), true)
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("one_duration5")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
-	}
-	switch ov := x.OneDuration6.(type) {
-	case *WKTOneOf1_FDurationMillisecondString1:
-		encoder.AppendObjectKey("f_duration_millisecond_string1")
-		encoder.AppendLiteralInt64(ov.FDurationMillisecondString1.AsDuration().Milliseconds(), true)
-	case *WKTOneOf1_FDurationSecondString1:
-		encoder.AppendObjectKey("f_duration_second_string1")
-		encoder.AppendLiteralFloat64(ov.FDurationSecondString1.AsDuration().Seconds(), true)
-	default:
-		_ = ov // to avoids unused panics
-	}
-	switch ov := x.OneDuration7.(type) {
-	case *WKTOneOf1_FDurationMinuteString1:
-		encoder.AppendObjectKey("one_duration7")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_duration_minute_string1")
-		encoder.AppendLiteralFloat64(ov.FDurationMinuteString1.AsDuration().Minutes(), true)
-		encoder.AppendObjectEnd()
-	case *WKTOneOf1_FDurationHourString1:
-		encoder.AppendObjectKey("one_duration7")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_duration_hour_string1")
-		encoder.AppendLiteralFloat64(ov.FDurationHourString1.AsDuration().Hours(), true)
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("one_duration7")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
-	}
-	switch ov := x.OneTimestamp1.(type) {
-	case *WKTOneOf1_FTimestampNative1:
-		encoder.AppendObjectKey("one_timestamp1")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_timestamp_native1")
-		if err = encoder.AppendLiteralInterface(ov.FTimestampNative1); err != nil {
-			return nil, err
+	enc.AppendObjectKey("one_duration3")
+	if x.OneDuration3 != nil {
+		enc.AppendObjectBegin()
+		switch o1_16 := x.OneDuration3.(type) {
+		case *WKTOneOf1_FDurationMillisecond1:
+			jsonencoder.AppendValWKTDurMilli(enc, "f_duration_millisecond1", o1_16.FDurationMillisecond1, false, false)
+		case *WKTOneOf1_FDurationSecond1:
+			jsonencoder.AppendValWKTDurSecond(enc, "f_duration_second1", o1_16.FDurationSecond1, false, false)
 		}
-		encoder.AppendObjectEnd()
-	case *WKTOneOf1_FTimestampTimeLayout1:
-		encoder.AppendObjectKey("one_timestamp1")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_timestamp_time_layout1")
-		encoder.AppendLiteralString(ov.FTimestampTimeLayout1.AsTime().Format("2006-01-02T15:04:05Z07:00"))
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("one_timestamp1")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-	switch ov := x.OneTimestamp2.(type) {
+	switch o1_19 := x.OneDuration4.(type) {
+	case *WKTOneOf1_FDurationMinute1:
+		jsonencoder.AppendValWKTDurMinute(enc, "f_duration_minute1", o1_19.FDurationMinute1, false, false)
+	case *WKTOneOf1_FDurationHour1:
+		jsonencoder.AppendValWKTDurHour(enc, "f_duration_hour1", o1_19.FDurationHour1, false, false)
+	}
+	enc.AppendObjectKey("one_duration5")
+	if x.OneDuration5 != nil {
+		enc.AppendObjectBegin()
+		switch o1_22 := x.OneDuration5.(type) {
+		case *WKTOneOf1_FDurationNanosecondString1:
+			jsonencoder.AppendValWKTDurNano(enc, "f_duration_nanosecond_string1", o1_22.FDurationNanosecondString1, false, true)
+		case *WKTOneOf1_FDurationMicrosecondString1:
+			jsonencoder.AppendValWKTDurMicro(enc, "f_duration_microsecond_string1", o1_22.FDurationMicrosecondString1, false, true)
+		}
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
+	}
+	switch o1_25 := x.OneDuration6.(type) {
+	case *WKTOneOf1_FDurationMillisecondString1:
+		jsonencoder.AppendValWKTDurMilli(enc, "f_duration_millisecond_string1", o1_25.FDurationMillisecondString1, false, true)
+	case *WKTOneOf1_FDurationSecondString1:
+		jsonencoder.AppendValWKTDurSecond(enc, "f_duration_second_string1", o1_25.FDurationSecondString1, false, true)
+	}
+	enc.AppendObjectKey("one_duration7")
+	if x.OneDuration7 != nil {
+		enc.AppendObjectBegin()
+		switch o1_28 := x.OneDuration7.(type) {
+		case *WKTOneOf1_FDurationMinuteString1:
+			jsonencoder.AppendValWKTDurMinute(enc, "f_duration_minute_string1", o1_28.FDurationMinuteString1, false, true)
+		case *WKTOneOf1_FDurationHourString1:
+			jsonencoder.AppendValWKTDurHour(enc, "f_duration_hour_string1", o1_28.FDurationHourString1, false, true)
+		}
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
+	}
+	enc.AppendObjectKey("one_timestamp1")
+	if x.OneTimestamp1 != nil {
+		enc.AppendObjectBegin()
+		switch o1_31 := x.OneTimestamp1.(type) {
+		case *WKTOneOf1_FTimestampNative1:
+			if err := jsonencoder.AppendValWKTTsObject(enc, "f_timestamp_native1", o1_31.FTimestampNative1, false); err != nil {
+				return nil, err
+			}
+		case *WKTOneOf1_FTimestampTimeLayout1:
+			jsonencoder.AppendValWKTTsLayout(enc, "f_timestamp_time_layout1", o1_31.FTimestampTimeLayout1, false, "2006-01-02T15:04:05Z07:00")
+		}
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
+	}
+	switch o1_34 := x.OneTimestamp2.(type) {
 	case *WKTOneOf1_FTimestampUnixNano1:
-		encoder.AppendObjectKey("f_timestamp_unix_nano1")
-		encoder.AppendLiteralInt64(ov.FTimestampUnixNano1.AsTime().UnixNano(), false)
+		jsonencoder.AppendValWKTTsUnixNano(enc, "f_timestamp_unix_nano1", o1_34.FTimestampUnixNano1, false, false)
 	case *WKTOneOf1_FTimestampUnixMicro1:
-		encoder.AppendObjectKey("f_timestamp_unix_micro1")
-		encoder.AppendLiteralInt64(ov.FTimestampUnixMicro1.AsTime().UnixMicro(), false)
-	default:
-		_ = ov // to avoids unused panics
+		jsonencoder.AppendValWKTTsUnixMicro(enc, "f_timestamp_unix_micro1", o1_34.FTimestampUnixMicro1, false, false)
 	}
-	switch ov := x.OneTimestamp3.(type) {
-	case *WKTOneOf1_FTimestampUnixMilli1:
-		encoder.AppendObjectKey("one_timestamp3")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_timestamp_unix_milli1")
-		encoder.AppendLiteralInt64(ov.FTimestampUnixMilli1.AsTime().UnixMilli(), false)
-		encoder.AppendObjectEnd()
-	case *WKTOneOf1_FTimestampUnixSec1:
-		encoder.AppendObjectKey("one_timestamp3")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_timestamp_unix_sec1")
-		encoder.AppendLiteralInt64(ov.FTimestampUnixSec1.AsTime().Unix(), false)
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("one_timestamp3")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+	enc.AppendObjectKey("one_timestamp3")
+	if x.OneTimestamp3 != nil {
+		enc.AppendObjectBegin()
+		switch o1_37 := x.OneTimestamp3.(type) {
+		case *WKTOneOf1_FTimestampUnixMilli1:
+			jsonencoder.AppendValWKTTsUnixMilli(enc, "f_timestamp_unix_milli1", o1_37.FTimestampUnixMilli1, false, false)
+		case *WKTOneOf1_FTimestampUnixSec1:
+			jsonencoder.AppendValWKTTsUnixSec(enc, "f_timestamp_unix_sec1", o1_37.FTimestampUnixSec1, false, false)
+		}
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-	switch ov := x.OneTimestamp4.(type) {
+	switch o1_40 := x.OneTimestamp4.(type) {
 	case *WKTOneOf1_FTimestampUnixNanoString1:
-		encoder.AppendObjectKey("f_timestamp_unix_nano_string1")
-		encoder.AppendLiteralInt64(ov.FTimestampUnixNanoString1.AsTime().UnixNano(), true)
+		jsonencoder.AppendValWKTTsUnixNano(enc, "f_timestamp_unix_nano_string1", o1_40.FTimestampUnixNanoString1, false, true)
 	case *WKTOneOf1_FTimestampUnixMicroString1:
-		encoder.AppendObjectKey("f_timestamp_unix_micro_string1")
-		encoder.AppendLiteralInt64(ov.FTimestampUnixMicroString1.AsTime().UnixMicro(), true)
-	default:
-		_ = ov // to avoids unused panics
+		jsonencoder.AppendValWKTTsUnixMicro(enc, "f_timestamp_unix_micro_string1", o1_40.FTimestampUnixMicroString1, false, true)
 	}
-	switch ov := x.OneTimestamp5.(type) {
-	case *WKTOneOf1_FTimestampUnixMilliString1:
-		encoder.AppendObjectKey("one_timestamp5")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_timestamp_unix_milli_string1")
-		encoder.AppendLiteralInt64(ov.FTimestampUnixMilliString1.AsTime().UnixMilli(), true)
-		encoder.AppendObjectEnd()
-	case *WKTOneOf1_FTimestampUnixSecString1:
-		encoder.AppendObjectKey("one_timestamp5")
-		encoder.AppendObjectBegin()
-		encoder.AppendObjectKey("f_timestamp_unix_sec_string1")
-		encoder.AppendLiteralInt64(ov.FTimestampUnixSecString1.AsTime().Unix(), true)
-		encoder.AppendObjectEnd()
-	case nil:
-		encoder.AppendObjectKey("one_timestamp5")
-		encoder.AppendLiteralNULL()
-	default:
-		_ = ov // to avoids unused panics
+	enc.AppendObjectKey("one_timestamp5")
+	if x.OneTimestamp5 != nil {
+		enc.AppendObjectBegin()
+		switch o1_43 := x.OneTimestamp5.(type) {
+		case *WKTOneOf1_FTimestampUnixMilliString1:
+			jsonencoder.AppendValWKTTsUnixMilli(enc, "f_timestamp_unix_milli_string1", o1_43.FTimestampUnixMilliString1, false, true)
+		case *WKTOneOf1_FTimestampUnixSecString1:
+			jsonencoder.AppendValWKTTsUnixSec(enc, "f_timestamp_unix_sec_string1", o1_43.FTimestampUnixSecString1, false, true)
+		}
+		enc.AppendObjectEnd()
+	} else {
+		enc.AppendValNULL()
 	}
-
-	// Add end JSON identifier
-	encoder.AppendObjectEnd()
-	return encoder.Bytes(), err
+	enc.AppendObjectEnd() // Add end JSON identifier
+	return enc.Bytes(), nil
 }
 
 // UnmarshalJSON implements json.Unmarshaler for proto message WKTOneOf1 in file tests/proto/cases/references/wkt_oneof.proto
@@ -269,930 +187,653 @@ func (x *WKTOneOf1) UnmarshalJSON(b []byte) error {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbref.(*WKTOneOf1) is nil")
 	}
 	var (
-		oneOfIsFill_OneEnum1      bool
-		oneOfIsFill_OneEnum2      bool
-		oneOfIsFill_OneAny1       bool
-		oneOfIsFill_OneDuration1  bool
-		oneOfIsFill_OneDuration2  bool
-		oneOfIsFill_OneDuration3  bool
-		oneOfIsFill_OneDuration4  bool
-		oneOfIsFill_OneDuration5  bool
-		oneOfIsFill_OneDuration6  bool
-		oneOfIsFill_OneDuration7  bool
-		oneOfIsFill_OneTimestamp1 bool
-		oneOfIsFill_OneTimestamp2 bool
-		oneOfIsFill_OneTimestamp3 bool
-		oneOfIsFill_OneTimestamp4 bool
-		oneOfIsFill_OneTimestamp5 bool
+		err    error
+		isNULL bool
+		dec    *jsondecoder.Decoder
 	)
+	if dec, err = jsondecoder.New(b); err != nil {
+		return err
+	}
+	if isNULL, err = dec.BeforeScanJSON(); err != nil || isNULL {
+		return err
+	}
+	// declares variables to report whether the oneof field is loaded.
 	var (
-		err     error
-		isNULL  bool
-		decoder *jsondecoder.Decoder
+		isLoad_o1_1  bool
+		isLoad_o1_4  bool
+		isLoad_o1_7  bool
+		isLoad_o1_10 bool
+		isLoad_o1_13 bool
+		isLoad_o1_16 bool
+		isLoad_o1_19 bool
+		isLoad_o1_22 bool
+		isLoad_o1_25 bool
+		isLoad_o1_28 bool
+		isLoad_o1_31 bool
+		isLoad_o1_34 bool
+		isLoad_o1_37 bool
+		isLoad_o1_40 bool
+		isLoad_o1_43 bool
 	)
-	if decoder, err = jsondecoder.New(b); err != nil {
-		return err
-	}
-	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
-		return err
-	}
-	if isNULL {
-		return nil
-	}
+
 LOOP_SCAN:
-	for { // Loop to scan object.
+	for { // Loop to read the JSON objects
 		var (
 			jsonKey string
 			isEnd   bool
 		)
-		if isEnd, err = decoder.BeforeScanNext(); err != nil {
+
+		if isEnd, err = dec.BeforeScanNext(); err != nil {
 			return err
 		}
 		if isEnd {
 			break LOOP_SCAN
 		}
-		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+
+		if jsonKey, err = dec.ReadJSONKey(); err != nil {
 			return err
 		}
 		switch jsonKey { // match the jsonKey
 		case "one_enum1":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneEnum1 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_enum_number1":
-					if oneOfIsFill_OneEnum1 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneEnum1 = true
-
-					var ok bool
-					var ot *WKTOneOf1_FEnumNumber1
-					if ot, ok = x.OneEnum1.(*WKTOneOf1_FEnumNumber1); !ok {
-						ot = new(WKTOneOf1_FEnumNumber1)
-					}
-					var vv Enum1
-					var v1 int32
-					if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					vv = Enum1(v1)
-					ot.FEnumNumber1 = vv
-					x.OneEnum1 = ot
-				case "f_enum_string1":
-					if oneOfIsFill_OneEnum1 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+					if isEnd {
+						break
 					}
-					oneOfIsFill_OneEnum1 = true
-
-					var ok bool
-					var ot *WKTOneOf1_FEnumString1
-					if ot, ok = x.OneEnum1.(*WKTOneOf1_FEnumString1); !ok {
-						ot = new(WKTOneOf1_FEnumString1)
-					}
-					var vv Enum1
-					var v1 int32
-					if v1, err = decoder.ReadLiteralEnumString(jsonKey, Enum1_value); err != nil {
+					var oneOfKey1_1 string
+					if oneOfKey1_1, err = dec.ReadObjectKey(); err != nil {
 						return err
 					}
-					vv = Enum1(v1)
-					ot.FEnumString1 = vv
-					x.OneEnum1 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
+					switch oneOfKey1_1 { // match the oneof key
+					case "f_enum_number1":
+						if isLoad_o1_1 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_1 = true
+						o1_1, ok := x.OneEnum1.(*WKTOneOf1_FEnumNumber1)
+						if !ok {
+							o1_1 = new(WKTOneOf1_FEnumNumber1)
+							x.OneEnum1 = o1_1
+						}
+						if o1_1.FEnumNumber1, err = jsondecoder.ReadValEnumNum(dec, o1_1.FEnumNumber1, false); err != nil {
+							return err
+						}
+					case "f_enum_string1":
+						if isLoad_o1_1 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_1 = true
+						o1_1, ok := x.OneEnum1.(*WKTOneOf1_FEnumString1)
+						if !ok {
+							o1_1 = new(WKTOneOf1_FEnumString1)
+							x.OneEnum1 = o1_1
+						}
+						if o1_1.FEnumString1, err = jsondecoder.ReadValEnumStr(dec, o1_1.FEnumString1, Enum1_value); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
+							return err
+						}
 					}
-				} // end switch
+				}
 			}
 		case "f_enum_number_string1":
-			if oneOfIsFill_OneEnum2 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_4 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneEnum2 = true
-
-			var ok bool
-			var ot *WKTOneOf1_FEnumNumberString1
-			if ot, ok = x.OneEnum2.(*WKTOneOf1_FEnumNumberString1); !ok {
-				ot = new(WKTOneOf1_FEnumNumberString1)
+			isLoad_o1_4 = true
+			o1_4, ok := x.OneEnum2.(*WKTOneOf1_FEnumNumberString1)
+			if !ok {
+				o1_4 = new(WKTOneOf1_FEnumNumberString1)
+				x.OneEnum2 = o1_4
 			}
-			var vv Enum1
-			var v1 int32
-			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, true); err != nil {
+			if o1_4.FEnumNumberString1, err = jsondecoder.ReadValEnumNum(dec, o1_4.FEnumNumberString1, true); err != nil {
 				return err
 			}
-			vv = Enum1(v1)
-			ot.FEnumNumberString1 = vv
-			x.OneEnum2 = ot
 		case "f_enum_number_string2":
-			if oneOfIsFill_OneEnum2 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_4 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneEnum2 = true
-
-			var ok bool
-			var ot *WKTOneOf1_FEnumNumberString2
-			if ot, ok = x.OneEnum2.(*WKTOneOf1_FEnumNumberString2); !ok {
-				ot = new(WKTOneOf1_FEnumNumberString2)
+			isLoad_o1_4 = true
+			o1_4, ok := x.OneEnum2.(*WKTOneOf1_FEnumNumberString2)
+			if !ok {
+				o1_4 = new(WKTOneOf1_FEnumNumberString2)
+				x.OneEnum2 = o1_4
 			}
-			var vv Enum1
-			var v1 int32
-			if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, true); err != nil {
+			if o1_4.FEnumNumberString2, err = jsondecoder.ReadValEnumNum(dec, o1_4.FEnumNumberString2, true); err != nil {
 				return err
 			}
-			vv = Enum1(v1)
-			ot.FEnumNumberString2 = vv
-			x.OneEnum2 = ot
 		case "f_any_native1":
-			if oneOfIsFill_OneAny1 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_7 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneAny1 = true
-
-			var ok bool
-			var ot *WKTOneOf1_FAnyNative1
-			if ot, ok = x.OneAny1.(*WKTOneOf1_FAnyNative1); !ok {
-				ot = new(WKTOneOf1_FAnyNative1)
+			isLoad_o1_7 = true
+			o1_7, ok := x.OneAny1.(*WKTOneOf1_FAnyNative1)
+			if !ok {
+				o1_7 = new(WKTOneOf1_FAnyNative1)
+				x.OneAny1 = o1_7
 			}
-			var vv *anypb.Any
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+			if o1_7.FAnyNative1, err = jsondecoder.ReadValWKTAnyObject(dec, o1_7.FAnyNative1); err != nil {
 				return err
 			}
-			if !isNULL {
-				if ot.FAnyNative1 != nil {
-					vv = ot.FAnyNative1
-				} else {
-					vv = new(anypb.Any)
-				}
-				if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			ot.FAnyNative1 = vv
-			x.OneAny1 = ot
 		case "f_any_proto1":
-			if oneOfIsFill_OneAny1 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_7 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneAny1 = true
-
-			var ok bool
-			var ot *WKTOneOf1_FAnyProto1
-			if ot, ok = x.OneAny1.(*WKTOneOf1_FAnyProto1); !ok {
-				ot = new(WKTOneOf1_FAnyProto1)
+			isLoad_o1_7 = true
+			o1_7, ok := x.OneAny1.(*WKTOneOf1_FAnyProto1)
+			if !ok {
+				o1_7 = new(WKTOneOf1_FAnyProto1)
+				x.OneAny1 = o1_7
 			}
-			var vv *anypb.Any
-			if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+			if o1_7.FAnyProto1, err = jsondecoder.ReadValWKTAnyProto(dec, o1_7.FAnyProto1); err != nil {
 				return err
 			}
-			if !isNULL {
-				if ot.FAnyProto1 != nil {
-					vv = ot.FAnyProto1
-				} else {
-					vv = new(anypb.Any)
-				}
-				if err = decoder.ReadWKTAnyByProto(jsonKey, vv); err != nil {
-					return err
-				}
-			}
-			ot.FAnyProto1 = vv
-			x.OneAny1 = ot
 		case "one_duration1":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneDuration1 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_duration_native1":
-					if oneOfIsFill_OneDuration1 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneDuration1 = true
-
-					var ok bool
-					var ot *WKTOneOf1_FDurationNative1
-					if ot, ok = x.OneDuration1.(*WKTOneOf1_FDurationNative1); !ok {
-						ot = new(WKTOneOf1_FDurationNative1)
-					}
-					var vv *durationpb.Duration
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					if !isNULL {
-						if ot.FDurationNative1 != nil {
-							vv = ot.FDurationNative1
-						} else {
-							vv = new(durationpb.Duration)
+					if isEnd {
+						break
+					}
+					var oneOfKey1_10 string
+					if oneOfKey1_10, err = dec.ReadObjectKey(); err != nil {
+						return err
+					}
+					switch oneOfKey1_10 { // match the oneof key
+					case "f_duration_native1":
+						if isLoad_o1_10 {
+							return jsondecoder.ErrOneOfConflict(dec)
 						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
+						isLoad_o1_10 = true
+						o1_10, ok := x.OneDuration1.(*WKTOneOf1_FDurationNative1)
+						if !ok {
+							o1_10 = new(WKTOneOf1_FDurationNative1)
+							x.OneDuration1 = o1_10
+						}
+						if o1_10.FDurationNative1, err = jsondecoder.ReadValWKTDurObject(dec, o1_10.FDurationNative1); err != nil {
+							return err
+						}
+					case "f_duration_string1":
+						if isLoad_o1_10 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_10 = true
+						o1_10, ok := x.OneDuration1.(*WKTOneOf1_FDurationString1)
+						if !ok {
+							o1_10 = new(WKTOneOf1_FDurationString1)
+							x.OneDuration1 = o1_10
+						}
+						if o1_10.FDurationString1, err = jsondecoder.ReadValWKTDurTimeStr(dec, o1_10.FDurationString1); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
 							return err
 						}
 					}
-					ot.FDurationNative1 = vv
-					x.OneDuration1 = ot
-				case "f_duration_string1":
-					if oneOfIsFill_OneDuration1 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneDuration1 = true
-
-					var ok bool
-					var ot *WKTOneOf1_FDurationString1
-					if ot, ok = x.OneDuration1.(*WKTOneOf1_FDurationString1); !ok {
-						ot = new(WKTOneOf1_FDurationString1)
-					}
-					var vv *durationpb.Duration
-					if ot.FDurationString1 != nil {
-						vv = ot.FDurationString1
-					} else {
-						vv = new(durationpb.Duration)
-					}
-					if err = decoder.ReadWKTDurationByString(jsonKey, vv); err != nil {
-						return err
-					}
-					ot.FDurationString1 = vv
-					x.OneDuration1 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
-					}
-				} // end switch
+				}
 			}
 		case "f_duration_nanosecond1":
-			if oneOfIsFill_OneDuration2 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_13 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneDuration2 = true
-
-			var ok bool
-			var ot *WKTOneOf1_FDurationNanosecond1
-			if ot, ok = x.OneDuration2.(*WKTOneOf1_FDurationNanosecond1); !ok {
-				ot = new(WKTOneOf1_FDurationNanosecond1)
+			isLoad_o1_13 = true
+			o1_13, ok := x.OneDuration2.(*WKTOneOf1_FDurationNanosecond1)
+			if !ok {
+				o1_13 = new(WKTOneOf1_FDurationNanosecond1)
+				x.OneDuration2 = o1_13
 			}
-			var vv *durationpb.Duration
-			if ot.FDurationNanosecond1 != nil {
-				vv = ot.FDurationNanosecond1
-			} else {
-				vv = new(durationpb.Duration)
-			}
-			if err = decoder.ReadWKTDurationByNanoseconds(jsonKey, vv, false); err != nil {
+			if o1_13.FDurationNanosecond1, err = jsondecoder.ReadValWKTDurNano(dec, o1_13.FDurationNanosecond1, false); err != nil {
 				return err
 			}
-			ot.FDurationNanosecond1 = vv
-			x.OneDuration2 = ot
 		case "f_duration_microsecond1":
-			if oneOfIsFill_OneDuration2 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_13 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneDuration2 = true
-
-			var ok bool
-			var ot *WKTOneOf1_FDurationMicrosecond1
-			if ot, ok = x.OneDuration2.(*WKTOneOf1_FDurationMicrosecond1); !ok {
-				ot = new(WKTOneOf1_FDurationMicrosecond1)
+			isLoad_o1_13 = true
+			o1_13, ok := x.OneDuration2.(*WKTOneOf1_FDurationMicrosecond1)
+			if !ok {
+				o1_13 = new(WKTOneOf1_FDurationMicrosecond1)
+				x.OneDuration2 = o1_13
 			}
-			var vv *durationpb.Duration
-			if ot.FDurationMicrosecond1 != nil {
-				vv = ot.FDurationMicrosecond1
-			} else {
-				vv = new(durationpb.Duration)
-			}
-			if err = decoder.ReadWKTDurationByMicroseconds(jsonKey, vv, false); err != nil {
+			if o1_13.FDurationMicrosecond1, err = jsondecoder.ReadValWKTDurMicro(dec, o1_13.FDurationMicrosecond1, false); err != nil {
 				return err
 			}
-			ot.FDurationMicrosecond1 = vv
-			x.OneDuration2 = ot
 		case "one_duration3":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneDuration3 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_duration_millisecond1":
-					if oneOfIsFill_OneDuration3 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneDuration3 = true
-
-					var ok bool
-					var ot *WKTOneOf1_FDurationMillisecond1
-					if ot, ok = x.OneDuration3.(*WKTOneOf1_FDurationMillisecond1); !ok {
-						ot = new(WKTOneOf1_FDurationMillisecond1)
-					}
-					var vv *durationpb.Duration
-					if ot.FDurationMillisecond1 != nil {
-						vv = ot.FDurationMillisecond1
-					} else {
-						vv = new(durationpb.Duration)
-					}
-					if err = decoder.ReadWKTDurationByMilliseconds(jsonKey, vv, false); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					ot.FDurationMillisecond1 = vv
-					x.OneDuration3 = ot
-				case "f_duration_second1":
-					if oneOfIsFill_OneDuration3 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+					if isEnd {
+						break
 					}
-					oneOfIsFill_OneDuration3 = true
-
-					var ok bool
-					var ot *WKTOneOf1_FDurationSecond1
-					if ot, ok = x.OneDuration3.(*WKTOneOf1_FDurationSecond1); !ok {
-						ot = new(WKTOneOf1_FDurationSecond1)
-					}
-					var vv *durationpb.Duration
-					if ot.FDurationSecond1 != nil {
-						vv = ot.FDurationSecond1
-					} else {
-						vv = new(durationpb.Duration)
-					}
-					if err = decoder.ReadWKTDurationBySeconds(jsonKey, vv, false); err != nil {
+					var oneOfKey1_16 string
+					if oneOfKey1_16, err = dec.ReadObjectKey(); err != nil {
 						return err
 					}
-					ot.FDurationSecond1 = vv
-					x.OneDuration3 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
+					switch oneOfKey1_16 { // match the oneof key
+					case "f_duration_millisecond1":
+						if isLoad_o1_16 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_16 = true
+						o1_16, ok := x.OneDuration3.(*WKTOneOf1_FDurationMillisecond1)
+						if !ok {
+							o1_16 = new(WKTOneOf1_FDurationMillisecond1)
+							x.OneDuration3 = o1_16
+						}
+						if o1_16.FDurationMillisecond1, err = jsondecoder.ReadValWKTDurMilli(dec, o1_16.FDurationMillisecond1, false); err != nil {
+							return err
+						}
+					case "f_duration_second1":
+						if isLoad_o1_16 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_16 = true
+						o1_16, ok := x.OneDuration3.(*WKTOneOf1_FDurationSecond1)
+						if !ok {
+							o1_16 = new(WKTOneOf1_FDurationSecond1)
+							x.OneDuration3 = o1_16
+						}
+						if o1_16.FDurationSecond1, err = jsondecoder.ReadValWKTDurSecond(dec, o1_16.FDurationSecond1, false); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
+							return err
+						}
 					}
-				} // end switch
+				}
 			}
 		case "f_duration_minute1":
-			if oneOfIsFill_OneDuration4 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_19 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneDuration4 = true
-
-			var ok bool
-			var ot *WKTOneOf1_FDurationMinute1
-			if ot, ok = x.OneDuration4.(*WKTOneOf1_FDurationMinute1); !ok {
-				ot = new(WKTOneOf1_FDurationMinute1)
+			isLoad_o1_19 = true
+			o1_19, ok := x.OneDuration4.(*WKTOneOf1_FDurationMinute1)
+			if !ok {
+				o1_19 = new(WKTOneOf1_FDurationMinute1)
+				x.OneDuration4 = o1_19
 			}
-			var vv *durationpb.Duration
-			if ot.FDurationMinute1 != nil {
-				vv = ot.FDurationMinute1
-			} else {
-				vv = new(durationpb.Duration)
-			}
-			if err = decoder.ReadWKTDurationByMinutes(jsonKey, vv, false); err != nil {
+			if o1_19.FDurationMinute1, err = jsondecoder.ReadValWKTDurMinute(dec, o1_19.FDurationMinute1, false); err != nil {
 				return err
 			}
-			ot.FDurationMinute1 = vv
-			x.OneDuration4 = ot
 		case "f_duration_hour1":
-			if oneOfIsFill_OneDuration4 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_19 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneDuration4 = true
-
-			var ok bool
-			var ot *WKTOneOf1_FDurationHour1
-			if ot, ok = x.OneDuration4.(*WKTOneOf1_FDurationHour1); !ok {
-				ot = new(WKTOneOf1_FDurationHour1)
+			isLoad_o1_19 = true
+			o1_19, ok := x.OneDuration4.(*WKTOneOf1_FDurationHour1)
+			if !ok {
+				o1_19 = new(WKTOneOf1_FDurationHour1)
+				x.OneDuration4 = o1_19
 			}
-			var vv *durationpb.Duration
-			if ot.FDurationHour1 != nil {
-				vv = ot.FDurationHour1
-			} else {
-				vv = new(durationpb.Duration)
-			}
-			if err = decoder.ReadWKTDurationByHours(jsonKey, vv, false); err != nil {
+			if o1_19.FDurationHour1, err = jsondecoder.ReadValWKTDurHour(dec, o1_19.FDurationHour1, false); err != nil {
 				return err
 			}
-			ot.FDurationHour1 = vv
-			x.OneDuration4 = ot
 		case "one_duration5":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneDuration5 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_duration_nanosecond_string1":
-					if oneOfIsFill_OneDuration5 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneDuration5 = true
-
-					var ok bool
-					var ot *WKTOneOf1_FDurationNanosecondString1
-					if ot, ok = x.OneDuration5.(*WKTOneOf1_FDurationNanosecondString1); !ok {
-						ot = new(WKTOneOf1_FDurationNanosecondString1)
-					}
-					var vv *durationpb.Duration
-					if ot.FDurationNanosecondString1 != nil {
-						vv = ot.FDurationNanosecondString1
-					} else {
-						vv = new(durationpb.Duration)
-					}
-					if err = decoder.ReadWKTDurationByNanoseconds(jsonKey, vv, true); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					ot.FDurationNanosecondString1 = vv
-					x.OneDuration5 = ot
-				case "f_duration_microsecond_string1":
-					if oneOfIsFill_OneDuration5 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+					if isEnd {
+						break
 					}
-					oneOfIsFill_OneDuration5 = true
-
-					var ok bool
-					var ot *WKTOneOf1_FDurationMicrosecondString1
-					if ot, ok = x.OneDuration5.(*WKTOneOf1_FDurationMicrosecondString1); !ok {
-						ot = new(WKTOneOf1_FDurationMicrosecondString1)
-					}
-					var vv *durationpb.Duration
-					if ot.FDurationMicrosecondString1 != nil {
-						vv = ot.FDurationMicrosecondString1
-					} else {
-						vv = new(durationpb.Duration)
-					}
-					if err = decoder.ReadWKTDurationByMicroseconds(jsonKey, vv, true); err != nil {
+					var oneOfKey1_22 string
+					if oneOfKey1_22, err = dec.ReadObjectKey(); err != nil {
 						return err
 					}
-					ot.FDurationMicrosecondString1 = vv
-					x.OneDuration5 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
+					switch oneOfKey1_22 { // match the oneof key
+					case "f_duration_nanosecond_string1":
+						if isLoad_o1_22 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_22 = true
+						o1_22, ok := x.OneDuration5.(*WKTOneOf1_FDurationNanosecondString1)
+						if !ok {
+							o1_22 = new(WKTOneOf1_FDurationNanosecondString1)
+							x.OneDuration5 = o1_22
+						}
+						if o1_22.FDurationNanosecondString1, err = jsondecoder.ReadValWKTDurNano(dec, o1_22.FDurationNanosecondString1, true); err != nil {
+							return err
+						}
+					case "f_duration_microsecond_string1":
+						if isLoad_o1_22 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_22 = true
+						o1_22, ok := x.OneDuration5.(*WKTOneOf1_FDurationMicrosecondString1)
+						if !ok {
+							o1_22 = new(WKTOneOf1_FDurationMicrosecondString1)
+							x.OneDuration5 = o1_22
+						}
+						if o1_22.FDurationMicrosecondString1, err = jsondecoder.ReadValWKTDurMicro(dec, o1_22.FDurationMicrosecondString1, true); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
+							return err
+						}
 					}
-				} // end switch
+				}
 			}
 		case "f_duration_millisecond_string1":
-			if oneOfIsFill_OneDuration6 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_25 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneDuration6 = true
-
-			var ok bool
-			var ot *WKTOneOf1_FDurationMillisecondString1
-			if ot, ok = x.OneDuration6.(*WKTOneOf1_FDurationMillisecondString1); !ok {
-				ot = new(WKTOneOf1_FDurationMillisecondString1)
+			isLoad_o1_25 = true
+			o1_25, ok := x.OneDuration6.(*WKTOneOf1_FDurationMillisecondString1)
+			if !ok {
+				o1_25 = new(WKTOneOf1_FDurationMillisecondString1)
+				x.OneDuration6 = o1_25
 			}
-			var vv *durationpb.Duration
-			if ot.FDurationMillisecondString1 != nil {
-				vv = ot.FDurationMillisecondString1
-			} else {
-				vv = new(durationpb.Duration)
-			}
-			if err = decoder.ReadWKTDurationByMilliseconds(jsonKey, vv, true); err != nil {
+			if o1_25.FDurationMillisecondString1, err = jsondecoder.ReadValWKTDurMilli(dec, o1_25.FDurationMillisecondString1, true); err != nil {
 				return err
 			}
-			ot.FDurationMillisecondString1 = vv
-			x.OneDuration6 = ot
 		case "f_duration_second_string1":
-			if oneOfIsFill_OneDuration6 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_25 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneDuration6 = true
-
-			var ok bool
-			var ot *WKTOneOf1_FDurationSecondString1
-			if ot, ok = x.OneDuration6.(*WKTOneOf1_FDurationSecondString1); !ok {
-				ot = new(WKTOneOf1_FDurationSecondString1)
+			isLoad_o1_25 = true
+			o1_25, ok := x.OneDuration6.(*WKTOneOf1_FDurationSecondString1)
+			if !ok {
+				o1_25 = new(WKTOneOf1_FDurationSecondString1)
+				x.OneDuration6 = o1_25
 			}
-			var vv *durationpb.Duration
-			if ot.FDurationSecondString1 != nil {
-				vv = ot.FDurationSecondString1
-			} else {
-				vv = new(durationpb.Duration)
-			}
-			if err = decoder.ReadWKTDurationBySeconds(jsonKey, vv, true); err != nil {
+			if o1_25.FDurationSecondString1, err = jsondecoder.ReadValWKTDurSecond(dec, o1_25.FDurationSecondString1, true); err != nil {
 				return err
 			}
-			ot.FDurationSecondString1 = vv
-			x.OneDuration6 = ot
 		case "one_duration7":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneDuration7 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_duration_minute_string1":
-					if oneOfIsFill_OneDuration7 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneDuration7 = true
-
-					var ok bool
-					var ot *WKTOneOf1_FDurationMinuteString1
-					if ot, ok = x.OneDuration7.(*WKTOneOf1_FDurationMinuteString1); !ok {
-						ot = new(WKTOneOf1_FDurationMinuteString1)
-					}
-					var vv *durationpb.Duration
-					if ot.FDurationMinuteString1 != nil {
-						vv = ot.FDurationMinuteString1
-					} else {
-						vv = new(durationpb.Duration)
-					}
-					if err = decoder.ReadWKTDurationByMinutes(jsonKey, vv, true); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					ot.FDurationMinuteString1 = vv
-					x.OneDuration7 = ot
-				case "f_duration_hour_string1":
-					if oneOfIsFill_OneDuration7 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+					if isEnd {
+						break
 					}
-					oneOfIsFill_OneDuration7 = true
-
-					var ok bool
-					var ot *WKTOneOf1_FDurationHourString1
-					if ot, ok = x.OneDuration7.(*WKTOneOf1_FDurationHourString1); !ok {
-						ot = new(WKTOneOf1_FDurationHourString1)
-					}
-					var vv *durationpb.Duration
-					if ot.FDurationHourString1 != nil {
-						vv = ot.FDurationHourString1
-					} else {
-						vv = new(durationpb.Duration)
-					}
-					if err = decoder.ReadWKTDurationByHours(jsonKey, vv, true); err != nil {
+					var oneOfKey1_28 string
+					if oneOfKey1_28, err = dec.ReadObjectKey(); err != nil {
 						return err
 					}
-					ot.FDurationHourString1 = vv
-					x.OneDuration7 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
+					switch oneOfKey1_28 { // match the oneof key
+					case "f_duration_minute_string1":
+						if isLoad_o1_28 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_28 = true
+						o1_28, ok := x.OneDuration7.(*WKTOneOf1_FDurationMinuteString1)
+						if !ok {
+							o1_28 = new(WKTOneOf1_FDurationMinuteString1)
+							x.OneDuration7 = o1_28
+						}
+						if o1_28.FDurationMinuteString1, err = jsondecoder.ReadValWKTDurMinute(dec, o1_28.FDurationMinuteString1, true); err != nil {
+							return err
+						}
+					case "f_duration_hour_string1":
+						if isLoad_o1_28 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_28 = true
+						o1_28, ok := x.OneDuration7.(*WKTOneOf1_FDurationHourString1)
+						if !ok {
+							o1_28 = new(WKTOneOf1_FDurationHourString1)
+							x.OneDuration7 = o1_28
+						}
+						if o1_28.FDurationHourString1, err = jsondecoder.ReadValWKTDurHour(dec, o1_28.FDurationHourString1, true); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
+							return err
+						}
 					}
-				} // end switch
+				}
 			}
 		case "one_timestamp1":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneTimestamp1 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_timestamp_native1":
-					if oneOfIsFill_OneTimestamp1 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneTimestamp1 = true
-
-					var ok bool
-					var ot *WKTOneOf1_FTimestampNative1
-					if ot, ok = x.OneTimestamp1.(*WKTOneOf1_FTimestampNative1); !ok {
-						ot = new(WKTOneOf1_FTimestampNative1)
-					}
-					var vv *timestamppb.Timestamp
-					if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					if !isNULL {
-						if ot.FTimestampNative1 != nil {
-							vv = ot.FTimestampNative1
-						} else {
-							vv = new(timestamppb.Timestamp)
+					if isEnd {
+						break
+					}
+					var oneOfKey1_31 string
+					if oneOfKey1_31, err = dec.ReadObjectKey(); err != nil {
+						return err
+					}
+					switch oneOfKey1_31 { // match the oneof key
+					case "f_timestamp_native1":
+						if isLoad_o1_31 {
+							return jsondecoder.ErrOneOfConflict(dec)
 						}
-						if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
+						isLoad_o1_31 = true
+						o1_31, ok := x.OneTimestamp1.(*WKTOneOf1_FTimestampNative1)
+						if !ok {
+							o1_31 = new(WKTOneOf1_FTimestampNative1)
+							x.OneTimestamp1 = o1_31
+						}
+						if o1_31.FTimestampNative1, err = jsondecoder.ReadValWKTTsObject(dec, o1_31.FTimestampNative1); err != nil {
+							return err
+						}
+					case "f_timestamp_time_layout1":
+						if isLoad_o1_31 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_31 = true
+						o1_31, ok := x.OneTimestamp1.(*WKTOneOf1_FTimestampTimeLayout1)
+						if !ok {
+							o1_31 = new(WKTOneOf1_FTimestampTimeLayout1)
+							x.OneTimestamp1 = o1_31
+						}
+						if o1_31.FTimestampTimeLayout1, err = jsondecoder.ReadValWKTTsLayout(dec, o1_31.FTimestampTimeLayout1, "2006-01-02T15:04:05Z07:00"); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
 							return err
 						}
 					}
-					ot.FTimestampNative1 = vv
-					x.OneTimestamp1 = ot
-				case "f_timestamp_time_layout1":
-					if oneOfIsFill_OneTimestamp1 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneTimestamp1 = true
-
-					var ok bool
-					var ot *WKTOneOf1_FTimestampTimeLayout1
-					if ot, ok = x.OneTimestamp1.(*WKTOneOf1_FTimestampTimeLayout1); !ok {
-						ot = new(WKTOneOf1_FTimestampTimeLayout1)
-					}
-					var vv *timestamppb.Timestamp
-					if ot.FTimestampTimeLayout1 != nil {
-						vv = ot.FTimestampTimeLayout1
-					} else {
-						vv = new(timestamppb.Timestamp)
-					}
-					if err = decoder.ReadWKTTimestampByString(jsonKey, vv, "2006-01-02T15:04:05Z07:00"); err != nil {
-						return err
-					}
-					ot.FTimestampTimeLayout1 = vv
-					x.OneTimestamp1 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
-					}
-				} // end switch
+				}
 			}
 		case "f_timestamp_unix_nano1":
-			if oneOfIsFill_OneTimestamp2 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_34 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneTimestamp2 = true
-
-			var ok bool
-			var ot *WKTOneOf1_FTimestampUnixNano1
-			if ot, ok = x.OneTimestamp2.(*WKTOneOf1_FTimestampUnixNano1); !ok {
-				ot = new(WKTOneOf1_FTimestampUnixNano1)
+			isLoad_o1_34 = true
+			o1_34, ok := x.OneTimestamp2.(*WKTOneOf1_FTimestampUnixNano1)
+			if !ok {
+				o1_34 = new(WKTOneOf1_FTimestampUnixNano1)
+				x.OneTimestamp2 = o1_34
 			}
-			var vv *timestamppb.Timestamp
-			if ot.FTimestampUnixNano1 != nil {
-				vv = ot.FTimestampUnixNano1
-			} else {
-				vv = new(timestamppb.Timestamp)
-			}
-			if err = decoder.ReadWKTTimestampByUnixNano(jsonKey, vv, false); err != nil {
+			if o1_34.FTimestampUnixNano1, err = jsondecoder.ReadValWKTTsUnixNano(dec, o1_34.FTimestampUnixNano1, false); err != nil {
 				return err
 			}
-			ot.FTimestampUnixNano1 = vv
-			x.OneTimestamp2 = ot
 		case "f_timestamp_unix_micro1":
-			if oneOfIsFill_OneTimestamp2 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_34 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneTimestamp2 = true
-
-			var ok bool
-			var ot *WKTOneOf1_FTimestampUnixMicro1
-			if ot, ok = x.OneTimestamp2.(*WKTOneOf1_FTimestampUnixMicro1); !ok {
-				ot = new(WKTOneOf1_FTimestampUnixMicro1)
+			isLoad_o1_34 = true
+			o1_34, ok := x.OneTimestamp2.(*WKTOneOf1_FTimestampUnixMicro1)
+			if !ok {
+				o1_34 = new(WKTOneOf1_FTimestampUnixMicro1)
+				x.OneTimestamp2 = o1_34
 			}
-			var vv *timestamppb.Timestamp
-			if ot.FTimestampUnixMicro1 != nil {
-				vv = ot.FTimestampUnixMicro1
-			} else {
-				vv = new(timestamppb.Timestamp)
-			}
-			if err = decoder.ReadWKTTimestampByUnixMicro(jsonKey, vv, false); err != nil {
+			if o1_34.FTimestampUnixMicro1, err = jsondecoder.ReadValWKTTsUnixMicro(dec, o1_34.FTimestampUnixMicro1, false); err != nil {
 				return err
 			}
-			ot.FTimestampUnixMicro1 = vv
-			x.OneTimestamp2 = ot
 		case "one_timestamp3":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneTimestamp3 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_timestamp_unix_milli1":
-					if oneOfIsFill_OneTimestamp3 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneTimestamp3 = true
-
-					var ok bool
-					var ot *WKTOneOf1_FTimestampUnixMilli1
-					if ot, ok = x.OneTimestamp3.(*WKTOneOf1_FTimestampUnixMilli1); !ok {
-						ot = new(WKTOneOf1_FTimestampUnixMilli1)
-					}
-					var vv *timestamppb.Timestamp
-					if ot.FTimestampUnixMilli1 != nil {
-						vv = ot.FTimestampUnixMilli1
-					} else {
-						vv = new(timestamppb.Timestamp)
-					}
-					if err = decoder.ReadWKTTimestampByUnixMilli(jsonKey, vv, false); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					ot.FTimestampUnixMilli1 = vv
-					x.OneTimestamp3 = ot
-				case "f_timestamp_unix_sec1":
-					if oneOfIsFill_OneTimestamp3 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+					if isEnd {
+						break
 					}
-					oneOfIsFill_OneTimestamp3 = true
-
-					var ok bool
-					var ot *WKTOneOf1_FTimestampUnixSec1
-					if ot, ok = x.OneTimestamp3.(*WKTOneOf1_FTimestampUnixSec1); !ok {
-						ot = new(WKTOneOf1_FTimestampUnixSec1)
-					}
-					var vv *timestamppb.Timestamp
-					if ot.FTimestampUnixSec1 != nil {
-						vv = ot.FTimestampUnixSec1
-					} else {
-						vv = new(timestamppb.Timestamp)
-					}
-					if err = decoder.ReadWKTTimestampByUnixSec(jsonKey, vv, false); err != nil {
+					var oneOfKey1_37 string
+					if oneOfKey1_37, err = dec.ReadObjectKey(); err != nil {
 						return err
 					}
-					ot.FTimestampUnixSec1 = vv
-					x.OneTimestamp3 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
+					switch oneOfKey1_37 { // match the oneof key
+					case "f_timestamp_unix_milli1":
+						if isLoad_o1_37 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_37 = true
+						o1_37, ok := x.OneTimestamp3.(*WKTOneOf1_FTimestampUnixMilli1)
+						if !ok {
+							o1_37 = new(WKTOneOf1_FTimestampUnixMilli1)
+							x.OneTimestamp3 = o1_37
+						}
+						if o1_37.FTimestampUnixMilli1, err = jsondecoder.ReadValWKTTsUnixMilli(dec, o1_37.FTimestampUnixMilli1, false); err != nil {
+							return err
+						}
+					case "f_timestamp_unix_sec1":
+						if isLoad_o1_37 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_37 = true
+						o1_37, ok := x.OneTimestamp3.(*WKTOneOf1_FTimestampUnixSec1)
+						if !ok {
+							o1_37 = new(WKTOneOf1_FTimestampUnixSec1)
+							x.OneTimestamp3 = o1_37
+						}
+						if o1_37.FTimestampUnixSec1, err = jsondecoder.ReadValWKTTsUnixSec(dec, o1_37.FTimestampUnixSec1, false); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
+							return err
+						}
 					}
-				} // end switch
+				}
 			}
 		case "f_timestamp_unix_nano_string1":
-			if oneOfIsFill_OneTimestamp4 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_40 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneTimestamp4 = true
-
-			var ok bool
-			var ot *WKTOneOf1_FTimestampUnixNanoString1
-			if ot, ok = x.OneTimestamp4.(*WKTOneOf1_FTimestampUnixNanoString1); !ok {
-				ot = new(WKTOneOf1_FTimestampUnixNanoString1)
+			isLoad_o1_40 = true
+			o1_40, ok := x.OneTimestamp4.(*WKTOneOf1_FTimestampUnixNanoString1)
+			if !ok {
+				o1_40 = new(WKTOneOf1_FTimestampUnixNanoString1)
+				x.OneTimestamp4 = o1_40
 			}
-			var vv *timestamppb.Timestamp
-			if ot.FTimestampUnixNanoString1 != nil {
-				vv = ot.FTimestampUnixNanoString1
-			} else {
-				vv = new(timestamppb.Timestamp)
-			}
-			if err = decoder.ReadWKTTimestampByUnixNano(jsonKey, vv, true); err != nil {
+			if o1_40.FTimestampUnixNanoString1, err = jsondecoder.ReadValWKTTsUnixNano(dec, o1_40.FTimestampUnixNanoString1, true); err != nil {
 				return err
 			}
-			ot.FTimestampUnixNanoString1 = vv
-			x.OneTimestamp4 = ot
 		case "f_timestamp_unix_micro_string1":
-			if oneOfIsFill_OneTimestamp4 {
-				return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+			if isLoad_o1_40 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			oneOfIsFill_OneTimestamp4 = true
-
-			var ok bool
-			var ot *WKTOneOf1_FTimestampUnixMicroString1
-			if ot, ok = x.OneTimestamp4.(*WKTOneOf1_FTimestampUnixMicroString1); !ok {
-				ot = new(WKTOneOf1_FTimestampUnixMicroString1)
+			isLoad_o1_40 = true
+			o1_40, ok := x.OneTimestamp4.(*WKTOneOf1_FTimestampUnixMicroString1)
+			if !ok {
+				o1_40 = new(WKTOneOf1_FTimestampUnixMicroString1)
+				x.OneTimestamp4 = o1_40
 			}
-			var vv *timestamppb.Timestamp
-			if ot.FTimestampUnixMicroString1 != nil {
-				vv = ot.FTimestampUnixMicroString1
-			} else {
-				vv = new(timestamppb.Timestamp)
-			}
-			if err = decoder.ReadWKTTimestampByUnixMicro(jsonKey, vv, true); err != nil {
+			if o1_40.FTimestampUnixMicroString1, err = jsondecoder.ReadValWKTTsUnixMicro(dec, o1_40.FTimestampUnixMicroString1, true); err != nil {
 				return err
 			}
-			ot.FTimestampUnixMicroString1 = vv
-			x.OneTimestamp4 = ot
 		case "one_timestamp5":
-			if isNULL, err = decoder.BeforeReadObject(jsonKey); err != nil {
+			if isNULL, err = dec.BeforeReadObject(); err != nil {
 				return err
 			}
 			if isNULL {
 				x.OneTimestamp5 = nil
-				continue LOOP_SCAN
-			}
-			for {
-				var oneofKey string
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				if oneofKey, err = decoder.ReadObjectKey(jsonKey); err != nil {
-					return err
-				}
-				switch oneofKey { // match oneof key
-				case "f_timestamp_unix_milli_string1":
-					if oneOfIsFill_OneTimestamp5 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
-					}
-					oneOfIsFill_OneTimestamp5 = true
-
-					var ok bool
-					var ot *WKTOneOf1_FTimestampUnixMilliString1
-					if ot, ok = x.OneTimestamp5.(*WKTOneOf1_FTimestampUnixMilliString1); !ok {
-						ot = new(WKTOneOf1_FTimestampUnixMilliString1)
-					}
-					var vv *timestamppb.Timestamp
-					if ot.FTimestampUnixMilliString1 != nil {
-						vv = ot.FTimestampUnixMilliString1
-					} else {
-						vv = new(timestamppb.Timestamp)
-					}
-					if err = decoder.ReadWKTTimestampByUnixMilli(jsonKey, vv, true); err != nil {
+			} else {
+				for { // Loop to read oneof fields
+					if isEnd, err = dec.BeforeReadNext(); err != nil {
 						return err
 					}
-					ot.FTimestampUnixMilliString1 = vv
-					x.OneTimestamp5 = ot
-				case "f_timestamp_unix_sec_string1":
-					if oneOfIsFill_OneTimestamp5 {
-						return fmt.Errorf("json: unmarshal: the field %s is type oneof, allow contains only one", jsonKey)
+					if isEnd {
+						break
 					}
-					oneOfIsFill_OneTimestamp5 = true
-
-					var ok bool
-					var ot *WKTOneOf1_FTimestampUnixSecString1
-					if ot, ok = x.OneTimestamp5.(*WKTOneOf1_FTimestampUnixSecString1); !ok {
-						ot = new(WKTOneOf1_FTimestampUnixSecString1)
-					}
-					var vv *timestamppb.Timestamp
-					if ot.FTimestampUnixSecString1 != nil {
-						vv = ot.FTimestampUnixSecString1
-					} else {
-						vv = new(timestamppb.Timestamp)
-					}
-					if err = decoder.ReadWKTTimestampByUnixSec(jsonKey, vv, true); err != nil {
+					var oneOfKey1_43 string
+					if oneOfKey1_43, err = dec.ReadObjectKey(); err != nil {
 						return err
 					}
-					ot.FTimestampUnixSecString1 = vv
-					x.OneTimestamp5 = ot
-				default:
-					if err = decoder.DiscardValue(jsonKey); err != nil {
-						return err
+					switch oneOfKey1_43 { // match the oneof key
+					case "f_timestamp_unix_milli_string1":
+						if isLoad_o1_43 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_43 = true
+						o1_43, ok := x.OneTimestamp5.(*WKTOneOf1_FTimestampUnixMilliString1)
+						if !ok {
+							o1_43 = new(WKTOneOf1_FTimestampUnixMilliString1)
+							x.OneTimestamp5 = o1_43
+						}
+						if o1_43.FTimestampUnixMilliString1, err = jsondecoder.ReadValWKTTsUnixMilli(dec, o1_43.FTimestampUnixMilliString1, true); err != nil {
+							return err
+						}
+					case "f_timestamp_unix_sec_string1":
+						if isLoad_o1_43 {
+							return jsondecoder.ErrOneOfConflict(dec)
+						}
+						isLoad_o1_43 = true
+						o1_43, ok := x.OneTimestamp5.(*WKTOneOf1_FTimestampUnixSecString1)
+						if !ok {
+							o1_43 = new(WKTOneOf1_FTimestampUnixSecString1)
+							x.OneTimestamp5 = o1_43
+						}
+						if o1_43.FTimestampUnixSecString1, err = jsondecoder.ReadValWKTTsUnixSec(dec, o1_43.FTimestampUnixSecString1, true); err != nil {
+							return err
+						}
+					default:
+						if err = dec.DiscardValue(); err != nil {
+							return err
+						}
 					}
-				} // end switch
+				}
 			}
 		default:
-			if err = decoder.DiscardValue(jsonKey); err != nil {
+			if err = dec.DiscardValue(); err != nil {
 				return err
 			}
 		} // end switch

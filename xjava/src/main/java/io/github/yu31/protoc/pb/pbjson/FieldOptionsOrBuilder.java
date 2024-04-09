@@ -63,10 +63,41 @@ public interface FieldOptionsOrBuilder extends
 
   /**
    * <pre>
+   * Inline indicates whether directly expand all fields of message type fields in current areas.
+   * If the `inline` is true for a message field:
+   *     - The null value will be omitted in JSON content.
+   *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
+   * It effect the MarshalJSON and UnmarshalJSON.
+   * 只对 message 类型的字段有效.只允许对 message 类型的字段设置？
+   * 不允许对循环调用的 message 设置 inline.
+   * </pre>
+   *
+   * <code>optional bool inline = 4;</code>
+   * @return Whether the inline field is set.
+   */
+  boolean hasInline();
+  /**
+   * <pre>
+   * Inline indicates whether directly expand all fields of message type fields in current areas.
+   * If the `inline` is true for a message field:
+   *     - The null value will be omitted in JSON content.
+   *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
+   * It effect the MarshalJSON and UnmarshalJSON.
+   * 只对 message 类型的字段有效.只允许对 message 类型的字段设置？
+   * 不允许对循环调用的 message 设置 inline.
+   * </pre>
+   *
+   * <code>optional bool inline = 4;</code>
+   * @return The inline.
+   */
+  boolean getInline();
+
+  /**
+   * <pre>
    * Format set for field.
    * </pre>
    *
-   * <code>.json.TypeReference reference = 4;</code>
+   * <code>.json.TypeReference reference = 11;</code>
    * @return Whether the reference field is set.
    */
   boolean hasReference();
@@ -75,7 +106,7 @@ public interface FieldOptionsOrBuilder extends
    * Format set for field.
    * </pre>
    *
-   * <code>.json.TypeReference reference = 4;</code>
+   * <code>.json.TypeReference reference = 11;</code>
    * @return The reference.
    */
   io.github.yu31.protoc.pb.pbjson.TypeReference getReference();
@@ -84,7 +115,7 @@ public interface FieldOptionsOrBuilder extends
    * Format set for field.
    * </pre>
    *
-   * <code>.json.TypeReference reference = 4;</code>
+   * <code>.json.TypeReference reference = 11;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeReferenceOrBuilder getReferenceOrBuilder();
 }

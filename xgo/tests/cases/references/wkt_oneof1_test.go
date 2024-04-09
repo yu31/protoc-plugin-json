@@ -2,7 +2,6 @@ package references
 
 import (
 	"encoding/json"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -108,8 +107,6 @@ func Test_Reference_WKT_OneOf1_General1(t *testing.T) {
 	bb, err := seedWKTOneOf1.MarshalJSON()
 	require.Nil(t, err)
 
-	fmt.Println(string(bb))
-
 	dataNew := &pbref.WKTOneOf1{}
 	err = dataNew.UnmarshalJSON(bb)
 	require.Nil(t, err)
@@ -120,8 +117,6 @@ func Test_Reference_WKT_OneOf1_General1(t *testing.T) {
 func Test_Reference_WKT_OneOf1_General2(t *testing.T) {
 	bb, err := seedWKTOneOf2.MarshalJSON()
 	require.Nil(t, err)
-
-	fmt.Println(string(bb))
 
 	dataNew := &pbref.WKTOneOf1{}
 	err = dataNew.UnmarshalJSON(bb)

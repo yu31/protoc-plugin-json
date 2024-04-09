@@ -38,37 +38,11 @@ func (enc *Encoder) Write(p []byte) (n int, err error) {
 	return len(p), nil
 }
 
-// Bytes Implements encoder.
+// Bytes return the JSON contents and close the encoder.
 func (enc *Encoder) Bytes() []byte {
 	b := enc.buf
 	enc.buf = nil
 	return b
-}
-
-// AppendObjectBegin can be used for begin of JSON, map and struct.
-func (enc *Encoder) AppendObjectBegin() {
-	enc.writeByte('{')
-}
-
-// AppendObjectEnd can be used for end of JSON, map and struct.
-func (enc *Encoder) AppendObjectEnd() {
-	enc.writeByte('}')
-}
-
-// AppendArrayBegin can be used for begin of array and slice.
-func (enc *Encoder) AppendArrayBegin() {
-	enc.writeByte('[')
-}
-
-// AppendArrayEnd can be used for end of array and slice.
-func (enc *Encoder) AppendArrayEnd() {
-	enc.writeByte(']')
-}
-
-func (enc *Encoder) AppendObjectKey(k string) {
-	enc.appendCommaSeparator()
-	enc.appendString(k)
-	enc.writeByte(':')
 }
 
 // Add elements separator.
@@ -97,7 +71,7 @@ func (enc *Encoder) appendBool(v bool, quote bool) {
 	}
 }
 func (enc *Encoder) appendInt(v int64, quote bool) {
-	enc.appendCommaSeparator()
+	//enc.appendCommaSeparator()
 	if quote {
 		// As json.Marshal in standard library. The integer will be converted to string in map key.
 		enc.buf = append(enc.buf, '"')
@@ -108,7 +82,7 @@ func (enc *Encoder) appendInt(v int64, quote bool) {
 	}
 }
 func (enc *Encoder) appendUint(v uint64, quote bool) {
-	enc.appendCommaSeparator()
+	//enc.appendCommaSeparator()
 	if quote {
 		// As json.Marshal in standard library. The integer will be converted to string in map key.
 		enc.buf = append(enc.buf, '"')

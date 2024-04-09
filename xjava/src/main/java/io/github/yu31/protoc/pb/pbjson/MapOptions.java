@@ -113,6 +113,10 @@ private static final long serialVersionUID = 0L;
   public static final int KEY_FIELD_NUMBER = 1;
   private io.github.yu31.protoc.pb.pbjson.TypeCodec key_;
   /**
+   * <pre>
+   * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+   * </pre>
+   *
    * <code>.json.TypeCodec key = 1;</code>
    * @return Whether the key field is set.
    */
@@ -121,6 +125,10 @@ private static final long serialVersionUID = 0L;
     return key_ != null;
   }
   /**
+   * <pre>
+   * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+   * </pre>
+   *
    * <code>.json.TypeCodec key = 1;</code>
    * @return The key.
    */
@@ -129,6 +137,10 @@ private static final long serialVersionUID = 0L;
     return key_ == null ? io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : key_;
   }
   /**
+   * <pre>
+   * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+   * </pre>
+   *
    * <code>.json.TypeCodec key = 1;</code>
    */
   @java.lang.Override
@@ -515,6 +527,10 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder> keyBuilder_;
     /**
+     * <pre>
+     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * </pre>
+     *
      * <code>.json.TypeCodec key = 1;</code>
      * @return Whether the key field is set.
      */
@@ -522,6 +538,10 @@ private static final long serialVersionUID = 0L;
       return keyBuilder_ != null || key_ != null;
     }
     /**
+     * <pre>
+     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * </pre>
+     *
      * <code>.json.TypeCodec key = 1;</code>
      * @return The key.
      */
@@ -533,6 +553,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * </pre>
+     *
      * <code>.json.TypeCodec key = 1;</code>
      */
     public Builder setKey(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
@@ -549,6 +573,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * </pre>
+     *
      * <code>.json.TypeCodec key = 1;</code>
      */
     public Builder setKey(
@@ -563,6 +591,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * </pre>
+     *
      * <code>.json.TypeCodec key = 1;</code>
      */
     public Builder mergeKey(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
@@ -581,6 +613,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * </pre>
+     *
      * <code>.json.TypeCodec key = 1;</code>
      */
     public Builder clearKey() {
@@ -595,6 +631,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * </pre>
+     *
      * <code>.json.TypeCodec key = 1;</code>
      */
     public io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder getKeyBuilder() {
@@ -603,6 +643,10 @@ private static final long serialVersionUID = 0L;
       return getKeyFieldBuilder().getBuilder();
     }
     /**
+     * <pre>
+     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * </pre>
+     *
      * <code>.json.TypeCodec key = 1;</code>
      */
     public io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getKeyOrBuilder() {
@@ -614,6 +658,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * </pre>
+     *
      * <code>.json.TypeCodec key = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<

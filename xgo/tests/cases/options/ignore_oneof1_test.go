@@ -1,6 +1,7 @@
 package options
 
 import (
+	"encoding/json"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -12,7 +13,9 @@ import (
 	"github.com/yu31/protoc-plugin-json/xgo/tests/utils"
 )
 
-func Test_IgnoreOneOf1_1(t *testing.T) {
+// For test the oneof field is `ignore`
+// And the oneof field has valid value.
+func Test_IgnoreOneOf1_IgnoreOneOfField1(t *testing.T) {
 	seed1 := &pboptions.IgnoreOneOf1{
 		OneType1:  &pboptions.IgnoreOneOf1_FInt32{FInt32: 111},
 		OneType2:  &pboptions.IgnoreOneOf1_FInt64{FInt64: 121},
@@ -67,7 +70,9 @@ func Test_IgnoreOneOf1_1(t *testing.T) {
 	})
 }
 
-func Test_IgnoreOneOf1_2(t *testing.T) {
+// For test the oneof field is `ignore`
+// And the oneof field is nil
+func Test_IgnoreOneOf1_IgnoreOneOfField2(t *testing.T) {
 	seed1 := &pboptions.IgnoreOneOf1{
 		OneType1:  nil,
 		OneType2:  nil,
@@ -112,7 +117,10 @@ func Test_IgnoreOneOf1_2(t *testing.T) {
 	})
 }
 
-func Test_IgnoreOneOf2_1(t *testing.T) {
+// For test all fields in oneof are ignored
+// And the onoef itself not ignored.
+// And the oneof field has valid value.
+func Test_IgnoreOneOf2_IgnoreAllOneOfParts1(t *testing.T) {
 	seed1 := &pboptions.IgnoreOneOf2{
 		OneType1:  &pboptions.IgnoreOneOf2_FInt32{FInt32: 111},
 		OneType2:  &pboptions.IgnoreOneOf2_FInt64{FInt64: 121},
@@ -163,11 +171,16 @@ func Test_IgnoreOneOf2_1(t *testing.T) {
 	})
 
 	t.Run("Check", func(t *testing.T) {
-		require.Equal(t, "{}", string(bb))
+		data := map[string]struct{}{}
+		err = json.Unmarshal(bb, &data)
+		require.Nil(t, err)
 	})
 }
 
-func Test_IgnoreOneOf2_2(t *testing.T) {
+// For test all fields in oneof are ignored
+// And the onoef itself not ignored.
+// And the oneof field is nil.
+func Test_IgnoreOneOf2_IgnoreAllOneOfParts2(t *testing.T) {
 	seed1 := &pboptions.IgnoreOneOf2{
 		OneType1:  nil,
 		OneType2:  nil,
@@ -208,6 +221,8 @@ func Test_IgnoreOneOf2_2(t *testing.T) {
 	})
 
 	t.Run("Check", func(t *testing.T) {
-		require.Equal(t, "{}", string(bb))
+		data := map[string]struct{}{}
+		err = json.Unmarshal(bb, &data)
+		require.Nil(t, err)
 	})
 }

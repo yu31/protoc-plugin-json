@@ -8,16 +8,28 @@ public interface MapOptionsOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+   * </pre>
+   *
    * <code>.json.TypeCodec key = 1;</code>
    * @return Whether the key field is set.
    */
   boolean hasKey();
   /**
+   * <pre>
+   * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+   * </pre>
+   *
    * <code>.json.TypeCodec key = 1;</code>
    * @return The key.
    */
   io.github.yu31.protoc.pb.pbjson.TypeCodec getKey();
   /**
+   * <pre>
+   * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+   * </pre>
+   *
    * <code>.json.TypeCodec key = 1;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getKeyOrBuilder();

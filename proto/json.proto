@@ -28,53 +28,59 @@ extend google.protobuf.OneofOptions {
 }
 
 message MessageOptions {
-  // Whether ignore generating code for the this message.
-  // It effect the MarshalJSON and UnmarshalJSON.
+  // Ignore represents whether skip generating method MarshalJSON and UnmarshalJSON for the this message.
   bool ignore = 1;
 
   // disallow_unknown_fields causes the Unmarshal to return an error when the destination
   // is a struct and the input contains object keys which do not match any
   // non-ignored, exported fields in the destination.
-  // It effect the UnmarshalJSON.
+  // Only effect to UnmarshalJSON.
   bool disallow_unknown_fields = 2;
 }
 
 message OneofOptions {
   // The key name in JSON content. Default is the field's name in proto file.
-  // It effect the MarshalJSON and UnmarshalJSON.
   optional string json = 1;
 
   // The field and all fields in the oneof parts will be ignored if true.
-  // It effect the MarshalJSON and UnmarshalJSON.
   bool ignore = 2;
 
   // Same as the go struct tag `json:"xxx,omitempty"`.
   // omitempty indicates whether omit the field if it is empty in MarshalJSON.
   bool omitempty = 3;
 
-  // Inline indicates whether expand the all oneof fields directly in the current structure.
+  // Inline indicates whether directly expand all fields of oneof in the current scope.
   // If the `inline` is true for a oneof field:
-  //     - The empty value will be omitted in JSON content.
+  //     - The null value will be omitted in JSON content.
   //     - The json key of oneof fields cannot be conflict with the fields that in current structure.
-  // It effect the MarshalJSON and UnmarshalJSON.
-  bool inline = 4;
+  optional bool inline = 4;
+
+  // TODO: Add parameters to support overwrite for unmarshal ?
 }
 
 message FieldOptions {
   // The key name in JSON content. Default is the field's name in proto file.
-  // It effect the MarshalJSON and UnmarshalJSON.
   optional string json = 1;
 
   // The field will be ignored if true.
-  // It effect the MarshalJSON and UnmarshalJSON.
   bool ignore = 2;
 
   // Same as the go struct tag `json:"xxx,omitempty"`.
   // omitempty indicates whether omit the field if it is empty in MarshalJSON.
   bool omitempty = 3;
 
-  // Format set for field.
-  TypeReference reference = 4;
+  // Inline indicates whether directly expand all fields of message type fields in current areas.
+  // If the `inline` is true for a message field:
+  //  - The null value will be omitted in JSON content.
+  //  - The json key of oneof fields cannot be conflict with the fields that in current structure.
+  //
+  // Limit: TODO: Supplementary test cases
+  //  - Only support for field type message.
+  //  - Circular references are not allowed
+  optional bool inline = 4;
+
+  // reference set for field.
+  TypeReference reference = 11;
 }
 
 message TypeReference {
@@ -98,13 +104,14 @@ message PlainOptions {
 
 // RepeatedOptions declares the options applied to the field repeated.
 message RepeatedOptions {
-  // items declares the default value for field.
   TypeCodec elem = 1;
 }
 
 // MapOptions declares the options applied to the field map.
 message MapOptions {
+  // For defaults, the field type are integer and bool will be format with String.
   TypeCodec key = 1;
+
   TypeCodec value = 2;
 }
 
@@ -126,14 +133,16 @@ message TypeCodec {
 
     TypeBool bool = 13;
 
-    TypeString  string  = 14; // Reserved.
-    TypeBytes   bytes   = 15; // Reserved.
-    TypeMessage message = 16; // Reserved.
+    TypeString  string = 14; // Reserved.
+    TypeBytes   bytes  = 15; // Reserved.
 
-    TypeEnum      enum      = 21;
-    TypeAny       any       = 22;
-    TypeDuration  duration  = 23;
-    TypeTimestamp timestamp = 24;
+    TypeEnum enum = 16;
+
+    TypeMessage message = 17;
+
+    TypeAny       any       = 21;
+    TypeDuration  duration  = 22;
+    TypeTimestamp timestamp = 23;
   }
 }
 
@@ -382,15 +391,15 @@ message TypeBool {
 }
 
 // TypeString declares the codec for field type string.
-// Notice: Reserve
+// Reserve
 message TypeString {
 }
 // TypeBytes declares the codec for field type bytes.
-// Notice: Reserve
+// Reserve
 message TypeBytes {
 }
 // TypeMessage declares the codec for field type message.
-// Notice: Reserve
+// Reserve
 message TypeMessage {
 }
 
@@ -444,7 +453,7 @@ message TypeDuration {
 
     // String represents covert the google.protobuf.Duration as strings when encoding and decoding.
     // e.g: "1m1s".
-    String = 2;
+    TimeString = 2;
 
     // String represents covert the google.protobuf.Duration as nanoseconds of type int64 when encoding and decoding.
     Nanosecond = 3;

@@ -2,7 +2,6 @@ package options
 
 import (
 	"encoding/json"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -63,7 +62,6 @@ func Test_CustomKey_TypeMap1(t *testing.T) {
 	t.Run("Marshal", func(t *testing.T) {
 		bb, err = seed1.MarshalJSON()
 		require.Nil(t, err)
-		fmt.Println(string(bb))
 	})
 
 	t.Run("Unmarshal", func(t *testing.T) {

@@ -2,7 +2,6 @@ package bases
 
 import (
 	"encoding/json"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -54,7 +53,6 @@ func Test_TypeMap2_General1(t *testing.T) {
 		b1, err = seedMap2.MarshalJSON()
 		require.Nil(t, err)
 	})
-	fmt.Println(string(b1))
 	t.Run("unmarshal", func(t *testing.T) {
 		dataNew := &pbbases.TypeMap2{}
 		require.NotEqual(t, seedMap2, dataNew)
@@ -103,13 +101,6 @@ func Test_TypeMap2_Compatible(t *testing.T) {
 	b3, err = utils.PMarshal.Marshal(seedMap2)
 	require.Nil(t, err)
 
-	fmt.Println("=========================================== PLUGIN =============================================")
-	fmt.Println(string(b1))
-	fmt.Println("=========================================== STANDARD ===========================================")
-	fmt.Println(string(b2))
-	fmt.Println("=========================================== PROTO ==============================================")
-	fmt.Println(string(b3))
-	fmt.Println("================================================================================================")
 }
 
 // Test cases the field is empty.

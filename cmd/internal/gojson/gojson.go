@@ -6,8 +6,6 @@ import (
 	"github.com/yu31/protoc-kit-go/pkgenerator"
 	"github.com/yu31/protoc-kit-go/utils/pkmessage"
 	"google.golang.org/protobuf/compiler/protogen"
-
-	"github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 )
 
 const version = "0.0.1"
@@ -21,12 +19,6 @@ type Plugin struct {
 	file *protogen.File
 
 	messages []*protogen.Message
-
-	// The message of currently being processed.
-	message *protogen.Message
-
-	// The message options of currently being processed.
-	msgOptions *pbjson.MessageOptions
 }
 
 func New() pkgenerator.Plugin {
@@ -71,18 +63,28 @@ func (p *Plugin) Generate(g *protogen.GeneratedFile) {
 }
 
 func (p *Plugin) generateForMessage(msg *protogen.Message) {
-	msgOptions := loadMessageOptions(msg)
-	if msgOptions.Ignore {
+	options := loadMessageOptions(msg)
+	if options.Ignore {
 		return
 	}
 
-	p.message = msg
-	p.msgOptions = msgOptions
+	idGen := &IdGenerator{}
+	fieldSets := loadFieldSets(idGen, msg.Fields, nil, false)
+	checkFields(p.file, msg, fieldSets)
 
-	fields, bufLen, variables := loadFields(msg)
+	marshal := &Marshal{
+		g:       p.g,
+		file:    p.file,
+		message: msg,
+		options: options,
+	}
+	marshal.GenerateCode(fieldSets)
 
-	p.checkDuplicateKey(fields)
-
-	p.generateCodeMarshal(fields, bufLen)
-	p.generateCodeUnmarshal(fields, variables)
+	unmarshal := &Unmarshal{
+		g:       p.g,
+		file:    p.file,
+		message: msg,
+		options: options,
+	}
+	unmarshal.GenerateCode(fieldSets)
 }

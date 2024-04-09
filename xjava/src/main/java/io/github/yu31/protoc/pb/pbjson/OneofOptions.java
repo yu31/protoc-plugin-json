@@ -67,7 +67,7 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 32: {
-
+            bitField0_ |= 0x00000002;
             inline_ = input.readBool();
             break;
           }
@@ -201,14 +201,30 @@ private static final long serialVersionUID = 0L;
   private boolean inline_;
   /**
    * <pre>
-   * Inline indicates whether expand the all oneof fields directly in the current structure.
+   * Inline indicates whether directly expand all fields of oneof in the current scope.
    * If the `inline` is true for a oneof field:
-   *     - The empty value will be omitted in JSON content.
+   *     - The null value will be omitted in JSON content.
    *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
    * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
-   * <code>bool inline = 4;</code>
+   * <code>optional bool inline = 4;</code>
+   * @return Whether the inline field is set.
+   */
+  @java.lang.Override
+  public boolean hasInline() {
+    return ((bitField0_ & 0x00000002) != 0);
+  }
+  /**
+   * <pre>
+   * Inline indicates whether directly expand all fields of oneof in the current scope.
+   * If the `inline` is true for a oneof field:
+   *     - The null value will be omitted in JSON content.
+   *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
+   * It effect the MarshalJSON and UnmarshalJSON.
+   * </pre>
+   *
+   * <code>optional bool inline = 4;</code>
    * @return The inline.
    */
   @java.lang.Override
@@ -239,7 +255,7 @@ private static final long serialVersionUID = 0L;
     if (omitempty_ != false) {
       output.writeBool(3, omitempty_);
     }
-    if (inline_ != false) {
+    if (((bitField0_ & 0x00000002) != 0)) {
       output.writeBool(4, inline_);
     }
     unknownFields.writeTo(output);
@@ -262,7 +278,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(3, omitempty_);
     }
-    if (inline_ != false) {
+    if (((bitField0_ & 0x00000002) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(4, inline_);
     }
@@ -290,8 +306,11 @@ private static final long serialVersionUID = 0L;
         != other.getIgnore()) return false;
     if (getOmitempty()
         != other.getOmitempty()) return false;
-    if (getInline()
-        != other.getInline()) return false;
+    if (hasInline() != other.hasInline()) return false;
+    if (hasInline()) {
+      if (getInline()
+          != other.getInline()) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -313,9 +332,11 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + OMITEMPTY_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getOmitempty());
-    hash = (37 * hash) + INLINE_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getInline());
+    if (hasInline()) {
+      hash = (37 * hash) + INLINE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getInline());
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -456,7 +477,7 @@ private static final long serialVersionUID = 0L;
       omitempty_ = false;
 
       inline_ = false;
-
+      bitField0_ = (bitField0_ & ~0x00000002);
       return this;
     }
 
@@ -491,7 +512,10 @@ private static final long serialVersionUID = 0L;
       result.json_ = json_;
       result.ignore_ = ignore_;
       result.omitempty_ = omitempty_;
-      result.inline_ = inline_;
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.inline_ = inline_;
+        to_bitField0_ |= 0x00000002;
+      }
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -552,7 +576,7 @@ private static final long serialVersionUID = 0L;
       if (other.getOmitempty() != false) {
         setOmitempty(other.getOmitempty());
       }
-      if (other.getInline() != false) {
+      if (other.hasInline()) {
         setInline(other.getInline());
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -793,14 +817,30 @@ private static final long serialVersionUID = 0L;
     private boolean inline_ ;
     /**
      * <pre>
-     * Inline indicates whether expand the all oneof fields directly in the current structure.
+     * Inline indicates whether directly expand all fields of oneof in the current scope.
      * If the `inline` is true for a oneof field:
-     *     - The empty value will be omitted in JSON content.
+     *     - The null value will be omitted in JSON content.
      *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
-     * <code>bool inline = 4;</code>
+     * <code>optional bool inline = 4;</code>
+     * @return Whether the inline field is set.
+     */
+    @java.lang.Override
+    public boolean hasInline() {
+      return ((bitField0_ & 0x00000002) != 0);
+    }
+    /**
+     * <pre>
+     * Inline indicates whether directly expand all fields of oneof in the current scope.
+     * If the `inline` is true for a oneof field:
+     *     - The null value will be omitted in JSON content.
+     *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
+     * It effect the MarshalJSON and UnmarshalJSON.
+     * </pre>
+     *
+     * <code>optional bool inline = 4;</code>
      * @return The inline.
      */
     @java.lang.Override
@@ -809,37 +849,37 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Inline indicates whether expand the all oneof fields directly in the current structure.
+     * Inline indicates whether directly expand all fields of oneof in the current scope.
      * If the `inline` is true for a oneof field:
-     *     - The empty value will be omitted in JSON content.
+     *     - The null value will be omitted in JSON content.
      *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
-     * <code>bool inline = 4;</code>
+     * <code>optional bool inline = 4;</code>
      * @param value The inline to set.
      * @return This builder for chaining.
      */
     public Builder setInline(boolean value) {
-      
+      bitField0_ |= 0x00000002;
       inline_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * Inline indicates whether expand the all oneof fields directly in the current structure.
+     * Inline indicates whether directly expand all fields of oneof in the current scope.
      * If the `inline` is true for a oneof field:
-     *     - The empty value will be omitted in JSON content.
+     *     - The null value will be omitted in JSON content.
      *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
      * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
-     * <code>bool inline = 4;</code>
+     * <code>optional bool inline = 4;</code>
      * @return This builder for chaining.
      */
     public Builder clearInline() {
-      
+      bitField0_ = (bitField0_ & ~0x00000002);
       inline_ = false;
       onChanged();
       return this;

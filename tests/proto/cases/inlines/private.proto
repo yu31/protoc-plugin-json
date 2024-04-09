@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package inlines;
+
+option go_package = "xgo/tests/pb/pbinlines";
+
+import "proto/json.proto";
+
+message MessageEmpty1 {
+}
+
+// message 中的字段都被标记为 ignore.
+message MessageIgnoreFields {
+  string ignore_fields_string1 = 1 [ (json.field) = { json: "ignore_fields_string1", ignore: true } ];
+  string ignore_fields_string2 = 2 [ (json.field) = { json: "ignore_fields_string2", ignore: true } ];
+}
+
+// message 被引用的字段标记为 ignore.
+message MessageIgnoreByRef {
+  string ignore_by_ref_string1 = 1 [ (json.field) = { json: "ignore_by_ref_string1" } ];
+}

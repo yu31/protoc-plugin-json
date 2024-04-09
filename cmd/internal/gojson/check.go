@@ -8,109 +8,89 @@ import (
 	"google.golang.org/protobuf/compiler/protogen"
 )
 
-func (p *Plugin) checkDuplicateKey(fields []*Field) {
-	msg := p.message
+// checkFields for valid the fields before generate codes.
+func checkFields(file *protogen.File, msg *protogen.Message, fieldSets []*FieldSet) {
+	oneOfList := make([]*FieldSet, 0) // used to maintain order
+	oneOfMap := make(map[*FieldSet][]*FieldSet)
 
-	cacheFields := make(map[string]*Field)
-
-	// [oneOfName]: [ [jsonKey]: [partLists] ]
-	dupOneOf := make(map[string]map[string][]string)
-	// [oneOfName]: [partLists]
-	emptyOneOf := make(map[string][]string)
-
-	// [fieldLists]
-	emptyFields := make([]string, 0)
-	// [jsonKey]: [fieldLists]
-	dupFields := make(map[string][]string)
-
-	checkFieldDup := func(field *Field) {
-		jsonKey := field.JSONKey
-
-		var fieldName string
-		if field.OneOf != nil {
-			fieldName = string(field.Field.Oneof.Desc.Name())
-		} else {
-			fieldName = string(field.Field.Desc.Name())
-		}
-
-		if jsonKey == "" {
-			emptyFields = append(emptyFields, fieldName)
-			return
-		}
-
-		if x, ok := cacheFields[jsonKey]; ok {
-			if len(dupFields[jsonKey]) == 0 {
-				var firstField string
-				if x.OneOf != nil {
-					firstField = string(x.Field.Oneof.Desc.Name())
-				} else {
-					firstField = string(x.Field.Desc.Name())
-				}
-				dupFields[jsonKey] = append(dupFields[jsonKey], firstField)
-			}
-			dupFields[jsonKey] = append(dupFields[jsonKey], fieldName)
-			return
-		}
-		cacheFields[jsonKey] = field
-	}
-
-	checkOneOfDup := func(field *Field) {
-		cacheOneOf := make(map[string]*protogen.Field)
-		dupParts := make(map[string][]string)
-		emptyParts := make([]string, 0)
-
-		for _, oneField := range field.OneOf.Parts {
-			jsonKey := oneField.JSONKey
-			if jsonKey == "" {
-				emptyParts = append(emptyParts, string(oneField.Field.Desc.Name()))
-			} else {
-				if x, ok := cacheOneOf[jsonKey]; ok {
-					if len(dupParts[jsonKey]) == 0 {
-						dupParts[jsonKey] = append(dupParts[jsonKey], string(x.Desc.Name()))
-					}
-					dupParts[jsonKey] = append(dupParts[jsonKey], string(oneField.Field.Desc.Name()))
-				} else {
-					cacheOneOf[jsonKey] = oneField.Field
-				}
+	var reBuildFields func(_fieldSets []*FieldSet) (_all []*FieldSet)
+	reBuildFields = func(_fieldSets []*FieldSet) (_all []*FieldSet) {
+		for _, fieldSet := range _fieldSets {
+			switch {
+			case fieldSet.IsOneOfField() && !fieldSet.OneOfIsInline():
+				_all = append(_all, fieldSet)
+				oneOfList = append(oneOfList, fieldSet)
+				oneOfMap[fieldSet] = append(oneOfMap[fieldSet], reBuildFields(fieldSet.OneOfSet.Parts)...)
+			case fieldSet.IsOneOfField() && fieldSet.OneOfIsInline():
+				_all = append(_all, reBuildFields(fieldSet.OneOfSet.Parts)...)
+			case fieldSet.FieldIsInline():
+				_all = append(_all, reBuildFields(fieldSet.InlineSet.Childs)...)
+			default:
+				_all = append(_all, fieldSet)
 			}
 		}
-
-		oneOfName := string(field.Field.Oneof.Desc.Name())
-		if len(dupParts) != 0 {
-			dupOneOf[oneOfName] = dupParts
-		}
-		if len(emptyParts) != 0 {
-			emptyOneOf[oneOfName] = emptyParts
-		}
-	}
-
-LOOP:
-	for _, field := range fields {
-		// Check general field.
-		if field.OneOf == nil {
-			checkFieldDup(field)
-			continue LOOP
-		}
-		if field.OneOf.Options.Inline {
-			for _, oneField := range field.OneOf.Parts {
-				checkFieldDup(oneField)
-			}
-			continue LOOP
-		}
-
-		// oneOf key not inline in json. check it.
-		checkFieldDup(field)
-
-		// Check the fields in oneof part.
-		checkOneOfDup(field)
-	}
-
-	if len(dupFields) == 0 && len(dupOneOf) == 0 &&
-		len(emptyFields) == 0 && len(emptyOneOf) == 0 {
 		return
 	}
 
-	filePath := p.file.Desc.Path()
+	fieldSetALL := reBuildFields(fieldSets)
+
+	var exit bool
+	if !checkJSONKey(file, msg, fieldSetALL) {
+		exit = true
+	}
+	for _, oneOfField := range oneOfList {
+		if !checkJSONKey(file, msg, oneOfMap[oneOfField]) {
+			exit = true
+		}
+	}
+
+	if exit {
+		os.Exit(1)
+	}
+}
+
+// checkJSONKey for valid the jsonKey.
+// Check if is there any duplicate json key.
+// Check if is there any emtpy json key.
+func checkJSONKey(file *protogen.File, msg *protogen.Message, fieldSets []*FieldSet) (ok bool) {
+	// Cache the first occurrence of the JSONKey of field.
+	cacheFirst := make(map[string]*FieldSet)
+
+	// The list of all duplicate JSONKey. For fixed output order.
+	dupJSONKeys := make([]string, 0)
+	// [jsonKey]: [fieldLists]
+	dupFieldMap := make(map[string][]string)
+
+	// The field lists of JSONKey is emtpy.
+	emptyFields := make([]string, 0)
+
+	checkFieldDup := func(fieldSet *FieldSet) {
+		jsonKey := fieldSet.JSONKey
+		protoName := fieldProtoName(fieldSet)
+		if jsonKey == "" {
+			emptyFields = append(emptyFields, protoName)
+			return
+		}
+		if xx, ok := cacheFirst[jsonKey]; ok { // The jsonKey is duplication.
+			if len(dupFieldMap[jsonKey]) == 0 {
+				dupJSONKeys = append(dupJSONKeys, jsonKey)
+				dupFieldMap[jsonKey] = append(dupFieldMap[jsonKey], fieldProtoName(xx))
+			}
+			dupFieldMap[jsonKey] = append(dupFieldMap[jsonKey], protoName)
+		} else {
+			cacheFirst[jsonKey] = fieldSet
+		}
+	}
+
+	for _, fieldSet := range fieldSets {
+		checkFieldDup(fieldSet)
+	}
+
+	if len(dupJSONKeys) == 0 && len(emptyFields) == 0 {
+		return true
+	}
+
+	filePath := file.Desc.Path()
 	msgName := string(msg.Desc.FullName())
 	if index := strings.Index(msgName, "."); index > 0 {
 		msgName = msgName[index+1:]
@@ -121,19 +101,22 @@ LOOP:
 		println(fmt.Sprintf("%s - The json key is empty in fields %v", id, emptyFields))
 	}
 
-	for jsonKey, _fields := range dupFields {
-		println(fmt.Sprintf("%s - The json key [%s] are duplicated both in fields %v", id, jsonKey, _fields))
+	for _, jsonKey := range dupJSONKeys {
+		dupFields := dupFieldMap[jsonKey]
+		println(fmt.Sprintf("%s - The json key <%s> are duplicated both in fields %v", id, jsonKey, dupFields))
 	}
+	return false
+}
 
-	for oneOfName, parts := range emptyOneOf {
-		println(fmt.Sprintf("%s - The json key taht in oneof field [%s] is empty of parts %v", id, oneOfName, parts))
+func fieldProtoName(fieldSet *FieldSet) string {
+	var name string
+	if fieldSet.IsOneOfField() {
+		name = string(fieldSet.Field.Oneof.Desc.Name())
+	} else {
+		name = string(fieldSet.Field.Desc.Name())
 	}
-
-	for oneOfName, dupParts := range dupOneOf {
-		for jsonKey, parts := range dupParts {
-			println(fmt.Sprintf("%s - The json key [%s] that in oneof field [%s] are duplicated both in parts %v", id, jsonKey, oneOfName, parts))
-		}
+	if parent := fieldSet.ParentField(); parent != nil {
+		name = fieldProtoName(parent) + "." + name
 	}
-
-	os.Exit(1)
+	return name
 }

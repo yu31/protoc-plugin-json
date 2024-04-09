@@ -257,89 +257,77 @@ public interface TypeCodecOrBuilder extends
   io.github.yu31.protoc.pb.pbjson.TypeBytesOrBuilder getBytesOrBuilder();
 
   /**
-   * <pre>
-   * Reserved.
-   * </pre>
-   *
-   * <code>.json.TypeMessage message = 16;</code>
-   * @return Whether the message field is set.
-   */
-  boolean hasMessage();
-  /**
-   * <pre>
-   * Reserved.
-   * </pre>
-   *
-   * <code>.json.TypeMessage message = 16;</code>
-   * @return The message.
-   */
-  io.github.yu31.protoc.pb.pbjson.TypeMessage getMessage();
-  /**
-   * <pre>
-   * Reserved.
-   * </pre>
-   *
-   * <code>.json.TypeMessage message = 16;</code>
-   */
-  io.github.yu31.protoc.pb.pbjson.TypeMessageOrBuilder getMessageOrBuilder();
-
-  /**
-   * <code>.json.TypeEnum enum = 21;</code>
+   * <code>.json.TypeEnum enum = 16;</code>
    * @return Whether the enum field is set.
    */
   boolean hasEnum();
   /**
-   * <code>.json.TypeEnum enum = 21;</code>
+   * <code>.json.TypeEnum enum = 16;</code>
    * @return The enum.
    */
   io.github.yu31.protoc.pb.pbjson.TypeEnum getEnum();
   /**
-   * <code>.json.TypeEnum enum = 21;</code>
+   * <code>.json.TypeEnum enum = 16;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder getEnumOrBuilder();
 
   /**
-   * <code>.json.TypeAny any = 22;</code>
+   * <code>.json.TypeMessage message = 17;</code>
+   * @return Whether the message field is set.
+   */
+  boolean hasMessage();
+  /**
+   * <code>.json.TypeMessage message = 17;</code>
+   * @return The message.
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeMessage getMessage();
+  /**
+   * <code>.json.TypeMessage message = 17;</code>
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeMessageOrBuilder getMessageOrBuilder();
+
+  /**
+   * <code>.json.TypeAny any = 21;</code>
    * @return Whether the any field is set.
    */
   boolean hasAny();
   /**
-   * <code>.json.TypeAny any = 22;</code>
+   * <code>.json.TypeAny any = 21;</code>
    * @return The any.
    */
   io.github.yu31.protoc.pb.pbjson.TypeAny getAny();
   /**
-   * <code>.json.TypeAny any = 22;</code>
+   * <code>.json.TypeAny any = 21;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeAnyOrBuilder getAnyOrBuilder();
 
   /**
-   * <code>.json.TypeDuration duration = 23;</code>
+   * <code>.json.TypeDuration duration = 22;</code>
    * @return Whether the duration field is set.
    */
   boolean hasDuration();
   /**
-   * <code>.json.TypeDuration duration = 23;</code>
+   * <code>.json.TypeDuration duration = 22;</code>
    * @return The duration.
    */
   io.github.yu31.protoc.pb.pbjson.TypeDuration getDuration();
   /**
-   * <code>.json.TypeDuration duration = 23;</code>
+   * <code>.json.TypeDuration duration = 22;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeDurationOrBuilder getDurationOrBuilder();
 
   /**
-   * <code>.json.TypeTimestamp timestamp = 24;</code>
+   * <code>.json.TypeTimestamp timestamp = 23;</code>
    * @return Whether the timestamp field is set.
    */
   boolean hasTimestamp();
   /**
-   * <code>.json.TypeTimestamp timestamp = 24;</code>
+   * <code>.json.TypeTimestamp timestamp = 23;</code>
    * @return The timestamp.
    */
   io.github.yu31.protoc.pb.pbjson.TypeTimestamp getTimestamp();
   /**
-   * <code>.json.TypeTimestamp timestamp = 24;</code>
+   * <code>.json.TypeTimestamp timestamp = 23;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder getTimestampOrBuilder();
 

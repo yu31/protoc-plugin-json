@@ -10,9 +10,9 @@ import (
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
-	anypb "google.golang.org/protobuf/types/known/anypb"
-	durationpb "google.golang.org/protobuf/types/known/durationpb"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	_ "google.golang.org/protobuf/types/known/anypb"
+	_ "google.golang.org/protobuf/types/known/durationpb"
+	_ "google.golang.org/protobuf/types/known/timestamppb"
 )
 
 // MarshalJSON implements interface json.Marshaler for proto message WKTRepeated1 in file tests/proto/cases/references/wkt_repeated.proto
@@ -20,314 +20,48 @@ func (x *WKTRepeated1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	var err error
-	encoder := jsonencoder.New(1408)
+	enc := jsonencoder.New(1408)
+	enc.AppendObjectBegin() // Add begin JSON identifier
 
-	// Add begin JSON identifier
-	encoder.AppendObjectBegin()
-
-	encoder.AppendObjectKey("f_enum_number1")
-	if x.FEnumNumber1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FEnumNumber1 {
-			encoder.AppendLiteralInt32(int32(ri.Number()), false)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
+	jsonencoder.AppendListEnumNum(enc, "f_enum_number1", x.FEnumNumber1, false, false)
+	jsonencoder.AppendListEnumNum(enc, "f_enum_number_string1", x.FEnumNumberString1, false, true)
+	jsonencoder.AppendListEnumStr(enc, "f_enum_string1", x.FEnumString1, false)
+	if err := jsonencoder.AppendListWKTAnyObject(enc, "f_any_native1", x.FAnyNative1, false); err != nil {
+		return nil, err
 	}
-	encoder.AppendObjectKey("f_enum_number_string1")
-	if x.FEnumNumberString1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FEnumNumberString1 {
-			encoder.AppendLiteralInt32(int32(ri.Number()), true)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
+	if err := jsonencoder.AppendListWKTAnyProto(enc, "f_any_proto1", x.FAnyProto1, false); err != nil {
+		return nil, err
 	}
-	encoder.AppendObjectKey("f_enum_string1")
-	if x.FEnumString1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FEnumString1 {
-			encoder.AppendLiteralString(ri.String())
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
+	if err := jsonencoder.AppendListWKTDurObject(enc, "f_duration_native1", x.FDurationNative1, false); err != nil {
+		return nil, err
 	}
-	encoder.AppendObjectKey("f_any_native1")
-	if x.FAnyNative1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FAnyNative1 {
-			if err = encoder.AppendLiteralInterface(ri); err != nil {
-				return nil, err
-			}
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
+	jsonencoder.AppendListWKTDurTimeStr(enc, "f_duration_string1", x.FDurationString1, false)
+	jsonencoder.AppendListWKTDurNano(enc, "f_duration_nanosecond1", x.FDurationNanosecond1, false, false)
+	jsonencoder.AppendListWKTDurNano(enc, "f_duration_nanosecond_string1", x.FDurationNanosecondString1, false, true)
+	jsonencoder.AppendListWKTDurMicro(enc, "f_duration_microsecond1", x.FDurationMicrosecond1, false, false)
+	jsonencoder.AppendListWKTDurMicro(enc, "f_duration_microsecond_string1", x.FDurationMicrosecondString1, false, true)
+	jsonencoder.AppendListWKTDurMilli(enc, "f_duration_millisecond1", x.FDurationMillisecond1, false, false)
+	jsonencoder.AppendListWKTDurMilli(enc, "f_duration_millisecond_string1", x.FDurationMillisecondString1, false, true)
+	jsonencoder.AppendListWKTDurSecond(enc, "f_duration_second1", x.FDurationSecond1, false, false)
+	jsonencoder.AppendListWKTDurSecond(enc, "f_duration_second_string1", x.FDurationSecondString1, false, true)
+	jsonencoder.AppendListWKTDurMinute(enc, "f_duration_minute1", x.FDurationMinute1, false, false)
+	jsonencoder.AppendListWKTDurMinute(enc, "f_duration_minute_string1", x.FDurationMinuteString1, false, true)
+	jsonencoder.AppendListWKTDurHour(enc, "f_duration_hour1", x.FDurationHour1, false, false)
+	jsonencoder.AppendListWKTDurHour(enc, "f_duration_hour_string1", x.FDurationHourString1, false, true)
+	if err := jsonencoder.AppendListWKTTsObject(enc, "f_timestamp_native1", x.FTimestampNative1, false); err != nil {
+		return nil, err
 	}
-	encoder.AppendObjectKey("f_any_proto1")
-	if x.FAnyProto1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FAnyProto1 {
-			if err = encoder.AppendWKTAnyByProto(ri); err != nil {
-				return nil, err
-			}
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_native1")
-	if x.FDurationNative1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FDurationNative1 {
-			if err = encoder.AppendLiteralInterface(ri); err != nil {
-				return nil, err
-			}
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_string1")
-	if x.FDurationString1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FDurationString1 {
-			encoder.AppendLiteralString(ri.AsDuration().String())
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_nanosecond1")
-	if x.FDurationNanosecond1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FDurationNanosecond1 {
-			encoder.AppendLiteralInt64(ri.AsDuration().Nanoseconds(), false)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_nanosecond_string1")
-	if x.FDurationNanosecondString1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FDurationNanosecondString1 {
-			encoder.AppendLiteralInt64(ri.AsDuration().Nanoseconds(), true)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_microsecond1")
-	if x.FDurationMicrosecond1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FDurationMicrosecond1 {
-			encoder.AppendLiteralInt64(ri.AsDuration().Microseconds(), false)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_microsecond_string1")
-	if x.FDurationMicrosecondString1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FDurationMicrosecondString1 {
-			encoder.AppendLiteralInt64(ri.AsDuration().Microseconds(), true)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_millisecond1")
-	if x.FDurationMillisecond1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FDurationMillisecond1 {
-			encoder.AppendLiteralInt64(ri.AsDuration().Milliseconds(), false)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_millisecond_string1")
-	if x.FDurationMillisecondString1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FDurationMillisecondString1 {
-			encoder.AppendLiteralInt64(ri.AsDuration().Milliseconds(), true)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_second1")
-	if x.FDurationSecond1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FDurationSecond1 {
-			encoder.AppendLiteralFloat64(ri.AsDuration().Seconds(), false)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_second_string1")
-	if x.FDurationSecondString1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FDurationSecondString1 {
-			encoder.AppendLiteralFloat64(ri.AsDuration().Seconds(), true)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_minute1")
-	if x.FDurationMinute1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FDurationMinute1 {
-			encoder.AppendLiteralFloat64(ri.AsDuration().Minutes(), false)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_minute_string1")
-	if x.FDurationMinuteString1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FDurationMinuteString1 {
-			encoder.AppendLiteralFloat64(ri.AsDuration().Minutes(), true)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_hour1")
-	if x.FDurationHour1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FDurationHour1 {
-			encoder.AppendLiteralFloat64(ri.AsDuration().Hours(), false)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_duration_hour_string1")
-	if x.FDurationHourString1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FDurationHourString1 {
-			encoder.AppendLiteralFloat64(ri.AsDuration().Hours(), true)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_timestamp_native1")
-	if x.FTimestampNative1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FTimestampNative1 {
-			if err = encoder.AppendLiteralInterface(ri); err != nil {
-				return nil, err
-			}
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_timestamp_time_layout1")
-	if x.FTimestampTimeLayout1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FTimestampTimeLayout1 {
-			encoder.AppendLiteralString(ri.AsTime().Format("2006-01-02T15:04:05Z07:00"))
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_timestamp_unix_nano1")
-	if x.FTimestampUnixNano1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FTimestampUnixNano1 {
-			encoder.AppendLiteralInt64(ri.AsTime().UnixNano(), false)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_timestamp_unix_nano_string1")
-	if x.FTimestampUnixNanoString1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FTimestampUnixNanoString1 {
-			encoder.AppendLiteralInt64(ri.AsTime().UnixNano(), true)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_timestamp_unix_micro1")
-	if x.FTimestampUnixMicro1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FTimestampUnixMicro1 {
-			encoder.AppendLiteralInt64(ri.AsTime().UnixMicro(), false)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_timestamp_unix_micro_string1")
-	if x.FTimestampUnixMicroString1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FTimestampUnixMicroString1 {
-			encoder.AppendLiteralInt64(ri.AsTime().UnixMicro(), true)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_timestamp_unix_milli1")
-	if x.FTimestampUnixMilli1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FTimestampUnixMilli1 {
-			encoder.AppendLiteralInt64(ri.AsTime().UnixMilli(), false)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_timestamp_unix_milli_string1")
-	if x.FTimestampUnixMilliString1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FTimestampUnixMilliString1 {
-			encoder.AppendLiteralInt64(ri.AsTime().UnixMilli(), true)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_timestamp_unix_sec1")
-	if x.FTimestampUnixSec1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FTimestampUnixSec1 {
-			encoder.AppendLiteralInt64(ri.AsTime().Unix(), false)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-	encoder.AppendObjectKey("f_timestamp_unix_sec_string1")
-	if x.FTimestampUnixSecString1 != nil {
-		encoder.AppendArrayBegin()
-		for _, ri := range x.FTimestampUnixSecString1 {
-			encoder.AppendLiteralInt64(ri.AsTime().Unix(), true)
-		}
-		encoder.AppendArrayEnd()
-	} else {
-		encoder.AppendLiteralNULL()
-	}
-
-	// Add end JSON identifier
-	encoder.AppendObjectEnd()
-	return encoder.Bytes(), err
+	jsonencoder.AppendListWKTTsLayout(enc, "f_timestamp_time_layout1", x.FTimestampTimeLayout1, false, "2006-01-02T15:04:05Z07:00")
+	jsonencoder.AppendListWKTTsUnixNano(enc, "f_timestamp_unix_nano1", x.FTimestampUnixNano1, false, false)
+	jsonencoder.AppendListWKTTsUnixNano(enc, "f_timestamp_unix_nano_string1", x.FTimestampUnixNanoString1, false, true)
+	jsonencoder.AppendListWKTTsUnixMicro(enc, "f_timestamp_unix_micro1", x.FTimestampUnixMicro1, false, false)
+	jsonencoder.AppendListWKTTsUnixMicro(enc, "f_timestamp_unix_micro_string1", x.FTimestampUnixMicroString1, false, true)
+	jsonencoder.AppendListWKTTsUnixMilli(enc, "f_timestamp_unix_milli1", x.FTimestampUnixMilli1, false, false)
+	jsonencoder.AppendListWKTTsUnixMilli(enc, "f_timestamp_unix_milli_string1", x.FTimestampUnixMilliString1, false, true)
+	jsonencoder.AppendListWKTTsUnixSec(enc, "f_timestamp_unix_sec1", x.FTimestampUnixSec1, false, false)
+	jsonencoder.AppendListWKTTsUnixSec(enc, "f_timestamp_unix_sec_string1", x.FTimestampUnixSecString1, false, true)
+	enc.AppendObjectEnd() // Add end JSON identifier
+	return enc.Bytes(), nil
 }
 
 // UnmarshalJSON implements json.Unmarshaler for proto message WKTRepeated1 in file tests/proto/cases/references/wkt_repeated.proto
@@ -336,1092 +70,152 @@ func (x *WKTRepeated1) UnmarshalJSON(b []byte) error {
 		return errors.New("json: Unmarshal: xgo/tests/pb/pbref.(*WKTRepeated1) is nil")
 	}
 	var (
-		err     error
-		isNULL  bool
-		decoder *jsondecoder.Decoder
+		err    error
+		isNULL bool
+		dec    *jsondecoder.Decoder
 	)
-	if decoder, err = jsondecoder.New(b); err != nil {
+	if dec, err = jsondecoder.New(b); err != nil {
 		return err
 	}
-	if isNULL, err = decoder.BeforeScanJSON(); err != nil {
+	if isNULL, err = dec.BeforeScanJSON(); err != nil || isNULL {
 		return err
-	}
-	if isNULL {
-		return nil
 	}
 LOOP_SCAN:
-	for { // Loop to scan object.
+	for { // Loop to read the JSON objects
 		var (
 			jsonKey string
 			isEnd   bool
 		)
-		if isEnd, err = decoder.BeforeScanNext(); err != nil {
+
+		if isEnd, err = dec.BeforeScanNext(); err != nil {
 			return err
 		}
 		if isEnd {
 			break LOOP_SCAN
 		}
-		if jsonKey, err = decoder.ReadJSONKey(); err != nil {
+
+		if jsonKey, err = dec.ReadJSONKey(); err != nil {
 			return err
 		}
 		switch jsonKey { // match the jsonKey
 		case "f_enum_number1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FEnumNumber1, err = jsondecoder.ReadListEnumNum(dec, x.FEnumNumber1, false); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FEnumNumber1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FEnumNumber1 == nil {
-				x.FEnumNumber1 = make([]Enum1, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv Enum1
-				if i >= len(x.FEnumNumber1) {
-					x.FEnumNumber1 = append(x.FEnumNumber1, vv)
-				}
-				var v1 int32
-				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, false); err != nil {
-					return err
-				}
-				vv = Enum1(v1)
-				x.FEnumNumber1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FEnumNumber1 = x.FEnumNumber1[:i]
 		case "f_enum_number_string1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FEnumNumberString1, err = jsondecoder.ReadListEnumNum(dec, x.FEnumNumberString1, true); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FEnumNumberString1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FEnumNumberString1 == nil {
-				x.FEnumNumberString1 = make([]Enum1, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv Enum1
-				if i >= len(x.FEnumNumberString1) {
-					x.FEnumNumberString1 = append(x.FEnumNumberString1, vv)
-				}
-				var v1 int32
-				if v1, err = decoder.ReadLiteralEnumNumber(jsonKey, true); err != nil {
-					return err
-				}
-				vv = Enum1(v1)
-				x.FEnumNumberString1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FEnumNumberString1 = x.FEnumNumberString1[:i]
 		case "f_enum_string1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FEnumString1, err = jsondecoder.ReadListEnumStr(dec, x.FEnumString1, Enum1_value); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FEnumString1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FEnumString1 == nil {
-				x.FEnumString1 = make([]Enum1, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv Enum1
-				if i >= len(x.FEnumString1) {
-					x.FEnumString1 = append(x.FEnumString1, vv)
-				}
-				var v1 int32
-				if v1, err = decoder.ReadLiteralEnumString(jsonKey, Enum1_value); err != nil {
-					return err
-				}
-				vv = Enum1(v1)
-				x.FEnumString1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FEnumString1 = x.FEnumString1[:i]
 		case "f_any_native1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FAnyNative1, err = jsondecoder.ReadListWKTAnyObject(dec, x.FAnyNative1); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FAnyNative1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FAnyNative1 == nil {
-				x.FAnyNative1 = make([]*anypb.Any, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *anypb.Any
-				if i >= len(x.FAnyNative1) {
-					x.FAnyNative1 = append(x.FAnyNative1, vv)
-				}
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FAnyNative1[i] != nil {
-						vv = x.FAnyNative1[i]
-					} else {
-						vv = new(anypb.Any)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FAnyNative1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FAnyNative1 = x.FAnyNative1[:i]
 		case "f_any_proto1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FAnyProto1, err = jsondecoder.ReadListWKTAnyProto(dec, x.FAnyProto1); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FAnyProto1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FAnyProto1 == nil {
-				x.FAnyProto1 = make([]*anypb.Any, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *anypb.Any
-				if i >= len(x.FAnyProto1) {
-					x.FAnyProto1 = append(x.FAnyProto1, vv)
-				}
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FAnyProto1[i] != nil {
-						vv = x.FAnyProto1[i]
-					} else {
-						vv = new(anypb.Any)
-					}
-					if err = decoder.ReadWKTAnyByProto(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FAnyProto1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FAnyProto1 = x.FAnyProto1[:i]
 		case "f_duration_native1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FDurationNative1, err = jsondecoder.ReadListWKTDurObject(dec, x.FDurationNative1); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FDurationNative1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationNative1 == nil {
-				x.FDurationNative1 = make([]*durationpb.Duration, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *durationpb.Duration
-				if i >= len(x.FDurationNative1) {
-					x.FDurationNative1 = append(x.FDurationNative1, vv)
-				}
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FDurationNative1[i] != nil {
-						vv = x.FDurationNative1[i]
-					} else {
-						vv = new(durationpb.Duration)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FDurationNative1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FDurationNative1 = x.FDurationNative1[:i]
 		case "f_duration_string1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FDurationString1, err = jsondecoder.ReadListWKTDurTimeStr(dec, x.FDurationString1); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FDurationString1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationString1 == nil {
-				x.FDurationString1 = make([]*durationpb.Duration, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *durationpb.Duration
-				if i >= len(x.FDurationString1) {
-					x.FDurationString1 = append(x.FDurationString1, vv)
-				}
-				if x.FDurationString1[i] != nil {
-					vv = x.FDurationString1[i]
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadWKTDurationByString(jsonKey, vv); err != nil {
-					return err
-				}
-				x.FDurationString1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FDurationString1 = x.FDurationString1[:i]
 		case "f_duration_nanosecond1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FDurationNanosecond1, err = jsondecoder.ReadListWKTDurNano(dec, x.FDurationNanosecond1, false); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FDurationNanosecond1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationNanosecond1 == nil {
-				x.FDurationNanosecond1 = make([]*durationpb.Duration, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *durationpb.Duration
-				if i >= len(x.FDurationNanosecond1) {
-					x.FDurationNanosecond1 = append(x.FDurationNanosecond1, vv)
-				}
-				if x.FDurationNanosecond1[i] != nil {
-					vv = x.FDurationNanosecond1[i]
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadWKTDurationByNanoseconds(jsonKey, vv, false); err != nil {
-					return err
-				}
-				x.FDurationNanosecond1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FDurationNanosecond1 = x.FDurationNanosecond1[:i]
 		case "f_duration_nanosecond_string1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FDurationNanosecondString1, err = jsondecoder.ReadListWKTDurNano(dec, x.FDurationNanosecondString1, true); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FDurationNanosecondString1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationNanosecondString1 == nil {
-				x.FDurationNanosecondString1 = make([]*durationpb.Duration, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *durationpb.Duration
-				if i >= len(x.FDurationNanosecondString1) {
-					x.FDurationNanosecondString1 = append(x.FDurationNanosecondString1, vv)
-				}
-				if x.FDurationNanosecondString1[i] != nil {
-					vv = x.FDurationNanosecondString1[i]
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadWKTDurationByNanoseconds(jsonKey, vv, true); err != nil {
-					return err
-				}
-				x.FDurationNanosecondString1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FDurationNanosecondString1 = x.FDurationNanosecondString1[:i]
 		case "f_duration_microsecond1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FDurationMicrosecond1, err = jsondecoder.ReadListWKTDurMicro(dec, x.FDurationMicrosecond1, false); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FDurationMicrosecond1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationMicrosecond1 == nil {
-				x.FDurationMicrosecond1 = make([]*durationpb.Duration, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *durationpb.Duration
-				if i >= len(x.FDurationMicrosecond1) {
-					x.FDurationMicrosecond1 = append(x.FDurationMicrosecond1, vv)
-				}
-				if x.FDurationMicrosecond1[i] != nil {
-					vv = x.FDurationMicrosecond1[i]
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadWKTDurationByMicroseconds(jsonKey, vv, false); err != nil {
-					return err
-				}
-				x.FDurationMicrosecond1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FDurationMicrosecond1 = x.FDurationMicrosecond1[:i]
 		case "f_duration_microsecond_string1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FDurationMicrosecondString1, err = jsondecoder.ReadListWKTDurMicro(dec, x.FDurationMicrosecondString1, true); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FDurationMicrosecondString1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationMicrosecondString1 == nil {
-				x.FDurationMicrosecondString1 = make([]*durationpb.Duration, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *durationpb.Duration
-				if i >= len(x.FDurationMicrosecondString1) {
-					x.FDurationMicrosecondString1 = append(x.FDurationMicrosecondString1, vv)
-				}
-				if x.FDurationMicrosecondString1[i] != nil {
-					vv = x.FDurationMicrosecondString1[i]
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadWKTDurationByMicroseconds(jsonKey, vv, true); err != nil {
-					return err
-				}
-				x.FDurationMicrosecondString1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FDurationMicrosecondString1 = x.FDurationMicrosecondString1[:i]
 		case "f_duration_millisecond1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FDurationMillisecond1, err = jsondecoder.ReadListWKTDurMilli(dec, x.FDurationMillisecond1, false); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FDurationMillisecond1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationMillisecond1 == nil {
-				x.FDurationMillisecond1 = make([]*durationpb.Duration, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *durationpb.Duration
-				if i >= len(x.FDurationMillisecond1) {
-					x.FDurationMillisecond1 = append(x.FDurationMillisecond1, vv)
-				}
-				if x.FDurationMillisecond1[i] != nil {
-					vv = x.FDurationMillisecond1[i]
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadWKTDurationByMilliseconds(jsonKey, vv, false); err != nil {
-					return err
-				}
-				x.FDurationMillisecond1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FDurationMillisecond1 = x.FDurationMillisecond1[:i]
 		case "f_duration_millisecond_string1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FDurationMillisecondString1, err = jsondecoder.ReadListWKTDurMilli(dec, x.FDurationMillisecondString1, true); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FDurationMillisecondString1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationMillisecondString1 == nil {
-				x.FDurationMillisecondString1 = make([]*durationpb.Duration, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *durationpb.Duration
-				if i >= len(x.FDurationMillisecondString1) {
-					x.FDurationMillisecondString1 = append(x.FDurationMillisecondString1, vv)
-				}
-				if x.FDurationMillisecondString1[i] != nil {
-					vv = x.FDurationMillisecondString1[i]
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadWKTDurationByMilliseconds(jsonKey, vv, true); err != nil {
-					return err
-				}
-				x.FDurationMillisecondString1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FDurationMillisecondString1 = x.FDurationMillisecondString1[:i]
 		case "f_duration_second1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FDurationSecond1, err = jsondecoder.ReadListWKTDurSecond(dec, x.FDurationSecond1, false); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FDurationSecond1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationSecond1 == nil {
-				x.FDurationSecond1 = make([]*durationpb.Duration, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *durationpb.Duration
-				if i >= len(x.FDurationSecond1) {
-					x.FDurationSecond1 = append(x.FDurationSecond1, vv)
-				}
-				if x.FDurationSecond1[i] != nil {
-					vv = x.FDurationSecond1[i]
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadWKTDurationBySeconds(jsonKey, vv, false); err != nil {
-					return err
-				}
-				x.FDurationSecond1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FDurationSecond1 = x.FDurationSecond1[:i]
 		case "f_duration_second_string1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FDurationSecondString1, err = jsondecoder.ReadListWKTDurSecond(dec, x.FDurationSecondString1, true); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FDurationSecondString1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationSecondString1 == nil {
-				x.FDurationSecondString1 = make([]*durationpb.Duration, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *durationpb.Duration
-				if i >= len(x.FDurationSecondString1) {
-					x.FDurationSecondString1 = append(x.FDurationSecondString1, vv)
-				}
-				if x.FDurationSecondString1[i] != nil {
-					vv = x.FDurationSecondString1[i]
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadWKTDurationBySeconds(jsonKey, vv, true); err != nil {
-					return err
-				}
-				x.FDurationSecondString1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FDurationSecondString1 = x.FDurationSecondString1[:i]
 		case "f_duration_minute1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FDurationMinute1, err = jsondecoder.ReadListWKTDurMinute(dec, x.FDurationMinute1, false); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FDurationMinute1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationMinute1 == nil {
-				x.FDurationMinute1 = make([]*durationpb.Duration, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *durationpb.Duration
-				if i >= len(x.FDurationMinute1) {
-					x.FDurationMinute1 = append(x.FDurationMinute1, vv)
-				}
-				if x.FDurationMinute1[i] != nil {
-					vv = x.FDurationMinute1[i]
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadWKTDurationByMinutes(jsonKey, vv, false); err != nil {
-					return err
-				}
-				x.FDurationMinute1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FDurationMinute1 = x.FDurationMinute1[:i]
 		case "f_duration_minute_string1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FDurationMinuteString1, err = jsondecoder.ReadListWKTDurMinute(dec, x.FDurationMinuteString1, true); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FDurationMinuteString1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationMinuteString1 == nil {
-				x.FDurationMinuteString1 = make([]*durationpb.Duration, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *durationpb.Duration
-				if i >= len(x.FDurationMinuteString1) {
-					x.FDurationMinuteString1 = append(x.FDurationMinuteString1, vv)
-				}
-				if x.FDurationMinuteString1[i] != nil {
-					vv = x.FDurationMinuteString1[i]
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadWKTDurationByMinutes(jsonKey, vv, true); err != nil {
-					return err
-				}
-				x.FDurationMinuteString1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FDurationMinuteString1 = x.FDurationMinuteString1[:i]
 		case "f_duration_hour1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FDurationHour1, err = jsondecoder.ReadListWKTDurHour(dec, x.FDurationHour1, false); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FDurationHour1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationHour1 == nil {
-				x.FDurationHour1 = make([]*durationpb.Duration, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *durationpb.Duration
-				if i >= len(x.FDurationHour1) {
-					x.FDurationHour1 = append(x.FDurationHour1, vv)
-				}
-				if x.FDurationHour1[i] != nil {
-					vv = x.FDurationHour1[i]
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadWKTDurationByHours(jsonKey, vv, false); err != nil {
-					return err
-				}
-				x.FDurationHour1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FDurationHour1 = x.FDurationHour1[:i]
 		case "f_duration_hour_string1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FDurationHourString1, err = jsondecoder.ReadListWKTDurHour(dec, x.FDurationHourString1, true); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FDurationHourString1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FDurationHourString1 == nil {
-				x.FDurationHourString1 = make([]*durationpb.Duration, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *durationpb.Duration
-				if i >= len(x.FDurationHourString1) {
-					x.FDurationHourString1 = append(x.FDurationHourString1, vv)
-				}
-				if x.FDurationHourString1[i] != nil {
-					vv = x.FDurationHourString1[i]
-				} else {
-					vv = new(durationpb.Duration)
-				}
-				if err = decoder.ReadWKTDurationByHours(jsonKey, vv, true); err != nil {
-					return err
-				}
-				x.FDurationHourString1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FDurationHourString1 = x.FDurationHourString1[:i]
 		case "f_timestamp_native1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FTimestampNative1, err = jsondecoder.ReadListWKTTsObject(dec, x.FTimestampNative1); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FTimestampNative1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FTimestampNative1 == nil {
-				x.FTimestampNative1 = make([]*timestamppb.Timestamp, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *timestamppb.Timestamp
-				if i >= len(x.FTimestampNative1) {
-					x.FTimestampNative1 = append(x.FTimestampNative1, vv)
-				}
-				if isNULL, err = decoder.NextLiteralIsNULL(jsonKey); err != nil {
-					return err
-				}
-				if !isNULL {
-					if x.FTimestampNative1[i] != nil {
-						vv = x.FTimestampNative1[i]
-					} else {
-						vv = new(timestamppb.Timestamp)
-					}
-					if err = decoder.ReadLiteralInterface(jsonKey, vv); err != nil {
-						return err
-					}
-				}
-				x.FTimestampNative1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FTimestampNative1 = x.FTimestampNative1[:i]
 		case "f_timestamp_time_layout1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FTimestampTimeLayout1, err = jsondecoder.ReadListWKTTsLayout(dec, x.FTimestampTimeLayout1, "2006-01-02T15:04:05Z07:00"); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FTimestampTimeLayout1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FTimestampTimeLayout1 == nil {
-				x.FTimestampTimeLayout1 = make([]*timestamppb.Timestamp, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *timestamppb.Timestamp
-				if i >= len(x.FTimestampTimeLayout1) {
-					x.FTimestampTimeLayout1 = append(x.FTimestampTimeLayout1, vv)
-				}
-				if x.FTimestampTimeLayout1[i] != nil {
-					vv = x.FTimestampTimeLayout1[i]
-				} else {
-					vv = new(timestamppb.Timestamp)
-				}
-				if err = decoder.ReadWKTTimestampByString(jsonKey, vv, "2006-01-02T15:04:05Z07:00"); err != nil {
-					return err
-				}
-				x.FTimestampTimeLayout1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FTimestampTimeLayout1 = x.FTimestampTimeLayout1[:i]
 		case "f_timestamp_unix_nano1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FTimestampUnixNano1, err = jsondecoder.ReadListWKTTsUnixNano(dec, x.FTimestampUnixNano1, false); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FTimestampUnixNano1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FTimestampUnixNano1 == nil {
-				x.FTimestampUnixNano1 = make([]*timestamppb.Timestamp, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *timestamppb.Timestamp
-				if i >= len(x.FTimestampUnixNano1) {
-					x.FTimestampUnixNano1 = append(x.FTimestampUnixNano1, vv)
-				}
-				if x.FTimestampUnixNano1[i] != nil {
-					vv = x.FTimestampUnixNano1[i]
-				} else {
-					vv = new(timestamppb.Timestamp)
-				}
-				if err = decoder.ReadWKTTimestampByUnixNano(jsonKey, vv, false); err != nil {
-					return err
-				}
-				x.FTimestampUnixNano1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FTimestampUnixNano1 = x.FTimestampUnixNano1[:i]
 		case "f_timestamp_unix_nano_string1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FTimestampUnixNanoString1, err = jsondecoder.ReadListWKTTsUnixNano(dec, x.FTimestampUnixNanoString1, true); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FTimestampUnixNanoString1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FTimestampUnixNanoString1 == nil {
-				x.FTimestampUnixNanoString1 = make([]*timestamppb.Timestamp, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *timestamppb.Timestamp
-				if i >= len(x.FTimestampUnixNanoString1) {
-					x.FTimestampUnixNanoString1 = append(x.FTimestampUnixNanoString1, vv)
-				}
-				if x.FTimestampUnixNanoString1[i] != nil {
-					vv = x.FTimestampUnixNanoString1[i]
-				} else {
-					vv = new(timestamppb.Timestamp)
-				}
-				if err = decoder.ReadWKTTimestampByUnixNano(jsonKey, vv, true); err != nil {
-					return err
-				}
-				x.FTimestampUnixNanoString1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FTimestampUnixNanoString1 = x.FTimestampUnixNanoString1[:i]
 		case "f_timestamp_unix_micro1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FTimestampUnixMicro1, err = jsondecoder.ReadListWKTTsUnixMicro(dec, x.FTimestampUnixMicro1, false); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FTimestampUnixMicro1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FTimestampUnixMicro1 == nil {
-				x.FTimestampUnixMicro1 = make([]*timestamppb.Timestamp, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *timestamppb.Timestamp
-				if i >= len(x.FTimestampUnixMicro1) {
-					x.FTimestampUnixMicro1 = append(x.FTimestampUnixMicro1, vv)
-				}
-				if x.FTimestampUnixMicro1[i] != nil {
-					vv = x.FTimestampUnixMicro1[i]
-				} else {
-					vv = new(timestamppb.Timestamp)
-				}
-				if err = decoder.ReadWKTTimestampByUnixMicro(jsonKey, vv, false); err != nil {
-					return err
-				}
-				x.FTimestampUnixMicro1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FTimestampUnixMicro1 = x.FTimestampUnixMicro1[:i]
 		case "f_timestamp_unix_micro_string1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FTimestampUnixMicroString1, err = jsondecoder.ReadListWKTTsUnixMicro(dec, x.FTimestampUnixMicroString1, true); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FTimestampUnixMicroString1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FTimestampUnixMicroString1 == nil {
-				x.FTimestampUnixMicroString1 = make([]*timestamppb.Timestamp, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *timestamppb.Timestamp
-				if i >= len(x.FTimestampUnixMicroString1) {
-					x.FTimestampUnixMicroString1 = append(x.FTimestampUnixMicroString1, vv)
-				}
-				if x.FTimestampUnixMicroString1[i] != nil {
-					vv = x.FTimestampUnixMicroString1[i]
-				} else {
-					vv = new(timestamppb.Timestamp)
-				}
-				if err = decoder.ReadWKTTimestampByUnixMicro(jsonKey, vv, true); err != nil {
-					return err
-				}
-				x.FTimestampUnixMicroString1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FTimestampUnixMicroString1 = x.FTimestampUnixMicroString1[:i]
 		case "f_timestamp_unix_milli1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FTimestampUnixMilli1, err = jsondecoder.ReadListWKTTsUnixMilli(dec, x.FTimestampUnixMilli1, false); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FTimestampUnixMilli1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FTimestampUnixMilli1 == nil {
-				x.FTimestampUnixMilli1 = make([]*timestamppb.Timestamp, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *timestamppb.Timestamp
-				if i >= len(x.FTimestampUnixMilli1) {
-					x.FTimestampUnixMilli1 = append(x.FTimestampUnixMilli1, vv)
-				}
-				if x.FTimestampUnixMilli1[i] != nil {
-					vv = x.FTimestampUnixMilli1[i]
-				} else {
-					vv = new(timestamppb.Timestamp)
-				}
-				if err = decoder.ReadWKTTimestampByUnixMilli(jsonKey, vv, false); err != nil {
-					return err
-				}
-				x.FTimestampUnixMilli1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FTimestampUnixMilli1 = x.FTimestampUnixMilli1[:i]
 		case "f_timestamp_unix_milli_string1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FTimestampUnixMilliString1, err = jsondecoder.ReadListWKTTsUnixMilli(dec, x.FTimestampUnixMilliString1, true); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FTimestampUnixMilliString1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FTimestampUnixMilliString1 == nil {
-				x.FTimestampUnixMilliString1 = make([]*timestamppb.Timestamp, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *timestamppb.Timestamp
-				if i >= len(x.FTimestampUnixMilliString1) {
-					x.FTimestampUnixMilliString1 = append(x.FTimestampUnixMilliString1, vv)
-				}
-				if x.FTimestampUnixMilliString1[i] != nil {
-					vv = x.FTimestampUnixMilliString1[i]
-				} else {
-					vv = new(timestamppb.Timestamp)
-				}
-				if err = decoder.ReadWKTTimestampByUnixMilli(jsonKey, vv, true); err != nil {
-					return err
-				}
-				x.FTimestampUnixMilliString1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FTimestampUnixMilliString1 = x.FTimestampUnixMilliString1[:i]
 		case "f_timestamp_unix_sec1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FTimestampUnixSec1, err = jsondecoder.ReadListWKTTsUnixSec(dec, x.FTimestampUnixSec1, false); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FTimestampUnixSec1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FTimestampUnixSec1 == nil {
-				x.FTimestampUnixSec1 = make([]*timestamppb.Timestamp, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *timestamppb.Timestamp
-				if i >= len(x.FTimestampUnixSec1) {
-					x.FTimestampUnixSec1 = append(x.FTimestampUnixSec1, vv)
-				}
-				if x.FTimestampUnixSec1[i] != nil {
-					vv = x.FTimestampUnixSec1[i]
-				} else {
-					vv = new(timestamppb.Timestamp)
-				}
-				if err = decoder.ReadWKTTimestampByUnixSec(jsonKey, vv, false); err != nil {
-					return err
-				}
-				x.FTimestampUnixSec1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FTimestampUnixSec1 = x.FTimestampUnixSec1[:i]
 		case "f_timestamp_unix_sec_string1":
-			if isNULL, err = decoder.BeforeReadArray(jsonKey); err != nil {
+			if x.FTimestampUnixSecString1, err = jsondecoder.ReadListWKTTsUnixSec(dec, x.FTimestampUnixSecString1, true); err != nil {
 				return err
 			}
-			if isNULL {
-				x.FTimestampUnixSecString1 = nil
-				continue LOOP_SCAN
-			}
-			if x.FTimestampUnixSecString1 == nil {
-				x.FTimestampUnixSecString1 = make([]*timestamppb.Timestamp, 0)
-			}
-			i := 0
-			for {
-				if isEnd, err = decoder.BeforeReadNext(jsonKey); err != nil {
-					return err
-				}
-				if isEnd {
-					break
-				}
-				var vv *timestamppb.Timestamp
-				if i >= len(x.FTimestampUnixSecString1) {
-					x.FTimestampUnixSecString1 = append(x.FTimestampUnixSecString1, vv)
-				}
-				if x.FTimestampUnixSecString1[i] != nil {
-					vv = x.FTimestampUnixSecString1[i]
-				} else {
-					vv = new(timestamppb.Timestamp)
-				}
-				if err = decoder.ReadWKTTimestampByUnixSec(jsonKey, vv, true); err != nil {
-					return err
-				}
-				x.FTimestampUnixSecString1[i] = vv
-				i++
-			}
-			// truncate the slice to consistent with standard library json.
-			x.FTimestampUnixSecString1 = x.FTimestampUnixSecString1[:i]
 		default:
-			if err = decoder.DiscardValue(jsonKey); err != nil {
+			if err = dec.DiscardValue(); err != nil {
 				return err
 			}
 		} // end switch
