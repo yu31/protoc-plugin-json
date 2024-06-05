@@ -5,28 +5,28 @@ package io.github.yu31.protoc.pb.pbjson;
 
 /**
  * <pre>
- * MapOptions declares the options applied to the field map.
+ * TypeMap declares the codec applied to the field map.
  * </pre>
  *
- * Protobuf type {@code json.MapOptions}
+ * Protobuf type {@code json.TypeMap}
  */
-public final class MapOptions extends
+public final class TypeMap extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:json.MapOptions)
-    MapOptionsOrBuilder {
+    // @@protoc_insertion_point(message_implements:json.TypeMap)
+    TypeMapOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use MapOptions.newBuilder() to construct.
-  private MapOptions(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use TypeMap.newBuilder() to construct.
+  private TypeMap(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private MapOptions() {
+  private TypeMap() {
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new MapOptions();
+    return new TypeMap();
   }
 
   @java.lang.Override
@@ -34,7 +34,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private MapOptions(
+  private TypeMap(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -99,22 +99,22 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_MapOptions_descriptor;
+    return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeMap_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_MapOptions_fieldAccessorTable
+    return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeMap_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.github.yu31.protoc.pb.pbjson.MapOptions.class, io.github.yu31.protoc.pb.pbjson.MapOptions.Builder.class);
+            io.github.yu31.protoc.pb.pbjson.TypeMap.class, io.github.yu31.protoc.pb.pbjson.TypeMap.Builder.class);
   }
 
   public static final int KEY_FIELD_NUMBER = 1;
   private io.github.yu31.protoc.pb.pbjson.TypeCodec key_;
   /**
    * <pre>
-   * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+   * Key reports the codec of map key.
    * </pre>
    *
    * <code>.json.TypeCodec key = 1;</code>
@@ -126,7 +126,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+   * Key reports the codec of map key.
    * </pre>
    *
    * <code>.json.TypeCodec key = 1;</code>
@@ -138,7 +138,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+   * Key reports the codec of map key.
    * </pre>
    *
    * <code>.json.TypeCodec key = 1;</code>
@@ -151,6 +151,10 @@ private static final long serialVersionUID = 0L;
   public static final int VALUE_FIELD_NUMBER = 2;
   private io.github.yu31.protoc.pb.pbjson.TypeCodec value_;
   /**
+   * <pre>
+   * Value reports the codec of map value.
+   * </pre>
+   *
    * <code>.json.TypeCodec value = 2;</code>
    * @return Whether the value field is set.
    */
@@ -159,6 +163,10 @@ private static final long serialVersionUID = 0L;
     return value_ != null;
   }
   /**
+   * <pre>
+   * Value reports the codec of map value.
+   * </pre>
+   *
    * <code>.json.TypeCodec value = 2;</code>
    * @return The value.
    */
@@ -167,6 +175,10 @@ private static final long serialVersionUID = 0L;
     return value_ == null ? io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : value_;
   }
   /**
+   * <pre>
+   * Value reports the codec of map value.
+   * </pre>
+   *
    * <code>.json.TypeCodec value = 2;</code>
    */
   @java.lang.Override
@@ -221,10 +233,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof io.github.yu31.protoc.pb.pbjson.MapOptions)) {
+    if (!(obj instanceof io.github.yu31.protoc.pb.pbjson.TypeMap)) {
       return super.equals(obj);
     }
-    io.github.yu31.protoc.pb.pbjson.MapOptions other = (io.github.yu31.protoc.pb.pbjson.MapOptions) obj;
+    io.github.yu31.protoc.pb.pbjson.TypeMap other = (io.github.yu31.protoc.pb.pbjson.TypeMap) obj;
 
     if (hasKey() != other.hasKey()) return false;
     if (hasKey()) {
@@ -260,69 +272,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static io.github.yu31.protoc.pb.pbjson.MapOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeMap parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MapOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeMap parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MapOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeMap parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MapOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeMap parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MapOptions parseFrom(byte[] data)
+  public static io.github.yu31.protoc.pb.pbjson.TypeMap parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MapOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeMap parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MapOptions parseFrom(java.io.InputStream input)
+  public static io.github.yu31.protoc.pb.pbjson.TypeMap parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MapOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeMap parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MapOptions parseDelimitedFrom(java.io.InputStream input)
+  public static io.github.yu31.protoc.pb.pbjson.TypeMap parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MapOptions parseDelimitedFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeMap parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MapOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeMap parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static io.github.yu31.protoc.pb.pbjson.MapOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeMap parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -335,7 +347,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(io.github.yu31.protoc.pb.pbjson.MapOptions prototype) {
+  public static Builder newBuilder(io.github.yu31.protoc.pb.pbjson.TypeMap prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -352,29 +364,29 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * MapOptions declares the options applied to the field map.
+   * TypeMap declares the codec applied to the field map.
    * </pre>
    *
-   * Protobuf type {@code json.MapOptions}
+   * Protobuf type {@code json.TypeMap}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:json.MapOptions)
-      io.github.yu31.protoc.pb.pbjson.MapOptionsOrBuilder {
+      // @@protoc_insertion_point(builder_implements:json.TypeMap)
+      io.github.yu31.protoc.pb.pbjson.TypeMapOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_MapOptions_descriptor;
+      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeMap_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_MapOptions_fieldAccessorTable
+      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeMap_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              io.github.yu31.protoc.pb.pbjson.MapOptions.class, io.github.yu31.protoc.pb.pbjson.MapOptions.Builder.class);
+              io.github.yu31.protoc.pb.pbjson.TypeMap.class, io.github.yu31.protoc.pb.pbjson.TypeMap.Builder.class);
     }
 
-    // Construct using io.github.yu31.protoc.pb.pbjson.MapOptions.newBuilder()
+    // Construct using io.github.yu31.protoc.pb.pbjson.TypeMap.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -410,17 +422,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_MapOptions_descriptor;
+      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeMap_descriptor;
     }
 
     @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.MapOptions getDefaultInstanceForType() {
-      return io.github.yu31.protoc.pb.pbjson.MapOptions.getDefaultInstance();
+    public io.github.yu31.protoc.pb.pbjson.TypeMap getDefaultInstanceForType() {
+      return io.github.yu31.protoc.pb.pbjson.TypeMap.getDefaultInstance();
     }
 
     @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.MapOptions build() {
-      io.github.yu31.protoc.pb.pbjson.MapOptions result = buildPartial();
+    public io.github.yu31.protoc.pb.pbjson.TypeMap build() {
+      io.github.yu31.protoc.pb.pbjson.TypeMap result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -428,8 +440,8 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.MapOptions buildPartial() {
-      io.github.yu31.protoc.pb.pbjson.MapOptions result = new io.github.yu31.protoc.pb.pbjson.MapOptions(this);
+    public io.github.yu31.protoc.pb.pbjson.TypeMap buildPartial() {
+      io.github.yu31.protoc.pb.pbjson.TypeMap result = new io.github.yu31.protoc.pb.pbjson.TypeMap(this);
       if (keyBuilder_ == null) {
         result.key_ = key_;
       } else {
@@ -478,16 +490,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.github.yu31.protoc.pb.pbjson.MapOptions) {
-        return mergeFrom((io.github.yu31.protoc.pb.pbjson.MapOptions)other);
+      if (other instanceof io.github.yu31.protoc.pb.pbjson.TypeMap) {
+        return mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeMap)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(io.github.yu31.protoc.pb.pbjson.MapOptions other) {
-      if (other == io.github.yu31.protoc.pb.pbjson.MapOptions.getDefaultInstance()) return this;
+    public Builder mergeFrom(io.github.yu31.protoc.pb.pbjson.TypeMap other) {
+      if (other == io.github.yu31.protoc.pb.pbjson.TypeMap.getDefaultInstance()) return this;
       if (other.hasKey()) {
         mergeKey(other.getKey());
       }
@@ -509,11 +521,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      io.github.yu31.protoc.pb.pbjson.MapOptions parsedMessage = null;
+      io.github.yu31.protoc.pb.pbjson.TypeMap parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.github.yu31.protoc.pb.pbjson.MapOptions) e.getUnfinishedMessage();
+        parsedMessage = (io.github.yu31.protoc.pb.pbjson.TypeMap) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -528,7 +540,7 @@ private static final long serialVersionUID = 0L;
         io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder> keyBuilder_;
     /**
      * <pre>
-     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * Key reports the codec of map key.
      * </pre>
      *
      * <code>.json.TypeCodec key = 1;</code>
@@ -539,7 +551,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * Key reports the codec of map key.
      * </pre>
      *
      * <code>.json.TypeCodec key = 1;</code>
@@ -554,7 +566,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * Key reports the codec of map key.
      * </pre>
      *
      * <code>.json.TypeCodec key = 1;</code>
@@ -574,7 +586,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * Key reports the codec of map key.
      * </pre>
      *
      * <code>.json.TypeCodec key = 1;</code>
@@ -592,7 +604,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * Key reports the codec of map key.
      * </pre>
      *
      * <code>.json.TypeCodec key = 1;</code>
@@ -614,7 +626,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * Key reports the codec of map key.
      * </pre>
      *
      * <code>.json.TypeCodec key = 1;</code>
@@ -632,7 +644,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * Key reports the codec of map key.
      * </pre>
      *
      * <code>.json.TypeCodec key = 1;</code>
@@ -644,7 +656,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * Key reports the codec of map key.
      * </pre>
      *
      * <code>.json.TypeCodec key = 1;</code>
@@ -659,7 +671,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+     * Key reports the codec of map key.
      * </pre>
      *
      * <code>.json.TypeCodec key = 1;</code>
@@ -682,6 +694,10 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder> valueBuilder_;
     /**
+     * <pre>
+     * Value reports the codec of map value.
+     * </pre>
+     *
      * <code>.json.TypeCodec value = 2;</code>
      * @return Whether the value field is set.
      */
@@ -689,6 +705,10 @@ private static final long serialVersionUID = 0L;
       return valueBuilder_ != null || value_ != null;
     }
     /**
+     * <pre>
+     * Value reports the codec of map value.
+     * </pre>
+     *
      * <code>.json.TypeCodec value = 2;</code>
      * @return The value.
      */
@@ -700,6 +720,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Value reports the codec of map value.
+     * </pre>
+     *
      * <code>.json.TypeCodec value = 2;</code>
      */
     public Builder setValue(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
@@ -716,6 +740,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Value reports the codec of map value.
+     * </pre>
+     *
      * <code>.json.TypeCodec value = 2;</code>
      */
     public Builder setValue(
@@ -730,6 +758,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Value reports the codec of map value.
+     * </pre>
+     *
      * <code>.json.TypeCodec value = 2;</code>
      */
     public Builder mergeValue(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
@@ -748,6 +780,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Value reports the codec of map value.
+     * </pre>
+     *
      * <code>.json.TypeCodec value = 2;</code>
      */
     public Builder clearValue() {
@@ -762,6 +798,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Value reports the codec of map value.
+     * </pre>
+     *
      * <code>.json.TypeCodec value = 2;</code>
      */
     public io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder getValueBuilder() {
@@ -770,6 +810,10 @@ private static final long serialVersionUID = 0L;
       return getValueFieldBuilder().getBuilder();
     }
     /**
+     * <pre>
+     * Value reports the codec of map value.
+     * </pre>
+     *
      * <code>.json.TypeCodec value = 2;</code>
      */
     public io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getValueOrBuilder() {
@@ -781,6 +825,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Value reports the codec of map value.
+     * </pre>
+     *
      * <code>.json.TypeCodec value = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
@@ -809,41 +857,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:json.MapOptions)
+    // @@protoc_insertion_point(builder_scope:json.TypeMap)
   }
 
-  // @@protoc_insertion_point(class_scope:json.MapOptions)
-  private static final io.github.yu31.protoc.pb.pbjson.MapOptions DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:json.TypeMap)
+  private static final io.github.yu31.protoc.pb.pbjson.TypeMap DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new io.github.yu31.protoc.pb.pbjson.MapOptions();
+    DEFAULT_INSTANCE = new io.github.yu31.protoc.pb.pbjson.TypeMap();
   }
 
-  public static io.github.yu31.protoc.pb.pbjson.MapOptions getDefaultInstance() {
+  public static io.github.yu31.protoc.pb.pbjson.TypeMap getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<MapOptions>
-      PARSER = new com.google.protobuf.AbstractParser<MapOptions>() {
+  private static final com.google.protobuf.Parser<TypeMap>
+      PARSER = new com.google.protobuf.AbstractParser<TypeMap>() {
     @java.lang.Override
-    public MapOptions parsePartialFrom(
+    public TypeMap parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new MapOptions(input, extensionRegistry);
+      return new TypeMap(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<MapOptions> parser() {
+  public static com.google.protobuf.Parser<TypeMap> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<MapOptions> getParserForType() {
+  public com.google.protobuf.Parser<TypeMap> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.MapOptions getDefaultInstanceForType() {
+  public io.github.yu31.protoc.pb.pbjson.TypeMap getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

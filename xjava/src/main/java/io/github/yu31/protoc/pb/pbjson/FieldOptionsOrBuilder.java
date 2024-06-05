@@ -10,7 +10,6 @@ public interface FieldOptionsOrBuilder extends
   /**
    * <pre>
    * The key name in JSON content. Default is the field's name in proto file.
-   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>optional string json = 1;</code>
@@ -20,7 +19,6 @@ public interface FieldOptionsOrBuilder extends
   /**
    * <pre>
    * The key name in JSON content. Default is the field's name in proto file.
-   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>optional string json = 1;</code>
@@ -30,7 +28,6 @@ public interface FieldOptionsOrBuilder extends
   /**
    * <pre>
    * The key name in JSON content. Default is the field's name in proto file.
-   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>optional string json = 1;</code>
@@ -42,7 +39,6 @@ public interface FieldOptionsOrBuilder extends
   /**
    * <pre>
    * The field will be ignored if true.
-   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>bool ignore = 2;</code>
@@ -65,11 +61,11 @@ public interface FieldOptionsOrBuilder extends
    * <pre>
    * Inline indicates whether directly expand all fields of message type fields in current areas.
    * If the `inline` is true for a message field:
-   *     - The null value will be omitted in JSON content.
-   *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
-   * It effect the MarshalJSON and UnmarshalJSON.
-   * 只对 message 类型的字段有效.只允许对 message 类型的字段设置？
-   * 不允许对循环调用的 message 设置 inline.
+   *  - The null value will be omitted in JSON content.
+   *  - The json key of oneof fields cannot be conflict with the fields that in current structure.
+   * Limit: TODO: Supplementary test cases
+   *  - Only support for field type message.
+   *  - Circular references are not allowed
    * </pre>
    *
    * <code>optional bool inline = 4;</code>
@@ -80,11 +76,11 @@ public interface FieldOptionsOrBuilder extends
    * <pre>
    * Inline indicates whether directly expand all fields of message type fields in current areas.
    * If the `inline` is true for a message field:
-   *     - The null value will be omitted in JSON content.
-   *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
-   * It effect the MarshalJSON and UnmarshalJSON.
-   * 只对 message 类型的字段有效.只允许对 message 类型的字段设置？
-   * 不允许对循环调用的 message 设置 inline.
+   *  - The null value will be omitted in JSON content.
+   *  - The json key of oneof fields cannot be conflict with the fields that in current structure.
+   * Limit: TODO: Supplementary test cases
+   *  - Only support for field type message.
+   *  - Circular references are not allowed
    * </pre>
    *
    * <code>optional bool inline = 4;</code>
@@ -94,28 +90,28 @@ public interface FieldOptionsOrBuilder extends
 
   /**
    * <pre>
-   * Format set for field.
+   * Reference reports the codec set for field.
    * </pre>
    *
-   * <code>.json.TypeReference reference = 11;</code>
+   * <code>.json.TypeCodec reference = 11;</code>
    * @return Whether the reference field is set.
    */
   boolean hasReference();
   /**
    * <pre>
-   * Format set for field.
+   * Reference reports the codec set for field.
    * </pre>
    *
-   * <code>.json.TypeReference reference = 11;</code>
+   * <code>.json.TypeCodec reference = 11;</code>
    * @return The reference.
    */
-  io.github.yu31.protoc.pb.pbjson.TypeReference getReference();
+  io.github.yu31.protoc.pb.pbjson.TypeCodec getReference();
   /**
    * <pre>
-   * Format set for field.
+   * Reference reports the codec set for field.
    * </pre>
    *
-   * <code>.json.TypeReference reference = 11;</code>
+   * <code>.json.TypeCodec reference = 11;</code>
    */
-  io.github.yu31.protoc.pb.pbjson.TypeReferenceOrBuilder getReferenceOrBuilder();
+  io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getReferenceOrBuilder();
 }

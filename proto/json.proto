@@ -79,40 +79,8 @@ message FieldOptions {
   //  - Circular references are not allowed
   optional bool inline = 4;
 
-  // reference set for field.
-  TypeReference reference = 11;
-}
-
-message TypeReference {
-  oneof Kind {
-    // PlainOptions declares the tags applied to the plain field.
-    PlainOptions plain = 1;
-
-    // RepeatedOptions declares the tags applied to the repeated field.
-    RepeatedOptions repeated = 2;
-
-    // MapTags declares the tags applied to the map field.
-    MapOptions map = 3;
-  }
-}
-
-// PlainOptions declares the options applied to the field plain.
-message PlainOptions {
-  // value declares the default value for field.
-  TypeCodec value = 1;
-}
-
-// RepeatedOptions declares the options applied to the field repeated.
-message RepeatedOptions {
-  TypeCodec elem = 1;
-}
-
-// MapOptions declares the options applied to the field map.
-message MapOptions {
-  // For defaults, the field type are integer and bool will be format with String.
-  TypeCodec key = 1;
-
-  TypeCodec value = 2;
+  // Reference reports the codec set for field.
+  TypeCodec reference = 11;
 }
 
 message TypeCodec {
@@ -132,18 +100,34 @@ message TypeCodec {
     TypeDouble double = 12;
 
     TypeBool bool = 13;
+    TypeEnum enum = 14;
 
-    TypeString  string = 14; // Reserved.
-    TypeBytes   bytes  = 15; // Reserved.
-
-    TypeEnum enum = 16;
-
-    TypeMessage message = 17;
+    TypeString  string  = 15; // Reserved.
+    TypeBytes   bytes   = 16; // Reserved.
+    TypeMessage message = 17; // Reserved.
 
     TypeAny       any       = 21;
     TypeDuration  duration  = 22;
     TypeTimestamp timestamp = 23;
+
+    TypeRepeated repeated = 31;
+    TypeMap      map      = 32;
   }
+}
+
+// TypeRepeated declares the codec applied to the field repeated.
+message TypeRepeated {
+  // Elem reports the codec of repeated elements.
+  TypeCodec elem = 1;
+}
+
+// TypeMap declares the codec applied to the field map.
+message TypeMap {
+  // Key reports the codec of map key.
+  TypeCodec key = 1;
+
+  // Value reports the codec of map value.
+  TypeCodec value = 2;
 }
 
 // TypeInt32 declares the codec for field type int32.
@@ -390,16 +374,13 @@ message TypeBool {
   Codec codec = 1;
 }
 
-// TypeString declares the codec for field type string.
-// Reserve
+// TypeString declares the codec for field type string. Reserve
 message TypeString {
 }
-// TypeBytes declares the codec for field type bytes.
-// Reserve
+// TypeBytes declares the codec for field type bytes. Reserve
 message TypeBytes {
 }
-// TypeMessage declares the codec for field type message.
-// Reserve
+// TypeMessage declares the codec for field type message. Reserve
 message TypeMessage {
 }
 

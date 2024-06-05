@@ -109,7 +109,6 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * The key name in JSON content. Default is the field's name in proto file.
-   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>optional string json = 1;</code>
@@ -122,7 +121,6 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * The key name in JSON content. Default is the field's name in proto file.
-   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>optional string json = 1;</code>
@@ -144,7 +142,6 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * The key name in JSON content. Default is the field's name in proto file.
-   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>optional string json = 1;</code>
@@ -170,7 +167,6 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * The field and all fields in the oneof parts will be ignored if true.
-   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>bool ignore = 2;</code>
@@ -205,7 +201,6 @@ private static final long serialVersionUID = 0L;
    * If the `inline` is true for a oneof field:
    *     - The null value will be omitted in JSON content.
    *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
-   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>optional bool inline = 4;</code>
@@ -221,7 +216,6 @@ private static final long serialVersionUID = 0L;
    * If the `inline` is true for a oneof field:
    *     - The null value will be omitted in JSON content.
    *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
-   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>optional bool inline = 4;</code>
@@ -613,7 +607,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>optional string json = 1;</code>
@@ -625,7 +618,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>optional string json = 1;</code>
@@ -646,7 +638,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>optional string json = 1;</code>
@@ -668,7 +659,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>optional string json = 1;</code>
@@ -688,7 +678,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>optional string json = 1;</code>
@@ -703,7 +692,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>optional string json = 1;</code>
@@ -726,7 +714,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The field and all fields in the oneof parts will be ignored if true.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>bool ignore = 2;</code>
@@ -739,7 +726,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The field and all fields in the oneof parts will be ignored if true.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>bool ignore = 2;</code>
@@ -755,7 +741,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The field and all fields in the oneof parts will be ignored if true.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>bool ignore = 2;</code>
@@ -821,7 +806,6 @@ private static final long serialVersionUID = 0L;
      * If the `inline` is true for a oneof field:
      *     - The null value will be omitted in JSON content.
      *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>optional bool inline = 4;</code>
@@ -837,7 +821,6 @@ private static final long serialVersionUID = 0L;
      * If the `inline` is true for a oneof field:
      *     - The null value will be omitted in JSON content.
      *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>optional bool inline = 4;</code>
@@ -853,7 +836,6 @@ private static final long serialVersionUID = 0L;
      * If the `inline` is true for a oneof field:
      *     - The null value will be omitted in JSON content.
      *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>optional bool inline = 4;</code>
@@ -872,7 +854,6 @@ private static final long serialVersionUID = 0L;
      * If the `inline` is true for a oneof field:
      *     - The null value will be omitted in JSON content.
      *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>optional bool inline = 4;</code>

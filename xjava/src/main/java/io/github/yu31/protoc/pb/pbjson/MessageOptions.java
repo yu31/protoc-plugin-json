@@ -94,8 +94,7 @@ private static final long serialVersionUID = 0L;
   private boolean ignore_;
   /**
    * <pre>
-   * Whether ignore generating code for the this message.
-   * It effect the MarshalJSON and UnmarshalJSON.
+   * Ignore represents whether skip generating method MarshalJSON and UnmarshalJSON for the this message.
    * </pre>
    *
    * <code>bool ignore = 1;</code>
@@ -113,7 +112,7 @@ private static final long serialVersionUID = 0L;
    * disallow_unknown_fields causes the Unmarshal to return an error when the destination
    * is a struct and the input contains object keys which do not match any
    * non-ignored, exported fields in the destination.
-   * It effect the UnmarshalJSON.
+   * Only effect to UnmarshalJSON.
    * </pre>
    *
    * <code>bool disallow_unknown_fields = 2;</code>
@@ -448,8 +447,7 @@ private static final long serialVersionUID = 0L;
     private boolean ignore_ ;
     /**
      * <pre>
-     * Whether ignore generating code for the this message.
-     * It effect the MarshalJSON and UnmarshalJSON.
+     * Ignore represents whether skip generating method MarshalJSON and UnmarshalJSON for the this message.
      * </pre>
      *
      * <code>bool ignore = 1;</code>
@@ -461,8 +459,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Whether ignore generating code for the this message.
-     * It effect the MarshalJSON and UnmarshalJSON.
+     * Ignore represents whether skip generating method MarshalJSON and UnmarshalJSON for the this message.
      * </pre>
      *
      * <code>bool ignore = 1;</code>
@@ -477,8 +474,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Whether ignore generating code for the this message.
-     * It effect the MarshalJSON and UnmarshalJSON.
+     * Ignore represents whether skip generating method MarshalJSON and UnmarshalJSON for the this message.
      * </pre>
      *
      * <code>bool ignore = 1;</code>
@@ -497,7 +493,7 @@ private static final long serialVersionUID = 0L;
      * disallow_unknown_fields causes the Unmarshal to return an error when the destination
      * is a struct and the input contains object keys which do not match any
      * non-ignored, exported fields in the destination.
-     * It effect the UnmarshalJSON.
+     * Only effect to UnmarshalJSON.
      * </pre>
      *
      * <code>bool disallow_unknown_fields = 2;</code>
@@ -512,7 +508,7 @@ private static final long serialVersionUID = 0L;
      * disallow_unknown_fields causes the Unmarshal to return an error when the destination
      * is a struct and the input contains object keys which do not match any
      * non-ignored, exported fields in the destination.
-     * It effect the UnmarshalJSON.
+     * Only effect to UnmarshalJSON.
      * </pre>
      *
      * <code>bool disallow_unknown_fields = 2;</code>
@@ -530,7 +526,7 @@ private static final long serialVersionUID = 0L;
      * disallow_unknown_fields causes the Unmarshal to return an error when the destination
      * is a struct and the input contains object keys which do not match any
      * non-ignored, exported fields in the destination.
-     * It effect the UnmarshalJSON.
+     * Only effect to UnmarshalJSON.
      * </pre>
      *
      * <code>bool disallow_unknown_fields = 2;</code>

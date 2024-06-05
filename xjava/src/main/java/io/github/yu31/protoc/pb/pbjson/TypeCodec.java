@@ -231,8 +231,22 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 114: {
-            io.github.yu31.protoc.pb.pbjson.TypeString.Builder subBuilder = null;
+            io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder subBuilder = null;
             if (kindCase_ == 14) {
+              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_).toBuilder();
+            }
+            kind_ =
+                input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeEnum.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_);
+              kind_ = subBuilder.buildPartial();
+            }
+            kindCase_ = 14;
+            break;
+          }
+          case 122: {
+            io.github.yu31.protoc.pb.pbjson.TypeString.Builder subBuilder = null;
+            if (kindCase_ == 15) {
               subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeString) kind_).toBuilder();
             }
             kind_ =
@@ -241,32 +255,18 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeString) kind_);
               kind_ = subBuilder.buildPartial();
             }
-            kindCase_ = 14;
+            kindCase_ = 15;
             break;
           }
-          case 122: {
+          case 130: {
             io.github.yu31.protoc.pb.pbjson.TypeBytes.Builder subBuilder = null;
-            if (kindCase_ == 15) {
+            if (kindCase_ == 16) {
               subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeBytes) kind_).toBuilder();
             }
             kind_ =
                 input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeBytes.parser(), extensionRegistry);
             if (subBuilder != null) {
               subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeBytes) kind_);
-              kind_ = subBuilder.buildPartial();
-            }
-            kindCase_ = 15;
-            break;
-          }
-          case 130: {
-            io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder subBuilder = null;
-            if (kindCase_ == 16) {
-              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_).toBuilder();
-            }
-            kind_ =
-                input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeEnum.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_);
               kind_ = subBuilder.buildPartial();
             }
             kindCase_ = 16;
@@ -328,6 +328,34 @@ private static final long serialVersionUID = 0L;
             kindCase_ = 23;
             break;
           }
+          case 250: {
+            io.github.yu31.protoc.pb.pbjson.TypeRepeated.Builder subBuilder = null;
+            if (kindCase_ == 31) {
+              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeRepeated) kind_).toBuilder();
+            }
+            kind_ =
+                input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeRepeated.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeRepeated) kind_);
+              kind_ = subBuilder.buildPartial();
+            }
+            kindCase_ = 31;
+            break;
+          }
+          case 258: {
+            io.github.yu31.protoc.pb.pbjson.TypeMap.Builder subBuilder = null;
+            if (kindCase_ == 32) {
+              subBuilder = ((io.github.yu31.protoc.pb.pbjson.TypeMap) kind_).toBuilder();
+            }
+            kind_ =
+                input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeMap.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeMap) kind_);
+              kind_ = subBuilder.buildPartial();
+            }
+            kindCase_ = 32;
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -378,13 +406,15 @@ private static final long serialVersionUID = 0L;
     FLOAT(11),
     DOUBLE(12),
     BOOL(13),
-    STRING(14),
-    BYTES(15),
-    ENUM(16),
+    ENUM(14),
+    STRING(15),
+    BYTES(16),
     MESSAGE(17),
     ANY(21),
     DURATION(22),
     TIMESTAMP(23),
+    REPEATED(31),
+    MAP(32),
     KIND_NOT_SET(0);
     private final int value;
     private KindCase(int value) {
@@ -415,13 +445,15 @@ private static final long serialVersionUID = 0L;
         case 11: return FLOAT;
         case 12: return DOUBLE;
         case 13: return BOOL;
-        case 14: return STRING;
-        case 15: return BYTES;
-        case 16: return ENUM;
+        case 14: return ENUM;
+        case 15: return STRING;
+        case 16: return BYTES;
         case 17: return MESSAGE;
         case 21: return ANY;
         case 22: return DURATION;
         case 23: return TIMESTAMP;
+        case 31: return REPEATED;
+        case 32: return MAP;
         case 0: return KIND_NOT_SET;
         default: return null;
       }
@@ -840,60 +872,48 @@ private static final long serialVersionUID = 0L;
     return io.github.yu31.protoc.pb.pbjson.TypeBool.getDefaultInstance();
   }
 
-  public static final int STRING_FIELD_NUMBER = 14;
+  public static final int ENUM_FIELD_NUMBER = 14;
+  /**
+   * <code>.json.TypeEnum enum = 14;</code>
+   * @return Whether the enum field is set.
+   */
+  @java.lang.Override
+  public boolean hasEnum() {
+    return kindCase_ == 14;
+  }
+  /**
+   * <code>.json.TypeEnum enum = 14;</code>
+   * @return The enum.
+   */
+  @java.lang.Override
+  public io.github.yu31.protoc.pb.pbjson.TypeEnum getEnum() {
+    if (kindCase_ == 14) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_;
+    }
+    return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
+  }
+  /**
+   * <code>.json.TypeEnum enum = 14;</code>
+   */
+  @java.lang.Override
+  public io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder getEnumOrBuilder() {
+    if (kindCase_ == 14) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_;
+    }
+    return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
+  }
+
+  public static final int STRING_FIELD_NUMBER = 15;
   /**
    * <pre>
    * Reserved.
    * </pre>
    *
-   * <code>.json.TypeString string = 14;</code>
+   * <code>.json.TypeString string = 15;</code>
    * @return Whether the string field is set.
    */
   @java.lang.Override
   public boolean hasString() {
-    return kindCase_ == 14;
-  }
-  /**
-   * <pre>
-   * Reserved.
-   * </pre>
-   *
-   * <code>.json.TypeString string = 14;</code>
-   * @return The string.
-   */
-  @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeString getString() {
-    if (kindCase_ == 14) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeString) kind_;
-    }
-    return io.github.yu31.protoc.pb.pbjson.TypeString.getDefaultInstance();
-  }
-  /**
-   * <pre>
-   * Reserved.
-   * </pre>
-   *
-   * <code>.json.TypeString string = 14;</code>
-   */
-  @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeStringOrBuilder getStringOrBuilder() {
-    if (kindCase_ == 14) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeString) kind_;
-    }
-    return io.github.yu31.protoc.pb.pbjson.TypeString.getDefaultInstance();
-  }
-
-  public static final int BYTES_FIELD_NUMBER = 15;
-  /**
-   * <pre>
-   * Reserved.
-   * </pre>
-   *
-   * <code>.json.TypeBytes bytes = 15;</code>
-   * @return Whether the bytes field is set.
-   */
-  @java.lang.Override
-  public boolean hasBytes() {
     return kindCase_ == 15;
   }
   /**
@@ -901,12 +921,55 @@ private static final long serialVersionUID = 0L;
    * Reserved.
    * </pre>
    *
-   * <code>.json.TypeBytes bytes = 15;</code>
+   * <code>.json.TypeString string = 15;</code>
+   * @return The string.
+   */
+  @java.lang.Override
+  public io.github.yu31.protoc.pb.pbjson.TypeString getString() {
+    if (kindCase_ == 15) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeString) kind_;
+    }
+    return io.github.yu31.protoc.pb.pbjson.TypeString.getDefaultInstance();
+  }
+  /**
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
+   * <code>.json.TypeString string = 15;</code>
+   */
+  @java.lang.Override
+  public io.github.yu31.protoc.pb.pbjson.TypeStringOrBuilder getStringOrBuilder() {
+    if (kindCase_ == 15) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeString) kind_;
+    }
+    return io.github.yu31.protoc.pb.pbjson.TypeString.getDefaultInstance();
+  }
+
+  public static final int BYTES_FIELD_NUMBER = 16;
+  /**
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
+   * <code>.json.TypeBytes bytes = 16;</code>
+   * @return Whether the bytes field is set.
+   */
+  @java.lang.Override
+  public boolean hasBytes() {
+    return kindCase_ == 16;
+  }
+  /**
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
+   * <code>.json.TypeBytes bytes = 16;</code>
    * @return The bytes.
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeBytes getBytes() {
-    if (kindCase_ == 15) {
+    if (kindCase_ == 16) {
        return (io.github.yu31.protoc.pb.pbjson.TypeBytes) kind_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeBytes.getDefaultInstance();
@@ -916,49 +979,22 @@ private static final long serialVersionUID = 0L;
    * Reserved.
    * </pre>
    *
-   * <code>.json.TypeBytes bytes = 15;</code>
+   * <code>.json.TypeBytes bytes = 16;</code>
    */
   @java.lang.Override
   public io.github.yu31.protoc.pb.pbjson.TypeBytesOrBuilder getBytesOrBuilder() {
-    if (kindCase_ == 15) {
+    if (kindCase_ == 16) {
        return (io.github.yu31.protoc.pb.pbjson.TypeBytes) kind_;
     }
     return io.github.yu31.protoc.pb.pbjson.TypeBytes.getDefaultInstance();
   }
 
-  public static final int ENUM_FIELD_NUMBER = 16;
-  /**
-   * <code>.json.TypeEnum enum = 16;</code>
-   * @return Whether the enum field is set.
-   */
-  @java.lang.Override
-  public boolean hasEnum() {
-    return kindCase_ == 16;
-  }
-  /**
-   * <code>.json.TypeEnum enum = 16;</code>
-   * @return The enum.
-   */
-  @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeEnum getEnum() {
-    if (kindCase_ == 16) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_;
-    }
-    return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
-  }
-  /**
-   * <code>.json.TypeEnum enum = 16;</code>
-   */
-  @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder getEnumOrBuilder() {
-    if (kindCase_ == 16) {
-       return (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_;
-    }
-    return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
-  }
-
   public static final int MESSAGE_FIELD_NUMBER = 17;
   /**
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
    * <code>.json.TypeMessage message = 17;</code>
    * @return Whether the message field is set.
    */
@@ -967,6 +1003,10 @@ private static final long serialVersionUID = 0L;
     return kindCase_ == 17;
   }
   /**
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
    * <code>.json.TypeMessage message = 17;</code>
    * @return The message.
    */
@@ -978,6 +1018,10 @@ private static final long serialVersionUID = 0L;
     return io.github.yu31.protoc.pb.pbjson.TypeMessage.getDefaultInstance();
   }
   /**
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
    * <code>.json.TypeMessage message = 17;</code>
    */
   @java.lang.Override
@@ -1081,6 +1125,68 @@ private static final long serialVersionUID = 0L;
     return io.github.yu31.protoc.pb.pbjson.TypeTimestamp.getDefaultInstance();
   }
 
+  public static final int REPEATED_FIELD_NUMBER = 31;
+  /**
+   * <code>.json.TypeRepeated repeated = 31;</code>
+   * @return Whether the repeated field is set.
+   */
+  @java.lang.Override
+  public boolean hasRepeated() {
+    return kindCase_ == 31;
+  }
+  /**
+   * <code>.json.TypeRepeated repeated = 31;</code>
+   * @return The repeated.
+   */
+  @java.lang.Override
+  public io.github.yu31.protoc.pb.pbjson.TypeRepeated getRepeated() {
+    if (kindCase_ == 31) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeRepeated) kind_;
+    }
+    return io.github.yu31.protoc.pb.pbjson.TypeRepeated.getDefaultInstance();
+  }
+  /**
+   * <code>.json.TypeRepeated repeated = 31;</code>
+   */
+  @java.lang.Override
+  public io.github.yu31.protoc.pb.pbjson.TypeRepeatedOrBuilder getRepeatedOrBuilder() {
+    if (kindCase_ == 31) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeRepeated) kind_;
+    }
+    return io.github.yu31.protoc.pb.pbjson.TypeRepeated.getDefaultInstance();
+  }
+
+  public static final int MAP_FIELD_NUMBER = 32;
+  /**
+   * <code>.json.TypeMap map = 32;</code>
+   * @return Whether the map field is set.
+   */
+  @java.lang.Override
+  public boolean hasMap() {
+    return kindCase_ == 32;
+  }
+  /**
+   * <code>.json.TypeMap map = 32;</code>
+   * @return The map.
+   */
+  @java.lang.Override
+  public io.github.yu31.protoc.pb.pbjson.TypeMap getMap() {
+    if (kindCase_ == 32) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeMap) kind_;
+    }
+    return io.github.yu31.protoc.pb.pbjson.TypeMap.getDefaultInstance();
+  }
+  /**
+   * <code>.json.TypeMap map = 32;</code>
+   */
+  @java.lang.Override
+  public io.github.yu31.protoc.pb.pbjson.TypeMapOrBuilder getMapOrBuilder() {
+    if (kindCase_ == 32) {
+       return (io.github.yu31.protoc.pb.pbjson.TypeMap) kind_;
+    }
+    return io.github.yu31.protoc.pb.pbjson.TypeMap.getDefaultInstance();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -1135,13 +1241,13 @@ private static final long serialVersionUID = 0L;
       output.writeMessage(13, (io.github.yu31.protoc.pb.pbjson.TypeBool) kind_);
     }
     if (kindCase_ == 14) {
-      output.writeMessage(14, (io.github.yu31.protoc.pb.pbjson.TypeString) kind_);
+      output.writeMessage(14, (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_);
     }
     if (kindCase_ == 15) {
-      output.writeMessage(15, (io.github.yu31.protoc.pb.pbjson.TypeBytes) kind_);
+      output.writeMessage(15, (io.github.yu31.protoc.pb.pbjson.TypeString) kind_);
     }
     if (kindCase_ == 16) {
-      output.writeMessage(16, (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_);
+      output.writeMessage(16, (io.github.yu31.protoc.pb.pbjson.TypeBytes) kind_);
     }
     if (kindCase_ == 17) {
       output.writeMessage(17, (io.github.yu31.protoc.pb.pbjson.TypeMessage) kind_);
@@ -1154,6 +1260,12 @@ private static final long serialVersionUID = 0L;
     }
     if (kindCase_ == 23) {
       output.writeMessage(23, (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) kind_);
+    }
+    if (kindCase_ == 31) {
+      output.writeMessage(31, (io.github.yu31.protoc.pb.pbjson.TypeRepeated) kind_);
+    }
+    if (kindCase_ == 32) {
+      output.writeMessage(32, (io.github.yu31.protoc.pb.pbjson.TypeMap) kind_);
     }
     unknownFields.writeTo(output);
   }
@@ -1218,15 +1330,15 @@ private static final long serialVersionUID = 0L;
     }
     if (kindCase_ == 14) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(14, (io.github.yu31.protoc.pb.pbjson.TypeString) kind_);
+        .computeMessageSize(14, (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_);
     }
     if (kindCase_ == 15) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(15, (io.github.yu31.protoc.pb.pbjson.TypeBytes) kind_);
+        .computeMessageSize(15, (io.github.yu31.protoc.pb.pbjson.TypeString) kind_);
     }
     if (kindCase_ == 16) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(16, (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_);
+        .computeMessageSize(16, (io.github.yu31.protoc.pb.pbjson.TypeBytes) kind_);
     }
     if (kindCase_ == 17) {
       size += com.google.protobuf.CodedOutputStream
@@ -1243,6 +1355,14 @@ private static final long serialVersionUID = 0L;
     if (kindCase_ == 23) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(23, (io.github.yu31.protoc.pb.pbjson.TypeTimestamp) kind_);
+    }
+    if (kindCase_ == 31) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(31, (io.github.yu31.protoc.pb.pbjson.TypeRepeated) kind_);
+    }
+    if (kindCase_ == 32) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(32, (io.github.yu31.protoc.pb.pbjson.TypeMap) kind_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -1314,16 +1434,16 @@ private static final long serialVersionUID = 0L;
             .equals(other.getBool())) return false;
         break;
       case 14:
+        if (!getEnum()
+            .equals(other.getEnum())) return false;
+        break;
+      case 15:
         if (!getString()
             .equals(other.getString())) return false;
         break;
-      case 15:
+      case 16:
         if (!getBytes()
             .equals(other.getBytes())) return false;
-        break;
-      case 16:
-        if (!getEnum()
-            .equals(other.getEnum())) return false;
         break;
       case 17:
         if (!getMessage()
@@ -1340,6 +1460,14 @@ private static final long serialVersionUID = 0L;
       case 23:
         if (!getTimestamp()
             .equals(other.getTimestamp())) return false;
+        break;
+      case 31:
+        if (!getRepeated()
+            .equals(other.getRepeated())) return false;
+        break;
+      case 32:
+        if (!getMap()
+            .equals(other.getMap())) return false;
         break;
       case 0:
       default:
@@ -1409,16 +1537,16 @@ private static final long serialVersionUID = 0L;
         hash = (53 * hash) + getBool().hashCode();
         break;
       case 14:
+        hash = (37 * hash) + ENUM_FIELD_NUMBER;
+        hash = (53 * hash) + getEnum().hashCode();
+        break;
+      case 15:
         hash = (37 * hash) + STRING_FIELD_NUMBER;
         hash = (53 * hash) + getString().hashCode();
         break;
-      case 15:
+      case 16:
         hash = (37 * hash) + BYTES_FIELD_NUMBER;
         hash = (53 * hash) + getBytes().hashCode();
-        break;
-      case 16:
-        hash = (37 * hash) + ENUM_FIELD_NUMBER;
-        hash = (53 * hash) + getEnum().hashCode();
         break;
       case 17:
         hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
@@ -1435,6 +1563,14 @@ private static final long serialVersionUID = 0L;
       case 23:
         hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
         hash = (53 * hash) + getTimestamp().hashCode();
+        break;
+      case 31:
+        hash = (37 * hash) + REPEATED_FIELD_NUMBER;
+        hash = (53 * hash) + getRepeated().hashCode();
+        break;
+      case 32:
+        hash = (37 * hash) + MAP_FIELD_NUMBER;
+        hash = (53 * hash) + getMap().hashCode();
         break;
       case 0:
       default:
@@ -1692,24 +1828,24 @@ private static final long serialVersionUID = 0L;
         }
       }
       if (kindCase_ == 14) {
+        if (enumBuilder_ == null) {
+          result.kind_ = kind_;
+        } else {
+          result.kind_ = enumBuilder_.build();
+        }
+      }
+      if (kindCase_ == 15) {
         if (stringBuilder_ == null) {
           result.kind_ = kind_;
         } else {
           result.kind_ = stringBuilder_.build();
         }
       }
-      if (kindCase_ == 15) {
+      if (kindCase_ == 16) {
         if (bytesBuilder_ == null) {
           result.kind_ = kind_;
         } else {
           result.kind_ = bytesBuilder_.build();
-        }
-      }
-      if (kindCase_ == 16) {
-        if (enumBuilder_ == null) {
-          result.kind_ = kind_;
-        } else {
-          result.kind_ = enumBuilder_.build();
         }
       }
       if (kindCase_ == 17) {
@@ -1738,6 +1874,20 @@ private static final long serialVersionUID = 0L;
           result.kind_ = kind_;
         } else {
           result.kind_ = timestampBuilder_.build();
+        }
+      }
+      if (kindCase_ == 31) {
+        if (repeatedBuilder_ == null) {
+          result.kind_ = kind_;
+        } else {
+          result.kind_ = repeatedBuilder_.build();
+        }
+      }
+      if (kindCase_ == 32) {
+        if (mapBuilder_ == null) {
+          result.kind_ = kind_;
+        } else {
+          result.kind_ = mapBuilder_.build();
         }
       }
       result.kindCase_ = kindCase_;
@@ -1842,16 +1992,16 @@ private static final long serialVersionUID = 0L;
           mergeBool(other.getBool());
           break;
         }
+        case ENUM: {
+          mergeEnum(other.getEnum());
+          break;
+        }
         case STRING: {
           mergeString(other.getString());
           break;
         }
         case BYTES: {
           mergeBytes(other.getBytes());
-          break;
-        }
-        case ENUM: {
-          mergeEnum(other.getEnum());
           break;
         }
         case MESSAGE: {
@@ -1868,6 +2018,14 @@ private static final long serialVersionUID = 0L;
         }
         case TIMESTAMP: {
           mergeTimestamp(other.getTimestamp());
+          break;
+        }
+        case REPEATED: {
+          mergeRepeated(other.getRepeated());
+          break;
+        }
+        case MAP: {
+          mergeMap(other.getMap());
           break;
         }
         case KIND_NOT_SET: {
@@ -3752,36 +3910,177 @@ private static final long serialVersionUID = 0L;
     }
 
     private com.google.protobuf.SingleFieldBuilderV3<
+        io.github.yu31.protoc.pb.pbjson.TypeEnum, io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder, io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder> enumBuilder_;
+    /**
+     * <code>.json.TypeEnum enum = 14;</code>
+     * @return Whether the enum field is set.
+     */
+    @java.lang.Override
+    public boolean hasEnum() {
+      return kindCase_ == 14;
+    }
+    /**
+     * <code>.json.TypeEnum enum = 14;</code>
+     * @return The enum.
+     */
+    @java.lang.Override
+    public io.github.yu31.protoc.pb.pbjson.TypeEnum getEnum() {
+      if (enumBuilder_ == null) {
+        if (kindCase_ == 14) {
+          return (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_;
+        }
+        return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
+      } else {
+        if (kindCase_ == 14) {
+          return enumBuilder_.getMessage();
+        }
+        return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.json.TypeEnum enum = 14;</code>
+     */
+    public Builder setEnum(io.github.yu31.protoc.pb.pbjson.TypeEnum value) {
+      if (enumBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        kind_ = value;
+        onChanged();
+      } else {
+        enumBuilder_.setMessage(value);
+      }
+      kindCase_ = 14;
+      return this;
+    }
+    /**
+     * <code>.json.TypeEnum enum = 14;</code>
+     */
+    public Builder setEnum(
+        io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder builderForValue) {
+      if (enumBuilder_ == null) {
+        kind_ = builderForValue.build();
+        onChanged();
+      } else {
+        enumBuilder_.setMessage(builderForValue.build());
+      }
+      kindCase_ = 14;
+      return this;
+    }
+    /**
+     * <code>.json.TypeEnum enum = 14;</code>
+     */
+    public Builder mergeEnum(io.github.yu31.protoc.pb.pbjson.TypeEnum value) {
+      if (enumBuilder_ == null) {
+        if (kindCase_ == 14 &&
+            kind_ != io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance()) {
+          kind_ = io.github.yu31.protoc.pb.pbjson.TypeEnum.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          kind_ = value;
+        }
+        onChanged();
+      } else {
+        if (kindCase_ == 14) {
+          enumBuilder_.mergeFrom(value);
+        }
+        enumBuilder_.setMessage(value);
+      }
+      kindCase_ = 14;
+      return this;
+    }
+    /**
+     * <code>.json.TypeEnum enum = 14;</code>
+     */
+    public Builder clearEnum() {
+      if (enumBuilder_ == null) {
+        if (kindCase_ == 14) {
+          kindCase_ = 0;
+          kind_ = null;
+          onChanged();
+        }
+      } else {
+        if (kindCase_ == 14) {
+          kindCase_ = 0;
+          kind_ = null;
+        }
+        enumBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.json.TypeEnum enum = 14;</code>
+     */
+    public io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder getEnumBuilder() {
+      return getEnumFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.json.TypeEnum enum = 14;</code>
+     */
+    @java.lang.Override
+    public io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder getEnumOrBuilder() {
+      if ((kindCase_ == 14) && (enumBuilder_ != null)) {
+        return enumBuilder_.getMessageOrBuilder();
+      } else {
+        if (kindCase_ == 14) {
+          return (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_;
+        }
+        return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.json.TypeEnum enum = 14;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.github.yu31.protoc.pb.pbjson.TypeEnum, io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder, io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder> 
+        getEnumFieldBuilder() {
+      if (enumBuilder_ == null) {
+        if (!(kindCase_ == 14)) {
+          kind_ = io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
+        }
+        enumBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            io.github.yu31.protoc.pb.pbjson.TypeEnum, io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder, io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder>(
+                (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_,
+                getParentForChildren(),
+                isClean());
+        kind_ = null;
+      }
+      kindCase_ = 14;
+      onChanged();;
+      return enumBuilder_;
+    }
+
+    private com.google.protobuf.SingleFieldBuilderV3<
         io.github.yu31.protoc.pb.pbjson.TypeString, io.github.yu31.protoc.pb.pbjson.TypeString.Builder, io.github.yu31.protoc.pb.pbjson.TypeStringOrBuilder> stringBuilder_;
     /**
      * <pre>
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeString string = 14;</code>
+     * <code>.json.TypeString string = 15;</code>
      * @return Whether the string field is set.
      */
     @java.lang.Override
     public boolean hasString() {
-      return kindCase_ == 14;
+      return kindCase_ == 15;
     }
     /**
      * <pre>
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeString string = 14;</code>
+     * <code>.json.TypeString string = 15;</code>
      * @return The string.
      */
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeString getString() {
       if (stringBuilder_ == null) {
-        if (kindCase_ == 14) {
+        if (kindCase_ == 15) {
           return (io.github.yu31.protoc.pb.pbjson.TypeString) kind_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeString.getDefaultInstance();
       } else {
-        if (kindCase_ == 14) {
+        if (kindCase_ == 15) {
           return stringBuilder_.getMessage();
         }
         return io.github.yu31.protoc.pb.pbjson.TypeString.getDefaultInstance();
@@ -3792,7 +4091,7 @@ private static final long serialVersionUID = 0L;
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeString string = 14;</code>
+     * <code>.json.TypeString string = 15;</code>
      */
     public Builder setString(io.github.yu31.protoc.pb.pbjson.TypeString value) {
       if (stringBuilder_ == null) {
@@ -3804,7 +4103,7 @@ private static final long serialVersionUID = 0L;
       } else {
         stringBuilder_.setMessage(value);
       }
-      kindCase_ = 14;
+      kindCase_ = 15;
       return this;
     }
     /**
@@ -3812,7 +4111,7 @@ private static final long serialVersionUID = 0L;
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeString string = 14;</code>
+     * <code>.json.TypeString string = 15;</code>
      */
     public Builder setString(
         io.github.yu31.protoc.pb.pbjson.TypeString.Builder builderForValue) {
@@ -3822,7 +4121,7 @@ private static final long serialVersionUID = 0L;
       } else {
         stringBuilder_.setMessage(builderForValue.build());
       }
-      kindCase_ = 14;
+      kindCase_ = 15;
       return this;
     }
     /**
@@ -3830,11 +4129,11 @@ private static final long serialVersionUID = 0L;
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeString string = 14;</code>
+     * <code>.json.TypeString string = 15;</code>
      */
     public Builder mergeString(io.github.yu31.protoc.pb.pbjson.TypeString value) {
       if (stringBuilder_ == null) {
-        if (kindCase_ == 14 &&
+        if (kindCase_ == 15 &&
             kind_ != io.github.yu31.protoc.pb.pbjson.TypeString.getDefaultInstance()) {
           kind_ = io.github.yu31.protoc.pb.pbjson.TypeString.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeString) kind_)
               .mergeFrom(value).buildPartial();
@@ -3843,12 +4142,12 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       } else {
-        if (kindCase_ == 14) {
+        if (kindCase_ == 15) {
           stringBuilder_.mergeFrom(value);
         }
         stringBuilder_.setMessage(value);
       }
-      kindCase_ = 14;
+      kindCase_ = 15;
       return this;
     }
     /**
@@ -3856,17 +4155,17 @@ private static final long serialVersionUID = 0L;
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeString string = 14;</code>
+     * <code>.json.TypeString string = 15;</code>
      */
     public Builder clearString() {
       if (stringBuilder_ == null) {
-        if (kindCase_ == 14) {
+        if (kindCase_ == 15) {
           kindCase_ = 0;
           kind_ = null;
           onChanged();
         }
       } else {
-        if (kindCase_ == 14) {
+        if (kindCase_ == 15) {
           kindCase_ = 0;
           kind_ = null;
         }
@@ -3879,7 +4178,7 @@ private static final long serialVersionUID = 0L;
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeString string = 14;</code>
+     * <code>.json.TypeString string = 15;</code>
      */
     public io.github.yu31.protoc.pb.pbjson.TypeString.Builder getStringBuilder() {
       return getStringFieldBuilder().getBuilder();
@@ -3889,14 +4188,14 @@ private static final long serialVersionUID = 0L;
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeString string = 14;</code>
+     * <code>.json.TypeString string = 15;</code>
      */
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeStringOrBuilder getStringOrBuilder() {
-      if ((kindCase_ == 14) && (stringBuilder_ != null)) {
+      if ((kindCase_ == 15) && (stringBuilder_ != null)) {
         return stringBuilder_.getMessageOrBuilder();
       } else {
-        if (kindCase_ == 14) {
+        if (kindCase_ == 15) {
           return (io.github.yu31.protoc.pb.pbjson.TypeString) kind_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeString.getDefaultInstance();
@@ -3907,13 +4206,13 @@ private static final long serialVersionUID = 0L;
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeString string = 14;</code>
+     * <code>.json.TypeString string = 15;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         io.github.yu31.protoc.pb.pbjson.TypeString, io.github.yu31.protoc.pb.pbjson.TypeString.Builder, io.github.yu31.protoc.pb.pbjson.TypeStringOrBuilder> 
         getStringFieldBuilder() {
       if (stringBuilder_ == null) {
-        if (!(kindCase_ == 14)) {
+        if (!(kindCase_ == 15)) {
           kind_ = io.github.yu31.protoc.pb.pbjson.TypeString.getDefaultInstance();
         }
         stringBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -3923,7 +4222,7 @@ private static final long serialVersionUID = 0L;
                 isClean());
         kind_ = null;
       }
-      kindCase_ = 14;
+      kindCase_ = 15;
       onChanged();;
       return stringBuilder_;
     }
@@ -3935,30 +4234,30 @@ private static final long serialVersionUID = 0L;
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeBytes bytes = 15;</code>
+     * <code>.json.TypeBytes bytes = 16;</code>
      * @return Whether the bytes field is set.
      */
     @java.lang.Override
     public boolean hasBytes() {
-      return kindCase_ == 15;
+      return kindCase_ == 16;
     }
     /**
      * <pre>
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeBytes bytes = 15;</code>
+     * <code>.json.TypeBytes bytes = 16;</code>
      * @return The bytes.
      */
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeBytes getBytes() {
       if (bytesBuilder_ == null) {
-        if (kindCase_ == 15) {
+        if (kindCase_ == 16) {
           return (io.github.yu31.protoc.pb.pbjson.TypeBytes) kind_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeBytes.getDefaultInstance();
       } else {
-        if (kindCase_ == 15) {
+        if (kindCase_ == 16) {
           return bytesBuilder_.getMessage();
         }
         return io.github.yu31.protoc.pb.pbjson.TypeBytes.getDefaultInstance();
@@ -3969,7 +4268,7 @@ private static final long serialVersionUID = 0L;
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeBytes bytes = 15;</code>
+     * <code>.json.TypeBytes bytes = 16;</code>
      */
     public Builder setBytes(io.github.yu31.protoc.pb.pbjson.TypeBytes value) {
       if (bytesBuilder_ == null) {
@@ -3981,7 +4280,7 @@ private static final long serialVersionUID = 0L;
       } else {
         bytesBuilder_.setMessage(value);
       }
-      kindCase_ = 15;
+      kindCase_ = 16;
       return this;
     }
     /**
@@ -3989,7 +4288,7 @@ private static final long serialVersionUID = 0L;
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeBytes bytes = 15;</code>
+     * <code>.json.TypeBytes bytes = 16;</code>
      */
     public Builder setBytes(
         io.github.yu31.protoc.pb.pbjson.TypeBytes.Builder builderForValue) {
@@ -3999,7 +4298,7 @@ private static final long serialVersionUID = 0L;
       } else {
         bytesBuilder_.setMessage(builderForValue.build());
       }
-      kindCase_ = 15;
+      kindCase_ = 16;
       return this;
     }
     /**
@@ -4007,11 +4306,11 @@ private static final long serialVersionUID = 0L;
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeBytes bytes = 15;</code>
+     * <code>.json.TypeBytes bytes = 16;</code>
      */
     public Builder mergeBytes(io.github.yu31.protoc.pb.pbjson.TypeBytes value) {
       if (bytesBuilder_ == null) {
-        if (kindCase_ == 15 &&
+        if (kindCase_ == 16 &&
             kind_ != io.github.yu31.protoc.pb.pbjson.TypeBytes.getDefaultInstance()) {
           kind_ = io.github.yu31.protoc.pb.pbjson.TypeBytes.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeBytes) kind_)
               .mergeFrom(value).buildPartial();
@@ -4020,12 +4319,12 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       } else {
-        if (kindCase_ == 15) {
+        if (kindCase_ == 16) {
           bytesBuilder_.mergeFrom(value);
         }
         bytesBuilder_.setMessage(value);
       }
-      kindCase_ = 15;
+      kindCase_ = 16;
       return this;
     }
     /**
@@ -4033,17 +4332,17 @@ private static final long serialVersionUID = 0L;
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeBytes bytes = 15;</code>
+     * <code>.json.TypeBytes bytes = 16;</code>
      */
     public Builder clearBytes() {
       if (bytesBuilder_ == null) {
-        if (kindCase_ == 15) {
+        if (kindCase_ == 16) {
           kindCase_ = 0;
           kind_ = null;
           onChanged();
         }
       } else {
-        if (kindCase_ == 15) {
+        if (kindCase_ == 16) {
           kindCase_ = 0;
           kind_ = null;
         }
@@ -4056,7 +4355,7 @@ private static final long serialVersionUID = 0L;
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeBytes bytes = 15;</code>
+     * <code>.json.TypeBytes bytes = 16;</code>
      */
     public io.github.yu31.protoc.pb.pbjson.TypeBytes.Builder getBytesBuilder() {
       return getBytesFieldBuilder().getBuilder();
@@ -4066,14 +4365,14 @@ private static final long serialVersionUID = 0L;
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeBytes bytes = 15;</code>
+     * <code>.json.TypeBytes bytes = 16;</code>
      */
     @java.lang.Override
     public io.github.yu31.protoc.pb.pbjson.TypeBytesOrBuilder getBytesOrBuilder() {
-      if ((kindCase_ == 15) && (bytesBuilder_ != null)) {
+      if ((kindCase_ == 16) && (bytesBuilder_ != null)) {
         return bytesBuilder_.getMessageOrBuilder();
       } else {
-        if (kindCase_ == 15) {
+        if (kindCase_ == 16) {
           return (io.github.yu31.protoc.pb.pbjson.TypeBytes) kind_;
         }
         return io.github.yu31.protoc.pb.pbjson.TypeBytes.getDefaultInstance();
@@ -4084,13 +4383,13 @@ private static final long serialVersionUID = 0L;
      * Reserved.
      * </pre>
      *
-     * <code>.json.TypeBytes bytes = 15;</code>
+     * <code>.json.TypeBytes bytes = 16;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         io.github.yu31.protoc.pb.pbjson.TypeBytes, io.github.yu31.protoc.pb.pbjson.TypeBytes.Builder, io.github.yu31.protoc.pb.pbjson.TypeBytesOrBuilder> 
         getBytesFieldBuilder() {
       if (bytesBuilder_ == null) {
-        if (!(kindCase_ == 15)) {
+        if (!(kindCase_ == 16)) {
           kind_ = io.github.yu31.protoc.pb.pbjson.TypeBytes.getDefaultInstance();
         }
         bytesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -4100,155 +4399,18 @@ private static final long serialVersionUID = 0L;
                 isClean());
         kind_ = null;
       }
-      kindCase_ = 15;
+      kindCase_ = 16;
       onChanged();;
       return bytesBuilder_;
     }
 
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeEnum, io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder, io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder> enumBuilder_;
-    /**
-     * <code>.json.TypeEnum enum = 16;</code>
-     * @return Whether the enum field is set.
-     */
-    @java.lang.Override
-    public boolean hasEnum() {
-      return kindCase_ == 16;
-    }
-    /**
-     * <code>.json.TypeEnum enum = 16;</code>
-     * @return The enum.
-     */
-    @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeEnum getEnum() {
-      if (enumBuilder_ == null) {
-        if (kindCase_ == 16) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_;
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
-      } else {
-        if (kindCase_ == 16) {
-          return enumBuilder_.getMessage();
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
-      }
-    }
-    /**
-     * <code>.json.TypeEnum enum = 16;</code>
-     */
-    public Builder setEnum(io.github.yu31.protoc.pb.pbjson.TypeEnum value) {
-      if (enumBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        kind_ = value;
-        onChanged();
-      } else {
-        enumBuilder_.setMessage(value);
-      }
-      kindCase_ = 16;
-      return this;
-    }
-    /**
-     * <code>.json.TypeEnum enum = 16;</code>
-     */
-    public Builder setEnum(
-        io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder builderForValue) {
-      if (enumBuilder_ == null) {
-        kind_ = builderForValue.build();
-        onChanged();
-      } else {
-        enumBuilder_.setMessage(builderForValue.build());
-      }
-      kindCase_ = 16;
-      return this;
-    }
-    /**
-     * <code>.json.TypeEnum enum = 16;</code>
-     */
-    public Builder mergeEnum(io.github.yu31.protoc.pb.pbjson.TypeEnum value) {
-      if (enumBuilder_ == null) {
-        if (kindCase_ == 16 &&
-            kind_ != io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance()) {
-          kind_ = io.github.yu31.protoc.pb.pbjson.TypeEnum.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_)
-              .mergeFrom(value).buildPartial();
-        } else {
-          kind_ = value;
-        }
-        onChanged();
-      } else {
-        if (kindCase_ == 16) {
-          enumBuilder_.mergeFrom(value);
-        }
-        enumBuilder_.setMessage(value);
-      }
-      kindCase_ = 16;
-      return this;
-    }
-    /**
-     * <code>.json.TypeEnum enum = 16;</code>
-     */
-    public Builder clearEnum() {
-      if (enumBuilder_ == null) {
-        if (kindCase_ == 16) {
-          kindCase_ = 0;
-          kind_ = null;
-          onChanged();
-        }
-      } else {
-        if (kindCase_ == 16) {
-          kindCase_ = 0;
-          kind_ = null;
-        }
-        enumBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <code>.json.TypeEnum enum = 16;</code>
-     */
-    public io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder getEnumBuilder() {
-      return getEnumFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.json.TypeEnum enum = 16;</code>
-     */
-    @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder getEnumOrBuilder() {
-      if ((kindCase_ == 16) && (enumBuilder_ != null)) {
-        return enumBuilder_.getMessageOrBuilder();
-      } else {
-        if (kindCase_ == 16) {
-          return (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_;
-        }
-        return io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
-      }
-    }
-    /**
-     * <code>.json.TypeEnum enum = 16;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeEnum, io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder, io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder> 
-        getEnumFieldBuilder() {
-      if (enumBuilder_ == null) {
-        if (!(kindCase_ == 16)) {
-          kind_ = io.github.yu31.protoc.pb.pbjson.TypeEnum.getDefaultInstance();
-        }
-        enumBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.github.yu31.protoc.pb.pbjson.TypeEnum, io.github.yu31.protoc.pb.pbjson.TypeEnum.Builder, io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder>(
-                (io.github.yu31.protoc.pb.pbjson.TypeEnum) kind_,
-                getParentForChildren(),
-                isClean());
-        kind_ = null;
-      }
-      kindCase_ = 16;
-      onChanged();;
-      return enumBuilder_;
-    }
-
-    private com.google.protobuf.SingleFieldBuilderV3<
         io.github.yu31.protoc.pb.pbjson.TypeMessage, io.github.yu31.protoc.pb.pbjson.TypeMessage.Builder, io.github.yu31.protoc.pb.pbjson.TypeMessageOrBuilder> messageBuilder_;
     /**
+     * <pre>
+     * Reserved.
+     * </pre>
+     *
      * <code>.json.TypeMessage message = 17;</code>
      * @return Whether the message field is set.
      */
@@ -4257,6 +4419,10 @@ private static final long serialVersionUID = 0L;
       return kindCase_ == 17;
     }
     /**
+     * <pre>
+     * Reserved.
+     * </pre>
+     *
      * <code>.json.TypeMessage message = 17;</code>
      * @return The message.
      */
@@ -4275,6 +4441,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Reserved.
+     * </pre>
+     *
      * <code>.json.TypeMessage message = 17;</code>
      */
     public Builder setMessage(io.github.yu31.protoc.pb.pbjson.TypeMessage value) {
@@ -4291,6 +4461,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Reserved.
+     * </pre>
+     *
      * <code>.json.TypeMessage message = 17;</code>
      */
     public Builder setMessage(
@@ -4305,6 +4479,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Reserved.
+     * </pre>
+     *
      * <code>.json.TypeMessage message = 17;</code>
      */
     public Builder mergeMessage(io.github.yu31.protoc.pb.pbjson.TypeMessage value) {
@@ -4327,6 +4505,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Reserved.
+     * </pre>
+     *
      * <code>.json.TypeMessage message = 17;</code>
      */
     public Builder clearMessage() {
@@ -4346,12 +4528,20 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Reserved.
+     * </pre>
+     *
      * <code>.json.TypeMessage message = 17;</code>
      */
     public io.github.yu31.protoc.pb.pbjson.TypeMessage.Builder getMessageBuilder() {
       return getMessageFieldBuilder().getBuilder();
     }
     /**
+     * <pre>
+     * Reserved.
+     * </pre>
+     *
      * <code>.json.TypeMessage message = 17;</code>
      */
     @java.lang.Override
@@ -4366,6 +4556,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Reserved.
+     * </pre>
+     *
      * <code>.json.TypeMessage message = 17;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
@@ -4808,6 +5002,288 @@ private static final long serialVersionUID = 0L;
       kindCase_ = 23;
       onChanged();;
       return timestampBuilder_;
+    }
+
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.github.yu31.protoc.pb.pbjson.TypeRepeated, io.github.yu31.protoc.pb.pbjson.TypeRepeated.Builder, io.github.yu31.protoc.pb.pbjson.TypeRepeatedOrBuilder> repeatedBuilder_;
+    /**
+     * <code>.json.TypeRepeated repeated = 31;</code>
+     * @return Whether the repeated field is set.
+     */
+    @java.lang.Override
+    public boolean hasRepeated() {
+      return kindCase_ == 31;
+    }
+    /**
+     * <code>.json.TypeRepeated repeated = 31;</code>
+     * @return The repeated.
+     */
+    @java.lang.Override
+    public io.github.yu31.protoc.pb.pbjson.TypeRepeated getRepeated() {
+      if (repeatedBuilder_ == null) {
+        if (kindCase_ == 31) {
+          return (io.github.yu31.protoc.pb.pbjson.TypeRepeated) kind_;
+        }
+        return io.github.yu31.protoc.pb.pbjson.TypeRepeated.getDefaultInstance();
+      } else {
+        if (kindCase_ == 31) {
+          return repeatedBuilder_.getMessage();
+        }
+        return io.github.yu31.protoc.pb.pbjson.TypeRepeated.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.json.TypeRepeated repeated = 31;</code>
+     */
+    public Builder setRepeated(io.github.yu31.protoc.pb.pbjson.TypeRepeated value) {
+      if (repeatedBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        kind_ = value;
+        onChanged();
+      } else {
+        repeatedBuilder_.setMessage(value);
+      }
+      kindCase_ = 31;
+      return this;
+    }
+    /**
+     * <code>.json.TypeRepeated repeated = 31;</code>
+     */
+    public Builder setRepeated(
+        io.github.yu31.protoc.pb.pbjson.TypeRepeated.Builder builderForValue) {
+      if (repeatedBuilder_ == null) {
+        kind_ = builderForValue.build();
+        onChanged();
+      } else {
+        repeatedBuilder_.setMessage(builderForValue.build());
+      }
+      kindCase_ = 31;
+      return this;
+    }
+    /**
+     * <code>.json.TypeRepeated repeated = 31;</code>
+     */
+    public Builder mergeRepeated(io.github.yu31.protoc.pb.pbjson.TypeRepeated value) {
+      if (repeatedBuilder_ == null) {
+        if (kindCase_ == 31 &&
+            kind_ != io.github.yu31.protoc.pb.pbjson.TypeRepeated.getDefaultInstance()) {
+          kind_ = io.github.yu31.protoc.pb.pbjson.TypeRepeated.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeRepeated) kind_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          kind_ = value;
+        }
+        onChanged();
+      } else {
+        if (kindCase_ == 31) {
+          repeatedBuilder_.mergeFrom(value);
+        }
+        repeatedBuilder_.setMessage(value);
+      }
+      kindCase_ = 31;
+      return this;
+    }
+    /**
+     * <code>.json.TypeRepeated repeated = 31;</code>
+     */
+    public Builder clearRepeated() {
+      if (repeatedBuilder_ == null) {
+        if (kindCase_ == 31) {
+          kindCase_ = 0;
+          kind_ = null;
+          onChanged();
+        }
+      } else {
+        if (kindCase_ == 31) {
+          kindCase_ = 0;
+          kind_ = null;
+        }
+        repeatedBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.json.TypeRepeated repeated = 31;</code>
+     */
+    public io.github.yu31.protoc.pb.pbjson.TypeRepeated.Builder getRepeatedBuilder() {
+      return getRepeatedFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.json.TypeRepeated repeated = 31;</code>
+     */
+    @java.lang.Override
+    public io.github.yu31.protoc.pb.pbjson.TypeRepeatedOrBuilder getRepeatedOrBuilder() {
+      if ((kindCase_ == 31) && (repeatedBuilder_ != null)) {
+        return repeatedBuilder_.getMessageOrBuilder();
+      } else {
+        if (kindCase_ == 31) {
+          return (io.github.yu31.protoc.pb.pbjson.TypeRepeated) kind_;
+        }
+        return io.github.yu31.protoc.pb.pbjson.TypeRepeated.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.json.TypeRepeated repeated = 31;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.github.yu31.protoc.pb.pbjson.TypeRepeated, io.github.yu31.protoc.pb.pbjson.TypeRepeated.Builder, io.github.yu31.protoc.pb.pbjson.TypeRepeatedOrBuilder> 
+        getRepeatedFieldBuilder() {
+      if (repeatedBuilder_ == null) {
+        if (!(kindCase_ == 31)) {
+          kind_ = io.github.yu31.protoc.pb.pbjson.TypeRepeated.getDefaultInstance();
+        }
+        repeatedBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            io.github.yu31.protoc.pb.pbjson.TypeRepeated, io.github.yu31.protoc.pb.pbjson.TypeRepeated.Builder, io.github.yu31.protoc.pb.pbjson.TypeRepeatedOrBuilder>(
+                (io.github.yu31.protoc.pb.pbjson.TypeRepeated) kind_,
+                getParentForChildren(),
+                isClean());
+        kind_ = null;
+      }
+      kindCase_ = 31;
+      onChanged();;
+      return repeatedBuilder_;
+    }
+
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.github.yu31.protoc.pb.pbjson.TypeMap, io.github.yu31.protoc.pb.pbjson.TypeMap.Builder, io.github.yu31.protoc.pb.pbjson.TypeMapOrBuilder> mapBuilder_;
+    /**
+     * <code>.json.TypeMap map = 32;</code>
+     * @return Whether the map field is set.
+     */
+    @java.lang.Override
+    public boolean hasMap() {
+      return kindCase_ == 32;
+    }
+    /**
+     * <code>.json.TypeMap map = 32;</code>
+     * @return The map.
+     */
+    @java.lang.Override
+    public io.github.yu31.protoc.pb.pbjson.TypeMap getMap() {
+      if (mapBuilder_ == null) {
+        if (kindCase_ == 32) {
+          return (io.github.yu31.protoc.pb.pbjson.TypeMap) kind_;
+        }
+        return io.github.yu31.protoc.pb.pbjson.TypeMap.getDefaultInstance();
+      } else {
+        if (kindCase_ == 32) {
+          return mapBuilder_.getMessage();
+        }
+        return io.github.yu31.protoc.pb.pbjson.TypeMap.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.json.TypeMap map = 32;</code>
+     */
+    public Builder setMap(io.github.yu31.protoc.pb.pbjson.TypeMap value) {
+      if (mapBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        kind_ = value;
+        onChanged();
+      } else {
+        mapBuilder_.setMessage(value);
+      }
+      kindCase_ = 32;
+      return this;
+    }
+    /**
+     * <code>.json.TypeMap map = 32;</code>
+     */
+    public Builder setMap(
+        io.github.yu31.protoc.pb.pbjson.TypeMap.Builder builderForValue) {
+      if (mapBuilder_ == null) {
+        kind_ = builderForValue.build();
+        onChanged();
+      } else {
+        mapBuilder_.setMessage(builderForValue.build());
+      }
+      kindCase_ = 32;
+      return this;
+    }
+    /**
+     * <code>.json.TypeMap map = 32;</code>
+     */
+    public Builder mergeMap(io.github.yu31.protoc.pb.pbjson.TypeMap value) {
+      if (mapBuilder_ == null) {
+        if (kindCase_ == 32 &&
+            kind_ != io.github.yu31.protoc.pb.pbjson.TypeMap.getDefaultInstance()) {
+          kind_ = io.github.yu31.protoc.pb.pbjson.TypeMap.newBuilder((io.github.yu31.protoc.pb.pbjson.TypeMap) kind_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          kind_ = value;
+        }
+        onChanged();
+      } else {
+        if (kindCase_ == 32) {
+          mapBuilder_.mergeFrom(value);
+        }
+        mapBuilder_.setMessage(value);
+      }
+      kindCase_ = 32;
+      return this;
+    }
+    /**
+     * <code>.json.TypeMap map = 32;</code>
+     */
+    public Builder clearMap() {
+      if (mapBuilder_ == null) {
+        if (kindCase_ == 32) {
+          kindCase_ = 0;
+          kind_ = null;
+          onChanged();
+        }
+      } else {
+        if (kindCase_ == 32) {
+          kindCase_ = 0;
+          kind_ = null;
+        }
+        mapBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.json.TypeMap map = 32;</code>
+     */
+    public io.github.yu31.protoc.pb.pbjson.TypeMap.Builder getMapBuilder() {
+      return getMapFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.json.TypeMap map = 32;</code>
+     */
+    @java.lang.Override
+    public io.github.yu31.protoc.pb.pbjson.TypeMapOrBuilder getMapOrBuilder() {
+      if ((kindCase_ == 32) && (mapBuilder_ != null)) {
+        return mapBuilder_.getMessageOrBuilder();
+      } else {
+        if (kindCase_ == 32) {
+          return (io.github.yu31.protoc.pb.pbjson.TypeMap) kind_;
+        }
+        return io.github.yu31.protoc.pb.pbjson.TypeMap.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.json.TypeMap map = 32;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.github.yu31.protoc.pb.pbjson.TypeMap, io.github.yu31.protoc.pb.pbjson.TypeMap.Builder, io.github.yu31.protoc.pb.pbjson.TypeMapOrBuilder> 
+        getMapFieldBuilder() {
+      if (mapBuilder_ == null) {
+        if (!(kindCase_ == 32)) {
+          kind_ = io.github.yu31.protoc.pb.pbjson.TypeMap.getDefaultInstance();
+        }
+        mapBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            io.github.yu31.protoc.pb.pbjson.TypeMap, io.github.yu31.protoc.pb.pbjson.TypeMap.Builder, io.github.yu31.protoc.pb.pbjson.TypeMapOrBuilder>(
+                (io.github.yu31.protoc.pb.pbjson.TypeMap) kind_,
+                getParentForChildren(),
+                isClean());
+        kind_ = null;
+      }
+      kindCase_ = 32;
+      onChanged();;
+      return mapBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

@@ -3,13 +3,13 @@
 
 package io.github.yu31.protoc.pb.pbjson;
 
-public interface MapOptionsOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:json.MapOptions)
+public interface TypeMapOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:json.TypeMap)
     com.google.protobuf.MessageOrBuilder {
 
   /**
    * <pre>
-   * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+   * Key reports the codec of map key.
    * </pre>
    *
    * <code>.json.TypeCodec key = 1;</code>
@@ -18,7 +18,7 @@ public interface MapOptionsOrBuilder extends
   boolean hasKey();
   /**
    * <pre>
-   * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+   * Key reports the codec of map key.
    * </pre>
    *
    * <code>.json.TypeCodec key = 1;</code>
@@ -27,7 +27,7 @@ public interface MapOptionsOrBuilder extends
   io.github.yu31.protoc.pb.pbjson.TypeCodec getKey();
   /**
    * <pre>
-   * FIXME: 对于 integer 和 bool 默认使用格式化为字符串
+   * Key reports the codec of map key.
    * </pre>
    *
    * <code>.json.TypeCodec key = 1;</code>
@@ -35,16 +35,28 @@ public interface MapOptionsOrBuilder extends
   io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getKeyOrBuilder();
 
   /**
+   * <pre>
+   * Value reports the codec of map value.
+   * </pre>
+   *
    * <code>.json.TypeCodec value = 2;</code>
    * @return Whether the value field is set.
    */
   boolean hasValue();
   /**
+   * <pre>
+   * Value reports the codec of map value.
+   * </pre>
+   *
    * <code>.json.TypeCodec value = 2;</code>
    * @return The value.
    */
   io.github.yu31.protoc.pb.pbjson.TypeCodec getValue();
   /**
+   * <pre>
+   * Value reports the codec of map value.
+   * </pre>
+   *
    * <code>.json.TypeCodec value = 2;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getValueOrBuilder();

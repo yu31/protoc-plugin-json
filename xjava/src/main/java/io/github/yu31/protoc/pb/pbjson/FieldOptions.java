@@ -72,11 +72,11 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 90: {
-            io.github.yu31.protoc.pb.pbjson.TypeReference.Builder subBuilder = null;
+            io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder subBuilder = null;
             if (reference_ != null) {
               subBuilder = reference_.toBuilder();
             }
-            reference_ = input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeReference.parser(), extensionRegistry);
+            reference_ = input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeCodec.parser(), extensionRegistry);
             if (subBuilder != null) {
               subBuilder.mergeFrom(reference_);
               reference_ = subBuilder.buildPartial();
@@ -122,7 +122,6 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * The key name in JSON content. Default is the field's name in proto file.
-   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>optional string json = 1;</code>
@@ -135,7 +134,6 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * The key name in JSON content. Default is the field's name in proto file.
-   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>optional string json = 1;</code>
@@ -157,7 +155,6 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * The key name in JSON content. Default is the field's name in proto file.
-   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>optional string json = 1;</code>
@@ -183,7 +180,6 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * The field will be ignored if true.
-   * It effect the MarshalJSON and UnmarshalJSON.
    * </pre>
    *
    * <code>bool ignore = 2;</code>
@@ -216,11 +212,11 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Inline indicates whether directly expand all fields of message type fields in current areas.
    * If the `inline` is true for a message field:
-   *     - The null value will be omitted in JSON content.
-   *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
-   * It effect the MarshalJSON and UnmarshalJSON.
-   * 只对 message 类型的字段有效.只允许对 message 类型的字段设置？
-   * 不允许对循环调用的 message 设置 inline.
+   *  - The null value will be omitted in JSON content.
+   *  - The json key of oneof fields cannot be conflict with the fields that in current structure.
+   * Limit: TODO: Supplementary test cases
+   *  - Only support for field type message.
+   *  - Circular references are not allowed
    * </pre>
    *
    * <code>optional bool inline = 4;</code>
@@ -234,11 +230,11 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Inline indicates whether directly expand all fields of message type fields in current areas.
    * If the `inline` is true for a message field:
-   *     - The null value will be omitted in JSON content.
-   *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
-   * It effect the MarshalJSON and UnmarshalJSON.
-   * 只对 message 类型的字段有效.只允许对 message 类型的字段设置？
-   * 不允许对循环调用的 message 设置 inline.
+   *  - The null value will be omitted in JSON content.
+   *  - The json key of oneof fields cannot be conflict with the fields that in current structure.
+   * Limit: TODO: Supplementary test cases
+   *  - Only support for field type message.
+   *  - Circular references are not allowed
    * </pre>
    *
    * <code>optional bool inline = 4;</code>
@@ -250,13 +246,13 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int REFERENCE_FIELD_NUMBER = 11;
-  private io.github.yu31.protoc.pb.pbjson.TypeReference reference_;
+  private io.github.yu31.protoc.pb.pbjson.TypeCodec reference_;
   /**
    * <pre>
-   * Format set for field.
+   * Reference reports the codec set for field.
    * </pre>
    *
-   * <code>.json.TypeReference reference = 11;</code>
+   * <code>.json.TypeCodec reference = 11;</code>
    * @return Whether the reference field is set.
    */
   @java.lang.Override
@@ -265,25 +261,25 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Format set for field.
+   * Reference reports the codec set for field.
    * </pre>
    *
-   * <code>.json.TypeReference reference = 11;</code>
+   * <code>.json.TypeCodec reference = 11;</code>
    * @return The reference.
    */
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeReference getReference() {
-    return reference_ == null ? io.github.yu31.protoc.pb.pbjson.TypeReference.getDefaultInstance() : reference_;
+  public io.github.yu31.protoc.pb.pbjson.TypeCodec getReference() {
+    return reference_ == null ? io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : reference_;
   }
   /**
    * <pre>
-   * Format set for field.
+   * Reference reports the codec set for field.
    * </pre>
    *
-   * <code>.json.TypeReference reference = 11;</code>
+   * <code>.json.TypeCodec reference = 11;</code>
    */
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeReferenceOrBuilder getReferenceOrBuilder() {
+  public io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getReferenceOrBuilder() {
     return getReference();
   }
 
@@ -698,7 +694,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>optional string json = 1;</code>
@@ -710,7 +705,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>optional string json = 1;</code>
@@ -731,7 +725,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>optional string json = 1;</code>
@@ -753,7 +746,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>optional string json = 1;</code>
@@ -773,7 +765,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>optional string json = 1;</code>
@@ -788,7 +779,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The key name in JSON content. Default is the field's name in proto file.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>optional string json = 1;</code>
@@ -811,7 +801,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The field will be ignored if true.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>bool ignore = 2;</code>
@@ -824,7 +813,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The field will be ignored if true.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>bool ignore = 2;</code>
@@ -840,7 +828,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * The field will be ignored if true.
-     * It effect the MarshalJSON and UnmarshalJSON.
      * </pre>
      *
      * <code>bool ignore = 2;</code>
@@ -904,11 +891,11 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Inline indicates whether directly expand all fields of message type fields in current areas.
      * If the `inline` is true for a message field:
-     *     - The null value will be omitted in JSON content.
-     *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
-     * It effect the MarshalJSON and UnmarshalJSON.
-     * 只对 message 类型的字段有效.只允许对 message 类型的字段设置？
-     * 不允许对循环调用的 message 设置 inline.
+     *  - The null value will be omitted in JSON content.
+     *  - The json key of oneof fields cannot be conflict with the fields that in current structure.
+     * Limit: TODO: Supplementary test cases
+     *  - Only support for field type message.
+     *  - Circular references are not allowed
      * </pre>
      *
      * <code>optional bool inline = 4;</code>
@@ -922,11 +909,11 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Inline indicates whether directly expand all fields of message type fields in current areas.
      * If the `inline` is true for a message field:
-     *     - The null value will be omitted in JSON content.
-     *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
-     * It effect the MarshalJSON and UnmarshalJSON.
-     * 只对 message 类型的字段有效.只允许对 message 类型的字段设置？
-     * 不允许对循环调用的 message 设置 inline.
+     *  - The null value will be omitted in JSON content.
+     *  - The json key of oneof fields cannot be conflict with the fields that in current structure.
+     * Limit: TODO: Supplementary test cases
+     *  - Only support for field type message.
+     *  - Circular references are not allowed
      * </pre>
      *
      * <code>optional bool inline = 4;</code>
@@ -940,11 +927,11 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Inline indicates whether directly expand all fields of message type fields in current areas.
      * If the `inline` is true for a message field:
-     *     - The null value will be omitted in JSON content.
-     *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
-     * It effect the MarshalJSON and UnmarshalJSON.
-     * 只对 message 类型的字段有效.只允许对 message 类型的字段设置？
-     * 不允许对循环调用的 message 设置 inline.
+     *  - The null value will be omitted in JSON content.
+     *  - The json key of oneof fields cannot be conflict with the fields that in current structure.
+     * Limit: TODO: Supplementary test cases
+     *  - Only support for field type message.
+     *  - Circular references are not allowed
      * </pre>
      *
      * <code>optional bool inline = 4;</code>
@@ -961,11 +948,11 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Inline indicates whether directly expand all fields of message type fields in current areas.
      * If the `inline` is true for a message field:
-     *     - The null value will be omitted in JSON content.
-     *     - The json key of oneof fields cannot be conflict with the fields that in current structure.
-     * It effect the MarshalJSON and UnmarshalJSON.
-     * 只对 message 类型的字段有效.只允许对 message 类型的字段设置？
-     * 不允许对循环调用的 message 设置 inline.
+     *  - The null value will be omitted in JSON content.
+     *  - The json key of oneof fields cannot be conflict with the fields that in current structure.
+     * Limit: TODO: Supplementary test cases
+     *  - Only support for field type message.
+     *  - Circular references are not allowed
      * </pre>
      *
      * <code>optional bool inline = 4;</code>
@@ -978,15 +965,15 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private io.github.yu31.protoc.pb.pbjson.TypeReference reference_;
+    private io.github.yu31.protoc.pb.pbjson.TypeCodec reference_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeReference, io.github.yu31.protoc.pb.pbjson.TypeReference.Builder, io.github.yu31.protoc.pb.pbjson.TypeReferenceOrBuilder> referenceBuilder_;
+        io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder> referenceBuilder_;
     /**
      * <pre>
-     * Format set for field.
+     * Reference reports the codec set for field.
      * </pre>
      *
-     * <code>.json.TypeReference reference = 11;</code>
+     * <code>.json.TypeCodec reference = 11;</code>
      * @return Whether the reference field is set.
      */
     public boolean hasReference() {
@@ -994,27 +981,27 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Format set for field.
+     * Reference reports the codec set for field.
      * </pre>
      *
-     * <code>.json.TypeReference reference = 11;</code>
+     * <code>.json.TypeCodec reference = 11;</code>
      * @return The reference.
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeReference getReference() {
+    public io.github.yu31.protoc.pb.pbjson.TypeCodec getReference() {
       if (referenceBuilder_ == null) {
-        return reference_ == null ? io.github.yu31.protoc.pb.pbjson.TypeReference.getDefaultInstance() : reference_;
+        return reference_ == null ? io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : reference_;
       } else {
         return referenceBuilder_.getMessage();
       }
     }
     /**
      * <pre>
-     * Format set for field.
+     * Reference reports the codec set for field.
      * </pre>
      *
-     * <code>.json.TypeReference reference = 11;</code>
+     * <code>.json.TypeCodec reference = 11;</code>
      */
-    public Builder setReference(io.github.yu31.protoc.pb.pbjson.TypeReference value) {
+    public Builder setReference(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
       if (referenceBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -1029,13 +1016,13 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Format set for field.
+     * Reference reports the codec set for field.
      * </pre>
      *
-     * <code>.json.TypeReference reference = 11;</code>
+     * <code>.json.TypeCodec reference = 11;</code>
      */
     public Builder setReference(
-        io.github.yu31.protoc.pb.pbjson.TypeReference.Builder builderForValue) {
+        io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder builderForValue) {
       if (referenceBuilder_ == null) {
         reference_ = builderForValue.build();
         onChanged();
@@ -1047,16 +1034,16 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Format set for field.
+     * Reference reports the codec set for field.
      * </pre>
      *
-     * <code>.json.TypeReference reference = 11;</code>
+     * <code>.json.TypeCodec reference = 11;</code>
      */
-    public Builder mergeReference(io.github.yu31.protoc.pb.pbjson.TypeReference value) {
+    public Builder mergeReference(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
       if (referenceBuilder_ == null) {
         if (reference_ != null) {
           reference_ =
-            io.github.yu31.protoc.pb.pbjson.TypeReference.newBuilder(reference_).mergeFrom(value).buildPartial();
+            io.github.yu31.protoc.pb.pbjson.TypeCodec.newBuilder(reference_).mergeFrom(value).buildPartial();
         } else {
           reference_ = value;
         }
@@ -1069,10 +1056,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Format set for field.
+     * Reference reports the codec set for field.
      * </pre>
      *
-     * <code>.json.TypeReference reference = 11;</code>
+     * <code>.json.TypeCodec reference = 11;</code>
      */
     public Builder clearReference() {
       if (referenceBuilder_ == null) {
@@ -1087,44 +1074,44 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Format set for field.
+     * Reference reports the codec set for field.
      * </pre>
      *
-     * <code>.json.TypeReference reference = 11;</code>
+     * <code>.json.TypeCodec reference = 11;</code>
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeReference.Builder getReferenceBuilder() {
+    public io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder getReferenceBuilder() {
       
       onChanged();
       return getReferenceFieldBuilder().getBuilder();
     }
     /**
      * <pre>
-     * Format set for field.
+     * Reference reports the codec set for field.
      * </pre>
      *
-     * <code>.json.TypeReference reference = 11;</code>
+     * <code>.json.TypeCodec reference = 11;</code>
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeReferenceOrBuilder getReferenceOrBuilder() {
+    public io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getReferenceOrBuilder() {
       if (referenceBuilder_ != null) {
         return referenceBuilder_.getMessageOrBuilder();
       } else {
         return reference_ == null ?
-            io.github.yu31.protoc.pb.pbjson.TypeReference.getDefaultInstance() : reference_;
+            io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : reference_;
       }
     }
     /**
      * <pre>
-     * Format set for field.
+     * Reference reports the codec set for field.
      * </pre>
      *
-     * <code>.json.TypeReference reference = 11;</code>
+     * <code>.json.TypeCodec reference = 11;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeReference, io.github.yu31.protoc.pb.pbjson.TypeReference.Builder, io.github.yu31.protoc.pb.pbjson.TypeReferenceOrBuilder> 
+        io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder> 
         getReferenceFieldBuilder() {
       if (referenceBuilder_ == null) {
         referenceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.github.yu31.protoc.pb.pbjson.TypeReference, io.github.yu31.protoc.pb.pbjson.TypeReference.Builder, io.github.yu31.protoc.pb.pbjson.TypeReferenceOrBuilder>(
+            io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder>(
                 getReference(),
                 getParentForChildren(),
                 isClean());

@@ -5,8 +5,7 @@ package io.github.yu31.protoc.pb.pbjson;
 
 /**
  * <pre>
- * TypeString declares the codec for field type string.
- * Notice: Reserve
+ * TypeString declares the codec for field type string. Reserve
  * </pre>
  *
  * Protobuf type {@code json.TypeString}
@@ -231,8 +230,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * TypeString declares the codec for field type string.
-   * Notice: Reserve
+   * TypeString declares the codec for field type string. Reserve
    * </pre>
    *
    * Protobuf type {@code json.TypeString}

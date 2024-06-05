@@ -5,8 +5,7 @@ package io.github.yu31.protoc.pb.pbjson;
 
 /**
  * <pre>
- * TypeBytes declares the codec for field type bytes.
- * Notice: Reserve
+ * TypeBytes declares the codec for field type bytes. Reserve
  * </pre>
  *
  * Protobuf type {@code json.TypeBytes}
@@ -231,8 +230,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * TypeBytes declares the codec for field type bytes.
-   * Notice: Reserve
+   * TypeBytes declares the codec for field type bytes. Reserve
    * </pre>
    *
    * Protobuf type {@code json.TypeBytes}

@@ -195,24 +195,23 @@ func (ul *Unmarshal) decodeField(fieldSet *FieldSet) {
 
 	switch {
 	case fieldSet.Field.Desc.IsMap():
-		mapOptions := loadMapOptions(fieldSet.Field, options)
-		_mkName, _mkVars := ul.loadMapKeyTypeInfo(fieldSet.Field.Message.Fields[0], mapOptions.Key)
-		_mvName, _mvVars := ul.loadValueTypeInfo(fieldSet.Field.Message.Fields[1], mapOptions.Value)
+		typeCodecMap := loadTypeCodecMap(options.Reference)
+		_mkName, _mkVars := ul.loadMapKeyTypeInfo(fieldSet.Field.Message.Fields[0], typeCodecMap.Key)
+		_mvName, _mvVars := ul.loadValueTypeInfo(fieldSet.Field.Message.Fields[1], typeCodecMap.Value)
 
 		funcName = "ReadMap" + _mkName + _mvName
 		funcVars = append(funcVars, fieldValue)
 		funcVars = append(funcVars, _mkVars...)
 		funcVars = append(funcVars, _mvVars...)
 	case fieldSet.Field.Desc.IsList():
-		repeatedOptions := loadRepeatedOptions(fieldSet.Field, options)
-		_typeName, _vars := ul.loadValueTypeInfo(fieldSet.Field, repeatedOptions.Elem)
+		typeCodecRepeated := loadTypeCodecRepeated(options.Reference)
+		_typeName, _vars := ul.loadValueTypeInfo(fieldSet.Field, typeCodecRepeated.Elem)
 
 		funcName = "ReadList" + _typeName
 		funcVars = append(funcVars, fieldValue)
 		funcVars = append(funcVars, _vars...)
 	default:
-		plainOptions := loadPlainOptions(fieldSet.Field, options)
-		_typeName, _vars := ul.loadValueTypeInfo(fieldSet.Field, plainOptions.Value)
+		_typeName, _vars := ul.loadValueTypeInfo(fieldSet.Field, options.Reference)
 
 		if pkfield.FieldIsOptional(fieldSet.Field) {
 			funcName = "ReadPtr" + _typeName

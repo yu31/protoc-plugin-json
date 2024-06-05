@@ -164,24 +164,23 @@ func (ml *Marshal) encodeField(fieldSet *FieldSet) {
 
 	switch {
 	case fieldSet.Field.Desc.IsMap():
-		mapOptions := loadMapOptions(fieldSet.Field, options)
-		_mkName, _mkVars := ml.loadMapKeyTypeInfo(fieldSet.Field.Message.Fields[0], mapOptions.Key)
-		_mvName, _mvVars, _checkError := ml.loadValueTypeInfo(fieldSet.Field.Message.Fields[1], mapOptions.Value)
+		typeCodecMap := loadTypeCodecMap(options.Reference)
+		_mkName, _mkVars := ml.loadMapKeyTypeInfo(fieldSet.Field.Message.Fields[0], typeCodecMap.Key)
+		_mvName, _mvVars, _checkError := ml.loadValueTypeInfo(fieldSet.Field.Message.Fields[1], typeCodecMap.Value)
 
 		funcName = "AppendMap" + _mkName + _mvName
 		checkError = _checkError
 		funcVars = append(funcVars, _mkVars...)
 		funcVars = append(funcVars, _mvVars...)
 	case fieldSet.Field.Desc.IsList():
-		repeatedOptions := loadRepeatedOptions(fieldSet.Field, options)
-		_typeName, _vars, _checkError := ml.loadValueTypeInfo(fieldSet.Field, repeatedOptions.Elem)
+		typeCodecRepeated := loadTypeCodecRepeated(options.Reference)
+		_typeName, _vars, _checkError := ml.loadValueTypeInfo(fieldSet.Field, typeCodecRepeated.Elem)
 
 		funcName = "AppendList" + _typeName
 		checkError = _checkError
 		funcVars = append(funcVars, _vars...)
 	default:
-		plainOptions := loadPlainOptions(fieldSet.Field, options)
-		_typeName, _vars, _checkError := ml.loadValueTypeInfo(fieldSet.Field, plainOptions.Value)
+		_typeName, _vars, _checkError := ml.loadValueTypeInfo(fieldSet.Field, options.Reference)
 
 		if pkfield.FieldIsOptional(fieldSet.Field) {
 			funcName = "AppendPtr" + _typeName

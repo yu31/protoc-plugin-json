@@ -3,13 +3,13 @@
 
 package io.github.yu31.protoc.pb.pbjson;
 
-public interface RepeatedOptionsOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:json.RepeatedOptions)
+public interface TypeRepeatedOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:json.TypeRepeated)
     com.google.protobuf.MessageOrBuilder {
 
   /**
    * <pre>
-   * items declares the default value for field.
+   * Elem reports the codec of repeated elements.
    * </pre>
    *
    * <code>.json.TypeCodec elem = 1;</code>
@@ -18,7 +18,7 @@ public interface RepeatedOptionsOrBuilder extends
   boolean hasElem();
   /**
    * <pre>
-   * items declares the default value for field.
+   * Elem reports the codec of repeated elements.
    * </pre>
    *
    * <code>.json.TypeCodec elem = 1;</code>
@@ -27,7 +27,7 @@ public interface RepeatedOptionsOrBuilder extends
   io.github.yu31.protoc.pb.pbjson.TypeCodec getElem();
   /**
    * <pre>
-   * items declares the default value for field.
+   * Elem reports the codec of repeated elements.
    * </pre>
    *
    * <code>.json.TypeCodec elem = 1;</code>

@@ -203,11 +203,26 @@ public interface TypeCodecOrBuilder extends
   io.github.yu31.protoc.pb.pbjson.TypeBoolOrBuilder getBoolOrBuilder();
 
   /**
+   * <code>.json.TypeEnum enum = 14;</code>
+   * @return Whether the enum field is set.
+   */
+  boolean hasEnum();
+  /**
+   * <code>.json.TypeEnum enum = 14;</code>
+   * @return The enum.
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeEnum getEnum();
+  /**
+   * <code>.json.TypeEnum enum = 14;</code>
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder getEnumOrBuilder();
+
+  /**
    * <pre>
    * Reserved.
    * </pre>
    *
-   * <code>.json.TypeString string = 14;</code>
+   * <code>.json.TypeString string = 15;</code>
    * @return Whether the string field is set.
    */
   boolean hasString();
@@ -216,7 +231,7 @@ public interface TypeCodecOrBuilder extends
    * Reserved.
    * </pre>
    *
-   * <code>.json.TypeString string = 14;</code>
+   * <code>.json.TypeString string = 15;</code>
    * @return The string.
    */
   io.github.yu31.protoc.pb.pbjson.TypeString getString();
@@ -225,7 +240,7 @@ public interface TypeCodecOrBuilder extends
    * Reserved.
    * </pre>
    *
-   * <code>.json.TypeString string = 14;</code>
+   * <code>.json.TypeString string = 15;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeStringOrBuilder getStringOrBuilder();
 
@@ -234,7 +249,7 @@ public interface TypeCodecOrBuilder extends
    * Reserved.
    * </pre>
    *
-   * <code>.json.TypeBytes bytes = 15;</code>
+   * <code>.json.TypeBytes bytes = 16;</code>
    * @return Whether the bytes field is set.
    */
   boolean hasBytes();
@@ -243,7 +258,7 @@ public interface TypeCodecOrBuilder extends
    * Reserved.
    * </pre>
    *
-   * <code>.json.TypeBytes bytes = 15;</code>
+   * <code>.json.TypeBytes bytes = 16;</code>
    * @return The bytes.
    */
   io.github.yu31.protoc.pb.pbjson.TypeBytes getBytes();
@@ -252,36 +267,33 @@ public interface TypeCodecOrBuilder extends
    * Reserved.
    * </pre>
    *
-   * <code>.json.TypeBytes bytes = 15;</code>
+   * <code>.json.TypeBytes bytes = 16;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeBytesOrBuilder getBytesOrBuilder();
 
   /**
-   * <code>.json.TypeEnum enum = 16;</code>
-   * @return Whether the enum field is set.
-   */
-  boolean hasEnum();
-  /**
-   * <code>.json.TypeEnum enum = 16;</code>
-   * @return The enum.
-   */
-  io.github.yu31.protoc.pb.pbjson.TypeEnum getEnum();
-  /**
-   * <code>.json.TypeEnum enum = 16;</code>
-   */
-  io.github.yu31.protoc.pb.pbjson.TypeEnumOrBuilder getEnumOrBuilder();
-
-  /**
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
    * <code>.json.TypeMessage message = 17;</code>
    * @return Whether the message field is set.
    */
   boolean hasMessage();
   /**
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
    * <code>.json.TypeMessage message = 17;</code>
    * @return The message.
    */
   io.github.yu31.protoc.pb.pbjson.TypeMessage getMessage();
   /**
+   * <pre>
+   * Reserved.
+   * </pre>
+   *
    * <code>.json.TypeMessage message = 17;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeMessageOrBuilder getMessageOrBuilder();
@@ -330,6 +342,36 @@ public interface TypeCodecOrBuilder extends
    * <code>.json.TypeTimestamp timestamp = 23;</code>
    */
   io.github.yu31.protoc.pb.pbjson.TypeTimestampOrBuilder getTimestampOrBuilder();
+
+  /**
+   * <code>.json.TypeRepeated repeated = 31;</code>
+   * @return Whether the repeated field is set.
+   */
+  boolean hasRepeated();
+  /**
+   * <code>.json.TypeRepeated repeated = 31;</code>
+   * @return The repeated.
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeRepeated getRepeated();
+  /**
+   * <code>.json.TypeRepeated repeated = 31;</code>
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeRepeatedOrBuilder getRepeatedOrBuilder();
+
+  /**
+   * <code>.json.TypeMap map = 32;</code>
+   * @return Whether the map field is set.
+   */
+  boolean hasMap();
+  /**
+   * <code>.json.TypeMap map = 32;</code>
+   * @return The map.
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeMap getMap();
+  /**
+   * <code>.json.TypeMap map = 32;</code>
+   */
+  io.github.yu31.protoc.pb.pbjson.TypeMapOrBuilder getMapOrBuilder();
 
   public io.github.yu31.protoc.pb.pbjson.TypeCodec.KindCase getKindCase();
 }

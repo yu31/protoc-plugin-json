@@ -5,28 +5,28 @@ package io.github.yu31.protoc.pb.pbjson;
 
 /**
  * <pre>
- * PlainOptions declares the options applied to the field plain.
+ * TypeRepeated declares the codec applied to the field repeated.
  * </pre>
  *
- * Protobuf type {@code json.PlainOptions}
+ * Protobuf type {@code json.TypeRepeated}
  */
-public final class PlainOptions extends
+public final class TypeRepeated extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:json.PlainOptions)
-    PlainOptionsOrBuilder {
+    // @@protoc_insertion_point(message_implements:json.TypeRepeated)
+    TypeRepeatedOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use PlainOptions.newBuilder() to construct.
-  private PlainOptions(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use TypeRepeated.newBuilder() to construct.
+  private TypeRepeated(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private PlainOptions() {
+  private TypeRepeated() {
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new PlainOptions();
+    return new TypeRepeated();
   }
 
   @java.lang.Override
@@ -34,7 +34,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private PlainOptions(
+  private TypeRepeated(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -54,13 +54,13 @@ private static final long serialVersionUID = 0L;
             break;
           case 10: {
             io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder subBuilder = null;
-            if (value_ != null) {
-              subBuilder = value_.toBuilder();
+            if (elem_ != null) {
+              subBuilder = elem_.toBuilder();
             }
-            value_ = input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeCodec.parser(), extensionRegistry);
+            elem_ = input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeCodec.parser(), extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom(value_);
-              value_ = subBuilder.buildPartial();
+              subBuilder.mergeFrom(elem_);
+              elem_ = subBuilder.buildPartial();
             }
 
             break;
@@ -86,53 +86,53 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_PlainOptions_descriptor;
+    return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeRepeated_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_PlainOptions_fieldAccessorTable
+    return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeRepeated_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.github.yu31.protoc.pb.pbjson.PlainOptions.class, io.github.yu31.protoc.pb.pbjson.PlainOptions.Builder.class);
+            io.github.yu31.protoc.pb.pbjson.TypeRepeated.class, io.github.yu31.protoc.pb.pbjson.TypeRepeated.Builder.class);
   }
 
-  public static final int VALUE_FIELD_NUMBER = 1;
-  private io.github.yu31.protoc.pb.pbjson.TypeCodec value_;
+  public static final int ELEM_FIELD_NUMBER = 1;
+  private io.github.yu31.protoc.pb.pbjson.TypeCodec elem_;
   /**
    * <pre>
-   * value declares the default value for field.
+   * Elem reports the codec of repeated elements.
    * </pre>
    *
-   * <code>.json.TypeCodec value = 1;</code>
-   * @return Whether the value field is set.
+   * <code>.json.TypeCodec elem = 1;</code>
+   * @return Whether the elem field is set.
    */
   @java.lang.Override
-  public boolean hasValue() {
-    return value_ != null;
+  public boolean hasElem() {
+    return elem_ != null;
   }
   /**
    * <pre>
-   * value declares the default value for field.
+   * Elem reports the codec of repeated elements.
    * </pre>
    *
-   * <code>.json.TypeCodec value = 1;</code>
-   * @return The value.
+   * <code>.json.TypeCodec elem = 1;</code>
+   * @return The elem.
    */
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeCodec getValue() {
-    return value_ == null ? io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : value_;
+  public io.github.yu31.protoc.pb.pbjson.TypeCodec getElem() {
+    return elem_ == null ? io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : elem_;
   }
   /**
    * <pre>
-   * value declares the default value for field.
+   * Elem reports the codec of repeated elements.
    * </pre>
    *
-   * <code>.json.TypeCodec value = 1;</code>
+   * <code>.json.TypeCodec elem = 1;</code>
    */
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getValueOrBuilder() {
-    return getValue();
+  public io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getElemOrBuilder() {
+    return getElem();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -149,8 +149,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (value_ != null) {
-      output.writeMessage(1, getValue());
+    if (elem_ != null) {
+      output.writeMessage(1, getElem());
     }
     unknownFields.writeTo(output);
   }
@@ -161,9 +161,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (value_ != null) {
+    if (elem_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, getValue());
+        .computeMessageSize(1, getElem());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -175,15 +175,15 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof io.github.yu31.protoc.pb.pbjson.PlainOptions)) {
+    if (!(obj instanceof io.github.yu31.protoc.pb.pbjson.TypeRepeated)) {
       return super.equals(obj);
     }
-    io.github.yu31.protoc.pb.pbjson.PlainOptions other = (io.github.yu31.protoc.pb.pbjson.PlainOptions) obj;
+    io.github.yu31.protoc.pb.pbjson.TypeRepeated other = (io.github.yu31.protoc.pb.pbjson.TypeRepeated) obj;
 
-    if (hasValue() != other.hasValue()) return false;
-    if (hasValue()) {
-      if (!getValue()
-          .equals(other.getValue())) return false;
+    if (hasElem() != other.hasElem()) return false;
+    if (hasElem()) {
+      if (!getElem()
+          .equals(other.getElem())) return false;
     }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
@@ -196,78 +196,78 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasValue()) {
-      hash = (37 * hash) + VALUE_FIELD_NUMBER;
-      hash = (53 * hash) + getValue().hashCode();
+    if (hasElem()) {
+      hash = (37 * hash) + ELEM_FIELD_NUMBER;
+      hash = (53 * hash) + getElem().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static io.github.yu31.protoc.pb.pbjson.PlainOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeRepeated parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.github.yu31.protoc.pb.pbjson.PlainOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeRepeated parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.github.yu31.protoc.pb.pbjson.PlainOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeRepeated parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.github.yu31.protoc.pb.pbjson.PlainOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeRepeated parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.github.yu31.protoc.pb.pbjson.PlainOptions parseFrom(byte[] data)
+  public static io.github.yu31.protoc.pb.pbjson.TypeRepeated parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.github.yu31.protoc.pb.pbjson.PlainOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeRepeated parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.github.yu31.protoc.pb.pbjson.PlainOptions parseFrom(java.io.InputStream input)
+  public static io.github.yu31.protoc.pb.pbjson.TypeRepeated parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static io.github.yu31.protoc.pb.pbjson.PlainOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeRepeated parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static io.github.yu31.protoc.pb.pbjson.PlainOptions parseDelimitedFrom(java.io.InputStream input)
+  public static io.github.yu31.protoc.pb.pbjson.TypeRepeated parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static io.github.yu31.protoc.pb.pbjson.PlainOptions parseDelimitedFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeRepeated parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static io.github.yu31.protoc.pb.pbjson.PlainOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeRepeated parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static io.github.yu31.protoc.pb.pbjson.PlainOptions parseFrom(
+  public static io.github.yu31.protoc.pb.pbjson.TypeRepeated parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -280,7 +280,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(io.github.yu31.protoc.pb.pbjson.PlainOptions prototype) {
+  public static Builder newBuilder(io.github.yu31.protoc.pb.pbjson.TypeRepeated prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -297,29 +297,29 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * PlainOptions declares the options applied to the field plain.
+   * TypeRepeated declares the codec applied to the field repeated.
    * </pre>
    *
-   * Protobuf type {@code json.PlainOptions}
+   * Protobuf type {@code json.TypeRepeated}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:json.PlainOptions)
-      io.github.yu31.protoc.pb.pbjson.PlainOptionsOrBuilder {
+      // @@protoc_insertion_point(builder_implements:json.TypeRepeated)
+      io.github.yu31.protoc.pb.pbjson.TypeRepeatedOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_PlainOptions_descriptor;
+      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeRepeated_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_PlainOptions_fieldAccessorTable
+      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeRepeated_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              io.github.yu31.protoc.pb.pbjson.PlainOptions.class, io.github.yu31.protoc.pb.pbjson.PlainOptions.Builder.class);
+              io.github.yu31.protoc.pb.pbjson.TypeRepeated.class, io.github.yu31.protoc.pb.pbjson.TypeRepeated.Builder.class);
     }
 
-    // Construct using io.github.yu31.protoc.pb.pbjson.PlainOptions.newBuilder()
+    // Construct using io.github.yu31.protoc.pb.pbjson.TypeRepeated.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -337,11 +337,11 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      if (valueBuilder_ == null) {
-        value_ = null;
+      if (elemBuilder_ == null) {
+        elem_ = null;
       } else {
-        value_ = null;
-        valueBuilder_ = null;
+        elem_ = null;
+        elemBuilder_ = null;
       }
       return this;
     }
@@ -349,17 +349,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_PlainOptions_descriptor;
+      return io.github.yu31.protoc.pb.pbjson.PBJSON.internal_static_json_TypeRepeated_descriptor;
     }
 
     @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.PlainOptions getDefaultInstanceForType() {
-      return io.github.yu31.protoc.pb.pbjson.PlainOptions.getDefaultInstance();
+    public io.github.yu31.protoc.pb.pbjson.TypeRepeated getDefaultInstanceForType() {
+      return io.github.yu31.protoc.pb.pbjson.TypeRepeated.getDefaultInstance();
     }
 
     @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.PlainOptions build() {
-      io.github.yu31.protoc.pb.pbjson.PlainOptions result = buildPartial();
+    public io.github.yu31.protoc.pb.pbjson.TypeRepeated build() {
+      io.github.yu31.protoc.pb.pbjson.TypeRepeated result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -367,12 +367,12 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public io.github.yu31.protoc.pb.pbjson.PlainOptions buildPartial() {
-      io.github.yu31.protoc.pb.pbjson.PlainOptions result = new io.github.yu31.protoc.pb.pbjson.PlainOptions(this);
-      if (valueBuilder_ == null) {
-        result.value_ = value_;
+    public io.github.yu31.protoc.pb.pbjson.TypeRepeated buildPartial() {
+      io.github.yu31.protoc.pb.pbjson.TypeRepeated result = new io.github.yu31.protoc.pb.pbjson.TypeRepeated(this);
+      if (elemBuilder_ == null) {
+        result.elem_ = elem_;
       } else {
-        result.value_ = valueBuilder_.build();
+        result.elem_ = elemBuilder_.build();
       }
       onBuilt();
       return result;
@@ -412,18 +412,18 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.github.yu31.protoc.pb.pbjson.PlainOptions) {
-        return mergeFrom((io.github.yu31.protoc.pb.pbjson.PlainOptions)other);
+      if (other instanceof io.github.yu31.protoc.pb.pbjson.TypeRepeated) {
+        return mergeFrom((io.github.yu31.protoc.pb.pbjson.TypeRepeated)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(io.github.yu31.protoc.pb.pbjson.PlainOptions other) {
-      if (other == io.github.yu31.protoc.pb.pbjson.PlainOptions.getDefaultInstance()) return this;
-      if (other.hasValue()) {
-        mergeValue(other.getValue());
+    public Builder mergeFrom(io.github.yu31.protoc.pb.pbjson.TypeRepeated other) {
+      if (other == io.github.yu31.protoc.pb.pbjson.TypeRepeated.getDefaultInstance()) return this;
+      if (other.hasElem()) {
+        mergeElem(other.getElem());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -440,11 +440,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      io.github.yu31.protoc.pb.pbjson.PlainOptions parsedMessage = null;
+      io.github.yu31.protoc.pb.pbjson.TypeRepeated parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.github.yu31.protoc.pb.pbjson.PlainOptions) e.getUnfinishedMessage();
+        parsedMessage = (io.github.yu31.protoc.pb.pbjson.TypeRepeated) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -454,159 +454,159 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private io.github.yu31.protoc.pb.pbjson.TypeCodec value_;
+    private io.github.yu31.protoc.pb.pbjson.TypeCodec elem_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder> valueBuilder_;
+        io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder> elemBuilder_;
     /**
      * <pre>
-     * value declares the default value for field.
+     * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 1;</code>
-     * @return Whether the value field is set.
+     * <code>.json.TypeCodec elem = 1;</code>
+     * @return Whether the elem field is set.
      */
-    public boolean hasValue() {
-      return valueBuilder_ != null || value_ != null;
+    public boolean hasElem() {
+      return elemBuilder_ != null || elem_ != null;
     }
     /**
      * <pre>
-     * value declares the default value for field.
+     * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 1;</code>
-     * @return The value.
+     * <code>.json.TypeCodec elem = 1;</code>
+     * @return The elem.
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeCodec getValue() {
-      if (valueBuilder_ == null) {
-        return value_ == null ? io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : value_;
+    public io.github.yu31.protoc.pb.pbjson.TypeCodec getElem() {
+      if (elemBuilder_ == null) {
+        return elem_ == null ? io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : elem_;
       } else {
-        return valueBuilder_.getMessage();
+        return elemBuilder_.getMessage();
       }
     }
     /**
      * <pre>
-     * value declares the default value for field.
+     * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 1;</code>
+     * <code>.json.TypeCodec elem = 1;</code>
      */
-    public Builder setValue(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
-      if (valueBuilder_ == null) {
+    public Builder setElem(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
+      if (elemBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        value_ = value;
+        elem_ = value;
         onChanged();
       } else {
-        valueBuilder_.setMessage(value);
+        elemBuilder_.setMessage(value);
       }
 
       return this;
     }
     /**
      * <pre>
-     * value declares the default value for field.
+     * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 1;</code>
+     * <code>.json.TypeCodec elem = 1;</code>
      */
-    public Builder setValue(
+    public Builder setElem(
         io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder builderForValue) {
-      if (valueBuilder_ == null) {
-        value_ = builderForValue.build();
+      if (elemBuilder_ == null) {
+        elem_ = builderForValue.build();
         onChanged();
       } else {
-        valueBuilder_.setMessage(builderForValue.build());
+        elemBuilder_.setMessage(builderForValue.build());
       }
 
       return this;
     }
     /**
      * <pre>
-     * value declares the default value for field.
+     * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 1;</code>
+     * <code>.json.TypeCodec elem = 1;</code>
      */
-    public Builder mergeValue(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
-      if (valueBuilder_ == null) {
-        if (value_ != null) {
-          value_ =
-            io.github.yu31.protoc.pb.pbjson.TypeCodec.newBuilder(value_).mergeFrom(value).buildPartial();
+    public Builder mergeElem(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
+      if (elemBuilder_ == null) {
+        if (elem_ != null) {
+          elem_ =
+            io.github.yu31.protoc.pb.pbjson.TypeCodec.newBuilder(elem_).mergeFrom(value).buildPartial();
         } else {
-          value_ = value;
+          elem_ = value;
         }
         onChanged();
       } else {
-        valueBuilder_.mergeFrom(value);
+        elemBuilder_.mergeFrom(value);
       }
 
       return this;
     }
     /**
      * <pre>
-     * value declares the default value for field.
+     * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 1;</code>
+     * <code>.json.TypeCodec elem = 1;</code>
      */
-    public Builder clearValue() {
-      if (valueBuilder_ == null) {
-        value_ = null;
+    public Builder clearElem() {
+      if (elemBuilder_ == null) {
+        elem_ = null;
         onChanged();
       } else {
-        value_ = null;
-        valueBuilder_ = null;
+        elem_ = null;
+        elemBuilder_ = null;
       }
 
       return this;
     }
     /**
      * <pre>
-     * value declares the default value for field.
+     * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 1;</code>
+     * <code>.json.TypeCodec elem = 1;</code>
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder getValueBuilder() {
+    public io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder getElemBuilder() {
       
       onChanged();
-      return getValueFieldBuilder().getBuilder();
+      return getElemFieldBuilder().getBuilder();
     }
     /**
      * <pre>
-     * value declares the default value for field.
+     * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 1;</code>
+     * <code>.json.TypeCodec elem = 1;</code>
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getValueOrBuilder() {
-      if (valueBuilder_ != null) {
-        return valueBuilder_.getMessageOrBuilder();
+    public io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getElemOrBuilder() {
+      if (elemBuilder_ != null) {
+        return elemBuilder_.getMessageOrBuilder();
       } else {
-        return value_ == null ?
-            io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : value_;
+        return elem_ == null ?
+            io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : elem_;
       }
     }
     /**
      * <pre>
-     * value declares the default value for field.
+     * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 1;</code>
+     * <code>.json.TypeCodec elem = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder> 
-        getValueFieldBuilder() {
-      if (valueBuilder_ == null) {
-        valueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+        getElemFieldBuilder() {
+      if (elemBuilder_ == null) {
+        elemBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder>(
-                getValue(),
+                getElem(),
                 getParentForChildren(),
                 isClean());
-        value_ = null;
+        elem_ = null;
       }
-      return valueBuilder_;
+      return elemBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(
@@ -621,41 +621,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:json.PlainOptions)
+    // @@protoc_insertion_point(builder_scope:json.TypeRepeated)
   }
 
-  // @@protoc_insertion_point(class_scope:json.PlainOptions)
-  private static final io.github.yu31.protoc.pb.pbjson.PlainOptions DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:json.TypeRepeated)
+  private static final io.github.yu31.protoc.pb.pbjson.TypeRepeated DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new io.github.yu31.protoc.pb.pbjson.PlainOptions();
+    DEFAULT_INSTANCE = new io.github.yu31.protoc.pb.pbjson.TypeRepeated();
   }
 
-  public static io.github.yu31.protoc.pb.pbjson.PlainOptions getDefaultInstance() {
+  public static io.github.yu31.protoc.pb.pbjson.TypeRepeated getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<PlainOptions>
-      PARSER = new com.google.protobuf.AbstractParser<PlainOptions>() {
+  private static final com.google.protobuf.Parser<TypeRepeated>
+      PARSER = new com.google.protobuf.AbstractParser<TypeRepeated>() {
     @java.lang.Override
-    public PlainOptions parsePartialFrom(
+    public TypeRepeated parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new PlainOptions(input, extensionRegistry);
+      return new TypeRepeated(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<PlainOptions> parser() {
+  public static com.google.protobuf.Parser<TypeRepeated> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<PlainOptions> getParserForType() {
+  public com.google.protobuf.Parser<TypeRepeated> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.PlainOptions getDefaultInstanceForType() {
+  public io.github.yu31.protoc.pb.pbjson.TypeRepeated getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 
