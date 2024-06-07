@@ -13,5 +13,5 @@ option go_package = "xgo/tests/pb/pbinvalid";
 import "proto/json.proto";
 
 message SFixed6413 {
-  sfixed64 field13 = 13 [ (json.field) = { reference: { plain: { value: { bool: { } }; }; }; } ];
+  sfixed64 field13 = 13 [ (json.field) = { format: { bool: { } } } ];
 }

@@ -5,11 +5,11 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbref"
+	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbformat"
 )
 
 func Test_Error_TypeOptional1(t *testing.T) {
-	data := &pbref.TypeOptional1{}
+	data := &pbformat.TypeOptional1{}
 
 	t.Run("Int32", func(t *testing.T) {
 		t.Run("Number", func(t *testing.T) {

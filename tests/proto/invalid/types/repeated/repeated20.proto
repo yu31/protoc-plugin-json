@@ -13,5 +13,5 @@ option go_package = "xgo/tests/pb/pbinvalid";
 import "proto/json.proto";
 
 message Repeated20 {
-  repeated int32 field20 = 20 [ (json.field) = { reference: { repeated: { elem: { message: { } }; }; }; } ];
+  repeated int32 field20 = 20 [ (json.field) = { format: { repeated: { elem: { message: { } }; }; }; } ];
 }

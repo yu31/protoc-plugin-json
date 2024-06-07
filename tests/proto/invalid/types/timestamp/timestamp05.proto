@@ -13,5 +13,5 @@ import "google/protobuf/timestamp.proto";
 import "proto/json.proto";
 
 message Timestamp05 {
-  google.protobuf.Timestamp field05 = 5 [ (json.field) = { reference: { plain: { value: { sfixed32: { } }; }; }; } ];
+  google.protobuf.Timestamp field05 = 5 [ (json.field) = { format: { sfixed32: { } } } ];
 }

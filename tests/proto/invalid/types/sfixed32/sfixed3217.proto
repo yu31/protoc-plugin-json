@@ -13,5 +13,5 @@ option go_package = "xgo/tests/pb/pbinvalid";
 import "proto/json.proto";
 
 message SFixed3217 {
-  sfixed32 field17 = 17 [ (json.field) = { reference: { plain: { value: { any: { } }; }; }; } ];
+  sfixed32 field17 = 17 [ (json.field) = { format: { any: { } } } ];
 }

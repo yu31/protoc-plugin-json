@@ -13,5 +13,5 @@ import "google/protobuf/duration.proto";
 import "proto/json.proto";
 
 message Duration16 {
-  google.protobuf.Duration field16 = 16 [ (json.field) = { reference: { plain: { value: { enum: { } }; }; }; } ];
+  google.protobuf.Duration field16 = 16 [ (json.field) = { format: { enum: { } } } ];
 }

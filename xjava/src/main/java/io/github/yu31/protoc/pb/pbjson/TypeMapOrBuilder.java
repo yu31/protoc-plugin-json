@@ -12,7 +12,7 @@ public interface TypeMapOrBuilder extends
    * Key reports the codec of map key.
    * </pre>
    *
-   * <code>.json.TypeCodec key = 1;</code>
+   * <code>.json.TypeFormat key = 1;</code>
    * @return Whether the key field is set.
    */
   boolean hasKey();
@@ -21,25 +21,25 @@ public interface TypeMapOrBuilder extends
    * Key reports the codec of map key.
    * </pre>
    *
-   * <code>.json.TypeCodec key = 1;</code>
+   * <code>.json.TypeFormat key = 1;</code>
    * @return The key.
    */
-  io.github.yu31.protoc.pb.pbjson.TypeCodec getKey();
+  io.github.yu31.protoc.pb.pbjson.TypeFormat getKey();
   /**
    * <pre>
    * Key reports the codec of map key.
    * </pre>
    *
-   * <code>.json.TypeCodec key = 1;</code>
+   * <code>.json.TypeFormat key = 1;</code>
    */
-  io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getKeyOrBuilder();
+  io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder getKeyOrBuilder();
 
   /**
    * <pre>
    * Value reports the codec of map value.
    * </pre>
    *
-   * <code>.json.TypeCodec value = 2;</code>
+   * <code>.json.TypeFormat value = 2;</code>
    * @return Whether the value field is set.
    */
   boolean hasValue();
@@ -48,16 +48,16 @@ public interface TypeMapOrBuilder extends
    * Value reports the codec of map value.
    * </pre>
    *
-   * <code>.json.TypeCodec value = 2;</code>
+   * <code>.json.TypeFormat value = 2;</code>
    * @return The value.
    */
-  io.github.yu31.protoc.pb.pbjson.TypeCodec getValue();
+  io.github.yu31.protoc.pb.pbjson.TypeFormat getValue();
   /**
    * <pre>
    * Value reports the codec of map value.
    * </pre>
    *
-   * <code>.json.TypeCodec value = 2;</code>
+   * <code>.json.TypeFormat value = 2;</code>
    */
-  io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getValueOrBuilder();
+  io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder getValueOrBuilder();
 }

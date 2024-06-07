@@ -79,11 +79,11 @@ message FieldOptions {
   //  - Circular references are not allowed
   optional bool inline = 4;
 
-  // Reference reports the codec set for field.
-  TypeCodec reference = 11;
+  // Format declares how to format the fields.
+  TypeFormat format = 11;
 }
 
-message TypeCodec {
+message TypeFormat {
   oneof Kind {
     TypeInt32    int32    = 1;
     TypeInt64    int64    = 2;
@@ -118,16 +118,16 @@ message TypeCodec {
 // TypeRepeated declares the codec applied to the field repeated.
 message TypeRepeated {
   // Elem reports the codec of repeated elements.
-  TypeCodec elem = 1;
+  TypeFormat elem = 1;
 }
 
 // TypeMap declares the codec applied to the field map.
 message TypeMap {
   // Key reports the codec of map key.
-  TypeCodec key = 1;
+  TypeFormat key = 1;
 
   // Value reports the codec of map value.
-  TypeCodec value = 2;
+  TypeFormat value = 2;
 }
 
 // TypeInt32 declares the codec for field type int32.
@@ -136,15 +136,15 @@ message TypeInt32 {
     // Unset represents the default value will be applied when encoding and decoding JSON.
     Unset = 0;
 
-    // Number represents convert the field as numbers when encoding and decoding JSON.
-    Number = 1;
+    // Numeric represents convert the field as numeric when encoding and decoding JSON.
+    Numeric = 1;
 
     // String represents convert the field as strings when encoding and decoding JSON.
     String = 2;
   }
 
   // Codec specifies encoding format for the field type of int32.
-  // The default is `Number` in plain value, repeated elements and map value.
+  // The default is `Numeric` in plain value, repeated elements and map value.
   // And the default is `String` in map key.
   Codec codec = 1;
 }
@@ -155,15 +155,15 @@ message TypeInt64 {
     // Unset represents the default value will be applied when encoding and decoding JSON.
     Unset = 0;
 
-    // Number represents convert the field as numbers when encoding and decoding JSON.
-    Number = 1;
+    // Numeric represents convert the field as numeric when encoding and decoding JSON.
+    Numeric = 1;
 
     // String represents convert the field as strings when encoding and decoding JSON.
     String = 2;
   }
 
   // Codec specifies encoding format for the field type of int32.
-  // The default is `Number` in plain value, repeated elements and map value.
+  // The default is `Numeric` in plain value, repeated elements and map value.
   // And the default is `String` in map key.
   Codec codec = 1;
 }
@@ -174,15 +174,15 @@ message TypeSInt32 {
     // Unset represents the default value will be applied when encoding and decoding JSON.
     Unset = 0;
 
-    // Number represents convert the field as numbers when encoding and decoding JSON.
-    Number = 1;
+    // Numeric represents convert the field as numeric when encoding and decoding JSON.
+    Numeric = 1;
 
     // String represents convert the field as strings when encoding and decoding JSON.
     String = 2;
   }
 
   // Codec specifies encoding format for the field type of sint32.
-  // The default is `Number` in plain value, repeated elements and map value.
+  // The default is `Numeric` in plain value, repeated elements and map value.
   // And the default is `String` in map key.
   Codec codec = 1;
 }
@@ -193,15 +193,15 @@ message TypeSInt64 {
     // Unset represents the default value will be applied when encoding and decoding JSON.
     Unset = 0;
 
-    // Number represents convert the field as numbers when encoding and decoding JSON.
-    Number = 1;
+    // Numeric represents convert the field as numeric when encoding and decoding JSON.
+    Numeric = 1;
 
     // String represents convert the field as strings when encoding and decoding JSON.
     String = 2;
   }
 
   // Codec specifies encoding format for the field type of sint64.
-  // The default is `Number` in plain value, repeated elements and map value.
+  // The default is `Numeric` in plain value, repeated elements and map value.
   // And the default is `String` in map key.
   Codec codec = 1;
 }
@@ -212,15 +212,15 @@ message TypeSFixed32 {
     // Unset represents the default value will be applied when encoding and decoding JSON.
     Unset = 0;
 
-    // Number represents convert the field as numbers when encoding and decoding JSON.
-    Number = 1;
+    // Numeric represents convert the field as numeric when encoding and decoding JSON.
+    Numeric = 1;
 
     // String represents convert the field as strings when encoding and decoding JSON.
     String = 2;
   }
 
   // Codec specifies encoding format for the field type of sfixed32.
-  // The default is `Number` in plain value, repeated elements and map value.
+  // The default is `Numeric` in plain value, repeated elements and map value.
   // And the default is `String` in map key.
   Codec codec = 1;
 }
@@ -231,15 +231,15 @@ message TypeSFixed64 {
     // Unset represents the default value will be applied when encoding and decoding JSON.
     Unset = 0;
 
-    // Number represents convert the field as numbers when encoding and decoding JSON.
-    Number = 1;
+    // Numeric represents convert the field as numeric when encoding and decoding JSON.
+    Numeric = 1;
 
     // String represents convert the field as strings when encoding and decoding JSON.
     String = 2;
   }
 
   // Codec specifies encoding format for the field type of sfixed64.
-  // The default is `Number` in plain value, repeated elements and map value.
+  // The default is `Numeric` in plain value, repeated elements and map value.
   // And the default is `String` in map key.
   Codec codec = 1;
 }
@@ -250,15 +250,15 @@ message TypeUint32 {
     // Unset represents the default value will be applied when encoding and decoding JSON.
     Unset = 0;
 
-    // Number represents convert the field as numbers when encoding and decoding JSON.
-    Number = 1;
+    // Numeric represents convert the field as numeric when encoding and decoding JSON.
+    Numeric = 1;
 
     // String represents convert the field as strings when encoding and decoding JSON.
     String = 2;
   }
 
   // Codec specifies encoding format for the field type of uint32.
-  // The default is `Number` in plain value, repeated elements and map value.
+  // The default is `Numeric` in plain value, repeated elements and map value.
   // And the default is `String` in map key.
   Codec codec = 1;
 }
@@ -269,15 +269,15 @@ message TypeUint64 {
     // Unset represents the default value will be applied when encoding and decoding JSON.
     Unset = 0;
 
-    // Number represents convert the field as numbers when encoding and decoding JSON.
-    Number = 1;
+    // Numeric represents convert the field as numeric when encoding and decoding JSON.
+    Numeric = 1;
 
     // String represents convert the field as strings when encoding and decoding JSON.
     String = 2;
   }
 
   // Codec specifies encoding format for the field type of uint64.
-  // The default is `Number` in plain value, repeated elements and map value.
+  // The default is `Numeric` in plain value, repeated elements and map value.
   // And the default is `String` in map key.
   Codec codec = 1;
 }
@@ -288,15 +288,15 @@ message TypeFixed32 {
     // Unset represents the default value will be applied when encoding and decoding JSON.
     Unset = 0;
 
-    // Number represents convert the field as numbers when encoding and decoding JSON.
-    Number = 1;
+    // Numeric represents convert the field as numeric when encoding and decoding JSON.
+    Numeric = 1;
 
     // String represents convert the field as strings when encoding and decoding JSON.
     String = 2;
   }
 
   // Codec specifies encoding format for the field type of fixed32.
-  // The default is `Number` in plain value, repeated elements and map value.
+  // The default is `Numeric` in plain value, repeated elements and map value.
   // And the default is `String` in map key.
   Codec codec = 1;
 }
@@ -307,15 +307,15 @@ message TypeFixed64 {
     // Unset represents the default value will be applied when encoding and decoding JSON.
     Unset = 0;
 
-    // Number represents convert the field as numbers when encoding and decoding JSON.
-    Number = 1;
+    // Numeric represents convert the field as numeric when encoding and decoding JSON.
+    Numeric = 1;
 
     // String represents convert the field as strings when encoding and decoding JSON.
     String = 2;
   }
 
   // Codec specifies encoding format for the field type of fixed64.
-  // The default is `Number` in plain value, repeated elements and map value.
+  // The default is `Numeric` in plain value, repeated elements and map value.
   // And the default is `String` in map key.
   Codec codec = 1;
 }
@@ -326,15 +326,15 @@ message TypeFloat {
     // Unset represents the default value will be applied when encoding and decoding JSON.
     Unset = 0;
 
-    // Number represents convert the field as numbers when encoding and decoding JSON.
-    Number = 1;
+    // Numeric represents convert the field as numeric when encoding and decoding JSON.
+    Numeric = 1;
 
     // String represents convert the field as strings when encoding and decoding JSON.
     String = 2;
   }
 
   // Codec specifies encoding format for the field type of float.
-  // The default is `Number` in plain value, repeated elements and map value.
+  // The default is `Numeric` in plain value, repeated elements and map value.
   Codec codec = 1;
 }
 
@@ -344,15 +344,15 @@ message TypeDouble {
     // Unset represents the default value will be applied when encoding and decoding JSON.
     Unset = 0;
 
-    // Number represents convert the field as numbers when encoding and decoding JSON.
-    Number = 1;
+    // Numeric represents convert the field as numeric when encoding and decoding JSON.
+    Numeric = 1;
 
     // String represents convert the field as strings when encoding and decoding JSON.
     String = 2;
   }
 
   // Codec specifies encoding format for the field type of double.
-  // The default is `Number` in plain value, repeated elements and map value.
+  // The default is `Numeric` in plain value, repeated elements and map value.
   Codec codec = 1;
 }
 
@@ -362,10 +362,10 @@ message TypeBool {
     // Unset represents the default value will be applied when encoding and decoding JSON.
     Unset = 0;
     
-    // Bool represents convert the field as bools when encoding and decoding JSON.
+    // Bool represents convert the field as bools which `true` or `false` when encoding and decoding JSON.
     Bool = 1;
 
-    // String represents convert the field as strings when encoding and decoding JSON.
+    // String represents convert the field as strings which `"true"` or `"false"` when encoding and decoding JSON.
     String = 2;
   }
 
@@ -390,18 +390,18 @@ message TypeEnum {
     // Unset represents the default value will be applied when encoding and decoding JSON.
     Unset = 0;
 
-    // Number represents use the enum number in encoding and decoding JSON.
-    Number = 1;
+    // Numeric represents use the enum Numeric in encoding and decoding JSON.
+    Numeric = 1;
 
-    // NumberString represents use the enum number and convert to string when encoding and decoding JSON.
-    NumberString = 2;
+    // NumericString represents use the enum Numeric and convert to string when encoding and decoding JSON.
+    NumericString = 2;
 
     // String represents use the enum string in encoding and decoding JSON.
-    String = 3;
+    EnumString = 3;
   }
 
   // Codec specifies encoding format for the field type of Enum.
-  // The default is `Number` in plain value, repeated elements and map value.
+  // The default is `Numeric` in plain value, repeated elements and map value.
   Codec codec = 1;
 }
 

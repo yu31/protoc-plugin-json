@@ -66,10 +66,10 @@ public final class PBJSON {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_json_FieldOptions_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_json_TypeCodec_descriptor;
+    internal_static_json_TypeFormat_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_json_TypeCodec_fieldAccessorTable;
+      internal_static_json_TypeFormat_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_json_TypeRepeated_descriptor;
   static final 
@@ -199,97 +199,97 @@ public final class PBJSON {
       "\030\001 \001(\010\022\037\n\027disallow_unknown_fields\030\002 \001(\010\"" +
       "m\n\014OneofOptions\022\021\n\004json\030\001 \001(\tH\000\210\001\001\022\016\n\006ig" +
       "nore\030\002 \001(\010\022\021\n\tomitempty\030\003 \001(\010\022\023\n\006inline\030" +
-      "\004 \001(\010H\001\210\001\001B\007\n\005_jsonB\t\n\007_inline\"\221\001\n\014Field" +
+      "\004 \001(\010H\001\210\001\001B\007\n\005_jsonB\t\n\007_inline\"\217\001\n\014Field" +
       "Options\022\021\n\004json\030\001 \001(\tH\000\210\001\001\022\016\n\006ignore\030\002 \001" +
       "(\010\022\021\n\tomitempty\030\003 \001(\010\022\023\n\006inline\030\004 \001(\010H\001\210" +
-      "\001\001\022\"\n\treference\030\013 \001(\0132\017.json.TypeCodecB\007" +
-      "\n\005_jsonB\t\n\007_inline\"\253\006\n\tTypeCodec\022 \n\005int3" +
-      "2\030\001 \001(\0132\017.json.TypeInt32H\000\022 \n\005int64\030\002 \001(" +
-      "\0132\017.json.TypeInt64H\000\022\"\n\006sint32\030\003 \001(\0132\020.j" +
-      "son.TypeSInt32H\000\022\"\n\006sint64\030\004 \001(\0132\020.json." +
-      "TypeSInt64H\000\022&\n\010sfixed32\030\005 \001(\0132\022.json.Ty" +
-      "peSFixed32H\000\022&\n\010sfixed64\030\006 \001(\0132\022.json.Ty" +
-      "peSFixed64H\000\022\"\n\006uint32\030\007 \001(\0132\020.json.Type" +
-      "Uint32H\000\022\"\n\006uint64\030\010 \001(\0132\020.json.TypeUint" +
-      "64H\000\022$\n\007fixed32\030\t \001(\0132\021.json.TypeFixed32" +
-      "H\000\022$\n\007fixed64\030\n \001(\0132\021.json.TypeFixed64H\000" +
-      "\022 \n\005float\030\013 \001(\0132\017.json.TypeFloatH\000\022\"\n\006do" +
-      "uble\030\014 \001(\0132\020.json.TypeDoubleH\000\022\036\n\004bool\030\r" +
-      " \001(\0132\016.json.TypeBoolH\000\022\036\n\004enum\030\016 \001(\0132\016.j" +
-      "son.TypeEnumH\000\022\"\n\006string\030\017 \001(\0132\020.json.Ty" +
-      "peStringH\000\022 \n\005bytes\030\020 \001(\0132\017.json.TypeByt" +
-      "esH\000\022$\n\007message\030\021 \001(\0132\021.json.TypeMessage" +
-      "H\000\022\034\n\003any\030\025 \001(\0132\r.json.TypeAnyH\000\022&\n\010dura" +
-      "tion\030\026 \001(\0132\022.json.TypeDurationH\000\022(\n\ttime" +
-      "stamp\030\027 \001(\0132\023.json.TypeTimestampH\000\022&\n\010re" +
-      "peated\030\037 \001(\0132\022.json.TypeRepeatedH\000\022\034\n\003ma" +
-      "p\030  \001(\0132\r.json.TypeMapH\000B\006\n\004Kind\"-\n\014Type" +
-      "Repeated\022\035\n\004elem\030\001 \001(\0132\017.json.TypeCodec\"" +
-      "G\n\007TypeMap\022\034\n\003key\030\001 \001(\0132\017.json.TypeCodec" +
-      "\022\036\n\005value\030\002 \001(\0132\017.json.TypeCodec\"]\n\tType" +
-      "Int32\022$\n\005codec\030\001 \001(\0162\025.json.TypeInt32.Co" +
-      "dec\"*\n\005Codec\022\t\n\005Unset\020\000\022\n\n\006Number\020\001\022\n\n\006S" +
-      "tring\020\002\"]\n\tTypeInt64\022$\n\005codec\030\001 \001(\0162\025.js" +
-      "on.TypeInt64.Codec\"*\n\005Codec\022\t\n\005Unset\020\000\022\n" +
-      "\n\006Number\020\001\022\n\n\006String\020\002\"_\n\nTypeSInt32\022%\n\005" +
-      "codec\030\001 \001(\0162\026.json.TypeSInt32.Codec\"*\n\005C" +
-      "odec\022\t\n\005Unset\020\000\022\n\n\006Number\020\001\022\n\n\006String\020\002\"" +
-      "_\n\nTypeSInt64\022%\n\005codec\030\001 \001(\0162\026.json.Type" +
-      "SInt64.Codec\"*\n\005Codec\022\t\n\005Unset\020\000\022\n\n\006Numb" +
-      "er\020\001\022\n\n\006String\020\002\"c\n\014TypeSFixed32\022\'\n\005code" +
-      "c\030\001 \001(\0162\030.json.TypeSFixed32.Codec\"*\n\005Cod" +
-      "ec\022\t\n\005Unset\020\000\022\n\n\006Number\020\001\022\n\n\006String\020\002\"c\n" +
-      "\014TypeSFixed64\022\'\n\005codec\030\001 \001(\0162\030.json.Type" +
-      "SFixed64.Codec\"*\n\005Codec\022\t\n\005Unset\020\000\022\n\n\006Nu" +
-      "mber\020\001\022\n\n\006String\020\002\"_\n\nTypeUint32\022%\n\005code" +
-      "c\030\001 \001(\0162\026.json.TypeUint32.Codec\"*\n\005Codec" +
-      "\022\t\n\005Unset\020\000\022\n\n\006Number\020\001\022\n\n\006String\020\002\"_\n\nT" +
-      "ypeUint64\022%\n\005codec\030\001 \001(\0162\026.json.TypeUint" +
-      "64.Codec\"*\n\005Codec\022\t\n\005Unset\020\000\022\n\n\006Number\020\001" +
-      "\022\n\n\006String\020\002\"a\n\013TypeFixed32\022&\n\005codec\030\001 \001" +
-      "(\0162\027.json.TypeFixed32.Codec\"*\n\005Codec\022\t\n\005" +
-      "Unset\020\000\022\n\n\006Number\020\001\022\n\n\006String\020\002\"a\n\013TypeF" +
-      "ixed64\022&\n\005codec\030\001 \001(\0162\027.json.TypeFixed64" +
-      ".Codec\"*\n\005Codec\022\t\n\005Unset\020\000\022\n\n\006Number\020\001\022\n" +
-      "\n\006String\020\002\"]\n\tTypeFloat\022$\n\005codec\030\001 \001(\0162\025" +
-      ".json.TypeFloat.Codec\"*\n\005Codec\022\t\n\005Unset\020" +
-      "\000\022\n\n\006Number\020\001\022\n\n\006String\020\002\"_\n\nTypeDouble\022" +
-      "%\n\005codec\030\001 \001(\0162\026.json.TypeDouble.Codec\"*" +
-      "\n\005Codec\022\t\n\005Unset\020\000\022\n\n\006Number\020\001\022\n\n\006String" +
-      "\020\002\"Y\n\010TypeBool\022#\n\005codec\030\001 \001(\0162\024.json.Typ" +
-      "eBool.Codec\"(\n\005Codec\022\t\n\005Unset\020\000\022\010\n\004Bool\020" +
-      "\001\022\n\n\006String\020\002\"\014\n\nTypeString\"\013\n\tTypeBytes" +
-      "\"\r\n\013TypeMessage\"m\n\010TypeEnum\022#\n\005codec\030\001 \001" +
-      "(\0162\024.json.TypeEnum.Codec\"<\n\005Codec\022\t\n\005Uns" +
-      "et\020\000\022\n\n\006Number\020\001\022\020\n\014NumberString\020\002\022\n\n\006St" +
-      "ring\020\003\"X\n\007TypeAny\022\"\n\005codec\030\001 \001(\0162\023.json." +
-      "TypeAny.Codec\")\n\005Codec\022\t\n\005Unset\020\000\022\n\n\006Obj" +
-      "ect\020\001\022\t\n\005Proto\020\002\"\264\002\n\014TypeDuration\022\'\n\005cod" +
-      "ec\030\001 \001(\0162\030.json.TypeDuration.Codec\"\372\001\n\005C" +
-      "odec\022\t\n\005Unset\020\000\022\n\n\006Object\020\001\022\016\n\nTimeStrin" +
-      "g\020\002\022\016\n\nNanosecond\020\003\022\024\n\020NanosecondString\020" +
-      "\004\022\017\n\013Microsecond\020\005\022\025\n\021MicrosecondString\020" +
-      "\006\022\017\n\013Millisecond\020\007\022\025\n\021MillisecondString\020" +
-      "\010\022\n\n\006Second\020\t\022\020\n\014SecondString\020\n\022\n\n\006Minut" +
-      "e\020\013\022\020\n\014MinuteString\020\014\022\010\n\004Hour\020\r\022\016\n\nHourS" +
-      "tring\020\016\"\346\002\n\rTypeTimestamp\022(\n\005codec\030\001 \001(\016" +
-      "2\031.json.TypeTimestamp.Codec\022*\n\006layout\030\002 " +
-      "\001(\0132\032.json.TypeTimestamp.Layout\032D\n\006Layou" +
-      "t\022\016\n\006golang\030\001 \001(\t\022\014\n\004java\030\002 \001(\t\022\014\n\004rust\030" +
-      "\003 \001(\t\022\016\n\006python\030\004 \001(\t\"\270\001\n\005Codec\022\t\n\005Unset" +
-      "\020\000\022\n\n\006Object\020\001\022\016\n\nTimeLayout\020\002\022\014\n\010UnixNa" +
-      "no\020\003\022\022\n\016UnixNanoString\020\004\022\r\n\tUnixMicro\020\005\022" +
-      "\023\n\017UnixMicroString\020\006\022\r\n\tUnixMilli\020\007\022\023\n\017U" +
-      "nixMilliString\020\010\022\013\n\007UnixSec\020\t\022\021\n\rUnixSec" +
-      "String\020\n:H\n\007message\022\037.google.protobuf.Me" +
-      "ssageOptions\030\240\364\003 \001(\0132\024.json.MessageOptio" +
-      "ns:B\n\005field\022\035.google.protobuf.FieldOptio" +
-      "ns\030\241\364\003 \001(\0132\022.json.FieldOptions:B\n\005oneof\022" +
-      "\035.google.protobuf.OneofOptions\030\242\364\003 \001(\0132\022" +
-      ".json.OneofOptionsB]\n\037io.github.yu31.pro" +
-      "toc.pb.pbjsonB\006PBJSONP\001Z0github.com/yu31" +
-      "/protoc-plugin-json/xgo/pb/pbjsonb\006proto" +
-      "3"
+      "\001\001\022 \n\006format\030\013 \001(\0132\020.json.TypeFormatB\007\n\005" +
+      "_jsonB\t\n\007_inline\"\254\006\n\nTypeFormat\022 \n\005int32" +
+      "\030\001 \001(\0132\017.json.TypeInt32H\000\022 \n\005int64\030\002 \001(\013" +
+      "2\017.json.TypeInt64H\000\022\"\n\006sint32\030\003 \001(\0132\020.js" +
+      "on.TypeSInt32H\000\022\"\n\006sint64\030\004 \001(\0132\020.json.T" +
+      "ypeSInt64H\000\022&\n\010sfixed32\030\005 \001(\0132\022.json.Typ" +
+      "eSFixed32H\000\022&\n\010sfixed64\030\006 \001(\0132\022.json.Typ" +
+      "eSFixed64H\000\022\"\n\006uint32\030\007 \001(\0132\020.json.TypeU" +
+      "int32H\000\022\"\n\006uint64\030\010 \001(\0132\020.json.TypeUint6" +
+      "4H\000\022$\n\007fixed32\030\t \001(\0132\021.json.TypeFixed32H" +
+      "\000\022$\n\007fixed64\030\n \001(\0132\021.json.TypeFixed64H\000\022" +
+      " \n\005float\030\013 \001(\0132\017.json.TypeFloatH\000\022\"\n\006dou" +
+      "ble\030\014 \001(\0132\020.json.TypeDoubleH\000\022\036\n\004bool\030\r " +
+      "\001(\0132\016.json.TypeBoolH\000\022\036\n\004enum\030\016 \001(\0132\016.js" +
+      "on.TypeEnumH\000\022\"\n\006string\030\017 \001(\0132\020.json.Typ" +
+      "eStringH\000\022 \n\005bytes\030\020 \001(\0132\017.json.TypeByte" +
+      "sH\000\022$\n\007message\030\021 \001(\0132\021.json.TypeMessageH" +
+      "\000\022\034\n\003any\030\025 \001(\0132\r.json.TypeAnyH\000\022&\n\010durat" +
+      "ion\030\026 \001(\0132\022.json.TypeDurationH\000\022(\n\ttimes" +
+      "tamp\030\027 \001(\0132\023.json.TypeTimestampH\000\022&\n\010rep" +
+      "eated\030\037 \001(\0132\022.json.TypeRepeatedH\000\022\034\n\003map" +
+      "\030  \001(\0132\r.json.TypeMapH\000B\006\n\004Kind\".\n\014TypeR" +
+      "epeated\022\036\n\004elem\030\001 \001(\0132\020.json.TypeFormat\"" +
+      "I\n\007TypeMap\022\035\n\003key\030\001 \001(\0132\020.json.TypeForma" +
+      "t\022\037\n\005value\030\002 \001(\0132\020.json.TypeFormat\"^\n\tTy" +
+      "peInt32\022$\n\005codec\030\001 \001(\0162\025.json.TypeInt32." +
+      "Codec\"+\n\005Codec\022\t\n\005Unset\020\000\022\013\n\007Numeric\020\001\022\n" +
+      "\n\006String\020\002\"^\n\tTypeInt64\022$\n\005codec\030\001 \001(\0162\025" +
+      ".json.TypeInt64.Codec\"+\n\005Codec\022\t\n\005Unset\020" +
+      "\000\022\013\n\007Numeric\020\001\022\n\n\006String\020\002\"`\n\nTypeSInt32" +
+      "\022%\n\005codec\030\001 \001(\0162\026.json.TypeSInt32.Codec\"" +
+      "+\n\005Codec\022\t\n\005Unset\020\000\022\013\n\007Numeric\020\001\022\n\n\006Stri" +
+      "ng\020\002\"`\n\nTypeSInt64\022%\n\005codec\030\001 \001(\0162\026.json" +
+      ".TypeSInt64.Codec\"+\n\005Codec\022\t\n\005Unset\020\000\022\013\n" +
+      "\007Numeric\020\001\022\n\n\006String\020\002\"d\n\014TypeSFixed32\022\'" +
+      "\n\005codec\030\001 \001(\0162\030.json.TypeSFixed32.Codec\"" +
+      "+\n\005Codec\022\t\n\005Unset\020\000\022\013\n\007Numeric\020\001\022\n\n\006Stri" +
+      "ng\020\002\"d\n\014TypeSFixed64\022\'\n\005codec\030\001 \001(\0162\030.js" +
+      "on.TypeSFixed64.Codec\"+\n\005Codec\022\t\n\005Unset\020" +
+      "\000\022\013\n\007Numeric\020\001\022\n\n\006String\020\002\"`\n\nTypeUint32" +
+      "\022%\n\005codec\030\001 \001(\0162\026.json.TypeUint32.Codec\"" +
+      "+\n\005Codec\022\t\n\005Unset\020\000\022\013\n\007Numeric\020\001\022\n\n\006Stri" +
+      "ng\020\002\"`\n\nTypeUint64\022%\n\005codec\030\001 \001(\0162\026.json" +
+      ".TypeUint64.Codec\"+\n\005Codec\022\t\n\005Unset\020\000\022\013\n" +
+      "\007Numeric\020\001\022\n\n\006String\020\002\"b\n\013TypeFixed32\022&\n" +
+      "\005codec\030\001 \001(\0162\027.json.TypeFixed32.Codec\"+\n" +
+      "\005Codec\022\t\n\005Unset\020\000\022\013\n\007Numeric\020\001\022\n\n\006String" +
+      "\020\002\"b\n\013TypeFixed64\022&\n\005codec\030\001 \001(\0162\027.json." +
+      "TypeFixed64.Codec\"+\n\005Codec\022\t\n\005Unset\020\000\022\013\n" +
+      "\007Numeric\020\001\022\n\n\006String\020\002\"^\n\tTypeFloat\022$\n\005c" +
+      "odec\030\001 \001(\0162\025.json.TypeFloat.Codec\"+\n\005Cod" +
+      "ec\022\t\n\005Unset\020\000\022\013\n\007Numeric\020\001\022\n\n\006String\020\002\"`" +
+      "\n\nTypeDouble\022%\n\005codec\030\001 \001(\0162\026.json.TypeD" +
+      "ouble.Codec\"+\n\005Codec\022\t\n\005Unset\020\000\022\013\n\007Numer" +
+      "ic\020\001\022\n\n\006String\020\002\"Y\n\010TypeBool\022#\n\005codec\030\001 " +
+      "\001(\0162\024.json.TypeBool.Codec\"(\n\005Codec\022\t\n\005Un" +
+      "set\020\000\022\010\n\004Bool\020\001\022\n\n\006String\020\002\"\014\n\nTypeStrin" +
+      "g\"\013\n\tTypeBytes\"\r\n\013TypeMessage\"s\n\010TypeEnu" +
+      "m\022#\n\005codec\030\001 \001(\0162\024.json.TypeEnum.Codec\"B" +
+      "\n\005Codec\022\t\n\005Unset\020\000\022\013\n\007Numeric\020\001\022\021\n\rNumer" +
+      "icString\020\002\022\016\n\nEnumString\020\003\"X\n\007TypeAny\022\"\n" +
+      "\005codec\030\001 \001(\0162\023.json.TypeAny.Codec\")\n\005Cod" +
+      "ec\022\t\n\005Unset\020\000\022\n\n\006Object\020\001\022\t\n\005Proto\020\002\"\264\002\n" +
+      "\014TypeDuration\022\'\n\005codec\030\001 \001(\0162\030.json.Type" +
+      "Duration.Codec\"\372\001\n\005Codec\022\t\n\005Unset\020\000\022\n\n\006O" +
+      "bject\020\001\022\016\n\nTimeString\020\002\022\016\n\nNanosecond\020\003\022" +
+      "\024\n\020NanosecondString\020\004\022\017\n\013Microsecond\020\005\022\025" +
+      "\n\021MicrosecondString\020\006\022\017\n\013Millisecond\020\007\022\025" +
+      "\n\021MillisecondString\020\010\022\n\n\006Second\020\t\022\020\n\014Sec" +
+      "ondString\020\n\022\n\n\006Minute\020\013\022\020\n\014MinuteString\020" +
+      "\014\022\010\n\004Hour\020\r\022\016\n\nHourString\020\016\"\346\002\n\rTypeTime" +
+      "stamp\022(\n\005codec\030\001 \001(\0162\031.json.TypeTimestam" +
+      "p.Codec\022*\n\006layout\030\002 \001(\0132\032.json.TypeTimes" +
+      "tamp.Layout\032D\n\006Layout\022\016\n\006golang\030\001 \001(\t\022\014\n" +
+      "\004java\030\002 \001(\t\022\014\n\004rust\030\003 \001(\t\022\016\n\006python\030\004 \001(" +
+      "\t\"\270\001\n\005Codec\022\t\n\005Unset\020\000\022\n\n\006Object\020\001\022\016\n\nTi" +
+      "meLayout\020\002\022\014\n\010UnixNano\020\003\022\022\n\016UnixNanoStri" +
+      "ng\020\004\022\r\n\tUnixMicro\020\005\022\023\n\017UnixMicroString\020\006" +
+      "\022\r\n\tUnixMilli\020\007\022\023\n\017UnixMilliString\020\010\022\013\n\007" +
+      "UnixSec\020\t\022\021\n\rUnixSecString\020\n:H\n\007message\022" +
+      "\037.google.protobuf.MessageOptions\030\240\364\003 \001(\013" +
+      "2\024.json.MessageOptions:B\n\005field\022\035.google" +
+      ".protobuf.FieldOptions\030\241\364\003 \001(\0132\022.json.Fi" +
+      "eldOptions:B\n\005oneof\022\035.google.protobuf.On" +
+      "eofOptions\030\242\364\003 \001(\0132\022.json.OneofOptionsB]" +
+      "\n\037io.github.yu31.protoc.pb.pbjsonB\006PBJSO" +
+      "NP\001Z0github.com/yu31/protoc-plugin-json/" +
+      "xgo/pb/pbjsonb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -313,12 +313,12 @@ public final class PBJSON {
     internal_static_json_FieldOptions_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_json_FieldOptions_descriptor,
-        new java.lang.String[] { "Json", "Ignore", "Omitempty", "Inline", "Reference", "Json", "Inline", });
-    internal_static_json_TypeCodec_descriptor =
+        new java.lang.String[] { "Json", "Ignore", "Omitempty", "Inline", "Format", "Json", "Inline", });
+    internal_static_json_TypeFormat_descriptor =
       getDescriptor().getMessageTypes().get(3);
-    internal_static_json_TypeCodec_fieldAccessorTable = new
+    internal_static_json_TypeFormat_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_json_TypeCodec_descriptor,
+        internal_static_json_TypeFormat_descriptor,
         new java.lang.String[] { "Int32", "Int64", "Sint32", "Sint64", "Sfixed32", "Sfixed64", "Uint32", "Uint64", "Fixed32", "Fixed64", "Float", "Double", "Bool", "Enum", "String", "Bytes", "Message", "Any", "Duration", "Timestamp", "Repeated", "Map", "Kind", });
     internal_static_json_TypeRepeated_descriptor =
       getDescriptor().getMessageTypes().get(4);

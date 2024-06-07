@@ -5,11 +5,11 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbref"
+	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbformat"
 )
 
 func Test_Error_WKTPlain1(t *testing.T) {
-	data := &pbref.WKTPlain1{}
+	data := &pbformat.WKTPlain1{}
 
 	t.Run("Enum", func(t *testing.T) {
 		t.Run("Number", func(t *testing.T) {

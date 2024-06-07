@@ -53,11 +53,11 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 10: {
-            io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder subBuilder = null;
+            io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder subBuilder = null;
             if (key_ != null) {
               subBuilder = key_.toBuilder();
             }
-            key_ = input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeCodec.parser(), extensionRegistry);
+            key_ = input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeFormat.parser(), extensionRegistry);
             if (subBuilder != null) {
               subBuilder.mergeFrom(key_);
               key_ = subBuilder.buildPartial();
@@ -66,11 +66,11 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 18: {
-            io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder subBuilder = null;
+            io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder subBuilder = null;
             if (value_ != null) {
               subBuilder = value_.toBuilder();
             }
-            value_ = input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeCodec.parser(), extensionRegistry);
+            value_ = input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeFormat.parser(), extensionRegistry);
             if (subBuilder != null) {
               subBuilder.mergeFrom(value_);
               value_ = subBuilder.buildPartial();
@@ -111,13 +111,13 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int KEY_FIELD_NUMBER = 1;
-  private io.github.yu31.protoc.pb.pbjson.TypeCodec key_;
+  private io.github.yu31.protoc.pb.pbjson.TypeFormat key_;
   /**
    * <pre>
    * Key reports the codec of map key.
    * </pre>
    *
-   * <code>.json.TypeCodec key = 1;</code>
+   * <code>.json.TypeFormat key = 1;</code>
    * @return Whether the key field is set.
    */
   @java.lang.Override
@@ -129,33 +129,33 @@ private static final long serialVersionUID = 0L;
    * Key reports the codec of map key.
    * </pre>
    *
-   * <code>.json.TypeCodec key = 1;</code>
+   * <code>.json.TypeFormat key = 1;</code>
    * @return The key.
    */
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeCodec getKey() {
-    return key_ == null ? io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : key_;
+  public io.github.yu31.protoc.pb.pbjson.TypeFormat getKey() {
+    return key_ == null ? io.github.yu31.protoc.pb.pbjson.TypeFormat.getDefaultInstance() : key_;
   }
   /**
    * <pre>
    * Key reports the codec of map key.
    * </pre>
    *
-   * <code>.json.TypeCodec key = 1;</code>
+   * <code>.json.TypeFormat key = 1;</code>
    */
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getKeyOrBuilder() {
+  public io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder getKeyOrBuilder() {
     return getKey();
   }
 
   public static final int VALUE_FIELD_NUMBER = 2;
-  private io.github.yu31.protoc.pb.pbjson.TypeCodec value_;
+  private io.github.yu31.protoc.pb.pbjson.TypeFormat value_;
   /**
    * <pre>
    * Value reports the codec of map value.
    * </pre>
    *
-   * <code>.json.TypeCodec value = 2;</code>
+   * <code>.json.TypeFormat value = 2;</code>
    * @return Whether the value field is set.
    */
   @java.lang.Override
@@ -167,22 +167,22 @@ private static final long serialVersionUID = 0L;
    * Value reports the codec of map value.
    * </pre>
    *
-   * <code>.json.TypeCodec value = 2;</code>
+   * <code>.json.TypeFormat value = 2;</code>
    * @return The value.
    */
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeCodec getValue() {
-    return value_ == null ? io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : value_;
+  public io.github.yu31.protoc.pb.pbjson.TypeFormat getValue() {
+    return value_ == null ? io.github.yu31.protoc.pb.pbjson.TypeFormat.getDefaultInstance() : value_;
   }
   /**
    * <pre>
    * Value reports the codec of map value.
    * </pre>
    *
-   * <code>.json.TypeCodec value = 2;</code>
+   * <code>.json.TypeFormat value = 2;</code>
    */
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getValueOrBuilder() {
+  public io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder getValueOrBuilder() {
     return getValue();
   }
 
@@ -535,15 +535,15 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private io.github.yu31.protoc.pb.pbjson.TypeCodec key_;
+    private io.github.yu31.protoc.pb.pbjson.TypeFormat key_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder> keyBuilder_;
+        io.github.yu31.protoc.pb.pbjson.TypeFormat, io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder, io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder> keyBuilder_;
     /**
      * <pre>
      * Key reports the codec of map key.
      * </pre>
      *
-     * <code>.json.TypeCodec key = 1;</code>
+     * <code>.json.TypeFormat key = 1;</code>
      * @return Whether the key field is set.
      */
     public boolean hasKey() {
@@ -554,12 +554,12 @@ private static final long serialVersionUID = 0L;
      * Key reports the codec of map key.
      * </pre>
      *
-     * <code>.json.TypeCodec key = 1;</code>
+     * <code>.json.TypeFormat key = 1;</code>
      * @return The key.
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeCodec getKey() {
+    public io.github.yu31.protoc.pb.pbjson.TypeFormat getKey() {
       if (keyBuilder_ == null) {
-        return key_ == null ? io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : key_;
+        return key_ == null ? io.github.yu31.protoc.pb.pbjson.TypeFormat.getDefaultInstance() : key_;
       } else {
         return keyBuilder_.getMessage();
       }
@@ -569,9 +569,9 @@ private static final long serialVersionUID = 0L;
      * Key reports the codec of map key.
      * </pre>
      *
-     * <code>.json.TypeCodec key = 1;</code>
+     * <code>.json.TypeFormat key = 1;</code>
      */
-    public Builder setKey(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
+    public Builder setKey(io.github.yu31.protoc.pb.pbjson.TypeFormat value) {
       if (keyBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -589,10 +589,10 @@ private static final long serialVersionUID = 0L;
      * Key reports the codec of map key.
      * </pre>
      *
-     * <code>.json.TypeCodec key = 1;</code>
+     * <code>.json.TypeFormat key = 1;</code>
      */
     public Builder setKey(
-        io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder builderForValue) {
+        io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder builderForValue) {
       if (keyBuilder_ == null) {
         key_ = builderForValue.build();
         onChanged();
@@ -607,13 +607,13 @@ private static final long serialVersionUID = 0L;
      * Key reports the codec of map key.
      * </pre>
      *
-     * <code>.json.TypeCodec key = 1;</code>
+     * <code>.json.TypeFormat key = 1;</code>
      */
-    public Builder mergeKey(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
+    public Builder mergeKey(io.github.yu31.protoc.pb.pbjson.TypeFormat value) {
       if (keyBuilder_ == null) {
         if (key_ != null) {
           key_ =
-            io.github.yu31.protoc.pb.pbjson.TypeCodec.newBuilder(key_).mergeFrom(value).buildPartial();
+            io.github.yu31.protoc.pb.pbjson.TypeFormat.newBuilder(key_).mergeFrom(value).buildPartial();
         } else {
           key_ = value;
         }
@@ -629,7 +629,7 @@ private static final long serialVersionUID = 0L;
      * Key reports the codec of map key.
      * </pre>
      *
-     * <code>.json.TypeCodec key = 1;</code>
+     * <code>.json.TypeFormat key = 1;</code>
      */
     public Builder clearKey() {
       if (keyBuilder_ == null) {
@@ -647,9 +647,9 @@ private static final long serialVersionUID = 0L;
      * Key reports the codec of map key.
      * </pre>
      *
-     * <code>.json.TypeCodec key = 1;</code>
+     * <code>.json.TypeFormat key = 1;</code>
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder getKeyBuilder() {
+    public io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder getKeyBuilder() {
       
       onChanged();
       return getKeyFieldBuilder().getBuilder();
@@ -659,14 +659,14 @@ private static final long serialVersionUID = 0L;
      * Key reports the codec of map key.
      * </pre>
      *
-     * <code>.json.TypeCodec key = 1;</code>
+     * <code>.json.TypeFormat key = 1;</code>
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getKeyOrBuilder() {
+    public io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder getKeyOrBuilder() {
       if (keyBuilder_ != null) {
         return keyBuilder_.getMessageOrBuilder();
       } else {
         return key_ == null ?
-            io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : key_;
+            io.github.yu31.protoc.pb.pbjson.TypeFormat.getDefaultInstance() : key_;
       }
     }
     /**
@@ -674,14 +674,14 @@ private static final long serialVersionUID = 0L;
      * Key reports the codec of map key.
      * </pre>
      *
-     * <code>.json.TypeCodec key = 1;</code>
+     * <code>.json.TypeFormat key = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder> 
+        io.github.yu31.protoc.pb.pbjson.TypeFormat, io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder, io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder> 
         getKeyFieldBuilder() {
       if (keyBuilder_ == null) {
         keyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder>(
+            io.github.yu31.protoc.pb.pbjson.TypeFormat, io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder, io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder>(
                 getKey(),
                 getParentForChildren(),
                 isClean());
@@ -690,15 +690,15 @@ private static final long serialVersionUID = 0L;
       return keyBuilder_;
     }
 
-    private io.github.yu31.protoc.pb.pbjson.TypeCodec value_;
+    private io.github.yu31.protoc.pb.pbjson.TypeFormat value_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder> valueBuilder_;
+        io.github.yu31.protoc.pb.pbjson.TypeFormat, io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder, io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder> valueBuilder_;
     /**
      * <pre>
      * Value reports the codec of map value.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 2;</code>
+     * <code>.json.TypeFormat value = 2;</code>
      * @return Whether the value field is set.
      */
     public boolean hasValue() {
@@ -709,12 +709,12 @@ private static final long serialVersionUID = 0L;
      * Value reports the codec of map value.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 2;</code>
+     * <code>.json.TypeFormat value = 2;</code>
      * @return The value.
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeCodec getValue() {
+    public io.github.yu31.protoc.pb.pbjson.TypeFormat getValue() {
       if (valueBuilder_ == null) {
-        return value_ == null ? io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : value_;
+        return value_ == null ? io.github.yu31.protoc.pb.pbjson.TypeFormat.getDefaultInstance() : value_;
       } else {
         return valueBuilder_.getMessage();
       }
@@ -724,9 +724,9 @@ private static final long serialVersionUID = 0L;
      * Value reports the codec of map value.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 2;</code>
+     * <code>.json.TypeFormat value = 2;</code>
      */
-    public Builder setValue(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
+    public Builder setValue(io.github.yu31.protoc.pb.pbjson.TypeFormat value) {
       if (valueBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -744,10 +744,10 @@ private static final long serialVersionUID = 0L;
      * Value reports the codec of map value.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 2;</code>
+     * <code>.json.TypeFormat value = 2;</code>
      */
     public Builder setValue(
-        io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder builderForValue) {
+        io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder builderForValue) {
       if (valueBuilder_ == null) {
         value_ = builderForValue.build();
         onChanged();
@@ -762,13 +762,13 @@ private static final long serialVersionUID = 0L;
      * Value reports the codec of map value.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 2;</code>
+     * <code>.json.TypeFormat value = 2;</code>
      */
-    public Builder mergeValue(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
+    public Builder mergeValue(io.github.yu31.protoc.pb.pbjson.TypeFormat value) {
       if (valueBuilder_ == null) {
         if (value_ != null) {
           value_ =
-            io.github.yu31.protoc.pb.pbjson.TypeCodec.newBuilder(value_).mergeFrom(value).buildPartial();
+            io.github.yu31.protoc.pb.pbjson.TypeFormat.newBuilder(value_).mergeFrom(value).buildPartial();
         } else {
           value_ = value;
         }
@@ -784,7 +784,7 @@ private static final long serialVersionUID = 0L;
      * Value reports the codec of map value.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 2;</code>
+     * <code>.json.TypeFormat value = 2;</code>
      */
     public Builder clearValue() {
       if (valueBuilder_ == null) {
@@ -802,9 +802,9 @@ private static final long serialVersionUID = 0L;
      * Value reports the codec of map value.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 2;</code>
+     * <code>.json.TypeFormat value = 2;</code>
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder getValueBuilder() {
+    public io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder getValueBuilder() {
       
       onChanged();
       return getValueFieldBuilder().getBuilder();
@@ -814,14 +814,14 @@ private static final long serialVersionUID = 0L;
      * Value reports the codec of map value.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 2;</code>
+     * <code>.json.TypeFormat value = 2;</code>
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getValueOrBuilder() {
+    public io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder getValueOrBuilder() {
       if (valueBuilder_ != null) {
         return valueBuilder_.getMessageOrBuilder();
       } else {
         return value_ == null ?
-            io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : value_;
+            io.github.yu31.protoc.pb.pbjson.TypeFormat.getDefaultInstance() : value_;
       }
     }
     /**
@@ -829,14 +829,14 @@ private static final long serialVersionUID = 0L;
      * Value reports the codec of map value.
      * </pre>
      *
-     * <code>.json.TypeCodec value = 2;</code>
+     * <code>.json.TypeFormat value = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder> 
+        io.github.yu31.protoc.pb.pbjson.TypeFormat, io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder, io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder> 
         getValueFieldBuilder() {
       if (valueBuilder_ == null) {
         valueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder>(
+            io.github.yu31.protoc.pb.pbjson.TypeFormat, io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder, io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder>(
                 getValue(),
                 getParentForChildren(),
                 isClean());

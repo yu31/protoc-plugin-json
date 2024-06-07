@@ -13,5 +13,5 @@ import "google/protobuf/timestamp.proto";
 import "proto/json.proto";
 
 message Timestamp14 {
-  google.protobuf.Timestamp field14 = 14 [ (json.field) = { reference: { plain: { value: { string: { } }; }; }; } ];
+  google.protobuf.Timestamp field14 = 14 [ (json.field) = { format: { string: { } } } ];
 }

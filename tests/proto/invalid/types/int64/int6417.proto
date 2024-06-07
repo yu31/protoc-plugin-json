@@ -13,5 +13,5 @@ option go_package = "xgo/tests/pb/pbinvalid";
 import "proto/json.proto";
 
 message Int6417 {
-  int64 field17 = 17 [ (json.field) = { reference: { plain: { value: { any: { } }; }; }; } ];
+  int64 field17 = 17 [ (json.field) = { format: { any: { } } } ];
 }

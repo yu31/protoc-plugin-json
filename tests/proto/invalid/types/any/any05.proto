@@ -13,5 +13,5 @@ import "google/protobuf/any.proto";
 import "proto/json.proto";
 
 message Any05 {
-  google.protobuf.Any field05 = 5 [ (json.field) = { reference: { plain: { value: { sfixed32: { } }; }; }; } ];
+  google.protobuf.Any field05 = 5 [ (json.field) = { format: { sfixed32: { } } } ];
 }

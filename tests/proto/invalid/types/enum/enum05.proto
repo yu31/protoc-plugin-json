@@ -13,5 +13,5 @@ import "tests/proto/module/external.proto";
 import "proto/json.proto";
 
 message Enum05 {
-  external.Enum1 field05 = 5 [ (json.field) = { reference: { plain: { value: { sfixed32: { } }; }; }; } ];
+  external.Enum1 field05 = 5 [ (json.field) = { format: { sfixed32: { } } } ];
 }

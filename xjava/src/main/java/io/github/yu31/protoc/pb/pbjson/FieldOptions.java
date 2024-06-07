@@ -72,14 +72,14 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 90: {
-            io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder subBuilder = null;
-            if (reference_ != null) {
-              subBuilder = reference_.toBuilder();
+            io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder subBuilder = null;
+            if (format_ != null) {
+              subBuilder = format_.toBuilder();
             }
-            reference_ = input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeCodec.parser(), extensionRegistry);
+            format_ = input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeFormat.parser(), extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom(reference_);
-              reference_ = subBuilder.buildPartial();
+              subBuilder.mergeFrom(format_);
+              format_ = subBuilder.buildPartial();
             }
 
             break;
@@ -245,42 +245,42 @@ private static final long serialVersionUID = 0L;
     return inline_;
   }
 
-  public static final int REFERENCE_FIELD_NUMBER = 11;
-  private io.github.yu31.protoc.pb.pbjson.TypeCodec reference_;
+  public static final int FORMAT_FIELD_NUMBER = 11;
+  private io.github.yu31.protoc.pb.pbjson.TypeFormat format_;
   /**
    * <pre>
-   * Reference reports the codec set for field.
+   * Format declares how to format the fields.
    * </pre>
    *
-   * <code>.json.TypeCodec reference = 11;</code>
-   * @return Whether the reference field is set.
+   * <code>.json.TypeFormat format = 11;</code>
+   * @return Whether the format field is set.
    */
   @java.lang.Override
-  public boolean hasReference() {
-    return reference_ != null;
+  public boolean hasFormat() {
+    return format_ != null;
   }
   /**
    * <pre>
-   * Reference reports the codec set for field.
+   * Format declares how to format the fields.
    * </pre>
    *
-   * <code>.json.TypeCodec reference = 11;</code>
-   * @return The reference.
+   * <code>.json.TypeFormat format = 11;</code>
+   * @return The format.
    */
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeCodec getReference() {
-    return reference_ == null ? io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : reference_;
+  public io.github.yu31.protoc.pb.pbjson.TypeFormat getFormat() {
+    return format_ == null ? io.github.yu31.protoc.pb.pbjson.TypeFormat.getDefaultInstance() : format_;
   }
   /**
    * <pre>
-   * Reference reports the codec set for field.
+   * Format declares how to format the fields.
    * </pre>
    *
-   * <code>.json.TypeCodec reference = 11;</code>
+   * <code>.json.TypeFormat format = 11;</code>
    */
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getReferenceOrBuilder() {
-    return getReference();
+  public io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder getFormatOrBuilder() {
+    return getFormat();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -309,8 +309,8 @@ private static final long serialVersionUID = 0L;
     if (((bitField0_ & 0x00000002) != 0)) {
       output.writeBool(4, inline_);
     }
-    if (reference_ != null) {
-      output.writeMessage(11, getReference());
+    if (format_ != null) {
+      output.writeMessage(11, getFormat());
     }
     unknownFields.writeTo(output);
   }
@@ -336,9 +336,9 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(4, inline_);
     }
-    if (reference_ != null) {
+    if (format_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(11, getReference());
+        .computeMessageSize(11, getFormat());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -369,10 +369,10 @@ private static final long serialVersionUID = 0L;
       if (getInline()
           != other.getInline()) return false;
     }
-    if (hasReference() != other.hasReference()) return false;
-    if (hasReference()) {
-      if (!getReference()
-          .equals(other.getReference())) return false;
+    if (hasFormat() != other.hasFormat()) return false;
+    if (hasFormat()) {
+      if (!getFormat()
+          .equals(other.getFormat())) return false;
     }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
@@ -400,9 +400,9 @@ private static final long serialVersionUID = 0L;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getInline());
     }
-    if (hasReference()) {
-      hash = (37 * hash) + REFERENCE_FIELD_NUMBER;
-      hash = (53 * hash) + getReference().hashCode();
+    if (hasFormat()) {
+      hash = (37 * hash) + FORMAT_FIELD_NUMBER;
+      hash = (53 * hash) + getFormat().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -545,11 +545,11 @@ private static final long serialVersionUID = 0L;
 
       inline_ = false;
       bitField0_ = (bitField0_ & ~0x00000002);
-      if (referenceBuilder_ == null) {
-        reference_ = null;
+      if (formatBuilder_ == null) {
+        format_ = null;
       } else {
-        reference_ = null;
-        referenceBuilder_ = null;
+        format_ = null;
+        formatBuilder_ = null;
       }
       return this;
     }
@@ -589,10 +589,10 @@ private static final long serialVersionUID = 0L;
         result.inline_ = inline_;
         to_bitField0_ |= 0x00000002;
       }
-      if (referenceBuilder_ == null) {
-        result.reference_ = reference_;
+      if (formatBuilder_ == null) {
+        result.format_ = format_;
       } else {
-        result.reference_ = referenceBuilder_.build();
+        result.format_ = formatBuilder_.build();
       }
       result.bitField0_ = to_bitField0_;
       onBuilt();
@@ -657,8 +657,8 @@ private static final long serialVersionUID = 0L;
       if (other.hasInline()) {
         setInline(other.getInline());
       }
-      if (other.hasReference()) {
-        mergeReference(other.getReference());
+      if (other.hasFormat()) {
+        mergeFormat(other.getFormat());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -965,159 +965,159 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private io.github.yu31.protoc.pb.pbjson.TypeCodec reference_;
+    private io.github.yu31.protoc.pb.pbjson.TypeFormat format_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder> referenceBuilder_;
+        io.github.yu31.protoc.pb.pbjson.TypeFormat, io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder, io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder> formatBuilder_;
     /**
      * <pre>
-     * Reference reports the codec set for field.
+     * Format declares how to format the fields.
      * </pre>
      *
-     * <code>.json.TypeCodec reference = 11;</code>
-     * @return Whether the reference field is set.
+     * <code>.json.TypeFormat format = 11;</code>
+     * @return Whether the format field is set.
      */
-    public boolean hasReference() {
-      return referenceBuilder_ != null || reference_ != null;
+    public boolean hasFormat() {
+      return formatBuilder_ != null || format_ != null;
     }
     /**
      * <pre>
-     * Reference reports the codec set for field.
+     * Format declares how to format the fields.
      * </pre>
      *
-     * <code>.json.TypeCodec reference = 11;</code>
-     * @return The reference.
+     * <code>.json.TypeFormat format = 11;</code>
+     * @return The format.
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeCodec getReference() {
-      if (referenceBuilder_ == null) {
-        return reference_ == null ? io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : reference_;
+    public io.github.yu31.protoc.pb.pbjson.TypeFormat getFormat() {
+      if (formatBuilder_ == null) {
+        return format_ == null ? io.github.yu31.protoc.pb.pbjson.TypeFormat.getDefaultInstance() : format_;
       } else {
-        return referenceBuilder_.getMessage();
+        return formatBuilder_.getMessage();
       }
     }
     /**
      * <pre>
-     * Reference reports the codec set for field.
+     * Format declares how to format the fields.
      * </pre>
      *
-     * <code>.json.TypeCodec reference = 11;</code>
+     * <code>.json.TypeFormat format = 11;</code>
      */
-    public Builder setReference(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
-      if (referenceBuilder_ == null) {
+    public Builder setFormat(io.github.yu31.protoc.pb.pbjson.TypeFormat value) {
+      if (formatBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        reference_ = value;
+        format_ = value;
         onChanged();
       } else {
-        referenceBuilder_.setMessage(value);
+        formatBuilder_.setMessage(value);
       }
 
       return this;
     }
     /**
      * <pre>
-     * Reference reports the codec set for field.
+     * Format declares how to format the fields.
      * </pre>
      *
-     * <code>.json.TypeCodec reference = 11;</code>
+     * <code>.json.TypeFormat format = 11;</code>
      */
-    public Builder setReference(
-        io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder builderForValue) {
-      if (referenceBuilder_ == null) {
-        reference_ = builderForValue.build();
+    public Builder setFormat(
+        io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder builderForValue) {
+      if (formatBuilder_ == null) {
+        format_ = builderForValue.build();
         onChanged();
       } else {
-        referenceBuilder_.setMessage(builderForValue.build());
+        formatBuilder_.setMessage(builderForValue.build());
       }
 
       return this;
     }
     /**
      * <pre>
-     * Reference reports the codec set for field.
+     * Format declares how to format the fields.
      * </pre>
      *
-     * <code>.json.TypeCodec reference = 11;</code>
+     * <code>.json.TypeFormat format = 11;</code>
      */
-    public Builder mergeReference(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
-      if (referenceBuilder_ == null) {
-        if (reference_ != null) {
-          reference_ =
-            io.github.yu31.protoc.pb.pbjson.TypeCodec.newBuilder(reference_).mergeFrom(value).buildPartial();
+    public Builder mergeFormat(io.github.yu31.protoc.pb.pbjson.TypeFormat value) {
+      if (formatBuilder_ == null) {
+        if (format_ != null) {
+          format_ =
+            io.github.yu31.protoc.pb.pbjson.TypeFormat.newBuilder(format_).mergeFrom(value).buildPartial();
         } else {
-          reference_ = value;
+          format_ = value;
         }
         onChanged();
       } else {
-        referenceBuilder_.mergeFrom(value);
+        formatBuilder_.mergeFrom(value);
       }
 
       return this;
     }
     /**
      * <pre>
-     * Reference reports the codec set for field.
+     * Format declares how to format the fields.
      * </pre>
      *
-     * <code>.json.TypeCodec reference = 11;</code>
+     * <code>.json.TypeFormat format = 11;</code>
      */
-    public Builder clearReference() {
-      if (referenceBuilder_ == null) {
-        reference_ = null;
+    public Builder clearFormat() {
+      if (formatBuilder_ == null) {
+        format_ = null;
         onChanged();
       } else {
-        reference_ = null;
-        referenceBuilder_ = null;
+        format_ = null;
+        formatBuilder_ = null;
       }
 
       return this;
     }
     /**
      * <pre>
-     * Reference reports the codec set for field.
+     * Format declares how to format the fields.
      * </pre>
      *
-     * <code>.json.TypeCodec reference = 11;</code>
+     * <code>.json.TypeFormat format = 11;</code>
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder getReferenceBuilder() {
+    public io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder getFormatBuilder() {
       
       onChanged();
-      return getReferenceFieldBuilder().getBuilder();
+      return getFormatFieldBuilder().getBuilder();
     }
     /**
      * <pre>
-     * Reference reports the codec set for field.
+     * Format declares how to format the fields.
      * </pre>
      *
-     * <code>.json.TypeCodec reference = 11;</code>
+     * <code>.json.TypeFormat format = 11;</code>
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getReferenceOrBuilder() {
-      if (referenceBuilder_ != null) {
-        return referenceBuilder_.getMessageOrBuilder();
+    public io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder getFormatOrBuilder() {
+      if (formatBuilder_ != null) {
+        return formatBuilder_.getMessageOrBuilder();
       } else {
-        return reference_ == null ?
-            io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : reference_;
+        return format_ == null ?
+            io.github.yu31.protoc.pb.pbjson.TypeFormat.getDefaultInstance() : format_;
       }
     }
     /**
      * <pre>
-     * Reference reports the codec set for field.
+     * Format declares how to format the fields.
      * </pre>
      *
-     * <code>.json.TypeCodec reference = 11;</code>
+     * <code>.json.TypeFormat format = 11;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder> 
-        getReferenceFieldBuilder() {
-      if (referenceBuilder_ == null) {
-        referenceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder>(
-                getReference(),
+        io.github.yu31.protoc.pb.pbjson.TypeFormat, io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder, io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder> 
+        getFormatFieldBuilder() {
+      if (formatBuilder_ == null) {
+        formatBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            io.github.yu31.protoc.pb.pbjson.TypeFormat, io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder, io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder>(
+                getFormat(),
                 getParentForChildren(),
                 isClean());
-        reference_ = null;
+        format_ = null;
       }
-      return referenceBuilder_;
+      return formatBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

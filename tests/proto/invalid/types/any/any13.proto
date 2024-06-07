@@ -13,5 +13,5 @@ import "google/protobuf/any.proto";
 import "proto/json.proto";
 
 message Any13 {
-  google.protobuf.Any field13 = 13 [ (json.field) = { reference: { plain: { value: { bool: { } }; }; }; } ];
+  google.protobuf.Any field13 = 13 [ (json.field) = { format: { bool: { } } } ];
 }

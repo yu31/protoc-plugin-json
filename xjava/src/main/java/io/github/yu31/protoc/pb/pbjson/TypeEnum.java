@@ -106,28 +106,28 @@ private static final long serialVersionUID = 0L;
     Unset(0),
     /**
      * <pre>
-     * Number represents use the enum number in encoding and decoding JSON.
+     * Numeric represents use the enum Numeric in encoding and decoding JSON.
      * </pre>
      *
-     * <code>Number = 1;</code>
+     * <code>Numeric = 1;</code>
      */
-    Number(1),
+    Numeric(1),
     /**
      * <pre>
-     * NumberString represents use the enum number and convert to string when encoding and decoding JSON.
+     * NumericString represents use the enum Numeric and convert to string when encoding and decoding JSON.
      * </pre>
      *
-     * <code>NumberString = 2;</code>
+     * <code>NumericString = 2;</code>
      */
-    NumberString(2),
+    NumericString(2),
     /**
      * <pre>
      * String represents use the enum string in encoding and decoding JSON.
      * </pre>
      *
-     * <code>String = 3;</code>
+     * <code>EnumString = 3;</code>
      */
-    String(3),
+    EnumString(3),
     UNRECOGNIZED(-1),
     ;
 
@@ -141,28 +141,28 @@ private static final long serialVersionUID = 0L;
     public static final int Unset_VALUE = 0;
     /**
      * <pre>
-     * Number represents use the enum number in encoding and decoding JSON.
+     * Numeric represents use the enum Numeric in encoding and decoding JSON.
      * </pre>
      *
-     * <code>Number = 1;</code>
+     * <code>Numeric = 1;</code>
      */
-    public static final int Number_VALUE = 1;
+    public static final int Numeric_VALUE = 1;
     /**
      * <pre>
-     * NumberString represents use the enum number and convert to string when encoding and decoding JSON.
+     * NumericString represents use the enum Numeric and convert to string when encoding and decoding JSON.
      * </pre>
      *
-     * <code>NumberString = 2;</code>
+     * <code>NumericString = 2;</code>
      */
-    public static final int NumberString_VALUE = 2;
+    public static final int NumericString_VALUE = 2;
     /**
      * <pre>
      * String represents use the enum string in encoding and decoding JSON.
      * </pre>
      *
-     * <code>String = 3;</code>
+     * <code>EnumString = 3;</code>
      */
-    public static final int String_VALUE = 3;
+    public static final int EnumString_VALUE = 3;
 
 
     public final int getNumber() {
@@ -190,9 +190,9 @@ private static final long serialVersionUID = 0L;
     public static Codec forNumber(int value) {
       switch (value) {
         case 0: return Unset;
-        case 1: return Number;
-        case 2: return NumberString;
-        case 3: return String;
+        case 1: return Numeric;
+        case 2: return NumericString;
+        case 3: return EnumString;
         default: return null;
       }
     }
@@ -254,7 +254,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Codec specifies encoding format for the field type of Enum.
-   * The default is `Number` in plain value, repeated elements and map value.
+   * The default is `Numeric` in plain value, repeated elements and map value.
    * </pre>
    *
    * <code>.json.TypeEnum.Codec codec = 1;</code>
@@ -266,7 +266,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Codec specifies encoding format for the field type of Enum.
-   * The default is `Number` in plain value, repeated elements and map value.
+   * The default is `Numeric` in plain value, repeated elements and map value.
    * </pre>
    *
    * <code>.json.TypeEnum.Codec codec = 1;</code>
@@ -587,7 +587,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Codec specifies encoding format for the field type of Enum.
-     * The default is `Number` in plain value, repeated elements and map value.
+     * The default is `Numeric` in plain value, repeated elements and map value.
      * </pre>
      *
      * <code>.json.TypeEnum.Codec codec = 1;</code>
@@ -599,7 +599,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Codec specifies encoding format for the field type of Enum.
-     * The default is `Number` in plain value, repeated elements and map value.
+     * The default is `Numeric` in plain value, repeated elements and map value.
      * </pre>
      *
      * <code>.json.TypeEnum.Codec codec = 1;</code>
@@ -615,7 +615,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Codec specifies encoding format for the field type of Enum.
-     * The default is `Number` in plain value, repeated elements and map value.
+     * The default is `Numeric` in plain value, repeated elements and map value.
      * </pre>
      *
      * <code>.json.TypeEnum.Codec codec = 1;</code>
@@ -630,7 +630,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Codec specifies encoding format for the field type of Enum.
-     * The default is `Number` in plain value, repeated elements and map value.
+     * The default is `Numeric` in plain value, repeated elements and map value.
      * </pre>
      *
      * <code>.json.TypeEnum.Codec codec = 1;</code>
@@ -649,7 +649,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Codec specifies encoding format for the field type of Enum.
-     * The default is `Number` in plain value, repeated elements and map value.
+     * The default is `Numeric` in plain value, repeated elements and map value.
      * </pre>
      *
      * <code>.json.TypeEnum.Codec codec = 1;</code>

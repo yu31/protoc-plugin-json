@@ -13,5 +13,5 @@ option go_package = "xgo/tests/pb/pbinvalid";
 import "proto/json.proto";
 
 message Float10 {
-  float field10 = 10 [ (json.field) = { reference: { plain: { value: { fixed64: { } }; }; }; } ];
+  float field10 = 10 [ (json.field) = { format: { fixed64: { } } } ];
 }

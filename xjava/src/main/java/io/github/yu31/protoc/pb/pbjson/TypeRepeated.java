@@ -53,11 +53,11 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 10: {
-            io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder subBuilder = null;
+            io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder subBuilder = null;
             if (elem_ != null) {
               subBuilder = elem_.toBuilder();
             }
-            elem_ = input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeCodec.parser(), extensionRegistry);
+            elem_ = input.readMessage(io.github.yu31.protoc.pb.pbjson.TypeFormat.parser(), extensionRegistry);
             if (subBuilder != null) {
               subBuilder.mergeFrom(elem_);
               elem_ = subBuilder.buildPartial();
@@ -98,13 +98,13 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int ELEM_FIELD_NUMBER = 1;
-  private io.github.yu31.protoc.pb.pbjson.TypeCodec elem_;
+  private io.github.yu31.protoc.pb.pbjson.TypeFormat elem_;
   /**
    * <pre>
    * Elem reports the codec of repeated elements.
    * </pre>
    *
-   * <code>.json.TypeCodec elem = 1;</code>
+   * <code>.json.TypeFormat elem = 1;</code>
    * @return Whether the elem field is set.
    */
   @java.lang.Override
@@ -116,22 +116,22 @@ private static final long serialVersionUID = 0L;
    * Elem reports the codec of repeated elements.
    * </pre>
    *
-   * <code>.json.TypeCodec elem = 1;</code>
+   * <code>.json.TypeFormat elem = 1;</code>
    * @return The elem.
    */
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeCodec getElem() {
-    return elem_ == null ? io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : elem_;
+  public io.github.yu31.protoc.pb.pbjson.TypeFormat getElem() {
+    return elem_ == null ? io.github.yu31.protoc.pb.pbjson.TypeFormat.getDefaultInstance() : elem_;
   }
   /**
    * <pre>
    * Elem reports the codec of repeated elements.
    * </pre>
    *
-   * <code>.json.TypeCodec elem = 1;</code>
+   * <code>.json.TypeFormat elem = 1;</code>
    */
   @java.lang.Override
-  public io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getElemOrBuilder() {
+  public io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder getElemOrBuilder() {
     return getElem();
   }
 
@@ -454,15 +454,15 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private io.github.yu31.protoc.pb.pbjson.TypeCodec elem_;
+    private io.github.yu31.protoc.pb.pbjson.TypeFormat elem_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder> elemBuilder_;
+        io.github.yu31.protoc.pb.pbjson.TypeFormat, io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder, io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder> elemBuilder_;
     /**
      * <pre>
      * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec elem = 1;</code>
+     * <code>.json.TypeFormat elem = 1;</code>
      * @return Whether the elem field is set.
      */
     public boolean hasElem() {
@@ -473,12 +473,12 @@ private static final long serialVersionUID = 0L;
      * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec elem = 1;</code>
+     * <code>.json.TypeFormat elem = 1;</code>
      * @return The elem.
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeCodec getElem() {
+    public io.github.yu31.protoc.pb.pbjson.TypeFormat getElem() {
       if (elemBuilder_ == null) {
-        return elem_ == null ? io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : elem_;
+        return elem_ == null ? io.github.yu31.protoc.pb.pbjson.TypeFormat.getDefaultInstance() : elem_;
       } else {
         return elemBuilder_.getMessage();
       }
@@ -488,9 +488,9 @@ private static final long serialVersionUID = 0L;
      * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec elem = 1;</code>
+     * <code>.json.TypeFormat elem = 1;</code>
      */
-    public Builder setElem(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
+    public Builder setElem(io.github.yu31.protoc.pb.pbjson.TypeFormat value) {
       if (elemBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -508,10 +508,10 @@ private static final long serialVersionUID = 0L;
      * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec elem = 1;</code>
+     * <code>.json.TypeFormat elem = 1;</code>
      */
     public Builder setElem(
-        io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder builderForValue) {
+        io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder builderForValue) {
       if (elemBuilder_ == null) {
         elem_ = builderForValue.build();
         onChanged();
@@ -526,13 +526,13 @@ private static final long serialVersionUID = 0L;
      * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec elem = 1;</code>
+     * <code>.json.TypeFormat elem = 1;</code>
      */
-    public Builder mergeElem(io.github.yu31.protoc.pb.pbjson.TypeCodec value) {
+    public Builder mergeElem(io.github.yu31.protoc.pb.pbjson.TypeFormat value) {
       if (elemBuilder_ == null) {
         if (elem_ != null) {
           elem_ =
-            io.github.yu31.protoc.pb.pbjson.TypeCodec.newBuilder(elem_).mergeFrom(value).buildPartial();
+            io.github.yu31.protoc.pb.pbjson.TypeFormat.newBuilder(elem_).mergeFrom(value).buildPartial();
         } else {
           elem_ = value;
         }
@@ -548,7 +548,7 @@ private static final long serialVersionUID = 0L;
      * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec elem = 1;</code>
+     * <code>.json.TypeFormat elem = 1;</code>
      */
     public Builder clearElem() {
       if (elemBuilder_ == null) {
@@ -566,9 +566,9 @@ private static final long serialVersionUID = 0L;
      * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec elem = 1;</code>
+     * <code>.json.TypeFormat elem = 1;</code>
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder getElemBuilder() {
+    public io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder getElemBuilder() {
       
       onChanged();
       return getElemFieldBuilder().getBuilder();
@@ -578,14 +578,14 @@ private static final long serialVersionUID = 0L;
      * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec elem = 1;</code>
+     * <code>.json.TypeFormat elem = 1;</code>
      */
-    public io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getElemOrBuilder() {
+    public io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder getElemOrBuilder() {
       if (elemBuilder_ != null) {
         return elemBuilder_.getMessageOrBuilder();
       } else {
         return elem_ == null ?
-            io.github.yu31.protoc.pb.pbjson.TypeCodec.getDefaultInstance() : elem_;
+            io.github.yu31.protoc.pb.pbjson.TypeFormat.getDefaultInstance() : elem_;
       }
     }
     /**
@@ -593,14 +593,14 @@ private static final long serialVersionUID = 0L;
      * Elem reports the codec of repeated elements.
      * </pre>
      *
-     * <code>.json.TypeCodec elem = 1;</code>
+     * <code>.json.TypeFormat elem = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder> 
+        io.github.yu31.protoc.pb.pbjson.TypeFormat, io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder, io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder> 
         getElemFieldBuilder() {
       if (elemBuilder_ == null) {
         elemBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.github.yu31.protoc.pb.pbjson.TypeCodec, io.github.yu31.protoc.pb.pbjson.TypeCodec.Builder, io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder>(
+            io.github.yu31.protoc.pb.pbjson.TypeFormat, io.github.yu31.protoc.pb.pbjson.TypeFormat.Builder, io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder>(
                 getElem(),
                 getParentForChildren(),
                 isClean());

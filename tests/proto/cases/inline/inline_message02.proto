@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+package inline;
+
+option go_package = "xgo/tests/pb/pbinline";
+
+import "proto/json.proto";
+
+import "tests/proto/module/external.proto";
+
+//import "google/protobuf/any.proto";
+//import "google/protobuf/duration.proto";
+//import "google/protobuf/timestamp.proto";
+
+import "tests/proto/cases/inline/private.proto";
+
+import "tests/proto/cases/inline/inline_message06.proto";
+import "tests/proto/cases/inline/inline_message07.proto";
+import "tests/proto/cases/inline/inline_message08.proto";
+import "tests/proto/cases/inline/inline_message09.proto";
+
+// Link to 06/07/08/09
+message MessageLevel02 {
+  // Field for literal.
+  string level02_f_string1 = 1 [ (json.field) = { json: "level02_c_f_string1" } ];
+  string level02_f_string2 = 2 [ (json.field) = { } ];
+
+  // Field for optional.
+  optional string level02_p_string1 = 11 [ (json.field) = { json: "level02_c_p_string1" } ];
+  optional string level02_p_string2 = 12 [ (json.field) = { } ];
+
+  // Field for repeated.
+  repeated string level02_r_string1 = 21 [ (json.field) = { json: "level02_c_r_string1" } ];
+  repeated string level02_r_string2 = 22 [ (json.field) = { } ];
+
+  // Field for map.
+  map<string, string> level02_m_string1 = 31 [ (json.field) = { json: "level02_c_m_string1" } ];
+  map<string, string> level02_m_string2 = 32 [ (json.field) = { } ];
+
+  // Field message and extern-line.
+  external.Message1 level02_f_message_extern1 = 41 [ (json.field) = { inline: false } ];
+  external.Message1 level02_f_message_extern2 = 47 [ (json.field) = { inline: false } ];
+
+  // Field message and inline.
+  MessageLevel06 level02_f_message_inline06 = 42 [ (json.field) = { inline: true } ];
+  MessageLevel07 level02_f_message_inline07 = 46 [ (json.field) = { inline: true } ];
+
+  // Field for oneof and extern-line.
+  oneof Level02OneOfExtern1 {
+    option (json.oneof) = { json: "level02_one1_extern1", inline: false };
+
+    string level02_one1_string1 = 101 [ (json.field) = { json: "level02_c_one1_string1" } ];
+
+    // Field message and extern-line.
+    external.Message1 level02_one1_message_extern1 = 111 [ (json.field) = { inline: false } ];
+    external.Message1 level02_one1_message_extern2 = 112 [ (json.field) = { inline: false } ];
+
+    // Field message and inline.
+    MessageLevel06 level02_one1_message_inline06 = 142 [ (json.field) = { inline: true } ];
+    MessageLevel07 level02_one1_message_inline07 = 146 [ (json.field) = { inline: true } ];
+
+    MessageEmpty1 level02_one1_message_inline_emtpy = 143 [ (json.field) = { inline: true } ];
+    MessageIgnoreByRef level02_one1_message_inline_ignore_by_ref = 144 [ (json.field) = { inline: true; ignore: true } ];
+    MessageIgnoreFields level02_one1_message_inline_ignore_fields = 145 [ (json.field) = { inline: true } ];
+  }
+
+  // Field for oneof and inline.
+  oneof Level02OneOfInline1 {
+    option (json.oneof) = { json: "level02_one2_inline1", inline: true };
+
+    string level02_one2_string1 = 201 [ (json.field) = { json: "level02_c_one2_string1" } ];
+
+    // Field message and extern-line.
+    external.Message1 level02_one2_message_extern1 = 211 [ (json.field) = { inline: false } ];
+    external.Message1 level02_one2_message_extern2 = 212 [ (json.field) = { inline: false } ];
+
+    // Field message and inline.
+    MessageLevel08 level02_one2_message_inline08 = 242 [ (json.field) = { inline: true } ];
+    MessageLevel09 level02_one2_message_inline09 = 246 [ (json.field) = { inline: true } ];
+
+    MessageEmpty1 level02_one2_message_inline_emtpy = 243 [ (json.field) = { inline: true } ];
+    MessageIgnoreByRef level02_one2_message_inline_ignore_by_ref = 244 [ (json.field) = { inline: true; ignore: true } ];
+    MessageIgnoreFields level02_one2_message_inline_ignore_fields = 245 [ (json.field) = { inline: true } ];
+  }
+
+  oneof Level02OneOfOmitempty1 {
+    option (json.oneof) = { json: "level02_one3_omitempty1", inline: true, omitempty: false };
+    string level02_one3_string1 = 301 [ (json.field) = { omitempty: true } ];
+    int32 level02_one3_int32a = 302 [ (json.field) = { omitempty: true } ];
+  }
+
+  MessageEmpty1 level02_f_message_inline_emtpy = 43 [ (json.field) = { inline: true } ];
+  MessageIgnoreByRef level02_f_message_inline_ignore_by_ref = 44 [ (json.field) = { inline: true; ignore: true } ];
+  MessageIgnoreFields level02_f_message_inline_ignore_fields = 45 [ (json.field) = { inline: true } ];
+  oneof Level02OneOfIgnoreSelf1 {
+    option (json.oneof) = { json: "level02_one4_ignore_self1", inline: true, ignore: true };
+    string level02_one4_string1 = 401 [ (json.field) = { } ];
+    int32 level02_one4_int32a = 402 [ (json.field) = { } ];
+  }
+  oneof Level02OneOfIgnoreParts1 {
+    option (json.oneof) = { json: "level02_one5_ignore_parts1", inline: true, ignore: false };
+    string level02_one5_string1 = 501 [ (json.field) = { ignore: true} ];
+    int32 level02_one5_int32a = 502 [ (json.field) = { ignore: true } ];
+  }
+}

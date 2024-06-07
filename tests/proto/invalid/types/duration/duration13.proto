@@ -13,5 +13,5 @@ import "google/protobuf/duration.proto";
 import "proto/json.proto";
 
 message Duration13 {
-  google.protobuf.Duration field13 = 13 [ (json.field) = { reference: { plain: { value: { bool: { } }; }; }; } ];
+  google.protobuf.Duration field13 = 13 [ (json.field) = { format: { bool: { } } } ];
 }

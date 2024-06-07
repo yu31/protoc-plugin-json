@@ -13,5 +13,5 @@ import "tests/proto/module/external.proto";
 import "proto/json.proto";
 
 message Enum19 {
-  external.Enum1 field19 = 19 [ (json.field) = { reference: { plain: { value: { timestamp: { } }; }; }; } ];
+  external.Enum1 field19 = 19 [ (json.field) = { format: { timestamp: { } } } ];
 }

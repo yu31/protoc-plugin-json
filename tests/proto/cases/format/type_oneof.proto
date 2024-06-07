@@ -1,0 +1,182 @@
+syntax = "proto3";
+
+package type_oneof;
+
+option go_package = "xgo/tests/pb/pbformat";
+
+//import "google/protobuf/any.proto";
+//import "google/protobuf/duration.proto";
+//import "google/protobuf/timestamp.proto";
+
+//import "tests/proto/module/external.proto";
+
+//import "tests/proto/cases/references/private.proto";
+
+import "proto/json.proto";
+
+message TypeOneOf1 {
+  oneof OneInt32 {
+    option (json.oneof) = { json: "one_int32", inline: true };
+
+    int32 f_int32a = 1 [ (json.field) = {
+      format: { int32: { codec: Numeric } }
+    } ];
+    int32 f_int32b = 2 [ (json.field) = {
+      format: { int32: { codec: String } }
+    } ];
+  }
+
+  oneof OneInt64 {
+    option (json.oneof) = { json: "one_int64", inline: false };
+
+    int64 f_int64a = 3 [ (json.field) = {
+      format: { int64: { codec: Numeric } }
+    } ];
+    int64 f_int64b = 4 [ (json.field) = {
+      format: { int64: { codec: String } }
+    } ];
+  }
+
+  oneof OneUint32 {
+    option (json.oneof) = { json: "one_uint32", inline: true };
+
+    uint32 f_uint32a = 5 [ (json.field) = {
+      format: { uint32: { codec: Numeric } }
+    } ];
+    uint32 f_uint32b = 6 [ (json.field) = {
+      format: { uint32: { codec: String } }
+    } ];
+
+  }
+
+  oneof OneUint64 {
+    option (json.oneof) = { json: "one_uint64", inline: false };
+    uint64 f_uint64a = 7 [ (json.field) = {
+      format: { uint64: { codec: Numeric } }
+    } ];
+    uint64 f_uint64b = 8 [ (json.field) = {
+      format: { uint64: { codec: String } }
+    } ];
+  }
+
+  oneof OneSInt32 {
+    option (json.oneof) = { json: "one_sint32", inline: true };
+
+    sint32 f_sint32a = 9 [ (json.field) = {
+      format: { sint32: { codec: Numeric } }
+    } ];
+    sint32 f_sint32b = 10 [ (json.field) = {
+      format: { sint32: { codec: String } }
+    } ];
+  }
+
+  oneof OneSInt64 {
+    option (json.oneof) = { json: "one_sint64", inline: false };
+
+    sint64 f_sint64a = 11 [ (json.field) = {
+      format: { sint64: { codec: Numeric } }
+    } ];
+    sint64 f_sint64b = 12 [ (json.field) = {
+      format: { sint64: { codec: String } }
+    } ];
+
+  }
+
+  oneof OneSFixed32 {
+    option (json.oneof) = { json: "one_sfixed32", inline: true };
+
+    sfixed32 f_sfixed32a = 13 [ (json.field) = {
+      format: { sfixed32: { codec: Numeric } }
+    } ];
+    sfixed32 f_sfixed32b = 14 [ (json.field) = {
+      format: { sfixed32: { codec: String } }
+    } ];
+  }
+
+  oneof OneSFixed64 {
+    option (json.oneof) = { json: "one_sfixed64", inline: false };
+
+    sfixed64 f_sfixed64a = 15 [ (json.field) = {
+      format: { sfixed64: { codec: Numeric } }
+    } ];
+    sfixed64 f_sfixed64b = 16 [ (json.field) = {
+      format: { sfixed64: { codec: String } }
+    } ];
+  }
+
+  oneof OneFixed32 {
+    option (json.oneof) = { json: "one_fixed32", inline: true };
+
+    fixed32 f_fixed32a = 17 [ (json.field) = {
+      format: { fixed32: { codec: Numeric } }
+    } ];
+    fixed32 f_fixed32b = 18 [ (json.field) = {
+      format: { fixed32: { codec: String } }
+    } ];
+  }
+
+  oneof OneFixed64 {
+    option (json.oneof) = { json: "one_fixed64", inline: false };
+
+    fixed64 f_fixed64a = 19 [ (json.field) = {
+      format: { fixed64: { codec: Numeric } }
+    } ];
+    fixed64 f_fixed64b = 20 [ (json.field) = {
+      format: { fixed64: { codec: String } }
+    } ];
+  }
+
+
+  oneof OneFloat {
+    option (json.oneof) = { json: "one_float", inline: true };
+
+    float f_float1 = 21 [ (json.field) = {
+      format: { float: { codec: Numeric } }
+    } ];
+    float f_float2 = 22 [ (json.field) = {
+      format: { float: { codec: String } }
+    } ];
+  }
+
+  oneof OneDouble {
+    option (json.oneof) = { json: "one_double", inline: false };
+
+    double f_double1 = 23 [ (json.field) = {
+      format: { double: { codec: Numeric } }
+    } ];
+    double f_double2 = 24 [ (json.field) = {
+      format: { double: { codec: String } }
+    } ];
+  }
+
+  oneof OneBool {
+    option (json.oneof) = { json: "one_bool", inline: true };
+
+    bool f_bool1 = 25 [ (json.field) = {
+      format: { bool: { codec: Bool } }
+    } ];
+    bool f_bool2 = 27 [ (json.field) = {
+      format: { bool: { codec: String } }
+    } ];
+  }
+}
+
+// Only used to test type error.
+message TypeOneOf2 {
+  oneof OneType1 {
+    option (json.oneof) = { json: "one_type1", inline: false };
+
+    string f_string1 = 1 [ (json.field) = { } ];
+
+    bytes f_bytes1  = 2 [ (json.field) = { } ];
+  }
+
+
+  oneof OneType2 {
+    option (json.oneof) = { json: "one_type2", inline: true };
+
+    string f_string2 = 3 [ (json.field) = { } ];
+
+    bytes f_bytes2  = 4 [ (json.field) = { } ];
+  }
+}

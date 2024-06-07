@@ -13,5 +13,5 @@ import "tests/proto/module/external.proto";
 import "proto/json.proto";
 
 message Enum21 {
-  external.Enum1 field21 = 21 [ (json.field) = { reference: { repeated: { elem: { }; }; }; } ];
+  external.Enum1 field21 = 21 [ (json.field) = { format: { repeated: { elem: { } } } } ];
 }

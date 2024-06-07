@@ -10,7 +10,7 @@ public interface TypeFixed64OrBuilder extends
   /**
    * <pre>
    * Codec specifies encoding format for the field type of fixed64.
-   * The default is `Number` in plain value, repeated elements and map value.
+   * The default is `Numeric` in plain value, repeated elements and map value.
    * And the default is `String` in map key.
    * </pre>
    *
@@ -21,7 +21,7 @@ public interface TypeFixed64OrBuilder extends
   /**
    * <pre>
    * Codec specifies encoding format for the field type of fixed64.
-   * The default is `Number` in plain value, repeated elements and map value.
+   * The default is `Numeric` in plain value, repeated elements and map value.
    * And the default is `String` in map key.
    * </pre>
    *

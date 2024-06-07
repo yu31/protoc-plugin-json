@@ -13,5 +13,5 @@ option go_package = "xgo/tests/pb/pbinvalid";
 import "proto/json.proto";
 
 message Int3208 {
-  int32 field08 = 8 [ (json.field) = { reference: { plain: { value: { uint64: { } }; }; }; } ];
+  int32 field08 = 8 [ (json.field) = { format: { uint64: { } } } ];
 }

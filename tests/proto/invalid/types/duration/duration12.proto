@@ -13,5 +13,5 @@ import "google/protobuf/duration.proto";
 import "proto/json.proto";
 
 message Duration12 {
-  google.protobuf.Duration field12 = 12 [ (json.field) = { reference: { plain: { value: { double: { } }; }; }; } ];
+  google.protobuf.Duration field12 = 12 [ (json.field) = { format: { double: { } } } ];
 }

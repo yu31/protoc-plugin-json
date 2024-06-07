@@ -13,5 +13,5 @@ option go_package = "xgo/tests/pb/pbinvalid";
 import "proto/json.proto";
 
 message MapValue01 {
-  map<int32, int32> field01 = 1 [ (json.field) = { reference: { plain: { value: { int32: { } }; }; }; } ];
+  map<int32, int32> field01 = 1 [ (json.field) = { format: { int32: { } } } ];
 }

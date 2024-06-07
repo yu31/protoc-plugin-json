@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+package type_plain;
+
+option go_package = "xgo/tests/pb/pbbase";
+
+import "google/protobuf/any.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+import "tests/proto/module/external.proto";
+
+import "tests/proto/cases/base/private.proto";
+
+import "proto/json.proto";
+
+// EnumPlain1 used tests cases in this file.
+enum EnumPlain1 {
+  Zero  = 0;
+  One   = 2;
+  Two   = 3;
+  Three = 5;
+  Four  = 6;
+  Five  = 7;
+  Six   = 9;
+  Seven = 11;
+  Eight = 12;
+  Nine  = 15;
+  Ten   = 17;
+}
+
+// MessagePlain1 used tests cases in this file.
+message MessagePlain1 {
+  message Embed1 {
+    message Embed2 {
+      string f_string1 = 1 [ (json.field) = { } ];
+      string f_string2 = 2 [ (json.field) = { } ];
+      string f_string3 = 3 [ (json.field) = { } ];
+    }
+    string f_string1 = 1 [ (json.field) = { } ];
+    string f_string2 = 2 [ (json.field) = { } ];
+    string f_string3 = 3 [ (json.field) = { } ];
+  }
+  string f_string1 = 1 [ (json.field) = { } ];
+  string f_string2 = 2 [ (json.field) = { } ];
+  string f_string3 = 3 [ (json.field) = { } ];
+}
+
+// Test case for field plain.
+message TypePlain1 {
+  string f_string1 = 1 [ (json.field) = { } ];
+  string f_string2 = 2 [ (json.field) = { } ];
+
+  int32    f_int32    = 11 [ (json.field) = { } ];
+  int64    f_int64    = 12 [ (json.field) = { } ];
+  uint32   f_uint32   = 13 [ (json.field) = { } ];
+  uint64   f_uint64   = 14 [ (json.field) = { } ];
+  sint32   f_sint32   = 15 [ (json.field) = { } ];
+  sint64   f_sint64   = 16 [ (json.field) = { } ];
+  sfixed32 f_sfixed32 = 17 [ (json.field) = { } ];
+  sfixed64 f_sfixed64 = 18 [ (json.field) = { } ];
+  fixed32  f_fixed32  = 19 [ (json.field) = { } ];
+  fixed64  f_fixed64  = 20 [ (json.field) = { } ];
+  float    f_float    = 21 [ (json.field) = { } ];
+  double   f_double   = 22 [ (json.field) = { } ];
+
+  bool f_bool1 = 31 [ (json.field) = { } ];
+
+  bytes f_bytes1 = 32 [ (json.field) = { } ];
+
+  EnumPlain1                   f_enum1 = 51 [ (json.field) = { } ];
+  external.Enum1               f_enum2 = 52 [ (json.field) = { } ];
+  external.Embed.Enum1         f_enum3 = 53 [ (json.field) = { } ];
+  external.Embed.Message.Enum1 f_enum4 = 54 [ (json.field) = { } ];
+  private.EnumCommon1          f_enum5 = 55 [ (json.field) = { } ];
+  private.MessageCommon1.Enum1 f_enum6 = 56 [ (json.field) = { } ];
+
+  google.protobuf.Duration f_duration1 = 61 [ (json.field) = { } ];
+  google.protobuf.Duration f_duration2 = 62 [ (json.field) = { } ];
+
+  google.protobuf.Timestamp f_timestamp1 = 63 [ (json.field) = { } ];
+  google.protobuf.Timestamp f_timestamp2 = 64 [ (json.field) = { } ];
+
+  google.protobuf.Any f_any1 = 65 [ (json.field) = { } ];
+  google.protobuf.Any f_any2 = 66 [ (json.field) = { } ];
+
+  MessagePlain1                        f_message1 = 71 [ (json.field) = { } ];
+  MessagePlain1.Embed1                 f_message2 = 72 [ (json.field) = { } ];
+  MessagePlain1.Embed1.Embed2          f_message3 = 73 [ (json.field) = { } ];
+  external.Message1                    f_message4 = 74 [ (json.field) = { } ];
+  external.Message1.Embed1             f_message5 = 75 [ (json.field) = { } ];
+  external.Message1.Embed1.Embed2      f_message6 = 76 [ (json.field) = { } ];
+  private.MessageCommon1               f_message7 = 77 [ (json.field) = { } ];
+  private.MessageCommon1.Embed1        f_message8 = 78 [ (json.field) = { } ];
+  private.MessageCommon1.Embed1.Embed2 f_message9 = 79 [ (json.field) = { } ];
+}

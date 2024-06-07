@@ -13,5 +13,5 @@ import "google/protobuf/any.proto";
 import "proto/json.proto";
 
 message Any06 {
-  google.protobuf.Any field06 = 6 [ (json.field) = { reference: { plain: { value: { sfixed64: { } }; }; }; } ];
+  google.protobuf.Any field06 = 6 [ (json.field) = { format: { sfixed64: { } } } ];
 }

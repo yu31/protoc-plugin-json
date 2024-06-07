@@ -13,5 +13,5 @@ option go_package = "xgo/tests/pb/pbinvalid";
 import "proto/json.proto";
 
 message Double18 {
-  double field18 = 18 [ (json.field) = { reference: { plain: { value: { duration: { } }; }; }; } ];
+  double field18 = 18 [ (json.field) = { format: { duration: { } } } ];
 }

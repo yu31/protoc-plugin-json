@@ -5,11 +5,11 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbref"
+	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbformat"
 )
 
 func Test_Error_TypeRepeated1(t *testing.T) {
-	data := &pbref.TypeRepeated1{}
+	data := &pbformat.TypeRepeated1{}
 
 	t.Run("Int32", func(t *testing.T) {
 		t.Run("Number", func(t *testing.T) {
@@ -182,7 +182,7 @@ func Test_Error_TypeRepeated1(t *testing.T) {
 }
 
 func Test_Error_TypeRepeated2(t *testing.T) {
-	data := &pbref.TypeRepeated2{}
+	data := &pbformat.TypeRepeated2{}
 
 	t.Run("String", func(t *testing.T) {
 		t.Run("case1", func(t *testing.T) {

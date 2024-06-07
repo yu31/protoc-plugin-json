@@ -5,11 +5,11 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbref"
+	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbformat"
 )
 
 func Test_Error_TypePlain2(t *testing.T) {
-	data := &pbref.TypePlain2{}
+	data := &pbformat.TypePlain2{}
 
 	t.Run("String", func(t *testing.T) {
 		t.Run("case1", func(t *testing.T) {

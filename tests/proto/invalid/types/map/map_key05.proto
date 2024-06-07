@@ -13,5 +13,5 @@ option go_package = "xgo/tests/pb/pbinvalid";
 import "proto/json.proto";
 
 message MapKey05 {
-  map<int32, int32> field05 = 5 [ (json.field) = { reference: { map: { key: { sfixed32: { } }; }; }; } ];
+  map<int32, int32> field05 = 5 [ (json.field) = { format: { map: { key: { sfixed32: { } }; }; }; } ];
 }

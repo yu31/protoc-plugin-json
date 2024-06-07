@@ -53,337 +53,337 @@ func loadOneOfOptions(field *protogen.Field) *pbjson.OneofOptions {
 	return options
 }
 
-func loadTypeCodecRepeated(typeCodec *pbjson.TypeCodec) *pbjson.TypeRepeated {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatRepeated(TypeFormat *pbjson.TypeFormat) *pbjson.TypeRepeated {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeRepeated{}
 	}
 
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Repeated:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Repeated:
 		return ot.Repeated
 	default:
 		err := pkerror.New(
-			"type repeated only support kind of TypeCodec <repeated> and you provided: <%s>",
+			"type repeated only support kind of TypeFormat <repeated> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
-func loadTypeCodecMap(typeCodec *pbjson.TypeCodec) *pbjson.TypeMap {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatMap(TypeFormat *pbjson.TypeFormat) *pbjson.TypeMap {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeMap{}
 	}
 
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Map:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Map:
 		return ot.Map
 	default:
 		err := pkerror.New(
-			"type map only support kind of TypeCodec <map> and you provided: <%s>",
+			"type map only support kind of TypeFormat <map> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
 
-func loadTypeCodecInt32(typeCodec *pbjson.TypeCodec) *pbjson.TypeInt32 {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatInt32(TypeFormat *pbjson.TypeFormat) *pbjson.TypeInt32 {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeInt32{}
 	}
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Int32:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Int32:
 		return ot.Int32
 	default:
 		err := pkerror.New(
-			"type int32 only support kind of TypeCodec <int32> and you provided: <%s>",
+			"type int32 only support kind of TypeFormat <int32> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
-func loadTypeCodecInt64(typeCodec *pbjson.TypeCodec) *pbjson.TypeInt64 {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatInt64(TypeFormat *pbjson.TypeFormat) *pbjson.TypeInt64 {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeInt64{}
 	}
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Int64:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Int64:
 		return ot.Int64
 	default:
 		err := pkerror.New(
-			"type int64 only support kind of TypeCodec <int64> and you provided: <%s>",
+			"type int64 only support kind of TypeFormat <int64> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
-func loadTypeCodecSInt32(typeCodec *pbjson.TypeCodec) *pbjson.TypeSInt32 {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatSInt32(TypeFormat *pbjson.TypeFormat) *pbjson.TypeSInt32 {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeSInt32{}
 	}
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Sint32:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Sint32:
 		return ot.Sint32
 	default:
 		err := pkerror.New(
-			"type sint32 only support kind of TypeCodec <sint32> and you provided: <%s>",
+			"type sint32 only support kind of TypeFormat <sint32> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
-func loadTypeCodecSInt64(typeCodec *pbjson.TypeCodec) *pbjson.TypeSInt64 {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatSInt64(TypeFormat *pbjson.TypeFormat) *pbjson.TypeSInt64 {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeSInt64{}
 	}
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Sint64:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Sint64:
 		return ot.Sint64
 	default:
 		err := pkerror.New(
-			"type sint64 only support kind of TypeCodec <sint64> and you provided: <%s>",
+			"type sint64 only support kind of TypeFormat <sint64> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
-func loadTypeCodecSFInt32(typeCodec *pbjson.TypeCodec) *pbjson.TypeSFixed32 {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatSFInt32(TypeFormat *pbjson.TypeFormat) *pbjson.TypeSFixed32 {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeSFixed32{}
 	}
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Sfixed32:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Sfixed32:
 		return ot.Sfixed32
 	default:
 		err := pkerror.New(
-			"type sfixed32 only support kind of TypeCodec <sfixed32> and you provided: <%s>",
+			"type sfixed32 only support kind of TypeFormat <sfixed32> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
-func loadTypeCodecSFInt64(typeCodec *pbjson.TypeCodec) *pbjson.TypeSFixed64 {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatSFInt64(TypeFormat *pbjson.TypeFormat) *pbjson.TypeSFixed64 {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeSFixed64{}
 	}
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Sfixed64:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Sfixed64:
 		return ot.Sfixed64
 	default:
 		err := pkerror.New(
-			"type sfixed64 only support kind of TypeCodec <sfixed64> and you provided: <%s>",
+			"type sfixed64 only support kind of TypeFormat <sfixed64> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
-func loadTypeCodecUint32(typeCodec *pbjson.TypeCodec) *pbjson.TypeUint32 {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatUint32(TypeFormat *pbjson.TypeFormat) *pbjson.TypeUint32 {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeUint32{}
 	}
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Uint32:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Uint32:
 		return ot.Uint32
 	default:
 		err := pkerror.New(
-			"type uint32 only support kind of TypeCodec <uint32> and you provided: <%s>",
+			"type uint32 only support kind of TypeFormat <uint32> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
-func loadTypeCodecUint64(typeCodec *pbjson.TypeCodec) *pbjson.TypeUint64 {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatUint64(TypeFormat *pbjson.TypeFormat) *pbjson.TypeUint64 {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeUint64{}
 	}
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Uint64:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Uint64:
 		return ot.Uint64
 	default:
 		err := pkerror.New(
-			"type uint64 only support kind of TypeCodec <uint64> and you provided: <%s>",
+			"type uint64 only support kind of TypeFormat <uint64> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
-func loadTypeCodecFixed32(typeCodec *pbjson.TypeCodec) *pbjson.TypeFixed32 {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatFixed32(TypeFormat *pbjson.TypeFormat) *pbjson.TypeFixed32 {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeFixed32{}
 	}
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Fixed32:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Fixed32:
 		return ot.Fixed32
 	default:
 		err := pkerror.New(
-			"type fixed32 only support kind of TypeCodec <fixed32> and you provided: <%s>",
+			"type fixed32 only support kind of TypeFormat <fixed32> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
-func loadTypeCodecFixed64(typeCodec *pbjson.TypeCodec) *pbjson.TypeFixed64 {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatFixed64(TypeFormat *pbjson.TypeFormat) *pbjson.TypeFixed64 {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeFixed64{}
 	}
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Fixed64:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Fixed64:
 		return ot.Fixed64
 	default:
 		err := pkerror.New(
-			"type fixed64 only support kind of TypeCodec <fixed64> and you provided: <%s>",
+			"type fixed64 only support kind of TypeFormat <fixed64> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
-func loadTypeCodecFloat(typeCodec *pbjson.TypeCodec) *pbjson.TypeFloat {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatFloat(TypeFormat *pbjson.TypeFormat) *pbjson.TypeFloat {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeFloat{}
 	}
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Float:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Float:
 		return ot.Float
 	default:
 		err := pkerror.New(
-			"type float only support kind of TypeCodec <float> and you provided: <%s>",
+			"type float only support kind of TypeFormat <float> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
-func loadTypeCodecDouble(typeCodec *pbjson.TypeCodec) *pbjson.TypeDouble {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatDouble(TypeFormat *pbjson.TypeFormat) *pbjson.TypeDouble {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeDouble{}
 	}
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Double:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Double:
 		return ot.Double
 	default:
 		err := pkerror.New(
-			"type double only support kind of TypeCodec <double> and you provided: <%s>",
+			"type double only support kind of TypeFormat <double> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
 
-func loadTypeCodecBool(typeCodec *pbjson.TypeCodec) *pbjson.TypeBool {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatBool(TypeFormat *pbjson.TypeFormat) *pbjson.TypeBool {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeBool{}
 	}
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Bool:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Bool:
 		return ot.Bool
 	default:
 		err := pkerror.New(
-			"type bool only support kind of TypeCodec <bool> and you provided: <%s>",
+			"type bool only support kind of TypeFormat <bool> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
 
-//func loadTypeCodecString(typeCodec *pbjson.TypeCodec) *pbjson.TypeString {
-//	if typeCodec == nil || typeCodec.Kind == nil {
+//func loadTypeFormatString(TypeFormat *pbjson.TypeFormat) *pbjson.TypeString {
+//	if TypeFormat == nil || TypeFormat.Kind == nil {
 //		return &pbjson.TypeString{}
 //	}
-//	switch ot := typeCodec.Kind.(type) {
-//	case *pbjson.TypeCodec_String_:
+//	switch ot := TypeFormat.Kind.(type) {
+//	case *pbjson.TypeFormat_String_:
 //		return ot.String_
 //	default:
 //		err := pkerror.New(
-//			"type string only support kind of TypeCodec <string> and you provided: <%s>",
+//			"type string only support kind of TypeFormat <string> and you provided: <%s>",
 //			getTagName(ot),
 //		)
 //		panic(err)
 //	}
 //}
-//func loadTypeCodecBytes(typeCodec *pbjson.TypeCodec) *pbjson.TypeBytes {
-//	if typeCodec == nil || typeCodec.Kind == nil {
+//func loadTypeFormatBytes(TypeFormat *pbjson.TypeFormat) *pbjson.TypeBytes {
+//	if TypeFormat == nil || TypeFormat.Kind == nil {
 //		return &pbjson.TypeBytes{}
 //	}
-//	switch ot := typeCodec.Kind.(type) {
-//	case *pbjson.TypeCodec_Bytes:
+//	switch ot := TypeFormat.Kind.(type) {
+//	case *pbjson.TypeFormat_Bytes:
 //		return ot.Bytes
 //	default:
 //		err := pkerror.New(
-//			"type bytes only support kind of TypeCodec <bytes> and you provided: <%s>",
+//			"type bytes only support kind of TypeFormat <bytes> and you provided: <%s>",
 //			getTagName(ot),
 //		)
 //		panic(err)
 //	}
 //}
-//func loadTypeCodecMessage(typeCodec *pbjson.TypeCodec) *pbjson.TypeMessage {
-//	if typeCodec == nil || typeCodec.Kind == nil {
+//func loadTypeFormatMessage(TypeFormat *pbjson.TypeFormat) *pbjson.TypeMessage {
+//	if TypeFormat == nil || TypeFormat.Kind == nil {
 //		return &pbjson.TypeMessage{}
 //	}
-//	switch ot := typeCodec.Kind.(type) {
-//	case *pbjson.TypeCodec_Message:
+//	switch ot := TypeFormat.Kind.(type) {
+//	case *pbjson.TypeFormat_Message:
 //		return ot.Message
 //	default:
 //		err := pkerror.New(
-//			"type message only support kind of TypeCodec <message> and you provided: <%s>",
+//			"type message only support kind of TypeFormat <message> and you provided: <%s>",
 //			getTagName(ot),
 //		)
 //		panic(err)
 //	}
 //}
 
-func loadTypeCodecEnum(typeCodec *pbjson.TypeCodec) *pbjson.TypeEnum {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatEnum(TypeFormat *pbjson.TypeFormat) *pbjson.TypeEnum {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeEnum{}
 	}
 
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Enum:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Enum:
 		return ot.Enum
 	default:
 		err := pkerror.New(
-			"type google.protobuf.Any only support kind of TypeCodec <any> and you provided: <%s>",
+			"type google.protobuf.Any only support kind of TypeFormat <any> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
-func loadTypeCodecAny(typeCodec *pbjson.TypeCodec) *pbjson.TypeAny {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatAny(TypeFormat *pbjson.TypeFormat) *pbjson.TypeAny {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeAny{}
 	}
 
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Any:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Any:
 		return ot.Any
 	default:
 		err := pkerror.New(
-			"type google.protobuf.Any only support kind of TypeCodec <any> and you provided: <%s>",
+			"type google.protobuf.Any only support kind of TypeFormat <any> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
-func loadTypeCodecDuration(typeCodec *pbjson.TypeCodec) *pbjson.TypeDuration {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatDuration(TypeFormat *pbjson.TypeFormat) *pbjson.TypeDuration {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeDuration{}
 	}
 
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Duration:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Duration:
 		return ot.Duration
 	default:
 		err := pkerror.New(
-			"type google.protobuf.Any only support kind of TypeCodec <any> and you provided: <%s>",
+			"type google.protobuf.Any only support kind of TypeFormat <any> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)
 	}
 }
-func loadTypeCodecTimestamp(typeCodec *pbjson.TypeCodec) *pbjson.TypeTimestamp {
-	if typeCodec == nil || typeCodec.Kind == nil {
+func loadTypeFormatTimestamp(TypeFormat *pbjson.TypeFormat) *pbjson.TypeTimestamp {
+	if TypeFormat == nil || TypeFormat.Kind == nil {
 		return &pbjson.TypeTimestamp{Layout: &pbjson.TypeTimestamp_Layout{}}
 	}
 
-	switch ot := typeCodec.Kind.(type) {
-	case *pbjson.TypeCodec_Timestamp:
+	switch ot := TypeFormat.Kind.(type) {
+	case *pbjson.TypeFormat_Timestamp:
 		rt := ot.Timestamp
 		if rt.Layout == nil {
 			rt.Layout = &pbjson.TypeTimestamp_Layout{}
@@ -394,7 +394,7 @@ func loadTypeCodecTimestamp(typeCodec *pbjson.TypeCodec) *pbjson.TypeTimestamp {
 		return rt
 	default:
 		err := pkerror.New(
-			"type google.protobuf.Any only support kind of TypeCodec <any> and you provided: <%s>",
+			"type google.protobuf.Any only support kind of TypeFormat <any> and you provided: <%s>",
 			getTagName(ot),
 		)
 		panic(err)

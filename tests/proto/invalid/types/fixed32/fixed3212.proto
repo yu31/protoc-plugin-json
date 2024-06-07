@@ -13,5 +13,5 @@ option go_package = "xgo/tests/pb/pbinvalid";
 import "proto/json.proto";
 
 message Fixed3212 {
-  fixed32 field12 = 12 [ (json.field) = { reference: { plain: { value: { double: { } }; }; }; } ];
+  fixed32 field12 = 12 [ (json.field) = { format: { double: { } } } ];
 }

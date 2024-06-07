@@ -13,5 +13,5 @@ option go_package = "xgo/tests/pb/pbinvalid";
 import "proto/json.proto";
 
 message SFixed6403 {
-  sfixed64 field03 = 3 [ (json.field) = { reference: { plain: { value: { sint32: { } }; }; }; } ];
+  sfixed64 field03 = 3 [ (json.field) = { format: { sint32: { } } } ];
 }

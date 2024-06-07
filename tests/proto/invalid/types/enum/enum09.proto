@@ -13,5 +13,5 @@ import "tests/proto/module/external.proto";
 import "proto/json.proto";
 
 message Enum09 {
-  external.Enum1 field09 = 9 [ (json.field) = { reference: { plain: { value: { fixed32: { } }; }; }; } ];
+  external.Enum1 field09 = 9 [ (json.field) = { format: { fixed32: { } } } ];
 }

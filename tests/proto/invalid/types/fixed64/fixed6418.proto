@@ -13,5 +13,5 @@ option go_package = "xgo/tests/pb/pbinvalid";
 import "proto/json.proto";
 
 message Fixed6418 {
-  fixed64 field18 = 18 [ (json.field) = { reference: { plain: { value: { duration: { } }; }; }; } ];
+  fixed64 field18 = 18 [ (json.field) = { format: { duration: { } } } ];
 }

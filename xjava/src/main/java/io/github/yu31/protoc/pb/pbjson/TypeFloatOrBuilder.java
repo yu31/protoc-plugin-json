@@ -10,7 +10,7 @@ public interface TypeFloatOrBuilder extends
   /**
    * <pre>
    * Codec specifies encoding format for the field type of float.
-   * The default is `Number` in plain value, repeated elements and map value.
+   * The default is `Numeric` in plain value, repeated elements and map value.
    * </pre>
    *
    * <code>.json.TypeFloat.Codec codec = 1;</code>
@@ -20,7 +20,7 @@ public interface TypeFloatOrBuilder extends
   /**
    * <pre>
    * Codec specifies encoding format for the field type of float.
-   * The default is `Number` in plain value, repeated elements and map value.
+   * The default is `Numeric` in plain value, repeated elements and map value.
    * </pre>
    *
    * <code>.json.TypeFloat.Codec codec = 1;</code>

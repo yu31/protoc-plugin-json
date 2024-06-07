@@ -13,5 +13,5 @@ option go_package = "xgo/tests/pb/pbinvalid";
 import "proto/json.proto";
 
 message Int3216 {
-  int32 field16 = 16 [ (json.field) = { reference: { plain: { value: { enum: { } }; }; }; } ];
+  int32 field16 = 16 [ (json.field) = { format: { enum: { } } } ];
 }

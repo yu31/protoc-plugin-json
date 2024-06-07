@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package inline;
+
+option go_package = "xgo/tests/pb/pbinline";
+
+import "proto/json.proto";
+
+message MessageEmpty1 {
+}
+
+// The message used for test cases that the all fields are ignored in this message.
+message MessageIgnoreFields {
+  string ignore_fields_string1 = 1 [ (json.field) = { json: "ignore_fields_string1", ignore: true } ];
+  string ignore_fields_string2 = 2 [ (json.field) = { json: "ignore_fields_string2", ignore: true } ];
+}
+
+// The message used for test cases that the options of field are inline and ignore.
+message MessageIgnoreByRef {
+  string ignore_by_ref_string1 = 1 [ (json.field) = { json: "ignore_by_ref_string1" } ];
+}

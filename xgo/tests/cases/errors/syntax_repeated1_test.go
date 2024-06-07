@@ -5,11 +5,11 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbref"
+	"github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbformat"
 )
 
 func Test_Syntax_TypeRepeated1(t *testing.T) {
-	data := &pbref.TypeRepeated1{}
+	data := &pbformat.TypeRepeated1{}
 
 	t.Run("InvalidArrayBegin", func(t *testing.T) {
 		t.Run("case1", func(t *testing.T) {

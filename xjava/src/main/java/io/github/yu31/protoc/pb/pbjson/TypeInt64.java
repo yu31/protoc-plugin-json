@@ -106,12 +106,12 @@ private static final long serialVersionUID = 0L;
     Unset(0),
     /**
      * <pre>
-     * Number represents convert the field as numbers when encoding and decoding JSON.
+     * Numeric represents convert the field as numeric when encoding and decoding JSON.
      * </pre>
      *
-     * <code>Number = 1;</code>
+     * <code>Numeric = 1;</code>
      */
-    Number(1),
+    Numeric(1),
     /**
      * <pre>
      * String represents convert the field as strings when encoding and decoding JSON.
@@ -133,12 +133,12 @@ private static final long serialVersionUID = 0L;
     public static final int Unset_VALUE = 0;
     /**
      * <pre>
-     * Number represents convert the field as numbers when encoding and decoding JSON.
+     * Numeric represents convert the field as numeric when encoding and decoding JSON.
      * </pre>
      *
-     * <code>Number = 1;</code>
+     * <code>Numeric = 1;</code>
      */
-    public static final int Number_VALUE = 1;
+    public static final int Numeric_VALUE = 1;
     /**
      * <pre>
      * String represents convert the field as strings when encoding and decoding JSON.
@@ -174,7 +174,7 @@ private static final long serialVersionUID = 0L;
     public static Codec forNumber(int value) {
       switch (value) {
         case 0: return Unset;
-        case 1: return Number;
+        case 1: return Numeric;
         case 2: return String;
         default: return null;
       }
@@ -237,7 +237,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Codec specifies encoding format for the field type of int32.
-   * The default is `Number` in plain value, repeated elements and map value.
+   * The default is `Numeric` in plain value, repeated elements and map value.
    * And the default is `String` in map key.
    * </pre>
    *
@@ -250,7 +250,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Codec specifies encoding format for the field type of int32.
-   * The default is `Number` in plain value, repeated elements and map value.
+   * The default is `Numeric` in plain value, repeated elements and map value.
    * And the default is `String` in map key.
    * </pre>
    *
@@ -572,7 +572,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Codec specifies encoding format for the field type of int32.
-     * The default is `Number` in plain value, repeated elements and map value.
+     * The default is `Numeric` in plain value, repeated elements and map value.
      * And the default is `String` in map key.
      * </pre>
      *
@@ -585,7 +585,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Codec specifies encoding format for the field type of int32.
-     * The default is `Number` in plain value, repeated elements and map value.
+     * The default is `Numeric` in plain value, repeated elements and map value.
      * And the default is `String` in map key.
      * </pre>
      *
@@ -602,7 +602,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Codec specifies encoding format for the field type of int32.
-     * The default is `Number` in plain value, repeated elements and map value.
+     * The default is `Numeric` in plain value, repeated elements and map value.
      * And the default is `String` in map key.
      * </pre>
      *
@@ -618,7 +618,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Codec specifies encoding format for the field type of int32.
-     * The default is `Number` in plain value, repeated elements and map value.
+     * The default is `Numeric` in plain value, repeated elements and map value.
      * And the default is `String` in map key.
      * </pre>
      *
@@ -638,7 +638,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * Codec specifies encoding format for the field type of int32.
-     * The default is `Number` in plain value, repeated elements and map value.
+     * The default is `Numeric` in plain value, repeated elements and map value.
      * And the default is `String` in map key.
      * </pre>
      *

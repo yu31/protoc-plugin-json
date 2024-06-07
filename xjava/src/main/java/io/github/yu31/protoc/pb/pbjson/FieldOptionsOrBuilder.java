@@ -90,28 +90,28 @@ public interface FieldOptionsOrBuilder extends
 
   /**
    * <pre>
-   * Reference reports the codec set for field.
+   * Format declares how to format the fields.
    * </pre>
    *
-   * <code>.json.TypeCodec reference = 11;</code>
-   * @return Whether the reference field is set.
+   * <code>.json.TypeFormat format = 11;</code>
+   * @return Whether the format field is set.
    */
-  boolean hasReference();
+  boolean hasFormat();
   /**
    * <pre>
-   * Reference reports the codec set for field.
+   * Format declares how to format the fields.
    * </pre>
    *
-   * <code>.json.TypeCodec reference = 11;</code>
-   * @return The reference.
+   * <code>.json.TypeFormat format = 11;</code>
+   * @return The format.
    */
-  io.github.yu31.protoc.pb.pbjson.TypeCodec getReference();
+  io.github.yu31.protoc.pb.pbjson.TypeFormat getFormat();
   /**
    * <pre>
-   * Reference reports the codec set for field.
+   * Format declares how to format the fields.
    * </pre>
    *
-   * <code>.json.TypeCodec reference = 11;</code>
+   * <code>.json.TypeFormat format = 11;</code>
    */
-  io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getReferenceOrBuilder();
+  io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder getFormatOrBuilder();
 }

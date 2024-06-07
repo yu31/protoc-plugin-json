@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package inline;
+
+option go_package = "xgo/tests/pb/pbinline";
+
+import "proto/json.proto";
+
+import "tests/proto/module/external.proto";
+
+//import "google/protobuf/any.proto";
+//import "google/protobuf/duration.proto";
+//import "google/protobuf/timestamp.proto";
+
+import "tests/proto/cases/inline/private.proto";
+
+// Link none
+message MessageLevel35 {
+  // Field for literal.
+  string level35_f_string1 = 1 [ (json.field) = { json: "level35_c_f_string1" } ];
+  string level35_f_string2 = 2 [ (json.field) = { } ];
+
+  // Field for optional.
+  optional string level35_p_string1 = 11 [ (json.field) = { json: "level35_c_p_string1" } ];
+  optional string level35_p_string2 = 12 [ (json.field) = { } ];
+
+  // Field for repeated.
+  repeated string level35_r_string1 = 21 [ (json.field) = { json: "level35_c_r_string1" } ];
+  repeated string level35_r_string2 = 22 [ (json.field) = { } ];
+
+  // Field for map.
+  map<string, string> level35_m_string1 = 31 [ (json.field) = { json: "level35_c_m_string1" } ];
+  map<string, string> level35_m_string2 = 32 [ (json.field) = { } ];
+
+  // Field message and extern-line.
+  external.Message1 level35_f_message_extern1 = 41 [ (json.field) = { inline: false } ];
+  external.Message1 level35_f_message_extern2 = 47 [ (json.field) = { inline: false } ];
+
+  // Field for oneof and extern-line.
+  oneof Level35OneOfExtern1 {
+    option (json.oneof) = { json: "level35_one1_extern1", inline: false };
+
+    string level35_one1_string1 = 101 [ (json.field) = { json: "level35_c_one1_string1" } ];
+
+    // Field message and extern-line.
+    external.Message1 level35_one1_message_extern1 = 111 [ (json.field) = { inline: false } ];
+    external.Message1 level35_one1_message_extern2 = 112 [ (json.field) = { inline: false } ];
+
+    MessageEmpty1 level35_one1_message_inline_emtpy = 143 [ (json.field) = { inline: true } ];
+    MessageIgnoreByRef level35_one1_message_inline_ignore_by_ref = 144 [ (json.field) = { inline: true; ignore: true } ];
+    MessageIgnoreFields level35_one1_message_inline_ignore_fields = 145 [ (json.field) = { inline: true } ];
+  }
+
+  // Field for oneof and inline.
+  oneof Level35OneOfInline1 {
+    option (json.oneof) = { json: "level35_one2_inline1", inline: true };
+
+    string level35_one2_string1 = 201 [ (json.field) = { json: "level35_c_one2_string1" } ];
+
+    // Field message and extern-line.
+    external.Message1 level35_one2_message_extern1 = 211 [ (json.field) = { inline: false } ];
+    external.Message1 level35_one2_message_extern2 = 212 [ (json.field) = { inline: false } ];
+
+    MessageEmpty1 level35_one2_message_inline_emtpy = 243 [ (json.field) = { inline: true } ];
+    MessageIgnoreByRef level35_one2_message_inline_ignore_by_ref = 244 [ (json.field) = { inline: true; ignore: true } ];
+    MessageIgnoreFields level35_one2_message_inline_ignore_fields = 245 [ (json.field) = { inline: true } ];
+  }
+
+  oneof Level35OneOfOmitempty1 {
+    option (json.oneof) = { json: "level35_one3_omitempty1", inline: true, omitempty: false };
+    string level35_one3_string1 = 301 [ (json.field) = { omitempty: true } ];
+    int32 level35_one3_int32a = 302 [ (json.field) = { omitempty: true } ];
+  }
+
+  MessageEmpty1 level35_f_message_inline_emtpy = 43 [ (json.field) = { inline: true } ];
+  MessageIgnoreByRef level35_f_message_inline_ignore_by_ref = 44 [ (json.field) = { inline: true; ignore: true } ];
+  MessageIgnoreFields level35_f_message_inline_ignore_fields = 45 [ (json.field) = { inline: true } ];
+  oneof Level35OneOfIgnoreSelf1 {
+    option (json.oneof) = { json: "level35_one4_ignore_self1", inline: true, ignore: true };
+    string level35_one4_string1 = 401 [ (json.field) = { } ];
+    int32 level35_one4_int32a = 402 [ (json.field) = { } ];
+  }
+  oneof Level35OneOfIgnoreParts1 {
+    option (json.oneof) = { json: "level35_one5_ignore_parts1", inline: true, ignore: false };
+    string level35_one5_string1 = 501 [ (json.field) = { ignore: true} ];
+    int32 level35_one5_int32a = 502 [ (json.field) = { ignore: true } ];
+  }
+}

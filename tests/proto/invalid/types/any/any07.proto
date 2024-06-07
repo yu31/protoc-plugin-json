@@ -13,5 +13,5 @@ import "google/protobuf/any.proto";
 import "proto/json.proto";
 
 message Any07 {
-  google.protobuf.Any field07 = 7 [ (json.field) = { reference: { plain: { value: { uint32: { } }; }; }; } ];
+  google.protobuf.Any field07 = 7 [ (json.field) = { format: { uint32: { } } } ];
 }

@@ -13,5 +13,5 @@ import "google/protobuf/duration.proto";
 import "proto/json.proto";
 
 message Duration06 {
-  google.protobuf.Duration field06 = 6 [ (json.field) = { reference: { plain: { value: { sfixed64: { } }; }; }; } ];
+  google.protobuf.Duration field06 = 6 [ (json.field) = { format: { sfixed64: { } } } ];
 }

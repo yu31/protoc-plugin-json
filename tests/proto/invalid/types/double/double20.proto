@@ -13,5 +13,5 @@ option go_package = "xgo/tests/pb/pbinvalid";
 import "proto/json.proto";
 
 message Double20 {
-  double field20 = 20 [ (json.field) = { reference: { plain: { value: { message: { } }; }; }; } ];
+  double field20 = 20 [ (json.field) = { format: { message: { } } } ];
 }

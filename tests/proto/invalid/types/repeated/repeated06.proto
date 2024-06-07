@@ -13,5 +13,5 @@ option go_package = "xgo/tests/pb/pbinvalid";
 import "proto/json.proto";
 
 message Repeated06 {
-  repeated int32 field06 = 6 [ (json.field) = { reference: { repeated: { elem: { sfixed64: { } }; }; }; } ];
+  repeated int32 field06 = 6 [ (json.field) = { format: { repeated: { elem: { sfixed64: { } }; }; }; } ];
 }

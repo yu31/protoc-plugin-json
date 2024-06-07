@@ -12,7 +12,7 @@ public interface TypeRepeatedOrBuilder extends
    * Elem reports the codec of repeated elements.
    * </pre>
    *
-   * <code>.json.TypeCodec elem = 1;</code>
+   * <code>.json.TypeFormat elem = 1;</code>
    * @return Whether the elem field is set.
    */
   boolean hasElem();
@@ -21,16 +21,16 @@ public interface TypeRepeatedOrBuilder extends
    * Elem reports the codec of repeated elements.
    * </pre>
    *
-   * <code>.json.TypeCodec elem = 1;</code>
+   * <code>.json.TypeFormat elem = 1;</code>
    * @return The elem.
    */
-  io.github.yu31.protoc.pb.pbjson.TypeCodec getElem();
+  io.github.yu31.protoc.pb.pbjson.TypeFormat getElem();
   /**
    * <pre>
    * Elem reports the codec of repeated elements.
    * </pre>
    *
-   * <code>.json.TypeCodec elem = 1;</code>
+   * <code>.json.TypeFormat elem = 1;</code>
    */
-  io.github.yu31.protoc.pb.pbjson.TypeCodecOrBuilder getElemOrBuilder();
+  io.github.yu31.protoc.pb.pbjson.TypeFormatOrBuilder getElemOrBuilder();
 }

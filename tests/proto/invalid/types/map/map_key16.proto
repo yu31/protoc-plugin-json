@@ -13,5 +13,5 @@ option go_package = "xgo/tests/pb/pbinvalid";
 import "proto/json.proto";
 
 message MapKey16 {
-  map<int32, int32> field16 = 16 [ (json.field) = { reference: { map: { key: { enum: { } }; }; }; } ];
+  map<int32, int32> field16 = 16 [ (json.field) = { format: { map: { key: { enum: { } }; }; }; } ];
 }

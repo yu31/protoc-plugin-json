@@ -13,5 +13,5 @@ import "google/protobuf/any.proto";
 import "proto/json.proto";
 
 message Any12 {
-  google.protobuf.Any field12 = 12 [ (json.field) = { reference: { plain: { value: { double: { } }; }; }; } ];
+  google.protobuf.Any field12 = 12 [ (json.field) = { format: { double: { } } } ];
 }
