@@ -10,7 +10,7 @@ import (
 
 // Test cases for oneof multiplayer nesting
 func Test_InlineOneOf2(t *testing.T) {
-	data1 := &pboptions.InlineOneOf2{
+	seed1 := &pboptions.InlineOneOf2{
 		FString1: "v_string0",
 		OneType01: &pboptions.InlineOneOf2_FMessage1{
 			FMessage1: &pboptions.InlineOneOf2Message1{
@@ -38,7 +38,7 @@ func Test_InlineOneOf2(t *testing.T) {
 	)
 
 	t.Run("Marshal", func(t *testing.T) {
-		bb, err = data1.MarshalJSON()
+		bb, err = seed1.MarshalJSON()
 		require.Nil(t, err)
 	})
 

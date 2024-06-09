@@ -10,14 +10,14 @@ import (
 )
 
 func Test_IgnoreMessage1(t *testing.T) {
-	data := &pboptions.IgnoreMessage1{
+	seed1 := &pboptions.IgnoreMessage1{
 		FString1: "ss101",
 		FString2: "ss102",
 		FString3: "ss103",
 	}
-	_, ok1 := interface{}(data).(json.Marshaler)
+	_, ok1 := interface{}(seed1).(json.Marshaler)
 	require.False(t, ok1)
-	_, ok2 := interface{}(data).(json.Unmarshaler)
+	_, ok2 := interface{}(seed1).(json.Unmarshaler)
 	require.False(t, ok2)
 }
 

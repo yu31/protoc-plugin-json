@@ -33,7 +33,7 @@ func Test_TypeOneOf1_Assert_Copy(t *testing.T) {
 	require.False(t, ok2)
 }
 
-func Test_TypeOneOf1_General1(t *testing.T) {
+func Test_TypeOneOf1_Basic(t *testing.T) {
 	data1 := &pbbase.TypeOneOf1{
 		OneType01:  &pbbase.TypeOneOf1_FString1{FString1: "s1"},
 		One_Type02: &pbbase.TypeOneOf1_FInt32{FInt32: 10},
@@ -74,21 +74,21 @@ func Test_TypeOneOf1_General1(t *testing.T) {
 	_ = b2
 	_ = b3
 
-	t.Run("marshal", func(t *testing.T) {
+	t.Run("Marshal", func(t *testing.T) {
 		b1, err = data1.MarshalJSON()
 		require.Nil(t, err)
 	})
-	t.Run("unmarshal", func(t *testing.T) {
+	t.Run("Unmarshal", func(t *testing.T) {
 		dataNew := &pbbase.TypeOneOf1{}
 		err = dataNew.UnmarshalJSON(b1)
 		require.Nil(t, err)
 	})
 
-	t.Run("standard", func(t *testing.T) {
+	t.Run("Standard", func(t *testing.T) {
 		b2, err = json.Marshal(data2)
 		require.Nil(t, err)
 	})
-	t.Run("proto", func(t *testing.T) {
+	t.Run("Proto", func(t *testing.T) {
 		b3, err = utils.PMarshal.Marshal(data1)
 		require.Nil(t, err)
 	})
@@ -115,11 +115,11 @@ func Test_TypeOneOf1_General2(t *testing.T) {
 		b1  []byte
 	)
 
-	t.Run("marshal", func(t *testing.T) {
+	t.Run("Marshal", func(t *testing.T) {
 		b1, err = data1.MarshalJSON()
 		require.Nil(t, err)
 	})
-	t.Run("unmarshal", func(t *testing.T) {
+	t.Run("Unmarshal", func(t *testing.T) {
 		dataNew := &pbbase.TypeOneOf1{}
 		err = dataNew.UnmarshalJSON(b1)
 		require.Nil(t, err)
@@ -147,21 +147,21 @@ func Test_TypeOneOfInline1(t *testing.T) {
 	_ = b2
 	_ = b3
 
-	t.Run("marshal", func(t *testing.T) {
+	t.Run("Marshal", func(t *testing.T) {
 		b1, err = data1.MarshalJSON()
 		require.Nil(t, err)
 	})
-	t.Run("unmarshal", func(t *testing.T) {
+	t.Run("Unmarshal", func(t *testing.T) {
 		dataNew := &pbbase.TypeOneOf1{}
 		err = dataNew.UnmarshalJSON(b1)
 		require.Nil(t, err)
 	})
 
-	t.Run("standard", func(t *testing.T) {
+	t.Run("Standard", func(t *testing.T) {
 		b2, err = json.Marshal(data2)
 		require.Nil(t, err)
 	})
-	t.Run("proto", func(t *testing.T) {
+	t.Run("Proto", func(t *testing.T) {
 		b3, err = utils.PMarshal.Marshal(data1)
 		require.Nil(t, err)
 		//require.Equal(t, b1, b3)

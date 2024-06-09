@@ -7,7 +7,7 @@ option go_package = "xgo/tests/pb/pbbase";
 import "proto/json.proto";
 
 // EnumCommon1 used tests cases in this file.
-enum EnumCommon1 {
+enum EnumNum1 {
   Zero  = 0;
   One   = 2;
   Two   = 3;
@@ -23,7 +23,7 @@ enum EnumCommon1 {
 
 // MessageCommon1 used tests cases in this file.
 message MessageCommon1 {
-  enum Enum1 {
+  enum EnumNum1 {
     Zero  = 0;
     One   = 2;
     Two   = 3;

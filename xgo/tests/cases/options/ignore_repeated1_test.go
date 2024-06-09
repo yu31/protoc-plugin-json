@@ -13,7 +13,7 @@ import (
 	"github.com/yu31/protoc-plugin-json/xgo/tests/utils"
 )
 
-func Test_IgnoreRepeated1_1(t *testing.T) {
+func Test_IgnoreRepeated1_FieldNotNil(t *testing.T) {
 	seed1 := &pboptions.IgnoreRepeated1{
 		FInt32:    []int32{111, 112, 113},
 		FInt64:    []int64{121, 122, 123},
@@ -30,7 +30,7 @@ func Test_IgnoreRepeated1_1(t *testing.T) {
 		FBool1:    []bool{true, false},
 		FString1:  []string{"ss101", "ss102", "ss103"},
 		FBytes1:   [][]byte{[]byte("bb101"), []byte("bb102"), []byte("bb103")},
-		FEnum1:    []pbexternal.Enum1{1, 3, 5},
+		FEnum1:    []pbexternal.EnumNum1{1, 3, 5},
 		FMessage1: []*pbexternal.Message1{
 			{FString1: "ms101", FString2: "ms102", FString3: "ms103"},
 			{FString1: "ms201", FString2: "ms202", FString3: "ms203"},
@@ -74,7 +74,7 @@ func Test_IgnoreRepeated1_1(t *testing.T) {
 	})
 }
 
-func Test_IgnoreRepeated1_2(t *testing.T) {
+func Test_IgnoreRepeated1_FieldIsNil(t *testing.T) {
 	seed1 := &pboptions.IgnoreRepeated1{
 		FInt32:      nil,
 		FInt64:      nil,

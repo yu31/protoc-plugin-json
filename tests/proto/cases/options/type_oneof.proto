@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package type_oneof;
+package options;
 
 option go_package = "xgo/tests/pb/pboptions";
 
@@ -109,7 +109,7 @@ message TypeOneOf1 {
   oneof OneType16 {
     option (json.oneof) = { json: "t_one16"; omitempty: true };
 
-    external.Enum1 f_enum1 = 31 [ (json.field) = { json: "t_enum1"; omitempty: true } ];
+    external.EnumNum1 f_enum1 = 31 [ (json.field) = { json: "t_enum1"; omitempty: true } ];
   }
 
   oneof OneType17 {

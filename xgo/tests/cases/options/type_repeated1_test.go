@@ -31,7 +31,7 @@ func Test_CustomKey_TypeRepeated1(t *testing.T) {
 		FBool1:    []bool{true, false},
 		FString1:  []string{"ss101", "ss102", "ss103"},
 		FBytes1:   [][]byte{[]byte("bb101"), []byte("bb102"), []byte("bb103")},
-		FEnum1:    []pbexternal.Enum1{1, 3, 5},
+		FEnum1:    []pbexternal.EnumNum1{1, 3, 5},
 		FMessage1: []*pbexternal.Message1{
 			{FString1: "ms101", FString2: "ms102", FString3: "ms103"},
 			{FString1: "ms201", FString2: "ms202", FString3: "ms203"},

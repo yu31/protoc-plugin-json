@@ -12,7 +12,7 @@ import (
 	"github.com/yu31/protoc-plugin-json/xgo/tests/utils"
 )
 
-func Test_IgnorePlain1_1(t *testing.T) {
+func Test_IgnorePlain1_FieldNotEmpty(t *testing.T) {
 	seed1 := &pboptions.IgnorePlain1{
 		FInt32:    111,
 		FInt64:    121,
@@ -61,7 +61,7 @@ func Test_IgnorePlain1_1(t *testing.T) {
 	})
 }
 
-func Test_IgnorePlain1_2(t *testing.T) {
+func Test_IgnorePlain1_FieldIsEmpty(t *testing.T) {
 	seed1 := &pboptions.IgnorePlain1{
 		FInt32:      0,
 		FInt64:      0,

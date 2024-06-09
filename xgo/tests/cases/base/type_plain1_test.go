@@ -17,8 +17,6 @@ import (
 type CopyPlain1 pbbase.TypePlain1
 
 var seedPlain1 = &pbbase.TypePlain1{
-	FString1:    "s1",
-	FString2:    "s2",
 	FInt32:      10,
 	FInt64:      11,
 	FUint32:     12,
@@ -32,6 +30,8 @@ var seedPlain1 = &pbbase.TypePlain1{
 	FFloat:      11.11,
 	FDouble:     12.12,
 	FBool1:      true,
+	FString1:    "s1",
+	FString2:    "s2",
 	FBytes1:     []byte("bytes1"),
 	FEnum1:      2,
 	FEnum2:      3,
@@ -39,12 +39,6 @@ var seedPlain1 = &pbbase.TypePlain1{
 	FEnum4:      6,
 	FEnum5:      7,
 	FEnum6:      9,
-	FDuration1:  &durationpb.Duration{Seconds: 100, Nanos: 101},
-	FDuration2:  &durationpb.Duration{Seconds: 0, Nanos: 0},
-	FTimestamp1: &timestamppb.Timestamp{Seconds: 200, Nanos: 201},
-	FTimestamp2: &timestamppb.Timestamp{Seconds: 0, Nanos: 0},
-	FAny1:       utils.MustNewAny(&pbexternal.Message1{FString1: "any11", FString2: "any12", FString3: "any13"}),
-	FAny2:       utils.MustNewAny(&pbbase.MessagePlain1{FString1: "any21", FString2: "any22", FString3: "any23"}),
 	FMessage1:   &pbbase.MessagePlain1{FString1: "1101", FString2: "1102", FString3: "1103"},
 	FMessage2:   &pbbase.MessagePlain1_Embed1{FString1: "1201", FString2: "1202", FString3: "1203"},
 	FMessage3:   &pbbase.MessagePlain1_Embed1_Embed2{FString1: "1301", FString2: "1302", FString3: "1303"},
@@ -54,6 +48,12 @@ var seedPlain1 = &pbbase.TypePlain1{
 	FMessage7:   &pbbase.MessageCommon1{FString1: "1701", FString2: "1702", FString3: "1703"},
 	FMessage8:   &pbbase.MessageCommon1_Embed1{FString1: "1801", FString2: "1802", FString3: "1803"},
 	FMessage9:   &pbbase.MessageCommon1_Embed1_Embed2{FString1: "1901", FString2: "1902", FString3: "1903"},
+	FAny1:       utils.MustNewAny(&pbexternal.Message1{FString1: "any11", FString2: "any12", FString3: "any13"}),
+	FAny2:       utils.MustNewAny(&pbbase.MessagePlain1{FString1: "any21", FString2: "any22", FString3: "any23"}),
+	FDuration1:  &durationpb.Duration{Seconds: 100, Nanos: 101},
+	FDuration2:  &durationpb.Duration{Seconds: 0, Nanos: 0},
+	FTimestamp1: &timestamppb.Timestamp{Seconds: 200, Nanos: 201},
+	FTimestamp2: &timestamppb.Timestamp{Seconds: 0, Nanos: 0},
 }
 
 func Test_TypePlain1_Assert_Type(t *testing.T) {
@@ -73,16 +73,16 @@ func Test_TypePlain1_Assert_Copy(t *testing.T) {
 }
 
 // Test cases for marshal/unmarshal
-func Test_TypePlain1_General(t *testing.T) {
+func Test_TypePlain1_Basic(t *testing.T) {
 	var (
 		err error
 		b1  []byte
 	)
-	t.Run("marshal", func(t *testing.T) {
+	t.Run("Marshal", func(t *testing.T) {
 		b1, err = seedPlain1.MarshalJSON()
 		require.Nil(t, err)
 	})
-	t.Run("unmarshal", func(t *testing.T) {
+	t.Run("Unmarshal", func(t *testing.T) {
 		dataNew := &pbbase.TypePlain1{}
 		require.NotEqual(t, seedPlain1, dataNew)
 		err = dataNew.UnmarshalJSON(b1)
@@ -143,13 +143,13 @@ func Test_TypePlain1_Empty(t *testing.T) {
 		b2  []byte
 	)
 
-	t.Run("marshal", func(t *testing.T) {
+	t.Run("Marshal", func(t *testing.T) {
 		b1, err = dataEmtpy.MarshalJSON()
 		require.Nil(t, err)
 		b2, err = json.Marshal(dataCopy)
 		require.Nil(t, err)
 	})
-	t.Run("unmarshal-plugin", func(t *testing.T) {
+	t.Run("UnmarshalPlugin", func(t *testing.T) {
 		// use content that get by MarshalJSON
 		data1 := &pbbase.TypePlain1{}
 		err = data1.UnmarshalJSON(b1)
@@ -162,7 +162,7 @@ func Test_TypePlain1_Empty(t *testing.T) {
 		require.Nil(t, err)
 		require.Equal(t, dataEmtpy, data2)
 	})
-	t.Run("unmarshal-standard", func(t *testing.T) {
+	t.Run("UnmarshalStandard", func(t *testing.T) {
 		// use content that get by MarshalJSON
 		data1 := &CopyPlain1{}
 		err = json.Unmarshal(b1, data1)

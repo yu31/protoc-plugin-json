@@ -34,12 +34,12 @@ var seedMap1 = &pbbase.TypeMap1{
 	FDouble:     map[string]float64{"kf22.21": 22.21},
 	FBool1:      map[string]bool{"kbl1": true},
 	FBytes1:     map[string][]byte{"kby1": []byte("bytes1")},
-	FEnum1:      map[string]pbbase.EnumMap1{"ke11": 2},
-	FEnum2:      map[string]pbexternal.Enum1{"ke21": 3},
-	FEnum3:      map[string]pbexternal.Embed_Enum1{"ke31": 5},
-	FEnum4:      map[string]pbexternal.Embed_Message_Enum1{"ke41": 6},
-	FEnum5:      map[string]pbbase.EnumCommon1{"ke51": 7},
-	FEnum6:      map[string]pbbase.MessageCommon1_Enum1{"ke61": 9},
+	FEnum1:      map[string]pbbase.TypeMap1_EnumNum1{"ke11": 2},
+	FEnum2:      map[string]pbexternal.EnumNum1{"ke21": 3},
+	FEnum3:      map[string]pbexternal.Embed_EnumNum1{"ke31": 5},
+	FEnum4:      map[string]pbexternal.Embed_Message_EnumNum1{"ke41": 6},
+	FEnum5:      map[string]pbbase.EnumNum1{"ke51": 7},
+	FEnum6:      map[string]pbbase.MessageCommon1_EnumNum1{"ke61": 9},
 	FDuration1:  map[string]*durationpb.Duration{"kd11": {Seconds: 101, Nanos: 102}},
 	FDuration2:  map[string]*durationpb.Duration{"kd21": {Seconds: 301, Nanos: 302}},
 	FTimestamp1: map[string]*timestamppb.Timestamp{"kt11": {Seconds: 201, Nanos: 202}},
@@ -95,16 +95,16 @@ func Test_TypeMap1_Assert_Copy(t *testing.T) {
 	require.False(t, ok2)
 }
 
-func Test_TypeMap1_General1(t *testing.T) {
+func Test_TypeMap1_Basic(t *testing.T) {
 	var (
 		err error
 		b1  []byte
 	)
-	t.Run("marshal", func(t *testing.T) {
+	t.Run("Marshal", func(t *testing.T) {
 		b1, err = seedMap1.MarshalJSON()
 		require.Nil(t, err)
 	})
-	t.Run("unmarshal", func(t *testing.T) {
+	t.Run("Unmarshal", func(t *testing.T) {
 		dataNew := &pbbase.TypeMap1{}
 		require.NotEqual(t, seedMap1, dataNew)
 		err = dataNew.UnmarshalJSON(b1)
@@ -164,14 +164,14 @@ func Test_TypeMap1_Empty(t *testing.T) {
 		b2  []byte
 	)
 
-	t.Run("marshal", func(t *testing.T) {
+	t.Run("Marshal", func(t *testing.T) {
 		b1, err = dataEmtpy.MarshalJSON()
 		require.Nil(t, err)
 		b2, err = json.Marshal(dataCopy)
 		require.Nil(t, err)
 	})
 
-	t.Run("unmarshal-plugin", func(t *testing.T) {
+	t.Run("UnmarshalPlugin", func(t *testing.T) {
 		// use content that get by MarshalJSON
 		data1 := &pbbase.TypeMap1{}
 		err = data1.UnmarshalJSON(b1)
@@ -184,7 +184,7 @@ func Test_TypeMap1_Empty(t *testing.T) {
 		require.Nil(t, err)
 		require.Equal(t, dataEmtpy, data2)
 	})
-	t.Run("unmarshal-standard", func(t *testing.T) {
+	t.Run("UnmarshalStandard", func(t *testing.T) {
 		// use content that get by MarshalJSON
 		data1 := &CopyMap1{}
 		err = json.Unmarshal(b1, data1)

@@ -34,12 +34,12 @@ var seedRepeated1 = &pbbase.TypeRepeated1{
 	FDouble:   []float64{22.21, 22.22, 22.23},
 	FBool1:    []bool{true, false, true},
 	FBytes1:   [][]byte{[]byte("bytes1"), []byte("bytes2"), []byte("bytes3")},
-	FEnum1:    []pbbase.EnumRepeated1{2, 3, 5},
-	FEnum2:    []pbexternal.Enum1{6, 7, 9},
-	FEnum3:    []pbexternal.Embed_Enum1{2, 3, 5},
-	FEnum4:    []pbexternal.Embed_Message_Enum1{6, 7, 9},
-	FEnum5:    []pbbase.EnumCommon1{2, 3, 5},
-	FEnum6:    []pbbase.MessageCommon1_Enum1{6, 7, 9},
+	FEnum1:    []pbbase.TypeRepeated1_EnumNum1{2, 3, 5},
+	FEnum2:    []pbexternal.EnumNum1{6, 7, 9},
+	FEnum3:    []pbexternal.Embed_EnumNum1{2, 3, 5},
+	FEnum4:    []pbexternal.Embed_Message_EnumNum1{6, 7, 9},
+	FEnum5:    []pbbase.EnumNum1{2, 3, 5},
+	FEnum6:    []pbbase.MessageCommon1_EnumNum1{6, 7, 9},
 	FDuration1: []*durationpb.Duration{
 		{Seconds: 101, Nanos: 102},
 		{Seconds: 103, Nanos: 104},
@@ -117,16 +117,16 @@ func Test_TypeRepeated1_Assert_Copy(t *testing.T) {
 	require.False(t, ok2)
 }
 
-func Test_TypeRepeated1_General1(t *testing.T) {
+func Test_TypeRepeated1_Basic(t *testing.T) {
 	var (
 		err error
 		b1  []byte
 	)
-	t.Run("marshal", func(t *testing.T) {
+	t.Run("Marshal", func(t *testing.T) {
 		b1, err = seedRepeated1.MarshalJSON()
 		require.Nil(t, err)
 	})
-	t.Run("unmarshal", func(t *testing.T) {
+	t.Run("Unmarshal", func(t *testing.T) {
 		dataNew := &pbbase.TypeRepeated1{}
 		require.NotEqual(t, seedRepeated1, dataNew)
 		err = dataNew.UnmarshalJSON(b1)
@@ -187,13 +187,13 @@ func Test_TypeRepeated1_Empty(t *testing.T) {
 		b2  []byte
 	)
 
-	t.Run("marshal", func(t *testing.T) {
+	t.Run("Marshal", func(t *testing.T) {
 		b1, err = dataEmtpy.MarshalJSON()
 		require.Nil(t, err)
 		b2, err = json.Marshal(dataCopy)
 		require.Nil(t, err)
 	})
-	t.Run("unmarshal-plugin", func(t *testing.T) {
+	t.Run("UnmarshalPlugin", func(t *testing.T) {
 		// use content that get by MarshalJSON
 		data1 := &pbbase.TypeRepeated1{}
 		err = data1.UnmarshalJSON(b1)
@@ -206,7 +206,7 @@ func Test_TypeRepeated1_Empty(t *testing.T) {
 		require.Nil(t, err)
 		require.Equal(t, dataEmtpy, data2)
 	})
-	t.Run("unmarshal-standard", func(t *testing.T) {
+	t.Run("UnmarshalStandard", func(t *testing.T) {
 		// use content that get by MarshalJSON
 		data1 := &CopyRepeated1{}
 		err = json.Unmarshal(b1, data1)

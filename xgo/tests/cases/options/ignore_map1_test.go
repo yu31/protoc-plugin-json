@@ -13,7 +13,7 @@ import (
 	"github.com/yu31/protoc-plugin-json/xgo/tests/utils"
 )
 
-func Test_IgnoreMap1_1(t *testing.T) {
+func Test_IgnoreMap1_FieldNotNil(t *testing.T) {
 	seed1 := &pboptions.IgnoreMap1{
 		FInt32:    map[int32]int32{111: 110, 112: 111, 113: 112},
 		FInt64:    map[int64]int64{121: 120, 122: 121, 123: 122},
@@ -30,7 +30,7 @@ func Test_IgnoreMap1_1(t *testing.T) {
 		FBool1:    map[bool]bool{true: false, false: true},
 		FString1:  map[string]string{"sk101": "sv101", "sk102": "sv102", "sk103": "sv103"},
 		FBytes1:   map[string][]byte{"bk101": []byte("bb101"), "bk102": []byte("bb102"), "bk103": []byte("bb103")},
-		FEnum1:    map[string]pbexternal.Enum1{"ek1": 1, "ek2": 3, "ek3": 5},
+		FEnum1:    map[string]pbexternal.EnumNum1{"ek1": 1, "ek2": 3, "ek3": 5},
 		FMessage1: map[string]*pbexternal.Message1{
 			"mk101": {FString1: "ms101", FString2: "ms102", FString3: "ms103"},
 			"mk201": {FString1: "ms201", FString2: "ms202", FString3: "ms203"},
@@ -74,7 +74,7 @@ func Test_IgnoreMap1_1(t *testing.T) {
 	})
 }
 
-func Test_IgnoreMap1_2(t *testing.T) {
+func Test_IgnoreMap1_FieldIsNil(t *testing.T) {
 	seed1 := &pboptions.IgnoreMap1{
 		FInt32:      nil,
 		FInt64:      nil,

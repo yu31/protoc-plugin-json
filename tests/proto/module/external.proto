@@ -10,7 +10,7 @@ option go_package = "github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal"
 
 import "proto/json.proto";
 
-enum Enum1 {
+enum EnumNum1 {
   Zero  = 0;
   One   = 2;
   Two   = 3;
@@ -25,7 +25,7 @@ enum Enum1 {
 }
 
 message Embed {
-  enum Enum1 {
+  enum EnumNum1 {
     Zero  = 0;
     One   = 2;
     Two   = 3;
@@ -39,7 +39,7 @@ message Embed {
     Ten   = 17;
   }
   message Message {
-    enum Enum1 {
+    enum EnumNum1 {
       Zero  = 0;
       One   = 2;
       Two   = 3;

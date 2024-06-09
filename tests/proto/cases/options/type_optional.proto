@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package type_optional;
+package options;
 
 option go_package = "xgo/tests/pb/pboptions";
 
@@ -46,7 +46,7 @@ message TypeOptional1 {
 
   optional bytes f_bytes1  = 23 [ (json.field) = { json: "t_bytes1"; omitempty: true } ];
 
-  optional external.Enum1 f_enum1 = 31 [ (json.field) = { json: "t_enum1"; omitempty: true } ];
+  optional external.EnumNum1 f_enum1 = 31 [ (json.field) = { json: "t_enum1"; omitempty: true } ];
 
   optional external.Message1 f_message1 = 32 [ (json.field) = { json: "t_message1"; omitempty: true } ];
 

@@ -12,7 +12,7 @@ import (
 	"github.com/yu31/protoc-plugin-json/xgo/tests/utils"
 )
 
-func Test_IgnoreOptional1_1(t *testing.T) {
+func Test_IgnoreOptional1_FieldNotNil(t *testing.T) {
 	seed1 := &pboptions.IgnoreOptional1{
 		FInt32:    utils.PointerInt32(111),
 		FInt64:    utils.PointerInt64(121),
@@ -29,7 +29,7 @@ func Test_IgnoreOptional1_1(t *testing.T) {
 		FBool1:    utils.PointerBool(true),
 		FString1:  utils.PointerString("ss101"),
 		FBytes1:   []byte("bb101"),
-		FEnum1:    pbexternal.Enum1(1).Enum(),
+		FEnum1:    pbexternal.EnumNum1(1).Enum(),
 		FMessage1: &pbexternal.Message1{
 			FString1: "ms101",
 			FString2: "ms102",
@@ -61,7 +61,7 @@ func Test_IgnoreOptional1_1(t *testing.T) {
 	})
 }
 
-func Test_IgnoreOptional1_2(t *testing.T) {
+func Test_IgnoreOptional1_FieldIsNil(t *testing.T) {
 	seed1 := &pboptions.IgnoreOptional1{
 		FInt32:      nil,
 		FInt64:      nil,

@@ -31,7 +31,7 @@ func Test_CustomKey_TypeMap1(t *testing.T) {
 		FBool1:    map[bool]bool{true: false, false: true},
 		FString1:  map[string]string{"sk101": "sv101", "sk102": "sv102", "sk103": "sv103"},
 		FBytes1:   map[string][]byte{"bk101": []byte("bb101"), "bk102": []byte("bb102"), "bk103": []byte("bb103")},
-		FEnum1:    map[string]pbexternal.Enum1{"ek1": 1, "ek2": 3, "ek3": 5},
+		FEnum1:    map[string]pbexternal.EnumNum1{"ek1": 1, "ek2": 3, "ek3": 5},
 		FMessage1: map[string]*pbexternal.Message1{
 			"mk101": {FString1: "ms101", FString2: "ms102", FString3: "ms103"},
 			"mk201": {FString1: "ms201", FString2: "ms202", FString3: "ms203"},

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package errors;
+
+option go_package = "xgo/tests/pb/pberrors";
+
+//import "proto/json.proto";
+
+message InvalidSyntaxMap {
+  map<int32, int32> f_int32_key_string_val_numeric = 1;
+  map<int32, int32> f_int32_key_numeric_val_string = 2;
+}

@@ -44,16 +44,16 @@ func Test_TypeMap2_Assert_Copy(t *testing.T) {
 	require.False(t, ok2)
 }
 
-func Test_TypeMap2_General1(t *testing.T) {
+func Test_TypeMap2_Basic(t *testing.T) {
 	var (
 		err error
 		b1  []byte
 	)
-	t.Run("marshal", func(t *testing.T) {
+	t.Run("Marshal", func(t *testing.T) {
 		b1, err = seedMap2.MarshalJSON()
 		require.Nil(t, err)
 	})
-	t.Run("unmarshal", func(t *testing.T) {
+	t.Run("Unmarshal", func(t *testing.T) {
 		dataNew := &pbbase.TypeMap2{}
 		require.NotEqual(t, seedMap2, dataNew)
 		err = dataNew.UnmarshalJSON(b1)
@@ -114,14 +114,14 @@ func Test_TypeMap2_Empty(t *testing.T) {
 		b2  []byte
 	)
 
-	t.Run("marshal", func(t *testing.T) {
+	t.Run("Marshal", func(t *testing.T) {
 		b1, err = dataEmtpy.MarshalJSON()
 		require.Nil(t, err)
 		b2, err = json.Marshal(dataCopy)
 		require.Nil(t, err)
 	})
 
-	t.Run("unmarshal-plugin", func(t *testing.T) {
+	t.Run("UnmarshalPlugin", func(t *testing.T) {
 		// use content that get by MarshalJSON
 		data1 := &pbbase.TypeMap2{}
 		err = data1.UnmarshalJSON(b1)
@@ -134,7 +134,7 @@ func Test_TypeMap2_Empty(t *testing.T) {
 		require.Nil(t, err)
 		require.Equal(t, dataEmtpy, data2)
 	})
-	t.Run("unmarshal-standard", func(t *testing.T) {
+	t.Run("UnmarshalStandard", func(t *testing.T) {
 		// use content that get by MarshalJSON
 		data1 := &CopyMap2{}
 		err = json.Unmarshal(b1, data1)

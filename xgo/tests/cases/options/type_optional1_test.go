@@ -30,7 +30,7 @@ func Test_CustomKey_TypeOptional1(t *testing.T) {
 		FBool1:    utils.PointerBool(true),
 		FString1:  utils.PointerString("ss101"),
 		FBytes1:   []byte("bb101"),
-		FEnum1:    pbexternal.Enum1(1).Enum(),
+		FEnum1:    pbexternal.EnumNum1(1).Enum(),
 		FMessage1: &pbexternal.Message1{
 			FString1: "ms101",
 			FString2: "ms102",
