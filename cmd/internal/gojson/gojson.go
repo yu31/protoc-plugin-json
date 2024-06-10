@@ -68,9 +68,8 @@ func (p *Plugin) generateForMessage(msg *protogen.Message) {
 		return
 	}
 
-	idGen := &IdGenerator{}
-	fieldSets := loadFieldSets(idGen, msg.Fields, nil, false)
-	checkFields(p.file, msg, fieldSets)
+	loader := &FieldLoader{}
+	fieldSets := loader.Load(p.file, msg)
 
 	marshal := &Marshal{
 		g:       p.g,

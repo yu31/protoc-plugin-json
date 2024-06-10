@@ -34,6 +34,7 @@ func checkFields(file *protogen.File, msg *protogen.Message, fieldSets []*FieldS
 
 	fieldSetALL := reBuildFields(fieldSets)
 
+	// Check all the fields and exit if any unexpected cases occur.
 	var exit bool
 	if !checkJSONKey(file, msg, fieldSetALL) {
 		exit = true
@@ -43,16 +44,16 @@ func checkFields(file *protogen.File, msg *protogen.Message, fieldSets []*FieldS
 			exit = true
 		}
 	}
-
 	if exit {
 		os.Exit(1)
 	}
+
 }
 
 // checkJSONKey for valid the jsonKey.
 // Check if is there any duplicate json key.
 // Check if is there any emtpy json key.
-func checkJSONKey(file *protogen.File, msg *protogen.Message, fieldSets []*FieldSet) (ok bool) {
+func checkJSONKey(file *protogen.File, msg *protogen.Message, fieldSets []*FieldSet) (pass bool) {
 	// Cache the first occurrence of the JSONKey of field.
 	cacheFirst := make(map[string]*FieldSet)
 

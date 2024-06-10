@@ -26,6 +26,7 @@ type Marshal struct {
 	options *pbjson.MessageOptions
 }
 
+// FIXME: calculate the inline field.
 func (ml *Marshal) guessBufLen(fieldSets []*FieldSet) (bufLen int) {
 	// Sum json beginning(`{`) and closing(`}`).
 	bufLen += 2
