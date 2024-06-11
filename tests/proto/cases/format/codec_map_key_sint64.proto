@@ -1,0 +1,447 @@
+syntax = "proto3";
+
+package format;
+
+option go_package = "xgo/tests/pb/pbformat";
+
+import "proto/json.proto";
+
+import "google/protobuf/any.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+import "tests/proto/module/external.proto";
+
+// CodecMapKeySInt64 used to tests codec for map and the key type is sint64.
+message CodecMapKeySInt64 {
+  map<sint64, int32> f_int32_key_unset_val_unset     = 1 [ (json.field) = { 
+		format: { map: { key: { sint64: { } }, value: { int32: { } } } } 
+	} ];
+  map<sint64, int32> f_int32_key_numeric_val_numeric = 2 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { int32: { codec: Numeric } } } } 
+	} ];
+  map<sint64, int32> f_int32_key_numeric_val_string  = 3 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { int32: { codec: String } } } } 
+	} ];
+  map<sint64, int32> f_int32_key_string_val_numeric  = 4 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { int32: { codec: Numeric } } } } 
+	} ];
+  map<sint64, int32> f_int32_key_string_val_string   = 5 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { int32: { codec: String } } } } 
+	} ];
+
+  map<sint64, int64> f_int64_key_unset_val_unset     = 6 [ (json.field) = { 
+		format: { map: { key: { sint64: { } }, value: { int64: { } } } } 
+	} ];
+  map<sint64, int64> f_int64_key_numeric_val_numeric = 7 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { int64: { codec: Numeric } } } } 
+	} ];
+  map<sint64, int64> f_int64_key_numeric_val_string  = 8 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { int64: { codec: String } } } } 
+	} ];
+  map<sint64, int64> f_int64_key_string_val_numeric  = 9 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { int64: { codec: Numeric } } } } 
+	} ];
+  map<sint64, int64> f_int64_key_string_val_string   = 10 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { int64: { codec: String } } } } 
+	} ];
+
+  map<sint64, uint32> f_uint32_key_unset_val_unset     = 11 [ (json.field) = { 
+		format: { map: { key: { sint64: { } }, value: { uint32: { } } } } 
+	} ];
+  map<sint64, uint32> f_uint32_key_numeric_val_numeric = 12 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { uint32: { codec: Numeric } } } } 
+	} ];
+  map<sint64, uint32> f_uint32_key_numeric_val_string  = 13 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { uint32: { codec: String } } } } 
+	} ];
+  map<sint64, uint32> f_uint32_key_string_val_numeric  = 14 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { uint32: { codec: Numeric } } } } 
+	} ];
+  map<sint64, uint32> f_uint32_key_string_val_string   = 15 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { uint32: { codec: String } } } } 
+	} ];
+
+  map<sint64, uint64> f_uint64_key_unset_val_unset     = 16 [ (json.field) = { 
+		format: { map: { key: { sint64: { } }, value: { uint64: { } } } } 
+	} ];
+  map<sint64, uint64> f_uint64_key_numeric_val_numeric = 17 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { uint64: { codec: Numeric } } } } 
+	} ];
+  map<sint64, uint64> f_uint64_key_numeric_val_string  = 18 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { uint64: { codec: String } } } } 
+	} ];
+  map<sint64, uint64> f_uint64_key_string_val_numeric  = 19 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { uint64: { codec: Numeric } } } } 
+	} ];
+  map<sint64, uint64> f_uint64_key_string_val_string   = 20 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { uint64: { codec: String } } } } 
+	} ];
+
+  map<sint64, sint32> f_sint32_key_unset_val_unset     = 21 [ (json.field) = { 
+		format: { map: { key: { sint64: { } }, value: { sint32: { } } } } 
+	} ];
+  map<sint64, sint32> f_sint32_key_numeric_val_numeric = 22 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { sint32: { codec: Numeric } } } } 
+	} ];
+  map<sint64, sint32> f_sint32_key_numeric_val_string  = 23 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { sint32: { codec: String } } } } 
+	} ];
+  map<sint64, sint32> f_sint32_key_string_val_numeric  = 24 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { sint32: { codec: Numeric } } } } 
+	} ];
+  map<sint64, sint32> f_sint32_key_string_val_string   = 25 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { sint32: { codec: String } } } } 
+	} ];
+
+  map<sint64, sint64> f_sint64_key_unset_val_unset     = 26 [ (json.field) = { 
+		format: { map: { key: { sint64: { } }, value: { sint64: { } } } } 
+	} ];
+  map<sint64, sint64> f_sint64_key_numeric_val_numeric = 27 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { sint64: { codec: Numeric } } } } 
+	} ];
+  map<sint64, sint64> f_sint64_key_numeric_val_string  = 28 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { sint64: { codec: String } } } } 
+	} ];
+  map<sint64, sint64> f_sint64_key_string_val_numeric  = 29 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { sint64: { codec: Numeric } } } } 
+	} ];
+  map<sint64, sint64> f_sint64_key_string_val_string   = 30 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { sint64: { codec: String } } } } 
+	} ];
+
+  map<sint64, sfixed32> f_sfixed32_key_unset_val_unset     = 31 [ (json.field) = { 
+		format: { map: { key: { sint64: { } }, value: { sfixed32: { } } } } 
+	} ];
+  map<sint64, sfixed32> f_sfixed32_key_numeric_val_numeric = 32 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { sfixed32: { codec: Numeric } } } } 
+	} ];
+  map<sint64, sfixed32> f_sfixed32_key_numeric_val_string  = 33 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { sfixed32: { codec: String } } } } 
+	} ];
+  map<sint64, sfixed32> f_sfixed32_key_string_val_numeric  = 34 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { sfixed32: { codec: Numeric } } } } 
+	} ];
+  map<sint64, sfixed32> f_sfixed32_key_string_val_string   = 35 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { sfixed32: { codec: String } } } } 
+	} ];
+
+  map<sint64, sfixed64> f_sfixed64_key_unset_val_unset     = 36 [ (json.field) = { 
+		format: { map: { key: { sint64: { } }, value: { sfixed64: { } } } } 
+	} ];
+  map<sint64, sfixed64> f_sfixed64_key_numeric_val_numeric = 37 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { sfixed64: { codec: Numeric } } } } 
+	} ];
+  map<sint64, sfixed64> f_sfixed64_key_numeric_val_string  = 38 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { sfixed64: { codec: String } } } } 
+	} ];
+  map<sint64, sfixed64> f_sfixed64_key_string_val_numeric  = 39 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { sfixed64: { codec: Numeric } } } } 
+	} ];
+  map<sint64, sfixed64> f_sfixed64_key_string_val_string   = 40 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { sfixed64: { codec: String } } } } 
+	} ];
+
+  map<sint64, fixed32> f_fixed32_key_unset_val_unset     = 41 [ (json.field) = { 
+		format: { map: { key: { sint64: { } }, value: { fixed32: { } } } } 
+	} ];
+  map<sint64, fixed32> f_fixed32_key_numeric_val_numeric = 42 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { fixed32: { codec: Numeric } } } } 
+	} ];
+  map<sint64, fixed32> f_fixed32_key_numeric_val_string  = 43 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { fixed32: { codec: String } } } } 
+	} ];
+  map<sint64, fixed32> f_fixed32_key_string_val_numeric  = 44 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { fixed32: { codec: Numeric } } } } 
+	} ];
+  map<sint64, fixed32> f_fixed32_key_string_val_string   = 45 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { fixed32: { codec: String } } } } 
+	} ];
+
+  map<sint64, fixed64> f_fixed64_key_unset_val_unset     = 46 [ (json.field) = { 
+		format: { map: { key: { sint64: { } }, value: { fixed64: { } } } } 
+	} ];
+  map<sint64, fixed64> f_fixed64_key_numeric_val_numeric = 47 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { fixed64: { codec: Numeric } } } } 
+	} ];
+  map<sint64, fixed64> f_fixed64_key_numeric_val_string  = 48 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { fixed64: { codec: String } } } } 
+	} ];
+  map<sint64, fixed64> f_fixed64_key_string_val_numeric  = 49 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { fixed64: { codec: Numeric } } } } 
+	} ];
+  map<sint64, fixed64> f_fixed64_key_string_val_string   = 50 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { fixed64: { codec: String } } } } 
+	} ];
+
+  map<sint64, float> f_float_key_unset_val_unset     = 51 [ (json.field) = { 
+		format: { map: { key: { sint64: { } }, value: { float: { } } } } 
+	} ];
+  map<sint64, float> f_float_key_numeric_val_numeric = 52 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { float: { codec: Numeric } } } } 
+	} ];
+  map<sint64, float> f_float_key_numeric_val_string  = 53 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { float: { codec: String } } } } 
+	} ];
+  map<sint64, float> f_float_key_string_val_numeric  = 54 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { float: { codec: Numeric } } } } 
+	} ];
+  map<sint64, float> f_float_key_string_val_string   = 55 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { float: { codec: String } } } } 
+	} ];
+
+  map<sint64, double> f_double_key_unset_val_unset     = 56 [ (json.field) = { 
+		format: { map: { key: { sint64: { } }, value: { double: { } } } } 
+	} ];
+  map<sint64, double> f_double_key_numeric_val_numeric = 57 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { double: { codec: Numeric } } } } 
+	} ];
+  map<sint64, double> f_double_key_numeric_val_string  = 58 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { double: { codec: String } } } } 
+	} ];
+  map<sint64, double> f_double_key_string_val_numeric  = 59 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { double: { codec: Numeric } } } } 
+	} ];
+  map<sint64, double> f_double_key_string_val_string   = 60 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { double: { codec: String } } } } 
+	} ];
+
+  map<sint64, bool> f_bool_key_unset_val_unset    = 61 [ (json.field) = { 
+		format: { map: { key: { sint64: { } }, value: { bool: { } } } } 
+	} ];
+  map<sint64, bool> f_bool_key_numeric_val_bool   = 62 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { bool: { codec: Bool } } } } 
+	} ];
+  map<sint64, bool> f_bool_key_numeric_val_string = 63 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { bool: { codec: String } } } } 
+	} ];
+  map<sint64, bool> f_bool_key_string_val_bool    = 64 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { bool: { codec: Bool } } } } 
+	} ];
+  map<sint64, bool> f_bool_key_string_val_string  = 65 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { bool: { codec: String } } } } 
+	} ];
+
+  map<sint64, string> f_string_key_unset_val_none   = 66 [ (json.field) = { 
+		format: { map: { key: { sint64: { } }, value: { string: { } } } } 
+	} ];
+  map<sint64, string> f_string_key_numeric_val_none = 67 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { string: { } } } } 
+	} ];
+  map<sint64, string> f_string_key_string_val_none  = 68 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { string: { } } } } 
+	} ];
+
+  map<sint64, bytes> f_bytes_key_unset_val_none   = 71 [ (json.field) = { 
+		format: { map: { key: { sint64: { } }, value: { bytes: { } } } } 
+	} ];
+  map<sint64, bytes> f_bytes_key_numeric_val_none = 72 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { bytes: { } } } } 
+	} ];
+  map<sint64, bytes> f_bytes_key_string_val_none  = 73 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { bytes: { } } } } 
+	} ];
+
+	map<sint64, external.EnumNum1> f_enum_key_unset_val_unset            = 81 [ (json.field) = {
+		format: { map: { key: { sint64: { } }, value: { enum: { } } } }
+	} ];
+	map<sint64, external.EnumNum1> f_enum_key_numeric_val_numeric        = 82 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { enum: { codec: Numeric } } } }
+	} ];
+	map<sint64, external.EnumNum1> f_enum_key_numeric_val_numeric_string = 83 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { enum: { codec: NumericString } } } }
+	} ];
+	map<sint64, external.EnumNum1> f_enum_key_numeric_val_enum_string    = 84 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { enum: { codec: EnumString } } } }
+	} ];
+	map<sint64, external.EnumNum1> f_enum_key_string_val_numeric         = 85 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { enum: { codec: Numeric } } } }
+	} ];
+	map<sint64, external.EnumNum1> f_enum_key_string_val_numeric_string  = 86 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { enum: { codec: NumericString } } } }
+	} ];
+	map<sint64, external.EnumNum1> f_enum_key_string_val_enum_string     = 87 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { enum: { codec: EnumString } } } }
+	} ];
+
+	map<sint64, external.Message1>  f_message_key_unset_val_none   = 91 [ (json.field) = {
+		format: { map: { key: { sint64: { } }, value: { message: { } } } }
+	} ];
+	map<sint64, external.Message1>  f_message_key_numeric_val_none = 92 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { message: { } } } }
+	} ];
+	map<sint64, external.Message1>  f_message_key_string_val_none  = 93 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { message: { } } } }
+	} ];
+
+	map<sint64, google.protobuf.Duration> f_duration_key_unset_val_unset                = 101 [ (json.field) = {
+		format: { map: { key: { sint64: { } }, value: { duration: { } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_numeric_val_object             = 102 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { duration: { codec: Object } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_numeric_val_time_string        = 103 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { duration: { codec: TimeString } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_numeric_val_nanosecond         = 104 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { duration: { codec: Nanosecond } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_numeric_val_nanosecond_string  = 105 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { duration: { codec: NanosecondString } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_numeric_val_microsecond        = 106 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { duration: { codec: Microsecond } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_numeric_val_microsecond_string = 107 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { duration: { codec: MicrosecondString } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_numeric_val_millisecond        = 108 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { duration: { codec: Millisecond } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_numeric_val_millisecond_string = 109 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { duration: { codec: MillisecondString } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_numeric_val_second             = 110 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { duration: { codec: Second } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_numeric_val_second_string      = 111 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { duration: { codec: SecondString } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_numeric_val_minute             = 112 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { duration: { codec: Minute } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_numeric_val_minute_string      = 113 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { duration: { codec: MinuteString } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_numeric_val_hour               = 114 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { duration: { codec: Hour } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_numeric_val_hour_string        = 115 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { duration: { codec: HourString } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_string_val_unset               = 116 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { duration: { codec: Object } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_string_val_object              = 117 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { duration: { codec: Object } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_string_val_time_string         = 118 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { duration: { codec: TimeString } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_string_val_nanosecond          = 119 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { duration: { codec: Nanosecond } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_string_val_nanosecond_string   = 120 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { duration: { codec: NanosecondString } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_string_val_microsecond         = 121 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { duration: { codec: Microsecond } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_string_val_microsecond_string  = 122 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { duration: { codec: MicrosecondString } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_string_val_millisecond         = 123 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { duration: { codec: Millisecond } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_string_val_millisecond_string  = 124 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { duration: { codec: MillisecondString } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_string_val_second              = 125 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { duration: { codec: Second } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_string_val_second_string       = 126 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { duration: { codec: SecondString } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_string_val_minute              = 127 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { duration: { codec: Minute } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_string_val_minute_string       = 128 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { duration: { codec: MinuteString } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_string_val_hour                = 129 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { duration: { codec: Hour } } } }
+	} ];
+	map<sint64, google.protobuf.Duration> f_duration_key_string_val_hour_string         = 130 [ (json.field) = {
+		format: { map: { key: { sint64: { codec: String } }, value: { duration: { codec: HourString } } } }
+	} ];
+
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_unset_val_unset               = 131 [ (json.field) = { 
+		format: { map: { key: { sint64: { } }, value: { timestamp: { } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_numeric_val_object            = 132 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { timestamp: { codec: Object } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_numeric_val_time_layout       = 133 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { timestamp: { codec: TimeLayout } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_numeric_val_unix_nano         = 134 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { timestamp: { codec: UnixNano } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_numeric_val_unix_nano_string  = 135 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { timestamp: { codec: UnixNanoString } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_numeric_val_unix_micro        = 136 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { timestamp: { codec: UnixMicro } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_numeric_val_unix_micro_string = 137 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { timestamp: { codec: UnixMicroString } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_numeric_val_unix_milli        = 138 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { timestamp: { codec: UnixMilli } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_numeric_val_unix_milli_string = 139 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { timestamp: { codec: UnixMilliString } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_numeric_val_unix_sec          = 140 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { timestamp: { codec: UnixSec } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_numeric_val_unix_sec_string   = 141 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { timestamp: { codec: UnixSecString } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_string_val_object             = 142 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { timestamp: { codec: Object } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_string_val_time_layout        = 143 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { timestamp: { codec: TimeLayout } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_string_val_unix_nano          = 144 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { timestamp: { codec: UnixNano } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_string_val_unix_nano_string   = 145 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { timestamp: { codec: UnixNanoString } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_string_val_unix_micro         = 146 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { timestamp: { codec: UnixMicro } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_string_val_unix_micro_string  = 147 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { timestamp: { codec: UnixMicroString } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_string_val_unix_milli         = 148 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { timestamp: { codec: UnixMilli } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_string_val_unix_milli_string  = 149 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { timestamp: { codec: UnixMilliString } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_string_val_unix_sec           = 150 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { timestamp: { codec: UnixSec } } } } 
+	} ];
+  map<sint64, google.protobuf.Timestamp> f_timestamp_key_string_val_unix_sec_string    = 151 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { timestamp: { codec: UnixSecString } } } } 
+	} ];
+
+  map<sint64, google.protobuf.Any> f_any_key_unset_val_unset    = 161 [ (json.field) = { 
+		format: { map: { key: { sint64: { } }, value: { any: { } } } } 
+	} ];
+  map<sint64, google.protobuf.Any> f_any_key_numeric_val_object = 162 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { any: { codec: Object } } } } 
+	} ];
+  map<sint64, google.protobuf.Any> f_any_key_numeric_val_proto  = 163 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: Numeric } }, value: { any: { codec: Proto } } } } 
+	} ];
+  map<sint64, google.protobuf.Any> f_any_key_string_val_object  = 164 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { any: { codec: Object } } } } 
+	} ];
+  map<sint64, google.protobuf.Any> f_any_key_string_val_proto   = 165 [ (json.field) = { 
+		format: { map: { key: { sint64: { codec: String } }, value: { any: { codec: Proto } } } } 
+	} ];
+}

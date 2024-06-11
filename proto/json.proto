@@ -423,6 +423,7 @@ message TypeAny {
   Codec codec = 1;
 }
 
+// FIXME: Supplement test cases that precision in microseconds, milliseconds and seconds.
 // TypeInt32 declares the codec for field type google.proto.Duration.
 message TypeDuration {
   enum Codec {
@@ -478,6 +479,7 @@ message TypeDuration {
   Codec codec = 1;
 }
 
+// FIXME: Supplement test cases that precision in microseconds, milliseconds and seconds.
 // TypeInt32 declares the codec for field type google.proto.Timestamp.
 message TypeTimestamp {
   message Layout {

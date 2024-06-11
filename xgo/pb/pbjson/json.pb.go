@@ -2565,6 +2565,7 @@ func (x *TypeAny) GetCodec() TypeAny_Codec {
 	return TypeAny_Unset
 }
 
+// FIXME: Supplement test cases that precision in microseconds, milliseconds and seconds.
 // TypeInt32 declares the codec for field type google.proto.Duration.
 type TypeDuration struct {
 	state         protoimpl.MessageState
@@ -2615,6 +2616,7 @@ func (x *TypeDuration) GetCodec() TypeDuration_Codec {
 	return TypeDuration_Unset
 }
 
+// FIXME: Supplement test cases that precision in microseconds, milliseconds and seconds.
 // TypeInt32 declares the codec for field type google.proto.Timestamp.
 type TypeTimestamp struct {
 	state         protoimpl.MessageState

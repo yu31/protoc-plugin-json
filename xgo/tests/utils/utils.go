@@ -1,6 +1,8 @@
 package utils
 
 import (
+	"encoding/base64"
+
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/anypb"
 )
@@ -36,4 +38,13 @@ func PointerFloat64(i float64) *float64 {
 }
 func PointerBool(i bool) *bool {
 	return &i
+}
+
+func ConvertJSONBytesToString(b string) string {
+	dst := make([]byte, base64.StdEncoding.DecodedLen(len(b)))
+	n, err := base64.StdEncoding.Decode(dst, []byte(b))
+	if err != nil {
+		panic(err)
+	}
+	return string(dst[:n])
 }
