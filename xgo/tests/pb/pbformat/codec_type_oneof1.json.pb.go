@@ -10,7 +10,7 @@ import (
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
-	pbexternal "github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal"
+	_ "github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal"
 	_ "google.golang.org/protobuf/types/known/anypb"
 	_ "google.golang.org/protobuf/types/known/durationpb"
 	_ "google.golang.org/protobuf/types/known/timestamppb"
@@ -904,7 +904,7 @@ LOOP_SCAN:
 							o1_40 = new(CodecTypeOneOf1_FEnumString)
 							x.OneEnum1 = o1_40
 						}
-						if o1_40.FEnumString, err = jsondecoder.ReadValEnumStr(dec, o1_40.FEnumString, pbexternal.EnumNum1_value); err != nil {
+						if o1_40.FEnumString, err = jsondecoder.ReadValEnumStr(dec, o1_40.FEnumString); err != nil {
 							return err
 						}
 					default:

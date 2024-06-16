@@ -249,7 +249,7 @@ LOOP_SCAN:
 				return err
 			}
 		case "f_enum_string":
-			if x.FEnumString, err = jsondecoder.ReadPtrEnumStr(dec, x.FEnumString, EnumNum1_value); err != nil {
+			if x.FEnumString, err = jsondecoder.ReadPtrEnumStr(dec, x.FEnumString); err != nil {
 				return err
 			}
 		case "f_any_native":

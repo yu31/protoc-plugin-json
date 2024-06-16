@@ -10,7 +10,7 @@ import (
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
-	pbexternal "github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal"
+	_ "github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal"
 	_ "google.golang.org/protobuf/types/known/anypb"
 	_ "google.golang.org/protobuf/types/known/durationpb"
 	_ "google.golang.org/protobuf/types/known/timestamppb"
@@ -532,7 +532,7 @@ LOOP_SCAN:
 				return err
 			}
 		case "f_enum_key_numeric_val_enum_string":
-			if x.FEnumKeyNumericValEnumString, err = jsondecoder.ReadMapU64EnumStr(dec, x.FEnumKeyNumericValEnumString, false, pbexternal.EnumNum1_value); err != nil {
+			if x.FEnumKeyNumericValEnumString, err = jsondecoder.ReadMapU64EnumStr(dec, x.FEnumKeyNumericValEnumString, false); err != nil {
 				return err
 			}
 		case "f_enum_key_string_val_numeric":
@@ -544,7 +544,7 @@ LOOP_SCAN:
 				return err
 			}
 		case "f_enum_key_string_val_enum_string":
-			if x.FEnumKeyStringValEnumString, err = jsondecoder.ReadMapU64EnumStr(dec, x.FEnumKeyStringValEnumString, true, pbexternal.EnumNum1_value); err != nil {
+			if x.FEnumKeyStringValEnumString, err = jsondecoder.ReadMapU64EnumStr(dec, x.FEnumKeyStringValEnumString, true); err != nil {
 				return err
 			}
 		case "f_message_key_unset_val_none":

@@ -377,7 +377,6 @@ func ReadListBytes(dec *Decoder, val [][]byte) (vv [][]byte, err error) {
 }
 
 // ReadListEnumNum read the next items from JSON contents as a list of enum with codec number.
-// FIXME: optimized the codes.
 func ReadListEnumNum[T protoreflect.Enum](dec *Decoder, val []T, unquote bool) (vv []T, err error) {
 	var (
 		isEnd  bool
@@ -396,7 +395,6 @@ func ReadListEnumNum[T protoreflect.Enum](dec *Decoder, val []T, unquote bool) (
 		vv = val
 	}
 
-	var tt T
 	i := 0
 	for ; ; i++ { // Loop to read the list items
 		if isEnd, err = dec.BeforeReadNext(); err != nil {
@@ -408,12 +406,11 @@ func ReadListEnumNum[T protoreflect.Enum](dec *Decoder, val []T, unquote bool) (
 		if isNULL, err = dec.NextLiteralIsNULL(); err != nil {
 			return
 		}
-		var v2 int32
-		if v2, err = dec.readValEnumNum(unquote); err != nil {
+		var v1 T
+		if v1, err = readValEnumNum(dec, v1, unquote); err != nil {
 			err = errorWrap(dec, err)
 			return
 		}
-		v1 := tt.Type().New(protoreflect.EnumNumber(v2)).(T)
 		if i >= len(vv) {
 			vv = append(vv, v1) // Set the value
 		} else {
@@ -425,8 +422,7 @@ func ReadListEnumNum[T protoreflect.Enum](dec *Decoder, val []T, unquote bool) (
 }
 
 // ReadListEnumStr read the next items from JSON contents as a list of enum with codec string.
-// FIXME: optimized the codes.
-func ReadListEnumStr[T protoreflect.Enum](dec *Decoder, val []T, em map[string]int32) (vv []T, err error) {
+func ReadListEnumStr[T protoreflect.Enum](dec *Decoder, val []T) (vv []T, err error) {
 	var (
 		isEnd  bool
 		isNULL bool
@@ -444,7 +440,6 @@ func ReadListEnumStr[T protoreflect.Enum](dec *Decoder, val []T, em map[string]i
 		vv = val
 	}
 
-	var tt T
 	i := 0
 	for ; ; i++ { // Loop to read the list items
 		if isEnd, err = dec.BeforeReadNext(); err != nil {
@@ -457,12 +452,11 @@ func ReadListEnumStr[T protoreflect.Enum](dec *Decoder, val []T, em map[string]i
 			return
 		}
 
-		var v2 int32
-		if v2, err = dec.readValEnumStr(em); err != nil {
+		var v1 T
+		if v1, err = readValEnumStr(dec, v1); err != nil {
 			err = errorWrap(dec, err)
 			return
 		}
-		v1 := tt.Type().New(protoreflect.EnumNumber(v2)).(T)
 		if i >= len(vv) {
 			vv = append(vv, v1) // Set the value
 		} else {

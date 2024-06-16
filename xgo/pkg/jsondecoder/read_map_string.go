@@ -376,7 +376,6 @@ func ReadMapStrBytes(dec *Decoder, val map[string][]byte) (vv map[string][]byte,
 }
 
 // ReadMapStrEnumNum read the next items from JSON contents as map key string and value enum with codec number.
-// FIXME: optimized the codes.
 func ReadMapStrEnumNum[T protoreflect.Enum](dec *Decoder, val map[string]T,
 	unquoteVal bool) (vv map[string]T, err error) {
 	var (
@@ -396,7 +395,6 @@ func ReadMapStrEnumNum[T protoreflect.Enum](dec *Decoder, val map[string]T,
 		vv = val
 	}
 
-	var tt T
 	for { // Loop to read the map kv
 		if isEnd, err = dec.BeforeReadNext(); err != nil {
 			return
@@ -405,25 +403,22 @@ func ReadMapStrEnumNum[T protoreflect.Enum](dec *Decoder, val map[string]T,
 			break
 		}
 		var mk string
-		var v2 int32
+		var mv T
 		if mk, err = dec.readMapKeyStr(); err != nil {
 			err = errorWrap(dec, err)
 			return nil, err
 		}
-		if v2, err = dec.readValEnumNum(unquoteVal); err != nil {
+		if mv, err = readValEnumNum(dec, mv, unquoteVal); err != nil {
 			err = errorWrap(dec, err)
 			return
 		}
-		mv := tt.Type().New(protoreflect.EnumNumber(v2)).(T)
 		vv[mk] = mv
 	}
 	return vv, nil
 }
 
 // ReadMapStrEnumStr read the next items from JSON contents as map key string and value enum with codec string.
-// FIXME: optimized the codes.
-func ReadMapStrEnumStr[T protoreflect.Enum](dec *Decoder, val map[string]T,
-	em map[string]int32) (vv map[string]T, err error) {
+func ReadMapStrEnumStr[T protoreflect.Enum](dec *Decoder, val map[string]T) (vv map[string]T, err error) {
 	var (
 		isEnd  bool
 		isNULL bool
@@ -441,7 +436,6 @@ func ReadMapStrEnumStr[T protoreflect.Enum](dec *Decoder, val map[string]T,
 		vv = val
 	}
 
-	var tt T
 	for { // Loop to read the map kv
 		if isEnd, err = dec.BeforeReadNext(); err != nil {
 			return
@@ -450,16 +444,15 @@ func ReadMapStrEnumStr[T protoreflect.Enum](dec *Decoder, val map[string]T,
 			break
 		}
 		var mk string
-		var v2 int32
+		var mv T
 		if mk, err = dec.readMapKeyStr(); err != nil {
 			err = errorWrap(dec, err)
 			return nil, err
 		}
-		if v2, err = dec.readValEnumStr(em); err != nil {
+		if mv, err = readValEnumStr(dec, mv); err != nil {
 			err = errorWrap(dec, err)
 			return
 		}
-		mv := tt.Type().New(protoreflect.EnumNumber(v2)).(T)
 		vv[mk] = mv
 	}
 	return vv, nil

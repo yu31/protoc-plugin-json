@@ -223,7 +223,7 @@ func (dec *Decoder) beforeReadNext() (isEnd bool, err error) {
 func (dec *Decoder) readObjectKey() (key []byte, err error) {
 	// Assert the current token.
 	if dec.opCode != scanLiteralBegin {
-		// FIXME: Use error instead of panic.
+		// FIXME: Use error instead of panic?
 		panic(fmt.Sprintf("%s, opCode: %d", PhasePanicMsg, dec.opCode))
 	}
 

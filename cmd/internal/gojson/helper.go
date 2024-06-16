@@ -2,10 +2,15 @@ package gojson
 
 import (
 	"fmt"
+	"strconv"
 
+	"github.com/yu31/protoc-kit-go/helper/pkerror"
+	"github.com/yu31/protoc-kit-go/helper/pkwkt"
 	"google.golang.org/protobuf/reflect/protoreflect"
 
 	"google.golang.org/protobuf/compiler/protogen"
+
+	"github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 )
 
 func truncateBufLen(n int) int {
@@ -89,6 +94,233 @@ func _loadInlineFields(fieldSets []*FieldSet) (parentFields []*FieldSet) {
 		if parent := fieldSet.ParentField(); parent != nil {
 			parentFields = append(parentFields, fieldSet)
 		}
+	}
+	return
+}
+
+func loadMapKeyTypeInfo(field *protogen.Field, typeFormat *pbjson.TypeFormat) (typeName string, funcVars []string) {
+	kind := field.Desc.Kind()
+	switch kind {
+	case protoreflect.StringKind:
+		typeName = "Str"
+	case protoreflect.BoolKind:
+		quote := loadTypeFormatBool(typeFormat).Codec != pbjson.TypeBool_Bool
+		typeName = "Bool"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Int32Kind:
+		quote := loadTypeFormatInt32(typeFormat).Codec != pbjson.TypeInt32_Numeric
+		typeName = "I32"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Int64Kind:
+		quote := loadTypeFormatInt64(typeFormat).Codec != pbjson.TypeInt64_Numeric
+		typeName = "I64"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Sint32Kind:
+		quote := loadTypeFormatSInt32(typeFormat).Codec != pbjson.TypeSInt32_Numeric
+		typeName = "I32"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Sint64Kind:
+		quote := loadTypeFormatSInt64(typeFormat).Codec != pbjson.TypeSInt64_Numeric
+		typeName = "I64"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Sfixed32Kind:
+		quote := loadTypeFormatSFInt32(typeFormat).Codec != pbjson.TypeSFixed32_Numeric
+		typeName = "I32"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Sfixed64Kind:
+		quote := loadTypeFormatSFInt64(typeFormat).Codec != pbjson.TypeSFixed64_Numeric
+		typeName = "I64"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Uint32Kind:
+		quote := loadTypeFormatUint32(typeFormat).Codec != pbjson.TypeUint32_Numeric
+		typeName = "U32"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Uint64Kind:
+		quote := loadTypeFormatUint64(typeFormat).Codec != pbjson.TypeUint64_Numeric
+		typeName = "U64"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Fixed32Kind:
+		quote := loadTypeFormatFixed32(typeFormat).Codec != pbjson.TypeFixed32_Numeric
+		typeName = "U32"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Fixed64Kind:
+		quote := loadTypeFormatFixed64(typeFormat).Codec != pbjson.TypeFixed64_Numeric
+		typeName = "U64"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	default:
+		err := pkerror.New("unsupported kind of %s as map key", kind.String())
+		panic(err)
+	}
+	return
+}
+func loadValueTypeInfo(field *protogen.Field, typeFormat *pbjson.TypeFormat) (typeName string, funcVars []string) {
+	kind := field.Desc.Kind()
+	switch kind {
+	case protoreflect.Int32Kind:
+		quote := loadTypeFormatInt32(typeFormat).Codec == pbjson.TypeInt32_String
+		typeName = "I32"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Int64Kind:
+		quote := loadTypeFormatInt64(typeFormat).Codec == pbjson.TypeInt64_String
+		typeName = "I64"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Sint32Kind:
+		quote := loadTypeFormatSInt32(typeFormat).Codec == pbjson.TypeSInt32_String
+		typeName = "I32"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Sint64Kind:
+		quote := loadTypeFormatSInt64(typeFormat).Codec == pbjson.TypeSInt64_String
+		typeName = "I64"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Sfixed32Kind:
+		quote := loadTypeFormatSFInt32(typeFormat).Codec == pbjson.TypeSFixed32_String
+		typeName = "I32"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Sfixed64Kind:
+		quote := loadTypeFormatSFInt64(typeFormat).Codec == pbjson.TypeSFixed64_String
+		typeName = "I64"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Uint32Kind:
+		quote := loadTypeFormatUint32(typeFormat).Codec == pbjson.TypeUint32_String
+		typeName = "U32"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Uint64Kind:
+		quote := loadTypeFormatUint64(typeFormat).Codec == pbjson.TypeUint64_String
+		typeName = "U64"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Fixed32Kind:
+		quote := loadTypeFormatFixed32(typeFormat).Codec == pbjson.TypeFixed32_String
+		typeName = "U32"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.Fixed64Kind:
+		quote := loadTypeFormatFixed64(typeFormat).Codec == pbjson.TypeFixed64_String
+		typeName = "U64"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.FloatKind:
+		quote := loadTypeFormatFloat(typeFormat).Codec == pbjson.TypeFloat_String
+		typeName = "F32"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.DoubleKind:
+		quote := loadTypeFormatDouble(typeFormat).Codec == pbjson.TypeDouble_String
+		typeName = "F64"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.BoolKind:
+		quote := loadTypeFormatBool(typeFormat).Codec == pbjson.TypeBool_String
+		typeName = "Bool"
+		funcVars = append(funcVars, strconv.FormatBool(quote))
+	case protoreflect.StringKind:
+		typeName = "Str"
+	case protoreflect.BytesKind:
+		typeName = "Bytes"
+	case protoreflect.EnumKind:
+		// FIXME: 需要补充指针型变量的测试.
+		typeSet := loadTypeFormatEnum(typeFormat)
+		switch typeSet.Codec {
+		case pbjson.TypeEnum_Unset, pbjson.TypeEnum_Numeric:
+			typeName = "EnumNum"
+			funcVars = append(funcVars, strconv.FormatBool(false))
+		case pbjson.TypeEnum_NumericString:
+			typeName = "EnumNum"
+			funcVars = append(funcVars, strconv.FormatBool(true))
+		case pbjson.TypeEnum_EnumString:
+			typeName = "EnumStr"
+		}
+	case protoreflect.MessageKind:
+		switch pkwkt.Lookup(string(field.Message.Desc.FullName())) {
+		case pkwkt.Any:
+			typeAny := loadTypeFormatAny(typeFormat)
+			switch typeAny.Codec {
+			case pbjson.TypeAny_Object, pbjson.TypeAny_Unset:
+				typeName = "WKTAnyObject"
+			case pbjson.TypeAny_Proto:
+				typeName = "WKTAnyProto"
+			}
+		case pkwkt.Duration:
+			typeDuration := loadTypeFormatDuration(typeFormat)
+			switch typeDuration.Codec {
+			case pbjson.TypeDuration_Object, pbjson.TypeDuration_Unset:
+				typeName = "WKTDurObject"
+			case pbjson.TypeDuration_TimeString:
+				typeName = "WKTDurTimeStr"
+			case pbjson.TypeDuration_Nanosecond:
+				typeName = "WKTDurNano"
+				funcVars = append(funcVars, strconv.FormatBool(false))
+			case pbjson.TypeDuration_NanosecondString:
+				typeName = "WKTDurNano"
+				funcVars = append(funcVars, strconv.FormatBool(true))
+			case pbjson.TypeDuration_Microsecond:
+				typeName = "WKTDurMicro"
+				funcVars = append(funcVars, strconv.FormatBool(false))
+			case pbjson.TypeDuration_MicrosecondString:
+				typeName = "WKTDurMicro"
+				funcVars = append(funcVars, strconv.FormatBool(true))
+			case pbjson.TypeDuration_Millisecond:
+				typeName = "WKTDurMilli"
+				funcVars = append(funcVars, strconv.FormatBool(false))
+			case pbjson.TypeDuration_MillisecondString:
+				typeName = "WKTDurMilli"
+				funcVars = append(funcVars, strconv.FormatBool(true))
+			case pbjson.TypeDuration_Second:
+				typeName = "WKTDurSecond"
+				funcVars = append(funcVars, strconv.FormatBool(false))
+			case pbjson.TypeDuration_SecondString:
+				typeName = "WKTDurSecond"
+				funcVars = append(funcVars, strconv.FormatBool(true))
+			case pbjson.TypeDuration_Minute:
+				typeName = "WKTDurMinute"
+				funcVars = append(funcVars, strconv.FormatBool(false))
+			case pbjson.TypeDuration_MinuteString:
+				typeName = "WKTDurMinute"
+				funcVars = append(funcVars, strconv.FormatBool(true))
+			case pbjson.TypeDuration_Hour:
+				typeName = "WKTDurHour"
+				funcVars = append(funcVars, strconv.FormatBool(false))
+			case pbjson.TypeDuration_HourString:
+				typeName = "WKTDurHour"
+				funcVars = append(funcVars, strconv.FormatBool(true))
+			}
+		case pkwkt.Timestamp:
+			typeTimestamp := loadTypeFormatTimestamp(typeFormat)
+			switch typeTimestamp.Codec {
+			case pbjson.TypeTimestamp_Object, pbjson.TypeTimestamp_Unset:
+				typeName = "WKTTsObject"
+			case pbjson.TypeTimestamp_TimeLayout:
+				typeSet := loadTypeFormatTimestamp(typeFormat)
+				// FIXME: valid the layout.
+				layout := strconv.Quote(typeSet.Layout.Golang)
+				typeName = "WKTTsLayout"
+				funcVars = append(funcVars, layout)
+			case pbjson.TypeTimestamp_UnixNano:
+				typeName = "WKTTsUnixNano"
+				funcVars = append(funcVars, strconv.FormatBool(false))
+			case pbjson.TypeTimestamp_UnixNanoString:
+				typeName = "WKTTsUnixNano"
+				funcVars = append(funcVars, strconv.FormatBool(true))
+			case pbjson.TypeTimestamp_UnixMicro:
+				typeName = "WKTTsUnixMicro"
+				funcVars = append(funcVars, strconv.FormatBool(false))
+			case pbjson.TypeTimestamp_UnixMicroString:
+				typeName = "WKTTsUnixMicro"
+				funcVars = append(funcVars, strconv.FormatBool(true))
+			case pbjson.TypeTimestamp_UnixMilli:
+				typeName = "WKTTsUnixMilli"
+				funcVars = append(funcVars, strconv.FormatBool(false))
+			case pbjson.TypeTimestamp_UnixMilliString:
+				typeName = "WKTTsUnixMilli"
+				funcVars = append(funcVars, strconv.FormatBool(true))
+			case pbjson.TypeTimestamp_UnixSec:
+				typeName = "WKTTsUnixSec"
+				funcVars = append(funcVars, strconv.FormatBool(false))
+			case pbjson.TypeTimestamp_UnixSecString:
+				typeName = "WKTTsUnixSec"
+				funcVars = append(funcVars, strconv.FormatBool(true))
+			}
+		default:
+			typeName = "Message"
+		}
+	default:
+		err := pkerror.New("marshal: unsupported kind of %s as value", kind.String())
+		panic(err)
 	}
 	return
 }

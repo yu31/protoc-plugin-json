@@ -47,7 +47,6 @@ func checkFields(file *protogen.File, msg *protogen.Message, fieldSets []*FieldS
 	if exit {
 		os.Exit(1)
 	}
-
 }
 
 // checkJSONKey for valid the jsonKey.

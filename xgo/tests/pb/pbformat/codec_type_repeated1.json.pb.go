@@ -10,7 +10,7 @@ import (
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
-	pbexternal "github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal"
+	_ "github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal"
 	_ "google.golang.org/protobuf/types/known/anypb"
 	_ "google.golang.org/protobuf/types/known/durationpb"
 	_ "google.golang.org/protobuf/types/known/timestamppb"
@@ -238,7 +238,7 @@ LOOP_SCAN:
 				return err
 			}
 		case "f_enum_string":
-			if x.FEnumString, err = jsondecoder.ReadListEnumStr(dec, x.FEnumString, pbexternal.EnumNum1_value); err != nil {
+			if x.FEnumString, err = jsondecoder.ReadListEnumStr(dec, x.FEnumString); err != nil {
 				return err
 			}
 		case "f_any_native":

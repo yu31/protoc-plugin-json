@@ -77,37 +77,19 @@ func ReadPtrStr(dec *Decoder) (vv *string, err error) {
 }
 
 // ReadPtrEnumNum read the next items from JSON contents as value of enum with codec number.
-// FIXME: optimized the codes.
 func ReadPtrEnumNum[T protoreflect.Enum](dec *Decoder, val *T, unquote bool) (vv *T, err error) {
-	_ = val // Only used to confirm generic type.
-	var v2 *int32
-	if v2, err = dec.readPtrEnumNum(unquote); err != nil {
+	if vv, err = readPtrEnumNum(dec, val, unquote); err != nil {
 		err = errorWrap(dec, err)
 		return
 	}
-	if v2 == nil {
-		return nil, err
-	}
-	var tt T
-	tt = tt.Type().New(protoreflect.EnumNumber(*v2)).(T)
-	vv = &tt
 	return vv, nil
 }
 
 // ReadPtrEnumStr read the next items from JSON contents as value of enum with codec string.
-// FIXME: optimized the codes.
-func ReadPtrEnumStr[T protoreflect.Enum](dec *Decoder, val *T, em map[string]int32) (vv *T, err error) {
-	_ = val // Only used to confirm generic type.
-	var v2 *int32
-	if v2, err = dec.readPtrEnumStr(em); err != nil {
+func ReadPtrEnumStr[T protoreflect.Enum](dec *Decoder, val *T) (vv *T, err error) {
+	if vv, err = readPtrEnumStr(dec, val); err != nil {
 		err = errorWrap(dec, err)
 		return
 	}
-	if v2 == nil {
-		return nil, err
-	}
-	var tt T
-	tt = tt.Type().New(protoreflect.EnumNumber(*v2)).(T)
-	vv = &tt
-	return vv, nil
+	return
 }

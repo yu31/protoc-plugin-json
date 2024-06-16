@@ -1,6 +1,10 @@
 package jsondecoder
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"google.golang.org/protobuf/reflect/protoreflect"
+)
 
 func (dec *Decoder) readValI32(unquote bool) (vv int32, err error) {
 	var value []byte
@@ -120,24 +124,29 @@ func (dec *Decoder) readValInterface(vv interface{}) (err error) {
 	return
 }
 
-func (dec *Decoder) readValEnumNum(unquote bool) (vv int32, err error) {
+func readValEnumNum[T protoreflect.Enum](dec *Decoder, val T, unquote bool) (vv T, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
 	}
-	if vv, err = convertToEnum(unquote, value); err != nil {
+	var v1 int32
+	if v1, err = convertToEnum(unquote, value); err != nil {
 		return
 	}
+	vv = val.Type().New(protoreflect.EnumNumber(v1)).(T)
 	return vv, nil
 }
-func (dec *Decoder) readValEnumStr(em map[string]int32) (vv int32, err error) {
+func readValEnumStr[T protoreflect.Enum](dec *Decoder, val T) (vv T, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
 	}
-
-	if vv, err = parseEnumString(value, em); err != nil {
+	var s1 string
+	if s1, err = bytesToStringUnsafe(value); err != nil {
 		return
 	}
-	return vv, nil
+	//enumNumber := protoimpl.X.EnumDescriptorOf(val).Values().ByName(protoreflect.Name(s1)).Number()
+	enumNumber := val.Descriptor().Values().ByName(protoreflect.Name(s1)).Number()
+	vv = val.Type().New(enumNumber).(T)
+	return
 }

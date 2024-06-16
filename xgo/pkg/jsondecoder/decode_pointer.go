@@ -1,5 +1,7 @@
 package jsondecoder
 
+import "google.golang.org/protobuf/reflect/protoreflect"
+
 func (dec *Decoder) readPtrI32(unquote bool) (vv *int32, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
@@ -122,7 +124,7 @@ func (dec *Decoder) readPtrStr() (vv *string, err error) {
 	vv = &v1
 	return
 }
-func (dec *Decoder) readPtrEnumNum(unquote bool) (vv *int32, err error) {
+func readPtrEnumNum[T protoreflect.Enum](dec *Decoder, val *T, unquote bool) (vv *T, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -134,11 +136,14 @@ func (dec *Decoder) readPtrEnumNum(unquote bool) (vv *int32, err error) {
 	if v1, err = convertToEnum(unquote, value); err != nil {
 		return
 	}
-
-	vv = &v1
-	return
+	var tt T
+	tt = tt.Type().New(protoreflect.EnumNumber(v1)).(T)
+	vv = &tt
+	return vv, nil
 }
-func (dec *Decoder) readPtrEnumStr(em map[string]int32) (vv *int32, err error) {
+func readPtrEnumStr[T protoreflect.Enum](dec *Decoder, val *T) (vv *T, err error) {
+	_ = val // Only used to confirm generic type.
+
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -147,10 +152,15 @@ func (dec *Decoder) readPtrEnumStr(em map[string]int32) (vv *int32, err error) {
 		return nil, nil
 	}
 
-	var v1 int32
-	if v1, err = parseEnumString(value, em); err != nil {
+	var s1 string
+	if s1, err = bytesToStringUnsafe(value); err != nil {
 		return
 	}
-	vv = &v1
-	return
+
+	var tt T
+	//enumNumber := protoimpl.X.EnumDescriptorOf(val).Values().ByName(protoreflect.Name(s1)).Number()
+	enumNumber := tt.Descriptor().Values().ByName(protoreflect.Name(s1)).Number()
+	tt = tt.Type().New(enumNumber).(T)
+	vv = &tt
+	return vv, nil
 }

@@ -89,29 +89,21 @@ func ReadValBytes(dec *Decoder) (vv []byte, err error) {
 }
 
 // ReadValEnumNum read the next items from JSON contents as value of enum with codec number.
-// FIXME: optimized the codes.
 func ReadValEnumNum[T protoreflect.Enum](dec *Decoder, val T, unquote bool) (vv T, err error) {
-	var v2 int32
-	if v2, err = dec.readValEnumNum(unquote); err != nil {
+	if vv, err = readValEnumNum(dec, val, unquote); err != nil {
 		err = errorWrap(dec, err)
 		return
 	}
-	var tt T
-	vv = tt.Type().New(protoreflect.EnumNumber(v2)).(T)
 	return vv, nil
 }
 
 // ReadValEnumStr read the next items from JSON contents as value of enum with codec string.
-// FIXME: optimized the codes.
-func ReadValEnumStr[T protoreflect.Enum](dec *Decoder, val T, em map[string]int32) (vv T, err error) {
-	var v2 int32
-	if v2, err = dec.readValEnumStr(em); err != nil {
+func ReadValEnumStr[T protoreflect.Enum](dec *Decoder, val T) (vv T, err error) {
+	if vv, err = readValEnumStr(dec, val); err != nil {
 		err = errorWrap(dec, err)
 		return
 	}
-	var tt T
-	vv = tt.Type().New(protoreflect.EnumNumber(v2)).(T)
-	return vv, nil
+	return
 }
 
 // ReadValMessage read the next items from JSON contents as value of message.

@@ -166,29 +166,29 @@ func (ml *Marshal) encodeField(fieldSet *FieldSet) {
 	switch {
 	case fieldSet.Field.Desc.IsMap():
 		formatMap := loadTypeFormatMap(options.Format)
-		_mkName, _mkVars := ml.loadMapKeyTypeInfo(fieldSet.Field.Message.Fields[0], formatMap.Key)
-		_mvName, _mvVars, _checkError := ml.loadValueTypeInfo(fieldSet.Field.Message.Fields[1], formatMap.Value)
+		_mkName, _mkVars := loadMapKeyTypeInfo(fieldSet.Field.Message.Fields[0], formatMap.Key)
+		_mvName, _mvVars := loadValueTypeInfo(fieldSet.Field.Message.Fields[1], formatMap.Value)
+		checkError = ml.funcReturnWithError(fieldSet.Field.Message.Fields[1], formatMap.Value)
 
 		funcName = "AppendMap" + _mkName + _mvName
-		checkError = _checkError
 		funcVars = append(funcVars, _mkVars...)
 		funcVars = append(funcVars, _mvVars...)
 	case fieldSet.Field.Desc.IsList():
 		formatRepeated := loadTypeFormatRepeated(options.Format)
-		_typeName, _vars, _checkError := ml.loadValueTypeInfo(fieldSet.Field, formatRepeated.Elem)
+		_typeName, _vars := loadValueTypeInfo(fieldSet.Field, formatRepeated.Elem)
+		checkError = ml.funcReturnWithError(fieldSet.Field, formatRepeated.Elem)
 
 		funcName = "AppendList" + _typeName
-		checkError = _checkError
 		funcVars = append(funcVars, _vars...)
 	default:
-		_typeName, _vars, _checkError := ml.loadValueTypeInfo(fieldSet.Field, options.Format)
+		_typeName, _vars := loadValueTypeInfo(fieldSet.Field, options.Format)
+		checkError = ml.funcReturnWithError(fieldSet.Field, options.Format)
 
 		if pkfield.FieldIsOptional(fieldSet.Field) {
 			funcName = "AppendPtr" + _typeName
 		} else {
 			funcName = "AppendVal" + _typeName
 		}
-		checkError = _checkError
 		funcVars = append(funcVars, _vars...)
 	}
 
@@ -202,238 +202,34 @@ func (ml *Marshal) encodeField(fieldSet *FieldSet) {
 		ml.g.P(funcIdent, "(", parameters, ")")
 	}
 }
-
-func (ml *Marshal) loadMapKeyTypeInfo(field *protogen.Field, TypeFormat *pbjson.TypeFormat,
-) (typeName string, funcVars []string) {
+func (ml *Marshal) funcReturnWithError(field *protogen.Field, typeFormat *pbjson.TypeFormat) (yes bool) {
 	kind := field.Desc.Kind()
 	switch kind {
-	case protoreflect.StringKind:
-		typeName = "Str"
-	case protoreflect.BoolKind:
-		quote := loadTypeFormatBool(TypeFormat).Codec != pbjson.TypeBool_Bool
-		typeName = "Bool"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Int32Kind:
-		quote := loadTypeFormatInt32(TypeFormat).Codec != pbjson.TypeInt32_Numeric
-		typeName = "I32"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Int64Kind:
-		quote := loadTypeFormatInt64(TypeFormat).Codec != pbjson.TypeInt64_Numeric
-		typeName = "I64"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Sint32Kind:
-		quote := loadTypeFormatSInt32(TypeFormat).Codec != pbjson.TypeSInt32_Numeric
-		typeName = "I32"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Sint64Kind:
-		quote := loadTypeFormatSInt64(TypeFormat).Codec != pbjson.TypeSInt64_Numeric
-		typeName = "I64"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Sfixed32Kind:
-		quote := loadTypeFormatSFInt32(TypeFormat).Codec != pbjson.TypeSFixed32_Numeric
-		typeName = "I32"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Sfixed64Kind:
-		quote := loadTypeFormatSFInt64(TypeFormat).Codec != pbjson.TypeSFixed64_Numeric
-		typeName = "I64"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Uint32Kind:
-		quote := loadTypeFormatUint32(TypeFormat).Codec != pbjson.TypeUint32_Numeric
-		typeName = "U32"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Uint64Kind:
-		quote := loadTypeFormatUint64(TypeFormat).Codec != pbjson.TypeUint64_Numeric
-		typeName = "U64"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Fixed32Kind:
-		quote := loadTypeFormatFixed32(TypeFormat).Codec != pbjson.TypeFixed32_Numeric
-		typeName = "U32"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Fixed64Kind:
-		quote := loadTypeFormatFixed64(TypeFormat).Codec != pbjson.TypeFixed64_Numeric
-		typeName = "U64"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	default:
-		err := pkerror.New("marshal: unsupported kind of %s as map key", kind.String())
-		panic(err)
-	}
-	return
-}
-
-func (ml *Marshal) loadValueTypeInfo(field *protogen.Field, TypeFormat *pbjson.TypeFormat,
-) (typeName string, funcVars []string, checkError bool) {
-	kind := field.Desc.Kind()
-	switch kind {
-	case protoreflect.Int32Kind:
-		quote := loadTypeFormatInt32(TypeFormat).Codec == pbjson.TypeInt32_String
-		typeName = "I32"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Int64Kind:
-		quote := loadTypeFormatInt64(TypeFormat).Codec == pbjson.TypeInt64_String
-		typeName = "I64"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Sint32Kind:
-		quote := loadTypeFormatSInt32(TypeFormat).Codec == pbjson.TypeSInt32_String
-		typeName = "I32"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Sint64Kind:
-		quote := loadTypeFormatSInt64(TypeFormat).Codec == pbjson.TypeSInt64_String
-		typeName = "I64"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Sfixed32Kind:
-		quote := loadTypeFormatSFInt32(TypeFormat).Codec == pbjson.TypeSFixed32_String
-		typeName = "I32"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Sfixed64Kind:
-		quote := loadTypeFormatSFInt64(TypeFormat).Codec == pbjson.TypeSFixed64_String
-		typeName = "I64"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Uint32Kind:
-		quote := loadTypeFormatUint32(TypeFormat).Codec == pbjson.TypeUint32_String
-		typeName = "U32"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Uint64Kind:
-		quote := loadTypeFormatUint64(TypeFormat).Codec == pbjson.TypeUint64_String
-		typeName = "U64"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Fixed32Kind:
-		quote := loadTypeFormatFixed32(TypeFormat).Codec == pbjson.TypeFixed32_String
-		typeName = "U32"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.Fixed64Kind:
-		quote := loadTypeFormatFixed64(TypeFormat).Codec == pbjson.TypeFixed64_String
-		typeName = "U64"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.FloatKind:
-		quote := loadTypeFormatFloat(TypeFormat).Codec == pbjson.TypeFloat_String
-		typeName = "F32"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.DoubleKind:
-		quote := loadTypeFormatDouble(TypeFormat).Codec == pbjson.TypeDouble_String
-		typeName = "F64"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.BoolKind:
-		quote := loadTypeFormatBool(TypeFormat).Codec == pbjson.TypeBool_String
-		typeName = "Bool"
-		funcVars = append(funcVars, strconv.FormatBool(quote))
-	case protoreflect.StringKind:
-		typeName = "Str"
 	case protoreflect.BytesKind:
-		typeName = "Bytes"
-		checkError = true
-	case protoreflect.EnumKind:
-		// FIXME: 需要补充指针型变量的测试.
-		typeSet := loadTypeFormatEnum(TypeFormat)
-		switch typeSet.Codec {
-		case pbjson.TypeEnum_Unset, pbjson.TypeEnum_Numeric:
-			typeName = "EnumNum"
-			funcVars = append(funcVars, strconv.FormatBool(false))
-		case pbjson.TypeEnum_NumericString:
-			typeName = "EnumNum"
-			funcVars = append(funcVars, strconv.FormatBool(true))
-		case pbjson.TypeEnum_EnumString:
-			typeName = "EnumStr"
-		}
+		return true
 	case protoreflect.MessageKind:
 		switch pkwkt.Lookup(string(field.Message.Desc.FullName())) {
 		case pkwkt.Any:
-			typeAny := loadTypeFormatAny(TypeFormat)
+			typeAny := loadTypeFormatAny(typeFormat)
 			switch typeAny.Codec {
-			case pbjson.TypeAny_Object, pbjson.TypeAny_Unset:
-				typeName = "WKTAnyObject"
-				checkError = true
-			case pbjson.TypeAny_Proto:
-				typeName = "WKTAnyProto"
-				checkError = true
+			case pbjson.TypeAny_Unset, pbjson.TypeAny_Object, pbjson.TypeAny_Proto:
+				return true
 			}
 		case pkwkt.Duration:
-			typeDuration := loadTypeFormatDuration(TypeFormat)
+			typeDuration := loadTypeFormatDuration(typeFormat)
 			switch typeDuration.Codec {
-			case pbjson.TypeDuration_Object, pbjson.TypeDuration_Unset:
-				typeName = "WKTDurObject"
-				checkError = true
-			case pbjson.TypeDuration_TimeString:
-				typeName = "WKTDurTimeStr"
-			case pbjson.TypeDuration_Nanosecond:
-				typeName = "WKTDurNano"
-				funcVars = append(funcVars, strconv.FormatBool(false))
-			case pbjson.TypeDuration_NanosecondString:
-				typeName = "WKTDurNano"
-				funcVars = append(funcVars, strconv.FormatBool(true))
-			case pbjson.TypeDuration_Microsecond:
-				typeName = "WKTDurMicro"
-				funcVars = append(funcVars, strconv.FormatBool(false))
-			case pbjson.TypeDuration_MicrosecondString:
-				typeName = "WKTDurMicro"
-				funcVars = append(funcVars, strconv.FormatBool(true))
-			case pbjson.TypeDuration_Millisecond:
-				typeName = "WKTDurMilli"
-				funcVars = append(funcVars, strconv.FormatBool(false))
-			case pbjson.TypeDuration_MillisecondString:
-				typeName = "WKTDurMilli"
-				funcVars = append(funcVars, strconv.FormatBool(true))
-			case pbjson.TypeDuration_Second:
-				typeName = "WKTDurSecond"
-				funcVars = append(funcVars, strconv.FormatBool(false))
-			case pbjson.TypeDuration_SecondString:
-				typeName = "WKTDurSecond"
-				funcVars = append(funcVars, strconv.FormatBool(true))
-			case pbjson.TypeDuration_Minute:
-				typeName = "WKTDurMinute"
-				funcVars = append(funcVars, strconv.FormatBool(false))
-			case pbjson.TypeDuration_MinuteString:
-				typeName = "WKTDurMinute"
-				funcVars = append(funcVars, strconv.FormatBool(true))
-			case pbjson.TypeDuration_Hour:
-				typeName = "WKTDurHour"
-				funcVars = append(funcVars, strconv.FormatBool(false))
-			case pbjson.TypeDuration_HourString:
-				typeName = "WKTDurHour"
-				funcVars = append(funcVars, strconv.FormatBool(true))
+			case pbjson.TypeDuration_Unset, pbjson.TypeDuration_Object:
+				return true
 			}
 		case pkwkt.Timestamp:
-			typeTimestamp := loadTypeFormatTimestamp(TypeFormat)
+			typeTimestamp := loadTypeFormatTimestamp(typeFormat)
 			switch typeTimestamp.Codec {
-			case pbjson.TypeTimestamp_Object, pbjson.TypeTimestamp_Unset:
-				typeName = "WKTTsObject"
-				checkError = true
-			case pbjson.TypeTimestamp_TimeLayout:
-				typeSet := loadTypeFormatTimestamp(TypeFormat)
-				layout := strconv.Quote(typeSet.Layout.Golang)
-				typeName = "WKTTsLayout"
-				funcVars = append(funcVars, layout)
-			case pbjson.TypeTimestamp_UnixNano:
-				typeName = "WKTTsUnixNano"
-				funcVars = append(funcVars, strconv.FormatBool(false))
-			case pbjson.TypeTimestamp_UnixNanoString:
-				typeName = "WKTTsUnixNano"
-				funcVars = append(funcVars, strconv.FormatBool(true))
-			case pbjson.TypeTimestamp_UnixMicro:
-				typeName = "WKTTsUnixMicro"
-				funcVars = append(funcVars, strconv.FormatBool(false))
-			case pbjson.TypeTimestamp_UnixMicroString:
-				typeName = "WKTTsUnixMicro"
-				funcVars = append(funcVars, strconv.FormatBool(true))
-			case pbjson.TypeTimestamp_UnixMilli:
-				typeName = "WKTTsUnixMilli"
-				funcVars = append(funcVars, strconv.FormatBool(false))
-			case pbjson.TypeTimestamp_UnixMilliString:
-				typeName = "WKTTsUnixMilli"
-				funcVars = append(funcVars, strconv.FormatBool(true))
-			case pbjson.TypeTimestamp_UnixSec:
-				typeName = "WKTTsUnixSec"
-				funcVars = append(funcVars, strconv.FormatBool(false))
-			case pbjson.TypeTimestamp_UnixSecString:
-				typeName = "WKTTsUnixSec"
-				funcVars = append(funcVars, strconv.FormatBool(true))
+			case pbjson.TypeTimestamp_Unset, pbjson.TypeTimestamp_Object:
+				return true
 			}
 		default:
-			typeName = "Message"
-			checkError = true
+			return true
 		}
-	default:
-		err := pkerror.New("marshal: unsupported kind of %s as value", kind.String())
-		panic(err)
 	}
-	return
+	return false
 }

@@ -9,6 +9,12 @@ import (
 	"github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 )
 
+func loadFieldSets(file *protogen.File, msg *protogen.Message) (fieldSets []*FieldSet) {
+	loader := &FieldLoader{}
+	fieldSets = loader.Load(file, msg)
+	return
+}
+
 // IdGenerator for generate a unique id for every field.
 type IdGenerator struct {
 	id int64
