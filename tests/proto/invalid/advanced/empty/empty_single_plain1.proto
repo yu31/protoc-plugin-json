@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package empty_key;
+package empty;
 
 option go_package = "xgo/tests/pb/pbinvalid";
 
 import "proto/json.proto";
 
-message EmptyKey1 {
+message EmptyJSONKeyOfSingleFieldWithTypePlain1 {
   string f_string1 = 1 [ (json.field) = { json: "" } ];
 }

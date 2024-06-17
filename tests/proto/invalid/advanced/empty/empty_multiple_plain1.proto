@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package empty_plain;
+package empty;
 
 option go_package = "xgo/tests/pb/pbinvalid";
 
@@ -12,7 +12,7 @@ import "tests/proto/module/external.proto";
 
 import "proto/json.proto";
 
-message EmptyPalin1 {
+message EmptyJSONKeyOfMultipleFieldWithTypePalin1 {
   int32 f_int32 = 1 [ (json.field) = { json: "" } ];
 
   int64 f_int64 = 2 [ (json.field) = { json: "" } ];
@@ -43,7 +43,7 @@ message EmptyPalin1 {
 
   bytes f_bytes1  = 23 [ (json.field) = { json: "" } ];
 
-  external.Enum1 f_enum1 = 31 [ (json.field) = { json: "" } ];
+  external.EnumNum1 f_enum1 = 31 [ (json.field) = { json: "" } ];
 
   external.Message1 f_message1 = 32 [ (json.field) = { json: "" } ];
 

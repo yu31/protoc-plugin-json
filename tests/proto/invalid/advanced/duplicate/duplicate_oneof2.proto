@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package type_oneof;
+package duplicate;
 
 option go_package = "xgo/tests/pb/pbinvalid";
 
@@ -12,7 +12,7 @@ import "tests/proto/module/external.proto";
 
 import "proto/json.proto";
 
-message TypeOneOf2 {
+message DuplicateJSONKeyOfTypeOneOf2 {
   message Embed {
     oneof OneType1 {
       option (json.oneof) = { json: "t_oneof_key1" };
@@ -52,7 +52,7 @@ message TypeOneOf2 {
     bytes f_bytes1 = 23 [ (json.field) = { json: "t_json_key3" } ];
 
 
-    external.Enum1 f_enum1 = 31 [ (json.field) = { json: "t_json_key3" } ];
+    external.EnumNum1 f_enum1 = 31 [ (json.field) = { json: "t_json_key3" } ];
 
     oneof OneType17 {
       option (json.oneof) = { json: "t_one17"; inline: true };

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package type_optional;
+package duplicate;
 
 option go_package = "xgo/tests/pb/pbinvalid";
 
@@ -12,7 +12,7 @@ import "tests/proto/module/external.proto";
 
 import "proto/json.proto";
 
-message TypeOptional2 {
+message DuplicateJSONKeyOfTypeOptional2 {
   message Embed {
     optional int32 f_int32 = 1 [ (json.field) = { json: "t_json_key1" } ];
 
@@ -44,7 +44,7 @@ message TypeOptional2 {
 
     optional bytes f_bytes1  = 23 [ (json.field) = { json: "t_json_key1" } ];
 
-    optional external.Enum1 f_enum1 = 31 [ (json.field) = { json: "t_json_key1" } ];
+    optional external.EnumNum1 f_enum1 = 31 [ (json.field) = { json: "t_json_key1" } ];
 
     optional external.Message1 f_message1 = 32 [ (json.field) = { json: "t_json_key1" } ];
 

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package type_map;
+package duplicate;
 
 option go_package = "xgo/tests/pb/pbinvalid";
 
@@ -12,7 +12,7 @@ import "tests/proto/module/external.proto";
 
 import "proto/json.proto";
 
-message TypeMap2 {
+message DuplicateJSONKeyOfTypeMap2 {
   message Embed {
     map<int32, int32> f_int32 = 1 [ (json.field) = { json: "t_json_key1" } ];
 
@@ -44,7 +44,7 @@ message TypeMap2 {
 
     map<string, bytes> f_bytes1  = 23 [ (json.field) = { json: "t_json_key1" } ];
 
-    map<string, external.Enum1> f_enum1 = 31 [ (json.field) = { json: "t_json_key1" } ];
+    map<string, external.EnumNum1> f_enum1 = 31 [ (json.field) = { json: "t_json_key1" } ];
 
     map<string, external.Message1> f_message1 = 32 [ (json.field) = { json: "t_json_key1" } ];
 

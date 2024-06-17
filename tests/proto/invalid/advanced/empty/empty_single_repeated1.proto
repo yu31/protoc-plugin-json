@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package empty;
+
+option go_package = "xgo/tests/pb/pbinvalid";
+
+import "proto/json.proto";
+
+message EmptyJSONKeyOfSingleFieldWithTypeRepeated1 {
+  repeated string f_string1 = 1 [ (json.field) = { json: "" } ];
+}

@@ -13,5 +13,5 @@ import "tests/proto/module/external.proto";
 import "proto/json.proto";
 
 message Enum22 {
-  external.Enum1 field22 = 22 [ (json.field) = { format: { map: { value: { } } } } ];
+  external.EnumNum1 field22 = 22 [ (json.field) = { format: { map: { value: { } } } } ];
 }

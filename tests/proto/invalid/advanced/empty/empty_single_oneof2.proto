@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package empty;
+
+option go_package = "xgo/tests/pb/pbinvalid";
+
+import "proto/json.proto";
+
+message EmptyJSONKeyOfSingleFieldWithTypeOneOf2 {
+  oneof OneType1 {
+    option (json.oneof) = { json: "one_type1" };
+
+    int32 f_int32 = 1 [ (json.field) = { json: "" } ];
+  }
+}
