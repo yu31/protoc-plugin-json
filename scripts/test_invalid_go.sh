@@ -10,7 +10,7 @@ PLUGIN="gojson"
 BASE_DIR="tests/proto/invalid"
 
 # DEBUG/LEVEL0/LEVEL1/FILE is set by environment variables;
-# e.g: DEBUG=yes LEVEL0=advanced LEVEL1=empty FILE=empty_key1.proto  make test-invalid
+# e.g: DEBUG=yes LEVEL0=advanced LEVEL1=empty FILE=empty_key1.proto make test-invalid
 DEBUG="${DEBUG}"
 LEVEL0="${LEVEL0}"
 LEVEL1="${LEVEL1}"

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package duplicate;
+
+option go_package = "xgo/tests/pb/pbinvalid";
+
+import "proto/json.proto";
+
+message DuplicateJSONKeyOfInlineMessage5 {
+  message EmbedMessage1 {
+    string f_string2 = 1 [ (json.field) = { json: "f_string1" } ];
+  }
+
+  string f_string1 = 1 [ (json.field) = { json: "f_string1" } ];
+
+  oneof OneType1 {
+    option (json.oneof) = {inline: true};
+
+    EmbedMessage1 f_message1 = 2 [ (json.field) = { inline: true } ];
+  }
+}

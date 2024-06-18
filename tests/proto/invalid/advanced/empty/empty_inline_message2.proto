@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package empty;
+
+option go_package = "xgo/tests/pb/pbinvalid";
+
+import "proto/json.proto";
+
+// For case empty json key in inline message oneof field.
+message EmptyJSONKeyOfInlineMessage1 {
+  message EmbedMessage1 {
+    oneof OneType3 {
+      option (json.oneof) = { json: "" };
+
+      string f_string2 = 2 [ (json.field) = { json: "f_string2" } ];
+    }
+  }
+
+  string f_string1 = 1 [ (json.field) = { json: "" } ];
+  EmbedMessage1 f_message1 = 2 [ (json.field) = { inline: true } ];
+}
