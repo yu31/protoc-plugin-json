@@ -3,7 +3,6 @@ package gojson
 import (
 	"fmt"
 	"os"
-	"strings"
 
 	"google.golang.org/protobuf/compiler/protogen"
 )
@@ -90,17 +89,10 @@ func checkJSONKey(file *protogen.File, msg *protogen.Message, fieldSets []*Field
 		return true
 	}
 
-	filePath := file.Desc.Path()
-	msgName := string(msg.Desc.FullName())
-	if index := strings.Index(msgName, "."); index > 0 {
-		msgName = msgName[index+1:]
-	}
-	id := fmt.Sprintf("[ERROR] - [plugin: gojson] - [ file: %s | message: %s ]", filePath, msgName)
-
+	id := genMessageID(file, msg)
 	if len(emptyFields) != 0 {
 		println(fmt.Sprintf("%s - The json key is empty in fields %v", id, emptyFields))
 	}
-
 	for _, jsonKey := range dupJSONKeys {
 		dupFields := dupFieldMap[jsonKey]
 		println(fmt.Sprintf("%s - The json key <%s> are duplicated both in fields %v", id, jsonKey, dupFields))

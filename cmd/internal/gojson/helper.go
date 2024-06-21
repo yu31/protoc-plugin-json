@@ -3,6 +3,7 @@ package gojson
 import (
 	"fmt"
 	"strconv"
+	"strings"
 
 	"github.com/yu31/protoc-kit-go/helper/pkerror"
 	"github.com/yu31/protoc-kit-go/helper/pkwkt"
@@ -16,6 +17,16 @@ import (
 func truncateBufLen(n int) int {
 	const base = 8
 	return (n/base + 1) * base
+}
+
+func genMessageID(file *protogen.File, msg *protogen.Message) string {
+	filePath := file.Desc.Path()
+	msgName := string(msg.Desc.FullName())
+	if index := strings.Index(msgName, "."); index > 0 {
+		msgName = msgName[index+1:]
+	}
+	id := fmt.Sprintf("[ERROR] - [plugin: gojson] - [ file: %s | message: %s ]", filePath, msgName)
+	return id
 }
 
 func fieldGoType(protoGen *protogen.GeneratedFile, field *protogen.Field) (goType string) {

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package circular;
+
+option go_package = "xgo/tests/pb/pbinvalid";
+
+import "proto/json.proto";
+
+message InlineMessageCircularWithLevel2 {
+  message EmbedMessage1 {
+    string f_string3 = 1 [ (json.field) = { } ];
+    string f_string4 = 2 [ (json.field) = { } ];
+    InlineMessageCircularWithLevel2 f_message2 = 3 [ (json.field) = { inline: true } ];
+  }
+
+  string f_string1 = 1 [ (json.field) = { } ];
+  string f_string2 = 2 [ (json.field) = { } ];
+  EmbedMessage1 f_message1 = 3 [ (json.field) = { inline: true } ];
+}

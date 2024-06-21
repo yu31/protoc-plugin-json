@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package circular;
+
+option go_package = "xgo/tests/pb/pbinvalid";
+
+import "proto/json.proto";
+
+message InlineMessageCircularWithOneOf6 {
+  message EmbedMessage1 {
+    string f_string3 = 1 [ (json.field) = { } ];
+    string f_string4 = 2 [ (json.field) = { } ];
+
+    oneof OneType2 {
+      option (json.oneof) = { inline: true };
+
+      EmbedMessage2 f_message2 = 3 [ (json.field) = { inline: true } ];
+      string f_string5 = 4 [ (json.field) = { } ];
+      string f_string6 = 5 [ (json.field) = { } ];
+    }
+  }
+
+  message EmbedMessage2 {
+    string f_string7 = 1 [ (json.field) = { } ];
+    string f_string8 = 2 [ (json.field) = { } ];
+
+    EmbedMessage3 f_message3 = 3 [ (json.field) = { inline: true } ];
+  }
+
+  message EmbedMessage3 {
+    string f_string9 = 1 [ (json.field) = { } ];
+    string f_string10 = 2 [ (json.field) = { } ];
+
+    oneof OneType2 {
+      InlineMessageCircularWithOneOf6 f_message4 = 3 [ (json.field) = { inline: true } ];
+      string f_string11 = 4 [ (json.field) = { } ];
+      string f_string12 = 5 [ (json.field) = { } ];
+    }
+  }
+
+  string f_string1 = 1 [ (json.field) = { } ];
+  string f_string2 = 2 [ (json.field) = { } ];
+  EmbedMessage1 f_message1 = 3 [ (json.field) = { inline: true } ];
+}

@@ -1,6 +1,9 @@
 package gojson
 
 import (
+	"fmt"
+	"os"
+
 	"github.com/yu31/protoc-kit-go/helper/pkwkt"
 	"github.com/yu31/protoc-kit-go/utils/pkfield"
 	"google.golang.org/protobuf/compiler/protogen"
@@ -10,8 +13,12 @@ import (
 )
 
 func loadFieldSets(file *protogen.File, msg *protogen.Message) (fieldSets []*FieldSet) {
-	loader := &FieldLoader{}
-	fieldSets = loader.Load(file, msg)
+	loader := &FieldLoader{
+		file:  file,
+		msg:   msg,
+		idGen: &IdGenerator{},
+	}
+	fieldSets = loader.Load()
 	return
 }
 
@@ -26,17 +33,20 @@ func (x *IdGenerator) Take() int64 {
 }
 
 // FieldLoader for load the proto field into the fieldSet.
-type FieldLoader struct{}
+type FieldLoader struct {
+	file  *protogen.File
+	msg   *protogen.Message
+	idGen *IdGenerator
+}
 
-func (x *FieldLoader) Load(file *protogen.File, msg *protogen.Message) (fieldSets []*FieldSet) {
-	idGen := &IdGenerator{}
-	fieldSets = x.load(idGen, msg.Fields, nil, false)
-	checkFields(file, msg, fieldSets)
+func (x *FieldLoader) Load() (fieldSets []*FieldSet) {
+	fieldSets = x.load(x.msg.Fields, nil, false)
+	checkFields(x.file, x.msg, fieldSets)
 	return
 }
 
-func (x *FieldLoader) load(idGen *IdGenerator, fields []*protogen.Field, parent *FieldSet, isOneOfPart bool) (fieldSets []*FieldSet) {
-	fieldSets = make([]*FieldSet, 0, len(fields))
+func (x *FieldLoader) load(fields []*protogen.Field, parent *FieldSet, isOneOfPart bool) (fieldSets []*FieldSet) {
+	x.checkCircularReference(parent)
 
 	var fieldLevel int
 	switch {
@@ -48,6 +58,7 @@ func (x *FieldLoader) load(idGen *IdGenerator, fields []*protogen.Field, parent 
 		fieldLevel = 1 // The top fieldLevel.
 	}
 
+	fieldSets = make([]*FieldSet, 0, len(fields))
 LOOP:
 	for _, field := range fields {
 		var (
@@ -81,24 +92,37 @@ LOOP:
 			InlineSet:   nil,
 			Parent:      parent,
 			Level:       fieldLevel,
-			Number:      idGen.Take(),
+			Number:      x.idGen.Take(),
 		}
-
 		if isOneOfField {
-			parts := x.load(idGen, field.Oneof.Fields, fieldSet, true)
+			parts := x.load(field.Oneof.Fields, fieldSet, true)
 			fieldSet.JSONKey = x.getJSONKeyForOneOf(field, oneOfOptions)
 			fieldSet.OneOfSet = &OneOfSet{Options: oneOfOptions, Parts: parts}
 		} else {
 			fieldSet.JSONKey = x.getJSONKeyForField(field, fieldOptions)
 			fieldSet.Options = fieldOptions
 			if x.fieldIsInline(field, fieldOptions) {
-				childs := x.load(idGen, field.Message.Fields, fieldSet, false)
+				childs := x.load(field.Message.Fields, fieldSet, false)
 				fieldSet.InlineSet = &InlineSet{Childs: childs}
 			}
 		}
 		fieldSets = append(fieldSets, fieldSet)
 	}
 	return
+}
+
+func (x *FieldLoader) checkCircularReference(parent *FieldSet) {
+	if parent == nil {
+		return
+	}
+	// Check circular reference.
+	for prev := parent.ParentField(); prev != nil; prev = prev.ParentField() {
+		if parent.Field.Desc.FullName() == prev.Field.Desc.FullName() {
+			id := genMessageID(x.file, x.msg)
+			println(fmt.Sprintf("%s - Found circular reference in field %s", id, parent.Field.Desc.Name()))
+			os.Exit(1)
+		}
+	}
 }
 
 func (x *FieldLoader) getJSONKeyForField(field *protogen.Field, options *pbjson.FieldOptions) string {
