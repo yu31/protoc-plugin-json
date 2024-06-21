@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package type_common;
+package boundary;
 
 option go_package = "xgo/tests/pb/pbboundary";
 

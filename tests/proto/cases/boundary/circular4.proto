@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package boundary;
+
+option go_package = "xgo/tests/pb/pbboundary";
+
+import "proto/json.proto";
+
+message InlineMessageCircular4 {
+  message EmbedMessage1 {
+    string f_string3 = 1 [ (json.field) = { } ];
+    string f_string4 = 2 [ (json.field) = { } ];
+
+    oneof OneType2 {
+      InlineMessageCircular4 f_message2 = 3 [ (json.field) = { inline: false } ];
+      string f_string5 = 4 [ (json.field) = { } ];
+      string f_string6 = 5 [ (json.field) = { } ];
+    }
+  }
+
+  string f_string1 = 1 [ (json.field) = { } ];
+  string f_string2 = 2 [ (json.field) = { } ];
+  EmbedMessage1 f_message1 = 3 [ (json.field) = { inline: true } ];
+}
