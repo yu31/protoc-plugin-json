@@ -21,7 +21,7 @@ func (x *CodecMapKeyString) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(4864)
+	enc := jsonencoder.New(39712)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendMapStrI32(enc, "f_int32_key_none_val_unset", x.FInt32KeyNoneValUnset, false, false)

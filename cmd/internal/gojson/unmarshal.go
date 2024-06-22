@@ -221,7 +221,7 @@ func (ul *Unmarshal) decodeField(fieldSet *FieldSet) {
 		case protoreflect.EnumKind, protoreflect.MessageKind:
 			funcVars = append(funcVars, fieldValue)
 		}
-		// FIXME: we should also passing the field value as parameters if the field type if optional?
+		// FIXME: we should also pass the field value as parameters if the field type if optional?
 		funcVars = append(funcVars, _vars...)
 	}
 

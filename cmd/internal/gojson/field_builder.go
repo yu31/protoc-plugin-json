@@ -12,16 +12,6 @@ import (
 	"github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 )
 
-func loadFieldSets(file *protogen.File, msg *protogen.Message) (fieldSets []*FieldSet) {
-	loader := &FieldLoader{
-		file:  file,
-		msg:   msg,
-		idGen: &IdGenerator{},
-	}
-	fieldSets = loader.Load()
-	return
-}
-
 // IdGenerator for generate a unique id for every field.
 type IdGenerator struct {
 	id int64
@@ -32,21 +22,25 @@ func (x *IdGenerator) Take() int64 {
 	return x.id
 }
 
-// FieldLoader for load the proto field into the fieldSet.
-type FieldLoader struct {
-	file  *protogen.File
-	msg   *protogen.Message
+// FieldBuilder for load the proto field into the fieldSet.
+type FieldBuilder struct {
+	file    *protogen.File
+	message *protogen.Message
+
 	idGen *IdGenerator
 }
 
-func (x *FieldLoader) Load() (fieldSets []*FieldSet) {
-	fieldSets = x.load(x.msg.Fields, nil, false)
-	checkFields(x.file, x.msg, fieldSets)
-	return
+func (x *FieldBuilder) Build(file *protogen.File, msg *protogen.Message) []*FieldSet {
+	x.file = file
+	x.message = msg
+	x.idGen = &IdGenerator{}
+
+	fieldSets := x.load(msg.Fields, nil, false)
+	return fieldSets
 }
 
-func (x *FieldLoader) load(fields []*protogen.Field, parent *FieldSet, isOneOfPart bool) (fieldSets []*FieldSet) {
-	x.checkCircularReference(parent)
+func (x *FieldBuilder) load(fields []*protogen.Field, parent *FieldSet, isOneOfPart bool) (fieldSets []*FieldSet) {
+	x.checkCycleReference(parent)
 
 	var fieldLevel int
 	switch {
@@ -111,21 +105,21 @@ LOOP:
 	return
 }
 
-func (x *FieldLoader) checkCircularReference(parent *FieldSet) {
+func (x *FieldBuilder) checkCycleReference(parent *FieldSet) {
 	if parent == nil {
 		return
 	}
-	// Check circular reference.
+	// Check cycle reference.
 	for prev := parent.ParentField(); prev != nil; prev = prev.ParentField() {
 		if parent.Field.Desc.FullName() == prev.Field.Desc.FullName() {
-			id := genMessageID(x.file, x.msg)
-			println(fmt.Sprintf("%s - Found circular reference in field %s", id, parent.Field.Desc.Name()))
+			id := genMessageID(x.file, x.message)
+			println(fmt.Sprintf("%s - Found cycle reference in field %s", id, parent.Field.Desc.Name()))
 			os.Exit(1)
 		}
 	}
 }
 
-func (x *FieldLoader) getJSONKeyForField(field *protogen.Field, options *pbjson.FieldOptions) string {
+func (x *FieldBuilder) getJSONKeyForField(field *protogen.Field, options *pbjson.FieldOptions) string {
 	jsonKey := options.Json
 	if options.Ignore {
 		panic("the field should be ignore")
@@ -135,8 +129,7 @@ func (x *FieldLoader) getJSONKeyForField(field *protogen.Field, options *pbjson.
 	}
 	return string(field.Desc.Name())
 }
-
-func (x *FieldLoader) getJSONKeyForOneOf(field *protogen.Field, options *pbjson.OneofOptions) string {
+func (x *FieldBuilder) getJSONKeyForOneOf(field *protogen.Field, options *pbjson.OneofOptions) string {
 	jsonKey := options.Json
 	if options.Ignore {
 		panic("the oneof field should be ignore")
@@ -149,8 +142,8 @@ func (x *FieldLoader) getJSONKeyForOneOf(field *protogen.Field, options *pbjson.
 
 // fieldIsInline return whether the field need to directly expanded in current areas.
 // The field must be type message and not type well-known.
-// And false for map and repeated.
-func (x *FieldLoader) fieldIsInline(field *protogen.Field, options *pbjson.FieldOptions) bool {
+// And also not type map and repeated.
+func (x *FieldBuilder) fieldIsInline(field *protogen.Field, options *pbjson.FieldOptions) bool {
 	if field.Desc.IsMap() || field.Desc.IsList() {
 		return false
 	}

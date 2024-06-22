@@ -99,7 +99,7 @@ func (x *InlineOneOf2Message2) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(72)
+	enc := jsonencoder.New(128)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendValStr(enc, "t_string2", x.FString1, false)
@@ -183,7 +183,7 @@ func (x *InlineOneOf2Message1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(72)
+	enc := jsonencoder.New(128)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendValStr(enc, "t_string1", x.FString1, false)
@@ -267,7 +267,7 @@ func (x *InlineOneOf2) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(72)
+	enc := jsonencoder.New(128)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendValStr(enc, "t_string0", x.FString1, false)

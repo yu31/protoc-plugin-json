@@ -49,7 +49,7 @@ func (x *MessageIgnoreByRef) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(56)
+	enc := jsonencoder.New(64)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendValStr(enc, "ignore_by_ref_string1", x.IgnoreByRefString1, false)

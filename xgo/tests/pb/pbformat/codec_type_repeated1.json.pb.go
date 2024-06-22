@@ -21,7 +21,7 @@ func (x *CodecTypeRepeated1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(2264)
+	enc := jsonencoder.New(15760)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendListI32(enc, "f_int32_numeric", x.FInt32Numeric, false, false)

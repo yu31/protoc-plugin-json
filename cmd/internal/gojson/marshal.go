@@ -26,28 +26,9 @@ type Marshal struct {
 	options *pbjson.MessageOptions
 }
 
-// FIXME: calculate the inline field.
-func (ml *Marshal) guessBufLen(fieldSets []*FieldSet) (bufLen int) {
-	// Sum json beginning(`{`) and closing(`}`).
-	bufLen += 2
-
-	for _, fieldSet := range fieldSets {
-		if fieldSet.IsOneOfField() {
-			for _, oneSet := range fieldSet.OneOfSet.Parts {
-				// Sum key length, colon separator(`:`) and comma separator(`,`).
-				bufLen += len(oneSet.JSONKey) + 2
-			}
-		}
-		// Sum key length, colon separator(`:`) and comma separator(`,`).
-		bufLen += len(fieldSet.JSONKey) + 2
-	}
-	bufLen = truncateBufLen(bufLen * 2)
-	return
-}
-
 func (ml *Marshal) GenerateCode(fieldSets []*FieldSet) {
 	msg := ml.message
-	bufLen := ml.guessBufLen(fieldSets)
+	bufLen := guessEncodeBufLen(fieldSets)
 
 	ml.g.P("// MarshalJSON implements interface json.Marshaler for proto message ", msg.Desc.Name(), " in file ", ml.file.Desc.Path())
 	ml.g.P("func (x *", msg.GoIdent.GoName, ") MarshalJSON() ([]byte, error) {")

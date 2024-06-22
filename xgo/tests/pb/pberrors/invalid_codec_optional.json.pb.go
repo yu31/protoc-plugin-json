@@ -20,7 +20,7 @@ func (x *InvalidCodecOptional) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(2320)
+	enc := jsonencoder.New(3056)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendPtrI32(enc, "f_int32_numeric", x.FInt32Numeric, false, false)

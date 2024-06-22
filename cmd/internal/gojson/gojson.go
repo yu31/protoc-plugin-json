@@ -68,8 +68,10 @@ func (p *Plugin) generateForMessage(msg *protogen.Message) {
 		return
 	}
 
-	file := p.file
-	fieldSets := loadFieldSets(file, msg)
+	builder := &FieldBuilder{}
+
+	fieldSets := builder.Build(p.file, msg)
+	checkFields(p.file, msg, fieldSets)
 
 	marshal := &Marshal{
 		g:       p.g,

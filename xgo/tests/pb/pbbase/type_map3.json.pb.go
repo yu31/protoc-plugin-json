@@ -17,7 +17,7 @@ func (x *TypeMap3) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(256)
+	enc := jsonencoder.New(1280)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendMapBoolStr(enc, "f_string1", x.FString1, false, true)

@@ -18,7 +18,7 @@ func (x *MessageLevel16) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(1752)
+	enc := jsonencoder.New(70608)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendValStr(enc, "level16_c_f_string1", x.Level16FString1, false)

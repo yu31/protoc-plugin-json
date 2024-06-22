@@ -21,7 +21,7 @@ func (x *CodecTypeOneOf1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(3056)
+	enc := jsonencoder.New(3368)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	switch o1_1 := x.OneInt32.(type) {

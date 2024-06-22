@@ -14,11 +14,6 @@ import (
 	"github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 )
 
-func truncateBufLen(n int) int {
-	const base = 8
-	return (n/base + 1) * base
-}
-
 func genMessageID(file *protogen.File, msg *protogen.Message) string {
 	filePath := file.Desc.Path()
 	msgName := string(msg.Desc.FullName())

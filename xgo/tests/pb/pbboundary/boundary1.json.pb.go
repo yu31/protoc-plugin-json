@@ -17,7 +17,7 @@ func (x *Message1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(72)
+	enc := jsonencoder.New(136)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendValStr(enc, "f_string1", x.FString1, false)
@@ -87,7 +87,7 @@ func (x *Repeated1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(32)
+	enc := jsonencoder.New(272)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendListStr(enc, "r_string1", x.RString1, false)
@@ -147,7 +147,7 @@ func (x *Map1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(32)
+	enc := jsonencoder.New(528)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendMapStrStr(enc, "m_string1", x.MString1, false)
@@ -207,7 +207,7 @@ func (x *Complex1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(104)
+	enc := jsonencoder.New(512)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendValI32(enc, "f_int32", x.FInt32, false, false)
@@ -289,7 +289,7 @@ func (x *Complex2) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(104)
+	enc := jsonencoder.New(1784)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendValStr(enc, "f_string", x.FString, false)
@@ -375,7 +375,7 @@ func (x *Complex2_Level1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(64)
+	enc := jsonencoder.New(416)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	if err := jsonencoder.AppendValMessage(enc, "level2", x.Level2, false); err != nil {
@@ -447,7 +447,7 @@ func (x *Complex2_Level2) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(64)
+	enc := jsonencoder.New(256)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendValStr(enc, "f_string", x.FString, false)
@@ -519,7 +519,7 @@ func (x *Complex2_Level3) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(80)
+	enc := jsonencoder.New(408)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendValI32(enc, "f_int32", x.FInt32, false, false)

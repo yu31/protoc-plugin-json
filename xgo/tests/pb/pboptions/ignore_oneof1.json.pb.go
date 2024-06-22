@@ -37,7 +37,7 @@ func (x *IgnoreOneOf2) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(352)
+	enc := jsonencoder.New(360)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	enc.AppendObjectKey("t_one1")

@@ -17,7 +17,7 @@ func (x *InlineMessageCycle7) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(80)
+	enc := jsonencoder.New(592)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendValStr(enc, "f_string1", x.FString1, false)
@@ -286,7 +286,7 @@ func (x *InlineMessageCycle7_EmbedMessage1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(144)
+	enc := jsonencoder.New(496)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendValStr(enc, "f_string3", x.FString3, false)
@@ -518,7 +518,7 @@ func (x *InlineMessageCycle7_EmbedMessage2) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(144)
+	enc := jsonencoder.New(304)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendValStr(enc, "f_string7", x.FString7, false)

@@ -21,7 +21,7 @@ func (x *MessageOneOf1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(72)
+	enc := jsonencoder.New(136)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendValStr(enc, "f_string1", x.FString1, false)
@@ -91,7 +91,7 @@ func (x *MessageOneOf1_Embed1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(72)
+	enc := jsonencoder.New(136)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendValStr(enc, "f_string1", x.FString1, false)
@@ -161,7 +161,7 @@ func (x *MessageOneOf1_Embed1_Embed2) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(72)
+	enc := jsonencoder.New(136)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	jsonencoder.AppendValStr(enc, "f_string1", x.FString1, false)
@@ -231,7 +231,7 @@ func (x *TypeOneOf1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(1096)
+	enc := jsonencoder.New(2104)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	enc.AppendObjectKey("OneType01")
@@ -1345,7 +1345,7 @@ func (x *TypeOneOfInline1) MarshalJSON() ([]byte, error) {
 	if x == nil {
 		return []byte("null"), nil
 	}
-	enc := jsonencoder.New(280)
+	enc := jsonencoder.New(528)
 	enc.AppendObjectBegin() // Add begin JSON identifier
 
 	switch o1_1 := x.OneType01.(type) {
