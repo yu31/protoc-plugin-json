@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package cycle;
+
+option go_package = "xgo/tests/pb/pbinvalid";
+
+import "proto/json.proto";
+
+message InlineMessageCycleWithLevel1 {
+  string f_string1 = 1 [ (json.field) = { } ];
+  string f_string2 = 2 [ (json.field) = { } ];
+
+  InlineMessageCycleWithLevel1 f_message1 = 3 [ (json.field) = { inline: true } ];
+}
