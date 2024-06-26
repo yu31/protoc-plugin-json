@@ -15,12 +15,6 @@ func bytesToStringUnsafe(b []byte) (string, error) {
 	return s, nil
 }
 
-func assertInterface(vv interface{}) {
-	if vv == nil {
-		panic("jsondecoder: the interface is nil")
-	}
-}
-
 func floatIsNumber(b []byte) bool {
 	if bytes.Equal(b, []byte("NaN")) ||
 		bytes.Equal(b, []byte("+Inf")) ||

@@ -2,13 +2,7 @@ package jsondecoder
 
 import (
 	"errors"
-	"fmt"
 )
-
-// PhasePanicMsg is used as a panic message when we end up with something that
-// shouldn't happen. It can indicate a bug in the JSON decoder, or that
-// something is editing the data slice while the decoder executes.
-const PhasePanicMsg = "JSON decoder out of sync - data changing underfoot?"
 
 type Decoder struct {
 	data   []byte
@@ -117,8 +111,8 @@ func (dec *Decoder) readItem() ([]byte, error) {
 			return nil, err
 		}
 	default:
-		// TODO: return error instead of panic ?
-		panic(fmt.Sprintf("%s, opCode: %d", PhasePanicMsg, dec.opCode))
+		err = phaseDecodeError("dec.readItem", dec.opCode)
+		return nil, err
 	}
 	end := dec.offset - 1 // end index.
 	bb := dec.data[start:end]
@@ -149,8 +143,8 @@ func (dec *Decoder) beforeReadObject() (isNULL bool, err error) {
 		// The token is object beginning character(`{`) or array beginning character(`[`).
 		// And it represents the object or array is not NULL.
 	default:
-		// TODO: use error instead of panics ?
-		panic(fmt.Sprintf("%s, opCode: %d", PhasePanicMsg, dec.opCode))
+		err = phaseDecodeError("dec.beforeReadObject", dec.opCode)
+		return false, err
 	}
 
 	/* The current token is the beginning of literal */
@@ -210,8 +204,8 @@ func (dec *Decoder) beforeReadNext() (isEnd bool, err error) {
 	//case scanLiteralBegin, scanObjectBegin, scanObjectValue, scanArrayElem, scanArrayBegin:
 	case scanLiteralBegin, scanObjectBegin:
 	default:
-		// TODO: return error instead of panic ?
-		panic(fmt.Sprintf("%s, opCode: %d", PhasePanicMsg, dec.opCode))
+		err = phaseDecodeError("dec.beforeReadNext", dec.opCode)
+		return false, err
 	}
 
 	/* The current token is the literal beginning or object beginning. */
@@ -223,8 +217,8 @@ func (dec *Decoder) beforeReadNext() (isEnd bool, err error) {
 func (dec *Decoder) readObjectKey() (key []byte, err error) {
 	// Assert the current token.
 	if dec.opCode != scanLiteralBegin {
-		// FIXME: Use error instead of panic?
-		panic(fmt.Sprintf("%s, opCode: %d", PhasePanicMsg, dec.opCode))
+		err = phaseDecodeError("dec.readObjectKey.1", dec.opCode)
+		return nil, err
 	}
 
 	// The token is literal beginning, Read the valid literal characters as object key.
@@ -243,8 +237,8 @@ func (dec *Decoder) readObjectKey() (key []byte, err error) {
 	}
 	// Assert the current op.
 	if dec.opCode != scanObjectKey {
-		// FIXME: return error instead of panic ?
-		panic(fmt.Sprintf("%s, opCode: %d", PhasePanicMsg, dec.opCode))
+		err = phaseDecodeError("dec.readObjectKey.2", dec.opCode)
+		return nil, err
 	}
 
 	/* The next token is colon separators(`:`)  */

@@ -102,8 +102,6 @@ func (dec *Decoder) readValBytes() (vv []byte, err error) {
 	return vv, nil
 }
 func (dec *Decoder) readValInterface(vv interface{}) (err error) {
-	assertInterface(vv)
-
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return

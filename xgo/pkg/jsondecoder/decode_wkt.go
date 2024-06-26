@@ -19,8 +19,6 @@ func durationToPB(dd time.Duration, vv *duration.Duration) {
 }
 
 func (dec *Decoder) readValWKTAnyProto(vv *any.Any) (err error) {
-	assertInterface(vv)
-
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -36,8 +34,6 @@ func (dec *Decoder) readValWKTAnyProto(vv *any.Any) (err error) {
 
 // readValWKTDurTimeStr read the value of WKT duration by time string.
 func (dec *Decoder) readValWKTDurTimeStr(vv *durationpb.Duration) (err error) {
-	assertInterface(vv)
-
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -62,8 +58,6 @@ func (dec *Decoder) readValWKTDurTimeStr(vv *durationpb.Duration) (err error) {
 
 // readValWKTDurNano read the value of WKT duration with nanoseconds.
 func (dec *Decoder) readValWKTDurNano(vv *durationpb.Duration, unquote bool) (err error) {
-	assertInterface(vv)
-
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -79,8 +73,6 @@ func (dec *Decoder) readValWKTDurNano(vv *durationpb.Duration, unquote bool) (er
 
 // readValWKTDurMicro read the value of WKT duration with microseconds.
 func (dec *Decoder) readValWKTDurMicro(vv *durationpb.Duration, unquote bool) (err error) {
-	assertInterface(vv)
-
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -96,8 +88,6 @@ func (dec *Decoder) readValWKTDurMicro(vv *durationpb.Duration, unquote bool) (e
 
 // readValWKTDurMilli read the value of WKT duration with milliseconds.
 func (dec *Decoder) readValWKTDurMilli(vv *durationpb.Duration, unquote bool) (err error) {
-	assertInterface(vv)
-
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -113,8 +103,6 @@ func (dec *Decoder) readValWKTDurMilli(vv *durationpb.Duration, unquote bool) (e
 
 // readValWKTDurSecond read the value of WKT duration with seconds.
 func (dec *Decoder) readValWKTDurSecond(vv *durationpb.Duration, unquote bool) (err error) {
-	assertInterface(vv)
-
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -130,8 +118,6 @@ func (dec *Decoder) readValWKTDurSecond(vv *durationpb.Duration, unquote bool) (
 
 // readValWKTDurMinute read the value of WKT duration with minutes.
 func (dec *Decoder) readValWKTDurMinute(vv *durationpb.Duration, unquote bool) (err error) {
-	assertInterface(vv)
-
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -147,8 +133,6 @@ func (dec *Decoder) readValWKTDurMinute(vv *durationpb.Duration, unquote bool) (
 
 // readValWKTDurHour read the value of WKT duration with hours.
 func (dec *Decoder) readValWKTDurHour(vv *durationpb.Duration, unquote bool) (err error) {
-	assertInterface(vv)
-
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -164,8 +148,6 @@ func (dec *Decoder) readValWKTDurHour(vv *durationpb.Duration, unquote bool) (er
 
 // readValWKTTsLayout read the value of WKT timestamp with time string.
 func (dec *Decoder) readValWKTTsLayout(vv *timestamppb.Timestamp, layout string) (err error) {
-	assertInterface(vv)
-
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -191,8 +173,6 @@ func (dec *Decoder) readValWKTTsLayout(vv *timestamppb.Timestamp, layout string)
 
 // readValWKTTsUnixNano read the value of WKT timestamp with unix nanoseconds.
 func (dec *Decoder) readValWKTTsUnixNano(vv *timestamppb.Timestamp, unquote bool) (err error) {
-	assertInterface(vv)
-
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -210,8 +190,6 @@ func (dec *Decoder) readValWKTTsUnixNano(vv *timestamppb.Timestamp, unquote bool
 
 // readValWKTTsUnixMicro read the value of WKT timestamp with unix microseconds.
 func (dec *Decoder) readValWKTTsUnixMicro(vv *timestamppb.Timestamp, unquote bool) (err error) {
-	assertInterface(vv)
-
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -229,8 +207,6 @@ func (dec *Decoder) readValWKTTsUnixMicro(vv *timestamppb.Timestamp, unquote boo
 
 // readValWKTTsUnixMilli read the value of WKT timestamp with unix milliseconds.
 func (dec *Decoder) readValWKTTsUnixMilli(vv *timestamppb.Timestamp, unquote bool) (err error) {
-	assertInterface(vv)
-
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -248,8 +224,6 @@ func (dec *Decoder) readValWKTTsUnixMilli(vv *timestamppb.Timestamp, unquote boo
 
 // readValWKTTsUnixSec read the value of WKT timestamp with unix seconds.
 func (dec *Decoder) readValWKTTsUnixSec(vv *timestamppb.Timestamp, unquote bool) (err error) {
-	assertInterface(vv)
-
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return

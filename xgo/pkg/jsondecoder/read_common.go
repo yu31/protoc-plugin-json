@@ -45,8 +45,7 @@ func (dec *Decoder) ReadJSONKey() (jsonKey string, err error) {
 		return
 	}
 	if jsonKey, err = bytesToStringUnsafe(key); err != nil {
-		// TODO: optimize the error message.
-		err = errorWrap(dec, err)
+		err = errorWrap(dec, errInvalidFormatJSONKey)
 		return
 	}
 	dec.jsonKey = jsonKey
