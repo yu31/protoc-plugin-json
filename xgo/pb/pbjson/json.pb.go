@@ -1739,7 +1739,7 @@ func (x *TypeInt32) GetCodec() TypeInt32_Codec {
 	return TypeInt32_Unset
 }
 
-// TypeInt32 declares the codec for field type int64.
+// TypeInt64 declares the codec for field type int64.
 type TypeInt64 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1790,7 +1790,7 @@ func (x *TypeInt64) GetCodec() TypeInt64_Codec {
 	return TypeInt64_Unset
 }
 
-// TypeInt32 declares the codec for field type sint32.
+// TypeSInt32 declares the codec for field type sint32.
 type TypeSInt32 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1841,7 +1841,7 @@ func (x *TypeSInt32) GetCodec() TypeSInt32_Codec {
 	return TypeSInt32_Unset
 }
 
-// TypeInt32 declares the codec for field type sint64.
+// TypeSInt64 declares the codec for field type sint64.
 type TypeSInt64 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1892,7 +1892,7 @@ func (x *TypeSInt64) GetCodec() TypeSInt64_Codec {
 	return TypeSInt64_Unset
 }
 
-// TypeInt32 declares the codec for field type sfixed32.
+// TypeSFixed32 declares the codec for field type sfixed32.
 type TypeSFixed32 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1943,7 +1943,7 @@ func (x *TypeSFixed32) GetCodec() TypeSFixed32_Codec {
 	return TypeSFixed32_Unset
 }
 
-// TypeInt32 declares the codec for field type sfixed64.
+// TypeSFixed64 declares the codec for field type sfixed64.
 type TypeSFixed64 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1994,7 +1994,7 @@ func (x *TypeSFixed64) GetCodec() TypeSFixed64_Codec {
 	return TypeSFixed64_Unset
 }
 
-// TypeInt32 declares the codec for field type uint32.
+// TypeUint32 declares the codec for field type uint32.
 type TypeUint32 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2045,7 +2045,7 @@ func (x *TypeUint32) GetCodec() TypeUint32_Codec {
 	return TypeUint32_Unset
 }
 
-// TypeInt32 declares the codec for field type uint64.
+// TypeUint64 declares the codec for field type uint64.
 type TypeUint64 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2096,7 +2096,7 @@ func (x *TypeUint64) GetCodec() TypeUint64_Codec {
 	return TypeUint64_Unset
 }
 
-// TypeInt32 declares the codec for field type fixed32.
+// TypeFixed32 declares the codec for field type fixed32.
 type TypeFixed32 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2147,7 +2147,7 @@ func (x *TypeFixed32) GetCodec() TypeFixed32_Codec {
 	return TypeFixed32_Unset
 }
 
-// TypeInt32 declares the codec for field type fixed64.
+// TypeFixed64 declares the codec for field type fixed64.
 type TypeFixed64 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2198,7 +2198,7 @@ func (x *TypeFixed64) GetCodec() TypeFixed64_Codec {
 	return TypeFixed64_Unset
 }
 
-// TypeInt32 declares the codec for field type float.
+// TypeFloat declares the codec for field type float.
 type TypeFloat struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2248,7 +2248,7 @@ func (x *TypeFloat) GetCodec() TypeFloat_Codec {
 	return TypeFloat_Unset
 }
 
-// TypeInt32 declares the codec for field type double.
+// TypeDouble declares the codec for field type double.
 type TypeDouble struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2298,7 +2298,7 @@ func (x *TypeDouble) GetCodec() TypeDouble_Codec {
 	return TypeDouble_Unset
 }
 
-// TypeInt32 declares the codec for field type bool.
+// TypeBool declares the codec for field type bool.
 type TypeBool struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2465,7 +2465,7 @@ func (*TypeMessage) Descriptor() ([]byte, []int) {
 	return file_json_proto_rawDescGZIP(), []int{21}
 }
 
-// TypeInt32 declares the codec for field type enum.
+// TypeEnum declares the codec for field type enum.
 type TypeEnum struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2515,7 +2515,7 @@ func (x *TypeEnum) GetCodec() TypeEnum_Codec {
 	return TypeEnum_Unset
 }
 
-// TypeInt32 declares the codec for field type google.proto.Any.
+// TypeAny declares the codec for field type google.proto.Any.
 type TypeAny struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2565,8 +2565,8 @@ func (x *TypeAny) GetCodec() TypeAny_Codec {
 	return TypeAny_Unset
 }
 
-// FIXME: Supplement test cases that precision in microseconds, milliseconds and seconds.
-// TypeInt32 declares the codec for field type google.proto.Duration.
+// TODO: Supplement test cases that precision in microseconds, milliseconds and seconds.
+// TypeDuration declares the codec for field type google.proto.Duration.
 type TypeDuration struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2616,8 +2616,8 @@ func (x *TypeDuration) GetCodec() TypeDuration_Codec {
 	return TypeDuration_Unset
 }
 
-// FIXME: Supplement test cases that precision in microseconds, milliseconds and seconds.
-// TypeInt32 declares the codec for field type google.proto.Timestamp.
+// TODO: Supplement test cases that precision in microseconds, milliseconds and seconds.
+// TypeTimestamp declares the codec for field type google.proto.Timestamp.
 type TypeTimestamp struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

@@ -6,7 +6,7 @@
 package pberrors
 
 import (
-	errors "errors"
+	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 )
 
 // MarshalJSON implements interface json.Marshaler for proto message InvalidCodecMapValue in file tests/proto/cases/errors/invalid_codec_map_value.proto
@@ -20,7 +20,7 @@ func (x *InvalidCodecMapValue) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message InvalidCodecMapValue in file tests/proto/cases/errors/invalid_codec_map_value.proto
 func (x *InvalidCodecMapValue) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pberrors.(*InvalidCodecMapValue) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pberrors", "InvalidCodecMapValue")
 	}
 	return nil
 }

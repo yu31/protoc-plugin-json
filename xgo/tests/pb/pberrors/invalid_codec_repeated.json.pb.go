@@ -6,7 +6,6 @@
 package pberrors
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -57,7 +56,7 @@ func (x *InvalidCodecRepeated) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message InvalidCodecRepeated in file tests/proto/cases/errors/invalid_codec_repeated.proto
 func (x *InvalidCodecRepeated) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pberrors.(*InvalidCodecRepeated) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pberrors", "InvalidCodecRepeated")
 	}
 	var (
 		err    error

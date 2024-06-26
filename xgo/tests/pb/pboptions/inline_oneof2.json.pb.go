@@ -6,7 +6,6 @@
 package pboptions
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -32,7 +31,7 @@ func (x *InlineOneOf2Message3) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message InlineOneOf2Message3 in file tests/proto/cases/options/inline_oneof2.proto
 func (x *InlineOneOf2Message3) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pboptions.(*InlineOneOf2Message3) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pboptions", "InlineOneOf2Message3")
 	}
 	var (
 		err    error
@@ -116,7 +115,7 @@ func (x *InlineOneOf2Message2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message InlineOneOf2Message2 in file tests/proto/cases/options/inline_oneof2.proto
 func (x *InlineOneOf2Message2) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pboptions.(*InlineOneOf2Message2) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pboptions", "InlineOneOf2Message2")
 	}
 	var (
 		err    error
@@ -200,7 +199,7 @@ func (x *InlineOneOf2Message1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message InlineOneOf2Message1 in file tests/proto/cases/options/inline_oneof2.proto
 func (x *InlineOneOf2Message1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pboptions.(*InlineOneOf2Message1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pboptions", "InlineOneOf2Message1")
 	}
 	var (
 		err    error
@@ -284,7 +283,7 @@ func (x *InlineOneOf2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message InlineOneOf2 in file tests/proto/cases/options/inline_oneof2.proto
 func (x *InlineOneOf2) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pboptions.(*InlineOneOf2) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pboptions", "InlineOneOf2")
 	}
 	var (
 		err    error

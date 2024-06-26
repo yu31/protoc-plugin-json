@@ -6,7 +6,6 @@
 package pbformat
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -94,7 +93,7 @@ func (x *CodecTypeOptional1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message CodecTypeOptional1 in file tests/proto/cases/format/codec_type_optional1.proto
 func (x *CodecTypeOptional1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbformat.(*CodecTypeOptional1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbformat", "CodecTypeOptional1")
 	}
 	var (
 		err    error
@@ -126,107 +125,107 @@ LOOP_SCAN:
 		}
 		switch jsonKey { // match the jsonKey
 		case "f_int32_numeric":
-			if x.FInt32Numeric, err = jsondecoder.ReadPtrI32(dec, false); err != nil {
+			if x.FInt32Numeric, err = jsondecoder.ReadPtrI32(dec, x.FInt32Numeric, false); err != nil {
 				return err
 			}
 		case "f_int32_string":
-			if x.FInt32String, err = jsondecoder.ReadPtrI32(dec, true); err != nil {
+			if x.FInt32String, err = jsondecoder.ReadPtrI32(dec, x.FInt32String, true); err != nil {
 				return err
 			}
 		case "f_int64_numeric":
-			if x.FInt64Numeric, err = jsondecoder.ReadPtrI64(dec, false); err != nil {
+			if x.FInt64Numeric, err = jsondecoder.ReadPtrI64(dec, x.FInt64Numeric, false); err != nil {
 				return err
 			}
 		case "f_int64_string":
-			if x.FInt64String, err = jsondecoder.ReadPtrI64(dec, true); err != nil {
+			if x.FInt64String, err = jsondecoder.ReadPtrI64(dec, x.FInt64String, true); err != nil {
 				return err
 			}
 		case "f_uint32_numeric":
-			if x.FUint32Numeric, err = jsondecoder.ReadPtrU32(dec, false); err != nil {
+			if x.FUint32Numeric, err = jsondecoder.ReadPtrU32(dec, x.FUint32Numeric, false); err != nil {
 				return err
 			}
 		case "f_uint32_string":
-			if x.FUint32String, err = jsondecoder.ReadPtrU32(dec, true); err != nil {
+			if x.FUint32String, err = jsondecoder.ReadPtrU32(dec, x.FUint32String, true); err != nil {
 				return err
 			}
 		case "f_uint64_numeric":
-			if x.FUint64Numeric, err = jsondecoder.ReadPtrU64(dec, false); err != nil {
+			if x.FUint64Numeric, err = jsondecoder.ReadPtrU64(dec, x.FUint64Numeric, false); err != nil {
 				return err
 			}
 		case "f_uint64_string":
-			if x.FUint64String, err = jsondecoder.ReadPtrU64(dec, true); err != nil {
+			if x.FUint64String, err = jsondecoder.ReadPtrU64(dec, x.FUint64String, true); err != nil {
 				return err
 			}
 		case "f_sint32_numeric":
-			if x.FSint32Numeric, err = jsondecoder.ReadPtrI32(dec, false); err != nil {
+			if x.FSint32Numeric, err = jsondecoder.ReadPtrI32(dec, x.FSint32Numeric, false); err != nil {
 				return err
 			}
 		case "f_sint32_string":
-			if x.FSint32String, err = jsondecoder.ReadPtrI32(dec, true); err != nil {
+			if x.FSint32String, err = jsondecoder.ReadPtrI32(dec, x.FSint32String, true); err != nil {
 				return err
 			}
 		case "f_sint64_numeric":
-			if x.FSint64Numeric, err = jsondecoder.ReadPtrI64(dec, false); err != nil {
+			if x.FSint64Numeric, err = jsondecoder.ReadPtrI64(dec, x.FSint64Numeric, false); err != nil {
 				return err
 			}
 		case "f_sint64_string":
-			if x.FSint64String, err = jsondecoder.ReadPtrI64(dec, true); err != nil {
+			if x.FSint64String, err = jsondecoder.ReadPtrI64(dec, x.FSint64String, true); err != nil {
 				return err
 			}
 		case "f_sfixed32_numeric":
-			if x.FSfixed32Numeric, err = jsondecoder.ReadPtrI32(dec, false); err != nil {
+			if x.FSfixed32Numeric, err = jsondecoder.ReadPtrI32(dec, x.FSfixed32Numeric, false); err != nil {
 				return err
 			}
 		case "f_sfixed32_string":
-			if x.FSfixed32String, err = jsondecoder.ReadPtrI32(dec, true); err != nil {
+			if x.FSfixed32String, err = jsondecoder.ReadPtrI32(dec, x.FSfixed32String, true); err != nil {
 				return err
 			}
 		case "f_sfixed64_numeric":
-			if x.FSfixed64Numeric, err = jsondecoder.ReadPtrI64(dec, false); err != nil {
+			if x.FSfixed64Numeric, err = jsondecoder.ReadPtrI64(dec, x.FSfixed64Numeric, false); err != nil {
 				return err
 			}
 		case "f_sfixed64_string":
-			if x.FSfixed64String, err = jsondecoder.ReadPtrI64(dec, true); err != nil {
+			if x.FSfixed64String, err = jsondecoder.ReadPtrI64(dec, x.FSfixed64String, true); err != nil {
 				return err
 			}
 		case "f_fixed32_numeric":
-			if x.FFixed32Numeric, err = jsondecoder.ReadPtrU32(dec, false); err != nil {
+			if x.FFixed32Numeric, err = jsondecoder.ReadPtrU32(dec, x.FFixed32Numeric, false); err != nil {
 				return err
 			}
 		case "f_fixed32_string":
-			if x.FFixed32String, err = jsondecoder.ReadPtrU32(dec, true); err != nil {
+			if x.FFixed32String, err = jsondecoder.ReadPtrU32(dec, x.FFixed32String, true); err != nil {
 				return err
 			}
 		case "f_fixed64_numeric":
-			if x.FFixed64Numeric, err = jsondecoder.ReadPtrU64(dec, false); err != nil {
+			if x.FFixed64Numeric, err = jsondecoder.ReadPtrU64(dec, x.FFixed64Numeric, false); err != nil {
 				return err
 			}
 		case "f_fixed64_string":
-			if x.FFixed64String, err = jsondecoder.ReadPtrU64(dec, true); err != nil {
+			if x.FFixed64String, err = jsondecoder.ReadPtrU64(dec, x.FFixed64String, true); err != nil {
 				return err
 			}
 		case "f_float_numeric":
-			if x.FFloatNumeric, err = jsondecoder.ReadPtrF32(dec, false); err != nil {
+			if x.FFloatNumeric, err = jsondecoder.ReadPtrF32(dec, x.FFloatNumeric, false); err != nil {
 				return err
 			}
 		case "f_float_string":
-			if x.FFloatString, err = jsondecoder.ReadPtrF32(dec, true); err != nil {
+			if x.FFloatString, err = jsondecoder.ReadPtrF32(dec, x.FFloatString, true); err != nil {
 				return err
 			}
 		case "f_double_numeric":
-			if x.FDoubleNumeric, err = jsondecoder.ReadPtrF64(dec, false); err != nil {
+			if x.FDoubleNumeric, err = jsondecoder.ReadPtrF64(dec, x.FDoubleNumeric, false); err != nil {
 				return err
 			}
 		case "f_double_string":
-			if x.FDoubleString, err = jsondecoder.ReadPtrF64(dec, true); err != nil {
+			if x.FDoubleString, err = jsondecoder.ReadPtrF64(dec, x.FDoubleString, true); err != nil {
 				return err
 			}
 		case "f_bool_bool":
-			if x.FBoolBool, err = jsondecoder.ReadPtrBool(dec, false); err != nil {
+			if x.FBoolBool, err = jsondecoder.ReadPtrBool(dec, x.FBoolBool, false); err != nil {
 				return err
 			}
 		case "f_bool_string":
-			if x.FBoolString, err = jsondecoder.ReadPtrBool(dec, true); err != nil {
+			if x.FBoolString, err = jsondecoder.ReadPtrBool(dec, x.FBoolString, true); err != nil {
 				return err
 			}
 		case "f_enum_numeric":

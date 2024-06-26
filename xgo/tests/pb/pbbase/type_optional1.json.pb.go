@@ -6,7 +6,6 @@
 package pbbase
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -34,7 +33,7 @@ func (x *MessageOptional1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message MessageOptional1 in file tests/proto/cases/base/type_optional1.proto
 func (x *MessageOptional1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbase.(*MessageOptional1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbase", "MessageOptional1")
 	}
 	var (
 		err    error
@@ -104,7 +103,7 @@ func (x *MessageOptional1_Embed1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Embed1 in file tests/proto/cases/base/type_optional1.proto
 func (x *MessageOptional1_Embed1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbase.(*MessageOptional1_Embed1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbase", "MessageOptional1_Embed1")
 	}
 	var (
 		err    error
@@ -174,7 +173,7 @@ func (x *MessageOptional1_Embed1_Embed2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Embed2 in file tests/proto/cases/base/type_optional1.proto
 func (x *MessageOptional1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbase.(*MessageOptional1_Embed1_Embed2) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbase", "MessageOptional1_Embed1_Embed2")
 	}
 	var (
 		err    error
@@ -310,7 +309,7 @@ func (x *TypeOptional1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message TypeOptional1 in file tests/proto/cases/base/type_optional1.proto
 func (x *TypeOptional1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbase.(*TypeOptional1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbase", "TypeOptional1")
 	}
 	var (
 		err    error
@@ -342,63 +341,63 @@ LOOP_SCAN:
 		}
 		switch jsonKey { // match the jsonKey
 		case "f_string1":
-			if x.FString1, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if x.FString1, err = jsondecoder.ReadPtrStr(dec, x.FString1); err != nil {
 				return err
 			}
 		case "f_string2":
-			if x.FString2, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if x.FString2, err = jsondecoder.ReadPtrStr(dec, x.FString2); err != nil {
 				return err
 			}
 		case "f_int32":
-			if x.FInt32, err = jsondecoder.ReadPtrI32(dec, false); err != nil {
+			if x.FInt32, err = jsondecoder.ReadPtrI32(dec, x.FInt32, false); err != nil {
 				return err
 			}
 		case "f_int64":
-			if x.FInt64, err = jsondecoder.ReadPtrI64(dec, false); err != nil {
+			if x.FInt64, err = jsondecoder.ReadPtrI64(dec, x.FInt64, false); err != nil {
 				return err
 			}
 		case "f_uint32":
-			if x.FUint32, err = jsondecoder.ReadPtrU32(dec, false); err != nil {
+			if x.FUint32, err = jsondecoder.ReadPtrU32(dec, x.FUint32, false); err != nil {
 				return err
 			}
 		case "f_uint64":
-			if x.FUint64, err = jsondecoder.ReadPtrU64(dec, false); err != nil {
+			if x.FUint64, err = jsondecoder.ReadPtrU64(dec, x.FUint64, false); err != nil {
 				return err
 			}
 		case "f_sint32":
-			if x.FSint32, err = jsondecoder.ReadPtrI32(dec, false); err != nil {
+			if x.FSint32, err = jsondecoder.ReadPtrI32(dec, x.FSint32, false); err != nil {
 				return err
 			}
 		case "f_sint64":
-			if x.FSint64, err = jsondecoder.ReadPtrI64(dec, false); err != nil {
+			if x.FSint64, err = jsondecoder.ReadPtrI64(dec, x.FSint64, false); err != nil {
 				return err
 			}
 		case "f_sfixed32":
-			if x.FSfixed32, err = jsondecoder.ReadPtrI32(dec, false); err != nil {
+			if x.FSfixed32, err = jsondecoder.ReadPtrI32(dec, x.FSfixed32, false); err != nil {
 				return err
 			}
 		case "f_sfixed64":
-			if x.FSfixed64, err = jsondecoder.ReadPtrI64(dec, false); err != nil {
+			if x.FSfixed64, err = jsondecoder.ReadPtrI64(dec, x.FSfixed64, false); err != nil {
 				return err
 			}
 		case "f_fixed32":
-			if x.FFixed32, err = jsondecoder.ReadPtrU32(dec, false); err != nil {
+			if x.FFixed32, err = jsondecoder.ReadPtrU32(dec, x.FFixed32, false); err != nil {
 				return err
 			}
 		case "f_fixed64":
-			if x.FFixed64, err = jsondecoder.ReadPtrU64(dec, false); err != nil {
+			if x.FFixed64, err = jsondecoder.ReadPtrU64(dec, x.FFixed64, false); err != nil {
 				return err
 			}
 		case "f_float":
-			if x.FFloat, err = jsondecoder.ReadPtrF32(dec, false); err != nil {
+			if x.FFloat, err = jsondecoder.ReadPtrF32(dec, x.FFloat, false); err != nil {
 				return err
 			}
 		case "f_double":
-			if x.FDouble, err = jsondecoder.ReadPtrF64(dec, false); err != nil {
+			if x.FDouble, err = jsondecoder.ReadPtrF64(dec, x.FDouble, false); err != nil {
 				return err
 			}
 		case "f_bool1":
-			if x.FBool1, err = jsondecoder.ReadPtrBool(dec, false); err != nil {
+			if x.FBool1, err = jsondecoder.ReadPtrBool(dec, x.FBool1, false); err != nil {
 				return err
 			}
 		case "f_bytes1":

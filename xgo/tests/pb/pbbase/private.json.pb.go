@@ -6,7 +6,6 @@
 package pbbase
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -30,7 +29,7 @@ func (x *MessageCommon1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message MessageCommon1 in file tests/proto/cases/base/private.proto
 func (x *MessageCommon1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbase.(*MessageCommon1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbase", "MessageCommon1")
 	}
 	var (
 		err    error
@@ -100,7 +99,7 @@ func (x *MessageCommon1_Embed1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Embed1 in file tests/proto/cases/base/private.proto
 func (x *MessageCommon1_Embed1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbase.(*MessageCommon1_Embed1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbase", "MessageCommon1_Embed1")
 	}
 	var (
 		err    error
@@ -170,7 +169,7 @@ func (x *MessageCommon1_Embed1_Embed2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Embed2 in file tests/proto/cases/base/private.proto
 func (x *MessageCommon1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbase.(*MessageCommon1_Embed1_Embed2) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbase", "MessageCommon1_Embed1_Embed2")
 	}
 	var (
 		err    error

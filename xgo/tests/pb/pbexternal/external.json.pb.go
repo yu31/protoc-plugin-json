@@ -6,7 +6,6 @@
 package pbexternal
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -23,7 +22,7 @@ func (x *Embed) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Embed in file tests/proto/module/external.proto
 func (x *Embed) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal.(*Embed) is nil")
+		return jsondecoder.ErrStructIsNIL("github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal", "Embed")
 	}
 	return nil
 }
@@ -39,7 +38,7 @@ func (x *Embed_Message) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Message in file tests/proto/module/external.proto
 func (x *Embed_Message) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal.(*Embed_Message) is nil")
+		return jsondecoder.ErrStructIsNIL("github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal", "Embed_Message")
 	}
 	return nil
 }
@@ -62,7 +61,7 @@ func (x *Message1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Message1 in file tests/proto/module/external.proto
 func (x *Message1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal.(*Message1) is nil")
+		return jsondecoder.ErrStructIsNIL("github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal", "Message1")
 	}
 	var (
 		err    error
@@ -132,7 +131,7 @@ func (x *Message1_Embed1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Embed1 in file tests/proto/module/external.proto
 func (x *Message1_Embed1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal.(*Message1_Embed1) is nil")
+		return jsondecoder.ErrStructIsNIL("github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal", "Message1_Embed1")
 	}
 	var (
 		err    error
@@ -202,7 +201,7 @@ func (x *Message1_Embed1_Embed2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Embed2 in file tests/proto/module/external.proto
 func (x *Message1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal.(*Message1_Embed1_Embed2) is nil")
+		return jsondecoder.ErrStructIsNIL("github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal", "Message1_Embed1_Embed2")
 	}
 	var (
 		err    error

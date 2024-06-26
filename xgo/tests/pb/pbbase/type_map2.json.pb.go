@@ -6,7 +6,6 @@
 package pbbase
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -38,7 +37,7 @@ func (x *TypeMap2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message TypeMap2 in file tests/proto/cases/base/type_map2.proto
 func (x *TypeMap2) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbase.(*TypeMap2) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbase", "TypeMap2")
 	}
 	var (
 		err    error

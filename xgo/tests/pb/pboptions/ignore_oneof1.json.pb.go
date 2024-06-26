@@ -6,7 +6,6 @@
 package pboptions
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -27,7 +26,7 @@ func (x *IgnoreOneOf1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message IgnoreOneOf1 in file tests/proto/cases/options/ignore_oneof1.proto
 func (x *IgnoreOneOf1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pboptions.(*IgnoreOneOf1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pboptions", "IgnoreOneOf1")
 	}
 	return nil
 }
@@ -187,7 +186,7 @@ func (x *IgnoreOneOf2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message IgnoreOneOf2 in file tests/proto/cases/options/ignore_oneof1.proto
 func (x *IgnoreOneOf2) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pboptions.(*IgnoreOneOf2) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pboptions", "IgnoreOneOf2")
 	}
 	var (
 		err    error

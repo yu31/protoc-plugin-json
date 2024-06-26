@@ -173,7 +173,7 @@ func loadValueTypeInfo(field *protogen.Field, typeFormat *pbjson.TypeFormat) (ty
 	case protoreflect.BytesKind:
 		typeName = "Bytes"
 	case protoreflect.EnumKind:
-		// FIXME: 需要补充指针型变量的测试.
+		// TODO: Supplement test cases for pointer.
 		typeSet := loadTypeFormatEnum(typeFormat)
 		switch typeSet.Codec {
 		case pbjson.TypeEnum_Unset, pbjson.TypeEnum_Numeric:
@@ -245,11 +245,10 @@ func loadValueTypeInfo(field *protogen.Field, typeFormat *pbjson.TypeFormat) (ty
 			case pbjson.TypeTimestamp_Object, pbjson.TypeTimestamp_Unset:
 				typeName = "WKTTsObject"
 			case pbjson.TypeTimestamp_TimeLayout:
-				typeSet := loadTypeFormatTimestamp(typeFormat)
-				// FIXME: valid the layout.
-				layout := strconv.Quote(typeSet.Layout.Golang)
+				// TODO: Supplement test cases for invalid time layout format.
+				layout := getAndCheckTimeLayout(typeTimestamp)
 				typeName = "WKTTsLayout"
-				funcVars = append(funcVars, layout)
+				funcVars = append(funcVars, strconv.Quote(layout))
 			case pbjson.TypeTimestamp_UnixNano:
 				typeName = "WKTTsUnixNano"
 				funcVars = append(funcVars, strconv.FormatBool(false))

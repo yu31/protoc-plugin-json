@@ -6,6 +6,6 @@ option go_package = "xgo/tests/pb/pberrors";
 
 //import "proto/json.proto";
 
-// FIXME: Add test cases for map value.
+// TODO: Add test cases for map value.
 message InvalidCodecMapValue {
 }

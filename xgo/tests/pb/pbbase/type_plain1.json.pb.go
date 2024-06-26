@@ -6,7 +6,6 @@
 package pbbase
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -34,7 +33,7 @@ func (x *MessagePlain1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message MessagePlain1 in file tests/proto/cases/base/type_plain1.proto
 func (x *MessagePlain1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbase.(*MessagePlain1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbase", "MessagePlain1")
 	}
 	var (
 		err    error
@@ -104,7 +103,7 @@ func (x *MessagePlain1_Embed1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Embed1 in file tests/proto/cases/base/type_plain1.proto
 func (x *MessagePlain1_Embed1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbase.(*MessagePlain1_Embed1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbase", "MessagePlain1_Embed1")
 	}
 	var (
 		err    error
@@ -174,7 +173,7 @@ func (x *MessagePlain1_Embed1_Embed2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Embed2 in file tests/proto/cases/base/type_plain1.proto
 func (x *MessagePlain1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbase.(*MessagePlain1_Embed1_Embed2) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbase", "MessagePlain1_Embed1_Embed2")
 	}
 	var (
 		err    error
@@ -310,7 +309,7 @@ func (x *TypePlain1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message TypePlain1 in file tests/proto/cases/base/type_plain1.proto
 func (x *TypePlain1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbase.(*TypePlain1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbase", "TypePlain1")
 	}
 	var (
 		err    error

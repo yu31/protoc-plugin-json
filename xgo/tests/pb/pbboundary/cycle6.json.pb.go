@@ -6,7 +6,6 @@
 package pbboundary
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -61,7 +60,7 @@ func (x *InlineMessageCycle6) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message InlineMessageCycle6 in file tests/proto/cases/boundary/cycle6.proto
 func (x *InlineMessageCycle6) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*InlineMessageCycle6) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbboundary", "InlineMessageCycle6")
 	}
 	var (
 		err    error
@@ -98,9 +97,6 @@ func (x *InlineMessageCycle6) UnmarshalJSON(b []byte) error {
 	}
 	init_p2_7 := func() error {
 		if p2_7 == nil {
-			if _err := init_a1_3(); _err != nil {
-				return _err
-			}
 			if isLoad_o2_6 {
 				return jsondecoder.ErrOneOfConflict(dec)
 			}
@@ -329,7 +325,7 @@ func (x *InlineMessageCycle6_EmbedMessage1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message EmbedMessage1 in file tests/proto/cases/boundary/cycle6.proto
 func (x *InlineMessageCycle6_EmbedMessage1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*InlineMessageCycle6_EmbedMessage1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbboundary", "InlineMessageCycle6_EmbedMessage1")
 	}
 	var (
 		err    error
@@ -549,7 +545,7 @@ func (x *InlineMessageCycle6_EmbedMessage2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message EmbedMessage2 in file tests/proto/cases/boundary/cycle6.proto
 func (x *InlineMessageCycle6_EmbedMessage2) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*InlineMessageCycle6_EmbedMessage2) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbboundary", "InlineMessageCycle6_EmbedMessage2")
 	}
 	var (
 		err    error

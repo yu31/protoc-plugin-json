@@ -56,7 +56,7 @@ message InvalidCodecRepeated {
    repeated  string f_string_none = 31 [ (json.field) = { format: { repeated: { elem: { string: { } } } } } ];
    repeated  bytes f_bytes_none   = 32 [ (json.field) = { format: { repeated: { elem: { bytes: { } } } } } ];
 
-   // FIXME: Add test cases.
+   // TODO: Add test cases.
 //  // Cases for Enum
 //   repeated  private.EnumNum1 f_enum_numeric        = 41 [ (json.field) = { format: { repeated: { elem: { enum: { codec: Numeric } } } } } ];
 //   repeated  private.EnumNum1 f_enum_numeric_string = 42 [ (json.field) = { format: { repeated: { elem: { enum: { codec: NumericString } } } } } ];

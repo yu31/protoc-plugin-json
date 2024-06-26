@@ -6,7 +6,6 @@
 package pberrors
 
 import (
-	errors "errors"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
 )
@@ -28,7 +27,7 @@ func (x *InvalidSyntaxJSON) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message InvalidSyntaxJSON in file tests/proto/cases/errors/invalid_syntax_json.proto
 func (x *InvalidSyntaxJSON) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pberrors.(*InvalidSyntaxJSON) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pberrors", "InvalidSyntaxJSON")
 	}
 	var (
 		err    error

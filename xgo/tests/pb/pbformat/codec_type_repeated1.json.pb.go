@@ -6,7 +6,6 @@
 package pbformat
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -94,7 +93,7 @@ func (x *CodecTypeRepeated1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message CodecTypeRepeated1 in file tests/proto/cases/format/codec_type_repeated1.proto
 func (x *CodecTypeRepeated1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbformat.(*CodecTypeRepeated1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbformat", "CodecTypeRepeated1")
 	}
 	var (
 		err    error

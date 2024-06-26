@@ -20,7 +20,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// FIXME: Add test cases for map value.
+// TODO: Add test cases for map value.
 type InvalidCodecMapValue struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

@@ -6,7 +6,6 @@
 package pboptions
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -221,7 +220,7 @@ func (x *TypeOneOf1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message TypeOneOf1 in file tests/proto/cases/options/type_oneof.proto
 func (x *TypeOneOf1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pboptions.(*TypeOneOf1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pboptions", "TypeOneOf1")
 	}
 	var (
 		err    error

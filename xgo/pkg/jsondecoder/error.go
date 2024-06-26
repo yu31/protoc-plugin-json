@@ -20,7 +20,7 @@ func (e *Error) Error() string {
 	if e.JSONKey == "" {
 		return fmt.Sprintf("json: unmarshal: the input in offset %d: %s", e.Offset, e.Reason)
 	}
-	return fmt.Sprintf("json: unmarshal: the value of field %s in offset %d: %s", e.JSONKey, e.Offset, e.Reason)
+	return fmt.Sprintf("json: unmarshal: the field %s in offset %d: %s", e.JSONKey, e.Offset, e.Reason)
 }
 
 func errorWrap(dec *Decoder, err error) error {
@@ -56,4 +56,8 @@ func ErrUnknownOneOfField(dec *Decoder, oneOfKey string) error {
 		Offset:  dec.offset - 1,
 		Reason:  fmt.Sprintf("unknown field %q in oneof", oneOfKey),
 	}
+}
+
+func ErrStructIsNIL(importPath string, msgName string) error {
+	return fmt.Errorf("json: Unmarshal: nil pointer %s.(*%s)", importPath, msgName)
 }

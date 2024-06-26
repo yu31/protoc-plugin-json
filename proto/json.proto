@@ -149,7 +149,7 @@ message TypeInt32 {
   Codec codec = 1;
 }
 
-// TypeInt32 declares the codec for field type int64.
+// TypeInt64 declares the codec for field type int64.
 message TypeInt64 {
   enum Codec {
     // Unset represents the default value will be applied when encoding and decoding JSON.
@@ -168,7 +168,7 @@ message TypeInt64 {
   Codec codec = 1;
 }
 
-// TypeInt32 declares the codec for field type sint32.
+// TypeSInt32 declares the codec for field type sint32.
 message TypeSInt32 {
   enum Codec {
     // Unset represents the default value will be applied when encoding and decoding JSON.
@@ -187,7 +187,7 @@ message TypeSInt32 {
   Codec codec = 1;
 }
 
-// TypeInt32 declares the codec for field type sint64.
+// TypeSInt64 declares the codec for field type sint64.
 message TypeSInt64 {
   enum Codec {
     // Unset represents the default value will be applied when encoding and decoding JSON.
@@ -206,7 +206,7 @@ message TypeSInt64 {
   Codec codec = 1;
 }
 
-// TypeInt32 declares the codec for field type sfixed32.
+// TypeSFixed32 declares the codec for field type sfixed32.
 message TypeSFixed32 {
   enum Codec {
     // Unset represents the default value will be applied when encoding and decoding JSON.
@@ -225,7 +225,7 @@ message TypeSFixed32 {
   Codec codec = 1;
 }
 
-// TypeInt32 declares the codec for field type sfixed64.
+// TypeSFixed64 declares the codec for field type sfixed64.
 message TypeSFixed64 {
   enum Codec {
     // Unset represents the default value will be applied when encoding and decoding JSON.
@@ -244,7 +244,7 @@ message TypeSFixed64 {
   Codec codec = 1;
 }
 
-// TypeInt32 declares the codec for field type uint32.
+// TypeUint32 declares the codec for field type uint32.
 message TypeUint32 {
   enum Codec {
     // Unset represents the default value will be applied when encoding and decoding JSON.
@@ -263,7 +263,7 @@ message TypeUint32 {
   Codec codec = 1;
 }
 
-// TypeInt32 declares the codec for field type uint64.
+// TypeUint64 declares the codec for field type uint64.
 message TypeUint64 {
   enum Codec {
     // Unset represents the default value will be applied when encoding and decoding JSON.
@@ -282,7 +282,7 @@ message TypeUint64 {
   Codec codec = 1;
 }
 
-// TypeInt32 declares the codec for field type fixed32.
+// TypeFixed32 declares the codec for field type fixed32.
 message TypeFixed32 {
   enum Codec {
     // Unset represents the default value will be applied when encoding and decoding JSON.
@@ -301,7 +301,7 @@ message TypeFixed32 {
   Codec codec = 1;
 }
 
-// TypeInt32 declares the codec for field type fixed64.
+// TypeFixed64 declares the codec for field type fixed64.
 message TypeFixed64 {
   enum Codec {
     // Unset represents the default value will be applied when encoding and decoding JSON.
@@ -320,7 +320,7 @@ message TypeFixed64 {
   Codec codec = 1;
 }
 
-// TypeInt32 declares the codec for field type float.
+// TypeFloat declares the codec for field type float.
 message TypeFloat {
   enum Codec {
     // Unset represents the default value will be applied when encoding and decoding JSON.
@@ -338,7 +338,7 @@ message TypeFloat {
   Codec codec = 1;
 }
 
-// TypeInt32 declares the codec for field type double.
+// TypeDouble declares the codec for field type double.
 message TypeDouble {
   enum Codec {
     // Unset represents the default value will be applied when encoding and decoding JSON.
@@ -356,7 +356,7 @@ message TypeDouble {
   Codec codec = 1;
 }
 
-// TypeInt32 declares the codec for field type bool.
+// TypeBool declares the codec for field type bool.
 message TypeBool {
   enum Codec {
     // Unset represents the default value will be applied when encoding and decoding JSON.
@@ -384,7 +384,7 @@ message TypeBytes {
 message TypeMessage {
 }
 
-// TypeInt32 declares the codec for field type enum.
+// TypeEnum declares the codec for field type enum.
 message TypeEnum {
   enum Codec {
     // Unset represents the default value will be applied when encoding and decoding JSON.
@@ -405,7 +405,7 @@ message TypeEnum {
   Codec codec = 1;
 }
 
-// TypeInt32 declares the codec for field type google.proto.Any.
+// TypeAny declares the codec for field type google.proto.Any.
 message TypeAny {
   enum Codec {
     // Unset represents the default value will be applied when encoding and decoding JSON.
@@ -423,8 +423,8 @@ message TypeAny {
   Codec codec = 1;
 }
 
-// FIXME: Supplement test cases that precision in microseconds, milliseconds and seconds.
-// TypeInt32 declares the codec for field type google.proto.Duration.
+// TODO: Supplement test cases that precision in microseconds, milliseconds and seconds.
+// TypeDuration declares the codec for field type google.proto.Duration.
 message TypeDuration {
   enum Codec {
     // Unset represents the default value will be applied when encoding and decoding JSON.
@@ -479,8 +479,8 @@ message TypeDuration {
   Codec codec = 1;
 }
 
-// FIXME: Supplement test cases that precision in microseconds, milliseconds and seconds.
-// TypeInt32 declares the codec for field type google.proto.Timestamp.
+// TODO: Supplement test cases that precision in microseconds, milliseconds and seconds.
+// TypeTimestamp declares the codec for field type google.proto.Timestamp.
 message TypeTimestamp {
   message Layout {
     // Used to set the time layout for language Golang.

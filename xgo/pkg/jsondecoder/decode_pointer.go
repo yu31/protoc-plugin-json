@@ -2,7 +2,7 @@ package jsondecoder
 
 import "google.golang.org/protobuf/reflect/protoreflect"
 
-func (dec *Decoder) readPtrI32(unquote bool) (vv *int32, err error) {
+func (dec *Decoder) readPtrI32(val *int32, unquote bool) (vv *int32, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -14,10 +14,15 @@ func (dec *Decoder) readPtrI32(unquote bool) (vv *int32, err error) {
 	if v1, err = convertToInt32(unquote, value); err != nil {
 		return
 	}
-	vv = &v1
+	if val != nil {
+		*val = v1
+		vv = val
+	} else {
+		vv = &v1
+	}
 	return
 }
-func (dec *Decoder) readPtrI64(unquote bool) (vv *int64, err error) {
+func (dec *Decoder) readPtrI64(val *int64, unquote bool) (vv *int64, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -29,10 +34,15 @@ func (dec *Decoder) readPtrI64(unquote bool) (vv *int64, err error) {
 	if v1, err = convertToInt64(unquote, value); err != nil {
 		return
 	}
-	vv = &v1
+	if val != nil {
+		*val = v1
+		vv = val
+	} else {
+		vv = &v1
+	}
 	return
 }
-func (dec *Decoder) readPtrU32(unquote bool) (vv *uint32, err error) {
+func (dec *Decoder) readPtrU32(val *uint32, unquote bool) (vv *uint32, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -44,10 +54,15 @@ func (dec *Decoder) readPtrU32(unquote bool) (vv *uint32, err error) {
 	if v1, err = convertToUint32(unquote, value); err != nil {
 		return
 	}
-	vv = &v1
+	if val != nil {
+		*val = v1
+		vv = val
+	} else {
+		vv = &v1
+	}
 	return
 }
-func (dec *Decoder) readPtrU64(unquote bool) (vv *uint64, err error) {
+func (dec *Decoder) readPtrU64(val *uint64, unquote bool) (vv *uint64, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -59,11 +74,16 @@ func (dec *Decoder) readPtrU64(unquote bool) (vv *uint64, err error) {
 	if v1, err = convertToUint64(unquote, value); err != nil {
 		return
 	}
-	vv = &v1
+	if val != nil {
+		*val = v1
+		vv = val
+	} else {
+		vv = &v1
+	}
 	return
 }
 
-func (dec *Decoder) readPtrF32(unquote bool) (vv *float32, err error) {
+func (dec *Decoder) readPtrF32(val *float32, unquote bool) (vv *float32, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -75,10 +95,15 @@ func (dec *Decoder) readPtrF32(unquote bool) (vv *float32, err error) {
 	if v1, err = convertToFloat32(unquote, value); err != nil {
 		return
 	}
-	vv = &v1
+	if val != nil {
+		*val = v1
+		vv = val
+	} else {
+		vv = &v1
+	}
 	return
 }
-func (dec *Decoder) readPtrF64(unquote bool) (vv *float64, err error) {
+func (dec *Decoder) readPtrF64(val *float64, unquote bool) (vv *float64, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -90,10 +115,15 @@ func (dec *Decoder) readPtrF64(unquote bool) (vv *float64, err error) {
 	if v1, err = convertToFloat64(unquote, value); err != nil {
 		return
 	}
-	vv = &v1
+	if val != nil {
+		*val = v1
+		vv = val
+	} else {
+		vv = &v1
+	}
 	return
 }
-func (dec *Decoder) readPtrBool(unquote bool) (vv *bool, err error) {
+func (dec *Decoder) readPtrBool(val *bool, unquote bool) (vv *bool, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -106,10 +136,15 @@ func (dec *Decoder) readPtrBool(unquote bool) (vv *bool, err error) {
 	if v1, err = convertToBool(unquote, value); err != nil {
 		return
 	}
-	vv = &v1
+	if val != nil {
+		*val = v1
+		vv = val
+	} else {
+		vv = &v1
+	}
 	return
 }
-func (dec *Decoder) readPtrStr() (vv *string, err error) {
+func (dec *Decoder) readPtrStr(val *string) (vv *string, err error) {
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -121,10 +156,17 @@ func (dec *Decoder) readPtrStr() (vv *string, err error) {
 	if v1, err = convertToString(value); err != nil {
 		return
 	}
-	vv = &v1
+	if val != nil {
+		*val = v1
+		vv = val
+	} else {
+		vv = &v1
+	}
 	return
 }
 func readPtrEnumNum[T protoreflect.Enum](dec *Decoder, val *T, unquote bool) (vv *T, err error) {
+	//_ = val // Only used to confirm generic type.
+
 	var value []byte
 	if value, err = dec.readLiteralValue(); err != nil {
 		return
@@ -138,7 +180,13 @@ func readPtrEnumNum[T protoreflect.Enum](dec *Decoder, val *T, unquote bool) (vv
 	}
 	var tt T
 	tt = tt.Type().New(protoreflect.EnumNumber(v1)).(T)
-	vv = &tt
+
+	if val != nil {
+		*val = tt
+		vv = val
+	} else {
+		vv = &tt
+	}
 	return vv, nil
 }
 func readPtrEnumStr[T protoreflect.Enum](dec *Decoder, val *T) (vv *T, err error) {
@@ -161,6 +209,12 @@ func readPtrEnumStr[T protoreflect.Enum](dec *Decoder, val *T) (vv *T, err error
 	//enumNumber := protoimpl.X.EnumDescriptorOf(val).Values().ByName(protoreflect.Name(s1)).Number()
 	enumNumber := tt.Descriptor().Values().ByName(protoreflect.Name(s1)).Number()
 	tt = tt.Type().New(enumNumber).(T)
-	vv = &tt
+
+	if val != nil {
+		*val = tt
+		vv = val
+	} else {
+		vv = &tt
+	}
 	return vv, nil
 }

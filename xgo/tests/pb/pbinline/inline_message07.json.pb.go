@@ -6,7 +6,6 @@
 package pbinline
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -101,7 +100,7 @@ func (x *MessageLevel07) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message MessageLevel07 in file tests/proto/cases/inline/inline_message07.proto
 func (x *MessageLevel07) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbinline.(*MessageLevel07) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbinline", "MessageLevel07")
 	}
 	var (
 		err    error
@@ -148,11 +147,11 @@ LOOP_SCAN:
 				return err
 			}
 		case "level07_c_p_string1":
-			if x.Level07PString1, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if x.Level07PString1, err = jsondecoder.ReadPtrStr(dec, x.Level07PString1); err != nil {
 				return err
 			}
 		case "level07_p_string2":
-			if x.Level07PString2, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if x.Level07PString2, err = jsondecoder.ReadPtrStr(dec, x.Level07PString2); err != nil {
 				return err
 			}
 		case "level07_c_r_string1":

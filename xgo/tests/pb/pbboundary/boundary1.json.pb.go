@@ -6,7 +6,6 @@
 package pbboundary
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -30,7 +29,7 @@ func (x *Message1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Message1 in file tests/proto/cases/boundary/boundary1.proto
 func (x *Message1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Message1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbboundary", "Message1")
 	}
 	var (
 		err    error
@@ -98,7 +97,7 @@ func (x *Repeated1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Repeated1 in file tests/proto/cases/boundary/boundary1.proto
 func (x *Repeated1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Repeated1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbboundary", "Repeated1")
 	}
 	var (
 		err    error
@@ -158,7 +157,7 @@ func (x *Map1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Map1 in file tests/proto/cases/boundary/boundary1.proto
 func (x *Map1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Map1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbboundary", "Map1")
 	}
 	var (
 		err    error
@@ -224,7 +223,7 @@ func (x *Complex1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Complex1 in file tests/proto/cases/boundary/boundary1.proto
 func (x *Complex1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Complex1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbboundary", "Complex1")
 	}
 	var (
 		err    error
@@ -272,7 +271,7 @@ LOOP_SCAN:
 				return err
 			}
 		case "f_int64":
-			if x.FInt64, err = jsondecoder.ReadPtrI64(dec, false); err != nil {
+			if x.FInt64, err = jsondecoder.ReadPtrI64(dec, x.FInt64, false); err != nil {
 				return err
 			}
 		default:
@@ -310,7 +309,7 @@ func (x *Complex2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Complex2 in file tests/proto/cases/boundary/boundary1.proto
 func (x *Complex2) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Complex2) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbboundary", "Complex2")
 	}
 	var (
 		err    error
@@ -390,7 +389,7 @@ func (x *Complex2_Level1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Level1 in file tests/proto/cases/boundary/boundary1.proto
 func (x *Complex2_Level1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Complex2_Level1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbboundary", "Complex2_Level1")
 	}
 	var (
 		err    error
@@ -462,7 +461,7 @@ func (x *Complex2_Level2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Level2 in file tests/proto/cases/boundary/boundary1.proto
 func (x *Complex2_Level2) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Complex2_Level2) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbboundary", "Complex2_Level2")
 	}
 	var (
 		err    error
@@ -533,7 +532,7 @@ func (x *Complex2_Level3) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Level3 in file tests/proto/cases/boundary/boundary1.proto
 func (x *Complex2_Level3) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*Complex2_Level3) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbboundary", "Complex2_Level3")
 	}
 	var (
 		err    error
@@ -577,7 +576,7 @@ LOOP_SCAN:
 				return err
 			}
 		case "p_int64":
-			if x.PInt64, err = jsondecoder.ReadPtrI64(dec, false); err != nil {
+			if x.PInt64, err = jsondecoder.ReadPtrI64(dec, x.PInt64, false); err != nil {
 				return err
 			}
 		default:

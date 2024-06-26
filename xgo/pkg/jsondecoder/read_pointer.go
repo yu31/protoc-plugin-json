@@ -5,8 +5,8 @@ import (
 )
 
 // ReadPtrI32 read the next items from JSON contents as value of int32.
-func ReadPtrI32(dec *Decoder, unquote bool) (vv *int32, err error) {
-	if vv, err = dec.readPtrI32(unquote); err != nil {
+func ReadPtrI32(dec *Decoder, val *int32, unquote bool) (vv *int32, err error) {
+	if vv, err = dec.readPtrI32(val, unquote); err != nil {
 		err = errorWrap(dec, err)
 		return
 	}
@@ -14,8 +14,8 @@ func ReadPtrI32(dec *Decoder, unquote bool) (vv *int32, err error) {
 }
 
 // ReadPtrI64 read the next items from JSON contents as value of int64.
-func ReadPtrI64(dec *Decoder, unquote bool) (vv *int64, err error) {
-	if vv, err = dec.readPtrI64(unquote); err != nil {
+func ReadPtrI64(dec *Decoder, val *int64, unquote bool) (vv *int64, err error) {
+	if vv, err = dec.readPtrI64(val, unquote); err != nil {
 		err = errorWrap(dec, err)
 		return
 	}
@@ -23,8 +23,8 @@ func ReadPtrI64(dec *Decoder, unquote bool) (vv *int64, err error) {
 }
 
 // ReadPtrU32 read the next items from JSON contents as value of uint32.
-func ReadPtrU32(dec *Decoder, unquote bool) (vv *uint32, err error) {
-	if vv, err = dec.readPtrU32(unquote); err != nil {
+func ReadPtrU32(dec *Decoder, val *uint32, unquote bool) (vv *uint32, err error) {
+	if vv, err = dec.readPtrU32(val, unquote); err != nil {
 		err = errorWrap(dec, err)
 		return
 	}
@@ -32,8 +32,8 @@ func ReadPtrU32(dec *Decoder, unquote bool) (vv *uint32, err error) {
 }
 
 // ReadPtrU64 read the next items from JSON contents as value of uint64.
-func ReadPtrU64(dec *Decoder, unquote bool) (vv *uint64, err error) {
-	if vv, err = dec.readPtrU64(unquote); err != nil {
+func ReadPtrU64(dec *Decoder, val *uint64, unquote bool) (vv *uint64, err error) {
+	if vv, err = dec.readPtrU64(val, unquote); err != nil {
 		err = errorWrap(dec, err)
 		return
 	}
@@ -41,8 +41,8 @@ func ReadPtrU64(dec *Decoder, unquote bool) (vv *uint64, err error) {
 }
 
 // ReadPtrF32 read the next items from JSON contents as value of float32.
-func ReadPtrF32(dec *Decoder, unquote bool) (vv *float32, err error) {
-	if vv, err = dec.readPtrF32(unquote); err != nil {
+func ReadPtrF32(dec *Decoder, val *float32, unquote bool) (vv *float32, err error) {
+	if vv, err = dec.readPtrF32(val, unquote); err != nil {
 		err = errorWrap(dec, err)
 		return
 	}
@@ -50,8 +50,8 @@ func ReadPtrF32(dec *Decoder, unquote bool) (vv *float32, err error) {
 }
 
 // ReadPtrF64 read the next items from JSON contents as value of uint64.
-func ReadPtrF64(dec *Decoder, unquote bool) (vv *float64, err error) {
-	if vv, err = dec.readPtrF64(unquote); err != nil {
+func ReadPtrF64(dec *Decoder, val *float64, unquote bool) (vv *float64, err error) {
+	if vv, err = dec.readPtrF64(val, unquote); err != nil {
 		err = errorWrap(dec, err)
 		return
 	}
@@ -59,8 +59,8 @@ func ReadPtrF64(dec *Decoder, unquote bool) (vv *float64, err error) {
 }
 
 // ReadPtrBool read the next items from JSON contents as value of bool.
-func ReadPtrBool(dec *Decoder, unquote bool) (vv *bool, err error) {
-	if vv, err = dec.readPtrBool(unquote); err != nil {
+func ReadPtrBool(dec *Decoder, val *bool, unquote bool) (vv *bool, err error) {
+	if vv, err = dec.readPtrBool(val, unquote); err != nil {
 		err = errorWrap(dec, err)
 		return
 	}
@@ -68,8 +68,8 @@ func ReadPtrBool(dec *Decoder, unquote bool) (vv *bool, err error) {
 }
 
 // ReadPtrStr read the next items from JSON contents as value of string.
-func ReadPtrStr(dec *Decoder) (vv *string, err error) {
-	if vv, err = dec.readPtrStr(); err != nil {
+func ReadPtrStr(dec *Decoder, val *string) (vv *string, err error) {
+	if vv, err = dec.readPtrStr(val); err != nil {
 		err = errorWrap(dec, err)
 		return
 	}

@@ -6,7 +6,6 @@
 package pbbenchmark
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -30,7 +29,7 @@ func (x *Message1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Message1 in file tests/proto/benchmark/benchmark.proto
 func (x *Message1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbenchmark.(*Message1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbenchmark", "Message1")
 	}
 	var (
 		err    error
@@ -121,7 +120,7 @@ func (x *BenchModelSimple) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message BenchModelSimple in file tests/proto/benchmark/benchmark.proto
 func (x *BenchModelSimple) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbenchmark.(*BenchModelSimple) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbenchmark", "BenchModelSimple")
 	}
 	var (
 		err    error
@@ -516,7 +515,7 @@ func (x *BenchModelComplex) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message BenchModelComplex in file tests/proto/benchmark/benchmark.proto
 func (x *BenchModelComplex) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbenchmark.(*BenchModelComplex) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbenchmark", "BenchModelComplex")
 	}
 	var (
 		err    error
@@ -712,99 +711,99 @@ LOOP_SCAN:
 				return err
 			}
 		case "p_string1":
-			if x.PString1, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if x.PString1, err = jsondecoder.ReadPtrStr(dec, x.PString1); err != nil {
 				return err
 			}
 		case "p_string2":
-			if x.PString2, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if x.PString2, err = jsondecoder.ReadPtrStr(dec, x.PString2); err != nil {
 				return err
 			}
 		case "p_string3":
-			if x.PString3, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if x.PString3, err = jsondecoder.ReadPtrStr(dec, x.PString3); err != nil {
 				return err
 			}
 		case "p_string4":
-			if x.PString4, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if x.PString4, err = jsondecoder.ReadPtrStr(dec, x.PString4); err != nil {
 				return err
 			}
 		case "p_string5":
-			if x.PString5, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if x.PString5, err = jsondecoder.ReadPtrStr(dec, x.PString5); err != nil {
 				return err
 			}
 		case "p_string6":
-			if x.PString6, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if x.PString6, err = jsondecoder.ReadPtrStr(dec, x.PString6); err != nil {
 				return err
 			}
 		case "p_string7":
-			if x.PString7, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if x.PString7, err = jsondecoder.ReadPtrStr(dec, x.PString7); err != nil {
 				return err
 			}
 		case "p_string8":
-			if x.PString8, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if x.PString8, err = jsondecoder.ReadPtrStr(dec, x.PString8); err != nil {
 				return err
 			}
 		case "p_string9":
-			if x.PString9, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if x.PString9, err = jsondecoder.ReadPtrStr(dec, x.PString9); err != nil {
 				return err
 			}
 		case "p_int32":
-			if x.PInt32, err = jsondecoder.ReadPtrI32(dec, false); err != nil {
+			if x.PInt32, err = jsondecoder.ReadPtrI32(dec, x.PInt32, false); err != nil {
 				return err
 			}
 		case "p_int64":
-			if x.PInt64, err = jsondecoder.ReadPtrI64(dec, false); err != nil {
+			if x.PInt64, err = jsondecoder.ReadPtrI64(dec, x.PInt64, false); err != nil {
 				return err
 			}
 		case "p_uint32":
-			if x.PUint32, err = jsondecoder.ReadPtrU32(dec, false); err != nil {
+			if x.PUint32, err = jsondecoder.ReadPtrU32(dec, x.PUint32, false); err != nil {
 				return err
 			}
 		case "p_uint64":
-			if x.PUint64, err = jsondecoder.ReadPtrU64(dec, false); err != nil {
+			if x.PUint64, err = jsondecoder.ReadPtrU64(dec, x.PUint64, false); err != nil {
 				return err
 			}
 		case "p_sint32":
-			if x.PSint32, err = jsondecoder.ReadPtrI32(dec, false); err != nil {
+			if x.PSint32, err = jsondecoder.ReadPtrI32(dec, x.PSint32, false); err != nil {
 				return err
 			}
 		case "p_sint64":
-			if x.PSint64, err = jsondecoder.ReadPtrI64(dec, false); err != nil {
+			if x.PSint64, err = jsondecoder.ReadPtrI64(dec, x.PSint64, false); err != nil {
 				return err
 			}
 		case "p_sfixed32":
-			if x.PSfixed32, err = jsondecoder.ReadPtrI32(dec, false); err != nil {
+			if x.PSfixed32, err = jsondecoder.ReadPtrI32(dec, x.PSfixed32, false); err != nil {
 				return err
 			}
 		case "p_sfixed64":
-			if x.PSfixed64, err = jsondecoder.ReadPtrI64(dec, false); err != nil {
+			if x.PSfixed64, err = jsondecoder.ReadPtrI64(dec, x.PSfixed64, false); err != nil {
 				return err
 			}
 		case "p_fixed32":
-			if x.PFixed32, err = jsondecoder.ReadPtrU32(dec, false); err != nil {
+			if x.PFixed32, err = jsondecoder.ReadPtrU32(dec, x.PFixed32, false); err != nil {
 				return err
 			}
 		case "p_fixed64":
-			if x.PFixed64, err = jsondecoder.ReadPtrU64(dec, false); err != nil {
+			if x.PFixed64, err = jsondecoder.ReadPtrU64(dec, x.PFixed64, false); err != nil {
 				return err
 			}
 		case "p_float":
-			if x.PFloat, err = jsondecoder.ReadPtrF32(dec, false); err != nil {
+			if x.PFloat, err = jsondecoder.ReadPtrF32(dec, x.PFloat, false); err != nil {
 				return err
 			}
 		case "p_double":
-			if x.PDouble, err = jsondecoder.ReadPtrF64(dec, false); err != nil {
+			if x.PDouble, err = jsondecoder.ReadPtrF64(dec, x.PDouble, false); err != nil {
 				return err
 			}
 		case "p_bool1":
-			if x.PBool1, err = jsondecoder.ReadPtrBool(dec, false); err != nil {
+			if x.PBool1, err = jsondecoder.ReadPtrBool(dec, x.PBool1, false); err != nil {
 				return err
 			}
 		case "p_bool2":
-			if x.PBool2, err = jsondecoder.ReadPtrBool(dec, false); err != nil {
+			if x.PBool2, err = jsondecoder.ReadPtrBool(dec, x.PBool2, false); err != nil {
 				return err
 			}
 		case "p_bool3":
-			if x.PBool3, err = jsondecoder.ReadPtrBool(dec, false); err != nil {
+			if x.PBool3, err = jsondecoder.ReadPtrBool(dec, x.PBool3, false); err != nil {
 				return err
 			}
 		case "p_bytes1":

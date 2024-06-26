@@ -6,8 +6,8 @@
 package pboptions
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
+	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	_ "github.com/yu31/protoc-plugin-json/xgo/tests/pb/pbexternal"
 	_ "google.golang.org/protobuf/types/known/anypb"
 	_ "google.golang.org/protobuf/types/known/durationpb"
@@ -25,7 +25,7 @@ func (x *IgnoreOptional1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message IgnoreOptional1 in file tests/proto/cases/options/ignore_optional1.proto
 func (x *IgnoreOptional1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pboptions.(*IgnoreOptional1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pboptions", "IgnoreOptional1")
 	}
 	return nil
 }

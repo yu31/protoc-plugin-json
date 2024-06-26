@@ -6,7 +6,6 @@
 package pbbase
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -34,7 +33,7 @@ func (x *MessageRepeated1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message MessageRepeated1 in file tests/proto/cases/base/type_repeated1.proto
 func (x *MessageRepeated1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbase.(*MessageRepeated1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbase", "MessageRepeated1")
 	}
 	var (
 		err    error
@@ -104,7 +103,7 @@ func (x *MessageRepeated1_Embed1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Embed1 in file tests/proto/cases/base/type_repeated1.proto
 func (x *MessageRepeated1_Embed1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbase.(*MessageRepeated1_Embed1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbase", "MessageRepeated1_Embed1")
 	}
 	var (
 		err    error
@@ -174,7 +173,7 @@ func (x *MessageRepeated1_Embed1_Embed2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message Embed2 in file tests/proto/cases/base/type_repeated1.proto
 func (x *MessageRepeated1_Embed1_Embed2) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbase.(*MessageRepeated1_Embed1_Embed2) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbase", "MessageRepeated1_Embed1_Embed2")
 	}
 	var (
 		err    error
@@ -310,7 +309,7 @@ func (x *TypeRepeated1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message TypeRepeated1 in file tests/proto/cases/base/type_repeated1.proto
 func (x *TypeRepeated1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbbase.(*TypeRepeated1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbbase", "TypeRepeated1")
 	}
 	var (
 		err    error

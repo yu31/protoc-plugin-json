@@ -6,7 +6,6 @@
 package pbinline
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -547,7 +546,7 @@ func (x *MessageLevel04) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message MessageLevel04 in file tests/proto/cases/inline/inline_message04.proto
 func (x *MessageLevel04) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbinline.(*MessageLevel04) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbinline", "MessageLevel04")
 	}
 	var (
 		err    error
@@ -714,11 +713,11 @@ LOOP_SCAN:
 				return err
 			}
 		case "level04_c_p_string1":
-			if x.Level04PString1, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if x.Level04PString1, err = jsondecoder.ReadPtrStr(dec, x.Level04PString1); err != nil {
 				return err
 			}
 		case "level04_p_string2":
-			if x.Level04PString2, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if x.Level04PString2, err = jsondecoder.ReadPtrStr(dec, x.Level04PString2); err != nil {
 				return err
 			}
 		case "level04_c_r_string1":
@@ -763,14 +762,14 @@ LOOP_SCAN:
 			if err = init_a1_11(); err != nil {
 				return err
 			}
-			if a1_11.Level10PString1, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if a1_11.Level10PString1, err = jsondecoder.ReadPtrStr(dec, a1_11.Level10PString1); err != nil {
 				return err
 			}
 		case "level10_p_string2":
 			if err = init_a1_11(); err != nil {
 				return err
 			}
-			if a1_11.Level10PString2, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if a1_11.Level10PString2, err = jsondecoder.ReadPtrStr(dec, a1_11.Level10PString2); err != nil {
 				return err
 			}
 		case "level10_c_r_string1":
@@ -981,14 +980,14 @@ LOOP_SCAN:
 			if err = init_a1_40(); err != nil {
 				return err
 			}
-			if a1_40.Level11PString1, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if a1_40.Level11PString1, err = jsondecoder.ReadPtrStr(dec, a1_40.Level11PString1); err != nil {
 				return err
 			}
 		case "level11_p_string2":
 			if err = init_a1_40(); err != nil {
 				return err
 			}
-			if a1_40.Level11PString2, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if a1_40.Level11PString2, err = jsondecoder.ReadPtrStr(dec, a1_40.Level11PString2); err != nil {
 				return err
 			}
 		case "level11_c_r_string1":
@@ -1231,14 +1230,14 @@ LOOP_SCAN:
 						if err = init_p1_71(); err != nil {
 							return err
 						}
-						if p1_71.Level10PString1, err = jsondecoder.ReadPtrStr(dec); err != nil {
+						if p1_71.Level10PString1, err = jsondecoder.ReadPtrStr(dec, p1_71.Level10PString1); err != nil {
 							return err
 						}
 					case "level10_p_string2":
 						if err = init_p1_71(); err != nil {
 							return err
 						}
-						if p1_71.Level10PString2, err = jsondecoder.ReadPtrStr(dec); err != nil {
+						if p1_71.Level10PString2, err = jsondecoder.ReadPtrStr(dec, p1_71.Level10PString2); err != nil {
 							return err
 						}
 					case "level10_c_r_string1":
@@ -1449,14 +1448,14 @@ LOOP_SCAN:
 						if err = init_p1_100(); err != nil {
 							return err
 						}
-						if p1_100.Level11PString1, err = jsondecoder.ReadPtrStr(dec); err != nil {
+						if p1_100.Level11PString1, err = jsondecoder.ReadPtrStr(dec, p1_100.Level11PString1); err != nil {
 							return err
 						}
 					case "level11_p_string2":
 						if err = init_p1_100(); err != nil {
 							return err
 						}
-						if p1_100.Level11PString2, err = jsondecoder.ReadPtrStr(dec); err != nil {
+						if p1_100.Level11PString2, err = jsondecoder.ReadPtrStr(dec, p1_100.Level11PString2); err != nil {
 							return err
 						}
 					case "level11_c_r_string1":
@@ -1713,14 +1712,14 @@ LOOP_SCAN:
 			if err = init_p1_135(); err != nil {
 				return err
 			}
-			if p1_135.Level12PString1, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if p1_135.Level12PString1, err = jsondecoder.ReadPtrStr(dec, p1_135.Level12PString1); err != nil {
 				return err
 			}
 		case "level12_p_string2":
 			if err = init_p1_135(); err != nil {
 				return err
 			}
-			if p1_135.Level12PString2, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if p1_135.Level12PString2, err = jsondecoder.ReadPtrStr(dec, p1_135.Level12PString2); err != nil {
 				return err
 			}
 		case "level12_c_r_string1":
@@ -1931,14 +1930,14 @@ LOOP_SCAN:
 			if err = init_p1_164(); err != nil {
 				return err
 			}
-			if p1_164.Level13PString1, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if p1_164.Level13PString1, err = jsondecoder.ReadPtrStr(dec, p1_164.Level13PString1); err != nil {
 				return err
 			}
 		case "level13_p_string2":
 			if err = init_p1_164(); err != nil {
 				return err
 			}
-			if p1_164.Level13PString2, err = jsondecoder.ReadPtrStr(dec); err != nil {
+			if p1_164.Level13PString2, err = jsondecoder.ReadPtrStr(dec, p1_164.Level13PString2); err != nil {
 				return err
 			}
 		case "level13_c_r_string1":

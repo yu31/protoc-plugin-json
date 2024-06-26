@@ -6,7 +6,6 @@
 package pbinline
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -23,7 +22,7 @@ func (x *MessageEmpty1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message MessageEmpty1 in file tests/proto/cases/inline/private.proto
 func (x *MessageEmpty1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbinline.(*MessageEmpty1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbinline", "MessageEmpty1")
 	}
 	return nil
 }
@@ -39,7 +38,7 @@ func (x *MessageIgnoreFields) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message MessageIgnoreFields in file tests/proto/cases/inline/private.proto
 func (x *MessageIgnoreFields) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbinline.(*MessageIgnoreFields) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbinline", "MessageIgnoreFields")
 	}
 	return nil
 }
@@ -60,7 +59,7 @@ func (x *MessageIgnoreByRef) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message MessageIgnoreByRef in file tests/proto/cases/inline/private.proto
 func (x *MessageIgnoreByRef) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbinline.(*MessageIgnoreByRef) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbinline", "MessageIgnoreByRef")
 	}
 	var (
 		err    error

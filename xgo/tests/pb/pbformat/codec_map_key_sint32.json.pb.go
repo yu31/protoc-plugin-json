@@ -6,7 +6,6 @@
 package pbformat
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -204,7 +203,7 @@ func (x *CodecMapKeySInt32) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message CodecMapKeySInt32 in file tests/proto/cases/format/codec_map_key_sint32.proto
 func (x *CodecMapKeySInt32) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbformat.(*CodecMapKeySInt32) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbformat", "CodecMapKeySInt32")
 	}
 	var (
 		err    error

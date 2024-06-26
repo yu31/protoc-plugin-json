@@ -6,7 +6,6 @@
 package pbboundary
 
 import (
-	errors "errors"
 	_ "github.com/yu31/protoc-plugin-json/xgo/pb/pbjson"
 	jsondecoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsondecoder"
 	jsonencoder "github.com/yu31/protoc-plugin-json/xgo/pkg/jsonencoder"
@@ -36,7 +35,7 @@ func (x *InlineMessageCycle1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message InlineMessageCycle1 in file tests/proto/cases/boundary/cycle1.proto
 func (x *InlineMessageCycle1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*InlineMessageCycle1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbboundary", "InlineMessageCycle1")
 	}
 	var (
 		err    error
@@ -141,7 +140,7 @@ func (x *InlineMessageCycle1_EmbedMessage1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON implements json.Unmarshaler for proto message EmbedMessage1 in file tests/proto/cases/boundary/cycle1.proto
 func (x *InlineMessageCycle1_EmbedMessage1) UnmarshalJSON(b []byte) error {
 	if x == nil {
-		return errors.New("json: Unmarshal: xgo/tests/pb/pbboundary.(*InlineMessageCycle1_EmbedMessage1) is nil")
+		return jsondecoder.ErrStructIsNIL("xgo/tests/pb/pbboundary", "InlineMessageCycle1_EmbedMessage1")
 	}
 	var (
 		err    error

@@ -32,8 +32,7 @@ func (ul *Unmarshal) GenerateCode(fieldSets []*FieldSet) {
 	ul.g.P("func (x *", msg.GoIdent.GoName, ") UnmarshalJSON(b []byte) error {")
 	{
 		ul.g.P("if x == nil {")
-		// FIXME: review the error message.
-		ul.g.P("	return ", importpkg.Errors.Ident("New"), `("json: Unmarshal: `, string(msg.GoIdent.GoImportPath), ".(*", msg.GoIdent.GoName, `) is nil")`)
+		ul.g.P("	return ", importpkg.PJDecoder.Ident("ErrStructIsNIL"), `("`, string(msg.GoIdent.GoImportPath), `", "`, msg.GoIdent.GoName, `")`)
 		ul.g.P("}")
 		// Generated codes of loop scan.
 		ul.unmarshalLoop(fieldSets)
@@ -98,7 +97,6 @@ func (ul *Unmarshal) unmarshalRead(fieldSets []*FieldSet) {
 		}
 		ul.g.P("default:")
 		if ul.options.DisallowUnknownFields {
-			// FIXME: optimized error.
 			ul.g.P("return ", importpkg.PJDecoder.Ident("ErrUnknownField"), "(dec)")
 		} else {
 			ul.g.P("if err = dec.DiscardValue(); err != nil {")
@@ -168,7 +166,7 @@ func (ul *Unmarshal) unmarshalOneOf(fieldSet *FieldSet) {
 				ul.unmarshalField(oneOfPart)
 			}
 			ul.g.P("default:")
-			if ul.options.DisallowUnknownFields { // FIXME: control by oneof options?
+			if ul.options.DisallowUnknownFields { // TODO: control by oneof options
 				ul.g.P("return ", importpkg.PJDecoder.Ident("ErrUnknownOneOfField"), "(dec, ", oneOfKeyName, ")")
 			} else {
 				ul.g.P("if err = dec.DiscardValue(); err != nil {")
@@ -217,11 +215,11 @@ func (ul *Unmarshal) decodeField(fieldSet *FieldSet) {
 		} else {
 			funcName = "ReadVal" + _typeName
 		}
-		switch fieldSet.Field.Desc.Kind() {
-		case protoreflect.EnumKind, protoreflect.MessageKind:
+		kind := fieldSet.Field.Desc.Kind()
+		if kind == protoreflect.EnumKind || kind == protoreflect.MessageKind || pkfield.FieldIsOptional(fieldSet.Field) {
+			// TODO: Supplement test cases for pointer value not nil.
 			funcVars = append(funcVars, fieldValue)
 		}
-		// FIXME: we should also pass the field value as parameters if the field type if optional?
 		funcVars = append(funcVars, _vars...)
 	}
 
@@ -288,10 +286,10 @@ func (ul *Unmarshal) initParentFieldForAnonymousFunc(fieldSet *FieldSet) {
 	if fieldSet.ParentField() == nil {
 		return
 	}
-	// FIXME: skip if the parent is oneof part and the oneof field not inline?
-	//if fieldSet.IsOneOfPart && !fieldSet.OneOfField().OneOfIsInline() {
-	//	return
-	//}
+	// The parent field has been init if the oneof field not inline.
+	if fieldSet.IsOneOfPart && !fieldSet.OneOfField().OneOfIsInline() {
+		return
+	}
 	ul.g.P("if _err := ", ul.genFuncNameInitParent(fieldSet.ParentField()), "(); _err != nil {")
 	ul.g.P("    return _err")
 	ul.g.P("}")
@@ -300,6 +298,7 @@ func (ul *Unmarshal) prepareInitParentField(fieldSet *FieldSet) {
 	if fieldSet.ParentField() == nil {
 		return
 	}
+	// The parent field has been init if the oneof field not inline.
 	if fieldSet.IsOneOfPart && !fieldSet.OneOfField().OneOfIsInline() {
 		return
 	}
