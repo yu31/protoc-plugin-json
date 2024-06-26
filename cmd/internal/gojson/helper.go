@@ -57,53 +57,6 @@ func fieldGoType(protoGen *protogen.GeneratedFile, field *protogen.Field) (goTyp
 	return goType
 }
 
-func loadOneOfFields(fieldSets []*FieldSet) (oneOfFields []*FieldSet) {
-	for _, fieldSet := range fieldSets {
-		if fieldSet.FieldIsInline() {
-			oneOfFields = append(oneOfFields, loadOneOfFields(fieldSet.InlineSet.Childs)...)
-		}
-		if fieldSet.IsOneOfField() && len(fieldSet.OneOfSet.Parts) != 0 {
-			oneOfFields = append(oneOfFields, loadOneOfFields(fieldSet.OneOfSet.Parts)...)
-			oneOfFields = append(oneOfFields, fieldSet)
-		}
-	}
-	return
-}
-
-func loadInlineFields(fieldSets []*FieldSet) (inlineFields []*FieldSet) {
-	_inlineFields := _loadInlineFields(fieldSets)
-	length := len(_inlineFields)
-	if length == 0 {
-		return
-	}
-	// Deduplication
-	_exists := make(map[*FieldSet]struct{}, length)
-	inlineFields = make([]*FieldSet, 0, length)
-	for i := len(_inlineFields) - 1; i >= 0; i-- {
-		fieldSet := _inlineFields[i]
-		parent := fieldSet.ParentField()
-		if _, ok := _exists[parent]; !ok {
-			inlineFields = append(inlineFields, fieldSet)
-			_exists[parent] = struct{}{}
-		}
-	}
-	return
-}
-func _loadInlineFields(fieldSets []*FieldSet) (parentFields []*FieldSet) {
-	for _, fieldSet := range fieldSets {
-		if fieldSet.FieldIsInline() {
-			parentFields = append(parentFields, _loadInlineFields(fieldSet.InlineSet.Childs)...)
-		}
-		if fieldSet.IsOneOfField() && len(fieldSet.OneOfSet.Parts) != 0 {
-			parentFields = append(parentFields, _loadInlineFields(fieldSet.OneOfSet.Parts)...)
-		}
-		if parent := fieldSet.ParentField(); parent != nil {
-			parentFields = append(parentFields, fieldSet)
-		}
-	}
-	return
-}
-
 func loadMapKeyTypeInfo(field *protogen.Field, typeFormat *pbjson.TypeFormat) (typeName string, funcVars []string) {
 	kind := field.Desc.Kind()
 	switch kind {
@@ -159,6 +112,7 @@ func loadMapKeyTypeInfo(field *protogen.Field, typeFormat *pbjson.TypeFormat) (t
 	}
 	return
 }
+
 func loadValueTypeInfo(field *protogen.Field, typeFormat *pbjson.TypeFormat) (typeName string, funcVars []string) {
 	kind := field.Desc.Kind()
 	switch kind {
@@ -327,6 +281,36 @@ func loadValueTypeInfo(field *protogen.Field, typeFormat *pbjson.TypeFormat) (ty
 	default:
 		err := pkerror.New("marshal: unsupported kind of %s as value", kind.String())
 		panic(err)
+	}
+	return
+}
+
+func loadOneOfFields(fieldSets []*FieldSet) (oneOfFields []*FieldSet) {
+	for _, fieldSet := range fieldSets {
+		if fieldSet.FieldIsInline() {
+			oneOfFields = append(oneOfFields, loadOneOfFields(fieldSet.InlineSet.Childs)...)
+		}
+		if fieldSet.IsOneOfField() && len(fieldSet.OneOfSet.Parts) != 0 {
+			oneOfFields = append(oneOfFields, loadOneOfFields(fieldSet.OneOfSet.Parts)...)
+			oneOfFields = append(oneOfFields, fieldSet)
+		}
+	}
+	return
+}
+
+func loadParentFields(fieldSets []*FieldSet) (parentFields []*FieldSet) {
+	for i, fieldSet := range fieldSets {
+		if i == 0 && fieldSet.ParentField() != nil && !fieldSet.IsOneOfPart {
+			// The parent has been added by previous round if it's a oneof part.
+			parentFields = append(parentFields, fieldSet.ParentField())
+		}
+
+		if fieldSet.FieldIsInline() {
+			parentFields = append(parentFields, loadParentFields(fieldSet.InlineSet.Childs)...)
+		}
+		if fieldSet.IsOneOfField() && len(fieldSet.OneOfSet.Parts) != 0 {
+			parentFields = append(parentFields, loadParentFields(fieldSet.OneOfSet.Parts)...)
+		}
 	}
 	return
 }

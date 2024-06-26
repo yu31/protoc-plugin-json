@@ -61,12 +61,12 @@ func (x *InlineMessageCycle5) UnmarshalJSON(b []byte) error {
 		isLoad_o2_6 bool
 	)
 
-	// declares variables to simple to reference parent field
+	// declares variables for simple to reference parent field
 	var (
 		a1_3 *InlineMessageCycle5_EmbedMessage1
 	)
 
-	// declares anonymous to init the parent field.
+	// declares anonymous func to init the parent field.
 	init_a1_3 := func() error {
 		if a1_3 == nil {
 			if x.FMessage1 == nil {

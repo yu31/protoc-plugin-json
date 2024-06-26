@@ -5225,1124 +5225,83 @@ func (x *MessageLevel06) UnmarshalJSON(b []byte) error {
 		isLoad_o1_1915 bool
 	)
 
-	// declares variables to simple to reference parent field
+	// declares variables for simple to reference parent field
 	var (
-		p1_1884 *MessageLevel17
-		p1_1167 *MessageLevel16
-		p2_1847 *MessageLevel29
-		p2_1646 *MessageLevel28
-		p3_1810 *MessageLevel37
-		p3_1781 *MessageLevel36
-		p3_1746 *MessageLevel35
-		p3_1717 *MessageLevel34
-		a3_1686 *MessageLevel35
-		a3_1657 *MessageLevel34
-		p2_1611 *MessageLevel27
-		p2_1410 *MessageLevel26
-		p3_1574 *MessageLevel33
-		p3_1545 *MessageLevel32
-		p3_1510 *MessageLevel31
-		p3_1481 *MessageLevel30
-		a3_1450 *MessageLevel31
-		a3_1421 *MessageLevel30
-		a2_1379 *MessageLevel27
-		a2_1178 *MessageLevel26
-		p3_1342 *MessageLevel33
-		p3_1313 *MessageLevel32
-		p3_1278 *MessageLevel31
-		p3_1249 *MessageLevel30
-		a3_1218 *MessageLevel31
-		a3_1189 *MessageLevel30
-		p1_1132 *MessageLevel15
-		p1_587  *MessageLevel14
-		p2_1095 *MessageLevel25
-		p2_1066 *MessageLevel24
-		p2_1031 *MessageLevel23
-		p2_830  *MessageLevel22
-		p3_994  *MessageLevel41
-		p3_965  *MessageLevel40
-		p3_930  *MessageLevel39
-		p3_901  *MessageLevel38
-		a3_870  *MessageLevel39
-		a3_841  *MessageLevel38
-		a2_799  *MessageLevel23
-		a2_598  *MessageLevel22
-		p3_762  *MessageLevel41
-		p3_733  *MessageLevel40
-		p3_698  *MessageLevel39
-		p3_669  *MessageLevel38
-		a3_638  *MessageLevel39
-		a3_609  *MessageLevel38
-		a1_556  *MessageLevel15
 		a1_11   *MessageLevel14
-		p2_519  *MessageLevel25
-		p2_490  *MessageLevel24
-		p2_455  *MessageLevel23
-		p2_254  *MessageLevel22
-		p3_418  *MessageLevel41
-		p3_389  *MessageLevel40
-		p3_354  *MessageLevel39
-		p3_325  *MessageLevel38
-		a3_294  *MessageLevel39
-		a3_265  *MessageLevel38
-		a2_223  *MessageLevel23
 		a2_22   *MessageLevel22
-		p3_186  *MessageLevel41
-		p3_157  *MessageLevel40
-		p3_122  *MessageLevel39
-		p3_93   *MessageLevel38
-		a3_62   *MessageLevel39
 		a3_33   *MessageLevel38
+		a3_62   *MessageLevel39
+		p3_93   *MessageLevel38
+		p3_122  *MessageLevel39
+		p3_157  *MessageLevel40
+		p3_186  *MessageLevel41
+		a2_223  *MessageLevel23
+		p2_254  *MessageLevel22
+		a3_265  *MessageLevel38
+		a3_294  *MessageLevel39
+		p3_325  *MessageLevel38
+		p3_354  *MessageLevel39
+		p3_389  *MessageLevel40
+		p3_418  *MessageLevel41
+		p2_455  *MessageLevel23
+		p2_490  *MessageLevel24
+		p2_519  *MessageLevel25
+		a1_556  *MessageLevel15
+		p1_587  *MessageLevel14
+		a2_598  *MessageLevel22
+		a3_609  *MessageLevel38
+		a3_638  *MessageLevel39
+		p3_669  *MessageLevel38
+		p3_698  *MessageLevel39
+		p3_733  *MessageLevel40
+		p3_762  *MessageLevel41
+		a2_799  *MessageLevel23
+		p2_830  *MessageLevel22
+		a3_841  *MessageLevel38
+		a3_870  *MessageLevel39
+		p3_901  *MessageLevel38
+		p3_930  *MessageLevel39
+		p3_965  *MessageLevel40
+		p3_994  *MessageLevel41
+		p2_1031 *MessageLevel23
+		p2_1066 *MessageLevel24
+		p2_1095 *MessageLevel25
+		p1_1132 *MessageLevel15
+		p1_1167 *MessageLevel16
+		a2_1178 *MessageLevel26
+		a3_1189 *MessageLevel30
+		a3_1218 *MessageLevel31
+		p3_1249 *MessageLevel30
+		p3_1278 *MessageLevel31
+		p3_1313 *MessageLevel32
+		p3_1342 *MessageLevel33
+		a2_1379 *MessageLevel27
+		p2_1410 *MessageLevel26
+		a3_1421 *MessageLevel30
+		a3_1450 *MessageLevel31
+		p3_1481 *MessageLevel30
+		p3_1510 *MessageLevel31
+		p3_1545 *MessageLevel32
+		p3_1574 *MessageLevel33
+		p2_1611 *MessageLevel27
+		p2_1646 *MessageLevel28
+		a3_1657 *MessageLevel34
+		a3_1686 *MessageLevel35
+		p3_1717 *MessageLevel34
+		p3_1746 *MessageLevel35
+		p3_1781 *MessageLevel36
+		p3_1810 *MessageLevel37
+		p2_1847 *MessageLevel29
+		p1_1884 *MessageLevel17
 	)
 
-	// declares anonymous to init the parent field.
-	init_p1_1884 := func() error {
-		if p1_1884 == nil {
-			if isLoad_o1_1163 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o1_1163 = true
-			o1_1163, ok := x.Level06OneOfInline1.(*MessageLevel06_Level4One2MessageInline17)
-			if !ok {
-				o1_1163 = new(MessageLevel06_Level4One2MessageInline17)
-				x.Level06OneOfInline1 = o1_1163
-			}
-			if o1_1163.Level4One2MessageInline17 == nil {
-				o1_1163.Level4One2MessageInline17 = new(MessageLevel17)
-			}
-			p1_1884 = o1_1163.Level4One2MessageInline17
-		}
-		return nil
-	}
-	init_p1_1167 := func() error {
-		if p1_1167 == nil {
-			if isLoad_o1_1163 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o1_1163 = true
-			o1_1163, ok := x.Level06OneOfInline1.(*MessageLevel06_Level4One2MessageInline16)
-			if !ok {
-				o1_1163 = new(MessageLevel06_Level4One2MessageInline16)
-				x.Level06OneOfInline1 = o1_1163
-			}
-			if o1_1163.Level4One2MessageInline16 == nil {
-				o1_1163.Level4One2MessageInline16 = new(MessageLevel16)
-			}
-			p1_1167 = o1_1163.Level4One2MessageInline16
-		}
-		return nil
-	}
-	init_p2_1847 := func() error {
-		if p2_1847 == nil {
-			if _err := init_p1_1167(); _err != nil {
-				return _err
-			}
-			if isLoad_o2_1642 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o2_1642 = true
-			o2_1642, ok := p1_1167.Level16OneOfInline1.(*MessageLevel16_Level16One2MessageInline29)
-			if !ok {
-				o2_1642 = new(MessageLevel16_Level16One2MessageInline29)
-				p1_1167.Level16OneOfInline1 = o2_1642
-			}
-			if o2_1642.Level16One2MessageInline29 == nil {
-				o2_1642.Level16One2MessageInline29 = new(MessageLevel29)
-			}
-			p2_1847 = o2_1642.Level16One2MessageInline29
-		}
-		return nil
-	}
-	init_p2_1646 := func() error {
-		if p2_1646 == nil {
-			if _err := init_p1_1167(); _err != nil {
-				return _err
-			}
-			if isLoad_o2_1642 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o2_1642 = true
-			o2_1642, ok := p1_1167.Level16OneOfInline1.(*MessageLevel16_Level16One2MessageInline28)
-			if !ok {
-				o2_1642 = new(MessageLevel16_Level16One2MessageInline28)
-				p1_1167.Level16OneOfInline1 = o2_1642
-			}
-			if o2_1642.Level16One2MessageInline28 == nil {
-				o2_1642.Level16One2MessageInline28 = new(MessageLevel28)
-			}
-			p2_1646 = o2_1642.Level16One2MessageInline28
-		}
-		return nil
-	}
-	init_p3_1810 := func() error {
-		if p3_1810 == nil {
-			if _err := init_p2_1646(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_1777 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_1777 = true
-			o3_1777, ok := p2_1646.Level28OneOfInline1.(*MessageLevel28_Level28One2MessageInline37)
-			if !ok {
-				o3_1777 = new(MessageLevel28_Level28One2MessageInline37)
-				p2_1646.Level28OneOfInline1 = o3_1777
-			}
-			if o3_1777.Level28One2MessageInline37 == nil {
-				o3_1777.Level28One2MessageInline37 = new(MessageLevel37)
-			}
-			p3_1810 = o3_1777.Level28One2MessageInline37
-		}
-		return nil
-	}
-	init_p3_1781 := func() error {
-		if p3_1781 == nil {
-			if _err := init_p2_1646(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_1777 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_1777 = true
-			o3_1777, ok := p2_1646.Level28OneOfInline1.(*MessageLevel28_Level28One2MessageInline36)
-			if !ok {
-				o3_1777 = new(MessageLevel28_Level28One2MessageInline36)
-				p2_1646.Level28OneOfInline1 = o3_1777
-			}
-			if o3_1777.Level28One2MessageInline36 == nil {
-				o3_1777.Level28One2MessageInline36 = new(MessageLevel36)
-			}
-			p3_1781 = o3_1777.Level28One2MessageInline36
-		}
-		return nil
-	}
-	init_p3_1746 := func() error {
-		if p3_1746 == nil {
-			if _err := init_p2_1646(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_1715 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_1715 = true
-			o3_1715, ok := p2_1646.Level28OneOfExtern1.(*MessageLevel28_Level28One1MessageInline35)
-			if !ok {
-				o3_1715 = new(MessageLevel28_Level28One1MessageInline35)
-				p2_1646.Level28OneOfExtern1 = o3_1715
-			}
-			if o3_1715.Level28One1MessageInline35 == nil {
-				o3_1715.Level28One1MessageInline35 = new(MessageLevel35)
-			}
-			p3_1746 = o3_1715.Level28One1MessageInline35
-		}
-		return nil
-	}
-	init_p3_1717 := func() error {
-		if p3_1717 == nil {
-			if _err := init_p2_1646(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_1715 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_1715 = true
-			o3_1715, ok := p2_1646.Level28OneOfExtern1.(*MessageLevel28_Level28One1MessageInline34)
-			if !ok {
-				o3_1715 = new(MessageLevel28_Level28One1MessageInline34)
-				p2_1646.Level28OneOfExtern1 = o3_1715
-			}
-			if o3_1715.Level28One1MessageInline34 == nil {
-				o3_1715.Level28One1MessageInline34 = new(MessageLevel34)
-			}
-			p3_1717 = o3_1715.Level28One1MessageInline34
-		}
-		return nil
-	}
-	init_a3_1686 := func() error {
-		if a3_1686 == nil {
-			if _err := init_p2_1646(); _err != nil {
-				return _err
-			}
-			if p2_1646.Level28FMessageInline35 == nil {
-				p2_1646.Level28FMessageInline35 = new(MessageLevel35)
-			}
-			a3_1686 = p2_1646.Level28FMessageInline35
-		}
-		return nil
-	}
-	init_a3_1657 := func() error {
-		if a3_1657 == nil {
-			if _err := init_p2_1646(); _err != nil {
-				return _err
-			}
-			if p2_1646.Level28FMessageInline34 == nil {
-				p2_1646.Level28FMessageInline34 = new(MessageLevel34)
-			}
-			a3_1657 = p2_1646.Level28FMessageInline34
-		}
-		return nil
-	}
-	init_p2_1611 := func() error {
-		if p2_1611 == nil {
-			if _err := init_p1_1167(); _err != nil {
-				return _err
-			}
-			if isLoad_o2_1408 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o2_1408 = true
-			o2_1408, ok := p1_1167.Level16OneOfExtern1.(*MessageLevel16_Level16One1MessageInline27)
-			if !ok {
-				o2_1408 = new(MessageLevel16_Level16One1MessageInline27)
-				p1_1167.Level16OneOfExtern1 = o2_1408
-			}
-			if o2_1408.Level16One1MessageInline27 == nil {
-				o2_1408.Level16One1MessageInline27 = new(MessageLevel27)
-			}
-			p2_1611 = o2_1408.Level16One1MessageInline27
-		}
-		return nil
-	}
-	init_p2_1410 := func() error {
-		if p2_1410 == nil {
-			if _err := init_p1_1167(); _err != nil {
-				return _err
-			}
-			if isLoad_o2_1408 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o2_1408 = true
-			o2_1408, ok := p1_1167.Level16OneOfExtern1.(*MessageLevel16_Level16One1MessageInline26)
-			if !ok {
-				o2_1408 = new(MessageLevel16_Level16One1MessageInline26)
-				p1_1167.Level16OneOfExtern1 = o2_1408
-			}
-			if o2_1408.Level16One1MessageInline26 == nil {
-				o2_1408.Level16One1MessageInline26 = new(MessageLevel26)
-			}
-			p2_1410 = o2_1408.Level16One1MessageInline26
-		}
-		return nil
-	}
-	init_p3_1574 := func() error {
-		if p3_1574 == nil {
-			if _err := init_p2_1410(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_1541 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_1541 = true
-			o3_1541, ok := p2_1410.Level26OneOfInline1.(*MessageLevel26_Level26One2MessageInline33)
-			if !ok {
-				o3_1541 = new(MessageLevel26_Level26One2MessageInline33)
-				p2_1410.Level26OneOfInline1 = o3_1541
-			}
-			if o3_1541.Level26One2MessageInline33 == nil {
-				o3_1541.Level26One2MessageInline33 = new(MessageLevel33)
-			}
-			p3_1574 = o3_1541.Level26One2MessageInline33
-		}
-		return nil
-	}
-	init_p3_1545 := func() error {
-		if p3_1545 == nil {
-			if _err := init_p2_1410(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_1541 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_1541 = true
-			o3_1541, ok := p2_1410.Level26OneOfInline1.(*MessageLevel26_Level26One2MessageInline32)
-			if !ok {
-				o3_1541 = new(MessageLevel26_Level26One2MessageInline32)
-				p2_1410.Level26OneOfInline1 = o3_1541
-			}
-			if o3_1541.Level26One2MessageInline32 == nil {
-				o3_1541.Level26One2MessageInline32 = new(MessageLevel32)
-			}
-			p3_1545 = o3_1541.Level26One2MessageInline32
-		}
-		return nil
-	}
-	init_p3_1510 := func() error {
-		if p3_1510 == nil {
-			if _err := init_p2_1410(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_1479 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_1479 = true
-			o3_1479, ok := p2_1410.Level26OneOfExtern1.(*MessageLevel26_Level26One1MessageInline31)
-			if !ok {
-				o3_1479 = new(MessageLevel26_Level26One1MessageInline31)
-				p2_1410.Level26OneOfExtern1 = o3_1479
-			}
-			if o3_1479.Level26One1MessageInline31 == nil {
-				o3_1479.Level26One1MessageInline31 = new(MessageLevel31)
-			}
-			p3_1510 = o3_1479.Level26One1MessageInline31
-		}
-		return nil
-	}
-	init_p3_1481 := func() error {
-		if p3_1481 == nil {
-			if _err := init_p2_1410(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_1479 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_1479 = true
-			o3_1479, ok := p2_1410.Level26OneOfExtern1.(*MessageLevel26_Level26One1MessageInline30)
-			if !ok {
-				o3_1479 = new(MessageLevel26_Level26One1MessageInline30)
-				p2_1410.Level26OneOfExtern1 = o3_1479
-			}
-			if o3_1479.Level26One1MessageInline30 == nil {
-				o3_1479.Level26One1MessageInline30 = new(MessageLevel30)
-			}
-			p3_1481 = o3_1479.Level26One1MessageInline30
-		}
-		return nil
-	}
-	init_a3_1450 := func() error {
-		if a3_1450 == nil {
-			if _err := init_p2_1410(); _err != nil {
-				return _err
-			}
-			if p2_1410.Level26FMessageInline31 == nil {
-				p2_1410.Level26FMessageInline31 = new(MessageLevel31)
-			}
-			a3_1450 = p2_1410.Level26FMessageInline31
-		}
-		return nil
-	}
-	init_a3_1421 := func() error {
-		if a3_1421 == nil {
-			if _err := init_p2_1410(); _err != nil {
-				return _err
-			}
-			if p2_1410.Level26FMessageInline30 == nil {
-				p2_1410.Level26FMessageInline30 = new(MessageLevel30)
-			}
-			a3_1421 = p2_1410.Level26FMessageInline30
-		}
-		return nil
-	}
-	init_a2_1379 := func() error {
-		if a2_1379 == nil {
-			if _err := init_p1_1167(); _err != nil {
-				return _err
-			}
-			if p1_1167.Level16FMessageInline27 == nil {
-				p1_1167.Level16FMessageInline27 = new(MessageLevel27)
-			}
-			a2_1379 = p1_1167.Level16FMessageInline27
-		}
-		return nil
-	}
-	init_a2_1178 := func() error {
-		if a2_1178 == nil {
-			if _err := init_p1_1167(); _err != nil {
-				return _err
-			}
-			if p1_1167.Level16FMessageInline26 == nil {
-				p1_1167.Level16FMessageInline26 = new(MessageLevel26)
-			}
-			a2_1178 = p1_1167.Level16FMessageInline26
-		}
-		return nil
-	}
-	init_p3_1342 := func() error {
-		if p3_1342 == nil {
-			if _err := init_a2_1178(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_1309 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_1309 = true
-			o3_1309, ok := a2_1178.Level26OneOfInline1.(*MessageLevel26_Level26One2MessageInline33)
-			if !ok {
-				o3_1309 = new(MessageLevel26_Level26One2MessageInline33)
-				a2_1178.Level26OneOfInline1 = o3_1309
-			}
-			if o3_1309.Level26One2MessageInline33 == nil {
-				o3_1309.Level26One2MessageInline33 = new(MessageLevel33)
-			}
-			p3_1342 = o3_1309.Level26One2MessageInline33
-		}
-		return nil
-	}
-	init_p3_1313 := func() error {
-		if p3_1313 == nil {
-			if _err := init_a2_1178(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_1309 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_1309 = true
-			o3_1309, ok := a2_1178.Level26OneOfInline1.(*MessageLevel26_Level26One2MessageInline32)
-			if !ok {
-				o3_1309 = new(MessageLevel26_Level26One2MessageInline32)
-				a2_1178.Level26OneOfInline1 = o3_1309
-			}
-			if o3_1309.Level26One2MessageInline32 == nil {
-				o3_1309.Level26One2MessageInline32 = new(MessageLevel32)
-			}
-			p3_1313 = o3_1309.Level26One2MessageInline32
-		}
-		return nil
-	}
-	init_p3_1278 := func() error {
-		if p3_1278 == nil {
-			if _err := init_a2_1178(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_1247 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_1247 = true
-			o3_1247, ok := a2_1178.Level26OneOfExtern1.(*MessageLevel26_Level26One1MessageInline31)
-			if !ok {
-				o3_1247 = new(MessageLevel26_Level26One1MessageInline31)
-				a2_1178.Level26OneOfExtern1 = o3_1247
-			}
-			if o3_1247.Level26One1MessageInline31 == nil {
-				o3_1247.Level26One1MessageInline31 = new(MessageLevel31)
-			}
-			p3_1278 = o3_1247.Level26One1MessageInline31
-		}
-		return nil
-	}
-	init_p3_1249 := func() error {
-		if p3_1249 == nil {
-			if _err := init_a2_1178(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_1247 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_1247 = true
-			o3_1247, ok := a2_1178.Level26OneOfExtern1.(*MessageLevel26_Level26One1MessageInline30)
-			if !ok {
-				o3_1247 = new(MessageLevel26_Level26One1MessageInline30)
-				a2_1178.Level26OneOfExtern1 = o3_1247
-			}
-			if o3_1247.Level26One1MessageInline30 == nil {
-				o3_1247.Level26One1MessageInline30 = new(MessageLevel30)
-			}
-			p3_1249 = o3_1247.Level26One1MessageInline30
-		}
-		return nil
-	}
-	init_a3_1218 := func() error {
-		if a3_1218 == nil {
-			if _err := init_a2_1178(); _err != nil {
-				return _err
-			}
-			if a2_1178.Level26FMessageInline31 == nil {
-				a2_1178.Level26FMessageInline31 = new(MessageLevel31)
-			}
-			a3_1218 = a2_1178.Level26FMessageInline31
-		}
-		return nil
-	}
-	init_a3_1189 := func() error {
-		if a3_1189 == nil {
-			if _err := init_a2_1178(); _err != nil {
-				return _err
-			}
-			if a2_1178.Level26FMessageInline30 == nil {
-				a2_1178.Level26FMessageInline30 = new(MessageLevel30)
-			}
-			a3_1189 = a2_1178.Level26FMessageInline30
-		}
-		return nil
-	}
-	init_p1_1132 := func() error {
-		if p1_1132 == nil {
-			if isLoad_o1_585 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o1_585 = true
-			o1_585, ok := x.Level06OneOfExtern1.(*MessageLevel06_Level06One1MessageInline15)
-			if !ok {
-				o1_585 = new(MessageLevel06_Level06One1MessageInline15)
-				x.Level06OneOfExtern1 = o1_585
-			}
-			if o1_585.Level06One1MessageInline15 == nil {
-				o1_585.Level06One1MessageInline15 = new(MessageLevel15)
-			}
-			p1_1132 = o1_585.Level06One1MessageInline15
-		}
-		return nil
-	}
-	init_p1_587 := func() error {
-		if p1_587 == nil {
-			if isLoad_o1_585 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o1_585 = true
-			o1_585, ok := x.Level06OneOfExtern1.(*MessageLevel06_Level06One1MessageInline14)
-			if !ok {
-				o1_585 = new(MessageLevel06_Level06One1MessageInline14)
-				x.Level06OneOfExtern1 = o1_585
-			}
-			if o1_585.Level06One1MessageInline14 == nil {
-				o1_585.Level06One1MessageInline14 = new(MessageLevel14)
-			}
-			p1_587 = o1_585.Level06One1MessageInline14
-		}
-		return nil
-	}
-	init_p2_1095 := func() error {
-		if p2_1095 == nil {
-			if _err := init_p1_587(); _err != nil {
-				return _err
-			}
-			if isLoad_o2_1062 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o2_1062 = true
-			o2_1062, ok := p1_587.Level14OneOfInline1.(*MessageLevel14_Level14One2MessageInline25)
-			if !ok {
-				o2_1062 = new(MessageLevel14_Level14One2MessageInline25)
-				p1_587.Level14OneOfInline1 = o2_1062
-			}
-			if o2_1062.Level14One2MessageInline25 == nil {
-				o2_1062.Level14One2MessageInline25 = new(MessageLevel25)
-			}
-			p2_1095 = o2_1062.Level14One2MessageInline25
-		}
-		return nil
-	}
-	init_p2_1066 := func() error {
-		if p2_1066 == nil {
-			if _err := init_p1_587(); _err != nil {
-				return _err
-			}
-			if isLoad_o2_1062 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o2_1062 = true
-			o2_1062, ok := p1_587.Level14OneOfInline1.(*MessageLevel14_Level14One2MessageInline24)
-			if !ok {
-				o2_1062 = new(MessageLevel14_Level14One2MessageInline24)
-				p1_587.Level14OneOfInline1 = o2_1062
-			}
-			if o2_1062.Level14One2MessageInline24 == nil {
-				o2_1062.Level14One2MessageInline24 = new(MessageLevel24)
-			}
-			p2_1066 = o2_1062.Level14One2MessageInline24
-		}
-		return nil
-	}
-	init_p2_1031 := func() error {
-		if p2_1031 == nil {
-			if _err := init_p1_587(); _err != nil {
-				return _err
-			}
-			if isLoad_o2_828 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o2_828 = true
-			o2_828, ok := p1_587.Level14OneOfExtern1.(*MessageLevel14_Level14One1MessageInline23)
-			if !ok {
-				o2_828 = new(MessageLevel14_Level14One1MessageInline23)
-				p1_587.Level14OneOfExtern1 = o2_828
-			}
-			if o2_828.Level14One1MessageInline23 == nil {
-				o2_828.Level14One1MessageInline23 = new(MessageLevel23)
-			}
-			p2_1031 = o2_828.Level14One1MessageInline23
-		}
-		return nil
-	}
-	init_p2_830 := func() error {
-		if p2_830 == nil {
-			if _err := init_p1_587(); _err != nil {
-				return _err
-			}
-			if isLoad_o2_828 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o2_828 = true
-			o2_828, ok := p1_587.Level14OneOfExtern1.(*MessageLevel14_Level14One1MessageInline22)
-			if !ok {
-				o2_828 = new(MessageLevel14_Level14One1MessageInline22)
-				p1_587.Level14OneOfExtern1 = o2_828
-			}
-			if o2_828.Level14One1MessageInline22 == nil {
-				o2_828.Level14One1MessageInline22 = new(MessageLevel22)
-			}
-			p2_830 = o2_828.Level14One1MessageInline22
-		}
-		return nil
-	}
-	init_p3_994 := func() error {
-		if p3_994 == nil {
-			if _err := init_p2_830(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_961 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_961 = true
-			o3_961, ok := p2_830.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline41)
-			if !ok {
-				o3_961 = new(MessageLevel22_Level22One2MessageInline41)
-				p2_830.Level22OneOfInline1 = o3_961
-			}
-			if o3_961.Level22One2MessageInline41 == nil {
-				o3_961.Level22One2MessageInline41 = new(MessageLevel41)
-			}
-			p3_994 = o3_961.Level22One2MessageInline41
-		}
-		return nil
-	}
-	init_p3_965 := func() error {
-		if p3_965 == nil {
-			if _err := init_p2_830(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_961 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_961 = true
-			o3_961, ok := p2_830.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline40)
-			if !ok {
-				o3_961 = new(MessageLevel22_Level22One2MessageInline40)
-				p2_830.Level22OneOfInline1 = o3_961
-			}
-			if o3_961.Level22One2MessageInline40 == nil {
-				o3_961.Level22One2MessageInline40 = new(MessageLevel40)
-			}
-			p3_965 = o3_961.Level22One2MessageInline40
-		}
-		return nil
-	}
-	init_p3_930 := func() error {
-		if p3_930 == nil {
-			if _err := init_p2_830(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_899 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_899 = true
-			o3_899, ok := p2_830.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline39)
-			if !ok {
-				o3_899 = new(MessageLevel22_Level22One1MessageInline39)
-				p2_830.Level22OneOfExtern1 = o3_899
-			}
-			if o3_899.Level22One1MessageInline39 == nil {
-				o3_899.Level22One1MessageInline39 = new(MessageLevel39)
-			}
-			p3_930 = o3_899.Level22One1MessageInline39
-		}
-		return nil
-	}
-	init_p3_901 := func() error {
-		if p3_901 == nil {
-			if _err := init_p2_830(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_899 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_899 = true
-			o3_899, ok := p2_830.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline38)
-			if !ok {
-				o3_899 = new(MessageLevel22_Level22One1MessageInline38)
-				p2_830.Level22OneOfExtern1 = o3_899
-			}
-			if o3_899.Level22One1MessageInline38 == nil {
-				o3_899.Level22One1MessageInline38 = new(MessageLevel38)
-			}
-			p3_901 = o3_899.Level22One1MessageInline38
-		}
-		return nil
-	}
-	init_a3_870 := func() error {
-		if a3_870 == nil {
-			if _err := init_p2_830(); _err != nil {
-				return _err
-			}
-			if p2_830.Level22FMessageInline39 == nil {
-				p2_830.Level22FMessageInline39 = new(MessageLevel39)
-			}
-			a3_870 = p2_830.Level22FMessageInline39
-		}
-		return nil
-	}
-	init_a3_841 := func() error {
-		if a3_841 == nil {
-			if _err := init_p2_830(); _err != nil {
-				return _err
-			}
-			if p2_830.Level22FMessageInline38 == nil {
-				p2_830.Level22FMessageInline38 = new(MessageLevel38)
-			}
-			a3_841 = p2_830.Level22FMessageInline38
-		}
-		return nil
-	}
-	init_a2_799 := func() error {
-		if a2_799 == nil {
-			if _err := init_p1_587(); _err != nil {
-				return _err
-			}
-			if p1_587.Level14FMessageInline23 == nil {
-				p1_587.Level14FMessageInline23 = new(MessageLevel23)
-			}
-			a2_799 = p1_587.Level14FMessageInline23
-		}
-		return nil
-	}
-	init_a2_598 := func() error {
-		if a2_598 == nil {
-			if _err := init_p1_587(); _err != nil {
-				return _err
-			}
-			if p1_587.Level14FMessageInline22 == nil {
-				p1_587.Level14FMessageInline22 = new(MessageLevel22)
-			}
-			a2_598 = p1_587.Level14FMessageInline22
-		}
-		return nil
-	}
-	init_p3_762 := func() error {
-		if p3_762 == nil {
-			if _err := init_a2_598(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_729 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_729 = true
-			o3_729, ok := a2_598.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline41)
-			if !ok {
-				o3_729 = new(MessageLevel22_Level22One2MessageInline41)
-				a2_598.Level22OneOfInline1 = o3_729
-			}
-			if o3_729.Level22One2MessageInline41 == nil {
-				o3_729.Level22One2MessageInline41 = new(MessageLevel41)
-			}
-			p3_762 = o3_729.Level22One2MessageInline41
-		}
-		return nil
-	}
-	init_p3_733 := func() error {
-		if p3_733 == nil {
-			if _err := init_a2_598(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_729 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_729 = true
-			o3_729, ok := a2_598.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline40)
-			if !ok {
-				o3_729 = new(MessageLevel22_Level22One2MessageInline40)
-				a2_598.Level22OneOfInline1 = o3_729
-			}
-			if o3_729.Level22One2MessageInline40 == nil {
-				o3_729.Level22One2MessageInline40 = new(MessageLevel40)
-			}
-			p3_733 = o3_729.Level22One2MessageInline40
-		}
-		return nil
-	}
-	init_p3_698 := func() error {
-		if p3_698 == nil {
-			if _err := init_a2_598(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_667 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_667 = true
-			o3_667, ok := a2_598.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline39)
-			if !ok {
-				o3_667 = new(MessageLevel22_Level22One1MessageInline39)
-				a2_598.Level22OneOfExtern1 = o3_667
-			}
-			if o3_667.Level22One1MessageInline39 == nil {
-				o3_667.Level22One1MessageInline39 = new(MessageLevel39)
-			}
-			p3_698 = o3_667.Level22One1MessageInline39
-		}
-		return nil
-	}
-	init_p3_669 := func() error {
-		if p3_669 == nil {
-			if _err := init_a2_598(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_667 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_667 = true
-			o3_667, ok := a2_598.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline38)
-			if !ok {
-				o3_667 = new(MessageLevel22_Level22One1MessageInline38)
-				a2_598.Level22OneOfExtern1 = o3_667
-			}
-			if o3_667.Level22One1MessageInline38 == nil {
-				o3_667.Level22One1MessageInline38 = new(MessageLevel38)
-			}
-			p3_669 = o3_667.Level22One1MessageInline38
-		}
-		return nil
-	}
-	init_a3_638 := func() error {
-		if a3_638 == nil {
-			if _err := init_a2_598(); _err != nil {
-				return _err
-			}
-			if a2_598.Level22FMessageInline39 == nil {
-				a2_598.Level22FMessageInline39 = new(MessageLevel39)
-			}
-			a3_638 = a2_598.Level22FMessageInline39
-		}
-		return nil
-	}
-	init_a3_609 := func() error {
-		if a3_609 == nil {
-			if _err := init_a2_598(); _err != nil {
-				return _err
-			}
-			if a2_598.Level22FMessageInline38 == nil {
-				a2_598.Level22FMessageInline38 = new(MessageLevel38)
-			}
-			a3_609 = a2_598.Level22FMessageInline38
-		}
-		return nil
-	}
-	init_a1_556 := func() error {
-		if a1_556 == nil {
-			if x.Level06FMessageInline15 == nil {
-				x.Level06FMessageInline15 = new(MessageLevel15)
-			}
-			a1_556 = x.Level06FMessageInline15
-		}
-		return nil
-	}
+	// declares anonymous func to init the parent field.
 	init_a1_11 := func() error {
 		if a1_11 == nil {
 			if x.Level06FMessageInline14 == nil {
 				x.Level06FMessageInline14 = new(MessageLevel14)
 			}
 			a1_11 = x.Level06FMessageInline14
-		}
-		return nil
-	}
-	init_p2_519 := func() error {
-		if p2_519 == nil {
-			if _err := init_a1_11(); _err != nil {
-				return _err
-			}
-			if isLoad_o2_486 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o2_486 = true
-			o2_486, ok := a1_11.Level14OneOfInline1.(*MessageLevel14_Level14One2MessageInline25)
-			if !ok {
-				o2_486 = new(MessageLevel14_Level14One2MessageInline25)
-				a1_11.Level14OneOfInline1 = o2_486
-			}
-			if o2_486.Level14One2MessageInline25 == nil {
-				o2_486.Level14One2MessageInline25 = new(MessageLevel25)
-			}
-			p2_519 = o2_486.Level14One2MessageInline25
-		}
-		return nil
-	}
-	init_p2_490 := func() error {
-		if p2_490 == nil {
-			if _err := init_a1_11(); _err != nil {
-				return _err
-			}
-			if isLoad_o2_486 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o2_486 = true
-			o2_486, ok := a1_11.Level14OneOfInline1.(*MessageLevel14_Level14One2MessageInline24)
-			if !ok {
-				o2_486 = new(MessageLevel14_Level14One2MessageInline24)
-				a1_11.Level14OneOfInline1 = o2_486
-			}
-			if o2_486.Level14One2MessageInline24 == nil {
-				o2_486.Level14One2MessageInline24 = new(MessageLevel24)
-			}
-			p2_490 = o2_486.Level14One2MessageInline24
-		}
-		return nil
-	}
-	init_p2_455 := func() error {
-		if p2_455 == nil {
-			if _err := init_a1_11(); _err != nil {
-				return _err
-			}
-			if isLoad_o2_252 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o2_252 = true
-			o2_252, ok := a1_11.Level14OneOfExtern1.(*MessageLevel14_Level14One1MessageInline23)
-			if !ok {
-				o2_252 = new(MessageLevel14_Level14One1MessageInline23)
-				a1_11.Level14OneOfExtern1 = o2_252
-			}
-			if o2_252.Level14One1MessageInline23 == nil {
-				o2_252.Level14One1MessageInline23 = new(MessageLevel23)
-			}
-			p2_455 = o2_252.Level14One1MessageInline23
-		}
-		return nil
-	}
-	init_p2_254 := func() error {
-		if p2_254 == nil {
-			if _err := init_a1_11(); _err != nil {
-				return _err
-			}
-			if isLoad_o2_252 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o2_252 = true
-			o2_252, ok := a1_11.Level14OneOfExtern1.(*MessageLevel14_Level14One1MessageInline22)
-			if !ok {
-				o2_252 = new(MessageLevel14_Level14One1MessageInline22)
-				a1_11.Level14OneOfExtern1 = o2_252
-			}
-			if o2_252.Level14One1MessageInline22 == nil {
-				o2_252.Level14One1MessageInline22 = new(MessageLevel22)
-			}
-			p2_254 = o2_252.Level14One1MessageInline22
-		}
-		return nil
-	}
-	init_p3_418 := func() error {
-		if p3_418 == nil {
-			if _err := init_p2_254(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_385 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_385 = true
-			o3_385, ok := p2_254.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline41)
-			if !ok {
-				o3_385 = new(MessageLevel22_Level22One2MessageInline41)
-				p2_254.Level22OneOfInline1 = o3_385
-			}
-			if o3_385.Level22One2MessageInline41 == nil {
-				o3_385.Level22One2MessageInline41 = new(MessageLevel41)
-			}
-			p3_418 = o3_385.Level22One2MessageInline41
-		}
-		return nil
-	}
-	init_p3_389 := func() error {
-		if p3_389 == nil {
-			if _err := init_p2_254(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_385 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_385 = true
-			o3_385, ok := p2_254.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline40)
-			if !ok {
-				o3_385 = new(MessageLevel22_Level22One2MessageInline40)
-				p2_254.Level22OneOfInline1 = o3_385
-			}
-			if o3_385.Level22One2MessageInline40 == nil {
-				o3_385.Level22One2MessageInline40 = new(MessageLevel40)
-			}
-			p3_389 = o3_385.Level22One2MessageInline40
-		}
-		return nil
-	}
-	init_p3_354 := func() error {
-		if p3_354 == nil {
-			if _err := init_p2_254(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_323 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_323 = true
-			o3_323, ok := p2_254.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline39)
-			if !ok {
-				o3_323 = new(MessageLevel22_Level22One1MessageInline39)
-				p2_254.Level22OneOfExtern1 = o3_323
-			}
-			if o3_323.Level22One1MessageInline39 == nil {
-				o3_323.Level22One1MessageInline39 = new(MessageLevel39)
-			}
-			p3_354 = o3_323.Level22One1MessageInline39
-		}
-		return nil
-	}
-	init_p3_325 := func() error {
-		if p3_325 == nil {
-			if _err := init_p2_254(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_323 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_323 = true
-			o3_323, ok := p2_254.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline38)
-			if !ok {
-				o3_323 = new(MessageLevel22_Level22One1MessageInline38)
-				p2_254.Level22OneOfExtern1 = o3_323
-			}
-			if o3_323.Level22One1MessageInline38 == nil {
-				o3_323.Level22One1MessageInline38 = new(MessageLevel38)
-			}
-			p3_325 = o3_323.Level22One1MessageInline38
-		}
-		return nil
-	}
-	init_a3_294 := func() error {
-		if a3_294 == nil {
-			if _err := init_p2_254(); _err != nil {
-				return _err
-			}
-			if p2_254.Level22FMessageInline39 == nil {
-				p2_254.Level22FMessageInline39 = new(MessageLevel39)
-			}
-			a3_294 = p2_254.Level22FMessageInline39
-		}
-		return nil
-	}
-	init_a3_265 := func() error {
-		if a3_265 == nil {
-			if _err := init_p2_254(); _err != nil {
-				return _err
-			}
-			if p2_254.Level22FMessageInline38 == nil {
-				p2_254.Level22FMessageInline38 = new(MessageLevel38)
-			}
-			a3_265 = p2_254.Level22FMessageInline38
-		}
-		return nil
-	}
-	init_a2_223 := func() error {
-		if a2_223 == nil {
-			if _err := init_a1_11(); _err != nil {
-				return _err
-			}
-			if a1_11.Level14FMessageInline23 == nil {
-				a1_11.Level14FMessageInline23 = new(MessageLevel23)
-			}
-			a2_223 = a1_11.Level14FMessageInline23
 		}
 		return nil
 	}
@@ -6358,66 +5317,27 @@ func (x *MessageLevel06) UnmarshalJSON(b []byte) error {
 		}
 		return nil
 	}
-	init_p3_186 := func() error {
-		if p3_186 == nil {
+	init_a3_33 := func() error {
+		if a3_33 == nil {
 			if _err := init_a2_22(); _err != nil {
 				return _err
 			}
-			if isLoad_o3_153 {
-				return jsondecoder.ErrOneOfConflict(dec)
+			if a2_22.Level22FMessageInline38 == nil {
+				a2_22.Level22FMessageInline38 = new(MessageLevel38)
 			}
-			isLoad_o3_153 = true
-			o3_153, ok := a2_22.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline41)
-			if !ok {
-				o3_153 = new(MessageLevel22_Level22One2MessageInline41)
-				a2_22.Level22OneOfInline1 = o3_153
-			}
-			if o3_153.Level22One2MessageInline41 == nil {
-				o3_153.Level22One2MessageInline41 = new(MessageLevel41)
-			}
-			p3_186 = o3_153.Level22One2MessageInline41
+			a3_33 = a2_22.Level22FMessageInline38
 		}
 		return nil
 	}
-	init_p3_157 := func() error {
-		if p3_157 == nil {
+	init_a3_62 := func() error {
+		if a3_62 == nil {
 			if _err := init_a2_22(); _err != nil {
 				return _err
 			}
-			if isLoad_o3_153 {
-				return jsondecoder.ErrOneOfConflict(dec)
+			if a2_22.Level22FMessageInline39 == nil {
+				a2_22.Level22FMessageInline39 = new(MessageLevel39)
 			}
-			isLoad_o3_153 = true
-			o3_153, ok := a2_22.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline40)
-			if !ok {
-				o3_153 = new(MessageLevel22_Level22One2MessageInline40)
-				a2_22.Level22OneOfInline1 = o3_153
-			}
-			if o3_153.Level22One2MessageInline40 == nil {
-				o3_153.Level22One2MessageInline40 = new(MessageLevel40)
-			}
-			p3_157 = o3_153.Level22One2MessageInline40
-		}
-		return nil
-	}
-	init_p3_122 := func() error {
-		if p3_122 == nil {
-			if _err := init_a2_22(); _err != nil {
-				return _err
-			}
-			if isLoad_o3_91 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o3_91 = true
-			o3_91, ok := a2_22.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline39)
-			if !ok {
-				o3_91 = new(MessageLevel22_Level22One1MessageInline39)
-				a2_22.Level22OneOfExtern1 = o3_91
-			}
-			if o3_91.Level22One1MessageInline39 == nil {
-				o3_91.Level22One1MessageInline39 = new(MessageLevel39)
-			}
-			p3_122 = o3_91.Level22One1MessageInline39
+			a3_62 = a2_22.Level22FMessageInline39
 		}
 		return nil
 	}
@@ -6442,27 +5362,1107 @@ func (x *MessageLevel06) UnmarshalJSON(b []byte) error {
 		}
 		return nil
 	}
-	init_a3_62 := func() error {
-		if a3_62 == nil {
+	init_p3_122 := func() error {
+		if p3_122 == nil {
 			if _err := init_a2_22(); _err != nil {
 				return _err
 			}
-			if a2_22.Level22FMessageInline39 == nil {
-				a2_22.Level22FMessageInline39 = new(MessageLevel39)
+			if isLoad_o3_91 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			a3_62 = a2_22.Level22FMessageInline39
+			isLoad_o3_91 = true
+			o3_91, ok := a2_22.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline39)
+			if !ok {
+				o3_91 = new(MessageLevel22_Level22One1MessageInline39)
+				a2_22.Level22OneOfExtern1 = o3_91
+			}
+			if o3_91.Level22One1MessageInline39 == nil {
+				o3_91.Level22One1MessageInline39 = new(MessageLevel39)
+			}
+			p3_122 = o3_91.Level22One1MessageInline39
 		}
 		return nil
 	}
-	init_a3_33 := func() error {
-		if a3_33 == nil {
+	init_p3_157 := func() error {
+		if p3_157 == nil {
 			if _err := init_a2_22(); _err != nil {
 				return _err
 			}
-			if a2_22.Level22FMessageInline38 == nil {
-				a2_22.Level22FMessageInline38 = new(MessageLevel38)
+			if isLoad_o3_153 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			a3_33 = a2_22.Level22FMessageInline38
+			isLoad_o3_153 = true
+			o3_153, ok := a2_22.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline40)
+			if !ok {
+				o3_153 = new(MessageLevel22_Level22One2MessageInline40)
+				a2_22.Level22OneOfInline1 = o3_153
+			}
+			if o3_153.Level22One2MessageInline40 == nil {
+				o3_153.Level22One2MessageInline40 = new(MessageLevel40)
+			}
+			p3_157 = o3_153.Level22One2MessageInline40
+		}
+		return nil
+	}
+	init_p3_186 := func() error {
+		if p3_186 == nil {
+			if _err := init_a2_22(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_153 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_153 = true
+			o3_153, ok := a2_22.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline41)
+			if !ok {
+				o3_153 = new(MessageLevel22_Level22One2MessageInline41)
+				a2_22.Level22OneOfInline1 = o3_153
+			}
+			if o3_153.Level22One2MessageInline41 == nil {
+				o3_153.Level22One2MessageInline41 = new(MessageLevel41)
+			}
+			p3_186 = o3_153.Level22One2MessageInline41
+		}
+		return nil
+	}
+	init_a2_223 := func() error {
+		if a2_223 == nil {
+			if _err := init_a1_11(); _err != nil {
+				return _err
+			}
+			if a1_11.Level14FMessageInline23 == nil {
+				a1_11.Level14FMessageInline23 = new(MessageLevel23)
+			}
+			a2_223 = a1_11.Level14FMessageInline23
+		}
+		return nil
+	}
+	init_p2_254 := func() error {
+		if p2_254 == nil {
+			if _err := init_a1_11(); _err != nil {
+				return _err
+			}
+			if isLoad_o2_252 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o2_252 = true
+			o2_252, ok := a1_11.Level14OneOfExtern1.(*MessageLevel14_Level14One1MessageInline22)
+			if !ok {
+				o2_252 = new(MessageLevel14_Level14One1MessageInline22)
+				a1_11.Level14OneOfExtern1 = o2_252
+			}
+			if o2_252.Level14One1MessageInline22 == nil {
+				o2_252.Level14One1MessageInline22 = new(MessageLevel22)
+			}
+			p2_254 = o2_252.Level14One1MessageInline22
+		}
+		return nil
+	}
+	init_a3_265 := func() error {
+		if a3_265 == nil {
+			if _err := init_p2_254(); _err != nil {
+				return _err
+			}
+			if p2_254.Level22FMessageInline38 == nil {
+				p2_254.Level22FMessageInline38 = new(MessageLevel38)
+			}
+			a3_265 = p2_254.Level22FMessageInline38
+		}
+		return nil
+	}
+	init_a3_294 := func() error {
+		if a3_294 == nil {
+			if _err := init_p2_254(); _err != nil {
+				return _err
+			}
+			if p2_254.Level22FMessageInline39 == nil {
+				p2_254.Level22FMessageInline39 = new(MessageLevel39)
+			}
+			a3_294 = p2_254.Level22FMessageInline39
+		}
+		return nil
+	}
+	init_p3_325 := func() error {
+		if p3_325 == nil {
+			if _err := init_p2_254(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_323 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_323 = true
+			o3_323, ok := p2_254.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline38)
+			if !ok {
+				o3_323 = new(MessageLevel22_Level22One1MessageInline38)
+				p2_254.Level22OneOfExtern1 = o3_323
+			}
+			if o3_323.Level22One1MessageInline38 == nil {
+				o3_323.Level22One1MessageInline38 = new(MessageLevel38)
+			}
+			p3_325 = o3_323.Level22One1MessageInline38
+		}
+		return nil
+	}
+	init_p3_354 := func() error {
+		if p3_354 == nil {
+			if _err := init_p2_254(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_323 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_323 = true
+			o3_323, ok := p2_254.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline39)
+			if !ok {
+				o3_323 = new(MessageLevel22_Level22One1MessageInline39)
+				p2_254.Level22OneOfExtern1 = o3_323
+			}
+			if o3_323.Level22One1MessageInline39 == nil {
+				o3_323.Level22One1MessageInline39 = new(MessageLevel39)
+			}
+			p3_354 = o3_323.Level22One1MessageInline39
+		}
+		return nil
+	}
+	init_p3_389 := func() error {
+		if p3_389 == nil {
+			if _err := init_p2_254(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_385 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_385 = true
+			o3_385, ok := p2_254.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline40)
+			if !ok {
+				o3_385 = new(MessageLevel22_Level22One2MessageInline40)
+				p2_254.Level22OneOfInline1 = o3_385
+			}
+			if o3_385.Level22One2MessageInline40 == nil {
+				o3_385.Level22One2MessageInline40 = new(MessageLevel40)
+			}
+			p3_389 = o3_385.Level22One2MessageInline40
+		}
+		return nil
+	}
+	init_p3_418 := func() error {
+		if p3_418 == nil {
+			if _err := init_p2_254(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_385 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_385 = true
+			o3_385, ok := p2_254.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline41)
+			if !ok {
+				o3_385 = new(MessageLevel22_Level22One2MessageInline41)
+				p2_254.Level22OneOfInline1 = o3_385
+			}
+			if o3_385.Level22One2MessageInline41 == nil {
+				o3_385.Level22One2MessageInline41 = new(MessageLevel41)
+			}
+			p3_418 = o3_385.Level22One2MessageInline41
+		}
+		return nil
+	}
+	init_p2_455 := func() error {
+		if p2_455 == nil {
+			if _err := init_a1_11(); _err != nil {
+				return _err
+			}
+			if isLoad_o2_252 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o2_252 = true
+			o2_252, ok := a1_11.Level14OneOfExtern1.(*MessageLevel14_Level14One1MessageInline23)
+			if !ok {
+				o2_252 = new(MessageLevel14_Level14One1MessageInline23)
+				a1_11.Level14OneOfExtern1 = o2_252
+			}
+			if o2_252.Level14One1MessageInline23 == nil {
+				o2_252.Level14One1MessageInline23 = new(MessageLevel23)
+			}
+			p2_455 = o2_252.Level14One1MessageInline23
+		}
+		return nil
+	}
+	init_p2_490 := func() error {
+		if p2_490 == nil {
+			if _err := init_a1_11(); _err != nil {
+				return _err
+			}
+			if isLoad_o2_486 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o2_486 = true
+			o2_486, ok := a1_11.Level14OneOfInline1.(*MessageLevel14_Level14One2MessageInline24)
+			if !ok {
+				o2_486 = new(MessageLevel14_Level14One2MessageInline24)
+				a1_11.Level14OneOfInline1 = o2_486
+			}
+			if o2_486.Level14One2MessageInline24 == nil {
+				o2_486.Level14One2MessageInline24 = new(MessageLevel24)
+			}
+			p2_490 = o2_486.Level14One2MessageInline24
+		}
+		return nil
+	}
+	init_p2_519 := func() error {
+		if p2_519 == nil {
+			if _err := init_a1_11(); _err != nil {
+				return _err
+			}
+			if isLoad_o2_486 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o2_486 = true
+			o2_486, ok := a1_11.Level14OneOfInline1.(*MessageLevel14_Level14One2MessageInline25)
+			if !ok {
+				o2_486 = new(MessageLevel14_Level14One2MessageInline25)
+				a1_11.Level14OneOfInline1 = o2_486
+			}
+			if o2_486.Level14One2MessageInline25 == nil {
+				o2_486.Level14One2MessageInline25 = new(MessageLevel25)
+			}
+			p2_519 = o2_486.Level14One2MessageInline25
+		}
+		return nil
+	}
+	init_a1_556 := func() error {
+		if a1_556 == nil {
+			if x.Level06FMessageInline15 == nil {
+				x.Level06FMessageInline15 = new(MessageLevel15)
+			}
+			a1_556 = x.Level06FMessageInline15
+		}
+		return nil
+	}
+	init_p1_587 := func() error {
+		if p1_587 == nil {
+			if isLoad_o1_585 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o1_585 = true
+			o1_585, ok := x.Level06OneOfExtern1.(*MessageLevel06_Level06One1MessageInline14)
+			if !ok {
+				o1_585 = new(MessageLevel06_Level06One1MessageInline14)
+				x.Level06OneOfExtern1 = o1_585
+			}
+			if o1_585.Level06One1MessageInline14 == nil {
+				o1_585.Level06One1MessageInline14 = new(MessageLevel14)
+			}
+			p1_587 = o1_585.Level06One1MessageInline14
+		}
+		return nil
+	}
+	init_a2_598 := func() error {
+		if a2_598 == nil {
+			if _err := init_p1_587(); _err != nil {
+				return _err
+			}
+			if p1_587.Level14FMessageInline22 == nil {
+				p1_587.Level14FMessageInline22 = new(MessageLevel22)
+			}
+			a2_598 = p1_587.Level14FMessageInline22
+		}
+		return nil
+	}
+	init_a3_609 := func() error {
+		if a3_609 == nil {
+			if _err := init_a2_598(); _err != nil {
+				return _err
+			}
+			if a2_598.Level22FMessageInline38 == nil {
+				a2_598.Level22FMessageInline38 = new(MessageLevel38)
+			}
+			a3_609 = a2_598.Level22FMessageInline38
+		}
+		return nil
+	}
+	init_a3_638 := func() error {
+		if a3_638 == nil {
+			if _err := init_a2_598(); _err != nil {
+				return _err
+			}
+			if a2_598.Level22FMessageInline39 == nil {
+				a2_598.Level22FMessageInline39 = new(MessageLevel39)
+			}
+			a3_638 = a2_598.Level22FMessageInline39
+		}
+		return nil
+	}
+	init_p3_669 := func() error {
+		if p3_669 == nil {
+			if _err := init_a2_598(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_667 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_667 = true
+			o3_667, ok := a2_598.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline38)
+			if !ok {
+				o3_667 = new(MessageLevel22_Level22One1MessageInline38)
+				a2_598.Level22OneOfExtern1 = o3_667
+			}
+			if o3_667.Level22One1MessageInline38 == nil {
+				o3_667.Level22One1MessageInline38 = new(MessageLevel38)
+			}
+			p3_669 = o3_667.Level22One1MessageInline38
+		}
+		return nil
+	}
+	init_p3_698 := func() error {
+		if p3_698 == nil {
+			if _err := init_a2_598(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_667 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_667 = true
+			o3_667, ok := a2_598.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline39)
+			if !ok {
+				o3_667 = new(MessageLevel22_Level22One1MessageInline39)
+				a2_598.Level22OneOfExtern1 = o3_667
+			}
+			if o3_667.Level22One1MessageInline39 == nil {
+				o3_667.Level22One1MessageInline39 = new(MessageLevel39)
+			}
+			p3_698 = o3_667.Level22One1MessageInline39
+		}
+		return nil
+	}
+	init_p3_733 := func() error {
+		if p3_733 == nil {
+			if _err := init_a2_598(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_729 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_729 = true
+			o3_729, ok := a2_598.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline40)
+			if !ok {
+				o3_729 = new(MessageLevel22_Level22One2MessageInline40)
+				a2_598.Level22OneOfInline1 = o3_729
+			}
+			if o3_729.Level22One2MessageInline40 == nil {
+				o3_729.Level22One2MessageInline40 = new(MessageLevel40)
+			}
+			p3_733 = o3_729.Level22One2MessageInline40
+		}
+		return nil
+	}
+	init_p3_762 := func() error {
+		if p3_762 == nil {
+			if _err := init_a2_598(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_729 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_729 = true
+			o3_729, ok := a2_598.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline41)
+			if !ok {
+				o3_729 = new(MessageLevel22_Level22One2MessageInline41)
+				a2_598.Level22OneOfInline1 = o3_729
+			}
+			if o3_729.Level22One2MessageInline41 == nil {
+				o3_729.Level22One2MessageInline41 = new(MessageLevel41)
+			}
+			p3_762 = o3_729.Level22One2MessageInline41
+		}
+		return nil
+	}
+	init_a2_799 := func() error {
+		if a2_799 == nil {
+			if _err := init_p1_587(); _err != nil {
+				return _err
+			}
+			if p1_587.Level14FMessageInline23 == nil {
+				p1_587.Level14FMessageInline23 = new(MessageLevel23)
+			}
+			a2_799 = p1_587.Level14FMessageInline23
+		}
+		return nil
+	}
+	init_p2_830 := func() error {
+		if p2_830 == nil {
+			if _err := init_p1_587(); _err != nil {
+				return _err
+			}
+			if isLoad_o2_828 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o2_828 = true
+			o2_828, ok := p1_587.Level14OneOfExtern1.(*MessageLevel14_Level14One1MessageInline22)
+			if !ok {
+				o2_828 = new(MessageLevel14_Level14One1MessageInline22)
+				p1_587.Level14OneOfExtern1 = o2_828
+			}
+			if o2_828.Level14One1MessageInline22 == nil {
+				o2_828.Level14One1MessageInline22 = new(MessageLevel22)
+			}
+			p2_830 = o2_828.Level14One1MessageInline22
+		}
+		return nil
+	}
+	init_a3_841 := func() error {
+		if a3_841 == nil {
+			if _err := init_p2_830(); _err != nil {
+				return _err
+			}
+			if p2_830.Level22FMessageInline38 == nil {
+				p2_830.Level22FMessageInline38 = new(MessageLevel38)
+			}
+			a3_841 = p2_830.Level22FMessageInline38
+		}
+		return nil
+	}
+	init_a3_870 := func() error {
+		if a3_870 == nil {
+			if _err := init_p2_830(); _err != nil {
+				return _err
+			}
+			if p2_830.Level22FMessageInline39 == nil {
+				p2_830.Level22FMessageInline39 = new(MessageLevel39)
+			}
+			a3_870 = p2_830.Level22FMessageInline39
+		}
+		return nil
+	}
+	init_p3_901 := func() error {
+		if p3_901 == nil {
+			if _err := init_p2_830(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_899 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_899 = true
+			o3_899, ok := p2_830.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline38)
+			if !ok {
+				o3_899 = new(MessageLevel22_Level22One1MessageInline38)
+				p2_830.Level22OneOfExtern1 = o3_899
+			}
+			if o3_899.Level22One1MessageInline38 == nil {
+				o3_899.Level22One1MessageInline38 = new(MessageLevel38)
+			}
+			p3_901 = o3_899.Level22One1MessageInline38
+		}
+		return nil
+	}
+	init_p3_930 := func() error {
+		if p3_930 == nil {
+			if _err := init_p2_830(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_899 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_899 = true
+			o3_899, ok := p2_830.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline39)
+			if !ok {
+				o3_899 = new(MessageLevel22_Level22One1MessageInline39)
+				p2_830.Level22OneOfExtern1 = o3_899
+			}
+			if o3_899.Level22One1MessageInline39 == nil {
+				o3_899.Level22One1MessageInline39 = new(MessageLevel39)
+			}
+			p3_930 = o3_899.Level22One1MessageInline39
+		}
+		return nil
+	}
+	init_p3_965 := func() error {
+		if p3_965 == nil {
+			if _err := init_p2_830(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_961 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_961 = true
+			o3_961, ok := p2_830.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline40)
+			if !ok {
+				o3_961 = new(MessageLevel22_Level22One2MessageInline40)
+				p2_830.Level22OneOfInline1 = o3_961
+			}
+			if o3_961.Level22One2MessageInline40 == nil {
+				o3_961.Level22One2MessageInline40 = new(MessageLevel40)
+			}
+			p3_965 = o3_961.Level22One2MessageInline40
+		}
+		return nil
+	}
+	init_p3_994 := func() error {
+		if p3_994 == nil {
+			if _err := init_p2_830(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_961 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_961 = true
+			o3_961, ok := p2_830.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline41)
+			if !ok {
+				o3_961 = new(MessageLevel22_Level22One2MessageInline41)
+				p2_830.Level22OneOfInline1 = o3_961
+			}
+			if o3_961.Level22One2MessageInline41 == nil {
+				o3_961.Level22One2MessageInline41 = new(MessageLevel41)
+			}
+			p3_994 = o3_961.Level22One2MessageInline41
+		}
+		return nil
+	}
+	init_p2_1031 := func() error {
+		if p2_1031 == nil {
+			if _err := init_p1_587(); _err != nil {
+				return _err
+			}
+			if isLoad_o2_828 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o2_828 = true
+			o2_828, ok := p1_587.Level14OneOfExtern1.(*MessageLevel14_Level14One1MessageInline23)
+			if !ok {
+				o2_828 = new(MessageLevel14_Level14One1MessageInline23)
+				p1_587.Level14OneOfExtern1 = o2_828
+			}
+			if o2_828.Level14One1MessageInline23 == nil {
+				o2_828.Level14One1MessageInline23 = new(MessageLevel23)
+			}
+			p2_1031 = o2_828.Level14One1MessageInline23
+		}
+		return nil
+	}
+	init_p2_1066 := func() error {
+		if p2_1066 == nil {
+			if _err := init_p1_587(); _err != nil {
+				return _err
+			}
+			if isLoad_o2_1062 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o2_1062 = true
+			o2_1062, ok := p1_587.Level14OneOfInline1.(*MessageLevel14_Level14One2MessageInline24)
+			if !ok {
+				o2_1062 = new(MessageLevel14_Level14One2MessageInline24)
+				p1_587.Level14OneOfInline1 = o2_1062
+			}
+			if o2_1062.Level14One2MessageInline24 == nil {
+				o2_1062.Level14One2MessageInline24 = new(MessageLevel24)
+			}
+			p2_1066 = o2_1062.Level14One2MessageInline24
+		}
+		return nil
+	}
+	init_p2_1095 := func() error {
+		if p2_1095 == nil {
+			if _err := init_p1_587(); _err != nil {
+				return _err
+			}
+			if isLoad_o2_1062 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o2_1062 = true
+			o2_1062, ok := p1_587.Level14OneOfInline1.(*MessageLevel14_Level14One2MessageInline25)
+			if !ok {
+				o2_1062 = new(MessageLevel14_Level14One2MessageInline25)
+				p1_587.Level14OneOfInline1 = o2_1062
+			}
+			if o2_1062.Level14One2MessageInline25 == nil {
+				o2_1062.Level14One2MessageInline25 = new(MessageLevel25)
+			}
+			p2_1095 = o2_1062.Level14One2MessageInline25
+		}
+		return nil
+	}
+	init_p1_1132 := func() error {
+		if p1_1132 == nil {
+			if isLoad_o1_585 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o1_585 = true
+			o1_585, ok := x.Level06OneOfExtern1.(*MessageLevel06_Level06One1MessageInline15)
+			if !ok {
+				o1_585 = new(MessageLevel06_Level06One1MessageInline15)
+				x.Level06OneOfExtern1 = o1_585
+			}
+			if o1_585.Level06One1MessageInline15 == nil {
+				o1_585.Level06One1MessageInline15 = new(MessageLevel15)
+			}
+			p1_1132 = o1_585.Level06One1MessageInline15
+		}
+		return nil
+	}
+	init_p1_1167 := func() error {
+		if p1_1167 == nil {
+			if isLoad_o1_1163 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o1_1163 = true
+			o1_1163, ok := x.Level06OneOfInline1.(*MessageLevel06_Level4One2MessageInline16)
+			if !ok {
+				o1_1163 = new(MessageLevel06_Level4One2MessageInline16)
+				x.Level06OneOfInline1 = o1_1163
+			}
+			if o1_1163.Level4One2MessageInline16 == nil {
+				o1_1163.Level4One2MessageInline16 = new(MessageLevel16)
+			}
+			p1_1167 = o1_1163.Level4One2MessageInline16
+		}
+		return nil
+	}
+	init_a2_1178 := func() error {
+		if a2_1178 == nil {
+			if _err := init_p1_1167(); _err != nil {
+				return _err
+			}
+			if p1_1167.Level16FMessageInline26 == nil {
+				p1_1167.Level16FMessageInline26 = new(MessageLevel26)
+			}
+			a2_1178 = p1_1167.Level16FMessageInline26
+		}
+		return nil
+	}
+	init_a3_1189 := func() error {
+		if a3_1189 == nil {
+			if _err := init_a2_1178(); _err != nil {
+				return _err
+			}
+			if a2_1178.Level26FMessageInline30 == nil {
+				a2_1178.Level26FMessageInline30 = new(MessageLevel30)
+			}
+			a3_1189 = a2_1178.Level26FMessageInline30
+		}
+		return nil
+	}
+	init_a3_1218 := func() error {
+		if a3_1218 == nil {
+			if _err := init_a2_1178(); _err != nil {
+				return _err
+			}
+			if a2_1178.Level26FMessageInline31 == nil {
+				a2_1178.Level26FMessageInline31 = new(MessageLevel31)
+			}
+			a3_1218 = a2_1178.Level26FMessageInline31
+		}
+		return nil
+	}
+	init_p3_1249 := func() error {
+		if p3_1249 == nil {
+			if _err := init_a2_1178(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_1247 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_1247 = true
+			o3_1247, ok := a2_1178.Level26OneOfExtern1.(*MessageLevel26_Level26One1MessageInline30)
+			if !ok {
+				o3_1247 = new(MessageLevel26_Level26One1MessageInline30)
+				a2_1178.Level26OneOfExtern1 = o3_1247
+			}
+			if o3_1247.Level26One1MessageInline30 == nil {
+				o3_1247.Level26One1MessageInline30 = new(MessageLevel30)
+			}
+			p3_1249 = o3_1247.Level26One1MessageInline30
+		}
+		return nil
+	}
+	init_p3_1278 := func() error {
+		if p3_1278 == nil {
+			if _err := init_a2_1178(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_1247 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_1247 = true
+			o3_1247, ok := a2_1178.Level26OneOfExtern1.(*MessageLevel26_Level26One1MessageInline31)
+			if !ok {
+				o3_1247 = new(MessageLevel26_Level26One1MessageInline31)
+				a2_1178.Level26OneOfExtern1 = o3_1247
+			}
+			if o3_1247.Level26One1MessageInline31 == nil {
+				o3_1247.Level26One1MessageInline31 = new(MessageLevel31)
+			}
+			p3_1278 = o3_1247.Level26One1MessageInline31
+		}
+		return nil
+	}
+	init_p3_1313 := func() error {
+		if p3_1313 == nil {
+			if _err := init_a2_1178(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_1309 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_1309 = true
+			o3_1309, ok := a2_1178.Level26OneOfInline1.(*MessageLevel26_Level26One2MessageInline32)
+			if !ok {
+				o3_1309 = new(MessageLevel26_Level26One2MessageInline32)
+				a2_1178.Level26OneOfInline1 = o3_1309
+			}
+			if o3_1309.Level26One2MessageInline32 == nil {
+				o3_1309.Level26One2MessageInline32 = new(MessageLevel32)
+			}
+			p3_1313 = o3_1309.Level26One2MessageInline32
+		}
+		return nil
+	}
+	init_p3_1342 := func() error {
+		if p3_1342 == nil {
+			if _err := init_a2_1178(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_1309 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_1309 = true
+			o3_1309, ok := a2_1178.Level26OneOfInline1.(*MessageLevel26_Level26One2MessageInline33)
+			if !ok {
+				o3_1309 = new(MessageLevel26_Level26One2MessageInline33)
+				a2_1178.Level26OneOfInline1 = o3_1309
+			}
+			if o3_1309.Level26One2MessageInline33 == nil {
+				o3_1309.Level26One2MessageInline33 = new(MessageLevel33)
+			}
+			p3_1342 = o3_1309.Level26One2MessageInline33
+		}
+		return nil
+	}
+	init_a2_1379 := func() error {
+		if a2_1379 == nil {
+			if _err := init_p1_1167(); _err != nil {
+				return _err
+			}
+			if p1_1167.Level16FMessageInline27 == nil {
+				p1_1167.Level16FMessageInline27 = new(MessageLevel27)
+			}
+			a2_1379 = p1_1167.Level16FMessageInline27
+		}
+		return nil
+	}
+	init_p2_1410 := func() error {
+		if p2_1410 == nil {
+			if _err := init_p1_1167(); _err != nil {
+				return _err
+			}
+			if isLoad_o2_1408 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o2_1408 = true
+			o2_1408, ok := p1_1167.Level16OneOfExtern1.(*MessageLevel16_Level16One1MessageInline26)
+			if !ok {
+				o2_1408 = new(MessageLevel16_Level16One1MessageInline26)
+				p1_1167.Level16OneOfExtern1 = o2_1408
+			}
+			if o2_1408.Level16One1MessageInline26 == nil {
+				o2_1408.Level16One1MessageInline26 = new(MessageLevel26)
+			}
+			p2_1410 = o2_1408.Level16One1MessageInline26
+		}
+		return nil
+	}
+	init_a3_1421 := func() error {
+		if a3_1421 == nil {
+			if _err := init_p2_1410(); _err != nil {
+				return _err
+			}
+			if p2_1410.Level26FMessageInline30 == nil {
+				p2_1410.Level26FMessageInline30 = new(MessageLevel30)
+			}
+			a3_1421 = p2_1410.Level26FMessageInline30
+		}
+		return nil
+	}
+	init_a3_1450 := func() error {
+		if a3_1450 == nil {
+			if _err := init_p2_1410(); _err != nil {
+				return _err
+			}
+			if p2_1410.Level26FMessageInline31 == nil {
+				p2_1410.Level26FMessageInline31 = new(MessageLevel31)
+			}
+			a3_1450 = p2_1410.Level26FMessageInline31
+		}
+		return nil
+	}
+	init_p3_1481 := func() error {
+		if p3_1481 == nil {
+			if _err := init_p2_1410(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_1479 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_1479 = true
+			o3_1479, ok := p2_1410.Level26OneOfExtern1.(*MessageLevel26_Level26One1MessageInline30)
+			if !ok {
+				o3_1479 = new(MessageLevel26_Level26One1MessageInline30)
+				p2_1410.Level26OneOfExtern1 = o3_1479
+			}
+			if o3_1479.Level26One1MessageInline30 == nil {
+				o3_1479.Level26One1MessageInline30 = new(MessageLevel30)
+			}
+			p3_1481 = o3_1479.Level26One1MessageInline30
+		}
+		return nil
+	}
+	init_p3_1510 := func() error {
+		if p3_1510 == nil {
+			if _err := init_p2_1410(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_1479 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_1479 = true
+			o3_1479, ok := p2_1410.Level26OneOfExtern1.(*MessageLevel26_Level26One1MessageInline31)
+			if !ok {
+				o3_1479 = new(MessageLevel26_Level26One1MessageInline31)
+				p2_1410.Level26OneOfExtern1 = o3_1479
+			}
+			if o3_1479.Level26One1MessageInline31 == nil {
+				o3_1479.Level26One1MessageInline31 = new(MessageLevel31)
+			}
+			p3_1510 = o3_1479.Level26One1MessageInline31
+		}
+		return nil
+	}
+	init_p3_1545 := func() error {
+		if p3_1545 == nil {
+			if _err := init_p2_1410(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_1541 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_1541 = true
+			o3_1541, ok := p2_1410.Level26OneOfInline1.(*MessageLevel26_Level26One2MessageInline32)
+			if !ok {
+				o3_1541 = new(MessageLevel26_Level26One2MessageInline32)
+				p2_1410.Level26OneOfInline1 = o3_1541
+			}
+			if o3_1541.Level26One2MessageInline32 == nil {
+				o3_1541.Level26One2MessageInline32 = new(MessageLevel32)
+			}
+			p3_1545 = o3_1541.Level26One2MessageInline32
+		}
+		return nil
+	}
+	init_p3_1574 := func() error {
+		if p3_1574 == nil {
+			if _err := init_p2_1410(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_1541 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_1541 = true
+			o3_1541, ok := p2_1410.Level26OneOfInline1.(*MessageLevel26_Level26One2MessageInline33)
+			if !ok {
+				o3_1541 = new(MessageLevel26_Level26One2MessageInline33)
+				p2_1410.Level26OneOfInline1 = o3_1541
+			}
+			if o3_1541.Level26One2MessageInline33 == nil {
+				o3_1541.Level26One2MessageInline33 = new(MessageLevel33)
+			}
+			p3_1574 = o3_1541.Level26One2MessageInline33
+		}
+		return nil
+	}
+	init_p2_1611 := func() error {
+		if p2_1611 == nil {
+			if _err := init_p1_1167(); _err != nil {
+				return _err
+			}
+			if isLoad_o2_1408 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o2_1408 = true
+			o2_1408, ok := p1_1167.Level16OneOfExtern1.(*MessageLevel16_Level16One1MessageInline27)
+			if !ok {
+				o2_1408 = new(MessageLevel16_Level16One1MessageInline27)
+				p1_1167.Level16OneOfExtern1 = o2_1408
+			}
+			if o2_1408.Level16One1MessageInline27 == nil {
+				o2_1408.Level16One1MessageInline27 = new(MessageLevel27)
+			}
+			p2_1611 = o2_1408.Level16One1MessageInline27
+		}
+		return nil
+	}
+	init_p2_1646 := func() error {
+		if p2_1646 == nil {
+			if _err := init_p1_1167(); _err != nil {
+				return _err
+			}
+			if isLoad_o2_1642 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o2_1642 = true
+			o2_1642, ok := p1_1167.Level16OneOfInline1.(*MessageLevel16_Level16One2MessageInline28)
+			if !ok {
+				o2_1642 = new(MessageLevel16_Level16One2MessageInline28)
+				p1_1167.Level16OneOfInline1 = o2_1642
+			}
+			if o2_1642.Level16One2MessageInline28 == nil {
+				o2_1642.Level16One2MessageInline28 = new(MessageLevel28)
+			}
+			p2_1646 = o2_1642.Level16One2MessageInline28
+		}
+		return nil
+	}
+	init_a3_1657 := func() error {
+		if a3_1657 == nil {
+			if _err := init_p2_1646(); _err != nil {
+				return _err
+			}
+			if p2_1646.Level28FMessageInline34 == nil {
+				p2_1646.Level28FMessageInline34 = new(MessageLevel34)
+			}
+			a3_1657 = p2_1646.Level28FMessageInline34
+		}
+		return nil
+	}
+	init_a3_1686 := func() error {
+		if a3_1686 == nil {
+			if _err := init_p2_1646(); _err != nil {
+				return _err
+			}
+			if p2_1646.Level28FMessageInline35 == nil {
+				p2_1646.Level28FMessageInline35 = new(MessageLevel35)
+			}
+			a3_1686 = p2_1646.Level28FMessageInline35
+		}
+		return nil
+	}
+	init_p3_1717 := func() error {
+		if p3_1717 == nil {
+			if _err := init_p2_1646(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_1715 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_1715 = true
+			o3_1715, ok := p2_1646.Level28OneOfExtern1.(*MessageLevel28_Level28One1MessageInline34)
+			if !ok {
+				o3_1715 = new(MessageLevel28_Level28One1MessageInline34)
+				p2_1646.Level28OneOfExtern1 = o3_1715
+			}
+			if o3_1715.Level28One1MessageInline34 == nil {
+				o3_1715.Level28One1MessageInline34 = new(MessageLevel34)
+			}
+			p3_1717 = o3_1715.Level28One1MessageInline34
+		}
+		return nil
+	}
+	init_p3_1746 := func() error {
+		if p3_1746 == nil {
+			if _err := init_p2_1646(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_1715 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_1715 = true
+			o3_1715, ok := p2_1646.Level28OneOfExtern1.(*MessageLevel28_Level28One1MessageInline35)
+			if !ok {
+				o3_1715 = new(MessageLevel28_Level28One1MessageInline35)
+				p2_1646.Level28OneOfExtern1 = o3_1715
+			}
+			if o3_1715.Level28One1MessageInline35 == nil {
+				o3_1715.Level28One1MessageInline35 = new(MessageLevel35)
+			}
+			p3_1746 = o3_1715.Level28One1MessageInline35
+		}
+		return nil
+	}
+	init_p3_1781 := func() error {
+		if p3_1781 == nil {
+			if _err := init_p2_1646(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_1777 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_1777 = true
+			o3_1777, ok := p2_1646.Level28OneOfInline1.(*MessageLevel28_Level28One2MessageInline36)
+			if !ok {
+				o3_1777 = new(MessageLevel28_Level28One2MessageInline36)
+				p2_1646.Level28OneOfInline1 = o3_1777
+			}
+			if o3_1777.Level28One2MessageInline36 == nil {
+				o3_1777.Level28One2MessageInline36 = new(MessageLevel36)
+			}
+			p3_1781 = o3_1777.Level28One2MessageInline36
+		}
+		return nil
+	}
+	init_p3_1810 := func() error {
+		if p3_1810 == nil {
+			if _err := init_p2_1646(); _err != nil {
+				return _err
+			}
+			if isLoad_o3_1777 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o3_1777 = true
+			o3_1777, ok := p2_1646.Level28OneOfInline1.(*MessageLevel28_Level28One2MessageInline37)
+			if !ok {
+				o3_1777 = new(MessageLevel28_Level28One2MessageInline37)
+				p2_1646.Level28OneOfInline1 = o3_1777
+			}
+			if o3_1777.Level28One2MessageInline37 == nil {
+				o3_1777.Level28One2MessageInline37 = new(MessageLevel37)
+			}
+			p3_1810 = o3_1777.Level28One2MessageInline37
+		}
+		return nil
+	}
+	init_p2_1847 := func() error {
+		if p2_1847 == nil {
+			if _err := init_p1_1167(); _err != nil {
+				return _err
+			}
+			if isLoad_o2_1642 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o2_1642 = true
+			o2_1642, ok := p1_1167.Level16OneOfInline1.(*MessageLevel16_Level16One2MessageInline29)
+			if !ok {
+				o2_1642 = new(MessageLevel16_Level16One2MessageInline29)
+				p1_1167.Level16OneOfInline1 = o2_1642
+			}
+			if o2_1642.Level16One2MessageInline29 == nil {
+				o2_1642.Level16One2MessageInline29 = new(MessageLevel29)
+			}
+			p2_1847 = o2_1642.Level16One2MessageInline29
+		}
+		return nil
+	}
+	init_p1_1884 := func() error {
+		if p1_1884 == nil {
+			if isLoad_o1_1163 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o1_1163 = true
+			o1_1163, ok := x.Level06OneOfInline1.(*MessageLevel06_Level4One2MessageInline17)
+			if !ok {
+				o1_1163 = new(MessageLevel06_Level4One2MessageInline17)
+				x.Level06OneOfInline1 = o1_1163
+			}
+			if o1_1163.Level4One2MessageInline17 == nil {
+				o1_1163.Level4One2MessageInline17 = new(MessageLevel17)
+			}
+			p1_1884 = o1_1163.Level4One2MessageInline17
 		}
 		return nil
 	}

@@ -53,13 +53,13 @@ func (x *InlineMessageCycle3) UnmarshalJSON(b []byte) error {
 	if isNULL, err = dec.BeforeScanJSON(); err != nil || isNULL {
 		return err
 	}
-	// declares variables to simple to reference parent field
+	// declares variables for simple to reference parent field
 	var (
 		a1_3 *InlineMessageCycle3_EmbedMessage1
 		a2_6 *InlineMessageCycle3_EmbedMessage2
 	)
 
-	// declares anonymous to init the parent field.
+	// declares anonymous func to init the parent field.
 	init_a1_3 := func() error {
 		if a1_3 == nil {
 			if x.FMessage1 == nil {
@@ -189,12 +189,12 @@ func (x *InlineMessageCycle3_EmbedMessage1) UnmarshalJSON(b []byte) error {
 	if isNULL, err = dec.BeforeScanJSON(); err != nil || isNULL {
 		return err
 	}
-	// declares variables to simple to reference parent field
+	// declares variables for simple to reference parent field
 	var (
 		a1_3 *InlineMessageCycle3_EmbedMessage2
 	)
 
-	// declares anonymous to init the parent field.
+	// declares anonymous func to init the parent field.
 	init_a1_3 := func() error {
 		if a1_3 == nil {
 			if x.FMessage2 == nil {

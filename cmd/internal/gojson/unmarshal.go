@@ -245,37 +245,35 @@ func (ul *Unmarshal) declareLocalVariables(fieldSets []*FieldSet) {
 	}
 
 	// local variables for reference the parent field.
-	if inlineFields := loadInlineFields(fieldSets); len(inlineFields) != 0 {
-		ul.g.P("// declares variables to simple to reference parent field")
+	if parentFields := loadParentFields(fieldSets); len(parentFields) != 0 {
+		ul.g.P("// declares variables for simple to reference parent field")
 		ul.g.P("var (")
-		for _, fieldSet := range inlineFields {
-			parent := fieldSet.ParentField()
+		for _, parent := range parentFields {
 			ul.g.P(parent.Alias() + " " + pkfield.FieldGoType(ul.g, parent.Field))
 		}
 		ul.g.P(")")
 		ul.g.P("")
-		ul.g.P("// declares anonymous to init the parent field.")
-		for _, fieldSet := range inlineFields {
-			ul.declareFuncInitParentField(fieldSet)
+		ul.g.P("// declares anonymous func to init the parent field.")
+		for _, parent := range parentFields {
+			ul.declareFuncInitParentField(parent)
 		}
 		ul.g.P("")
 	}
 }
 
-func (ul *Unmarshal) declareFuncInitParentField(fieldSet *FieldSet) {
-	parentField := fieldSet.ParentField()
-	parentAlias := parentField.Alias()
-	parentValue := parentField.Value()
+func (ul *Unmarshal) declareFuncInitParentField(parent *FieldSet) {
+	parentAlias := parent.Alias()
+	parentValue := parent.Value()
 
-	ul.g.P(ul.genFuncNameInitParent(fieldSet), " := func() error {") // func started
+	ul.g.P(ul.genFuncNameInitParent(parent), " := func() error {") // func started
 	{
 		ul.g.P("if ", parentAlias, " == nil {") // if started
 		{
-			ul.initParentFieldForAnonymousFunc(parentField)
-			ul.prepareInitOneOfPart(parentField)
+			ul.initParentFieldForAnonymousFunc(parent)
+			ul.prepareInitOneOfPart(parent)
 			ul.g.P("if ", parentValue, " == nil {")
 			// Init the parent value.
-			ul.g.P("    ", parentValue, " =  new(", fieldGoType(ul.g, parentField.Field), ")")
+			ul.g.P("    ", parentValue, " =  new(", fieldGoType(ul.g, parent.Field), ")")
 			ul.g.P("}")
 			// Init the parentAlias
 			ul.g.P(parentAlias, " = ", parentValue)
@@ -294,7 +292,7 @@ func (ul *Unmarshal) initParentFieldForAnonymousFunc(fieldSet *FieldSet) {
 	//if fieldSet.IsOneOfPart && !fieldSet.OneOfField().OneOfIsInline() {
 	//	return
 	//}
-	ul.g.P("if _err := ", ul.genFuncNameInitParent(fieldSet), "(); _err != nil {")
+	ul.g.P("if _err := ", ul.genFuncNameInitParent(fieldSet.ParentField()), "(); _err != nil {")
 	ul.g.P("    return _err")
 	ul.g.P("}")
 }
@@ -305,7 +303,7 @@ func (ul *Unmarshal) prepareInitParentField(fieldSet *FieldSet) {
 	if fieldSet.IsOneOfPart && !fieldSet.OneOfField().OneOfIsInline() {
 		return
 	}
-	ul.g.P("if err = ", ul.genFuncNameInitParent(fieldSet), "(); err != nil {")
+	ul.g.P("if err = ", ul.genFuncNameInitParent(fieldSet.ParentField()), "(); err != nil {")
 	ul.g.P("    return err")
 	ul.g.P("}")
 }
@@ -340,8 +338,8 @@ func (ul *Unmarshal) genVarNameOneOfIsLoad(fieldSet *FieldSet) string {
 	}
 	return "isLoad_" + fieldSet.Alias()
 }
-func (ul *Unmarshal) genFuncNameInitParent(fieldSet *FieldSet) string {
-	parent := fieldSet.ParentField()
+func (ul *Unmarshal) genFuncNameInitParent(parent *FieldSet) string {
+	//parent := fieldSet.ParentField()
 	if parent == nil {
 		panic("unknown logic error when generate func name for init parent field")
 	}

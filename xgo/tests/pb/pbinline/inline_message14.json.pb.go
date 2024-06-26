@@ -1513,218 +1513,29 @@ func (x *MessageLevel14) UnmarshalJSON(b []byte) error {
 		isLoad_o1_539 bool
 	)
 
-	// declares variables to simple to reference parent field
+	// declares variables for simple to reference parent field
 	var (
-		p1_508 *MessageLevel25
-		p1_479 *MessageLevel24
-		p1_444 *MessageLevel23
-		p1_243 *MessageLevel22
-		p2_407 *MessageLevel41
-		p2_378 *MessageLevel40
-		p2_343 *MessageLevel39
-		p2_314 *MessageLevel38
-		a2_283 *MessageLevel39
-		a2_254 *MessageLevel38
-		a1_212 *MessageLevel23
 		a1_11  *MessageLevel22
-		p2_175 *MessageLevel41
-		p2_146 *MessageLevel40
-		p2_111 *MessageLevel39
-		p2_82  *MessageLevel38
-		a2_51  *MessageLevel39
 		a2_22  *MessageLevel38
+		a2_51  *MessageLevel39
+		p2_82  *MessageLevel38
+		p2_111 *MessageLevel39
+		p2_146 *MessageLevel40
+		p2_175 *MessageLevel41
+		a1_212 *MessageLevel23
+		p1_243 *MessageLevel22
+		a2_254 *MessageLevel38
+		a2_283 *MessageLevel39
+		p2_314 *MessageLevel38
+		p2_343 *MessageLevel39
+		p2_378 *MessageLevel40
+		p2_407 *MessageLevel41
+		p1_444 *MessageLevel23
+		p1_479 *MessageLevel24
+		p1_508 *MessageLevel25
 	)
 
-	// declares anonymous to init the parent field.
-	init_p1_508 := func() error {
-		if p1_508 == nil {
-			if isLoad_o1_475 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o1_475 = true
-			o1_475, ok := x.Level14OneOfInline1.(*MessageLevel14_Level14One2MessageInline25)
-			if !ok {
-				o1_475 = new(MessageLevel14_Level14One2MessageInline25)
-				x.Level14OneOfInline1 = o1_475
-			}
-			if o1_475.Level14One2MessageInline25 == nil {
-				o1_475.Level14One2MessageInline25 = new(MessageLevel25)
-			}
-			p1_508 = o1_475.Level14One2MessageInline25
-		}
-		return nil
-	}
-	init_p1_479 := func() error {
-		if p1_479 == nil {
-			if isLoad_o1_475 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o1_475 = true
-			o1_475, ok := x.Level14OneOfInline1.(*MessageLevel14_Level14One2MessageInline24)
-			if !ok {
-				o1_475 = new(MessageLevel14_Level14One2MessageInline24)
-				x.Level14OneOfInline1 = o1_475
-			}
-			if o1_475.Level14One2MessageInline24 == nil {
-				o1_475.Level14One2MessageInline24 = new(MessageLevel24)
-			}
-			p1_479 = o1_475.Level14One2MessageInline24
-		}
-		return nil
-	}
-	init_p1_444 := func() error {
-		if p1_444 == nil {
-			if isLoad_o1_241 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o1_241 = true
-			o1_241, ok := x.Level14OneOfExtern1.(*MessageLevel14_Level14One1MessageInline23)
-			if !ok {
-				o1_241 = new(MessageLevel14_Level14One1MessageInline23)
-				x.Level14OneOfExtern1 = o1_241
-			}
-			if o1_241.Level14One1MessageInline23 == nil {
-				o1_241.Level14One1MessageInline23 = new(MessageLevel23)
-			}
-			p1_444 = o1_241.Level14One1MessageInline23
-		}
-		return nil
-	}
-	init_p1_243 := func() error {
-		if p1_243 == nil {
-			if isLoad_o1_241 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o1_241 = true
-			o1_241, ok := x.Level14OneOfExtern1.(*MessageLevel14_Level14One1MessageInline22)
-			if !ok {
-				o1_241 = new(MessageLevel14_Level14One1MessageInline22)
-				x.Level14OneOfExtern1 = o1_241
-			}
-			if o1_241.Level14One1MessageInline22 == nil {
-				o1_241.Level14One1MessageInline22 = new(MessageLevel22)
-			}
-			p1_243 = o1_241.Level14One1MessageInline22
-		}
-		return nil
-	}
-	init_p2_407 := func() error {
-		if p2_407 == nil {
-			if _err := init_p1_243(); _err != nil {
-				return _err
-			}
-			if isLoad_o2_374 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o2_374 = true
-			o2_374, ok := p1_243.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline41)
-			if !ok {
-				o2_374 = new(MessageLevel22_Level22One2MessageInline41)
-				p1_243.Level22OneOfInline1 = o2_374
-			}
-			if o2_374.Level22One2MessageInline41 == nil {
-				o2_374.Level22One2MessageInline41 = new(MessageLevel41)
-			}
-			p2_407 = o2_374.Level22One2MessageInline41
-		}
-		return nil
-	}
-	init_p2_378 := func() error {
-		if p2_378 == nil {
-			if _err := init_p1_243(); _err != nil {
-				return _err
-			}
-			if isLoad_o2_374 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o2_374 = true
-			o2_374, ok := p1_243.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline40)
-			if !ok {
-				o2_374 = new(MessageLevel22_Level22One2MessageInline40)
-				p1_243.Level22OneOfInline1 = o2_374
-			}
-			if o2_374.Level22One2MessageInline40 == nil {
-				o2_374.Level22One2MessageInline40 = new(MessageLevel40)
-			}
-			p2_378 = o2_374.Level22One2MessageInline40
-		}
-		return nil
-	}
-	init_p2_343 := func() error {
-		if p2_343 == nil {
-			if _err := init_p1_243(); _err != nil {
-				return _err
-			}
-			if isLoad_o2_312 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o2_312 = true
-			o2_312, ok := p1_243.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline39)
-			if !ok {
-				o2_312 = new(MessageLevel22_Level22One1MessageInline39)
-				p1_243.Level22OneOfExtern1 = o2_312
-			}
-			if o2_312.Level22One1MessageInline39 == nil {
-				o2_312.Level22One1MessageInline39 = new(MessageLevel39)
-			}
-			p2_343 = o2_312.Level22One1MessageInline39
-		}
-		return nil
-	}
-	init_p2_314 := func() error {
-		if p2_314 == nil {
-			if _err := init_p1_243(); _err != nil {
-				return _err
-			}
-			if isLoad_o2_312 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o2_312 = true
-			o2_312, ok := p1_243.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline38)
-			if !ok {
-				o2_312 = new(MessageLevel22_Level22One1MessageInline38)
-				p1_243.Level22OneOfExtern1 = o2_312
-			}
-			if o2_312.Level22One1MessageInline38 == nil {
-				o2_312.Level22One1MessageInline38 = new(MessageLevel38)
-			}
-			p2_314 = o2_312.Level22One1MessageInline38
-		}
-		return nil
-	}
-	init_a2_283 := func() error {
-		if a2_283 == nil {
-			if _err := init_p1_243(); _err != nil {
-				return _err
-			}
-			if p1_243.Level22FMessageInline39 == nil {
-				p1_243.Level22FMessageInline39 = new(MessageLevel39)
-			}
-			a2_283 = p1_243.Level22FMessageInline39
-		}
-		return nil
-	}
-	init_a2_254 := func() error {
-		if a2_254 == nil {
-			if _err := init_p1_243(); _err != nil {
-				return _err
-			}
-			if p1_243.Level22FMessageInline38 == nil {
-				p1_243.Level22FMessageInline38 = new(MessageLevel38)
-			}
-			a2_254 = p1_243.Level22FMessageInline38
-		}
-		return nil
-	}
-	init_a1_212 := func() error {
-		if a1_212 == nil {
-			if x.Level14FMessageInline23 == nil {
-				x.Level14FMessageInline23 = new(MessageLevel23)
-			}
-			a1_212 = x.Level14FMessageInline23
-		}
-		return nil
-	}
+	// declares anonymous func to init the parent field.
 	init_a1_11 := func() error {
 		if a1_11 == nil {
 			if x.Level14FMessageInline22 == nil {
@@ -1734,66 +1545,27 @@ func (x *MessageLevel14) UnmarshalJSON(b []byte) error {
 		}
 		return nil
 	}
-	init_p2_175 := func() error {
-		if p2_175 == nil {
+	init_a2_22 := func() error {
+		if a2_22 == nil {
 			if _err := init_a1_11(); _err != nil {
 				return _err
 			}
-			if isLoad_o2_142 {
-				return jsondecoder.ErrOneOfConflict(dec)
+			if a1_11.Level22FMessageInline38 == nil {
+				a1_11.Level22FMessageInline38 = new(MessageLevel38)
 			}
-			isLoad_o2_142 = true
-			o2_142, ok := a1_11.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline41)
-			if !ok {
-				o2_142 = new(MessageLevel22_Level22One2MessageInline41)
-				a1_11.Level22OneOfInline1 = o2_142
-			}
-			if o2_142.Level22One2MessageInline41 == nil {
-				o2_142.Level22One2MessageInline41 = new(MessageLevel41)
-			}
-			p2_175 = o2_142.Level22One2MessageInline41
+			a2_22 = a1_11.Level22FMessageInline38
 		}
 		return nil
 	}
-	init_p2_146 := func() error {
-		if p2_146 == nil {
+	init_a2_51 := func() error {
+		if a2_51 == nil {
 			if _err := init_a1_11(); _err != nil {
 				return _err
 			}
-			if isLoad_o2_142 {
-				return jsondecoder.ErrOneOfConflict(dec)
+			if a1_11.Level22FMessageInline39 == nil {
+				a1_11.Level22FMessageInline39 = new(MessageLevel39)
 			}
-			isLoad_o2_142 = true
-			o2_142, ok := a1_11.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline40)
-			if !ok {
-				o2_142 = new(MessageLevel22_Level22One2MessageInline40)
-				a1_11.Level22OneOfInline1 = o2_142
-			}
-			if o2_142.Level22One2MessageInline40 == nil {
-				o2_142.Level22One2MessageInline40 = new(MessageLevel40)
-			}
-			p2_146 = o2_142.Level22One2MessageInline40
-		}
-		return nil
-	}
-	init_p2_111 := func() error {
-		if p2_111 == nil {
-			if _err := init_a1_11(); _err != nil {
-				return _err
-			}
-			if isLoad_o2_80 {
-				return jsondecoder.ErrOneOfConflict(dec)
-			}
-			isLoad_o2_80 = true
-			o2_80, ok := a1_11.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline39)
-			if !ok {
-				o2_80 = new(MessageLevel22_Level22One1MessageInline39)
-				a1_11.Level22OneOfExtern1 = o2_80
-			}
-			if o2_80.Level22One1MessageInline39 == nil {
-				o2_80.Level22One1MessageInline39 = new(MessageLevel39)
-			}
-			p2_111 = o2_80.Level22One1MessageInline39
+			a2_51 = a1_11.Level22FMessageInline39
 		}
 		return nil
 	}
@@ -1818,27 +1590,255 @@ func (x *MessageLevel14) UnmarshalJSON(b []byte) error {
 		}
 		return nil
 	}
-	init_a2_51 := func() error {
-		if a2_51 == nil {
+	init_p2_111 := func() error {
+		if p2_111 == nil {
 			if _err := init_a1_11(); _err != nil {
 				return _err
 			}
-			if a1_11.Level22FMessageInline39 == nil {
-				a1_11.Level22FMessageInline39 = new(MessageLevel39)
+			if isLoad_o2_80 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			a2_51 = a1_11.Level22FMessageInline39
+			isLoad_o2_80 = true
+			o2_80, ok := a1_11.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline39)
+			if !ok {
+				o2_80 = new(MessageLevel22_Level22One1MessageInline39)
+				a1_11.Level22OneOfExtern1 = o2_80
+			}
+			if o2_80.Level22One1MessageInline39 == nil {
+				o2_80.Level22One1MessageInline39 = new(MessageLevel39)
+			}
+			p2_111 = o2_80.Level22One1MessageInline39
 		}
 		return nil
 	}
-	init_a2_22 := func() error {
-		if a2_22 == nil {
+	init_p2_146 := func() error {
+		if p2_146 == nil {
 			if _err := init_a1_11(); _err != nil {
 				return _err
 			}
-			if a1_11.Level22FMessageInline38 == nil {
-				a1_11.Level22FMessageInline38 = new(MessageLevel38)
+			if isLoad_o2_142 {
+				return jsondecoder.ErrOneOfConflict(dec)
 			}
-			a2_22 = a1_11.Level22FMessageInline38
+			isLoad_o2_142 = true
+			o2_142, ok := a1_11.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline40)
+			if !ok {
+				o2_142 = new(MessageLevel22_Level22One2MessageInline40)
+				a1_11.Level22OneOfInline1 = o2_142
+			}
+			if o2_142.Level22One2MessageInline40 == nil {
+				o2_142.Level22One2MessageInline40 = new(MessageLevel40)
+			}
+			p2_146 = o2_142.Level22One2MessageInline40
+		}
+		return nil
+	}
+	init_p2_175 := func() error {
+		if p2_175 == nil {
+			if _err := init_a1_11(); _err != nil {
+				return _err
+			}
+			if isLoad_o2_142 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o2_142 = true
+			o2_142, ok := a1_11.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline41)
+			if !ok {
+				o2_142 = new(MessageLevel22_Level22One2MessageInline41)
+				a1_11.Level22OneOfInline1 = o2_142
+			}
+			if o2_142.Level22One2MessageInline41 == nil {
+				o2_142.Level22One2MessageInline41 = new(MessageLevel41)
+			}
+			p2_175 = o2_142.Level22One2MessageInline41
+		}
+		return nil
+	}
+	init_a1_212 := func() error {
+		if a1_212 == nil {
+			if x.Level14FMessageInline23 == nil {
+				x.Level14FMessageInline23 = new(MessageLevel23)
+			}
+			a1_212 = x.Level14FMessageInline23
+		}
+		return nil
+	}
+	init_p1_243 := func() error {
+		if p1_243 == nil {
+			if isLoad_o1_241 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o1_241 = true
+			o1_241, ok := x.Level14OneOfExtern1.(*MessageLevel14_Level14One1MessageInline22)
+			if !ok {
+				o1_241 = new(MessageLevel14_Level14One1MessageInline22)
+				x.Level14OneOfExtern1 = o1_241
+			}
+			if o1_241.Level14One1MessageInline22 == nil {
+				o1_241.Level14One1MessageInline22 = new(MessageLevel22)
+			}
+			p1_243 = o1_241.Level14One1MessageInline22
+		}
+		return nil
+	}
+	init_a2_254 := func() error {
+		if a2_254 == nil {
+			if _err := init_p1_243(); _err != nil {
+				return _err
+			}
+			if p1_243.Level22FMessageInline38 == nil {
+				p1_243.Level22FMessageInline38 = new(MessageLevel38)
+			}
+			a2_254 = p1_243.Level22FMessageInline38
+		}
+		return nil
+	}
+	init_a2_283 := func() error {
+		if a2_283 == nil {
+			if _err := init_p1_243(); _err != nil {
+				return _err
+			}
+			if p1_243.Level22FMessageInline39 == nil {
+				p1_243.Level22FMessageInline39 = new(MessageLevel39)
+			}
+			a2_283 = p1_243.Level22FMessageInline39
+		}
+		return nil
+	}
+	init_p2_314 := func() error {
+		if p2_314 == nil {
+			if _err := init_p1_243(); _err != nil {
+				return _err
+			}
+			if isLoad_o2_312 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o2_312 = true
+			o2_312, ok := p1_243.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline38)
+			if !ok {
+				o2_312 = new(MessageLevel22_Level22One1MessageInline38)
+				p1_243.Level22OneOfExtern1 = o2_312
+			}
+			if o2_312.Level22One1MessageInline38 == nil {
+				o2_312.Level22One1MessageInline38 = new(MessageLevel38)
+			}
+			p2_314 = o2_312.Level22One1MessageInline38
+		}
+		return nil
+	}
+	init_p2_343 := func() error {
+		if p2_343 == nil {
+			if _err := init_p1_243(); _err != nil {
+				return _err
+			}
+			if isLoad_o2_312 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o2_312 = true
+			o2_312, ok := p1_243.Level22OneOfExtern1.(*MessageLevel22_Level22One1MessageInline39)
+			if !ok {
+				o2_312 = new(MessageLevel22_Level22One1MessageInline39)
+				p1_243.Level22OneOfExtern1 = o2_312
+			}
+			if o2_312.Level22One1MessageInline39 == nil {
+				o2_312.Level22One1MessageInline39 = new(MessageLevel39)
+			}
+			p2_343 = o2_312.Level22One1MessageInline39
+		}
+		return nil
+	}
+	init_p2_378 := func() error {
+		if p2_378 == nil {
+			if _err := init_p1_243(); _err != nil {
+				return _err
+			}
+			if isLoad_o2_374 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o2_374 = true
+			o2_374, ok := p1_243.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline40)
+			if !ok {
+				o2_374 = new(MessageLevel22_Level22One2MessageInline40)
+				p1_243.Level22OneOfInline1 = o2_374
+			}
+			if o2_374.Level22One2MessageInline40 == nil {
+				o2_374.Level22One2MessageInline40 = new(MessageLevel40)
+			}
+			p2_378 = o2_374.Level22One2MessageInline40
+		}
+		return nil
+	}
+	init_p2_407 := func() error {
+		if p2_407 == nil {
+			if _err := init_p1_243(); _err != nil {
+				return _err
+			}
+			if isLoad_o2_374 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o2_374 = true
+			o2_374, ok := p1_243.Level22OneOfInline1.(*MessageLevel22_Level22One2MessageInline41)
+			if !ok {
+				o2_374 = new(MessageLevel22_Level22One2MessageInline41)
+				p1_243.Level22OneOfInline1 = o2_374
+			}
+			if o2_374.Level22One2MessageInline41 == nil {
+				o2_374.Level22One2MessageInline41 = new(MessageLevel41)
+			}
+			p2_407 = o2_374.Level22One2MessageInline41
+		}
+		return nil
+	}
+	init_p1_444 := func() error {
+		if p1_444 == nil {
+			if isLoad_o1_241 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o1_241 = true
+			o1_241, ok := x.Level14OneOfExtern1.(*MessageLevel14_Level14One1MessageInline23)
+			if !ok {
+				o1_241 = new(MessageLevel14_Level14One1MessageInline23)
+				x.Level14OneOfExtern1 = o1_241
+			}
+			if o1_241.Level14One1MessageInline23 == nil {
+				o1_241.Level14One1MessageInline23 = new(MessageLevel23)
+			}
+			p1_444 = o1_241.Level14One1MessageInline23
+		}
+		return nil
+	}
+	init_p1_479 := func() error {
+		if p1_479 == nil {
+			if isLoad_o1_475 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o1_475 = true
+			o1_475, ok := x.Level14OneOfInline1.(*MessageLevel14_Level14One2MessageInline24)
+			if !ok {
+				o1_475 = new(MessageLevel14_Level14One2MessageInline24)
+				x.Level14OneOfInline1 = o1_475
+			}
+			if o1_475.Level14One2MessageInline24 == nil {
+				o1_475.Level14One2MessageInline24 = new(MessageLevel24)
+			}
+			p1_479 = o1_475.Level14One2MessageInline24
+		}
+		return nil
+	}
+	init_p1_508 := func() error {
+		if p1_508 == nil {
+			if isLoad_o1_475 {
+				return jsondecoder.ErrOneOfConflict(dec)
+			}
+			isLoad_o1_475 = true
+			o1_475, ok := x.Level14OneOfInline1.(*MessageLevel14_Level14One2MessageInline25)
+			if !ok {
+				o1_475 = new(MessageLevel14_Level14One2MessageInline25)
+				x.Level14OneOfInline1 = o1_475
+			}
+			if o1_475.Level14One2MessageInline25 == nil {
+				o1_475.Level14One2MessageInline25 = new(MessageLevel25)
+			}
+			p1_508 = o1_475.Level14One2MessageInline25
 		}
 		return nil
 	}
