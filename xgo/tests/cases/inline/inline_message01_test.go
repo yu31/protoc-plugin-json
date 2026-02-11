@@ -57,14 +57,14 @@ func Test_InlineMessage01_EmptyValue(t *testing.T) {
 
 /*
 Test cases include:
-	1. Include multi-level inline message.
-	2. Include inline oneof and include multi-level inline message in oneof parts.
-	3. Include options `omitempty` and `ignore`.
-	4. Include the field type message(option inline) and has no fields.
-	5. Include the field type message(option inline) and all fields are ignore.
-	6. Include the field type message(option inline) and option ignore.
-	7. Include the field type oneof(option inline) and option ignore.
-    8. Include the field type oneof(option inline) and all parts are ignore.
+ 1. Include multi-level inline message.
+ 2. Include inline oneof and include multi-level inline message in oneof parts.
+ 3. Include options `omitempty` and `ignore`.
+ 4. Include the field type message(option inline) and has no fields.
+ 5. Include the field type message(option inline) and all fields are ignore.
+ 6. Include the field type message(option inline) and option ignore.
+ 7. Include the field type oneof(option inline) and option ignore.
+ 8. Include the field type oneof(option inline) and all parts are ignore.
 */
 func Test_InlineMessage01_Complex(t *testing.T) {
 	var ( // message in level01

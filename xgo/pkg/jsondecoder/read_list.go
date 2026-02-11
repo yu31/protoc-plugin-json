@@ -468,7 +468,7 @@ func ReadListEnumStr[T protoreflect.Enum](dec *Decoder, val []T) (vv []T, err er
 }
 
 // ReadListMessage read the next items from JSON contents as a list of message.
-//func ReadListMessage[T PtrGoAny[U], U any](dec *Decoder,  val []T) (vv []T, err error) {
+// func ReadListMessage[T PtrGoAny[U], U any](dec *Decoder,  val []T) (vv []T, err error) {
 func ReadListMessage[U any, T *U](dec *Decoder, val []T) (vv []T, err error) {
 	var (
 		isEnd  bool

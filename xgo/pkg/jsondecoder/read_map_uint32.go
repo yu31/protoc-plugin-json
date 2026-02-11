@@ -462,7 +462,7 @@ func ReadMapU32EnumStr[T protoreflect.Enum](dec *Decoder, val map[uint32]T,
 }
 
 // ReadMapU32Message read the next items from JSON contents as map key uint32 and value message.
-//func ReadMapU32Message[T PtrGoAny[U], U any](dec *Decoder,  val map[uint32]T) (vv map[uint32]T, err error) {
+// func ReadMapU32Message[T PtrGoAny[U], U any](dec *Decoder,  val map[uint32]T) (vv map[uint32]T, err error) {
 func ReadMapU32Message[U any, T *U](dec *Decoder, val map[uint32]T,
 	unquoteKey bool) (vv map[uint32]T, err error) {
 	var (

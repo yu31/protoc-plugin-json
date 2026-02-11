@@ -459,7 +459,7 @@ func ReadMapStrEnumStr[T protoreflect.Enum](dec *Decoder, val map[string]T) (vv 
 }
 
 // ReadMapStrMessage read the next items from JSON contents as map key string and value message.
-//func ReadMapStrMessage[T PtrGoAny[U], U any](dec *Decoder,  val map[string]T) (vv map[string]T, err error) {
+// func ReadMapStrMessage[T PtrGoAny[U], U any](dec *Decoder,  val map[string]T) (vv map[string]T, err error) {
 func ReadMapStrMessage[U any, T *U](dec *Decoder, val map[string]T,
 ) (vv map[string]T, err error) {
 	var (

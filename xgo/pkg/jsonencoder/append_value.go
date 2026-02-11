@@ -110,7 +110,8 @@ func AppendValEnumStr(enc *Encoder, jsonKey string, val protoreflect.Enum, omite
 }
 
 // AppendValMessage append an JSON key with value of proto MESSAGE to JSON contents.
-//func AppendValProtoMessage[T PtrGoAny[U], U any](enc *Encoder,  jsonKey string,
+// func AppendValProtoMessage[T PtrGoAny[U], U any](enc *Encoder,  jsonKey string,
+//
 //	val T) error {
 func AppendValMessage[U any, T *U](enc *Encoder, jsonKey string, val T, omitempty bool) error {
 	if omitempty && val == nil {

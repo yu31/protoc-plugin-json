@@ -462,7 +462,7 @@ func ReadMapI64EnumStr[T protoreflect.Enum](dec *Decoder, val map[int64]T,
 }
 
 // ReadMapI64Message read the next items from JSON contents as map key int64 and value message.
-//func ReadMapI64Message[T PtrGoAny[U], U any](dec *Decoder,  val map[int64]T) (vv map[int64]T, err error) {
+// func ReadMapI64Message[T PtrGoAny[U], U any](dec *Decoder,  val map[int64]T) (vv map[int64]T, err error) {
 func ReadMapI64Message[U any, T *U](dec *Decoder, val map[int64]T,
 	unquoteKey bool) (vv map[int64]T, err error) {
 	var (

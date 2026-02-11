@@ -462,7 +462,7 @@ func ReadMapBoolEnumStr[T protoreflect.Enum](dec *Decoder, val map[bool]T,
 }
 
 // ReadMapBoolMessage read the next items from JSON contents as map key bool and value message.
-//func ReadMapBoolMessage[T PtrGoAny[U], U any](dec *Decoder,  val map[bool]T) (vv map[bool]T, err error) {
+// func ReadMapBoolMessage[T PtrGoAny[U], U any](dec *Decoder,  val map[bool]T) (vv map[bool]T, err error) {
 func ReadMapBoolMessage[U any, T *U](dec *Decoder, val map[bool]T,
 	unquoteKey bool) (vv map[bool]T, err error) {
 	var (

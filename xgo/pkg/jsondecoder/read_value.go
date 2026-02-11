@@ -107,7 +107,7 @@ func ReadValEnumStr[T protoreflect.Enum](dec *Decoder, val T) (vv T, err error) 
 }
 
 // ReadValMessage read the next items from JSON contents as value of message.
-//func ReadValMessage[T PtrGoAny[U], U any](dec *Decoder,  val []T) (vv T, err error) {
+// func ReadValMessage[T PtrGoAny[U], U any](dec *Decoder,  val []T) (vv T, err error) {
 func ReadValMessage[U any, T *U](dec *Decoder, val T) (vv T, err error) {
 	var isNULL bool
 	if isNULL, err = dec.NextLiteralIsNULL(); err != nil {
